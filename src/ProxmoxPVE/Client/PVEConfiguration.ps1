@@ -196,7 +196,7 @@ function Invoke-PVELogin {
             }
         }
     }
-    
+    $UserChoice = "y"
     if($script:Configuration["Credential"] -and !$Silent -and $oldLoginMethod -eq $LoginMethod){
         $AskCount = 0
         $AskCreds = $true
