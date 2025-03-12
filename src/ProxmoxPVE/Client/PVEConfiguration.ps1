@@ -168,6 +168,13 @@ function Invoke-PVELogin {
         [string]$LoginMethod
     )
 
+    if(!$Script:Configuration["BaseUrl"]){
+        if($Silent){
+            throw "Error: BaseUrl not set in Configuration"
+        }else{
+            $Script:Configuration["BaseUrl"] = "BaseUrl not set. Please insert the BaseUrl to your PVE Api. e.G. https://pve.local:8006/api2/json"
+        }
+    }
     $oldLoginMethod = $script:Configuration["LoginMethod"]
     if($LoginMethod){
         $script:Configuration["LoginMethod"] = $LoginMethod
@@ -231,7 +238,7 @@ function Invoke-PVELogin {
         
     if($LoginMethod -eq "ticket"){
         try{
-            $LoginUri = "http://localhost/access/ticket"
+            $LoginUri = "$Script:Configuration["BaseUrl"]/access/ticket"
             $crds = $Script:Configuration["Credential"]
             $LoginResponse = Invoke-WebRequest `
                                 -Uri $LoginUri `
