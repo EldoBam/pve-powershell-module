@@ -1,0 +1,25 @@
+# ClusterSdnVnetsFirewallOptions
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**PolicyForward** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
+**LogLevelForward** | **String** |  | [optional] 
+
+## Examples
+
+- Prepare the resource
+```powershell
+$ClusterSdnVnetsFirewallOptions = Initialize-PVEClusterSdnVnetsFirewallOptions  -PolicyForward null `
+ -Enable null `
+ -LogLevelForward null
+```
+
+- Convert the resource to JSON
+```powershell
+$ClusterSdnVnetsFirewallOptions | ConvertTo-JSON
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
