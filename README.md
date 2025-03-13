@@ -19,8 +19,8 @@ This module is currently under beta release.
 - any contribution is welcome
 
 ## Contact
-Timo Wolf
-[eldobam.bsky.social](https://bsky.app/profile/eldobam.bsky.social)
+- Timo Wolf 
+- [eldobam.bsky.social](https://bsky.app/profile/eldobam.bsky.social)
 
 ## Dependencies
 
