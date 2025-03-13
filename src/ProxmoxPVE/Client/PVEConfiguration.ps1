@@ -25,7 +25,8 @@ function Get-PVEConfiguration{
 			$BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR((Get-Content ($env:USERPROFILE + '\PVESettings.txt') | ConvertTo-SecureString))
 			$Unsecure = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
 			$Script:Configuration = $Unsecure | ConvertFrom-Json -AsHashtable
-			Invoke-PVELogin
+            $Credential = New-Object System.Management.Automation.PSCredential($Script:Configuration["Credential"].UserName, (ConvertTo-SecureString $Script:Configuration["Credential"].Password))
+			Invoke-PVELogin -Silent
 		    return $Script:Configuration
 	}
 
@@ -151,7 +152,12 @@ function Set-PVEConfiguration{
             $Script:Configuration['Proxy'] = $null
         }
 		if ($Persistent){
-            $Script:Configuration | ConvertTo-Json -Compress | ConvertTo-SecureString -AsPlainText | ConvertFrom-SecureString  | set-content ($env:USERPROFILE + '\PVESettings.txt')
+            $SaveConfig = $Script:Configuration
+            $SaveConfig["Credential"] = @{
+                UserName = $Script:Configuration["Credential"].UserName
+                Password = (ConvertFrom-SecureString -String $Script:Configuration["Credential"].Password)
+            }
+            $SaveConfig | ConvertTo-Json -Compress | ConvertTo-SecureString -AsPlainText | ConvertFrom-SecureString  | set-content ($env:USERPROFILE + '\PVESettings.txt')
         }
 
         if ($PassThru){
@@ -172,7 +178,7 @@ function Invoke-PVELogin {
         if($Silent){
             throw "Error: BaseUrl not set in Configuration"
         }else{
-            $Script:Configuration["BaseUrl"] = "BaseUrl not set. Please insert the BaseUrl to your PVE Api. e.G. https://pve.local:8006/api2/json"
+            $Script:Configuration["BaseUrl"] = Read-Host "BaseUrl not set. Please insert the BaseUrl to your PVE Api. e.G. https://pve.local:8006/api2/json"
         }
     }
     $oldLoginMethod = $script:Configuration["LoginMethod"]
@@ -200,6 +206,8 @@ function Invoke-PVELogin {
                     Write-Host "Aborting."
                     return
                 }
+            }else{
+                $Script:Configuration["LoginMethod"] = $LoginMethod
             }
         }
     }
@@ -233,12 +241,12 @@ function Invoke-PVELogin {
                 break
             }
         }
-        $script:Configuration["Credential"] = Get-Credential -Message "Proxmox VE $($LoginMethod -replace "^t","T") Authentication:"
+        $script:Configuration["Credential"] = (Get-Credential -Message "Proxmox VE $($LoginMethod -replace "^t","T") Authentication:")
     }
         
     if($LoginMethod -eq "ticket"){
         try{
-            $LoginUri = "$Script:Configuration["BaseUrl"]/access/ticket"
+            $LoginUri = "$($Script:Configuration["BaseUrl"])/access/ticket"
             $crds = $Script:Configuration["Credential"]
             $LoginResponse = Invoke-WebRequest `
                                 -Uri $LoginUri `
@@ -250,7 +258,7 @@ function Invoke-PVELogin {
                                 -ContentType "application/x-www-form-urlencoded" `
                                 -ErrorAction Stop
             if($LoginResponse.StatusCode -eq 200){
-                $LoginData = $LoginData.Content | ConvertFrom-Json
+                $LoginData = $LoginResponse.Content | ConvertFrom-Json
                 $script:AuthData["Ticket"] = (ConvertTo-SecureString -String $LoginData.data.ticket -AsPlainText -Force)
                 $script:AuthData["CSRFPreventionToken"] = (ConvertTo-SecureString -String $LoginData.data.CSRFPreventionToken -AsPlainText -Force)
             }else{
@@ -274,11 +282,10 @@ function Invoke-PVELogin {
     }
     if($LoginMethod -eq "token"){
         $AuthHeaders = @{
-            $Authorization = "PVEAPIToken {0}={1}" -f $Script:Configuration["Credential"].UserName,(DecryptSecureString -SecureString $Script:Configuration["Credential"].Password)
+            Authorization = ("PVEAPIToken {0}={1}" -f $Script:Configuration["Credential"].UserName,(DecryptSecureString -SecureString $Script:Configuration["Credential"].Password))
         }
-        $TestTokenUri = "http://localhost"
         try{
-            $LoginResponse = Invoke-WebRequest -Uri $TestTokenUri -Method Get -Headers $AuthHeaders
+            $LoginResponse = Invoke-WebRequest -Uri $Script:Configuration["BaseUrl"] -Method Get -Headers $AuthHeaders
             if($LoginResponse.StatusCode -eq 200){
                 $Script:AuthData["PVEAPIToken"] = (ConvertTo-SecureString -String $AuthHeaders.Authorization -AsPlainText -Force)
             }else{
@@ -300,7 +307,7 @@ function Invoke-PVELogin {
             }
         }
     }
-    $Script:LoggedIn = $true
+    $Script:AuthData["LoggedIn"] = $true
     if(!$Silent){
         Write-Host -ForegroundColor Green "Login successful"
         $SaveLoginData = Read-Host -Prompt "Save login data to persistent Configuration? y|[n]"
@@ -318,6 +325,8 @@ function Invoke-PVELogin {
             Set-PVEConfiguration -Persistent
             Write-Host "done."
         }
+    }else{
+        return $true
     }
 }
 
