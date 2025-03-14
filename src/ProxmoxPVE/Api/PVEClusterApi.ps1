@@ -147,7 +147,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterAcmeAccount
+SystemCollectionsHashtable[]
 #>
 function Get-PVEClusterAcmeAccount {
     [CmdletBinding()]
@@ -184,7 +184,7 @@ function Get-PVEClusterAcmeAccount {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterAcmeAccount" `
+                                -ReturnType "SystemCollectionsHashtable[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -393,6 +393,9 @@ Retrieve ACME Directory Meta Information
 
 No description available.
 
+.PARAMETER GETClusterAcmeMetaRB
+Retrieve ACME Directory Meta Information
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -404,6 +407,9 @@ ClusterAcmeMeta
 function Get-PVEClusterAcmeMeta {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterAcmeMetaRB},
         [Switch]
         $WithHttpInfo
     )
@@ -425,7 +431,12 @@ function Get-PVEClusterAcmeMeta {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/acme/meta'
+
+        $LocalVarBodyParameter = $GETClusterAcmeMetaRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -456,6 +467,9 @@ ACME plugin index.
 
 No description available.
 
+.PARAMETER GETClusterAcmePluginsRB
+ACME plugin index.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -467,6 +481,9 @@ ClusterAcmePluginsInner[]
 function Get-PVEClusterAcmePlugins {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterAcmePluginsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -488,7 +505,12 @@ function Get-PVEClusterAcmePlugins {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/acme/plugins'
+
+        $LocalVarBodyParameter = $GETClusterAcmePluginsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -579,6 +601,9 @@ Retrieve ACME TermsOfService URL from CA. Deprecated, please use /cluster/acme/m
 
 No description available.
 
+.PARAMETER GETClusterAcmeTosRB
+Retrieve ACME TermsOfService URL from CA. Deprecated, please use /cluster/acme/meta.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -590,6 +615,9 @@ None
 function Get-PVEClusterAcmeTos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterAcmeTosRB},
         [Switch]
         $WithHttpInfo
     )
@@ -608,7 +636,12 @@ function Get-PVEClusterAcmeTos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/acme/tos'
+
+        $LocalVarBodyParameter = $GETClusterAcmeTosRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1080,7 +1113,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-None
+Int32
 #>
 function Get-PVEClusterCephFlagsByFlag {
     [CmdletBinding()]
@@ -1103,6 +1136,9 @@ function Get-PVEClusterCephFlagsByFlag {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
         $LocalVarUri = '/cluster/ceph/flags/{flag}'
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
@@ -1114,7 +1150,7 @@ function Get-PVEClusterCephFlagsByFlag {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "Int32" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1134,6 +1170,9 @@ Get ceph metadata.
 
 No description available.
 
+.PARAMETER GETClusterCephMetadataRB
+Get ceph metadata.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1145,6 +1184,9 @@ ClusterCephMetadata
 function Get-PVEClusterCephMetadata {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterCephMetadataRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1166,7 +1208,12 @@ function Get-PVEClusterCephMetadata {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/ceph/metadata'
+
+        $LocalVarBodyParameter = $GETClusterCephMetadataRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1326,7 +1373,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-None
+Int32
 #>
 function Get-PVEClusterConfigApiversion {
     [CmdletBinding()]
@@ -1349,6 +1396,9 @@ function Get-PVEClusterConfigApiversion {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
         $LocalVarUri = '/cluster/config/apiversion'
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
@@ -1360,7 +1410,7 @@ function Get-PVEClusterConfigApiversion {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "Int32" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1380,6 +1430,9 @@ Get information needed to join this cluster over the connected node.
 
 No description available.
 
+.PARAMETER GETClusterConfigJoinRB
+Get information needed to join this cluster over the connected node.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1391,6 +1444,9 @@ ClusterConfigJoin
 function Get-PVEClusterConfigJoin {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterConfigJoinRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1412,7 +1468,12 @@ function Get-PVEClusterConfigJoin {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/config/join'
+
+        $LocalVarBodyParameter = $GETClusterConfigJoinRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1449,7 +1510,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterConfigNodesInner[]
+ClusterConfigNodesGETInner[]
 #>
 function Get-PVEClusterConfigNodes {
     [CmdletBinding()]
@@ -1486,7 +1547,7 @@ function Get-PVEClusterConfigNodes {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterConfigNodesInner[]" `
+                                -ReturnType "ClusterConfigNodesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1695,7 +1756,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterFirewallAliasesInner[]
+NodesQemuFirewallAliasesInner[]
 #>
 function Get-PVEClusterFirewallAliases {
     [CmdletBinding()]
@@ -1732,7 +1793,7 @@ function Get-PVEClusterFirewallAliases {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterFirewallAliasesInner[]" `
+                                -ReturnType "NodesQemuFirewallAliasesInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1818,7 +1879,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterFirewallGroups
+ClusterFirewallGroupsGETInner[]
 #>
 function Get-PVEClusterFirewallGroups {
     [CmdletBinding()]
@@ -1855,7 +1916,7 @@ function Get-PVEClusterFirewallGroups {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterFirewallGroups" `
+                                -ReturnType "ClusterFirewallGroupsGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1881,7 +1942,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterFirewallGroupsAVInner[]
+NodesFirewallRulesGETInner[]
 #>
 function Get-PVEClusterFirewallGroupsByGroup {
     [CmdletBinding()]
@@ -1918,7 +1979,7 @@ function Get-PVEClusterFirewallGroupsByGroup {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterFirewallGroupsAVInner[]" `
+                                -ReturnType "NodesFirewallRulesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2007,7 +2068,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallIpsetInner[]
+NodesQemuFirewallIpsetInner[]
 #>
 function Get-PVEClusterFirewallIpset {
     [CmdletBinding()]
@@ -2044,7 +2105,7 @@ function Get-PVEClusterFirewallIpset {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallIpsetInner[]" `
+                                -ReturnType "NodesQemuFirewallIpsetInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2070,7 +2131,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterFirewallIpsetAVInner[]
+ClusterFirewallIpsetGETInner[]
 #>
 function Get-PVEClusterFirewallIpsetByName {
     [CmdletBinding()]
@@ -2107,7 +2168,7 @@ function Get-PVEClusterFirewallIpsetByName {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterFirewallIpsetAVInner[]" `
+                                -ReturnType "ClusterFirewallIpsetGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2313,6 +2374,9 @@ Lists possible IPSet/Alias reference which are allowed in source/dest properties
 
 No description available.
 
+.PARAMETER GETClusterFirewallRefsRB
+Lists possible IPSet/Alias reference which are allowed in source/dest properties.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2324,6 +2388,9 @@ NodesLxcFirewallRefsInner[]
 function Get-PVEClusterFirewallRefs {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterFirewallRefsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2345,7 +2412,12 @@ function Get-PVEClusterFirewallRefs {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/refs'
+
+        $LocalVarBodyParameter = $GETClusterFirewallRefsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2382,7 +2454,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterFirewallRules
+NodesFirewallRulesGETInner[]
 #>
 function Get-PVEClusterFirewallRules {
     [CmdletBinding()]
@@ -2419,7 +2491,7 @@ function Get-PVEClusterFirewallRules {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterFirewallRules" `
+                                -ReturnType "NodesFirewallRulesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2508,7 +2580,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterHaInner[]
+ClusterSdnInner[]
 #>
 function Get-PVEClusterHa {
     [CmdletBinding()]
@@ -2545,7 +2617,7 @@ function Get-PVEClusterHa {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterHaInner[]" `
+                                -ReturnType "ClusterSdnInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2688,17 +2760,23 @@ List HA resources.
 
 No description available.
 
+.PARAMETER GETClusterHaResourcesRB
+List HA resources.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-ClusterHaResources
+ClusterHaResourcesGETInner[]
 #>
 function Get-PVEClusterHaResources {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterHaResourcesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2720,7 +2798,12 @@ function Get-PVEClusterHaResources {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/ha/resources'
+
+        $LocalVarBodyParameter = $GETClusterHaResourcesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2731,7 +2814,7 @@ function Get-PVEClusterHaResources {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterHaResources" `
+                                -ReturnType "ClusterHaResourcesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -3183,6 +3266,9 @@ Returns a list of future schedule runtimes.
 
 No description available.
 
+.PARAMETER GETClusterJobsScheduleanalyzeRB
+Returns a list of future schedule runtimes.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3194,6 +3280,9 @@ ClusterJobsScheduleanalyzeInner[]
 function Get-PVEClusterJobsScheduleanalyze {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterJobsScheduleanalyzeRB},
         [Switch]
         $WithHttpInfo
     )
@@ -3215,7 +3304,12 @@ function Get-PVEClusterJobsScheduleanalyze {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/jobs/schedule-analyze'
+
+        $LocalVarBodyParameter = $GETClusterJobsScheduleanalyzeRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3246,6 +3340,9 @@ Read cluster log
 
 No description available.
 
+.PARAMETER GETClusterLogRB
+Read cluster log
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3257,6 +3354,9 @@ SystemCollectionsHashtable[]
 function Get-PVEClusterLog {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterLogRB},
         [Switch]
         $WithHttpInfo
     )
@@ -3278,7 +3378,12 @@ function Get-PVEClusterLog {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/log'
+
+        $LocalVarBodyParameter = $GETClusterLogRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3369,6 +3474,9 @@ List PCI Hardware Mapping
 
 No description available.
 
+.PARAMETER GETClusterMappingPciRB
+List PCI Hardware Mapping
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3380,6 +3488,9 @@ ClusterMappingPciInner[]
 function Get-PVEClusterMappingPci {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterMappingPciRB},
         [Switch]
         $WithHttpInfo
     )
@@ -3401,7 +3512,12 @@ function Get-PVEClusterMappingPci {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/mapping/pci'
+
+        $LocalVarBodyParameter = $GETClusterMappingPciRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3492,6 +3608,9 @@ List USB Hardware Mappings
 
 No description available.
 
+.PARAMETER GETClusterMappingUsbRB
+List USB Hardware Mappings
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3503,6 +3622,9 @@ ClusterMappingUsbInner[]
 function Get-PVEClusterMappingUsb {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterMappingUsbRB},
         [Switch]
         $WithHttpInfo
     )
@@ -3524,7 +3646,12 @@ function Get-PVEClusterMappingUsb {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/mapping/usb'
+
+        $LocalVarBodyParameter = $GETClusterMappingUsbRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3678,6 +3805,9 @@ Retrieve metrics of the cluster.
 
 No description available.
 
+.PARAMETER GETClusterMetricsExportRB
+Retrieve metrics of the cluster.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3689,6 +3819,9 @@ ClusterMetricsExport
 function Get-PVEClusterMetricsExport {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterMetricsExportRB},
         [Switch]
         $WithHttpInfo
     )
@@ -3710,7 +3843,12 @@ function Get-PVEClusterMetricsExport {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/metrics/export'
+
+        $LocalVarBodyParameter = $GETClusterMetricsExportRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3864,17 +4002,23 @@ Get next free VMID. Pass a VMID to assert that its free (at time of check).
 
 No description available.
 
+.PARAMETER GETClusterNextidRB
+Get next free VMID. Pass a VMID to assert that its free (at time of check).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-None
+Int32
 #>
 function Get-PVEClusterNextid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterNextidRB},
         [Switch]
         $WithHttpInfo
     )
@@ -3893,7 +4037,15 @@ function Get-PVEClusterNextid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/nextid'
+
+        $LocalVarBodyParameter = $GETClusterNextidRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3904,7 +4056,7 @@ function Get-PVEClusterNextid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "Int32" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4056,7 +4208,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterNotificationsEndpointsGotify
+ClusterNotificationsEndpointsGotifyGETInner[]
 #>
 function Get-PVEClusterNotificationsEndpointsGotify {
     [CmdletBinding()]
@@ -4093,7 +4245,7 @@ function Get-PVEClusterNotificationsEndpointsGotify {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterNotificationsEndpointsGotify" `
+                                -ReturnType "ClusterNotificationsEndpointsGotifyGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4182,7 +4334,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterNotificationsEndpointsSendmail
+ClusterNotificationsEndpointsSendmailGETInner[]
 #>
 function Get-PVEClusterNotificationsEndpointsSendmail {
     [CmdletBinding()]
@@ -4219,7 +4371,7 @@ function Get-PVEClusterNotificationsEndpointsSendmail {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterNotificationsEndpointsSendmail" `
+                                -ReturnType "ClusterNotificationsEndpointsSendmailGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4308,7 +4460,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterNotificationsEndpointsSmtp
+ClusterNotificationsEndpointsSmtpGETInner[]
 #>
 function Get-PVEClusterNotificationsEndpointsSmtp {
     [CmdletBinding()]
@@ -4345,7 +4497,7 @@ function Get-PVEClusterNotificationsEndpointsSmtp {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterNotificationsEndpointsSmtp" `
+                                -ReturnType "ClusterNotificationsEndpointsSmtpGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4434,7 +4586,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterNotificationsEndpointsWebhook
+ClusterNotificationsEndpointsWebhookGETInner[]
 #>
 function Get-PVEClusterNotificationsEndpointsWebhook {
     [CmdletBinding()]
@@ -4471,7 +4623,7 @@ function Get-PVEClusterNotificationsEndpointsWebhook {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterNotificationsEndpointsWebhook" `
+                                -ReturnType "ClusterNotificationsEndpointsWebhookGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4560,7 +4712,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterNotificationsMatcherfieldsInner[]
+NodesCephRulesInner[]
 #>
 function Get-PVEClusterNotificationsMatcherfields {
     [CmdletBinding()]
@@ -4597,7 +4749,7 @@ function Get-PVEClusterNotificationsMatcherfields {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterNotificationsMatcherfieldsInner[]" `
+                                -ReturnType "NodesCephRulesInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4686,7 +4838,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterNotificationsMatchers
+ClusterNotificationsMatchersGETInner[]
 #>
 function Get-PVEClusterNotificationsMatchers {
     [CmdletBinding()]
@@ -4723,7 +4875,7 @@ function Get-PVEClusterNotificationsMatchers {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterNotificationsMatchers" `
+                                -ReturnType "ClusterNotificationsMatchersGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -5052,6 +5204,9 @@ Resources index (cluster wide).
 
 No description available.
 
+.PARAMETER GETClusterResourcesRB
+Resources index (cluster wide).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5063,6 +5218,9 @@ ClusterResourcesInner[]
 function Get-PVEClusterResources {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterResourcesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -5084,7 +5242,12 @@ function Get-PVEClusterResources {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/resources'
+
+        $LocalVarBodyParameter = $GETClusterResourcesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5121,7 +5284,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterHaInner[]
+ClusterSdnInner[]
 #>
 function Get-PVEClusterSdn {
     [CmdletBinding()]
@@ -5158,7 +5321,7 @@ function Get-PVEClusterSdn {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterHaInner[]" `
+                                -ReturnType "ClusterSdnInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -5178,6 +5341,9 @@ SDN controllers index.
 
 No description available.
 
+.PARAMETER GETClusterSdnControllersRB
+SDN controllers index.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5189,6 +5355,9 @@ ClusterSdnControllersInner[]
 function Get-PVEClusterSdnControllers {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterSdnControllersRB},
         [Switch]
         $WithHttpInfo
     )
@@ -5210,7 +5379,12 @@ function Get-PVEClusterSdnControllers {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/controllers'
+
+        $LocalVarBodyParameter = $GETClusterSdnControllersRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5241,6 +5415,9 @@ Read sdn controller configuration.
 
 No description available.
 
+.PARAMETER GETClusterSdnControllersRB
+Read sdn controller configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5252,6 +5429,9 @@ None
 function Get-PVEClusterSdnControllersByController {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterSdnControllersRB},
         [Switch]
         $WithHttpInfo
     )
@@ -5270,7 +5450,12 @@ function Get-PVEClusterSdnControllersByController {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/controllers/{controller}'
+
+        $LocalVarBodyParameter = $GETClusterSdnControllersRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5301,6 +5486,9 @@ SDN dns index.
 
 No description available.
 
+.PARAMETER GETClusterSdnDnsRB
+SDN dns index.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5312,6 +5500,9 @@ ClusterSdnDnsInner[]
 function Get-PVEClusterSdnDns {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterSdnDnsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -5333,7 +5524,12 @@ function Get-PVEClusterSdnDns {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/dns'
+
+        $LocalVarBodyParameter = $GETClusterSdnDnsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5424,6 +5620,9 @@ SDN ipams index.
 
 No description available.
 
+.PARAMETER GETClusterSdnIpamsRB
+SDN ipams index.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5435,6 +5634,9 @@ ClusterSdnIpamsInner[]
 function Get-PVEClusterSdnIpams {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterSdnIpamsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -5456,7 +5658,12 @@ function Get-PVEClusterSdnIpams {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/ipams'
+
+        $LocalVarBodyParameter = $GETClusterSdnIpamsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5607,6 +5814,9 @@ SDN vnets index.
 
 No description available.
 
+.PARAMETER GETClusterSdnVnetsRB
+SDN vnets index.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5618,6 +5828,9 @@ SystemCollectionsHashtable[]
 function Get-PVEClusterSdnVnets {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterSdnVnetsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -5639,7 +5852,12 @@ function Get-PVEClusterSdnVnets {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets'
+
+        $LocalVarBodyParameter = $GETClusterSdnVnetsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5670,6 +5888,9 @@ Read sdn vnet configuration.
 
 No description available.
 
+.PARAMETER GETClusterSdnVnetsRB
+Read sdn vnet configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5681,6 +5902,9 @@ None
 function Get-PVEClusterSdnVnetsByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterSdnVnetsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -5699,7 +5923,12 @@ function Get-PVEClusterSdnVnetsByVnet {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}'
+
+        $LocalVarBodyParameter = $GETClusterSdnVnetsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5862,7 +6091,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterSdnVnetsFirewallRules
+NodesFirewallRulesGETInner[]
 #>
 function Get-PVEClusterSdnVnetsFirewallRulesByVnet {
     [CmdletBinding()]
@@ -5899,7 +6128,7 @@ function Get-PVEClusterSdnVnetsFirewallRulesByVnet {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterSdnVnetsFirewallRules" `
+                                -ReturnType "NodesFirewallRulesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -5982,6 +6211,9 @@ SDN subnets index.
 
 No description available.
 
+.PARAMETER GETClusterSdnVnetsSubnetsRB
+SDN subnets index.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5993,6 +6225,9 @@ SystemCollectionsHashtable[]
 function Get-PVEClusterSdnVnetsSubnetsByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterSdnVnetsSubnetsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6014,7 +6249,12 @@ function Get-PVEClusterSdnVnetsSubnetsByVnet {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/subnets'
+
+        $LocalVarBodyParameter = $GETClusterSdnVnetsSubnetsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6045,6 +6285,9 @@ Read sdn subnet configuration.
 
 No description available.
 
+.PARAMETER GETClusterSdnVnetsSubnetsRB
+Read sdn subnet configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6056,6 +6299,9 @@ None
 function Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterSdnVnetsSubnetsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6074,7 +6320,12 @@ function Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/subnets/{subnet}'
+
+        $LocalVarBodyParameter = $GETClusterSdnVnetsSubnetsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6105,6 +6356,9 @@ SDN zones index.
 
 No description available.
 
+.PARAMETER GETClusterSdnZonesRB
+SDN zones index.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6116,6 +6370,9 @@ ClusterSdnZonesInner[]
 function Get-PVEClusterSdnZones {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterSdnZonesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6137,7 +6394,12 @@ function Get-PVEClusterSdnZones {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/zones'
+
+        $LocalVarBodyParameter = $GETClusterSdnZonesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6168,6 +6430,9 @@ Read sdn zone configuration.
 
 No description available.
 
+.PARAMETER GETClusterSdnZonesRB
+Read sdn zone configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6179,6 +6444,9 @@ None
 function Get-PVEClusterSdnZonesByZone {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETClusterSdnZonesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6197,7 +6465,12 @@ function Get-PVEClusterSdnZonesByZone {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/zones/{zone}'
+
+        $LocalVarBodyParameter = $GETClusterSdnZonesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6354,6 +6627,9 @@ Register a new ACME account with CA.
 
 No description available.
 
+.PARAMETER POSTClusterAcmeAccountRB
+Register a new ACME account with CA.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6365,6 +6641,9 @@ None
 function New-PVEClusterAcmeAccount {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterAcmeAccountRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6383,7 +6662,12 @@ function New-PVEClusterAcmeAccount {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/acme/account'
+
+        $LocalVarBodyParameter = $POSTClusterAcmeAccountRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -6414,6 +6698,9 @@ Add ACME plugin configuration.
 
 No description available.
 
+.PARAMETER POSTClusterAcmePluginsRB
+Add ACME plugin configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6425,6 +6712,9 @@ None
 function New-PVEClusterAcmePlugins {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterAcmePluginsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6443,7 +6733,12 @@ function New-PVEClusterAcmePlugins {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/acme/plugins'
+
+        $LocalVarBodyParameter = $POSTClusterAcmePluginsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -6474,6 +6769,9 @@ Create new vzdump backup job.
 
 No description available.
 
+.PARAMETER POSTClusterBackupRB
+Create new vzdump backup job.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6485,6 +6783,9 @@ None
 function New-PVEClusterBackup {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterBackupRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6503,7 +6804,12 @@ function New-PVEClusterBackup {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/backup'
+
+        $LocalVarBodyParameter = $POSTClusterBackupRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -6534,6 +6840,9 @@ Generate new cluster configuration. If no links given, default to local IP addre
 
 No description available.
 
+.PARAMETER POSTClusterConfigRB
+Generate new cluster configuration. If no links given, default to local IP address as link0.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6545,6 +6854,9 @@ None
 function New-PVEClusterConfig {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterConfigRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6563,7 +6875,12 @@ function New-PVEClusterConfig {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/config'
+
+        $LocalVarBodyParameter = $POSTClusterConfigRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -6594,6 +6911,9 @@ Joins this node into an existing cluster. If no links are given, default to IP r
 
 No description available.
 
+.PARAMETER POSTClusterConfigJoinRB
+Joins this node into an existing cluster. If no links are given, default to IP resolved by node's hostname on single link (fallback fails for clusters with multiple links).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6605,6 +6925,9 @@ None
 function New-PVEClusterConfigJoin {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterConfigJoinRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6623,7 +6946,12 @@ function New-PVEClusterConfigJoin {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/config/join'
+
+        $LocalVarBodyParameter = $POSTClusterConfigJoinRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -6654,17 +6982,23 @@ Adds a node to the cluster configuration. This call is for internal use.
 
 No description available.
 
+.PARAMETER POSTClusterConfigNodesRB
+Adds a node to the cluster configuration. This call is for internal use.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-None
+ClusterConfigNodes
 #>
 function New-PVEClusterConfigNodesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterConfigNodesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6683,7 +7017,15 @@ function New-PVEClusterConfigNodesByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/config/nodes/{node}'
+
+        $LocalVarBodyParameter = $POSTClusterConfigNodesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -6694,7 +7036,7 @@ function New-PVEClusterConfigNodesByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "ClusterConfigNodes" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -6714,6 +7056,9 @@ Create IP or Network Alias.
 
 No description available.
 
+.PARAMETER POSTClusterFirewallAliasesRB
+Create IP or Network Alias.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6725,6 +7070,9 @@ None
 function New-PVEClusterFirewallAliases {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterFirewallAliasesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6743,7 +7091,12 @@ function New-PVEClusterFirewallAliases {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/aliases'
+
+        $LocalVarBodyParameter = $POSTClusterFirewallAliasesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -6774,6 +7127,9 @@ Create new security group.
 
 No description available.
 
+.PARAMETER POSTClusterFirewallGroupsRB
+Create new security group.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6785,6 +7141,9 @@ None
 function New-PVEClusterFirewallGroups {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterFirewallGroupsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6803,7 +7162,12 @@ function New-PVEClusterFirewallGroups {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/groups'
+
+        $LocalVarBodyParameter = $POSTClusterFirewallGroupsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -6834,6 +7198,9 @@ Create new rule.
 
 No description available.
 
+.PARAMETER POSTClusterFirewallGroupsRB
+Create new rule.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6845,6 +7212,9 @@ None
 function New-PVEClusterFirewallGroupsByGroup {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterFirewallGroupsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6863,7 +7233,12 @@ function New-PVEClusterFirewallGroupsByGroup {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/groups/{group}'
+
+        $LocalVarBodyParameter = $POSTClusterFirewallGroupsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -6894,6 +7269,9 @@ Create new IPSet
 
 No description available.
 
+.PARAMETER POSTClusterFirewallIpsetRB
+Create new IPSet
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6905,6 +7283,9 @@ None
 function New-PVEClusterFirewallIpset {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6923,7 +7304,12 @@ function New-PVEClusterFirewallIpset {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/ipset'
+
+        $LocalVarBodyParameter = $POSTClusterFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -6954,6 +7340,9 @@ Add IP or Network to IPSet.
 
 No description available.
 
+.PARAMETER POSTClusterFirewallIpsetRB
+Add IP or Network to IPSet.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6965,6 +7354,9 @@ None
 function New-PVEClusterFirewallIpsetByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6983,7 +7375,12 @@ function New-PVEClusterFirewallIpsetByName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/ipset/{name}'
+
+        $LocalVarBodyParameter = $POSTClusterFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7014,6 +7411,9 @@ Create new rule.
 
 No description available.
 
+.PARAMETER POSTClusterFirewallRulesRB
+Create new rule.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7025,6 +7425,9 @@ None
 function New-PVEClusterFirewallRules {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7043,7 +7446,12 @@ function New-PVEClusterFirewallRules {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/rules'
+
+        $LocalVarBodyParameter = $POSTClusterFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7074,6 +7482,9 @@ Create a new HA group.
 
 No description available.
 
+.PARAMETER POSTClusterHaGroupsRB
+Create a new HA group.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7085,6 +7496,9 @@ None
 function New-PVEClusterHaGroups {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterHaGroupsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7103,7 +7517,12 @@ function New-PVEClusterHaGroups {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/ha/groups'
+
+        $LocalVarBodyParameter = $POSTClusterHaGroupsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7134,6 +7553,9 @@ Create a new HA resource.
 
 No description available.
 
+.PARAMETER POSTClusterHaResourcesRB
+Create a new HA resource.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7145,6 +7567,9 @@ None
 function New-PVEClusterHaResources {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterHaResourcesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7163,7 +7588,12 @@ function New-PVEClusterHaResources {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/ha/resources'
+
+        $LocalVarBodyParameter = $POSTClusterHaResourcesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7194,6 +7624,9 @@ Request resource migration (online) to another node.
 
 No description available.
 
+.PARAMETER POSTClusterHaResourcesMigrateRB
+Request resource migration (online) to another node.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7205,6 +7638,9 @@ None
 function New-PVEClusterHaResourcesMigrateBySid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterHaResourcesMigrateRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7223,7 +7659,12 @@ function New-PVEClusterHaResourcesMigrateBySid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/ha/resources/{sid}/migrate'
+
+        $LocalVarBodyParameter = $POSTClusterHaResourcesMigrateRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7254,6 +7695,9 @@ Request resource relocatzion to another node. This stops the service on the old 
 
 No description available.
 
+.PARAMETER POSTClusterHaResourcesRelocateRB
+Request resource relocatzion to another node. This stops the service on the old node, and restarts it on the target node.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7265,6 +7709,9 @@ None
 function New-PVEClusterHaResourcesRelocateBySid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterHaResourcesRelocateRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7283,7 +7730,12 @@ function New-PVEClusterHaResourcesRelocateBySid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/ha/resources/{sid}/relocate'
+
+        $LocalVarBodyParameter = $POSTClusterHaResourcesRelocateRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7314,6 +7766,9 @@ Create new realm-sync job.
 
 No description available.
 
+.PARAMETER POSTClusterJobsRealmsyncRB
+Create new realm-sync job.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7325,6 +7780,9 @@ None
 function New-PVEClusterJobsRealmsyncById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterJobsRealmsyncRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7343,7 +7801,12 @@ function New-PVEClusterJobsRealmsyncById {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/jobs/realm-sync/{id}'
+
+        $LocalVarBodyParameter = $POSTClusterJobsRealmsyncRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7374,6 +7837,9 @@ Create a new hardware mapping.
 
 No description available.
 
+.PARAMETER POSTClusterMappingPciRB
+Create a new hardware mapping.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7385,6 +7851,9 @@ None
 function New-PVEClusterMappingPci {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterMappingPciRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7403,7 +7872,12 @@ function New-PVEClusterMappingPci {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/mapping/pci'
+
+        $LocalVarBodyParameter = $POSTClusterMappingPciRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7434,6 +7908,9 @@ Create a new hardware mapping.
 
 No description available.
 
+.PARAMETER POSTClusterMappingUsbRB
+Create a new hardware mapping.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7445,6 +7922,9 @@ None
 function New-PVEClusterMappingUsb {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterMappingUsbRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7463,7 +7943,12 @@ function New-PVEClusterMappingUsb {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/mapping/usb'
+
+        $LocalVarBodyParameter = $POSTClusterMappingUsbRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7494,6 +7979,9 @@ Create a new external metric server config
 
 No description available.
 
+.PARAMETER POSTClusterMetricsServerRB
+Create a new external metric server config
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7505,6 +7993,9 @@ None
 function New-PVEClusterMetricsServerById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterMetricsServerRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7523,7 +8014,12 @@ function New-PVEClusterMetricsServerById {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/metrics/server/{id}'
+
+        $LocalVarBodyParameter = $POSTClusterMetricsServerRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7554,6 +8050,9 @@ Create a new gotify endpoint
 
 No description available.
 
+.PARAMETER POSTClusterNotificationsEndpointsGotifyRB
+Create a new gotify endpoint
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7565,6 +8064,9 @@ None
 function New-PVEClusterNotificationsEndpointsGotify {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterNotificationsEndpointsGotifyRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7583,7 +8085,12 @@ function New-PVEClusterNotificationsEndpointsGotify {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/notifications/endpoints/gotify'
+
+        $LocalVarBodyParameter = $POSTClusterNotificationsEndpointsGotifyRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7614,6 +8121,9 @@ Create a new sendmail endpoint
 
 No description available.
 
+.PARAMETER POSTClusterNotificationsEndpointsSendmailRB
+Create a new sendmail endpoint
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7625,6 +8135,9 @@ None
 function New-PVEClusterNotificationsEndpointsSendmail {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterNotificationsEndpointsSendmailRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7643,7 +8156,12 @@ function New-PVEClusterNotificationsEndpointsSendmail {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/notifications/endpoints/sendmail'
+
+        $LocalVarBodyParameter = $POSTClusterNotificationsEndpointsSendmailRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7674,6 +8192,9 @@ Create a new smtp endpoint
 
 No description available.
 
+.PARAMETER POSTClusterNotificationsEndpointsSmtpRB
+Create a new smtp endpoint
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7685,6 +8206,9 @@ None
 function New-PVEClusterNotificationsEndpointsSmtp {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterNotificationsEndpointsSmtpRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7703,7 +8227,12 @@ function New-PVEClusterNotificationsEndpointsSmtp {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/notifications/endpoints/smtp'
+
+        $LocalVarBodyParameter = $POSTClusterNotificationsEndpointsSmtpRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7734,6 +8263,9 @@ Create a new webhook endpoint
 
 No description available.
 
+.PARAMETER POSTClusterNotificationsEndpointsWebhookRB
+Create a new webhook endpoint
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7745,6 +8277,9 @@ None
 function New-PVEClusterNotificationsEndpointsWebhook {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterNotificationsEndpointsWebhookRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7763,7 +8298,12 @@ function New-PVEClusterNotificationsEndpointsWebhook {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/notifications/endpoints/webhook'
+
+        $LocalVarBodyParameter = $POSTClusterNotificationsEndpointsWebhookRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7794,6 +8334,9 @@ Create a new matcher
 
 No description available.
 
+.PARAMETER POSTClusterNotificationsMatchersRB
+Create a new matcher
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7805,6 +8348,9 @@ None
 function New-PVEClusterNotificationsMatchers {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterNotificationsMatchersRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7823,7 +8369,12 @@ function New-PVEClusterNotificationsMatchers {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/notifications/matchers'
+
+        $LocalVarBodyParameter = $POSTClusterNotificationsMatchersRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7914,6 +8465,9 @@ Create a new replication job
 
 No description available.
 
+.PARAMETER POSTClusterReplicationRB
+Create a new replication job
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7925,6 +8479,9 @@ None
 function New-PVEClusterReplication {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterReplicationRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7943,7 +8500,12 @@ function New-PVEClusterReplication {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/replication'
+
+        $LocalVarBodyParameter = $POSTClusterReplicationRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -7974,6 +8536,9 @@ Create a new sdn controller object.
 
 No description available.
 
+.PARAMETER POSTClusterSdnControllersRB
+Create a new sdn controller object.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7985,6 +8550,9 @@ None
 function New-PVEClusterSdnControllers {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterSdnControllersRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8003,7 +8571,12 @@ function New-PVEClusterSdnControllers {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/controllers'
+
+        $LocalVarBodyParameter = $POSTClusterSdnControllersRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -8034,6 +8607,9 @@ Create a new sdn dns object.
 
 No description available.
 
+.PARAMETER POSTClusterSdnDnsRB
+Create a new sdn dns object.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8045,6 +8621,9 @@ None
 function New-PVEClusterSdnDns {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterSdnDnsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8063,7 +8642,12 @@ function New-PVEClusterSdnDns {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/dns'
+
+        $LocalVarBodyParameter = $POSTClusterSdnDnsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -8094,6 +8678,9 @@ Create a new sdn ipam object.
 
 No description available.
 
+.PARAMETER POSTClusterSdnIpamsRB
+Create a new sdn ipam object.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8105,6 +8692,9 @@ None
 function New-PVEClusterSdnIpams {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterSdnIpamsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8123,7 +8713,12 @@ function New-PVEClusterSdnIpams {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/ipams'
+
+        $LocalVarBodyParameter = $POSTClusterSdnIpamsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -8154,6 +8749,9 @@ Create a new sdn vnet object.
 
 No description available.
 
+.PARAMETER POSTClusterSdnVnetsRB
+Create a new sdn vnet object.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8165,6 +8763,9 @@ None
 function New-PVEClusterSdnVnets {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterSdnVnetsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8183,7 +8784,12 @@ function New-PVEClusterSdnVnets {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets'
+
+        $LocalVarBodyParameter = $POSTClusterSdnVnetsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -8214,6 +8820,9 @@ Create new rule.
 
 No description available.
 
+.PARAMETER POSTClusterSdnVnetsFirewallRulesRB
+Create new rule.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8225,6 +8834,9 @@ None
 function New-PVEClusterSdnVnetsFirewallRulesByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterSdnVnetsFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8243,7 +8855,12 @@ function New-PVEClusterSdnVnetsFirewallRulesByVnet {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/firewall/rules'
+
+        $LocalVarBodyParameter = $POSTClusterSdnVnetsFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -8274,6 +8891,9 @@ Create IP Mapping in a VNet
 
 No description available.
 
+.PARAMETER POSTClusterSdnVnetsIpsRB
+Create IP Mapping in a VNet
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8285,6 +8905,9 @@ None
 function New-PVEClusterSdnVnetsIpsByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterSdnVnetsIpsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8303,7 +8926,12 @@ function New-PVEClusterSdnVnetsIpsByVnet {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/ips'
+
+        $LocalVarBodyParameter = $POSTClusterSdnVnetsIpsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -8334,6 +8962,9 @@ Create a new sdn subnet object.
 
 No description available.
 
+.PARAMETER POSTClusterSdnVnetsSubnetsRB
+Create a new sdn subnet object.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8345,6 +8976,9 @@ None
 function New-PVEClusterSdnVnetsSubnetsByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterSdnVnetsSubnetsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8363,7 +8997,12 @@ function New-PVEClusterSdnVnetsSubnetsByVnet {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/subnets'
+
+        $LocalVarBodyParameter = $POSTClusterSdnVnetsSubnetsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -8394,6 +9033,9 @@ Create a new sdn zone object.
 
 No description available.
 
+.PARAMETER POSTClusterSdnZonesRB
+Create a new sdn zone object.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8405,6 +9047,9 @@ None
 function New-PVEClusterSdnZones {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTClusterSdnZonesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8423,7 +9068,12 @@ function New-PVEClusterSdnZones {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/zones'
+
+        $LocalVarBodyParameter = $POSTClusterSdnZonesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -8694,6 +9344,9 @@ Remove IP or Network alias.
 
 No description available.
 
+.PARAMETER DELETEClusterFirewallAliasesRB
+Remove IP or Network alias.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8705,6 +9358,9 @@ None
 function Remove-PVEClusterFirewallAliasesByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETEClusterFirewallAliasesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8723,7 +9379,12 @@ function Remove-PVEClusterFirewallAliasesByName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/aliases/{name}'
+
+        $LocalVarBodyParameter = $DELETEClusterFirewallAliasesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -8814,6 +9475,9 @@ Delete rule.
 
 No description available.
 
+.PARAMETER DELETEClusterFirewallGroupsRB
+Delete rule.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8825,6 +9489,9 @@ None
 function Remove-PVEClusterFirewallGroupsByGroupAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETEClusterFirewallGroupsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8843,7 +9510,12 @@ function Remove-PVEClusterFirewallGroupsByGroupAndPos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/groups/{group}/{pos}'
+
+        $LocalVarBodyParameter = $DELETEClusterFirewallGroupsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -8874,6 +9546,9 @@ Delete IPSet
 
 No description available.
 
+.PARAMETER DELETEClusterFirewallIpsetRB
+Delete IPSet
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8885,6 +9560,9 @@ None
 function Remove-PVEClusterFirewallIpsetByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETEClusterFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8903,7 +9581,12 @@ function Remove-PVEClusterFirewallIpsetByName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/ipset/{name}'
+
+        $LocalVarBodyParameter = $DELETEClusterFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -8934,6 +9617,9 @@ Remove IP or Network from IPSet.
 
 No description available.
 
+.PARAMETER DELETEClusterFirewallIpsetRB
+Remove IP or Network from IPSet.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8945,6 +9631,9 @@ None
 function Remove-PVEClusterFirewallIpsetByNameAndCidr {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETEClusterFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8963,7 +9652,12 @@ function Remove-PVEClusterFirewallIpsetByNameAndCidr {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/ipset/{name}/{cidr}'
+
+        $LocalVarBodyParameter = $DELETEClusterFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -8994,6 +9688,9 @@ Delete rule.
 
 No description available.
 
+.PARAMETER DELETEClusterFirewallRulesRB
+Delete rule.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9005,6 +9702,9 @@ None
 function Remove-PVEClusterFirewallRulesByPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETEClusterFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -9023,7 +9723,12 @@ function Remove-PVEClusterFirewallRulesByPos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/rules/{pos}'
+
+        $LocalVarBodyParameter = $DELETEClusterFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -9714,6 +10419,9 @@ Mark replication job for removal.
 
 No description available.
 
+.PARAMETER DELETEClusterReplicationRB
+Mark replication job for removal.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9725,6 +10433,9 @@ None
 function Remove-PVEClusterReplicationById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETEClusterReplicationRB},
         [Switch]
         $WithHttpInfo
     )
@@ -9743,7 +10454,12 @@ function Remove-PVEClusterReplicationById {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/replication/{id}'
+
+        $LocalVarBodyParameter = $DELETEClusterReplicationRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10014,6 +10730,9 @@ Delete rule.
 
 No description available.
 
+.PARAMETER DELETEClusterSdnVnetsFirewallRulesRB
+Delete rule.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10025,6 +10744,9 @@ None
 function Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETEClusterSdnVnetsFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10043,7 +10765,12 @@ function Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/firewall/rules/{pos}'
+
+        $LocalVarBodyParameter = $DELETEClusterSdnVnetsFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10074,6 +10801,9 @@ Delete IP Mappings in a VNet
 
 No description available.
 
+.PARAMETER DELETEClusterSdnVnetsIpsRB
+Delete IP Mappings in a VNet
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10085,6 +10815,9 @@ None
 function Remove-PVEClusterSdnVnetsIpsByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETEClusterSdnVnetsIpsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10103,7 +10836,12 @@ function Remove-PVEClusterSdnVnetsIpsByVnet {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/ips'
+
+        $LocalVarBodyParameter = $DELETEClusterSdnVnetsIpsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10254,6 +10992,9 @@ Update existing ACME account information with CA. Note: not specifying any new a
 
 No description available.
 
+.PARAMETER PUTClusterAcmeAccountRB
+Update existing ACME account information with CA. Note: not specifying any new account information triggers a refresh.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10265,6 +11006,9 @@ None
 function Set-PVEClusterAcmeAccountByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterAcmeAccountRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10283,7 +11027,12 @@ function Set-PVEClusterAcmeAccountByName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/acme/account/{name}'
+
+        $LocalVarBodyParameter = $PUTClusterAcmeAccountRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -10314,6 +11063,9 @@ Update ACME plugin configuration.
 
 No description available.
 
+.PARAMETER PUTClusterAcmePluginsRB
+Update ACME plugin configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10325,6 +11077,9 @@ None
 function Set-PVEClusterAcmePluginsById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterAcmePluginsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10343,7 +11098,12 @@ function Set-PVEClusterAcmePluginsById {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/acme/plugins/{id}'
+
+        $LocalVarBodyParameter = $PUTClusterAcmePluginsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -10374,6 +11134,9 @@ Update vzdump backup job definition.
 
 No description available.
 
+.PARAMETER PUTClusterBackupRB
+Update vzdump backup job definition.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10385,6 +11148,9 @@ None
 function Set-PVEClusterBackupById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterBackupRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10403,7 +11169,12 @@ function Set-PVEClusterBackupById {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/backup/{id}'
+
+        $LocalVarBodyParameter = $PUTClusterBackupRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -10434,6 +11205,9 @@ Set/Unset multiple ceph flags at once.
 
 No description available.
 
+.PARAMETER PUTClusterCephFlagsRB
+Set/Unset multiple ceph flags at once.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10445,6 +11219,9 @@ None
 function Set-PVEClusterCephFlags {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterCephFlagsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10463,7 +11240,12 @@ function Set-PVEClusterCephFlags {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/ceph/flags'
+
+        $LocalVarBodyParameter = $PUTClusterCephFlagsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -10494,6 +11276,9 @@ Set or clear (unset) a specific ceph flag
 
 No description available.
 
+.PARAMETER PUTClusterCephFlagsRB
+Set or clear (unset) a specific ceph flag
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10505,6 +11290,9 @@ None
 function Set-PVEClusterCephFlagsByFlag {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterCephFlagsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10523,7 +11311,12 @@ function Set-PVEClusterCephFlagsByFlag {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/ceph/flags/{flag}'
+
+        $LocalVarBodyParameter = $PUTClusterCephFlagsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -10554,6 +11347,9 @@ Update IP or Network alias.
 
 No description available.
 
+.PARAMETER PUTClusterFirewallAliasesRB
+Update IP or Network alias.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10565,6 +11361,9 @@ None
 function Set-PVEClusterFirewallAliasesByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterFirewallAliasesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10583,7 +11382,12 @@ function Set-PVEClusterFirewallAliasesByName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/aliases/{name}'
+
+        $LocalVarBodyParameter = $PUTClusterFirewallAliasesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -10614,6 +11418,9 @@ Modify rule data.
 
 No description available.
 
+.PARAMETER PUTClusterFirewallGroupsRB
+Modify rule data.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10625,6 +11432,9 @@ None
 function Set-PVEClusterFirewallGroupsByGroupAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterFirewallGroupsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10643,7 +11453,12 @@ function Set-PVEClusterFirewallGroupsByGroupAndPos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/groups/{group}/{pos}'
+
+        $LocalVarBodyParameter = $PUTClusterFirewallGroupsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -10674,6 +11489,9 @@ Update IP or Network settings
 
 No description available.
 
+.PARAMETER PUTClusterFirewallIpsetRB
+Update IP or Network settings
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10685,6 +11503,9 @@ None
 function Set-PVEClusterFirewallIpsetByNameAndCidr {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10703,7 +11524,12 @@ function Set-PVEClusterFirewallIpsetByNameAndCidr {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/ipset/{name}/{cidr}'
+
+        $LocalVarBodyParameter = $PUTClusterFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -10734,6 +11560,9 @@ Set Firewall options.
 
 No description available.
 
+.PARAMETER PUTClusterFirewallOptionsRB
+Set Firewall options.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10745,6 +11574,9 @@ None
 function Set-PVEClusterFirewallOptions {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterFirewallOptionsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10763,7 +11595,12 @@ function Set-PVEClusterFirewallOptions {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/options'
+
+        $LocalVarBodyParameter = $PUTClusterFirewallOptionsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -10794,6 +11631,9 @@ Modify rule data.
 
 No description available.
 
+.PARAMETER PUTClusterFirewallRulesRB
+Modify rule data.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10805,6 +11645,9 @@ None
 function Set-PVEClusterFirewallRulesByPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10823,7 +11666,12 @@ function Set-PVEClusterFirewallRulesByPos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/firewall/rules/{pos}'
+
+        $LocalVarBodyParameter = $PUTClusterFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -10854,6 +11702,9 @@ Update ha group configuration.
 
 No description available.
 
+.PARAMETER PUTClusterHaGroupsRB
+Update ha group configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10865,6 +11716,9 @@ None
 function Set-PVEClusterHaGroupsByGroup {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterHaGroupsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10883,7 +11737,12 @@ function Set-PVEClusterHaGroupsByGroup {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/ha/groups/{group}'
+
+        $LocalVarBodyParameter = $PUTClusterHaGroupsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -10914,6 +11773,9 @@ Update resource configuration.
 
 No description available.
 
+.PARAMETER PUTClusterHaResourcesRB
+Update resource configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10925,6 +11787,9 @@ None
 function Set-PVEClusterHaResourcesBySid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterHaResourcesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10943,7 +11808,12 @@ function Set-PVEClusterHaResourcesBySid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/ha/resources/{sid}'
+
+        $LocalVarBodyParameter = $PUTClusterHaResourcesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -10974,6 +11844,9 @@ Update realm-sync job definition.
 
 No description available.
 
+.PARAMETER PUTClusterJobsRealmsyncRB
+Update realm-sync job definition.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10985,6 +11858,9 @@ None
 function Set-PVEClusterJobsRealmsyncById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterJobsRealmsyncRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11003,7 +11879,12 @@ function Set-PVEClusterJobsRealmsyncById {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/jobs/realm-sync/{id}'
+
+        $LocalVarBodyParameter = $PUTClusterJobsRealmsyncRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11034,6 +11915,9 @@ Update a hardware mapping.
 
 No description available.
 
+.PARAMETER PUTClusterMappingPciRB
+Update a hardware mapping.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11045,6 +11929,9 @@ None
 function Set-PVEClusterMappingPciById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterMappingPciRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11063,7 +11950,12 @@ function Set-PVEClusterMappingPciById {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/mapping/pci/{id}'
+
+        $LocalVarBodyParameter = $PUTClusterMappingPciRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11094,6 +11986,9 @@ Update a hardware mapping.
 
 No description available.
 
+.PARAMETER PUTClusterMappingUsbRB
+Update a hardware mapping.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11105,6 +12000,9 @@ None
 function Set-PVEClusterMappingUsbById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterMappingUsbRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11123,7 +12021,12 @@ function Set-PVEClusterMappingUsbById {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/mapping/usb/{id}'
+
+        $LocalVarBodyParameter = $PUTClusterMappingUsbRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11154,6 +12057,9 @@ Update metric server configuration.
 
 No description available.
 
+.PARAMETER PUTClusterMetricsServerRB
+Update metric server configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11165,6 +12071,9 @@ None
 function Set-PVEClusterMetricsServerById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterMetricsServerRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11183,7 +12092,12 @@ function Set-PVEClusterMetricsServerById {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/metrics/server/{id}'
+
+        $LocalVarBodyParameter = $PUTClusterMetricsServerRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11214,6 +12128,9 @@ Update existing gotify endpoint
 
 No description available.
 
+.PARAMETER PUTClusterNotificationsEndpointsGotifyRB
+Update existing gotify endpoint
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11225,6 +12142,9 @@ None
 function Set-PVEClusterNotificationsEndpointsGotifyByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterNotificationsEndpointsGotifyRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11243,7 +12163,12 @@ function Set-PVEClusterNotificationsEndpointsGotifyByName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/notifications/endpoints/gotify/{name}'
+
+        $LocalVarBodyParameter = $PUTClusterNotificationsEndpointsGotifyRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11274,6 +12199,9 @@ Update existing sendmail endpoint
 
 No description available.
 
+.PARAMETER PUTClusterNotificationsEndpointsSendmailRB
+Update existing sendmail endpoint
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11285,6 +12213,9 @@ None
 function Set-PVEClusterNotificationsEndpointsSendmailByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterNotificationsEndpointsSendmailRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11303,7 +12234,12 @@ function Set-PVEClusterNotificationsEndpointsSendmailByName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/notifications/endpoints/sendmail/{name}'
+
+        $LocalVarBodyParameter = $PUTClusterNotificationsEndpointsSendmailRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11334,6 +12270,9 @@ Update existing smtp endpoint
 
 No description available.
 
+.PARAMETER PUTClusterNotificationsEndpointsSmtpRB
+Update existing smtp endpoint
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11345,6 +12284,9 @@ None
 function Set-PVEClusterNotificationsEndpointsSmtpByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterNotificationsEndpointsSmtpRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11363,7 +12305,12 @@ function Set-PVEClusterNotificationsEndpointsSmtpByName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/notifications/endpoints/smtp/{name}'
+
+        $LocalVarBodyParameter = $PUTClusterNotificationsEndpointsSmtpRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11394,6 +12341,9 @@ Update existing webhook endpoint
 
 No description available.
 
+.PARAMETER PUTClusterNotificationsEndpointsWebhookRB
+Update existing webhook endpoint
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11405,6 +12355,9 @@ None
 function Set-PVEClusterNotificationsEndpointsWebhookByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterNotificationsEndpointsWebhookRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11423,7 +12376,12 @@ function Set-PVEClusterNotificationsEndpointsWebhookByName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/notifications/endpoints/webhook/{name}'
+
+        $LocalVarBodyParameter = $PUTClusterNotificationsEndpointsWebhookRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11454,6 +12412,9 @@ Update existing matcher
 
 No description available.
 
+.PARAMETER PUTClusterNotificationsMatchersRB
+Update existing matcher
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11465,6 +12426,9 @@ None
 function Set-PVEClusterNotificationsMatchersByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterNotificationsMatchersRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11483,7 +12447,12 @@ function Set-PVEClusterNotificationsMatchersByName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/notifications/matchers/{name}'
+
+        $LocalVarBodyParameter = $PUTClusterNotificationsMatchersRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11514,6 +12483,9 @@ Set datacenter options.
 
 No description available.
 
+.PARAMETER PUTClusterOptionsRB
+Set datacenter options.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11525,6 +12497,9 @@ None
 function Set-PVEClusterOptions {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterOptionsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11543,7 +12518,12 @@ function Set-PVEClusterOptions {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/options'
+
+        $LocalVarBodyParameter = $PUTClusterOptionsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11574,6 +12554,9 @@ Update replication job configuration.
 
 No description available.
 
+.PARAMETER PUTClusterReplicationRB
+Update replication job configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11585,6 +12568,9 @@ None
 function Set-PVEClusterReplicationById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterReplicationRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11603,7 +12589,12 @@ function Set-PVEClusterReplicationById {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/replication/{id}'
+
+        $LocalVarBodyParameter = $PUTClusterReplicationRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11694,6 +12685,9 @@ Update sdn controller object configuration.
 
 No description available.
 
+.PARAMETER PUTClusterSdnControllersRB
+Update sdn controller object configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11705,6 +12699,9 @@ None
 function Set-PVEClusterSdnControllersByController {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterSdnControllersRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11723,7 +12720,12 @@ function Set-PVEClusterSdnControllersByController {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/controllers/{controller}'
+
+        $LocalVarBodyParameter = $PUTClusterSdnControllersRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11754,6 +12756,9 @@ Update sdn dns object configuration.
 
 No description available.
 
+.PARAMETER PUTClusterSdnDnsRB
+Update sdn dns object configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11765,6 +12770,9 @@ None
 function Set-PVEClusterSdnDnsByDns {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterSdnDnsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11783,7 +12791,12 @@ function Set-PVEClusterSdnDnsByDns {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/dns/{dns}'
+
+        $LocalVarBodyParameter = $PUTClusterSdnDnsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11814,6 +12827,9 @@ Update sdn ipam object configuration.
 
 No description available.
 
+.PARAMETER PUTClusterSdnIpamsRB
+Update sdn ipam object configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11825,6 +12841,9 @@ None
 function Set-PVEClusterSdnIpamsByIpam {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterSdnIpamsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11843,7 +12862,12 @@ function Set-PVEClusterSdnIpamsByIpam {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/ipams/{ipam}'
+
+        $LocalVarBodyParameter = $PUTClusterSdnIpamsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11874,6 +12898,9 @@ Update sdn vnet object configuration.
 
 No description available.
 
+.PARAMETER PUTClusterSdnVnetsRB
+Update sdn vnet object configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11885,6 +12912,9 @@ None
 function Set-PVEClusterSdnVnetsByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterSdnVnetsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11903,7 +12933,12 @@ function Set-PVEClusterSdnVnetsByVnet {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}'
+
+        $LocalVarBodyParameter = $PUTClusterSdnVnetsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11934,6 +12969,9 @@ Set Firewall options.
 
 No description available.
 
+.PARAMETER PUTClusterSdnVnetsFirewallOptionsRB
+Set Firewall options.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11945,6 +12983,9 @@ None
 function Set-PVEClusterSdnVnetsFirewallOptionsByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterSdnVnetsFirewallOptionsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11963,7 +13004,12 @@ function Set-PVEClusterSdnVnetsFirewallOptionsByVnet {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/firewall/options'
+
+        $LocalVarBodyParameter = $PUTClusterSdnVnetsFirewallOptionsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -11994,6 +13040,9 @@ Modify rule data.
 
 No description available.
 
+.PARAMETER PUTClusterSdnVnetsFirewallRulesRB
+Modify rule data.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12005,6 +13054,9 @@ None
 function Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterSdnVnetsFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12023,7 +13075,12 @@ function Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/firewall/rules/{pos}'
+
+        $LocalVarBodyParameter = $PUTClusterSdnVnetsFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -12054,6 +13111,9 @@ Update IP Mapping in a VNet
 
 No description available.
 
+.PARAMETER PUTClusterSdnVnetsIpsRB
+Update IP Mapping in a VNet
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12065,6 +13125,9 @@ None
 function Set-PVEClusterSdnVnetsIpsByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterSdnVnetsIpsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12083,7 +13146,12 @@ function Set-PVEClusterSdnVnetsIpsByVnet {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/ips'
+
+        $LocalVarBodyParameter = $PUTClusterSdnVnetsIpsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -12114,6 +13182,9 @@ Update sdn subnet object configuration.
 
 No description available.
 
+.PARAMETER PUTClusterSdnVnetsSubnetsRB
+Update sdn subnet object configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12125,6 +13196,9 @@ None
 function Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterSdnVnetsSubnetsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12143,7 +13217,12 @@ function Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/subnets/{subnet}'
+
+        $LocalVarBodyParameter = $PUTClusterSdnVnetsSubnetsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -12174,6 +13253,9 @@ Update sdn zone object configuration.
 
 No description available.
 
+.PARAMETER PUTClusterSdnZonesRB
+Update sdn zone object configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12185,6 +13267,9 @@ None
 function Set-PVEClusterSdnZonesByZone {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTClusterSdnZonesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12203,7 +13288,12 @@ function Set-PVEClusterSdnZonesByZone {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/cluster/sdn/zones/{zone}'
+
+        $LocalVarBodyParameter = $PUTClusterSdnZonesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `

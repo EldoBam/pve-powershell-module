@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesLxcFirewallOptions' {
     Context 'PVENodesLxcFirewallOptions' {
         It 'Initialize-PVENodesLxcFirewallOptions' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesLxcFirewallOptions -Ipfilter "TEST_VALUE" -PolicyIn "TEST_VALUE" -Radv "TEST_VALUE" -PolicyOut "TEST_VALUE" -Ndp "TEST_VALUE" -LogLevelIn "TEST_VALUE" -Macfilter "TEST_VALUE" -LogLevelOut "TEST_VALUE" -Dhcp "TEST_VALUE" -Enable "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesLxcFirewallOptions -LogLevelOut "TEST_VALUE" -Dhcp "TEST_VALUE" -Macfilter "TEST_VALUE" -Ndp "TEST_VALUE" -PolicyIn "TEST_VALUE" -Ipfilter "TEST_VALUE" -PolicyOut "TEST_VALUE" -Enable "TEST_VALUE" -LogLevelIn "TEST_VALUE" -Radv "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesLxcFirewallOptions
             #$NewObject.property | Should -Be 0
         }

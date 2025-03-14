@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesStorageInner' {
     Context 'PVENodesStorageInner' {
         It 'Initialize-PVENodesStorageInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesStorageInner -Total "TEST_VALUE" -Content "TEST_VALUE" -Storage "TEST_VALUE" -Enabled "TEST_VALUE" -Active "TEST_VALUE" -UsedFraction "TEST_VALUE" -Shared "TEST_VALUE" -Avail "TEST_VALUE" -Used "TEST_VALUE" -Type "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesStorageInner -Enabled "TEST_VALUE" -Content "TEST_VALUE" -Shared "TEST_VALUE" -Total "TEST_VALUE" -Avail "TEST_VALUE" -Active "TEST_VALUE" -Type "TEST_VALUE" -UsedFraction "TEST_VALUE" -Storage "TEST_VALUE" -Used "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesStorageInner
             #$NewObject.property | Should -Be 0
         }

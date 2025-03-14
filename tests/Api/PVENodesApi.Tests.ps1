@@ -33,7 +33,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesAptChangelogByNode' {
         It 'Test Get-PVENodesAptChangelogByNode' {
-            #$TestResult = Get-PVENodesAptChangelogByNode
+            #$TestResult = Get-PVENodesAptChangelogByNode -GETNodesAptChangelogRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -137,7 +137,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesCephCfgValueByNode' {
         It 'Test Get-PVENodesCephCfgValueByNode' {
-            #$TestResult = Get-PVENodesCephCfgValueByNode
+            #$TestResult = Get-PVENodesCephCfgValueByNode -GETNodesCephCfgValueRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -145,7 +145,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesCephCmdsafetyByNode' {
         It 'Test Get-PVENodesCephCmdsafetyByNode' {
-            #$TestResult = Get-PVENodesCephCmdsafetyByNode
+            #$TestResult = Get-PVENodesCephCmdsafetyByNode -GETNodesCephCmdsafetyRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -169,7 +169,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesCephLogByNode' {
         It 'Test Get-PVENodesCephLogByNode' {
-            #$TestResult = Get-PVENodesCephLogByNode
+            #$TestResult = Get-PVENodesCephLogByNode -GETNodesCephLogRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -217,7 +217,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesCephOsdLvinfoByNodeAndOsdid' {
         It 'Test Get-PVENodesCephOsdLvinfoByNodeAndOsdid' {
-            #$TestResult = Get-PVENodesCephOsdLvinfoByNodeAndOsdid
+            #$TestResult = Get-PVENodesCephOsdLvinfoByNodeAndOsdid -GETNodesCephOsdLvinfoRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -249,7 +249,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesCephPoolStatusByNodeAndName' {
         It 'Test Get-PVENodesCephPoolStatusByNodeAndName' {
-            #$TestResult = Get-PVENodesCephPoolStatusByNodeAndName
+            #$TestResult = Get-PVENodesCephPoolStatusByNodeAndName -GETNodesCephPoolStatusRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -297,7 +297,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesConfigByNode' {
         It 'Test Get-PVENodesConfigByNode' {
-            #$TestResult = Get-PVENodesConfigByNode
+            #$TestResult = Get-PVENodesConfigByNode -GETNodesConfigRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -321,7 +321,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesDisksListByNode' {
         It 'Test Get-PVENodesDisksListByNode' {
-            #$TestResult = Get-PVENodesDisksListByNode
+            #$TestResult = Get-PVENodesDisksListByNode -GETNodesDisksListRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -345,7 +345,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesDisksSmartByNode' {
         It 'Test Get-PVENodesDisksSmartByNode' {
-            #$TestResult = Get-PVENodesDisksSmartByNode
+            #$TestResult = Get-PVENodesDisksSmartByNode -GETNodesDisksSmartRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -385,7 +385,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesFirewallLogByNode' {
         It 'Test Get-PVENodesFirewallLogByNode' {
-            #$TestResult = Get-PVENodesFirewallLogByNode
+            #$TestResult = Get-PVENodesFirewallLogByNode -GETNodesFirewallLogRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -425,7 +425,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesHardwarePciByNode' {
         It 'Test Get-PVENodesHardwarePciByNode' {
-            #$TestResult = Get-PVENodesHardwarePciByNode
+            #$TestResult = Get-PVENodesHardwarePciByNode -GETNodesHardwarePciRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -465,7 +465,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesJournalByNode' {
         It 'Test Get-PVENodesJournalByNode' {
-            #$TestResult = Get-PVENodesJournalByNode
+            #$TestResult = Get-PVENodesJournalByNode -GETNodesJournalRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -489,7 +489,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesLxcConfigByNodeAndVmid' {
         It 'Test Get-PVENodesLxcConfigByNodeAndVmid' {
-            #$TestResult = Get-PVENodesLxcConfigByNodeAndVmid
+            #$TestResult = Get-PVENodesLxcConfigByNodeAndVmid -GETNodesLxcConfigRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -497,7 +497,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesLxcFeatureByNodeAndVmid' {
         It 'Test Get-PVENodesLxcFeatureByNodeAndVmid' {
-            #$TestResult = Get-PVENodesLxcFeatureByNodeAndVmid
+            #$TestResult = Get-PVENodesLxcFeatureByNodeAndVmid -GETNodesLxcFeatureRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -553,7 +553,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesLxcFirewallLogByNodeAndVmid' {
         It 'Test Get-PVENodesLxcFirewallLogByNodeAndVmid' {
-            #$TestResult = Get-PVENodesLxcFirewallLogByNodeAndVmid
+            #$TestResult = Get-PVENodesLxcFirewallLogByNodeAndVmid -GETNodesLxcFirewallLogRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -569,7 +569,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesLxcFirewallRefsByNodeAndVmid' {
         It 'Test Get-PVENodesLxcFirewallRefsByNodeAndVmid' {
-            #$TestResult = Get-PVENodesLxcFirewallRefsByNodeAndVmid
+            #$TestResult = Get-PVENodesLxcFirewallRefsByNodeAndVmid -GETNodesLxcFirewallRefsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -601,7 +601,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid' {
         It 'Test Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid' {
-            #$TestResult = Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid
+            #$TestResult = Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid -GETNodesLxcMtunnelwebsocketRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -617,7 +617,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesLxcRrdByNodeAndVmid' {
         It 'Test Get-PVENodesLxcRrdByNodeAndVmid' {
-            #$TestResult = Get-PVENodesLxcRrdByNodeAndVmid
+            #$TestResult = Get-PVENodesLxcRrdByNodeAndVmid -GETNodesLxcRrdRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -625,7 +625,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesLxcRrddataByNodeAndVmid' {
         It 'Test Get-PVENodesLxcRrddataByNodeAndVmid' {
-            #$TestResult = Get-PVENodesLxcRrddataByNodeAndVmid
+            #$TestResult = Get-PVENodesLxcRrddataByNodeAndVmid -GETNodesLxcRrddataRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -673,7 +673,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesLxcVncwebsocketByNodeAndVmid' {
         It 'Test Get-PVENodesLxcVncwebsocketByNodeAndVmid' {
-            #$TestResult = Get-PVENodesLxcVncwebsocketByNodeAndVmid
+            #$TestResult = Get-PVENodesLxcVncwebsocketByNodeAndVmid -GETNodesLxcVncwebsocketRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -689,7 +689,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesNetworkByNode' {
         It 'Test Get-PVENodesNetworkByNode' {
-            #$TestResult = Get-PVENodesNetworkByNode
+            #$TestResult = Get-PVENodesNetworkByNode -GETNodesNetworkRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -713,7 +713,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuAgentExecstatusByNodeAndVmid' {
         It 'Test Get-PVENodesQemuAgentExecstatusByNodeAndVmid' {
-            #$TestResult = Get-PVENodesQemuAgentExecstatusByNodeAndVmid
+            #$TestResult = Get-PVENodesQemuAgentExecstatusByNodeAndVmid -GETNodesQemuAgentExecstatusRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -721,7 +721,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuAgentFilereadByNodeAndVmid' {
         It 'Test Get-PVENodesQemuAgentFilereadByNodeAndVmid' {
-            #$TestResult = Get-PVENodesQemuAgentFilereadByNodeAndVmid
+            #$TestResult = Get-PVENodesQemuAgentFilereadByNodeAndVmid -GETNodesQemuAgentFilereadRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -817,7 +817,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuByNode' {
         It 'Test Get-PVENodesQemuByNode' {
-            #$TestResult = Get-PVENodesQemuByNode
+            #$TestResult = Get-PVENodesQemuByNode -GETNodesQemuRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -841,7 +841,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuCloudinitDumpByNodeAndVmid' {
         It 'Test Get-PVENodesQemuCloudinitDumpByNodeAndVmid' {
-            #$TestResult = Get-PVENodesQemuCloudinitDumpByNodeAndVmid
+            #$TestResult = Get-PVENodesQemuCloudinitDumpByNodeAndVmid -GETNodesQemuCloudinitDumpRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -849,7 +849,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuConfigByNodeAndVmid' {
         It 'Test Get-PVENodesQemuConfigByNodeAndVmid' {
-            #$TestResult = Get-PVENodesQemuConfigByNodeAndVmid
+            #$TestResult = Get-PVENodesQemuConfigByNodeAndVmid -GETNodesQemuConfigRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -857,7 +857,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuFeatureByNodeAndVmid' {
         It 'Test Get-PVENodesQemuFeatureByNodeAndVmid' {
-            #$TestResult = Get-PVENodesQemuFeatureByNodeAndVmid
+            #$TestResult = Get-PVENodesQemuFeatureByNodeAndVmid -GETNodesQemuFeatureRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -913,7 +913,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuFirewallLogByNodeAndVmid' {
         It 'Test Get-PVENodesQemuFirewallLogByNodeAndVmid' {
-            #$TestResult = Get-PVENodesQemuFirewallLogByNodeAndVmid
+            #$TestResult = Get-PVENodesQemuFirewallLogByNodeAndVmid -GETNodesQemuFirewallLogRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -929,7 +929,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuFirewallRefsByNodeAndVmid' {
         It 'Test Get-PVENodesQemuFirewallRefsByNodeAndVmid' {
-            #$TestResult = Get-PVENodesQemuFirewallRefsByNodeAndVmid
+            #$TestResult = Get-PVENodesQemuFirewallRefsByNodeAndVmid -GETNodesQemuFirewallRefsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -953,7 +953,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuMigrateByNodeAndVmid' {
         It 'Test Get-PVENodesQemuMigrateByNodeAndVmid' {
-            #$TestResult = Get-PVENodesQemuMigrateByNodeAndVmid
+            #$TestResult = Get-PVENodesQemuMigrateByNodeAndVmid -GETNodesQemuMigrateRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -961,7 +961,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid' {
         It 'Test Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid' {
-            #$TestResult = Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid
+            #$TestResult = Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid -GETNodesQemuMtunnelwebsocketRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -977,7 +977,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuRrdByNodeAndVmid' {
         It 'Test Get-PVENodesQemuRrdByNodeAndVmid' {
-            #$TestResult = Get-PVENodesQemuRrdByNodeAndVmid
+            #$TestResult = Get-PVENodesQemuRrdByNodeAndVmid -GETNodesQemuRrdRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -985,7 +985,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuRrddataByNodeAndVmid' {
         It 'Test Get-PVENodesQemuRrddataByNodeAndVmid' {
-            #$TestResult = Get-PVENodesQemuRrddataByNodeAndVmid
+            #$TestResult = Get-PVENodesQemuRrddataByNodeAndVmid -GETNodesQemuRrddataRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1033,7 +1033,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQemuVncwebsocketByNodeAndVmid' {
         It 'Test Get-PVENodesQemuVncwebsocketByNodeAndVmid' {
-            #$TestResult = Get-PVENodesQemuVncwebsocketByNodeAndVmid
+            #$TestResult = Get-PVENodesQemuVncwebsocketByNodeAndVmid -GETNodesQemuVncwebsocketRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1041,7 +1041,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesQueryurlmetadataByNode' {
         It 'Test Get-PVENodesQueryurlmetadataByNode' {
-            #$TestResult = Get-PVENodesQueryurlmetadataByNode
+            #$TestResult = Get-PVENodesQueryurlmetadataByNode -GETNodesQueryurlmetadataRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1049,7 +1049,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesReplicationByNode' {
         It 'Test Get-PVENodesReplicationByNode' {
-            #$TestResult = Get-PVENodesReplicationByNode
+            #$TestResult = Get-PVENodesReplicationByNode -GETNodesReplicationRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1065,7 +1065,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesReplicationLogByNodeAndId' {
         It 'Test Get-PVENodesReplicationLogByNodeAndId' {
-            #$TestResult = Get-PVENodesReplicationLogByNodeAndId
+            #$TestResult = Get-PVENodesReplicationLogByNodeAndId -GETNodesReplicationLogRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1089,7 +1089,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesRrdByNode' {
         It 'Test Get-PVENodesRrdByNode' {
-            #$TestResult = Get-PVENodesRrdByNode
+            #$TestResult = Get-PVENodesRrdByNode -GETNodesRrdRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1097,7 +1097,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesRrddataByNode' {
         It 'Test Get-PVENodesRrddataByNode' {
-            #$TestResult = Get-PVENodesRrddataByNode
+            #$TestResult = Get-PVENodesRrddataByNode -GETNodesRrddataRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1113,7 +1113,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesScanCifsByNode' {
         It 'Test Get-PVENodesScanCifsByNode' {
-            #$TestResult = Get-PVENodesScanCifsByNode
+            #$TestResult = Get-PVENodesScanCifsByNode -GETNodesScanCifsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1121,7 +1121,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesScanGlusterfsByNode' {
         It 'Test Get-PVENodesScanGlusterfsByNode' {
-            #$TestResult = Get-PVENodesScanGlusterfsByNode
+            #$TestResult = Get-PVENodesScanGlusterfsByNode -GETNodesScanGlusterfsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1129,7 +1129,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesScanIscsiByNode' {
         It 'Test Get-PVENodesScanIscsiByNode' {
-            #$TestResult = Get-PVENodesScanIscsiByNode
+            #$TestResult = Get-PVENodesScanIscsiByNode -GETNodesScanIscsiRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1145,7 +1145,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesScanLvmthinByNode' {
         It 'Test Get-PVENodesScanLvmthinByNode' {
-            #$TestResult = Get-PVENodesScanLvmthinByNode
+            #$TestResult = Get-PVENodesScanLvmthinByNode -GETNodesScanLvmthinRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1153,7 +1153,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesScanNfsByNode' {
         It 'Test Get-PVENodesScanNfsByNode' {
-            #$TestResult = Get-PVENodesScanNfsByNode
+            #$TestResult = Get-PVENodesScanNfsByNode -GETNodesScanNfsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1161,7 +1161,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesScanPbsByNode' {
         It 'Test Get-PVENodesScanPbsByNode' {
-            #$TestResult = Get-PVENodesScanPbsByNode
+            #$TestResult = Get-PVENodesScanPbsByNode -GETNodesScanPbsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1241,7 +1241,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesStorageByNode' {
         It 'Test Get-PVENodesStorageByNode' {
-            #$TestResult = Get-PVENodesStorageByNode
+            #$TestResult = Get-PVENodesStorageByNode -GETNodesStorageRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1257,7 +1257,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesStorageContentByNodeAndStorage' {
         It 'Test Get-PVENodesStorageContentByNodeAndStorage' {
-            #$TestResult = Get-PVENodesStorageContentByNodeAndStorage
+            #$TestResult = Get-PVENodesStorageContentByNodeAndStorage -GETNodesStorageContentRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1273,7 +1273,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage' {
         It 'Test Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage' {
-            #$TestResult = Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage
+            #$TestResult = Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage -GETNodesStorageFilerestoreDownloadRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1281,7 +1281,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesStorageFilerestoreListByNodeAndStorage' {
         It 'Test Get-PVENodesStorageFilerestoreListByNodeAndStorage' {
-            #$TestResult = Get-PVENodesStorageFilerestoreListByNodeAndStorage
+            #$TestResult = Get-PVENodesStorageFilerestoreListByNodeAndStorage -GETNodesStorageFilerestoreListRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1289,7 +1289,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesStorageImportmetadataByNodeAndStorage' {
         It 'Test Get-PVENodesStorageImportmetadataByNodeAndStorage' {
-            #$TestResult = Get-PVENodesStorageImportmetadataByNodeAndStorage
+            #$TestResult = Get-PVENodesStorageImportmetadataByNodeAndStorage -GETNodesStorageImportmetadataRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1297,7 +1297,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesStoragePrunebackupsByNodeAndStorage' {
         It 'Test Get-PVENodesStoragePrunebackupsByNodeAndStorage' {
-            #$TestResult = Get-PVENodesStoragePrunebackupsByNodeAndStorage
+            #$TestResult = Get-PVENodesStoragePrunebackupsByNodeAndStorage -GETNodesStoragePrunebackupsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1305,7 +1305,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesStorageRrdByNodeAndStorage' {
         It 'Test Get-PVENodesStorageRrdByNodeAndStorage' {
-            #$TestResult = Get-PVENodesStorageRrdByNodeAndStorage
+            #$TestResult = Get-PVENodesStorageRrdByNodeAndStorage -GETNodesStorageRrdRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1313,7 +1313,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesStorageRrddataByNodeAndStorage' {
         It 'Test Get-PVENodesStorageRrddataByNodeAndStorage' {
-            #$TestResult = Get-PVENodesStorageRrddataByNodeAndStorage
+            #$TestResult = Get-PVENodesStorageRrddataByNodeAndStorage -GETNodesStorageRrddataRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1337,7 +1337,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesSyslogByNode' {
         It 'Test Get-PVENodesSyslogByNode' {
-            #$TestResult = Get-PVENodesSyslogByNode
+            #$TestResult = Get-PVENodesSyslogByNode -GETNodesSyslogRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1345,7 +1345,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesTasksByNode' {
         It 'Test Get-PVENodesTasksByNode' {
-            #$TestResult = Get-PVENodesTasksByNode
+            #$TestResult = Get-PVENodesTasksByNode -GETNodesTasksRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1361,7 +1361,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesTasksLogByNodeAndUpid' {
         It 'Test Get-PVENodesTasksLogByNodeAndUpid' {
-            #$TestResult = Get-PVENodesTasksLogByNodeAndUpid
+            #$TestResult = Get-PVENodesTasksLogByNodeAndUpid -GETNodesTasksLogRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1393,7 +1393,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesVncwebsocketByNode' {
         It 'Test Get-PVENodesVncwebsocketByNode' {
-            #$TestResult = Get-PVENodesVncwebsocketByNode
+            #$TestResult = Get-PVENodesVncwebsocketByNode -GETNodesVncwebsocketRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1401,7 +1401,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesVzdumpDefaultsByNode' {
         It 'Test Get-PVENodesVzdumpDefaultsByNode' {
-            #$TestResult = Get-PVENodesVzdumpDefaultsByNode
+            #$TestResult = Get-PVENodesVzdumpDefaultsByNode -GETNodesVzdumpDefaultsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1409,7 +1409,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Get-PVENodesVzdumpExtractconfigByNode' {
         It 'Test Get-PVENodesVzdumpExtractconfigByNode' {
-            #$TestResult = Get-PVENodesVzdumpExtractconfigByNode
+            #$TestResult = Get-PVENodesVzdumpExtractconfigByNode -GETNodesVzdumpExtractconfigRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1417,7 +1417,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesAplinfoByNode' {
         It 'Test New-PVENodesAplinfoByNode' {
-            #$TestResult = New-PVENodesAplinfoByNode
+            #$TestResult = New-PVENodesAplinfoByNode -POSTNodesAplinfoRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1425,7 +1425,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesAptRepositoriesByNode' {
         It 'Test New-PVENodesAptRepositoriesByNode' {
-            #$TestResult = New-PVENodesAptRepositoriesByNode
+            #$TestResult = New-PVENodesAptRepositoriesByNode -POSTNodesAptRepositoriesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1433,7 +1433,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesAptUpdateByNode' {
         It 'Test New-PVENodesAptUpdateByNode' {
-            #$TestResult = New-PVENodesAptUpdateByNode
+            #$TestResult = New-PVENodesAptUpdateByNode -POSTNodesAptUpdateRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1441,7 +1441,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesCephFsByNodeAndName' {
         It 'Test New-PVENodesCephFsByNodeAndName' {
-            #$TestResult = New-PVENodesCephFsByNodeAndName
+            #$TestResult = New-PVENodesCephFsByNodeAndName -POSTNodesCephFsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1449,7 +1449,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesCephInitByNode' {
         It 'Test New-PVENodesCephInitByNode' {
-            #$TestResult = New-PVENodesCephInitByNode
+            #$TestResult = New-PVENodesCephInitByNode -POSTNodesCephInitRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1457,7 +1457,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesCephMdsByNodeAndName' {
         It 'Test New-PVENodesCephMdsByNodeAndName' {
-            #$TestResult = New-PVENodesCephMdsByNodeAndName
+            #$TestResult = New-PVENodesCephMdsByNodeAndName -POSTNodesCephMdsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1473,7 +1473,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesCephMonByNodeAndMonid' {
         It 'Test New-PVENodesCephMonByNodeAndMonid' {
-            #$TestResult = New-PVENodesCephMonByNodeAndMonid
+            #$TestResult = New-PVENodesCephMonByNodeAndMonid -POSTNodesCephMonRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1481,7 +1481,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesCephOsdByNode' {
         It 'Test New-PVENodesCephOsdByNode' {
-            #$TestResult = New-PVENodesCephOsdByNode
+            #$TestResult = New-PVENodesCephOsdByNode -POSTNodesCephOsdRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1505,7 +1505,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesCephOsdScrubByNodeAndOsdid' {
         It 'Test New-PVENodesCephOsdScrubByNodeAndOsdid' {
-            #$TestResult = New-PVENodesCephOsdScrubByNodeAndOsdid
+            #$TestResult = New-PVENodesCephOsdScrubByNodeAndOsdid -POSTNodesCephOsdScrubRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1513,7 +1513,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesCephPoolByNode' {
         It 'Test New-PVENodesCephPoolByNode' {
-            #$TestResult = New-PVENodesCephPoolByNode
+            #$TestResult = New-PVENodesCephPoolByNode -POSTNodesCephPoolRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1521,7 +1521,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesCephRestartByNode' {
         It 'Test New-PVENodesCephRestartByNode' {
-            #$TestResult = New-PVENodesCephRestartByNode
+            #$TestResult = New-PVENodesCephRestartByNode -POSTNodesCephRestartRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1529,7 +1529,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesCephStartByNode' {
         It 'Test New-PVENodesCephStartByNode' {
-            #$TestResult = New-PVENodesCephStartByNode
+            #$TestResult = New-PVENodesCephStartByNode -POSTNodesCephStartRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1537,7 +1537,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesCephStopByNode' {
         It 'Test New-PVENodesCephStopByNode' {
-            #$TestResult = New-PVENodesCephStopByNode
+            #$TestResult = New-PVENodesCephStopByNode -POSTNodesCephStopRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1545,7 +1545,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesCertificatesAcmeCertificateByNode' {
         It 'Test New-PVENodesCertificatesAcmeCertificateByNode' {
-            #$TestResult = New-PVENodesCertificatesAcmeCertificateByNode
+            #$TestResult = New-PVENodesCertificatesAcmeCertificateByNode -POSTNodesCertificatesAcmeCertificateRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1553,7 +1553,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesCertificatesCustomByNode' {
         It 'Test New-PVENodesCertificatesCustomByNode' {
-            #$TestResult = New-PVENodesCertificatesCustomByNode
+            #$TestResult = New-PVENodesCertificatesCustomByNode -POSTNodesCertificatesCustomRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1561,7 +1561,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesDisksDirectoryByNode' {
         It 'Test New-PVENodesDisksDirectoryByNode' {
-            #$TestResult = New-PVENodesDisksDirectoryByNode
+            #$TestResult = New-PVENodesDisksDirectoryByNode -POSTNodesDisksDirectoryRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1569,7 +1569,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesDisksInitgptByNode' {
         It 'Test New-PVENodesDisksInitgptByNode' {
-            #$TestResult = New-PVENodesDisksInitgptByNode
+            #$TestResult = New-PVENodesDisksInitgptByNode -POSTNodesDisksInitgptRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1577,7 +1577,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesDisksLvmByNode' {
         It 'Test New-PVENodesDisksLvmByNode' {
-            #$TestResult = New-PVENodesDisksLvmByNode
+            #$TestResult = New-PVENodesDisksLvmByNode -POSTNodesDisksLvmRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1585,7 +1585,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesDisksLvmthinByNode' {
         It 'Test New-PVENodesDisksLvmthinByNode' {
-            #$TestResult = New-PVENodesDisksLvmthinByNode
+            #$TestResult = New-PVENodesDisksLvmthinByNode -POSTNodesDisksLvmthinRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1593,7 +1593,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesDisksZfsByNode' {
         It 'Test New-PVENodesDisksZfsByNode' {
-            #$TestResult = New-PVENodesDisksZfsByNode
+            #$TestResult = New-PVENodesDisksZfsByNode -POSTNodesDisksZfsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1601,7 +1601,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesExecuteByNode' {
         It 'Test New-PVENodesExecuteByNode' {
-            #$TestResult = New-PVENodesExecuteByNode
+            #$TestResult = New-PVENodesExecuteByNode -POSTNodesExecuteRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1609,7 +1609,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesFirewallRulesByNode' {
         It 'Test New-PVENodesFirewallRulesByNode' {
-            #$TestResult = New-PVENodesFirewallRulesByNode
+            #$TestResult = New-PVENodesFirewallRulesByNode -POSTNodesFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1617,7 +1617,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesHostsByNode' {
         It 'Test New-PVENodesHostsByNode' {
-            #$TestResult = New-PVENodesHostsByNode
+            #$TestResult = New-PVENodesHostsByNode -POSTNodesHostsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1625,7 +1625,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcByNode' {
         It 'Test New-PVENodesLxcByNode' {
-            #$TestResult = New-PVENodesLxcByNode
+            #$TestResult = New-PVENodesLxcByNode -POSTNodesLxcRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1633,7 +1633,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcCloneByNodeAndVmid' {
         It 'Test New-PVENodesLxcCloneByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcCloneByNodeAndVmid
+            #$TestResult = New-PVENodesLxcCloneByNodeAndVmid -POSTNodesLxcCloneRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1641,7 +1641,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcFirewallAliasesByNodeAndVmid' {
         It 'Test New-PVENodesLxcFirewallAliasesByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcFirewallAliasesByNodeAndVmid
+            #$TestResult = New-PVENodesLxcFirewallAliasesByNodeAndVmid -POSTNodesLxcFirewallAliasesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1649,7 +1649,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcFirewallIpsetByNodeAndVmid' {
         It 'Test New-PVENodesLxcFirewallIpsetByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcFirewallIpsetByNodeAndVmid
+            #$TestResult = New-PVENodesLxcFirewallIpsetByNodeAndVmid -POSTNodesLxcFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1657,7 +1657,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName' {
         It 'Test New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName' {
-            #$TestResult = New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName
+            #$TestResult = New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName -POSTNodesLxcFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1665,7 +1665,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcFirewallRulesByNodeAndVmid' {
         It 'Test New-PVENodesLxcFirewallRulesByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcFirewallRulesByNodeAndVmid
+            #$TestResult = New-PVENodesLxcFirewallRulesByNodeAndVmid -POSTNodesLxcFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1673,7 +1673,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcMigrateByNodeAndVmid' {
         It 'Test New-PVENodesLxcMigrateByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcMigrateByNodeAndVmid
+            #$TestResult = New-PVENodesLxcMigrateByNodeAndVmid -POSTNodesLxcMigrateRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1681,7 +1681,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcMovevolumeByNodeAndVmid' {
         It 'Test New-PVENodesLxcMovevolumeByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcMovevolumeByNodeAndVmid
+            #$TestResult = New-PVENodesLxcMovevolumeByNodeAndVmid -POSTNodesLxcMovevolumeRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1689,7 +1689,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcMtunnelByNodeAndVmid' {
         It 'Test New-PVENodesLxcMtunnelByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcMtunnelByNodeAndVmid
+            #$TestResult = New-PVENodesLxcMtunnelByNodeAndVmid -POSTNodesLxcMtunnelRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1697,7 +1697,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcRemotemigrateByNodeAndVmid' {
         It 'Test New-PVENodesLxcRemotemigrateByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcRemotemigrateByNodeAndVmid
+            #$TestResult = New-PVENodesLxcRemotemigrateByNodeAndVmid -POSTNodesLxcRemotemigrateRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1705,7 +1705,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcSnapshotByNodeAndVmid' {
         It 'Test New-PVENodesLxcSnapshotByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcSnapshotByNodeAndVmid
+            #$TestResult = New-PVENodesLxcSnapshotByNodeAndVmid -POSTNodesLxcSnapshotRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1713,7 +1713,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname' {
         It 'Test New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname' {
-            #$TestResult = New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname
+            #$TestResult = New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname -POSTNodesLxcSnapshotRollbackRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1721,7 +1721,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcSpiceproxyByNodeAndVmid' {
         It 'Test New-PVENodesLxcSpiceproxyByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcSpiceproxyByNodeAndVmid
+            #$TestResult = New-PVENodesLxcSpiceproxyByNodeAndVmid -POSTNodesLxcSpiceproxyRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1729,7 +1729,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcStatusRebootByNodeAndVmid' {
         It 'Test New-PVENodesLxcStatusRebootByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcStatusRebootByNodeAndVmid
+            #$TestResult = New-PVENodesLxcStatusRebootByNodeAndVmid -POSTNodesLxcStatusRebootRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1745,7 +1745,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcStatusShutdownByNodeAndVmid' {
         It 'Test New-PVENodesLxcStatusShutdownByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcStatusShutdownByNodeAndVmid
+            #$TestResult = New-PVENodesLxcStatusShutdownByNodeAndVmid -POSTNodesLxcStatusShutdownRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1753,7 +1753,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcStatusStartByNodeAndVmid' {
         It 'Test New-PVENodesLxcStatusStartByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcStatusStartByNodeAndVmid
+            #$TestResult = New-PVENodesLxcStatusStartByNodeAndVmid -POSTNodesLxcStatusStartRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1761,7 +1761,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcStatusStopByNodeAndVmid' {
         It 'Test New-PVENodesLxcStatusStopByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcStatusStopByNodeAndVmid
+            #$TestResult = New-PVENodesLxcStatusStopByNodeAndVmid -POSTNodesLxcStatusStopRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1793,7 +1793,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesLxcVncproxyByNodeAndVmid' {
         It 'Test New-PVENodesLxcVncproxyByNodeAndVmid' {
-            #$TestResult = New-PVENodesLxcVncproxyByNodeAndVmid
+            #$TestResult = New-PVENodesLxcVncproxyByNodeAndVmid -POSTNodesLxcVncproxyRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1801,7 +1801,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesMigrateallByNode' {
         It 'Test New-PVENodesMigrateallByNode' {
-            #$TestResult = New-PVENodesMigrateallByNode
+            #$TestResult = New-PVENodesMigrateallByNode -POSTNodesMigrateallRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1809,7 +1809,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesNetworkByNode' {
         It 'Test New-PVENodesNetworkByNode' {
-            #$TestResult = New-PVENodesNetworkByNode
+            #$TestResult = New-PVENodesNetworkByNode -POSTNodesNetworkRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1817,7 +1817,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuAgentByNodeAndVmid' {
         It 'Test New-PVENodesQemuAgentByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuAgentByNodeAndVmid
+            #$TestResult = New-PVENodesQemuAgentByNodeAndVmid -POSTNodesQemuAgentRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1825,7 +1825,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuAgentExecByNodeAndVmid' {
         It 'Test New-PVENodesQemuAgentExecByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuAgentExecByNodeAndVmid
+            #$TestResult = New-PVENodesQemuAgentExecByNodeAndVmid -POSTNodesQemuAgentExecRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1833,7 +1833,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuAgentFilewriteByNodeAndVmid' {
         It 'Test New-PVENodesQemuAgentFilewriteByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuAgentFilewriteByNodeAndVmid
+            #$TestResult = New-PVENodesQemuAgentFilewriteByNodeAndVmid -POSTNodesQemuAgentFilewriteRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1881,7 +1881,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid' {
         It 'Test New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid
+            #$TestResult = New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid -POSTNodesQemuAgentSetuserpasswordRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1921,7 +1921,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuByNode' {
         It 'Test New-PVENodesQemuByNode' {
-            #$TestResult = New-PVENodesQemuByNode
+            #$TestResult = New-PVENodesQemuByNode -POSTNodesQemuRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1929,7 +1929,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuCloneByNodeAndVmid' {
         It 'Test New-PVENodesQemuCloneByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuCloneByNodeAndVmid
+            #$TestResult = New-PVENodesQemuCloneByNodeAndVmid -POSTNodesQemuCloneRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1937,7 +1937,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuConfigByNodeAndVmid' {
         It 'Test New-PVENodesQemuConfigByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuConfigByNodeAndVmid
+            #$TestResult = New-PVENodesQemuConfigByNodeAndVmid -POSTNodesQemuConfigRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1945,7 +1945,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuFirewallAliasesByNodeAndVmid' {
         It 'Test New-PVENodesQemuFirewallAliasesByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuFirewallAliasesByNodeAndVmid
+            #$TestResult = New-PVENodesQemuFirewallAliasesByNodeAndVmid -POSTNodesQemuFirewallAliasesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1953,7 +1953,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuFirewallIpsetByNodeAndVmid' {
         It 'Test New-PVENodesQemuFirewallIpsetByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuFirewallIpsetByNodeAndVmid
+            #$TestResult = New-PVENodesQemuFirewallIpsetByNodeAndVmid -POSTNodesQemuFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1961,7 +1961,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName' {
         It 'Test New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName' {
-            #$TestResult = New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName
+            #$TestResult = New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName -POSTNodesQemuFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1969,7 +1969,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuFirewallRulesByNodeAndVmid' {
         It 'Test New-PVENodesQemuFirewallRulesByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuFirewallRulesByNodeAndVmid
+            #$TestResult = New-PVENodesQemuFirewallRulesByNodeAndVmid -POSTNodesQemuFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1977,7 +1977,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuMigrateByNodeAndVmid' {
         It 'Test New-PVENodesQemuMigrateByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuMigrateByNodeAndVmid
+            #$TestResult = New-PVENodesQemuMigrateByNodeAndVmid -POSTNodesQemuMigrateRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1985,7 +1985,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuMonitorByNodeAndVmid' {
         It 'Test New-PVENodesQemuMonitorByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuMonitorByNodeAndVmid
+            #$TestResult = New-PVENodesQemuMonitorByNodeAndVmid -POSTNodesQemuMonitorRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1993,7 +1993,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuMovediskByNodeAndVmid' {
         It 'Test New-PVENodesQemuMovediskByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuMovediskByNodeAndVmid
+            #$TestResult = New-PVENodesQemuMovediskByNodeAndVmid -POSTNodesQemuMovediskRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2001,7 +2001,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuMtunnelByNodeAndVmid' {
         It 'Test New-PVENodesQemuMtunnelByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuMtunnelByNodeAndVmid
+            #$TestResult = New-PVENodesQemuMtunnelByNodeAndVmid -POSTNodesQemuMtunnelRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2009,7 +2009,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuRemotemigrateByNodeAndVmid' {
         It 'Test New-PVENodesQemuRemotemigrateByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuRemotemigrateByNodeAndVmid
+            #$TestResult = New-PVENodesQemuRemotemigrateByNodeAndVmid -POSTNodesQemuRemotemigrateRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2017,7 +2017,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuSnapshotByNodeAndVmid' {
         It 'Test New-PVENodesQemuSnapshotByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuSnapshotByNodeAndVmid
+            #$TestResult = New-PVENodesQemuSnapshotByNodeAndVmid -POSTNodesQemuSnapshotRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2025,7 +2025,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname' {
         It 'Test New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname' {
-            #$TestResult = New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname
+            #$TestResult = New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname -POSTNodesQemuSnapshotRollbackRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2033,7 +2033,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuSpiceproxyByNodeAndVmid' {
         It 'Test New-PVENodesQemuSpiceproxyByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuSpiceproxyByNodeAndVmid
+            #$TestResult = New-PVENodesQemuSpiceproxyByNodeAndVmid -POSTNodesQemuSpiceproxyRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2041,7 +2041,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuStatusRebootByNodeAndVmid' {
         It 'Test New-PVENodesQemuStatusRebootByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuStatusRebootByNodeAndVmid
+            #$TestResult = New-PVENodesQemuStatusRebootByNodeAndVmid -POSTNodesQemuStatusRebootRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2049,7 +2049,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuStatusResetByNodeAndVmid' {
         It 'Test New-PVENodesQemuStatusResetByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuStatusResetByNodeAndVmid
+            #$TestResult = New-PVENodesQemuStatusResetByNodeAndVmid -POSTNodesQemuStatusResetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2057,7 +2057,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuStatusResumeByNodeAndVmid' {
         It 'Test New-PVENodesQemuStatusResumeByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuStatusResumeByNodeAndVmid
+            #$TestResult = New-PVENodesQemuStatusResumeByNodeAndVmid -POSTNodesQemuStatusResumeRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2065,7 +2065,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuStatusShutdownByNodeAndVmid' {
         It 'Test New-PVENodesQemuStatusShutdownByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuStatusShutdownByNodeAndVmid
+            #$TestResult = New-PVENodesQemuStatusShutdownByNodeAndVmid -POSTNodesQemuStatusShutdownRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2073,7 +2073,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuStatusStartByNodeAndVmid' {
         It 'Test New-PVENodesQemuStatusStartByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuStatusStartByNodeAndVmid
+            #$TestResult = New-PVENodesQemuStatusStartByNodeAndVmid -POSTNodesQemuStatusStartRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2081,7 +2081,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuStatusStopByNodeAndVmid' {
         It 'Test New-PVENodesQemuStatusStopByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuStatusStopByNodeAndVmid
+            #$TestResult = New-PVENodesQemuStatusStopByNodeAndVmid -POSTNodesQemuStatusStopRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2089,7 +2089,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuStatusSuspendByNodeAndVmid' {
         It 'Test New-PVENodesQemuStatusSuspendByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuStatusSuspendByNodeAndVmid
+            #$TestResult = New-PVENodesQemuStatusSuspendByNodeAndVmid -POSTNodesQemuStatusSuspendRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2097,7 +2097,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuTemplateByNodeAndVmid' {
         It 'Test New-PVENodesQemuTemplateByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuTemplateByNodeAndVmid
+            #$TestResult = New-PVENodesQemuTemplateByNodeAndVmid -POSTNodesQemuTemplateRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2105,7 +2105,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuTermproxyByNodeAndVmid' {
         It 'Test New-PVENodesQemuTermproxyByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuTermproxyByNodeAndVmid
+            #$TestResult = New-PVENodesQemuTermproxyByNodeAndVmid -POSTNodesQemuTermproxyRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2113,7 +2113,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesQemuVncproxyByNodeAndVmid' {
         It 'Test New-PVENodesQemuVncproxyByNodeAndVmid' {
-            #$TestResult = New-PVENodesQemuVncproxyByNodeAndVmid
+            #$TestResult = New-PVENodesQemuVncproxyByNodeAndVmid -POSTNodesQemuVncproxyRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2161,7 +2161,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesSpiceshellByNode' {
         It 'Test New-PVENodesSpiceshellByNode' {
-            #$TestResult = New-PVENodesSpiceshellByNode
+            #$TestResult = New-PVENodesSpiceshellByNode -POSTNodesSpiceshellRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2169,7 +2169,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesStartallByNode' {
         It 'Test New-PVENodesStartallByNode' {
-            #$TestResult = New-PVENodesStartallByNode
+            #$TestResult = New-PVENodesStartallByNode -POSTNodesStartallRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2177,7 +2177,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesStatusByNode' {
         It 'Test New-PVENodesStatusByNode' {
-            #$TestResult = New-PVENodesStatusByNode
+            #$TestResult = New-PVENodesStatusByNode -POSTNodesStatusRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2185,7 +2185,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesStopallByNode' {
         It 'Test New-PVENodesStopallByNode' {
-            #$TestResult = New-PVENodesStopallByNode
+            #$TestResult = New-PVENodesStopallByNode -POSTNodesStopallRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2193,7 +2193,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesStorageContentByNodeAndStorage' {
         It 'Test New-PVENodesStorageContentByNodeAndStorage' {
-            #$TestResult = New-PVENodesStorageContentByNodeAndStorage
+            #$TestResult = New-PVENodesStorageContentByNodeAndStorage -POSTNodesStorageContentRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2201,7 +2201,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesStorageContentByNodeAndStorageAndVolume' {
         It 'Test New-PVENodesStorageContentByNodeAndStorageAndVolume' {
-            #$TestResult = New-PVENodesStorageContentByNodeAndStorageAndVolume
+            #$TestResult = New-PVENodesStorageContentByNodeAndStorageAndVolume -POSTNodesStorageContentRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2209,7 +2209,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesStorageDownloadurlByNodeAndStorage' {
         It 'Test New-PVENodesStorageDownloadurlByNodeAndStorage' {
-            #$TestResult = New-PVENodesStorageDownloadurlByNodeAndStorage
+            #$TestResult = New-PVENodesStorageDownloadurlByNodeAndStorage -POSTNodesStorageDownloadurlRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2217,7 +2217,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesStorageUploadByNodeAndStorage' {
         It 'Test New-PVENodesStorageUploadByNodeAndStorage' {
-            #$TestResult = New-PVENodesStorageUploadByNodeAndStorage
+            #$TestResult = New-PVENodesStorageUploadByNodeAndStorage -POSTNodesStorageUploadRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2225,7 +2225,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesSubscriptionByNode' {
         It 'Test New-PVENodesSubscriptionByNode' {
-            #$TestResult = New-PVENodesSubscriptionByNode
+            #$TestResult = New-PVENodesSubscriptionByNode -POSTNodesSubscriptionRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2233,7 +2233,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesSuspendallByNode' {
         It 'Test New-PVENodesSuspendallByNode' {
-            #$TestResult = New-PVENodesSuspendallByNode
+            #$TestResult = New-PVENodesSuspendallByNode -POSTNodesSuspendallRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2241,7 +2241,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesTermproxyByNode' {
         It 'Test New-PVENodesTermproxyByNode' {
-            #$TestResult = New-PVENodesTermproxyByNode
+            #$TestResult = New-PVENodesTermproxyByNode -POSTNodesTermproxyRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2249,7 +2249,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesVncshellByNode' {
         It 'Test New-PVENodesVncshellByNode' {
-            #$TestResult = New-PVENodesVncshellByNode
+            #$TestResult = New-PVENodesVncshellByNode -POSTNodesVncshellRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2257,7 +2257,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'New-PVENodesVzdumpByNode' {
         It 'Test New-PVENodesVzdumpByNode' {
-            #$TestResult = New-PVENodesVzdumpByNode
+            #$TestResult = New-PVENodesVzdumpByNode -POSTNodesVzdumpRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2297,7 +2297,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesCephOsdByNodeAndOsdid' {
         It 'Test Remove-PVENodesCephOsdByNodeAndOsdid' {
-            #$TestResult = Remove-PVENodesCephOsdByNodeAndOsdid
+            #$TestResult = Remove-PVENodesCephOsdByNodeAndOsdid -DELETENodesCephOsdRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2305,7 +2305,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesCephPoolByNodeAndName' {
         It 'Test Remove-PVENodesCephPoolByNodeAndName' {
-            #$TestResult = Remove-PVENodesCephPoolByNodeAndName
+            #$TestResult = Remove-PVENodesCephPoolByNodeAndName -DELETENodesCephPoolRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2321,7 +2321,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesCertificatesCustomByNode' {
         It 'Test Remove-PVENodesCertificatesCustomByNode' {
-            #$TestResult = Remove-PVENodesCertificatesCustomByNode
+            #$TestResult = Remove-PVENodesCertificatesCustomByNode -DELETENodesCertificatesCustomRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2329,7 +2329,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesDisksDirectoryByNodeAndName' {
         It 'Test Remove-PVENodesDisksDirectoryByNodeAndName' {
-            #$TestResult = Remove-PVENodesDisksDirectoryByNodeAndName
+            #$TestResult = Remove-PVENodesDisksDirectoryByNodeAndName -DELETENodesDisksDirectoryRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2337,7 +2337,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesDisksLvmByNodeAndName' {
         It 'Test Remove-PVENodesDisksLvmByNodeAndName' {
-            #$TestResult = Remove-PVENodesDisksLvmByNodeAndName
+            #$TestResult = Remove-PVENodesDisksLvmByNodeAndName -DELETENodesDisksLvmRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2345,7 +2345,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesDisksLvmthinByNodeAndName' {
         It 'Test Remove-PVENodesDisksLvmthinByNodeAndName' {
-            #$TestResult = Remove-PVENodesDisksLvmthinByNodeAndName
+            #$TestResult = Remove-PVENodesDisksLvmthinByNodeAndName -DELETENodesDisksLvmthinRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2353,7 +2353,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesDisksZfsByNodeAndName' {
         It 'Test Remove-PVENodesDisksZfsByNodeAndName' {
-            #$TestResult = Remove-PVENodesDisksZfsByNodeAndName
+            #$TestResult = Remove-PVENodesDisksZfsByNodeAndName -DELETENodesDisksZfsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2361,7 +2361,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesFirewallRulesByNodeAndPos' {
         It 'Test Remove-PVENodesFirewallRulesByNodeAndPos' {
-            #$TestResult = Remove-PVENodesFirewallRulesByNodeAndPos
+            #$TestResult = Remove-PVENodesFirewallRulesByNodeAndPos -DELETENodesFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2369,7 +2369,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesLxcByNodeAndVmid' {
         It 'Test Remove-PVENodesLxcByNodeAndVmid' {
-            #$TestResult = Remove-PVENodesLxcByNodeAndVmid
+            #$TestResult = Remove-PVENodesLxcByNodeAndVmid -DELETENodesLxcRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2377,7 +2377,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName' {
         It 'Test Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName' {
-            #$TestResult = Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName
+            #$TestResult = Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName -DELETENodesLxcFirewallAliasesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2385,7 +2385,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName' {
         It 'Test Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName' {
-            #$TestResult = Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName
+            #$TestResult = Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName -DELETENodesLxcFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2393,7 +2393,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr' {
         It 'Test Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr' {
-            #$TestResult = Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr
+            #$TestResult = Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr -DELETENodesLxcFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2401,7 +2401,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos' {
         It 'Test Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos' {
-            #$TestResult = Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos
+            #$TestResult = Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos -DELETENodesLxcFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2409,7 +2409,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname' {
         It 'Test Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname' {
-            #$TestResult = Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname
+            #$TestResult = Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname -DELETENodesLxcSnapshotRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2433,7 +2433,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesQemuByNodeAndVmid' {
         It 'Test Remove-PVENodesQemuByNodeAndVmid' {
-            #$TestResult = Remove-PVENodesQemuByNodeAndVmid
+            #$TestResult = Remove-PVENodesQemuByNodeAndVmid -DELETENodesQemuRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2441,7 +2441,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName' {
         It 'Test Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName' {
-            #$TestResult = Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName
+            #$TestResult = Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName -DELETENodesQemuFirewallAliasesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2449,7 +2449,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName' {
         It 'Test Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName' {
-            #$TestResult = Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName
+            #$TestResult = Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName -DELETENodesQemuFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2457,7 +2457,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr' {
         It 'Test Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr' {
-            #$TestResult = Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr
+            #$TestResult = Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr -DELETENodesQemuFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2465,7 +2465,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos' {
         It 'Test Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos' {
-            #$TestResult = Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos
+            #$TestResult = Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos -DELETENodesQemuFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2473,7 +2473,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname' {
         It 'Test Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname' {
-            #$TestResult = Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname
+            #$TestResult = Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname -DELETENodesQemuSnapshotRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2481,7 +2481,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesStorageContentByNodeAndStorageAndVolume' {
         It 'Test Remove-PVENodesStorageContentByNodeAndStorageAndVolume' {
-            #$TestResult = Remove-PVENodesStorageContentByNodeAndStorageAndVolume
+            #$TestResult = Remove-PVENodesStorageContentByNodeAndStorageAndVolume -DELETENodesStorageContentRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2489,7 +2489,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Remove-PVENodesStoragePrunebackupsByNodeAndStorage' {
         It 'Test Remove-PVENodesStoragePrunebackupsByNodeAndStorage' {
-            #$TestResult = Remove-PVENodesStoragePrunebackupsByNodeAndStorage
+            #$TestResult = Remove-PVENodesStoragePrunebackupsByNodeAndStorage -DELETENodesStoragePrunebackupsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2513,7 +2513,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesAptRepositoriesByNode' {
         It 'Test Set-PVENodesAptRepositoriesByNode' {
-            #$TestResult = Set-PVENodesAptRepositoriesByNode
+            #$TestResult = Set-PVENodesAptRepositoriesByNode -PUTNodesAptRepositoriesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2521,7 +2521,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesCephPoolByNodeAndName' {
         It 'Test Set-PVENodesCephPoolByNodeAndName' {
-            #$TestResult = Set-PVENodesCephPoolByNodeAndName
+            #$TestResult = Set-PVENodesCephPoolByNodeAndName -PUTNodesCephPoolRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2529,7 +2529,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesCertificatesAcmeCertificateByNode' {
         It 'Test Set-PVENodesCertificatesAcmeCertificateByNode' {
-            #$TestResult = Set-PVENodesCertificatesAcmeCertificateByNode
+            #$TestResult = Set-PVENodesCertificatesAcmeCertificateByNode -PUTNodesCertificatesAcmeCertificateRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2537,7 +2537,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesConfigByNode' {
         It 'Test Set-PVENodesConfigByNode' {
-            #$TestResult = Set-PVENodesConfigByNode
+            #$TestResult = Set-PVENodesConfigByNode -PUTNodesConfigRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2545,7 +2545,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesDisksWipediskByNode' {
         It 'Test Set-PVENodesDisksWipediskByNode' {
-            #$TestResult = Set-PVENodesDisksWipediskByNode
+            #$TestResult = Set-PVENodesDisksWipediskByNode -PUTNodesDisksWipediskRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2553,7 +2553,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesDnsByNode' {
         It 'Test Set-PVENodesDnsByNode' {
-            #$TestResult = Set-PVENodesDnsByNode
+            #$TestResult = Set-PVENodesDnsByNode -PUTNodesDnsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2561,7 +2561,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesFirewallOptionsByNode' {
         It 'Test Set-PVENodesFirewallOptionsByNode' {
-            #$TestResult = Set-PVENodesFirewallOptionsByNode
+            #$TestResult = Set-PVENodesFirewallOptionsByNode -PUTNodesFirewallOptionsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2569,7 +2569,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesFirewallRulesByNodeAndPos' {
         It 'Test Set-PVENodesFirewallRulesByNodeAndPos' {
-            #$TestResult = Set-PVENodesFirewallRulesByNodeAndPos
+            #$TestResult = Set-PVENodesFirewallRulesByNodeAndPos -PUTNodesFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2577,7 +2577,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesLxcConfigByNodeAndVmid' {
         It 'Test Set-PVENodesLxcConfigByNodeAndVmid' {
-            #$TestResult = Set-PVENodesLxcConfigByNodeAndVmid
+            #$TestResult = Set-PVENodesLxcConfigByNodeAndVmid -PUTNodesLxcConfigRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2585,7 +2585,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName' {
         It 'Test Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName' {
-            #$TestResult = Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName
+            #$TestResult = Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName -PUTNodesLxcFirewallAliasesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2593,7 +2593,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr' {
         It 'Test Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr' {
-            #$TestResult = Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr
+            #$TestResult = Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr -PUTNodesLxcFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2601,7 +2601,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesLxcFirewallOptionsByNodeAndVmid' {
         It 'Test Set-PVENodesLxcFirewallOptionsByNodeAndVmid' {
-            #$TestResult = Set-PVENodesLxcFirewallOptionsByNodeAndVmid
+            #$TestResult = Set-PVENodesLxcFirewallOptionsByNodeAndVmid -PUTNodesLxcFirewallOptionsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2609,7 +2609,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos' {
         It 'Test Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos' {
-            #$TestResult = Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos
+            #$TestResult = Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos -PUTNodesLxcFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2617,7 +2617,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesLxcResizeByNodeAndVmid' {
         It 'Test Set-PVENodesLxcResizeByNodeAndVmid' {
-            #$TestResult = Set-PVENodesLxcResizeByNodeAndVmid
+            #$TestResult = Set-PVENodesLxcResizeByNodeAndVmid -PUTNodesLxcResizeRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2625,7 +2625,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname' {
         It 'Test Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname' {
-            #$TestResult = Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname
+            #$TestResult = Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname -PUTNodesLxcSnapshotConfigRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2641,7 +2641,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesNetworkByNodeAndIface' {
         It 'Test Set-PVENodesNetworkByNodeAndIface' {
-            #$TestResult = Set-PVENodesNetworkByNodeAndIface
+            #$TestResult = Set-PVENodesNetworkByNodeAndIface -PUTNodesNetworkRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2657,7 +2657,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesQemuConfigByNodeAndVmid' {
         It 'Test Set-PVENodesQemuConfigByNodeAndVmid' {
-            #$TestResult = Set-PVENodesQemuConfigByNodeAndVmid
+            #$TestResult = Set-PVENodesQemuConfigByNodeAndVmid -PUTNodesQemuConfigRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2665,7 +2665,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName' {
         It 'Test Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName' {
-            #$TestResult = Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName
+            #$TestResult = Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName -PUTNodesQemuFirewallAliasesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2673,7 +2673,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr' {
         It 'Test Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr' {
-            #$TestResult = Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr
+            #$TestResult = Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr -PUTNodesQemuFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2681,7 +2681,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesQemuFirewallOptionsByNodeAndVmid' {
         It 'Test Set-PVENodesQemuFirewallOptionsByNodeAndVmid' {
-            #$TestResult = Set-PVENodesQemuFirewallOptionsByNodeAndVmid
+            #$TestResult = Set-PVENodesQemuFirewallOptionsByNodeAndVmid -PUTNodesQemuFirewallOptionsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2689,7 +2689,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos' {
         It 'Test Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos' {
-            #$TestResult = Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos
+            #$TestResult = Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos -PUTNodesQemuFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2697,7 +2697,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesQemuResizeByNodeAndVmid' {
         It 'Test Set-PVENodesQemuResizeByNodeAndVmid' {
-            #$TestResult = Set-PVENodesQemuResizeByNodeAndVmid
+            #$TestResult = Set-PVENodesQemuResizeByNodeAndVmid -PUTNodesQemuResizeRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2705,7 +2705,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesQemuSendkeyByNodeAndVmid' {
         It 'Test Set-PVENodesQemuSendkeyByNodeAndVmid' {
-            #$TestResult = Set-PVENodesQemuSendkeyByNodeAndVmid
+            #$TestResult = Set-PVENodesQemuSendkeyByNodeAndVmid -PUTNodesQemuSendkeyRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2713,7 +2713,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname' {
         It 'Test Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname' {
-            #$TestResult = Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname
+            #$TestResult = Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname -PUTNodesQemuSnapshotConfigRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2721,7 +2721,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesQemuUnlinkByNodeAndVmid' {
         It 'Test Set-PVENodesQemuUnlinkByNodeAndVmid' {
-            #$TestResult = Set-PVENodesQemuUnlinkByNodeAndVmid
+            #$TestResult = Set-PVENodesQemuUnlinkByNodeAndVmid -PUTNodesQemuUnlinkRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2729,7 +2729,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesStorageContentByNodeAndStorageAndVolume' {
         It 'Test Set-PVENodesStorageContentByNodeAndStorageAndVolume' {
-            #$TestResult = Set-PVENodesStorageContentByNodeAndStorageAndVolume
+            #$TestResult = Set-PVENodesStorageContentByNodeAndStorageAndVolume -PUTNodesStorageContentRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2737,7 +2737,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesSubscriptionByNode' {
         It 'Test Set-PVENodesSubscriptionByNode' {
-            #$TestResult = Set-PVENodesSubscriptionByNode
+            #$TestResult = Set-PVENodesSubscriptionByNode -PUTNodesSubscriptionRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -2745,7 +2745,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVENodesApi' {
 
     Context 'Set-PVENodesTimeByNode' {
         It 'Test Set-PVENodesTimeByNode' {
-            #$TestResult = Set-PVENodesTimeByNode
+            #$TestResult = Set-PVENodesTimeByNode -PUTNodesTimeRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }

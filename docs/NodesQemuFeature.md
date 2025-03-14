@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Nodes** | **String[]** |  | [optional] 
 **HasFeature** | **Int32** |  | [optional] 
+**Nodes** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuFeature = Initialize-PVENodesQemuFeature  -Nodes null `
- -HasFeature null
+$NodesQemuFeature = Initialize-PVENodesQemuFeature  -HasFeature null `
+ -Nodes null
 ```
 
 - Convert the resource to JSON

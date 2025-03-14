@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PolicyForward** | **String** |  | [optional] 
 **Enable** | **Int32** |  | [optional] 
+**PolicyForward** | **String** |  | [optional] 
 **LogLevelForward** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnVnetsFirewallOptions = Initialize-PVEClusterSdnVnetsFirewallOptions  -PolicyForward null `
- -Enable null `
+$ClusterSdnVnetsFirewallOptions = Initialize-PVEClusterSdnVnetsFirewallOptions  -Enable null `
+ -PolicyForward null `
  -LogLevelForward null
 ```
 

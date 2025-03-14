@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NotAllowedNodes** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**LocalDisks** | [**AnyType[]**](AnyType.md) |  | [optional] 
-**MappedResources** | [**AnyType[]**](AnyType.md) |  | [optional] 
 **LocalResources** | [**AnyType[]**](AnyType.md) |  | [optional] 
-**Running** | **Int32** |  | [optional] 
+**NotAllowedNodes** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 **AllowedNodes** | [**AnyType[]**](AnyType.md) |  | [optional] 
+**LocalDisks** | [**AnyType[]**](AnyType.md) |  | [optional] 
+**Running** | **Int32** |  | [optional] 
+**MappedResources** | [**AnyType[]**](AnyType.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuMigrate = Initialize-PVENodesQemuMigrate  -NotAllowedNodes null `
+$NodesQemuMigrate = Initialize-PVENodesQemuMigrate  -LocalResources null `
+ -NotAllowedNodes null `
+ -AllowedNodes null `
  -LocalDisks null `
- -MappedResources null `
- -LocalResources null `
  -Running null `
- -AllowedNodes null
+ -MappedResources null
 ```
 
 - Convert the resource to JSON

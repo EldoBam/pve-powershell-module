@@ -1,0 +1,25 @@
+# GETNodesVncwebsocketRB
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Port** | **Int32** |  | [optional] 
+**Vncticket** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+
+## Examples
+
+- Prepare the resource
+```powershell
+$GETNodesVncwebsocketRB = Initialize-PVEGETNodesVncwebsocketRB  -Port null `
+ -Vncticket null `
+ -Node null
+```
+
+- Convert the resource to JSON
+```powershell
+$GETNodesVncwebsocketRB | ConvertTo-JSON
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

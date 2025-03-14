@@ -1,0 +1,25 @@
+# NodesQemuFirewallIpsetInner
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Comment** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+
+## Examples
+
+- Prepare the resource
+```powershell
+$NodesQemuFirewallIpsetInner = Initialize-PVENodesQemuFirewallIpsetInner  -Comment null `
+ -Digest null `
+ -Name null
+```
+
+- Convert the resource to JSON
+```powershell
+$NodesQemuFirewallIpsetInner | ConvertTo-JSON
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

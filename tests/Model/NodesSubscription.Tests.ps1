@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesSubscription' {
     Context 'PVENodesSubscription' {
         It 'Initialize-PVENodesSubscription' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesSubscription -Nextduedate "TEST_VALUE" -Sockets "TEST_VALUE" -Serverid "TEST_VALUE" -Key "TEST_VALUE" -Regdate "TEST_VALUE" -Productname "TEST_VALUE" -Level "TEST_VALUE" -Signature "TEST_VALUE" -Checktime "TEST_VALUE" -Url "TEST_VALUE" -Status "TEST_VALUE" -Message "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesSubscription -Checktime "TEST_VALUE" -Nextduedate "TEST_VALUE" -Regdate "TEST_VALUE" -Url "TEST_VALUE" -Productname "TEST_VALUE" -Level "TEST_VALUE" -Message "TEST_VALUE" -Serverid "TEST_VALUE" -Signature "TEST_VALUE" -Key "TEST_VALUE" -Status "TEST_VALUE" -Sockets "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesSubscription
             #$NewObject.property | Should -Be 0
         }

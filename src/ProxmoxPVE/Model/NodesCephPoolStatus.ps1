@@ -15,53 +15,53 @@ No summary available.
 
 No description available.
 
-.PARAMETER ApplicationList
-No description available.
-.PARAMETER Hashpspool
-No description available.
-.PARAMETER Name
-No description available.
-.PARAMETER CrushRule
-No description available.
-.PARAMETER Nodelete
-No description available.
-.PARAMETER MinSize
-No description available.
-.PARAMETER PgAutoscaleMode
-No description available.
-.PARAMETER PgpNum
-No description available.
-.PARAMETER TargetSizeRatio
-No description available.
-.PARAMETER Application
-No description available.
-.PARAMETER Nosizechange
-No description available.
-.PARAMETER Statistics
-No description available.
-.PARAMETER UseGmtHitset
+.PARAMETER Noscrub
 No description available.
 .PARAMETER FastRead
 No description available.
-.PARAMETER NodeepScrub
-No description available.
-.PARAMETER TargetSize
-No description available.
-.PARAMETER Noscrub
-No description available.
-.PARAMETER Id
-No description available.
-.PARAMETER WriteFadviseDontneed
-No description available.
-.PARAMETER Size
+.PARAMETER Application
 No description available.
 .PARAMETER PgNum
 No description available.
-.PARAMETER AutoscaleStatus
+.PARAMETER Name
+No description available.
+.PARAMETER TargetSizeRatio
+No description available.
+.PARAMETER Nopgchange
+No description available.
+.PARAMETER NodeepScrub
 No description available.
 .PARAMETER PgNumMin
 No description available.
-.PARAMETER Nopgchange
+.PARAMETER Statistics
+No description available.
+.PARAMETER ApplicationList
+No description available.
+.PARAMETER MinSize
+No description available.
+.PARAMETER UseGmtHitset
+No description available.
+.PARAMETER AutoscaleStatus
+No description available.
+.PARAMETER PgpNum
+No description available.
+.PARAMETER Nosizechange
+No description available.
+.PARAMETER CrushRule
+No description available.
+.PARAMETER Hashpspool
+No description available.
+.PARAMETER Id
+No description available.
+.PARAMETER TargetSize
+No description available.
+.PARAMETER WriteFadviseDontneed
+No description available.
+.PARAMETER Nodelete
+No description available.
+.PARAMETER Size
+No description available.
+.PARAMETER PgAutoscaleMode
 No description available.
 .OUTPUTS
 
@@ -72,124 +72,92 @@ function Initialize-PVENodesCephPoolStatus {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${ApplicationList},
+        [System.Nullable[Int32]]
+        ${Noscrub},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Hashpspool},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${CrushRule},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Nodelete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${MinSize},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("on", "off", "warn")]
-        [String]
-        ${PgAutoscaleMode},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${PgpNum},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${TargetSizeRatio},
+        ${FastRead},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("rbd", "cephfs", "rgw")]
         [String]
         ${Application},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Nosizechange},
+        ${PgNum},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Decimal]]
+        ${TargetSizeRatio},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Nopgchange},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${NodeepScrub},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${PgNumMin},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${Statistics},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
+        ${ApplicationList},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${MinSize},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${UseGmtHitset},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${FastRead},
+        [PSCustomObject]
+        ${AutoscaleStatus},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${NodeepScrub},
+        ${PgpNum},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Nosizechange},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${CrushRule},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Hashpspool},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Id},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("^(\d+(\.\d+)?)([KMGT])?$")]
         [String]
         ${TargetSize},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Noscrub},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${WriteFadviseDontneed},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Nodelete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Size},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${PgNum},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${AutoscaleStatus},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${PgNumMin},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Nopgchange}
+        [ValidateSet("on", "off", "warn")]
+        [String]
+        ${PgAutoscaleMode}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesCephPoolStatus' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Hashpspool -and $Hashpspool -gt 1) {
-          throw "invalid value for 'Hashpspool', must be smaller than or equal to 1."
+        if ($Noscrub -and $Noscrub -gt 1) {
+          throw "invalid value for 'Noscrub', must be smaller than or equal to 1."
         }
 
-        if ($Hashpspool -and $Hashpspool -lt 0) {
-          throw "invalid value for 'Hashpspool', must be greater than or equal to 0."
-        }
-
-        if ($Nodelete -and $Nodelete -gt 1) {
-          throw "invalid value for 'Nodelete', must be smaller than or equal to 1."
-        }
-
-        if ($Nodelete -and $Nodelete -lt 0) {
-          throw "invalid value for 'Nodelete', must be greater than or equal to 0."
-        }
-
-        if ($MinSize -and $MinSize -gt 7) {
-          throw "invalid value for 'MinSize', must be smaller than or equal to 7."
-        }
-
-        if ($MinSize -and $MinSize -lt 1) {
-          throw "invalid value for 'MinSize', must be greater than or equal to 1."
-        }
-
-        if ($Nosizechange -and $Nosizechange -gt 1) {
-          throw "invalid value for 'Nosizechange', must be smaller than or equal to 1."
-        }
-
-        if ($Nosizechange -and $Nosizechange -lt 0) {
-          throw "invalid value for 'Nosizechange', must be greater than or equal to 0."
-        }
-
-        if ($UseGmtHitset -and $UseGmtHitset -gt 1) {
-          throw "invalid value for 'UseGmtHitset', must be smaller than or equal to 1."
-        }
-
-        if ($UseGmtHitset -and $UseGmtHitset -lt 0) {
-          throw "invalid value for 'UseGmtHitset', must be greater than or equal to 0."
+        if ($Noscrub -and $Noscrub -lt 0) {
+          throw "invalid value for 'Noscrub', must be greater than or equal to 0."
         }
 
         if ($FastRead -and $FastRead -gt 1) {
@@ -200,48 +168,12 @@ function Initialize-PVENodesCephPoolStatus {
           throw "invalid value for 'FastRead', must be greater than or equal to 0."
         }
 
-        if ($NodeepScrub -and $NodeepScrub -gt 1) {
-          throw "invalid value for 'NodeepScrub', must be smaller than or equal to 1."
-        }
-
-        if ($NodeepScrub -and $NodeepScrub -lt 0) {
-          throw "invalid value for 'NodeepScrub', must be greater than or equal to 0."
-        }
-
-        if ($Noscrub -and $Noscrub -gt 1) {
-          throw "invalid value for 'Noscrub', must be smaller than or equal to 1."
-        }
-
-        if ($Noscrub -and $Noscrub -lt 0) {
-          throw "invalid value for 'Noscrub', must be greater than or equal to 0."
-        }
-
-        if ($WriteFadviseDontneed -and $WriteFadviseDontneed -gt 1) {
-          throw "invalid value for 'WriteFadviseDontneed', must be smaller than or equal to 1."
-        }
-
-        if ($WriteFadviseDontneed -and $WriteFadviseDontneed -lt 0) {
-          throw "invalid value for 'WriteFadviseDontneed', must be greater than or equal to 0."
-        }
-
-        if ($Size -and $Size -gt 7) {
-          throw "invalid value for 'Size', must be smaller than or equal to 7."
-        }
-
-        if ($Size -and $Size -lt 1) {
-          throw "invalid value for 'Size', must be greater than or equal to 1."
-        }
-
         if ($PgNum -and $PgNum -gt 32768) {
           throw "invalid value for 'PgNum', must be smaller than or equal to 32768."
         }
 
         if ($PgNum -and $PgNum -lt 1) {
           throw "invalid value for 'PgNum', must be greater than or equal to 1."
-        }
-
-        if ($PgNumMin -and $PgNumMin -gt 32768) {
-          throw "invalid value for 'PgNumMin', must be smaller than or equal to 32768."
         }
 
         if ($Nopgchange -and $Nopgchange -gt 1) {
@@ -252,9 +184,77 @@ function Initialize-PVENodesCephPoolStatus {
           throw "invalid value for 'Nopgchange', must be greater than or equal to 0."
         }
 
+        if ($NodeepScrub -and $NodeepScrub -gt 1) {
+          throw "invalid value for 'NodeepScrub', must be smaller than or equal to 1."
+        }
+
+        if ($NodeepScrub -and $NodeepScrub -lt 0) {
+          throw "invalid value for 'NodeepScrub', must be greater than or equal to 0."
+        }
+
+        if ($PgNumMin -and $PgNumMin -gt 32768) {
+          throw "invalid value for 'PgNumMin', must be smaller than or equal to 32768."
+        }
+
+        if ($MinSize -and $MinSize -gt 7) {
+          throw "invalid value for 'MinSize', must be smaller than or equal to 7."
+        }
+
+        if ($MinSize -and $MinSize -lt 1) {
+          throw "invalid value for 'MinSize', must be greater than or equal to 1."
+        }
+
+        if ($UseGmtHitset -and $UseGmtHitset -gt 1) {
+          throw "invalid value for 'UseGmtHitset', must be smaller than or equal to 1."
+        }
+
+        if ($UseGmtHitset -and $UseGmtHitset -lt 0) {
+          throw "invalid value for 'UseGmtHitset', must be greater than or equal to 0."
+        }
+
+        if ($Nosizechange -and $Nosizechange -gt 1) {
+          throw "invalid value for 'Nosizechange', must be smaller than or equal to 1."
+        }
+
+        if ($Nosizechange -and $Nosizechange -lt 0) {
+          throw "invalid value for 'Nosizechange', must be greater than or equal to 0."
+        }
+
+        if ($Hashpspool -and $Hashpspool -gt 1) {
+          throw "invalid value for 'Hashpspool', must be smaller than or equal to 1."
+        }
+
+        if ($Hashpspool -and $Hashpspool -lt 0) {
+          throw "invalid value for 'Hashpspool', must be greater than or equal to 0."
+        }
+
+        if ($WriteFadviseDontneed -and $WriteFadviseDontneed -gt 1) {
+          throw "invalid value for 'WriteFadviseDontneed', must be smaller than or equal to 1."
+        }
+
+        if ($WriteFadviseDontneed -and $WriteFadviseDontneed -lt 0) {
+          throw "invalid value for 'WriteFadviseDontneed', must be greater than or equal to 0."
+        }
+
+        if ($Nodelete -and $Nodelete -gt 1) {
+          throw "invalid value for 'Nodelete', must be smaller than or equal to 1."
+        }
+
+        if ($Nodelete -and $Nodelete -lt 0) {
+          throw "invalid value for 'Nodelete', must be greater than or equal to 0."
+        }
+
+        if ($Size -and $Size -gt 7) {
+          throw "invalid value for 'Size', must be smaller than or equal to 7."
+        }
+
+        if ($Size -and $Size -lt 1) {
+          throw "invalid value for 'Size', must be greater than or equal to 1."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"ApplicationList"="application_list"; "Hashpspool"="hashpspool"; "Name"="name"; "CrushRule"="crush_rule"; "Nodelete"="nodelete"; "MinSize"="min_size"; "PgAutoscaleMode"="pg_autoscale_mode"; "PgpNum"="pgp_num"; "TargetSizeRatio"="target_size_ratio"; "Application"="application"; "Nosizechange"="nosizechange"; "Statistics"="statistics"; "UseGmtHitset"="use_gmt_hitset"; "FastRead"="fast_read"; "NodeepScrub"="nodeep-scrub"; "TargetSize"="target_size"; "Noscrub"="noscrub"; "Id"="id"; "WriteFadviseDontneed"="write_fadvise_dontneed"; "Size"="size"; "PgNum"="pg_num"; "AutoscaleStatus"="autoscale_status"; "PgNumMin"="pg_num_min"; "Nopgchange"="nopgchange"
+			"Noscrub"="noscrub"; "FastRead"="fast_read"; "Application"="application"; "PgNum"="pg_num"; "Name"="name"; "TargetSizeRatio"="target_size_ratio"; "Nopgchange"="nopgchange"; "NodeepScrub"="nodeep-scrub"; "PgNumMin"="pg_num_min"; "Statistics"="statistics"; "ApplicationList"="application_list"; "MinSize"="min_size"; "UseGmtHitset"="use_gmt_hitset"; "AutoscaleStatus"="autoscale_status"; "PgpNum"="pgp_num"; "Nosizechange"="nosizechange"; "CrushRule"="crush_rule"; "Hashpspool"="hashpspool"; "Id"="id"; "TargetSize"="target_size"; "WriteFadviseDontneed"="write_fadvise_dontneed"; "Nodelete"="nodelete"; "Size"="size"; "PgAutoscaleMode"="pg_autoscale_mode"
         }
 		
 		 $OBJ = @{}
@@ -300,107 +300,11 @@ function ConvertFrom-PVEJsonToNodesCephPoolStatus {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCephPoolStatus
-        $AllProperties = ("application_list", "hashpspool", "name", "crush_rule", "nodelete", "min_size", "pg_autoscale_mode", "pgp_num", "target_size_ratio", "application", "nosizechange", "statistics", "use_gmt_hitset", "fast_read", "nodeep-scrub", "target_size", "noscrub", "id", "write_fadvise_dontneed", "size", "pg_num", "autoscale_status", "pg_num_min", "nopgchange")
+        $AllProperties = ("noscrub", "fast_read", "application", "pg_num", "name", "target_size_ratio", "nopgchange", "nodeep-scrub", "pg_num_min", "statistics", "application_list", "min_size", "use_gmt_hitset", "autoscale_status", "pgp_num", "nosizechange", "crush_rule", "hashpspool", "id", "target_size", "write_fadvise_dontneed", "nodelete", "size", "pg_autoscale_mode")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "application_list"))) { #optional property not found
-            $ApplicationList = $null
-        } else {
-            $ApplicationList = $JsonParameters.PSobject.Properties["application_list"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hashpspool"))) { #optional property not found
-            $Hashpspool = $null
-        } else {
-            $Hashpspool = $JsonParameters.PSobject.Properties["hashpspool"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "crush_rule"))) { #optional property not found
-            $CrushRule = $null
-        } else {
-            $CrushRule = $JsonParameters.PSobject.Properties["crush_rule"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodelete"))) { #optional property not found
-            $Nodelete = $null
-        } else {
-            $Nodelete = $JsonParameters.PSobject.Properties["nodelete"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "min_size"))) { #optional property not found
-            $MinSize = $null
-        } else {
-            $MinSize = $JsonParameters.PSobject.Properties["min_size"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_autoscale_mode"))) { #optional property not found
-            $PgAutoscaleMode = $null
-        } else {
-            $PgAutoscaleMode = $JsonParameters.PSobject.Properties["pg_autoscale_mode"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pgp_num"))) { #optional property not found
-            $PgpNum = $null
-        } else {
-            $PgpNum = $JsonParameters.PSobject.Properties["pgp_num"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target_size_ratio"))) { #optional property not found
-            $TargetSizeRatio = $null
-        } else {
-            $TargetSizeRatio = $JsonParameters.PSobject.Properties["target_size_ratio"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "application"))) { #optional property not found
-            $Application = $null
-        } else {
-            $Application = $JsonParameters.PSobject.Properties["application"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nosizechange"))) { #optional property not found
-            $Nosizechange = $null
-        } else {
-            $Nosizechange = $JsonParameters.PSobject.Properties["nosizechange"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "statistics"))) { #optional property not found
-            $Statistics = $null
-        } else {
-            $Statistics = $JsonParameters.PSobject.Properties["statistics"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "use_gmt_hitset"))) { #optional property not found
-            $UseGmtHitset = $null
-        } else {
-            $UseGmtHitset = $JsonParameters.PSobject.Properties["use_gmt_hitset"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fast_read"))) { #optional property not found
-            $FastRead = $null
-        } else {
-            $FastRead = $JsonParameters.PSobject.Properties["fast_read"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodeep-scrub"))) { #optional property not found
-            $NodeepScrub = $null
-        } else {
-            $NodeepScrub = $JsonParameters.PSobject.Properties["nodeep-scrub"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target_size"))) { #optional property not found
-            $TargetSize = $null
-        } else {
-            $TargetSize = $JsonParameters.PSobject.Properties["target_size"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "noscrub"))) { #optional property not found
@@ -409,22 +313,16 @@ function ConvertFrom-PVEJsonToNodesCephPoolStatus {
             $Noscrub = $JsonParameters.PSobject.Properties["noscrub"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fast_read"))) { #optional property not found
+            $FastRead = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $FastRead = $JsonParameters.PSobject.Properties["fast_read"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "write_fadvise_dontneed"))) { #optional property not found
-            $WriteFadviseDontneed = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "application"))) { #optional property not found
+            $Application = $null
         } else {
-            $WriteFadviseDontneed = $JsonParameters.PSobject.Properties["write_fadvise_dontneed"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
-            $Size = $null
-        } else {
-            $Size = $JsonParameters.PSobject.Properties["size"].value
+            $Application = $JsonParameters.PSobject.Properties["application"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num"))) { #optional property not found
@@ -433,16 +331,16 @@ function ConvertFrom-PVEJsonToNodesCephPoolStatus {
             $PgNum = $JsonParameters.PSobject.Properties["pg_num"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "autoscale_status"))) { #optional property not found
-            $AutoscaleStatus = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
         } else {
-            $AutoscaleStatus = $JsonParameters.PSobject.Properties["autoscale_status"].value
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num_min"))) { #optional property not found
-            $PgNumMin = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target_size_ratio"))) { #optional property not found
+            $TargetSizeRatio = $null
         } else {
-            $PgNumMin = $JsonParameters.PSobject.Properties["pg_num_min"].value
+            $TargetSizeRatio = $JsonParameters.PSobject.Properties["target_size_ratio"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "nopgchange"))) { #optional property not found
@@ -451,31 +349,133 @@ function ConvertFrom-PVEJsonToNodesCephPoolStatus {
             $Nopgchange = $JsonParameters.PSobject.Properties["nopgchange"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodeep-scrub"))) { #optional property not found
+            $NodeepScrub = $null
+        } else {
+            $NodeepScrub = $JsonParameters.PSobject.Properties["nodeep-scrub"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num_min"))) { #optional property not found
+            $PgNumMin = $null
+        } else {
+            $PgNumMin = $JsonParameters.PSobject.Properties["pg_num_min"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "statistics"))) { #optional property not found
+            $Statistics = $null
+        } else {
+            $Statistics = $JsonParameters.PSobject.Properties["statistics"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "application_list"))) { #optional property not found
+            $ApplicationList = $null
+        } else {
+            $ApplicationList = $JsonParameters.PSobject.Properties["application_list"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "min_size"))) { #optional property not found
+            $MinSize = $null
+        } else {
+            $MinSize = $JsonParameters.PSobject.Properties["min_size"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "use_gmt_hitset"))) { #optional property not found
+            $UseGmtHitset = $null
+        } else {
+            $UseGmtHitset = $JsonParameters.PSobject.Properties["use_gmt_hitset"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "autoscale_status"))) { #optional property not found
+            $AutoscaleStatus = $null
+        } else {
+            $AutoscaleStatus = $JsonParameters.PSobject.Properties["autoscale_status"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pgp_num"))) { #optional property not found
+            $PgpNum = $null
+        } else {
+            $PgpNum = $JsonParameters.PSobject.Properties["pgp_num"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nosizechange"))) { #optional property not found
+            $Nosizechange = $null
+        } else {
+            $Nosizechange = $JsonParameters.PSobject.Properties["nosizechange"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "crush_rule"))) { #optional property not found
+            $CrushRule = $null
+        } else {
+            $CrushRule = $JsonParameters.PSobject.Properties["crush_rule"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hashpspool"))) { #optional property not found
+            $Hashpspool = $null
+        } else {
+            $Hashpspool = $JsonParameters.PSobject.Properties["hashpspool"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target_size"))) { #optional property not found
+            $TargetSize = $null
+        } else {
+            $TargetSize = $JsonParameters.PSobject.Properties["target_size"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "write_fadvise_dontneed"))) { #optional property not found
+            $WriteFadviseDontneed = $null
+        } else {
+            $WriteFadviseDontneed = $JsonParameters.PSobject.Properties["write_fadvise_dontneed"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodelete"))) { #optional property not found
+            $Nodelete = $null
+        } else {
+            $Nodelete = $JsonParameters.PSobject.Properties["nodelete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
+            $Size = $null
+        } else {
+            $Size = $JsonParameters.PSobject.Properties["size"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_autoscale_mode"))) { #optional property not found
+            $PgAutoscaleMode = $null
+        } else {
+            $PgAutoscaleMode = $JsonParameters.PSobject.Properties["pg_autoscale_mode"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "application_list" = ${ApplicationList}
-            "hashpspool" = ${Hashpspool}
-            "name" = ${Name}
-            "crush_rule" = ${CrushRule}
-            "nodelete" = ${Nodelete}
-            "min_size" = ${MinSize}
-            "pg_autoscale_mode" = ${PgAutoscaleMode}
-            "pgp_num" = ${PgpNum}
-            "target_size_ratio" = ${TargetSizeRatio}
-            "application" = ${Application}
-            "nosizechange" = ${Nosizechange}
-            "statistics" = ${Statistics}
-            "use_gmt_hitset" = ${UseGmtHitset}
-            "fast_read" = ${FastRead}
-            "nodeep-scrub" = ${NodeepScrub}
-            "target_size" = ${TargetSize}
             "noscrub" = ${Noscrub}
-            "id" = ${Id}
-            "write_fadvise_dontneed" = ${WriteFadviseDontneed}
-            "size" = ${Size}
+            "fast_read" = ${FastRead}
+            "application" = ${Application}
             "pg_num" = ${PgNum}
-            "autoscale_status" = ${AutoscaleStatus}
-            "pg_num_min" = ${PgNumMin}
+            "name" = ${Name}
+            "target_size_ratio" = ${TargetSizeRatio}
             "nopgchange" = ${Nopgchange}
+            "nodeep-scrub" = ${NodeepScrub}
+            "pg_num_min" = ${PgNumMin}
+            "statistics" = ${Statistics}
+            "application_list" = ${ApplicationList}
+            "min_size" = ${MinSize}
+            "use_gmt_hitset" = ${UseGmtHitset}
+            "autoscale_status" = ${AutoscaleStatus}
+            "pgp_num" = ${PgpNum}
+            "nosizechange" = ${Nosizechange}
+            "crush_rule" = ${CrushRule}
+            "hashpspool" = ${Hashpspool}
+            "id" = ${Id}
+            "target_size" = ${TargetSize}
+            "write_fadvise_dontneed" = ${WriteFadviseDontneed}
+            "nodelete" = ${Nodelete}
+            "size" = ${Size}
+            "pg_autoscale_mode" = ${PgAutoscaleMode}
         }
 
         return $PSO

@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
+.PARAMETER LocalResources
+No description available.
 .PARAMETER NotAllowedNodes
+No description available.
+.PARAMETER AllowedNodes
 No description available.
 .PARAMETER LocalDisks
 No description available.
-.PARAMETER MappedResources
-No description available.
-.PARAMETER LocalResources
-No description available.
 .PARAMETER Running
 No description available.
-.PARAMETER AllowedNodes
+.PARAMETER MappedResources
 No description available.
 .OUTPUTS
 
@@ -36,23 +36,23 @@ function Initialize-PVENodesQemuMigrate {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
+        ${LocalResources},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${NotAllowedNodes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
+        ${AllowedNodes},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
         ${LocalDisks},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${MappedResources},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${LocalResources},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Running},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${AllowedNodes}
+        ${MappedResources}
     )
 
     Process {
@@ -69,7 +69,7 @@ function Initialize-PVENodesQemuMigrate {
 
 
 		 $DisplayNameMapping =@{
-			"NotAllowedNodes"="not_allowed_nodes"; "LocalDisks"="local_disks"; "MappedResources"="mapped-resources"; "LocalResources"="local_resources"; "Running"="running"; "AllowedNodes"="allowed_nodes"
+			"LocalResources"="local_resources"; "NotAllowedNodes"="not_allowed_nodes"; "AllowedNodes"="allowed_nodes"; "LocalDisks"="local_disks"; "Running"="running"; "MappedResources"="mapped-resources"
         }
 		
 		 $OBJ = @{}
@@ -115,29 +115,11 @@ function ConvertFrom-PVEJsonToNodesQemuMigrate {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesQemuMigrate
-        $AllProperties = ("not_allowed_nodes", "local_disks", "mapped-resources", "local_resources", "running", "allowed_nodes")
+        $AllProperties = ("local_resources", "not_allowed_nodes", "allowed_nodes", "local_disks", "running", "mapped-resources")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "not_allowed_nodes"))) { #optional property not found
-            $NotAllowedNodes = $null
-        } else {
-            $NotAllowedNodes = $JsonParameters.PSobject.Properties["not_allowed_nodes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "local_disks"))) { #optional property not found
-            $LocalDisks = $null
-        } else {
-            $LocalDisks = $JsonParameters.PSobject.Properties["local_disks"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mapped-resources"))) { #optional property not found
-            $MappedResources = $null
-        } else {
-            $MappedResources = $JsonParameters.PSobject.Properties["mapped-resources"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "local_resources"))) { #optional property not found
@@ -146,10 +128,10 @@ function ConvertFrom-PVEJsonToNodesQemuMigrate {
             $LocalResources = $JsonParameters.PSobject.Properties["local_resources"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "running"))) { #optional property not found
-            $Running = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "not_allowed_nodes"))) { #optional property not found
+            $NotAllowedNodes = $null
         } else {
-            $Running = $JsonParameters.PSobject.Properties["running"].value
+            $NotAllowedNodes = $JsonParameters.PSobject.Properties["not_allowed_nodes"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "allowed_nodes"))) { #optional property not found
@@ -158,13 +140,31 @@ function ConvertFrom-PVEJsonToNodesQemuMigrate {
             $AllowedNodes = $JsonParameters.PSobject.Properties["allowed_nodes"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "local_disks"))) { #optional property not found
+            $LocalDisks = $null
+        } else {
+            $LocalDisks = $JsonParameters.PSobject.Properties["local_disks"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "running"))) { #optional property not found
+            $Running = $null
+        } else {
+            $Running = $JsonParameters.PSobject.Properties["running"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mapped-resources"))) { #optional property not found
+            $MappedResources = $null
+        } else {
+            $MappedResources = $JsonParameters.PSobject.Properties["mapped-resources"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "not_allowed_nodes" = ${NotAllowedNodes}
-            "local_disks" = ${LocalDisks}
-            "mapped-resources" = ${MappedResources}
             "local_resources" = ${LocalResources}
-            "running" = ${Running}
+            "not_allowed_nodes" = ${NotAllowedNodes}
             "allowed_nodes" = ${AllowedNodes}
+            "local_disks" = ${LocalDisks}
+            "running" = ${Running}
+            "mapped-resources" = ${MappedResources}
         }
 
         return $PSO

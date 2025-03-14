@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Dns1
+.PARAMETER Search
 No description available.
 .PARAMETER Dns3
 No description available.
-.PARAMETER Search
+.PARAMETER Dns1
 No description available.
 .PARAMETER Dns2
 No description available.
@@ -33,13 +33,13 @@ function Initialize-PVENodesDns {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Dns1},
+        ${Search},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Dns3},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Search},
+        ${Dns1},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Dns2}
@@ -51,7 +51,7 @@ function Initialize-PVENodesDns {
 
 
 		 $DisplayNameMapping =@{
-			"Dns1"="dns1"; "Dns3"="dns3"; "Search"="search"; "Dns2"="dns2"
+			"Search"="search"; "Dns3"="dns3"; "Dns1"="dns1"; "Dns2"="dns2"
         }
 		
 		 $OBJ = @{}
@@ -97,17 +97,17 @@ function ConvertFrom-PVEJsonToNodesDns {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesDns
-        $AllProperties = ("dns1", "dns3", "search", "dns2")
+        $AllProperties = ("search", "dns3", "dns1", "dns2")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dns1"))) { #optional property not found
-            $Dns1 = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "search"))) { #optional property not found
+            $Search = $null
         } else {
-            $Dns1 = $JsonParameters.PSobject.Properties["dns1"].value
+            $Search = $JsonParameters.PSobject.Properties["search"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dns3"))) { #optional property not found
@@ -116,10 +116,10 @@ function ConvertFrom-PVEJsonToNodesDns {
             $Dns3 = $JsonParameters.PSobject.Properties["dns3"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "search"))) { #optional property not found
-            $Search = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dns1"))) { #optional property not found
+            $Dns1 = $null
         } else {
-            $Search = $JsonParameters.PSobject.Properties["search"].value
+            $Dns1 = $JsonParameters.PSobject.Properties["dns1"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dns2"))) { #optional property not found
@@ -129,9 +129,9 @@ function ConvertFrom-PVEJsonToNodesDns {
         }
 
         $PSO = [PSCustomObject]@{
-            "dns1" = ${Dns1}
-            "dns3" = ${Dns3}
             "search" = ${Search}
+            "dns3" = ${Dns3}
+            "dns1" = ${Dns1}
             "dns2" = ${Dns2}
         }
 

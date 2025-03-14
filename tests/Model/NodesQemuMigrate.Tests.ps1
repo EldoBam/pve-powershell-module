@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesQemuMigrate' {
     Context 'PVENodesQemuMigrate' {
         It 'Initialize-PVENodesQemuMigrate' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesQemuMigrate -NotAllowedNodes "TEST_VALUE" -LocalDisks "TEST_VALUE" -MappedResources "TEST_VALUE" -LocalResources "TEST_VALUE" -Running "TEST_VALUE" -AllowedNodes "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesQemuMigrate -LocalResources "TEST_VALUE" -NotAllowedNodes "TEST_VALUE" -AllowedNodes "TEST_VALUE" -LocalDisks "TEST_VALUE" -Running "TEST_VALUE" -MappedResources "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesQemuMigrate
             #$NewObject.property | Should -Be 0
         }

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterSdnZonesInner' {
     Context 'PVEClusterSdnZonesInner' {
         It 'Initialize-PVEClusterSdnZonesInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterSdnZonesInner -Pending "TEST_VALUE" -Nodes "TEST_VALUE" -Type "TEST_VALUE" -Mtu "TEST_VALUE" -State "TEST_VALUE" -Zone "TEST_VALUE" -Dns "TEST_VALUE" -Ipam "TEST_VALUE" -Reversedns "TEST_VALUE" -Dnszone "TEST_VALUE" -Dhcp "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterSdnZonesInner -Dns "TEST_VALUE" -Ipam "TEST_VALUE" -Dhcp "TEST_VALUE" -Type "TEST_VALUE" -Dnszone "TEST_VALUE" -Nodes "TEST_VALUE" -State "TEST_VALUE" -Reversedns "TEST_VALUE" -Pending "TEST_VALUE" -Mtu "TEST_VALUE" -Zone "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterSdnZonesInner
             #$NewObject.property | Should -Be 0
         }

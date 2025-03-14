@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Parent** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Snaptime** | **Int32** |  | [optional] 
 
 ## Examples
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $NodesLxcSnapshotInner = Initialize-PVENodesLxcSnapshotInner  -Parent null `
- -Name null `
  -Description null `
+ -Name null `
  -Snaptime null
 ```
 

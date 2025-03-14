@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
+.PARAMETER Value
+No description available.
+.PARAMETER Section
 No description available.
 .PARAMETER CanUpdateAtRuntime
 No description available.
 .PARAMETER Level
 No description available.
-.PARAMETER Value
-No description available.
 .PARAMETER Mask
 No description available.
-.PARAMETER Section
+.PARAMETER Name
 No description available.
 .OUTPUTS
 
@@ -37,7 +37,10 @@ function Initialize-PVENodesCephCfgDbInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
+        ${Value},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Section},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${CanUpdateAtRuntime},
@@ -46,13 +49,10 @@ function Initialize-PVENodesCephCfgDbInner {
         ${Level},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Value},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Mask},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Section}
+        ${Name}
     )
 
     Process {
@@ -69,7 +69,7 @@ function Initialize-PVENodesCephCfgDbInner {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "CanUpdateAtRuntime"="can_update_at_runtime"; "Level"="level"; "Value"="value"; "Mask"="mask"; "Section"="section"
+			"Value"="value"; "Section"="section"; "CanUpdateAtRuntime"="can_update_at_runtime"; "Level"="level"; "Mask"="mask"; "Name"="name"
         }
 		
 		 $OBJ = @{}
@@ -115,17 +115,23 @@ function ConvertFrom-PVEJsonToNodesCephCfgDbInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCephCfgDbInner
-        $AllProperties = ("name", "can_update_at_runtime", "level", "value", "mask", "section")
+        $AllProperties = ("value", "section", "can_update_at_runtime", "level", "mask", "name")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
+            $Value = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Value = $JsonParameters.PSobject.Properties["value"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "section"))) { #optional property not found
+            $Section = $null
+        } else {
+            $Section = $JsonParameters.PSobject.Properties["section"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "can_update_at_runtime"))) { #optional property not found
@@ -140,31 +146,25 @@ function ConvertFrom-PVEJsonToNodesCephCfgDbInner {
             $Level = $JsonParameters.PSobject.Properties["level"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
-            $Value = $null
-        } else {
-            $Value = $JsonParameters.PSobject.Properties["value"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "mask"))) { #optional property not found
             $Mask = $null
         } else {
             $Mask = $JsonParameters.PSobject.Properties["mask"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "section"))) { #optional property not found
-            $Section = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
         } else {
-            $Section = $JsonParameters.PSobject.Properties["section"].value
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
+            "value" = ${Value}
+            "section" = ${Section}
             "can_update_at_runtime" = ${CanUpdateAtRuntime}
             "level" = ${Level}
-            "value" = ${Value}
             "mask" = ${Mask}
-            "section" = ${Section}
+            "name" = ${Name}
         }
 
         return $PSO

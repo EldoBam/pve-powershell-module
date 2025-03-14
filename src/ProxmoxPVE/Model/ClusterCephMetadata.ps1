@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Mgr
-No description available.
 .PARAMETER Mds
-No description available.
-.PARAMETER Osd
 No description available.
 .PARAMETER Node
 No description available.
+.PARAMETER Osd
+No description available.
 .PARAMETER Mon
+No description available.
+.PARAMETER Mgr
 No description available.
 .OUTPUTS
 
@@ -35,19 +35,19 @@ function Initialize-PVEClusterCephMetadata {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
-        ${Mgr},
+        ${Mds},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
-        ${Mds},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${Osd},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
-        ${Node},
+        ${Mon},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
-        ${Mon}
+        ${Mgr}
     )
 
     Process {
@@ -56,7 +56,7 @@ function Initialize-PVEClusterCephMetadata {
 
 
 		 $DisplayNameMapping =@{
-			"Mgr"="mgr"; "Mds"="mds"; "Osd"="osd"; "Node"="node"; "Mon"="mon"
+			"Mds"="mds"; "Node"="node"; "Osd"="osd"; "Mon"="mon"; "Mgr"="mgr"
         }
 		
 		 $OBJ = @{}
@@ -102,17 +102,11 @@ function ConvertFrom-PVEJsonToClusterCephMetadata {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterCephMetadata
-        $AllProperties = ("mgr", "mds", "osd", "node", "mon")
+        $AllProperties = ("mds", "node", "osd", "mon", "mgr")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mgr"))) { #optional property not found
-            $Mgr = $null
-        } else {
-            $Mgr = $JsonParameters.PSobject.Properties["mgr"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "mds"))) { #optional property not found
@@ -121,16 +115,16 @@ function ConvertFrom-PVEJsonToClusterCephMetadata {
             $Mds = $JsonParameters.PSobject.Properties["mds"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osd"))) { #optional property not found
-            $Osd = $null
-        } else {
-            $Osd = $JsonParameters.PSobject.Properties["osd"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
             $Node = $null
         } else {
             $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osd"))) { #optional property not found
+            $Osd = $null
+        } else {
+            $Osd = $JsonParameters.PSobject.Properties["osd"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "mon"))) { #optional property not found
@@ -139,12 +133,18 @@ function ConvertFrom-PVEJsonToClusterCephMetadata {
             $Mon = $JsonParameters.PSobject.Properties["mon"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mgr"))) { #optional property not found
+            $Mgr = $null
+        } else {
+            $Mgr = $JsonParameters.PSobject.Properties["mgr"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "mgr" = ${Mgr}
             "mds" = ${Mds}
-            "osd" = ${Osd}
             "node" = ${Node}
+            "osd" = ${Osd}
             "mon" = ${Mon}
+            "mgr" = ${Mgr}
         }
 
         return $PSO

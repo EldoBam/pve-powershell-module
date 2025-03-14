@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | [**AnyType[]**](AnyType.md) |  | [optional] 
-**Health** | **String** |  | [optional] 
 **Text** | **String** |  | [optional] 
+**Health** | **String** |  | [optional] 
+**Attributes** | [**AnyType[]**](AnyType.md) |  | [optional] 
 **Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesDisksSmart = Initialize-PVENodesDisksSmart  -Attributes null `
+$NodesDisksSmart = Initialize-PVENodesDisksSmart  -Text null `
  -Health null `
- -Text null `
+ -Attributes null `
  -Type null
 ```
 

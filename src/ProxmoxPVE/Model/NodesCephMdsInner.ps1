@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER State
-No description available.
 .PARAMETER Name
 No description available.
 .PARAMETER Addr
 No description available.
-.PARAMETER Rank
+.PARAMETER State
 No description available.
 .PARAMETER StandbyReplay
+No description available.
+.PARAMETER Rank
 No description available.
 .PARAMETER VarHost
 No description available.
@@ -36,20 +36,20 @@ function Initialize-PVENodesCephMdsInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${State},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Addr},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Rank},
+        [String]
+        ${State},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${StandbyReplay},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Rank},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${VarHost}
@@ -69,7 +69,7 @@ function Initialize-PVENodesCephMdsInner {
 
 
 		 $DisplayNameMapping =@{
-			"State"="state"; "Name"="name"; "Addr"="addr"; "Rank"="rank"; "StandbyReplay"="standby_replay"; "VarHost"="host"
+			"Name"="name"; "Addr"="addr"; "State"="state"; "StandbyReplay"="standby_replay"; "Rank"="rank"; "VarHost"="host"
         }
 		
 		 $OBJ = @{}
@@ -115,17 +115,11 @@ function ConvertFrom-PVEJsonToNodesCephMdsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCephMdsInner
-        $AllProperties = ("state", "name", "addr", "rank", "standby_replay", "host")
+        $AllProperties = ("name", "addr", "state", "standby_replay", "rank", "host")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
-            $State = $null
-        } else {
-            $State = $JsonParameters.PSobject.Properties["state"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -140,16 +134,22 @@ function ConvertFrom-PVEJsonToNodesCephMdsInner {
             $Addr = $JsonParameters.PSobject.Properties["addr"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rank"))) { #optional property not found
-            $Rank = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
+            $State = $null
         } else {
-            $Rank = $JsonParameters.PSobject.Properties["rank"].value
+            $State = $JsonParameters.PSobject.Properties["state"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "standby_replay"))) { #optional property not found
             $StandbyReplay = $null
         } else {
             $StandbyReplay = $JsonParameters.PSobject.Properties["standby_replay"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rank"))) { #optional property not found
+            $Rank = $null
+        } else {
+            $Rank = $JsonParameters.PSobject.Properties["rank"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "host"))) { #optional property not found
@@ -159,11 +159,11 @@ function ConvertFrom-PVEJsonToNodesCephMdsInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "state" = ${State}
             "name" = ${Name}
             "addr" = ${Addr}
-            "rank" = ${Rank}
+            "state" = ${State}
             "standby_replay" = ${StandbyReplay}
+            "rank" = ${Rank}
             "host" = ${VarHost}
         }
 

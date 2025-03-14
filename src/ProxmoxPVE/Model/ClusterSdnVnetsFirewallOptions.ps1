@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER PolicyForward
-No description available.
 .PARAMETER Enable
+No description available.
+.PARAMETER PolicyForward
 No description available.
 .PARAMETER LogLevelForward
 No description available.
@@ -30,12 +30,12 @@ function Initialize-PVEClusterSdnVnetsFirewallOptions {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Enable},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ACCEPT", "DROP")]
         [String]
         ${PolicyForward},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
         [String]
@@ -56,7 +56,7 @@ function Initialize-PVEClusterSdnVnetsFirewallOptions {
 
 
 		 $DisplayNameMapping =@{
-			"PolicyForward"="policy_forward"; "Enable"="enable"; "LogLevelForward"="log_level_forward"
+			"Enable"="enable"; "PolicyForward"="policy_forward"; "LogLevelForward"="log_level_forward"
         }
 		
 		 $OBJ = @{}
@@ -102,23 +102,23 @@ function ConvertFrom-PVEJsonToClusterSdnVnetsFirewallOptions {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterSdnVnetsFirewallOptions
-        $AllProperties = ("policy_forward", "enable", "log_level_forward")
+        $AllProperties = ("enable", "policy_forward", "log_level_forward")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_forward"))) { #optional property not found
-            $PolicyForward = $null
-        } else {
-            $PolicyForward = $JsonParameters.PSobject.Properties["policy_forward"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
             $Enable = $null
         } else {
             $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_forward"))) { #optional property not found
+            $PolicyForward = $null
+        } else {
+            $PolicyForward = $JsonParameters.PSobject.Properties["policy_forward"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_forward"))) { #optional property not found
@@ -128,8 +128,8 @@ function ConvertFrom-PVEJsonToClusterSdnVnetsFirewallOptions {
         }
 
         $PSO = [PSCustomObject]@{
-            "policy_forward" = ${PolicyForward}
             "enable" = ${Enable}
+            "policy_forward" = ${PolicyForward}
             "log_level_forward" = ${LogLevelForward}
         }
 

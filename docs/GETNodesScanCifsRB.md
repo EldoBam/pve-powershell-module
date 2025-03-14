@@ -1,0 +1,29 @@
+# GETNodesScanCifsRB
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Username** | **String** |  | [optional] 
+**Domain** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+
+## Examples
+
+- Prepare the resource
+```powershell
+$GETNodesScanCifsRB = Initialize-PVEGETNodesScanCifsRB  -Username null `
+ -Domain null `
+ -Server null `
+ -Password null `
+ -Node null
+```
+
+- Convert the resource to JSON
+```powershell
+$GETNodesScanCifsRB | ConvertTo-JSON
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

@@ -15,19 +15,19 @@ No summary available.
 
 No description available.
 
-.PARAMETER Errors
+.PARAMETER Children
 No description available.
 .PARAMETER State
 No description available.
-.PARAMETER Name
-No description available.
 .PARAMETER Scan
 No description available.
-.PARAMETER Children
+.PARAMETER Errors
+No description available.
+.PARAMETER Action
 No description available.
 .PARAMETER Status
 No description available.
-.PARAMETER Action
+.PARAMETER Name
 No description available.
 .OUTPUTS
 
@@ -38,26 +38,26 @@ function Initialize-PVENodesDisksZfs {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Errors},
+        [PSCustomObject[]]
+        ${Children},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${State},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Scan},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Children},
+        [String]
+        ${Errors},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Action},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Status},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Action}
+        ${Name}
     )
 
     Process {
@@ -66,7 +66,7 @@ function Initialize-PVENodesDisksZfs {
 
 
 		 $DisplayNameMapping =@{
-			"Errors"="errors"; "State"="state"; "Name"="name"; "Scan"="scan"; "Children"="children"; "Status"="status"; "Action"="action"
+			"Children"="children"; "State"="state"; "Scan"="scan"; "Errors"="errors"; "Action"="action"; "Status"="status"; "Name"="name"
         }
 		
 		 $OBJ = @{}
@@ -112,35 +112,11 @@ function ConvertFrom-PVEJsonToNodesDisksZfs {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesDisksZfs
-        $AllProperties = ("errors", "state", "name", "scan", "children", "status", "action")
+        $AllProperties = ("children", "state", "scan", "errors", "action", "status", "name")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "errors"))) { #optional property not found
-            $Errors = $null
-        } else {
-            $Errors = $JsonParameters.PSobject.Properties["errors"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
-            $State = $null
-        } else {
-            $State = $JsonParameters.PSobject.Properties["state"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scan"))) { #optional property not found
-            $Scan = $null
-        } else {
-            $Scan = $JsonParameters.PSobject.Properties["scan"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "children"))) { #optional property not found
@@ -149,10 +125,22 @@ function ConvertFrom-PVEJsonToNodesDisksZfs {
             $Children = $JsonParameters.PSobject.Properties["children"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
-            $Status = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
+            $State = $null
         } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
+            $State = $JsonParameters.PSobject.Properties["state"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scan"))) { #optional property not found
+            $Scan = $null
+        } else {
+            $Scan = $JsonParameters.PSobject.Properties["scan"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "errors"))) { #optional property not found
+            $Errors = $null
+        } else {
+            $Errors = $JsonParameters.PSobject.Properties["errors"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "action"))) { #optional property not found
@@ -161,14 +149,26 @@ function ConvertFrom-PVEJsonToNodesDisksZfs {
             $Action = $JsonParameters.PSobject.Properties["action"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
+            $Status = $null
+        } else {
+            $Status = $JsonParameters.PSobject.Properties["status"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "errors" = ${Errors}
-            "state" = ${State}
-            "name" = ${Name}
-            "scan" = ${Scan}
             "children" = ${Children}
-            "status" = ${Status}
+            "state" = ${State}
+            "scan" = ${Scan}
+            "errors" = ${Errors}
             "action" = ${Action}
+            "status" = ${Status}
+            "name" = ${Name}
         }
 
         return $PSO

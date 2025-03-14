@@ -15,27 +15,27 @@ No summary available.
 
 No description available.
 
-.PARAMETER Ip
-No description available.
-.PARAMETER Quorate
-No description available.
-.PARAMETER Nodes
-No description available.
 .PARAMETER Name
+No description available.
+.PARAMETER Nodeid
+No description available.
+.PARAMETER Type
 No description available.
 .PARAMETER VarLocal
 No description available.
 .PARAMETER Level
 No description available.
-.PARAMETER Id
+.PARAMETER Quorate
 No description available.
-.PARAMETER Nodeid
+.PARAMETER Ip
 No description available.
-.PARAMETER Version
+.PARAMETER Nodes
 No description available.
 .PARAMETER Online
 No description available.
-.PARAMETER Type
+.PARAMETER Version
+No description available.
+.PARAMETER Id
 No description available.
 .OUTPUTS
 
@@ -47,16 +47,14 @@ function Initialize-PVEClusterStatusInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Ip},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Quorate},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Nodes},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Nodeid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("cluster", "node")]
+        [String]
+        ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${VarLocal},
@@ -64,34 +62,28 @@ function Initialize-PVEClusterStatusInner {
         [String]
         ${Level},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Quorate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
+        ${Ip},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Nodeid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Version},
+        ${Nodes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Online},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("cluster", "node")]
+        [System.Nullable[Int32]]
+        ${Version},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type}
+        ${Id}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEClusterStatusInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Quorate -and $Quorate -gt 1) {
-          throw "invalid value for 'Quorate', must be smaller than or equal to 1."
-        }
-
-        if ($Quorate -and $Quorate -lt 0) {
-          throw "invalid value for 'Quorate', must be greater than or equal to 0."
-        }
 
         if ($VarLocal -and $VarLocal -gt 1) {
           throw "invalid value for 'VarLocal', must be smaller than or equal to 1."
@@ -99,6 +91,14 @@ function Initialize-PVEClusterStatusInner {
 
         if ($VarLocal -and $VarLocal -lt 0) {
           throw "invalid value for 'VarLocal', must be greater than or equal to 0."
+        }
+
+        if ($Quorate -and $Quorate -gt 1) {
+          throw "invalid value for 'Quorate', must be smaller than or equal to 1."
+        }
+
+        if ($Quorate -and $Quorate -lt 0) {
+          throw "invalid value for 'Quorate', must be greater than or equal to 0."
         }
 
         if ($Online -and $Online -gt 1) {
@@ -111,7 +111,7 @@ function Initialize-PVEClusterStatusInner {
 
 
 		 $DisplayNameMapping =@{
-			"Ip"="ip"; "Quorate"="quorate"; "Nodes"="nodes"; "Name"="name"; "VarLocal"="local"; "Level"="level"; "Id"="id"; "Nodeid"="nodeid"; "Version"="version"; "Online"="online"; "Type"="type"
+			"Name"="name"; "Nodeid"="nodeid"; "Type"="type"; "VarLocal"="local"; "Level"="level"; "Quorate"="quorate"; "Ip"="ip"; "Nodes"="nodes"; "Online"="online"; "Version"="version"; "Id"="id"
         }
 		
 		 $OBJ = @{}
@@ -157,35 +157,29 @@ function ConvertFrom-PVEJsonToClusterStatusInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterStatusInner
-        $AllProperties = ("ip", "quorate", "nodes", "name", "local", "level", "id", "nodeid", "version", "online", "type")
+        $AllProperties = ("name", "nodeid", "type", "local", "level", "quorate", "ip", "nodes", "online", "version", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ip"))) { #optional property not found
-            $Ip = $null
-        } else {
-            $Ip = $JsonParameters.PSobject.Properties["ip"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "quorate"))) { #optional property not found
-            $Quorate = $null
-        } else {
-            $Quorate = $JsonParameters.PSobject.Properties["quorate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
-            $Nodes = $null
-        } else {
-            $Nodes = $JsonParameters.PSobject.Properties["nodes"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
             $Name = $null
         } else {
             $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodeid"))) { #optional property not found
+            $Nodeid = $null
+        } else {
+            $Nodeid = $JsonParameters.PSobject.Properties["nodeid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "local"))) { #optional property not found
@@ -200,22 +194,22 @@ function ConvertFrom-PVEJsonToClusterStatusInner {
             $Level = $JsonParameters.PSobject.Properties["level"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "quorate"))) { #optional property not found
+            $Quorate = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Quorate = $JsonParameters.PSobject.Properties["quorate"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodeid"))) { #optional property not found
-            $Nodeid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ip"))) { #optional property not found
+            $Ip = $null
         } else {
-            $Nodeid = $JsonParameters.PSobject.Properties["nodeid"].value
+            $Ip = $JsonParameters.PSobject.Properties["ip"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "version"))) { #optional property not found
-            $Version = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
+            $Nodes = $null
         } else {
-            $Version = $JsonParameters.PSobject.Properties["version"].value
+            $Nodes = $JsonParameters.PSobject.Properties["nodes"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "online"))) { #optional property not found
@@ -224,24 +218,30 @@ function ConvertFrom-PVEJsonToClusterStatusInner {
             $Online = $JsonParameters.PSobject.Properties["online"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "version"))) { #optional property not found
+            $Version = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Version = $JsonParameters.PSobject.Properties["version"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "ip" = ${Ip}
-            "quorate" = ${Quorate}
-            "nodes" = ${Nodes}
             "name" = ${Name}
+            "nodeid" = ${Nodeid}
+            "type" = ${Type}
             "local" = ${VarLocal}
             "level" = ${Level}
-            "id" = ${Id}
-            "nodeid" = ${Nodeid}
-            "version" = ${Version}
+            "quorate" = ${Quorate}
+            "ip" = ${Ip}
+            "nodes" = ${Nodes}
             "online" = ${Online}
-            "type" = ${Type}
+            "version" = ${Version}
+            "id" = ${Id}
         }
 
         return $PSO

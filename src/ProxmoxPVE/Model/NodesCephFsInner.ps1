@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER MetadataPool
+No description available.
 .PARAMETER DataPool
 No description available.
 .PARAMETER Name
-No description available.
-.PARAMETER MetadataPool
 No description available.
 .OUTPUTS
 
@@ -31,13 +31,13 @@ function Initialize-PVENodesCephFsInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${MetadataPool},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${DataPool},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${MetadataPool}
+        ${Name}
     )
 
     Process {
@@ -46,7 +46,7 @@ function Initialize-PVENodesCephFsInner {
 
 
 		 $DisplayNameMapping =@{
-			"DataPool"="data_pool"; "Name"="name"; "MetadataPool"="metadata_pool"
+			"MetadataPool"="metadata_pool"; "DataPool"="data_pool"; "Name"="name"
         }
 		
 		 $OBJ = @{}
@@ -92,11 +92,17 @@ function ConvertFrom-PVEJsonToNodesCephFsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCephFsInner
-        $AllProperties = ("data_pool", "name", "metadata_pool")
+        $AllProperties = ("metadata_pool", "data_pool", "name")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata_pool"))) { #optional property not found
+            $MetadataPool = $null
+        } else {
+            $MetadataPool = $JsonParameters.PSobject.Properties["metadata_pool"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "data_pool"))) { #optional property not found
@@ -111,16 +117,10 @@ function ConvertFrom-PVEJsonToNodesCephFsInner {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata_pool"))) { #optional property not found
-            $MetadataPool = $null
-        } else {
-            $MetadataPool = $JsonParameters.PSobject.Properties["metadata_pool"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "metadata_pool" = ${MetadataPool}
             "data_pool" = ${DataPool}
             "name" = ${Name}
-            "metadata_pool" = ${MetadataPool}
         }
 
         return $PSO

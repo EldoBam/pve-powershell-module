@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesQemuCloudinitInner' {
     Context 'PVENodesQemuCloudinitInner' {
         It 'Initialize-PVENodesQemuCloudinitInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesQemuCloudinitInner -Key "TEST_VALUE" -Pending "TEST_VALUE" -Delete "TEST_VALUE" -Value "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesQemuCloudinitInner -Pending "TEST_VALUE" -Value "TEST_VALUE" -Key "TEST_VALUE" -Delete "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesQemuCloudinitInner
             #$NewObject.property | Should -Be 0
         }

@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Infos
-No description available.
 .PARAMETER Files
-No description available.
-.PARAMETER StandardRepos
 No description available.
 .PARAMETER Digest
 No description available.
 .PARAMETER Errors
+No description available.
+.PARAMETER Infos
+No description available.
+.PARAMETER StandardRepos
 No description available.
 .OUTPUTS
 
@@ -35,19 +35,19 @@ function Initialize-PVENodesAptRepositories {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${Infos},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
         ${Files},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${StandardRepos},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${Errors}
+        ${Errors},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
+        ${Infos},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
+        ${StandardRepos}
     )
 
     Process {
@@ -56,7 +56,7 @@ function Initialize-PVENodesAptRepositories {
 
 
 		 $DisplayNameMapping =@{
-			"Infos"="infos"; "Files"="files"; "StandardRepos"="standard-repos"; "Digest"="digest"; "Errors"="errors"
+			"Files"="files"; "Digest"="digest"; "Errors"="errors"; "Infos"="infos"; "StandardRepos"="standard-repos"
         }
 		
 		 $OBJ = @{}
@@ -102,29 +102,17 @@ function ConvertFrom-PVEJsonToNodesAptRepositories {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesAptRepositories
-        $AllProperties = ("infos", "files", "standard-repos", "digest", "errors")
+        $AllProperties = ("files", "digest", "errors", "infos", "standard-repos")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "infos"))) { #optional property not found
-            $Infos = $null
-        } else {
-            $Infos = $JsonParameters.PSobject.Properties["infos"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "files"))) { #optional property not found
             $Files = $null
         } else {
             $Files = $JsonParameters.PSobject.Properties["files"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "standard-repos"))) { #optional property not found
-            $StandardRepos = $null
-        } else {
-            $StandardRepos = $JsonParameters.PSobject.Properties["standard-repos"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -139,12 +127,24 @@ function ConvertFrom-PVEJsonToNodesAptRepositories {
             $Errors = $JsonParameters.PSobject.Properties["errors"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "infos"))) { #optional property not found
+            $Infos = $null
+        } else {
+            $Infos = $JsonParameters.PSobject.Properties["infos"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "standard-repos"))) { #optional property not found
+            $StandardRepos = $null
+        } else {
+            $StandardRepos = $JsonParameters.PSobject.Properties["standard-repos"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "infos" = ${Infos}
             "files" = ${Files}
-            "standard-repos" = ${StandardRepos}
             "digest" = ${Digest}
             "errors" = ${Errors}
+            "infos" = ${Infos}
+            "standard-repos" = ${StandardRepos}
         }
 
         return $PSO

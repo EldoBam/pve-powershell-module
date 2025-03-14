@@ -204,7 +204,7 @@ No authorization required
 
 <a name="Get-PVEAccessGroups"></a>
 # **Get-PVEAccessGroups**
-> AccessGroups Get-PVEAccessGroups<br>
+> AccessGroupsGETInner[] Get-PVEAccessGroups<br>
 
 Group index.
 
@@ -227,7 +227,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AccessGroups**](AccessGroups.md) (PSCustomObject)
+[**AccessGroupsGETInner[]**](AccessGroupsGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -319,6 +319,7 @@ No authorization required
 <a name="Get-PVEAccessPermissions"></a>
 # **Get-PVEAccessPermissions**
 > void Get-PVEAccessPermissions<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETAccessPermissionsRB] <PSCustomObject><br>
 
 Retrieve effective permissions of given user/token.
 
@@ -326,10 +327,11 @@ Retrieve effective permissions of given user/token.
 
 ### Example
 ```powershell
+$GETAccessPermissionsRB = Initialize-GETAccessPermissionsRB -Path "MyPath" -Userid "MyUserid" # GETAccessPermissionsRB | Retrieve effective permissions of given user/token. (optional)
 
 # Retrieve effective permissions of given user/token.
 try {
-    $Result = Get-PVEAccessPermissions
+    $Result = Get-PVEAccessPermissions -GETAccessPermissionsRB $GETAccessPermissionsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEAccessPermissions: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -337,7 +339,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETAccessPermissionsRB** | [**GETAccessPermissionsRB**](GETAccessPermissionsRB.md)| Retrieve effective permissions of given user/token. | [optional] 
 
 ### Return type
 
@@ -349,14 +354,14 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="Get-PVEAccessRoles"></a>
 # **Get-PVEAccessRoles**
-> AccessRoles Get-PVEAccessRoles<br>
+> AccessRolesGETInner[] Get-PVEAccessRoles<br>
 
 Role index.
 
@@ -379,7 +384,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AccessRoles**](AccessRoles.md) (PSCustomObject)
+[**AccessRolesGETInner[]**](AccessRolesGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -432,7 +437,7 @@ No authorization required
 
 <a name="Get-PVEAccessTfa"></a>
 # **Get-PVEAccessTfa**
-> AccessTfa Get-PVEAccessTfa<br>
+> AccessTfaGET Get-PVEAccessTfa<br>
 
 List TFA configurations of users.
 
@@ -455,7 +460,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AccessTfa**](AccessTfa.md) (PSCustomObject)
+[**AccessTfaGET**](AccessTfaGET.md) (PSCustomObject)
 
 ### Authorization
 
@@ -470,7 +475,7 @@ No authorization required
 
 <a name="Get-PVEAccessTfaByUserid"></a>
 # **Get-PVEAccessTfaByUserid**
-> AccessTfaAVInner[] Get-PVEAccessTfaByUserid<br>
+> AccessTfaGETAVInner[] Get-PVEAccessTfaByUserid<br>
 
 List TFA configurations of users.
 
@@ -493,7 +498,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AccessTfaAVInner[]**](AccessTfaAVInner.md) (PSCustomObject)
+[**AccessTfaGETAVInner[]**](AccessTfaGETAVInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -508,7 +513,7 @@ No authorization required
 
 <a name="Get-PVEAccessTfaByUseridAndId"></a>
 # **Get-PVEAccessTfaByUseridAndId**
-> AccessTfa Get-PVEAccessTfaByUseridAndId<br>
+> AccessTfaGET Get-PVEAccessTfaByUseridAndId<br>
 
 Fetch a requested TFA entry if present.
 
@@ -531,7 +536,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AccessTfa**](AccessTfa.md) (PSCustomObject)
+[**AccessTfaGET**](AccessTfaGET.md) (PSCustomObject)
 
 ### Authorization
 
@@ -584,7 +589,8 @@ No authorization required
 
 <a name="Get-PVEAccessUsers"></a>
 # **Get-PVEAccessUsers**
-> AccessUsers Get-PVEAccessUsers<br>
+> AccessUsersGETInner[] Get-PVEAccessUsers<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETAccessUsersRB] <PSCustomObject><br>
 
 User index.
 
@@ -592,10 +598,11 @@ User index.
 
 ### Example
 ```powershell
+$GETAccessUsersRB = Initialize-GETAccessUsersRB -Full 0 -Enabled 0 # GETAccessUsersRB | User index. (optional)
 
 # User index.
 try {
-    $Result = Get-PVEAccessUsers
+    $Result = Get-PVEAccessUsers -GETAccessUsersRB $GETAccessUsersRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEAccessUsers: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -603,11 +610,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETAccessUsersRB** | [**GETAccessUsersRB**](GETAccessUsersRB.md)| User index. | [optional] 
 
 ### Return type
 
-[**AccessUsers**](AccessUsers.md) (PSCustomObject)
+[**AccessUsersGETInner[]**](AccessUsersGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -615,7 +625,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -661,6 +671,7 @@ No authorization required
 <a name="Get-PVEAccessUsersTfaByUserid"></a>
 # **Get-PVEAccessUsersTfaByUserid**
 > AccessUsersTfa Get-PVEAccessUsersTfaByUserid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETAccessUsersTfaRB] <PSCustomObject><br>
 
 Get user TFA types (Personal and Realm).
 
@@ -668,10 +679,11 @@ Get user TFA types (Personal and Realm).
 
 ### Example
 ```powershell
+$GETAccessUsersTfaRB = Initialize-GETAccessUsersTfaRB -Multiple 0 -Userid "MyUserid" # GETAccessUsersTfaRB | Get user TFA types (Personal and Realm). (optional)
 
 # Get user TFA types (Personal and Realm).
 try {
-    $Result = Get-PVEAccessUsersTfaByUserid
+    $Result = Get-PVEAccessUsersTfaByUserid -GETAccessUsersTfaRB $GETAccessUsersTfaRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEAccessUsersTfaByUserid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -679,7 +691,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETAccessUsersTfaRB** | [**GETAccessUsersTfaRB**](GETAccessUsersTfaRB.md)| Get user TFA types (Personal and Realm). | [optional] 
 
 ### Return type
 
@@ -691,14 +706,14 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="Get-PVEAccessUsersTokenByUserid"></a>
 # **Get-PVEAccessUsersTokenByUserid**
-> AccessUsersToken Get-PVEAccessUsersTokenByUserid<br>
+> AccessUsersTokenGETInner[] Get-PVEAccessUsersTokenByUserid<br>
 
 Get user API tokens.
 
@@ -721,7 +736,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AccessUsersToken**](AccessUsersToken.md) (PSCustomObject)
+[**AccessUsersTokenGETInner[]**](AccessUsersTokenGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -775,6 +790,7 @@ No authorization required
 <a name="New-PVEAccessDomains"></a>
 # **New-PVEAccessDomains**
 > void New-PVEAccessDomains<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessDomainsRB] <PSCustomObject><br>
 
 Add an authentication server.
 
@@ -782,10 +798,11 @@ Add an authentication server.
 
 ### Example
 ```powershell
+$POSTAccessDomainsRB = Initialize-POSTAccessDomainsRB -GroupFilter "MyGroupFilter" -Type "ad" -Capath "MyCapath" -VarFilter "MyVarFilter" -ClientId "MyClientId" -Mode "ldap" -Tfa "MyTfa" -SyncAttributes "MySyncAttributes" -Prompt "MyPrompt" -Comment "MyComment" -CaseSensitive 0 -GroupClasses "MyGroupClasses" -UsernameClaim "MyUsernameClaim" -Server2 "MyServer2" -UserAttr "MyUserAttr" -Cert "MyCert" -Sslversion "tlsv1" -GroupDn "MyGroupDn" -CheckConnection 0 -Port 0 -Realm "MyRealm" -SyncDefaultsOptions "MySyncDefaultsOptions" -Certkey "MyCertkey" -IssuerUrl "MyIssuerUrl" -Default 0 -ClientKey "MyClientKey" -BaseDn "MyBaseDn" -GroupNameAttr "MyGroupNameAttr" -Secure 0 -Verify 0 -Autocreate 0 -AcrValues "MyAcrValues" -Domain "MyDomain" -Password "MyPassword" -UserClasses "MyUserClasses" -Server1 "MyServer1" -Scopes "MyScopes" -BindDn "MyBindDn" # POSTAccessDomainsRB | Add an authentication server. (optional)
 
 # Add an authentication server.
 try {
-    $Result = New-PVEAccessDomains
+    $Result = New-PVEAccessDomains -POSTAccessDomainsRB $POSTAccessDomainsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessDomains: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -793,7 +810,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTAccessDomainsRB** | [**POSTAccessDomainsRB**](POSTAccessDomainsRB.md)| Add an authentication server. | [optional] 
 
 ### Return type
 
@@ -805,7 +825,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -813,6 +833,7 @@ No authorization required
 <a name="New-PVEAccessDomainsSyncByRealm"></a>
 # **New-PVEAccessDomainsSyncByRealm**
 > void New-PVEAccessDomainsSyncByRealm<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessDomainsSyncRB] <PSCustomObject><br>
 
 Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting.
 
@@ -820,10 +841,11 @@ Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced gro
 
 ### Example
 ```powershell
+$POSTAccessDomainsSyncRB = Initialize-POSTAccessDomainsSyncRB -EnableNew 0 -Purge 0 -Scope "users" -Full 0 -DryRun 0 -Realm "MyRealm" -RemoveVanished "MyRemoveVanished" # POSTAccessDomainsSyncRB | Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting. (optional)
 
 # Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting.
 try {
-    $Result = New-PVEAccessDomainsSyncByRealm
+    $Result = New-PVEAccessDomainsSyncByRealm -POSTAccessDomainsSyncRB $POSTAccessDomainsSyncRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessDomainsSyncByRealm: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -831,7 +853,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTAccessDomainsSyncRB** | [**POSTAccessDomainsSyncRB**](POSTAccessDomainsSyncRB.md)| Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name &#39;name-$realm&#39;, so make sure those groups do not exist to prevent overwriting. | [optional] 
 
 ### Return type
 
@@ -843,7 +868,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -851,6 +876,7 @@ No authorization required
 <a name="New-PVEAccessGroups"></a>
 # **New-PVEAccessGroups**
 > void New-PVEAccessGroups<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessGroupsRB] <PSCustomObject><br>
 
 Create new group.
 
@@ -858,10 +884,11 @@ Create new group.
 
 ### Example
 ```powershell
+$POSTAccessGroupsRB = Initialize-POSTAccessGroupsRB -Comment "MyComment" -Groupid "MyGroupid" # POSTAccessGroupsRB | Create new group. (optional)
 
 # Create new group.
 try {
-    $Result = New-PVEAccessGroups
+    $Result = New-PVEAccessGroups -POSTAccessGroupsRB $POSTAccessGroupsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessGroups: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -869,7 +896,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTAccessGroupsRB** | [**POSTAccessGroupsRB**](POSTAccessGroupsRB.md)| Create new group. | [optional] 
 
 ### Return type
 
@@ -881,7 +911,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -889,6 +919,7 @@ No authorization required
 <a name="New-PVEAccessOpenidAuthurl"></a>
 # **New-PVEAccessOpenidAuthurl**
 > void New-PVEAccessOpenidAuthurl<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessOpenidAuthurlRB] <PSCustomObject><br>
 
 Get the OpenId Authorization Url for the specified realm.
 
@@ -896,10 +927,11 @@ Get the OpenId Authorization Url for the specified realm.
 
 ### Example
 ```powershell
+$POSTAccessOpenidAuthurlRB = Initialize-POSTAccessOpenidAuthurlRB -Realm "MyRealm" -RedirectUrl "MyRedirectUrl" # POSTAccessOpenidAuthurlRB | Get the OpenId Authorization Url for the specified realm. (optional)
 
 # Get the OpenId Authorization Url for the specified realm.
 try {
-    $Result = New-PVEAccessOpenidAuthurl
+    $Result = New-PVEAccessOpenidAuthurl -POSTAccessOpenidAuthurlRB $POSTAccessOpenidAuthurlRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessOpenidAuthurl: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -907,7 +939,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTAccessOpenidAuthurlRB** | [**POSTAccessOpenidAuthurlRB**](POSTAccessOpenidAuthurlRB.md)| Get the OpenId Authorization Url for the specified realm. | [optional] 
 
 ### Return type
 
@@ -919,7 +954,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -927,6 +962,7 @@ No authorization required
 <a name="New-PVEAccessOpenidLogin"></a>
 # **New-PVEAccessOpenidLogin**
 > void New-PVEAccessOpenidLogin<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessOpenidLoginRB] <PSCustomObject><br>
 
  Verify OpenID authorization code and create a ticket.
 
@@ -934,10 +970,11 @@ No authorization required
 
 ### Example
 ```powershell
+$POSTAccessOpenidLoginRB = Initialize-POSTAccessOpenidLoginRB -State "MyState" -Code "MyCode" -RedirectUrl "MyRedirectUrl" # POSTAccessOpenidLoginRB |  Verify OpenID authorization code and create a ticket. (optional)
 
 #  Verify OpenID authorization code and create a ticket.
 try {
-    $Result = New-PVEAccessOpenidLogin
+    $Result = New-PVEAccessOpenidLogin -POSTAccessOpenidLoginRB $POSTAccessOpenidLoginRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessOpenidLogin: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -945,7 +982,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTAccessOpenidLoginRB** | [**POSTAccessOpenidLoginRB**](POSTAccessOpenidLoginRB.md)|  Verify OpenID authorization code and create a ticket. | [optional] 
 
 ### Return type
 
@@ -957,7 +997,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -965,6 +1005,7 @@ No authorization required
 <a name="New-PVEAccessRoles"></a>
 # **New-PVEAccessRoles**
 > void New-PVEAccessRoles<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessRolesRB] <PSCustomObject><br>
 
 Create new role.
 
@@ -972,10 +1013,11 @@ Create new role.
 
 ### Example
 ```powershell
+$POSTAccessRolesRB = Initialize-POSTAccessRolesRB -Privs "MyPrivs" -Roleid "MyRoleid" # POSTAccessRolesRB | Create new role. (optional)
 
 # Create new role.
 try {
-    $Result = New-PVEAccessRoles
+    $Result = New-PVEAccessRoles -POSTAccessRolesRB $POSTAccessRolesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessRoles: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -983,7 +1025,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTAccessRolesRB** | [**POSTAccessRolesRB**](POSTAccessRolesRB.md)| Create new role. | [optional] 
 
 ### Return type
 
@@ -995,14 +1040,15 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="New-PVEAccessTfaByUserid"></a>
 # **New-PVEAccessTfaByUserid**
-> void New-PVEAccessTfaByUserid<br>
+> AccessTfa New-PVEAccessTfaByUserid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessTfaRB] <PSCustomObject><br>
 
 Add a TFA entry for a user.
 
@@ -1010,10 +1056,11 @@ Add a TFA entry for a user.
 
 ### Example
 ```powershell
+$POSTAccessTfaRB = Initialize-POSTAccessTfaRB -Challenge "MyChallenge" -Userid "MyUserid" -Password "MyPassword" -Type "totp" -Totp "MyTotp" -Value "MyValue" -Description "MyDescription" # POSTAccessTfaRB | Add a TFA entry for a user. (optional)
 
 # Add a TFA entry for a user.
 try {
-    $Result = New-PVEAccessTfaByUserid
+    $Result = New-PVEAccessTfaByUserid -POSTAccessTfaRB $POSTAccessTfaRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessTfaByUserid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1021,11 +1068,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTAccessTfaRB** | [**POSTAccessTfaRB**](POSTAccessTfaRB.md)| Add a TFA entry for a user. | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**AccessTfa**](AccessTfa.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1033,14 +1083,15 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="New-PVEAccessTicket"></a>
 # **New-PVEAccessTicket**
-> void New-PVEAccessTicket<br>
+> AccessTicket New-PVEAccessTicket<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessTicketRB] <PSCustomObject><br>
 
 Create or verify authentication ticket.
 
@@ -1048,10 +1099,11 @@ Create or verify authentication ticket.
 
 ### Example
 ```powershell
+$POSTAccessTicketRB = Initialize-POSTAccessTicketRB -Username "MyUsername" -Password "MyPassword" -TfaChallenge "MyTfaChallenge" -Privs "MyPrivs" -NewFormat 0 -Path "MyPath" -Realm "MyRealm" -Otp "MyOtp" # POSTAccessTicketRB | Create or verify authentication ticket. (optional)
 
 # Create or verify authentication ticket.
 try {
-    $Result = New-PVEAccessTicket
+    $Result = New-PVEAccessTicket -POSTAccessTicketRB $POSTAccessTicketRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessTicket: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1059,11 +1111,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTAccessTicketRB** | [**POSTAccessTicketRB**](POSTAccessTicketRB.md)| Create or verify authentication ticket. | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**AccessTicket**](AccessTicket.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1071,14 +1126,15 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="New-PVEAccessUsers"></a>
 # **New-PVEAccessUsers**
 > void New-PVEAccessUsers<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessUsersRB] <PSCustomObject><br>
 
 Create new user.
 
@@ -1086,10 +1142,11 @@ Create new user.
 
 ### Example
 ```powershell
+$POSTAccessUsersRB = Initialize-POSTAccessUsersRB -Expire 0 -Userid "MyUserid" -Password "MyPassword" -Lastname "MyLastname" -Groups "MyGroups" -Enable 0 -Keys "MyKeys" -Email "MyEmail" -Firstname "MyFirstname" -Comment "MyComment" # POSTAccessUsersRB | Create new user. (optional)
 
 # Create new user.
 try {
-    $Result = New-PVEAccessUsers
+    $Result = New-PVEAccessUsers -POSTAccessUsersRB $POSTAccessUsersRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessUsers: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1097,7 +1154,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTAccessUsersRB** | [**POSTAccessUsersRB**](POSTAccessUsersRB.md)| Create new user. | [optional] 
 
 ### Return type
 
@@ -1109,14 +1169,15 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="New-PVEAccessUsersTokenByUseridAndTokenid"></a>
 # **New-PVEAccessUsersTokenByUseridAndTokenid**
-> void New-PVEAccessUsersTokenByUseridAndTokenid<br>
+> AccessUsersTokenPOST New-PVEAccessUsersTokenByUseridAndTokenid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessUsersTokenRB] <PSCustomObject><br>
 
 Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards!
 
@@ -1124,10 +1185,11 @@ Generate a new API token for a specific user. NOTE: returns API token value, whi
 
 ### Example
 ```powershell
+$POSTAccessUsersTokenRB = Initialize-POSTAccessUsersTokenRB -Comment "MyComment" -Expire 0 -Userid "MyUserid" -Privsep 0 -Tokenid "MyTokenid" # POSTAccessUsersTokenRB | Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards! (optional)
 
 # Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards!
 try {
-    $Result = New-PVEAccessUsersTokenByUseridAndTokenid
+    $Result = New-PVEAccessUsersTokenByUseridAndTokenid -POSTAccessUsersTokenRB $POSTAccessUsersTokenRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessUsersTokenByUseridAndTokenid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1135,11 +1197,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTAccessUsersTokenRB** | [**POSTAccessUsersTokenRB**](POSTAccessUsersTokenRB.md)| Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards! | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**AccessUsersTokenPOST**](AccessUsersTokenPOST.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1147,8 +1212,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1269,6 +1334,7 @@ No authorization required
 <a name="Remove-PVEAccessTfaByUseridAndId"></a>
 # **Remove-PVEAccessTfaByUseridAndId**
 > void Remove-PVEAccessTfaByUseridAndId<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETEAccessTfaRB] <PSCustomObject><br>
 
 Delete a TFA entry by ID.
 
@@ -1276,10 +1342,11 @@ Delete a TFA entry by ID.
 
 ### Example
 ```powershell
+$DELETEAccessTfaRB = Initialize-DELETEAccessTfaRB -Userid "MyUserid" -Password "MyPassword" -Id "MyId" # DELETEAccessTfaRB | Delete a TFA entry by ID. (optional)
 
 # Delete a TFA entry by ID.
 try {
-    $Result = Remove-PVEAccessTfaByUseridAndId
+    $Result = Remove-PVEAccessTfaByUseridAndId -DELETEAccessTfaRB $DELETEAccessTfaRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEAccessTfaByUseridAndId: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1287,7 +1354,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **DELETEAccessTfaRB** | [**DELETEAccessTfaRB**](DELETEAccessTfaRB.md)| Delete a TFA entry by ID. | [optional] 
 
 ### Return type
 
@@ -1299,7 +1369,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1383,6 +1453,7 @@ No authorization required
 <a name="Set-PVEAccessAcl"></a>
 # **Set-PVEAccessAcl**
 > void Set-PVEAccessAcl<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessAclRB] <PSCustomObject><br>
 
 Update Access Control List (add or remove permissions).
 
@@ -1390,10 +1461,11 @@ Update Access Control List (add or remove permissions).
 
 ### Example
 ```powershell
+$PUTAccessAclRB = Initialize-PUTAccessAclRB -Roles "MyRoles" -Users "MyUsers" -Groups "MyGroups" -Propagate 0 -Delete 0 -Tokens "MyTokens" -Path "MyPath" # PUTAccessAclRB | Update Access Control List (add or remove permissions). (optional)
 
 # Update Access Control List (add or remove permissions).
 try {
-    $Result = Set-PVEAccessAcl
+    $Result = Set-PVEAccessAcl -PUTAccessAclRB $PUTAccessAclRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessAcl: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1401,7 +1473,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTAccessAclRB** | [**PUTAccessAclRB**](PUTAccessAclRB.md)| Update Access Control List (add or remove permissions). | [optional] 
 
 ### Return type
 
@@ -1413,7 +1488,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1421,6 +1496,7 @@ No authorization required
 <a name="Set-PVEAccessDomainsByRealm"></a>
 # **Set-PVEAccessDomainsByRealm**
 > void Set-PVEAccessDomainsByRealm<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessDomainsRB] <PSCustomObject><br>
 
 Update authentication server settings.
 
@@ -1428,10 +1504,11 @@ Update authentication server settings.
 
 ### Example
 ```powershell
+$PUTAccessDomainsRB = Initialize-PUTAccessDomainsRB -SyncDefaultsOptions "MySyncDefaultsOptions" -GroupFilter "MyGroupFilter" -Capath "MyCapath" -VarFilter "MyVarFilter" -ClientId "MyClientId" -Mode "ldap" -Tfa "MyTfa" -SyncAttributes "MySyncAttributes" -Prompt "MyPrompt" -Comment "MyComment" -CaseSensitive 0 -GroupClasses "MyGroupClasses" -Server2 "MyServer2" -UserAttr "MyUserAttr" -Delete "MyDelete" -Sslversion "tlsv1" -GroupDn "MyGroupDn" -CheckConnection 0 -Port 0 -Realm "MyRealm" -Cert "MyCert" -Certkey "MyCertkey" -IssuerUrl "MyIssuerUrl" -Default 0 -ClientKey "MyClientKey" -BaseDn "MyBaseDn" -GroupNameAttr "MyGroupNameAttr" -Secure 0 -Verify 0 -Autocreate 0 -AcrValues "MyAcrValues" -Digest "MyDigest" -Domain "MyDomain" -Password "MyPassword" -UserClasses "MyUserClasses" -Server1 "MyServer1" -Scopes "MyScopes" -BindDn "MyBindDn" # PUTAccessDomainsRB | Update authentication server settings. (optional)
 
 # Update authentication server settings.
 try {
-    $Result = Set-PVEAccessDomainsByRealm
+    $Result = Set-PVEAccessDomainsByRealm -PUTAccessDomainsRB $PUTAccessDomainsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessDomainsByRealm: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1439,7 +1516,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTAccessDomainsRB** | [**PUTAccessDomainsRB**](PUTAccessDomainsRB.md)| Update authentication server settings. | [optional] 
 
 ### Return type
 
@@ -1451,7 +1531,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1459,6 +1539,7 @@ No authorization required
 <a name="Set-PVEAccessGroupsByGroupid"></a>
 # **Set-PVEAccessGroupsByGroupid**
 > void Set-PVEAccessGroupsByGroupid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessGroupsRB] <PSCustomObject><br>
 
 Update group data.
 
@@ -1466,10 +1547,11 @@ Update group data.
 
 ### Example
 ```powershell
+$PUTAccessGroupsRB = Initialize-PUTAccessGroupsRB -Comment "MyComment" -Groupid "MyGroupid" # PUTAccessGroupsRB | Update group data. (optional)
 
 # Update group data.
 try {
-    $Result = Set-PVEAccessGroupsByGroupid
+    $Result = Set-PVEAccessGroupsByGroupid -PUTAccessGroupsRB $PUTAccessGroupsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessGroupsByGroupid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1477,7 +1559,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTAccessGroupsRB** | [**PUTAccessGroupsRB**](PUTAccessGroupsRB.md)| Update group data. | [optional] 
 
 ### Return type
 
@@ -1489,7 +1574,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1497,6 +1582,7 @@ No authorization required
 <a name="Set-PVEAccessPassword"></a>
 # **Set-PVEAccessPassword**
 > void Set-PVEAccessPassword<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessPasswordRB] <PSCustomObject><br>
 
 Change user password.
 
@@ -1504,10 +1590,11 @@ Change user password.
 
 ### Example
 ```powershell
+$PUTAccessPasswordRB = Initialize-PUTAccessPasswordRB -ConfirmationPassword "MyConfirmationPassword" -Password "MyPassword" -Userid "MyUserid" # PUTAccessPasswordRB | Change user password. (optional)
 
 # Change user password.
 try {
-    $Result = Set-PVEAccessPassword
+    $Result = Set-PVEAccessPassword -PUTAccessPasswordRB $PUTAccessPasswordRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessPassword: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1515,7 +1602,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTAccessPasswordRB** | [**PUTAccessPasswordRB**](PUTAccessPasswordRB.md)| Change user password. | [optional] 
 
 ### Return type
 
@@ -1527,7 +1617,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1535,6 +1625,7 @@ No authorization required
 <a name="Set-PVEAccessRolesByRoleid"></a>
 # **Set-PVEAccessRolesByRoleid**
 > void Set-PVEAccessRolesByRoleid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessRolesRB] <PSCustomObject><br>
 
 Update an existing role.
 
@@ -1542,10 +1633,11 @@ Update an existing role.
 
 ### Example
 ```powershell
+$PUTAccessRolesRB = Initialize-PUTAccessRolesRB -Append 0 -Privs "MyPrivs" -Roleid "MyRoleid" # PUTAccessRolesRB | Update an existing role. (optional)
 
 # Update an existing role.
 try {
-    $Result = Set-PVEAccessRolesByRoleid
+    $Result = Set-PVEAccessRolesByRoleid -PUTAccessRolesRB $PUTAccessRolesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessRolesByRoleid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1553,7 +1645,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTAccessRolesRB** | [**PUTAccessRolesRB**](PUTAccessRolesRB.md)| Update an existing role. | [optional] 
 
 ### Return type
 
@@ -1565,7 +1660,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1573,6 +1668,7 @@ No authorization required
 <a name="Set-PVEAccessTfaByUseridAndId"></a>
 # **Set-PVEAccessTfaByUseridAndId**
 > void Set-PVEAccessTfaByUseridAndId<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessTfaRB] <PSCustomObject><br>
 
 Add a TFA entry for a user.
 
@@ -1580,10 +1676,11 @@ Add a TFA entry for a user.
 
 ### Example
 ```powershell
+$PUTAccessTfaRB = Initialize-PUTAccessTfaRB -Enable 0 -Description "MyDescription" -Userid "MyUserid" -Password "MyPassword" -Id "MyId" # PUTAccessTfaRB | Add a TFA entry for a user. (optional)
 
 # Add a TFA entry for a user.
 try {
-    $Result = Set-PVEAccessTfaByUseridAndId
+    $Result = Set-PVEAccessTfaByUseridAndId -PUTAccessTfaRB $PUTAccessTfaRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessTfaByUseridAndId: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1591,7 +1688,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTAccessTfaRB** | [**PUTAccessTfaRB**](PUTAccessTfaRB.md)| Add a TFA entry for a user. | [optional] 
 
 ### Return type
 
@@ -1603,7 +1703,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1611,6 +1711,7 @@ No authorization required
 <a name="Set-PVEAccessUsersByUserid"></a>
 # **Set-PVEAccessUsersByUserid**
 > void Set-PVEAccessUsersByUserid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessUsersRB] <PSCustomObject><br>
 
 Update user configuration.
 
@@ -1618,10 +1719,11 @@ Update user configuration.
 
 ### Example
 ```powershell
+$PUTAccessUsersRB = Initialize-PUTAccessUsersRB -Expire 0 -Userid "MyUserid" -Lastname "MyLastname" -Groups "MyGroups" -Append 0 -Keys "MyKeys" -Email "MyEmail" -Enable 0 -Comment "MyComment" -Firstname "MyFirstname" # PUTAccessUsersRB | Update user configuration. (optional)
 
 # Update user configuration.
 try {
-    $Result = Set-PVEAccessUsersByUserid
+    $Result = Set-PVEAccessUsersByUserid -PUTAccessUsersRB $PUTAccessUsersRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessUsersByUserid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1629,7 +1731,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTAccessUsersRB** | [**PUTAccessUsersRB**](PUTAccessUsersRB.md)| Update user configuration. | [optional] 
 
 ### Return type
 
@@ -1641,14 +1746,15 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="Set-PVEAccessUsersTokenByUseridAndTokenid"></a>
 # **Set-PVEAccessUsersTokenByUseridAndTokenid**
-> void Set-PVEAccessUsersTokenByUseridAndTokenid<br>
+> AccessUsersTokenPUT Set-PVEAccessUsersTokenByUseridAndTokenid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessUsersTokenRB] <PSCustomObject><br>
 
 Update API token for a specific user.
 
@@ -1656,10 +1762,11 @@ Update API token for a specific user.
 
 ### Example
 ```powershell
+$PUTAccessUsersTokenRB = Initialize-PUTAccessUsersTokenRB -Comment "MyComment" -Expire 0 -Userid "MyUserid" -Privsep 0 -Tokenid "MyTokenid" # PUTAccessUsersTokenRB | Update API token for a specific user. (optional)
 
 # Update API token for a specific user.
 try {
-    $Result = Set-PVEAccessUsersTokenByUseridAndTokenid
+    $Result = Set-PVEAccessUsersTokenByUseridAndTokenid -PUTAccessUsersTokenRB $PUTAccessUsersTokenRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessUsersTokenByUseridAndTokenid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1667,11 +1774,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTAccessUsersTokenRB** | [**PUTAccessUsersTokenRB**](PUTAccessUsersTokenRB.md)| Update API token for a specific user. | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**AccessUsersTokenPUT**](AccessUsersTokenPUT.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1679,14 +1789,14 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="Set-PVEAccessUsersUnlocktfaByUserid"></a>
 # **Set-PVEAccessUsersUnlocktfaByUserid**
-> void Set-PVEAccessUsersUnlocktfaByUserid<br>
+> Int32 Set-PVEAccessUsersUnlocktfaByUserid<br>
 
 Unlock a user's TFA authentication.
 
@@ -1709,7 +1819,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**Int32**
 
 ### Authorization
 
@@ -1718,7 +1828,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

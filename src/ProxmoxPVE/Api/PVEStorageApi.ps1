@@ -15,17 +15,23 @@ Storage index.
 
 No description available.
 
+.PARAMETER GETStorageRB
+Storage index.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-StorageInner[]
+StorageGETInner[]
 #>
 function Get-PVEStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETStorageRB},
         [Switch]
         $WithHttpInfo
     )
@@ -47,7 +53,12 @@ function Get-PVEStorage {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/storage'
+
+        $LocalVarBodyParameter = $GETStorageRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -58,7 +69,7 @@ function Get-PVEStorage {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "StorageInner[]" `
+                                -ReturnType "StorageGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -138,17 +149,23 @@ Create a new storage.
 
 No description available.
 
+.PARAMETER POSTStorageRB
+Create a new storage.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-None
+Storage
 #>
 function New-PVEStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTStorageRB},
         [Switch]
         $WithHttpInfo
     )
@@ -167,7 +184,15 @@ function New-PVEStorage {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/storage'
+
+        $LocalVarBodyParameter = $POSTStorageRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -178,7 +203,7 @@ function New-PVEStorage {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "Storage" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -258,17 +283,23 @@ Update storage configuration.
 
 No description available.
 
+.PARAMETER PUTStorageRB
+Update storage configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-None
+StoragePUT
 #>
 function Set-PVEStorageByStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTStorageRB},
         [Switch]
         $WithHttpInfo
     )
@@ -287,7 +318,15 @@ function Set-PVEStorageByStorage {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/storage/{storage}'
+
+        $LocalVarBodyParameter = $PUTStorageRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -298,7 +337,7 @@ function Set-PVEStorageByStorage {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "StoragePUT" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {

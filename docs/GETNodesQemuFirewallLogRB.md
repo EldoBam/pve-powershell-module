@@ -1,0 +1,31 @@
+# GETNodesQemuFirewallLogRB
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**VarUntil** | **Int32** |  | [optional] 
+**Limit** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Since** | **Int32** |  | [optional] 
+**Start** | **Int32** |  | [optional] 
+
+## Examples
+
+- Prepare the resource
+```powershell
+$GETNodesQemuFirewallLogRB = Initialize-PVEGETNodesQemuFirewallLogRB  -VarUntil null `
+ -Limit null `
+ -Node null `
+ -Vmid null `
+ -Since null `
+ -Start null
+```
+
+- Convert the resource to JSON
+```powershell
+$GETNodesQemuFirewallLogRB | ConvertTo-JSON
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

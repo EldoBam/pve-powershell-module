@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterSdnVnetsFirewallOptions' {
     Context 'PVEClusterSdnVnetsFirewallOptions' {
         It 'Initialize-PVEClusterSdnVnetsFirewallOptions' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterSdnVnetsFirewallOptions -PolicyForward "TEST_VALUE" -Enable "TEST_VALUE" -LogLevelForward "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterSdnVnetsFirewallOptions -Enable "TEST_VALUE" -PolicyForward "TEST_VALUE" -LogLevelForward "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterSdnVnetsFirewallOptions
             #$NewObject.property | Should -Be 0
         }

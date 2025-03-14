@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Statusmsg
+.PARAMETER Status
 No description available.
 .PARAMETER Vnet
 No description available.
-.PARAMETER Status
+.PARAMETER Statusmsg
 No description available.
 .OUTPUTS
 
@@ -31,13 +31,13 @@ function Initialize-PVENodesSdnZonesContentInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Statusmsg},
+        ${Status},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Vnet},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Status}
+        ${Statusmsg}
     )
 
     Process {
@@ -46,7 +46,7 @@ function Initialize-PVENodesSdnZonesContentInner {
 
 
 		 $DisplayNameMapping =@{
-			"Statusmsg"="statusmsg"; "Vnet"="vnet"; "Status"="status"
+			"Status"="status"; "Vnet"="vnet"; "Statusmsg"="statusmsg"
         }
 		
 		 $OBJ = @{}
@@ -92,23 +92,11 @@ function ConvertFrom-PVEJsonToNodesSdnZonesContentInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesSdnZonesContentInner
-        $AllProperties = ("statusmsg", "vnet", "status")
+        $AllProperties = ("status", "vnet", "statusmsg")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "statusmsg"))) { #optional property not found
-            $Statusmsg = $null
-        } else {
-            $Statusmsg = $JsonParameters.PSobject.Properties["statusmsg"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
-            $Vnet = $null
-        } else {
-            $Vnet = $JsonParameters.PSobject.Properties["vnet"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
@@ -117,10 +105,22 @@ function ConvertFrom-PVEJsonToNodesSdnZonesContentInner {
             $Status = $JsonParameters.PSobject.Properties["status"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
+            $Vnet = $null
+        } else {
+            $Vnet = $JsonParameters.PSobject.Properties["vnet"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "statusmsg"))) { #optional property not found
+            $Statusmsg = $null
+        } else {
+            $Statusmsg = $JsonParameters.PSobject.Properties["statusmsg"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "statusmsg" = ${Statusmsg}
-            "vnet" = ${Vnet}
             "status" = ${Status}
+            "vnet" = ${Vnet}
+            "statusmsg" = ${Statusmsg}
         }
 
         return $PSO

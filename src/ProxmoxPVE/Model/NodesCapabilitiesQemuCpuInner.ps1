@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Custom
 No description available.
-.PARAMETER Name
-No description available.
 .PARAMETER Vendor
+No description available.
+.PARAMETER Name
 No description available.
 .OUTPUTS
 
@@ -34,10 +34,10 @@ function Initialize-PVENodesCapabilitiesQemuCpuInner {
         ${Custom},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
+        ${Vendor},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vendor}
+        ${Name}
     )
 
     Process {
@@ -54,7 +54,7 @@ function Initialize-PVENodesCapabilitiesQemuCpuInner {
 
 
 		 $DisplayNameMapping =@{
-			"Custom"="custom"; "Name"="name"; "Vendor"="vendor"
+			"Custom"="custom"; "Vendor"="vendor"; "Name"="name"
         }
 		
 		 $OBJ = @{}
@@ -100,7 +100,7 @@ function ConvertFrom-PVEJsonToNodesCapabilitiesQemuCpuInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCapabilitiesQemuCpuInner
-        $AllProperties = ("custom", "name", "vendor")
+        $AllProperties = ("custom", "vendor", "name")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -113,22 +113,22 @@ function ConvertFrom-PVEJsonToNodesCapabilitiesQemuCpuInner {
             $Custom = $JsonParameters.PSobject.Properties["custom"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vendor"))) { #optional property not found
             $Vendor = $null
         } else {
             $Vendor = $JsonParameters.PSobject.Properties["vendor"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "custom" = ${Custom}
-            "name" = ${Name}
             "vendor" = ${Vendor}
+            "name" = ${Name}
         }
 
         return $PSO

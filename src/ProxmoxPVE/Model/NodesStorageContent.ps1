@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Size
-No description available.
-.PARAMETER Path
+.PARAMETER Notes
 No description available.
 .PARAMETER Format
-No description available.
-.PARAMETER Notes
 No description available.
 .PARAMETER Protected
 No description available.
 .PARAMETER Used
+No description available.
+.PARAMETER Path
+No description available.
+.PARAMETER Size
 No description available.
 .OUTPUTS
 
@@ -36,23 +36,23 @@ function Initialize-PVENodesStorageContent {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Size},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Path},
+        ${Notes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Format},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Notes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Protected},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Used}
+        ${Used},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Path},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Size}
     )
 
     Process {
@@ -69,7 +69,7 @@ function Initialize-PVENodesStorageContent {
 
 
 		 $DisplayNameMapping =@{
-			"Size"="size"; "Path"="path"; "Format"="format"; "Notes"="notes"; "Protected"="protected"; "Used"="used"
+			"Notes"="notes"; "Format"="format"; "Protected"="protected"; "Used"="used"; "Path"="path"; "Size"="size"
         }
 		
 		 $OBJ = @{}
@@ -115,35 +115,23 @@ function ConvertFrom-PVEJsonToNodesStorageContent {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesStorageContent
-        $AllProperties = ("size", "path", "format", "notes", "protected", "used")
+        $AllProperties = ("notes", "format", "protected", "used", "path", "size")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
-            $Size = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notes"))) { #optional property not found
+            $Notes = $null
         } else {
-            $Size = $JsonParameters.PSobject.Properties["size"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
-            $Path = $null
-        } else {
-            $Path = $JsonParameters.PSobject.Properties["path"].value
+            $Notes = $JsonParameters.PSobject.Properties["notes"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "format"))) { #optional property not found
             $Format = $null
         } else {
             $Format = $JsonParameters.PSobject.Properties["format"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notes"))) { #optional property not found
-            $Notes = $null
-        } else {
-            $Notes = $JsonParameters.PSobject.Properties["notes"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "protected"))) { #optional property not found
@@ -158,13 +146,25 @@ function ConvertFrom-PVEJsonToNodesStorageContent {
             $Used = $JsonParameters.PSobject.Properties["used"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
+            $Path = $null
+        } else {
+            $Path = $JsonParameters.PSobject.Properties["path"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
+            $Size = $null
+        } else {
+            $Size = $JsonParameters.PSobject.Properties["size"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "size" = ${Size}
-            "path" = ${Path}
-            "format" = ${Format}
             "notes" = ${Notes}
+            "format" = ${Format}
             "protected" = ${Protected}
             "used" = ${Used}
+            "path" = ${Path}
+            "size" = ${Size}
         }
 
         return $PSO

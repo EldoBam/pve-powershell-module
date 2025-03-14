@@ -284,7 +284,7 @@ No authorization required
 
 <a name="Get-PVEClusterAcmeAccount"></a>
 # **Get-PVEClusterAcmeAccount**
-> ClusterAcmeAccount Get-PVEClusterAcmeAccount<br>
+> SystemCollectionsHashtable[] Get-PVEClusterAcmeAccount<br>
 
 ACMEAccount index.
 
@@ -307,7 +307,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterAcmeAccount**](ClusterAcmeAccount.md) (PSCustomObject)
+[**SystemCollectionsHashtable[]**](SystemCollectionsHashtable.md) (PSCustomObject)
 
 ### Authorization
 
@@ -437,6 +437,7 @@ No authorization required
 <a name="Get-PVEClusterAcmeMeta"></a>
 # **Get-PVEClusterAcmeMeta**
 > ClusterAcmeMeta Get-PVEClusterAcmeMeta<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterAcmeMetaRB] <PSCustomObject><br>
 
 Retrieve ACME Directory Meta Information
 
@@ -444,10 +445,11 @@ Retrieve ACME Directory Meta Information
 
 ### Example
 ```powershell
+$GETClusterAcmeMetaRB = Initialize-GETClusterAcmeMetaRB -Directory "MyDirectory" # GETClusterAcmeMetaRB | Retrieve ACME Directory Meta Information (optional)
 
 # Retrieve ACME Directory Meta Information
 try {
-    $Result = Get-PVEClusterAcmeMeta
+    $Result = Get-PVEClusterAcmeMeta -GETClusterAcmeMetaRB $GETClusterAcmeMetaRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterAcmeMeta: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -455,7 +457,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterAcmeMetaRB** | [**GETClusterAcmeMetaRB**](GETClusterAcmeMetaRB.md)| Retrieve ACME Directory Meta Information | [optional] 
 
 ### Return type
 
@@ -467,7 +472,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -475,6 +480,7 @@ No authorization required
 <a name="Get-PVEClusterAcmePlugins"></a>
 # **Get-PVEClusterAcmePlugins**
 > ClusterAcmePluginsInner[] Get-PVEClusterAcmePlugins<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterAcmePluginsRB] <PSCustomObject><br>
 
 ACME plugin index.
 
@@ -482,10 +488,11 @@ ACME plugin index.
 
 ### Example
 ```powershell
+$GETClusterAcmePluginsRB = Initialize-GETClusterAcmePluginsRB -Type "dns" # GETClusterAcmePluginsRB | ACME plugin index. (optional)
 
 # ACME plugin index.
 try {
-    $Result = Get-PVEClusterAcmePlugins
+    $Result = Get-PVEClusterAcmePlugins -GETClusterAcmePluginsRB $GETClusterAcmePluginsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterAcmePlugins: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -493,7 +500,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterAcmePluginsRB** | [**GETClusterAcmePluginsRB**](GETClusterAcmePluginsRB.md)| ACME plugin index. | [optional] 
 
 ### Return type
 
@@ -505,7 +515,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -551,6 +561,7 @@ No authorization required
 <a name="Get-PVEClusterAcmeTos"></a>
 # **Get-PVEClusterAcmeTos**
 > void Get-PVEClusterAcmeTos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterAcmeTosRB] <PSCustomObject><br>
 
 Retrieve ACME TermsOfService URL from CA. Deprecated, please use /cluster/acme/meta.
 
@@ -558,10 +569,11 @@ Retrieve ACME TermsOfService URL from CA. Deprecated, please use /cluster/acme/m
 
 ### Example
 ```powershell
+$GETClusterAcmeTosRB = Initialize-GETClusterAcmeTosRB -Directory "MyDirectory" # GETClusterAcmeTosRB | Retrieve ACME TermsOfService URL from CA. Deprecated, please use /cluster/acme/meta. (optional)
 
 # Retrieve ACME TermsOfService URL from CA. Deprecated, please use /cluster/acme/meta.
 try {
-    $Result = Get-PVEClusterAcmeTos
+    $Result = Get-PVEClusterAcmeTos -GETClusterAcmeTosRB $GETClusterAcmeTosRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterAcmeTos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -569,7 +581,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterAcmeTosRB** | [**GETClusterAcmeTosRB**](GETClusterAcmeTosRB.md)| Retrieve ACME TermsOfService URL from CA. Deprecated, please use /cluster/acme/meta. | [optional] 
 
 ### Return type
 
@@ -581,7 +596,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -854,7 +869,7 @@ No authorization required
 
 <a name="Get-PVEClusterCephFlagsByFlag"></a>
 # **Get-PVEClusterCephFlagsByFlag**
-> void Get-PVEClusterCephFlagsByFlag<br>
+> Int32 Get-PVEClusterCephFlagsByFlag<br>
 
 Get the status of a specific ceph flag.
 
@@ -877,7 +892,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**Int32**
 
 ### Authorization
 
@@ -886,13 +901,14 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="Get-PVEClusterCephMetadata"></a>
 # **Get-PVEClusterCephMetadata**
 > ClusterCephMetadata Get-PVEClusterCephMetadata<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterCephMetadataRB] <PSCustomObject><br>
 
 Get ceph metadata.
 
@@ -900,10 +916,11 @@ Get ceph metadata.
 
 ### Example
 ```powershell
+$GETClusterCephMetadataRB = Initialize-GETClusterCephMetadataRB -Scope "all" # GETClusterCephMetadataRB | Get ceph metadata. (optional)
 
 # Get ceph metadata.
 try {
-    $Result = Get-PVEClusterCephMetadata
+    $Result = Get-PVEClusterCephMetadata -GETClusterCephMetadataRB $GETClusterCephMetadataRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterCephMetadata: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -911,7 +928,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterCephMetadataRB** | [**GETClusterCephMetadataRB**](GETClusterCephMetadataRB.md)| Get ceph metadata. | [optional] 
 
 ### Return type
 
@@ -923,7 +943,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1006,7 +1026,7 @@ No authorization required
 
 <a name="Get-PVEClusterConfigApiversion"></a>
 # **Get-PVEClusterConfigApiversion**
-> void Get-PVEClusterConfigApiversion<br>
+> Int32 Get-PVEClusterConfigApiversion<br>
 
 Return the version of the cluster join API available on this node.
 
@@ -1029,45 +1049,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="Get-PVEClusterConfigJoin"></a>
-# **Get-PVEClusterConfigJoin**
-> ClusterConfigJoin Get-PVEClusterConfigJoin<br>
-
-Get information needed to join this cluster over the connected node.
-
-Get information needed to join this cluster over the connected node.
-
-### Example
-```powershell
-
-# Get information needed to join this cluster over the connected node.
-try {
-    $Result = Get-PVEClusterConfigJoin
-} catch {
-    Write-Host ("Exception occurred when calling Get-PVEClusterConfigJoin: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
-    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**ClusterConfigJoin**](ClusterConfigJoin.md) (PSCustomObject)
+**Int32**
 
 ### Authorization
 
@@ -1080,9 +1062,52 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="Get-PVEClusterConfigJoin"></a>
+# **Get-PVEClusterConfigJoin**
+> ClusterConfigJoin Get-PVEClusterConfigJoin<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterConfigJoinRB] <PSCustomObject><br>
+
+Get information needed to join this cluster over the connected node.
+
+Get information needed to join this cluster over the connected node.
+
+### Example
+```powershell
+$GETClusterConfigJoinRB = Initialize-GETClusterConfigJoinRB -Node "MyNode" # GETClusterConfigJoinRB | Get information needed to join this cluster over the connected node. (optional)
+
+# Get information needed to join this cluster over the connected node.
+try {
+    $Result = Get-PVEClusterConfigJoin -GETClusterConfigJoinRB $GETClusterConfigJoinRB
+} catch {
+    Write-Host ("Exception occurred when calling Get-PVEClusterConfigJoin: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterConfigJoinRB** | [**GETClusterConfigJoinRB**](GETClusterConfigJoinRB.md)| Get information needed to join this cluster over the connected node. | [optional] 
+
+### Return type
+
+[**ClusterConfigJoin**](ClusterConfigJoin.md) (PSCustomObject)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="Get-PVEClusterConfigNodes"></a>
 # **Get-PVEClusterConfigNodes**
-> ClusterConfigNodesInner[] Get-PVEClusterConfigNodes<br>
+> ClusterConfigNodesGETInner[] Get-PVEClusterConfigNodes<br>
 
 Corosync node list.
 
@@ -1105,7 +1130,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterConfigNodesInner[]**](ClusterConfigNodesInner.md) (PSCustomObject)
+[**ClusterConfigNodesGETInner[]**](ClusterConfigNodesGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1234,7 +1259,7 @@ No authorization required
 
 <a name="Get-PVEClusterFirewallAliases"></a>
 # **Get-PVEClusterFirewallAliases**
-> ClusterFirewallAliasesInner[] Get-PVEClusterFirewallAliases<br>
+> NodesQemuFirewallAliasesInner[] Get-PVEClusterFirewallAliases<br>
 
 List aliases
 
@@ -1257,7 +1282,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterFirewallAliasesInner[]**](ClusterFirewallAliasesInner.md) (PSCustomObject)
+[**NodesQemuFirewallAliasesInner[]**](NodesQemuFirewallAliasesInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1310,7 +1335,7 @@ No authorization required
 
 <a name="Get-PVEClusterFirewallGroups"></a>
 # **Get-PVEClusterFirewallGroups**
-> ClusterFirewallGroups Get-PVEClusterFirewallGroups<br>
+> ClusterFirewallGroupsGETInner[] Get-PVEClusterFirewallGroups<br>
 
 List security groups.
 
@@ -1333,7 +1358,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterFirewallGroups**](ClusterFirewallGroups.md) (PSCustomObject)
+[**ClusterFirewallGroupsGETInner[]**](ClusterFirewallGroupsGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1348,7 +1373,7 @@ No authorization required
 
 <a name="Get-PVEClusterFirewallGroupsByGroup"></a>
 # **Get-PVEClusterFirewallGroupsByGroup**
-> ClusterFirewallGroupsAVInner[] Get-PVEClusterFirewallGroupsByGroup<br>
+> NodesFirewallRulesGETInner[] Get-PVEClusterFirewallGroupsByGroup<br>
 
 List rules.
 
@@ -1371,7 +1396,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterFirewallGroupsAVInner[]**](ClusterFirewallGroupsAVInner.md) (PSCustomObject)
+[**NodesFirewallRulesGETInner[]**](NodesFirewallRulesGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1424,7 +1449,7 @@ No authorization required
 
 <a name="Get-PVEClusterFirewallIpset"></a>
 # **Get-PVEClusterFirewallIpset**
-> NodesLxcFirewallIpsetInner[] Get-PVEClusterFirewallIpset<br>
+> NodesQemuFirewallIpsetInner[] Get-PVEClusterFirewallIpset<br>
 
 List IPSets
 
@@ -1447,7 +1472,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**NodesLxcFirewallIpsetInner[]**](NodesLxcFirewallIpsetInner.md) (PSCustomObject)
+[**NodesQemuFirewallIpsetInner[]**](NodesQemuFirewallIpsetInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1462,7 +1487,7 @@ No authorization required
 
 <a name="Get-PVEClusterFirewallIpsetByName"></a>
 # **Get-PVEClusterFirewallIpsetByName**
-> ClusterFirewallIpsetAVInner[] Get-PVEClusterFirewallIpsetByName<br>
+> ClusterFirewallIpsetGETInner[] Get-PVEClusterFirewallIpsetByName<br>
 
 List IPSet content
 
@@ -1485,7 +1510,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterFirewallIpsetAVInner[]**](ClusterFirewallIpsetAVInner.md) (PSCustomObject)
+[**ClusterFirewallIpsetGETInner[]**](ClusterFirewallIpsetGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1615,6 +1640,7 @@ No authorization required
 <a name="Get-PVEClusterFirewallRefs"></a>
 # **Get-PVEClusterFirewallRefs**
 > NodesLxcFirewallRefsInner[] Get-PVEClusterFirewallRefs<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterFirewallRefsRB] <PSCustomObject><br>
 
 Lists possible IPSet/Alias reference which are allowed in source/dest properties.
 
@@ -1622,10 +1648,11 @@ Lists possible IPSet/Alias reference which are allowed in source/dest properties
 
 ### Example
 ```powershell
+$GETClusterFirewallRefsRB = Initialize-GETClusterFirewallRefsRB -Type "alias" # GETClusterFirewallRefsRB | Lists possible IPSet/Alias reference which are allowed in source/dest properties. (optional)
 
 # Lists possible IPSet/Alias reference which are allowed in source/dest properties.
 try {
-    $Result = Get-PVEClusterFirewallRefs
+    $Result = Get-PVEClusterFirewallRefs -GETClusterFirewallRefsRB $GETClusterFirewallRefsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterFirewallRefs: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1633,7 +1660,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterFirewallRefsRB** | [**GETClusterFirewallRefsRB**](GETClusterFirewallRefsRB.md)| Lists possible IPSet/Alias reference which are allowed in source/dest properties. | [optional] 
 
 ### Return type
 
@@ -1645,14 +1675,14 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="Get-PVEClusterFirewallRules"></a>
 # **Get-PVEClusterFirewallRules**
-> ClusterFirewallRules Get-PVEClusterFirewallRules<br>
+> NodesFirewallRulesGETInner[] Get-PVEClusterFirewallRules<br>
 
 List rules.
 
@@ -1675,7 +1705,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterFirewallRules**](ClusterFirewallRules.md) (PSCustomObject)
+[**NodesFirewallRulesGETInner[]**](NodesFirewallRulesGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1728,7 +1758,7 @@ No authorization required
 
 <a name="Get-PVEClusterHa"></a>
 # **Get-PVEClusterHa**
-> ClusterHaInner[] Get-PVEClusterHa<br>
+> ClusterSdnInner[] Get-PVEClusterHa<br>
 
 Directory index.
 
@@ -1751,7 +1781,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterHaInner[]**](ClusterHaInner.md) (PSCustomObject)
+[**ClusterSdnInner[]**](ClusterSdnInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1842,7 +1872,8 @@ No authorization required
 
 <a name="Get-PVEClusterHaResources"></a>
 # **Get-PVEClusterHaResources**
-> ClusterHaResources Get-PVEClusterHaResources<br>
+> ClusterHaResourcesGETInner[] Get-PVEClusterHaResources<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterHaResourcesRB] <PSCustomObject><br>
 
 List HA resources.
 
@@ -1850,10 +1881,11 @@ List HA resources.
 
 ### Example
 ```powershell
+$GETClusterHaResourcesRB = Initialize-GETClusterHaResourcesRB -Type "ct" # GETClusterHaResourcesRB | List HA resources. (optional)
 
 # List HA resources.
 try {
-    $Result = Get-PVEClusterHaResources
+    $Result = Get-PVEClusterHaResources -GETClusterHaResourcesRB $GETClusterHaResourcesRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterHaResources: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1861,11 +1893,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterHaResourcesRB** | [**GETClusterHaResourcesRB**](GETClusterHaResourcesRB.md)| List HA resources. | [optional] 
 
 ### Return type
 
-[**ClusterHaResources**](ClusterHaResources.md) (PSCustomObject)
+[**ClusterHaResourcesGETInner[]**](ClusterHaResourcesGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1873,7 +1908,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2147,6 +2182,7 @@ No authorization required
 <a name="Get-PVEClusterJobsScheduleanalyze"></a>
 # **Get-PVEClusterJobsScheduleanalyze**
 > ClusterJobsScheduleanalyzeInner[] Get-PVEClusterJobsScheduleanalyze<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterJobsScheduleanalyzeRB] <PSCustomObject><br>
 
 Returns a list of future schedule runtimes.
 
@@ -2154,10 +2190,11 @@ Returns a list of future schedule runtimes.
 
 ### Example
 ```powershell
+$GETClusterJobsScheduleanalyzeRB = Initialize-GETClusterJobsScheduleanalyzeRB -Schedule "MySchedule" -Iterations 0 -Starttime 0 # GETClusterJobsScheduleanalyzeRB | Returns a list of future schedule runtimes. (optional)
 
 # Returns a list of future schedule runtimes.
 try {
-    $Result = Get-PVEClusterJobsScheduleanalyze
+    $Result = Get-PVEClusterJobsScheduleanalyze -GETClusterJobsScheduleanalyzeRB $GETClusterJobsScheduleanalyzeRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterJobsScheduleanalyze: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2165,7 +2202,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterJobsScheduleanalyzeRB** | [**GETClusterJobsScheduleanalyzeRB**](GETClusterJobsScheduleanalyzeRB.md)| Returns a list of future schedule runtimes. | [optional] 
 
 ### Return type
 
@@ -2177,7 +2217,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2185,6 +2225,7 @@ No authorization required
 <a name="Get-PVEClusterLog"></a>
 # **Get-PVEClusterLog**
 > SystemCollectionsHashtable[] Get-PVEClusterLog<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterLogRB] <PSCustomObject><br>
 
 Read cluster log
 
@@ -2192,10 +2233,11 @@ Read cluster log
 
 ### Example
 ```powershell
+$GETClusterLogRB = Initialize-GETClusterLogRB -Max 0 # GETClusterLogRB | Read cluster log (optional)
 
 # Read cluster log
 try {
-    $Result = Get-PVEClusterLog
+    $Result = Get-PVEClusterLog -GETClusterLogRB $GETClusterLogRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterLog: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2203,7 +2245,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterLogRB** | [**GETClusterLogRB**](GETClusterLogRB.md)| Read cluster log | [optional] 
 
 ### Return type
 
@@ -2215,7 +2260,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2261,6 +2306,7 @@ No authorization required
 <a name="Get-PVEClusterMappingPci"></a>
 # **Get-PVEClusterMappingPci**
 > ClusterMappingPciInner[] Get-PVEClusterMappingPci<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterMappingPciRB] <PSCustomObject><br>
 
 List PCI Hardware Mapping
 
@@ -2268,10 +2314,11 @@ List PCI Hardware Mapping
 
 ### Example
 ```powershell
+$GETClusterMappingPciRB = Initialize-GETClusterMappingPciRB -CheckNode "MyCheckNode" # GETClusterMappingPciRB | List PCI Hardware Mapping (optional)
 
 # List PCI Hardware Mapping
 try {
-    $Result = Get-PVEClusterMappingPci
+    $Result = Get-PVEClusterMappingPci -GETClusterMappingPciRB $GETClusterMappingPciRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterMappingPci: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2279,7 +2326,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterMappingPciRB** | [**GETClusterMappingPciRB**](GETClusterMappingPciRB.md)| List PCI Hardware Mapping | [optional] 
 
 ### Return type
 
@@ -2291,7 +2341,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2337,6 +2387,7 @@ No authorization required
 <a name="Get-PVEClusterMappingUsb"></a>
 # **Get-PVEClusterMappingUsb**
 > ClusterMappingUsbInner[] Get-PVEClusterMappingUsb<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterMappingUsbRB] <PSCustomObject><br>
 
 List USB Hardware Mappings
 
@@ -2344,10 +2395,11 @@ List USB Hardware Mappings
 
 ### Example
 ```powershell
+$GETClusterMappingUsbRB = Initialize-GETClusterMappingUsbRB -CheckNode "MyCheckNode" # GETClusterMappingUsbRB | List USB Hardware Mappings (optional)
 
 # List USB Hardware Mappings
 try {
-    $Result = Get-PVEClusterMappingUsb
+    $Result = Get-PVEClusterMappingUsb -GETClusterMappingUsbRB $GETClusterMappingUsbRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterMappingUsb: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2355,7 +2407,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterMappingUsbRB** | [**GETClusterMappingUsbRB**](GETClusterMappingUsbRB.md)| List USB Hardware Mappings | [optional] 
 
 ### Return type
 
@@ -2367,7 +2422,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2451,6 +2506,7 @@ No authorization required
 <a name="Get-PVEClusterMetricsExport"></a>
 # **Get-PVEClusterMetricsExport**
 > ClusterMetricsExport Get-PVEClusterMetricsExport<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterMetricsExportRB] <PSCustomObject><br>
 
 Retrieve metrics of the cluster.
 
@@ -2458,10 +2514,11 @@ Retrieve metrics of the cluster.
 
 ### Example
 ```powershell
+$GETClusterMetricsExportRB = Initialize-GETClusterMetricsExportRB -History 0 -StartTime 0 -LocalOnly 0 # GETClusterMetricsExportRB | Retrieve metrics of the cluster. (optional)
 
 # Retrieve metrics of the cluster.
 try {
-    $Result = Get-PVEClusterMetricsExport
+    $Result = Get-PVEClusterMetricsExport -GETClusterMetricsExportRB $GETClusterMetricsExportRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterMetricsExport: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2469,7 +2526,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterMetricsExportRB** | [**GETClusterMetricsExportRB**](GETClusterMetricsExportRB.md)| Retrieve metrics of the cluster. | [optional] 
 
 ### Return type
 
@@ -2481,7 +2541,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2564,7 +2624,8 @@ No authorization required
 
 <a name="Get-PVEClusterNextid"></a>
 # **Get-PVEClusterNextid**
-> void Get-PVEClusterNextid<br>
+> Int32 Get-PVEClusterNextid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterNextidRB] <PSCustomObject><br>
 
 Get next free VMID. Pass a VMID to assert that its free (at time of check).
 
@@ -2572,10 +2633,11 @@ Get next free VMID. Pass a VMID to assert that its free (at time of check).
 
 ### Example
 ```powershell
+$GETClusterNextidRB = Initialize-GETClusterNextidRB -Vmid 0 # GETClusterNextidRB | Get next free VMID. Pass a VMID to assert that its free (at time of check). (optional)
 
 # Get next free VMID. Pass a VMID to assert that its free (at time of check).
 try {
-    $Result = Get-PVEClusterNextid
+    $Result = Get-PVEClusterNextid -GETClusterNextidRB $GETClusterNextidRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterNextid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2583,11 +2645,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterNextidRB** | [**GETClusterNextidRB**](GETClusterNextidRB.md)| Get next free VMID. Pass a VMID to assert that its free (at time of check). | [optional] 
 
 ### Return type
 
-void (empty response body)
+**Int32**
 
 ### Authorization
 
@@ -2595,8 +2660,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2678,7 +2743,7 @@ No authorization required
 
 <a name="Get-PVEClusterNotificationsEndpointsGotify"></a>
 # **Get-PVEClusterNotificationsEndpointsGotify**
-> ClusterNotificationsEndpointsGotify Get-PVEClusterNotificationsEndpointsGotify<br>
+> ClusterNotificationsEndpointsGotifyGETInner[] Get-PVEClusterNotificationsEndpointsGotify<br>
 
 Returns a list of all gotify endpoints
 
@@ -2701,7 +2766,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterNotificationsEndpointsGotify**](ClusterNotificationsEndpointsGotify.md) (PSCustomObject)
+[**ClusterNotificationsEndpointsGotifyGETInner[]**](ClusterNotificationsEndpointsGotifyGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2754,7 +2819,7 @@ No authorization required
 
 <a name="Get-PVEClusterNotificationsEndpointsSendmail"></a>
 # **Get-PVEClusterNotificationsEndpointsSendmail**
-> ClusterNotificationsEndpointsSendmail Get-PVEClusterNotificationsEndpointsSendmail<br>
+> ClusterNotificationsEndpointsSendmailGETInner[] Get-PVEClusterNotificationsEndpointsSendmail<br>
 
 Returns a list of all sendmail endpoints
 
@@ -2777,7 +2842,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterNotificationsEndpointsSendmail**](ClusterNotificationsEndpointsSendmail.md) (PSCustomObject)
+[**ClusterNotificationsEndpointsSendmailGETInner[]**](ClusterNotificationsEndpointsSendmailGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2830,7 +2895,7 @@ No authorization required
 
 <a name="Get-PVEClusterNotificationsEndpointsSmtp"></a>
 # **Get-PVEClusterNotificationsEndpointsSmtp**
-> ClusterNotificationsEndpointsSmtp Get-PVEClusterNotificationsEndpointsSmtp<br>
+> ClusterNotificationsEndpointsSmtpGETInner[] Get-PVEClusterNotificationsEndpointsSmtp<br>
 
 Returns a list of all smtp endpoints
 
@@ -2853,7 +2918,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterNotificationsEndpointsSmtp**](ClusterNotificationsEndpointsSmtp.md) (PSCustomObject)
+[**ClusterNotificationsEndpointsSmtpGETInner[]**](ClusterNotificationsEndpointsSmtpGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2906,7 +2971,7 @@ No authorization required
 
 <a name="Get-PVEClusterNotificationsEndpointsWebhook"></a>
 # **Get-PVEClusterNotificationsEndpointsWebhook**
-> ClusterNotificationsEndpointsWebhook Get-PVEClusterNotificationsEndpointsWebhook<br>
+> ClusterNotificationsEndpointsWebhookGETInner[] Get-PVEClusterNotificationsEndpointsWebhook<br>
 
 Returns a list of all webhook endpoints
 
@@ -2929,7 +2994,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterNotificationsEndpointsWebhook**](ClusterNotificationsEndpointsWebhook.md) (PSCustomObject)
+[**ClusterNotificationsEndpointsWebhookGETInner[]**](ClusterNotificationsEndpointsWebhookGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2982,7 +3047,7 @@ No authorization required
 
 <a name="Get-PVEClusterNotificationsMatcherfields"></a>
 # **Get-PVEClusterNotificationsMatcherfields**
-> ClusterNotificationsMatcherfieldsInner[] Get-PVEClusterNotificationsMatcherfields<br>
+> NodesCephRulesInner[] Get-PVEClusterNotificationsMatcherfields<br>
 
 Returns known notification metadata fields
 
@@ -3005,7 +3070,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterNotificationsMatcherfieldsInner[]**](ClusterNotificationsMatcherfieldsInner.md) (PSCustomObject)
+[**NodesCephRulesInner[]**](NodesCephRulesInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3058,7 +3123,7 @@ No authorization required
 
 <a name="Get-PVEClusterNotificationsMatchers"></a>
 # **Get-PVEClusterNotificationsMatchers**
-> ClusterNotificationsMatchers Get-PVEClusterNotificationsMatchers<br>
+> ClusterNotificationsMatchersGETInner[] Get-PVEClusterNotificationsMatchers<br>
 
 Returns a list of all matchers
 
@@ -3081,7 +3146,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterNotificationsMatchers**](ClusterNotificationsMatchers.md) (PSCustomObject)
+[**ClusterNotificationsMatchersGETInner[]**](ClusterNotificationsMatchersGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3287,6 +3352,7 @@ No authorization required
 <a name="Get-PVEClusterResources"></a>
 # **Get-PVEClusterResources**
 > ClusterResourcesInner[] Get-PVEClusterResources<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterResourcesRB] <PSCustomObject><br>
 
 Resources index (cluster wide).
 
@@ -3294,10 +3360,11 @@ Resources index (cluster wide).
 
 ### Example
 ```powershell
+$GETClusterResourcesRB = Initialize-GETClusterResourcesRB -Type "vm" # GETClusterResourcesRB | Resources index (cluster wide). (optional)
 
 # Resources index (cluster wide).
 try {
-    $Result = Get-PVEClusterResources
+    $Result = Get-PVEClusterResources -GETClusterResourcesRB $GETClusterResourcesRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterResources: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3305,7 +3372,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterResourcesRB** | [**GETClusterResourcesRB**](GETClusterResourcesRB.md)| Resources index (cluster wide). | [optional] 
 
 ### Return type
 
@@ -3317,14 +3387,14 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="Get-PVEClusterSdn"></a>
 # **Get-PVEClusterSdn**
-> ClusterHaInner[] Get-PVEClusterSdn<br>
+> ClusterSdnInner[] Get-PVEClusterSdn<br>
 
 Directory index.
 
@@ -3347,7 +3417,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterHaInner[]**](ClusterHaInner.md) (PSCustomObject)
+[**ClusterSdnInner[]**](ClusterSdnInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3363,6 +3433,7 @@ No authorization required
 <a name="Get-PVEClusterSdnControllers"></a>
 # **Get-PVEClusterSdnControllers**
 > ClusterSdnControllersInner[] Get-PVEClusterSdnControllers<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterSdnControllersRB] <PSCustomObject><br>
 
 SDN controllers index.
 
@@ -3370,10 +3441,11 @@ SDN controllers index.
 
 ### Example
 ```powershell
+$GETClusterSdnControllersRB = Initialize-GETClusterSdnControllersRB -Pending 0 -Running 0 -Controller "MyController" # GETClusterSdnControllersRB | SDN controllers index. (optional)
 
 # SDN controllers index.
 try {
-    $Result = Get-PVEClusterSdnControllers
+    $Result = Get-PVEClusterSdnControllers -GETClusterSdnControllersRB $GETClusterSdnControllersRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterSdnControllers: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3381,7 +3453,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterSdnControllersRB** | [**GETClusterSdnControllersRB**](GETClusterSdnControllersRB.md)| SDN controllers index. | [optional] 
 
 ### Return type
 
@@ -3393,7 +3468,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3401,6 +3476,7 @@ No authorization required
 <a name="Get-PVEClusterSdnControllersByController"></a>
 # **Get-PVEClusterSdnControllersByController**
 > void Get-PVEClusterSdnControllersByController<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterSdnControllersRB] <PSCustomObject><br>
 
 Read sdn controller configuration.
 
@@ -3408,10 +3484,11 @@ Read sdn controller configuration.
 
 ### Example
 ```powershell
+$GETClusterSdnControllersRB = Initialize-GETClusterSdnControllersRB -Pending 0 -Running 0 -Controller "MyController" # GETClusterSdnControllersRB | Read sdn controller configuration. (optional)
 
 # Read sdn controller configuration.
 try {
-    $Result = Get-PVEClusterSdnControllersByController
+    $Result = Get-PVEClusterSdnControllersByController -GETClusterSdnControllersRB $GETClusterSdnControllersRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterSdnControllersByController: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3419,7 +3496,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterSdnControllersRB** | [**GETClusterSdnControllersRB**](GETClusterSdnControllersRB.md)| Read sdn controller configuration. | [optional] 
 
 ### Return type
 
@@ -3431,7 +3511,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3439,6 +3519,7 @@ No authorization required
 <a name="Get-PVEClusterSdnDns"></a>
 # **Get-PVEClusterSdnDns**
 > ClusterSdnDnsInner[] Get-PVEClusterSdnDns<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterSdnDnsRB] <PSCustomObject><br>
 
 SDN dns index.
 
@@ -3446,10 +3527,11 @@ SDN dns index.
 
 ### Example
 ```powershell
+$GETClusterSdnDnsRB = Initialize-GETClusterSdnDnsRB -Type "powerdns" # GETClusterSdnDnsRB | SDN dns index. (optional)
 
 # SDN dns index.
 try {
-    $Result = Get-PVEClusterSdnDns
+    $Result = Get-PVEClusterSdnDns -GETClusterSdnDnsRB $GETClusterSdnDnsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterSdnDns: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3457,7 +3539,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterSdnDnsRB** | [**GETClusterSdnDnsRB**](GETClusterSdnDnsRB.md)| SDN dns index. | [optional] 
 
 ### Return type
 
@@ -3469,7 +3554,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3515,6 +3600,7 @@ No authorization required
 <a name="Get-PVEClusterSdnIpams"></a>
 # **Get-PVEClusterSdnIpams**
 > ClusterSdnIpamsInner[] Get-PVEClusterSdnIpams<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterSdnIpamsRB] <PSCustomObject><br>
 
 SDN ipams index.
 
@@ -3522,10 +3608,11 @@ SDN ipams index.
 
 ### Example
 ```powershell
+$GETClusterSdnIpamsRB = Initialize-GETClusterSdnIpamsRB -Type "netbox" # GETClusterSdnIpamsRB | SDN ipams index. (optional)
 
 # SDN ipams index.
 try {
-    $Result = Get-PVEClusterSdnIpams
+    $Result = Get-PVEClusterSdnIpams -GETClusterSdnIpamsRB $GETClusterSdnIpamsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterSdnIpams: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3533,7 +3620,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterSdnIpamsRB** | [**GETClusterSdnIpamsRB**](GETClusterSdnIpamsRB.md)| SDN ipams index. | [optional] 
 
 ### Return type
 
@@ -3545,7 +3635,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3629,6 +3719,7 @@ No authorization required
 <a name="Get-PVEClusterSdnVnets"></a>
 # **Get-PVEClusterSdnVnets**
 > SystemCollectionsHashtable[] Get-PVEClusterSdnVnets<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterSdnVnetsRB] <PSCustomObject><br>
 
 SDN vnets index.
 
@@ -3636,10 +3727,11 @@ SDN vnets index.
 
 ### Example
 ```powershell
+$GETClusterSdnVnetsRB = Initialize-GETClusterSdnVnetsRB -Pending 0 -Running 0 -Vnet "MyVnet" # GETClusterSdnVnetsRB | SDN vnets index. (optional)
 
 # SDN vnets index.
 try {
-    $Result = Get-PVEClusterSdnVnets
+    $Result = Get-PVEClusterSdnVnets -GETClusterSdnVnetsRB $GETClusterSdnVnetsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterSdnVnets: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3647,7 +3739,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterSdnVnetsRB** | [**GETClusterSdnVnetsRB**](GETClusterSdnVnetsRB.md)| SDN vnets index. | [optional] 
 
 ### Return type
 
@@ -3659,7 +3754,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3667,6 +3762,7 @@ No authorization required
 <a name="Get-PVEClusterSdnVnetsByVnet"></a>
 # **Get-PVEClusterSdnVnetsByVnet**
 > void Get-PVEClusterSdnVnetsByVnet<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterSdnVnetsRB] <PSCustomObject><br>
 
 Read sdn vnet configuration.
 
@@ -3674,10 +3770,11 @@ Read sdn vnet configuration.
 
 ### Example
 ```powershell
+$GETClusterSdnVnetsRB = Initialize-GETClusterSdnVnetsRB -Pending 0 -Running 0 -Vnet "MyVnet" # GETClusterSdnVnetsRB | Read sdn vnet configuration. (optional)
 
 # Read sdn vnet configuration.
 try {
-    $Result = Get-PVEClusterSdnVnetsByVnet
+    $Result = Get-PVEClusterSdnVnetsByVnet -GETClusterSdnVnetsRB $GETClusterSdnVnetsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterSdnVnetsByVnet: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3685,7 +3782,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterSdnVnetsRB** | [**GETClusterSdnVnetsRB**](GETClusterSdnVnetsRB.md)| Read sdn vnet configuration. | [optional] 
 
 ### Return type
 
@@ -3697,7 +3797,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3780,7 +3880,7 @@ No authorization required
 
 <a name="Get-PVEClusterSdnVnetsFirewallRulesByVnet"></a>
 # **Get-PVEClusterSdnVnetsFirewallRulesByVnet**
-> ClusterSdnVnetsFirewallRules Get-PVEClusterSdnVnetsFirewallRulesByVnet<br>
+> NodesFirewallRulesGETInner[] Get-PVEClusterSdnVnetsFirewallRulesByVnet<br>
 
 List rules.
 
@@ -3803,7 +3903,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterSdnVnetsFirewallRules**](ClusterSdnVnetsFirewallRules.md) (PSCustomObject)
+[**NodesFirewallRulesGETInner[]**](NodesFirewallRulesGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3857,6 +3957,7 @@ No authorization required
 <a name="Get-PVEClusterSdnVnetsSubnetsByVnet"></a>
 # **Get-PVEClusterSdnVnetsSubnetsByVnet**
 > SystemCollectionsHashtable[] Get-PVEClusterSdnVnetsSubnetsByVnet<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterSdnVnetsSubnetsRB] <PSCustomObject><br>
 
 SDN subnets index.
 
@@ -3864,10 +3965,11 @@ SDN subnets index.
 
 ### Example
 ```powershell
+$GETClusterSdnVnetsSubnetsRB = Initialize-GETClusterSdnVnetsSubnetsRB -Pending 0 -Running 0 -Subnet "MySubnet" -Vnet "MyVnet" # GETClusterSdnVnetsSubnetsRB | SDN subnets index. (optional)
 
 # SDN subnets index.
 try {
-    $Result = Get-PVEClusterSdnVnetsSubnetsByVnet
+    $Result = Get-PVEClusterSdnVnetsSubnetsByVnet -GETClusterSdnVnetsSubnetsRB $GETClusterSdnVnetsSubnetsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterSdnVnetsSubnetsByVnet: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3875,7 +3977,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterSdnVnetsSubnetsRB** | [**GETClusterSdnVnetsSubnetsRB**](GETClusterSdnVnetsSubnetsRB.md)| SDN subnets index. | [optional] 
 
 ### Return type
 
@@ -3887,7 +3992,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3895,6 +4000,7 @@ No authorization required
 <a name="Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet"></a>
 # **Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet**
 > void Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterSdnVnetsSubnetsRB] <PSCustomObject><br>
 
 Read sdn subnet configuration.
 
@@ -3902,10 +4008,11 @@ Read sdn subnet configuration.
 
 ### Example
 ```powershell
+$GETClusterSdnVnetsSubnetsRB = Initialize-GETClusterSdnVnetsSubnetsRB -Pending 0 -Running 0 -Subnet "MySubnet" -Vnet "MyVnet" # GETClusterSdnVnetsSubnetsRB | Read sdn subnet configuration. (optional)
 
 # Read sdn subnet configuration.
 try {
-    $Result = Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet
+    $Result = Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet -GETClusterSdnVnetsSubnetsRB $GETClusterSdnVnetsSubnetsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3913,7 +4020,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterSdnVnetsSubnetsRB** | [**GETClusterSdnVnetsSubnetsRB**](GETClusterSdnVnetsSubnetsRB.md)| Read sdn subnet configuration. | [optional] 
 
 ### Return type
 
@@ -3925,7 +4035,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3933,6 +4043,7 @@ No authorization required
 <a name="Get-PVEClusterSdnZones"></a>
 # **Get-PVEClusterSdnZones**
 > ClusterSdnZonesInner[] Get-PVEClusterSdnZones<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterSdnZonesRB] <PSCustomObject><br>
 
 SDN zones index.
 
@@ -3940,10 +4051,11 @@ SDN zones index.
 
 ### Example
 ```powershell
+$GETClusterSdnZonesRB = Initialize-GETClusterSdnZonesRB -Pending 0 -Running 0 -Zone "MyZone" # GETClusterSdnZonesRB | SDN zones index. (optional)
 
 # SDN zones index.
 try {
-    $Result = Get-PVEClusterSdnZones
+    $Result = Get-PVEClusterSdnZones -GETClusterSdnZonesRB $GETClusterSdnZonesRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterSdnZones: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3951,7 +4063,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterSdnZonesRB** | [**GETClusterSdnZonesRB**](GETClusterSdnZonesRB.md)| SDN zones index. | [optional] 
 
 ### Return type
 
@@ -3963,7 +4078,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3971,6 +4086,7 @@ No authorization required
 <a name="Get-PVEClusterSdnZonesByZone"></a>
 # **Get-PVEClusterSdnZonesByZone**
 > void Get-PVEClusterSdnZonesByZone<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterSdnZonesRB] <PSCustomObject><br>
 
 Read sdn zone configuration.
 
@@ -3978,10 +4094,11 @@ Read sdn zone configuration.
 
 ### Example
 ```powershell
+$GETClusterSdnZonesRB = Initialize-GETClusterSdnZonesRB -Pending 0 -Running 0 -Zone "MyZone" # GETClusterSdnZonesRB | Read sdn zone configuration. (optional)
 
 # Read sdn zone configuration.
 try {
-    $Result = Get-PVEClusterSdnZonesByZone
+    $Result = Get-PVEClusterSdnZonesByZone -GETClusterSdnZonesRB $GETClusterSdnZonesRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEClusterSdnZonesByZone: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3989,7 +4106,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETClusterSdnZonesRB** | [**GETClusterSdnZonesRB**](GETClusterSdnZonesRB.md)| Read sdn zone configuration. | [optional] 
 
 ### Return type
 
@@ -4001,7 +4121,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4085,6 +4205,7 @@ No authorization required
 <a name="New-PVEClusterAcmeAccount"></a>
 # **New-PVEClusterAcmeAccount**
 > void New-PVEClusterAcmeAccount<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterAcmeAccountRB] <PSCustomObject><br>
 
 Register a new ACME account with CA.
 
@@ -4092,10 +4213,11 @@ Register a new ACME account with CA.
 
 ### Example
 ```powershell
+$POSTClusterAcmeAccountRB = Initialize-POSTClusterAcmeAccountRB -EabKid "MyEabKid" -EabHmacKey "MyEabHmacKey" -Directory "MyDirectory" -TosUrl "MyTosUrl" -Contact "MyContact" -Name "MyName" # POSTClusterAcmeAccountRB | Register a new ACME account with CA. (optional)
 
 # Register a new ACME account with CA.
 try {
-    $Result = New-PVEClusterAcmeAccount
+    $Result = New-PVEClusterAcmeAccount -POSTClusterAcmeAccountRB $POSTClusterAcmeAccountRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterAcmeAccount: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4103,7 +4225,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterAcmeAccountRB** | [**POSTClusterAcmeAccountRB**](POSTClusterAcmeAccountRB.md)| Register a new ACME account with CA. | [optional] 
 
 ### Return type
 
@@ -4115,7 +4240,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4123,6 +4248,7 @@ No authorization required
 <a name="New-PVEClusterAcmePlugins"></a>
 # **New-PVEClusterAcmePlugins**
 > void New-PVEClusterAcmePlugins<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterAcmePluginsRB] <PSCustomObject><br>
 
 Add ACME plugin configuration.
 
@@ -4130,10 +4256,11 @@ Add ACME plugin configuration.
 
 ### Example
 ```powershell
+$POSTClusterAcmePluginsRB = Initialize-POSTClusterAcmePluginsRB -Api "1984hosting" -ValidationDelay 0 -VarData "MyVarData" -Type "dns" -Nodes "MyNodes" -Disable 0 -Id "MyId" # POSTClusterAcmePluginsRB | Add ACME plugin configuration. (optional)
 
 # Add ACME plugin configuration.
 try {
-    $Result = New-PVEClusterAcmePlugins
+    $Result = New-PVEClusterAcmePlugins -POSTClusterAcmePluginsRB $POSTClusterAcmePluginsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterAcmePlugins: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4141,7 +4268,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterAcmePluginsRB** | [**POSTClusterAcmePluginsRB**](POSTClusterAcmePluginsRB.md)| Add ACME plugin configuration. | [optional] 
 
 ### Return type
 
@@ -4153,7 +4283,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4161,6 +4291,7 @@ No authorization required
 <a name="New-PVEClusterBackup"></a>
 # **New-PVEClusterBackup**
 > void New-PVEClusterBackup<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterBackupRB] <PSCustomObject><br>
 
 Create new vzdump backup job.
 
@@ -4168,10 +4299,11 @@ Create new vzdump backup job.
 
 ### Example
 ```powershell
+$POSTClusterBackupRB = Initialize-POSTClusterBackupRB -Id "MyId" -PruneBackups "MyPruneBackups" -Bwlimit 0 -Remove 0 -Fleecing "MyFleecing" -Schedule "MySchedule" -All 0 -Dow "MyDow" -Protected 0 -ExcludePath "MyExcludePath" -PbsChangeDetectionMode "legacy" -Script "MyScript" -RepeatMissed 0 -Comment "MyComment" -Tmpdir "MyTmpdir" -Pool "MyPool" -Zstd 0 -Stopwait 0 -Enabled 0 -Exclude "MyExclude" -Stop 0 -Mailto "MyMailto" -Storage "MyStorage" -NotesTemplate "MyNotesTemplate" -Dumpdir "MyDumpdir" -Stdexcludes 0 -Mailnotification "always" -Mode "snapshot" -Lockwait 0 -NotificationTarget "MyNotificationTarget" -Pigz 0 -Performance "MyPerformance" -Maxfiles 0 -Ionice 0 -NotificationPolicy "always" -Starttime "MyStarttime" -Vmid "MyVmid" -Compress "0" -Node "MyNode" -Quiet 0 -NotificationMode "auto" # POSTClusterBackupRB | Create new vzdump backup job. (optional)
 
 # Create new vzdump backup job.
 try {
-    $Result = New-PVEClusterBackup
+    $Result = New-PVEClusterBackup -POSTClusterBackupRB $POSTClusterBackupRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterBackup: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4179,7 +4311,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterBackupRB** | [**POSTClusterBackupRB**](POSTClusterBackupRB.md)| Create new vzdump backup job. | [optional] 
 
 ### Return type
 
@@ -4191,7 +4326,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4199,6 +4334,7 @@ No authorization required
 <a name="New-PVEClusterConfig"></a>
 # **New-PVEClusterConfig**
 > void New-PVEClusterConfig<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterConfigRB] <PSCustomObject><br>
 
 Generate new cluster configuration. If no links given, default to local IP address as link0.
 
@@ -4206,10 +4342,11 @@ Generate new cluster configuration. If no links given, default to local IP addre
 
 ### Example
 ```powershell
+$POSTClusterConfigRB = Initialize-POSTClusterConfigRB -Votes 0 -Nodeid 0 -LinkN "MyLinkN" -Clustername "MyClustername" # POSTClusterConfigRB | Generate new cluster configuration. If no links given, default to local IP address as link0. (optional)
 
 # Generate new cluster configuration. If no links given, default to local IP address as link0.
 try {
-    $Result = New-PVEClusterConfig
+    $Result = New-PVEClusterConfig -POSTClusterConfigRB $POSTClusterConfigRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterConfig: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4217,7 +4354,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterConfigRB** | [**POSTClusterConfigRB**](POSTClusterConfigRB.md)| Generate new cluster configuration. If no links given, default to local IP address as link0. | [optional] 
 
 ### Return type
 
@@ -4229,7 +4369,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4237,6 +4377,7 @@ No authorization required
 <a name="New-PVEClusterConfigJoin"></a>
 # **New-PVEClusterConfigJoin**
 > void New-PVEClusterConfigJoin<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterConfigJoinRB] <PSCustomObject><br>
 
 Joins this node into an existing cluster. If no links are given, default to IP resolved by node's hostname on single link (fallback fails for clusters with multiple links).
 
@@ -4244,10 +4385,11 @@ Joins this node into an existing cluster. If no links are given, default to IP r
 
 ### Example
 ```powershell
+$POSTClusterConfigJoinRB = Initialize-POSTClusterConfigJoinRB -Votes 0 -Fingerprint "MyFingerprint" -Password "MyPassword" -LinkN "MyLinkN" -Nodeid 0 -Force 0 -Hostname "MyHostname" # POSTClusterConfigJoinRB | Joins this node into an existing cluster. If no links are given, default to IP resolved by node's hostname on single link (fallback fails for clusters with multiple links). (optional)
 
 # Joins this node into an existing cluster. If no links are given, default to IP resolved by node's hostname on single link (fallback fails for clusters with multiple links).
 try {
-    $Result = New-PVEClusterConfigJoin
+    $Result = New-PVEClusterConfigJoin -POSTClusterConfigJoinRB $POSTClusterConfigJoinRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterConfigJoin: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4255,7 +4397,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterConfigJoinRB** | [**POSTClusterConfigJoinRB**](POSTClusterConfigJoinRB.md)| Joins this node into an existing cluster. If no links are given, default to IP resolved by node&#39;s hostname on single link (fallback fails for clusters with multiple links). | [optional] 
 
 ### Return type
 
@@ -4267,14 +4412,15 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="New-PVEClusterConfigNodesByNode"></a>
 # **New-PVEClusterConfigNodesByNode**
-> void New-PVEClusterConfigNodesByNode<br>
+> ClusterConfigNodes New-PVEClusterConfigNodesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterConfigNodesRB] <PSCustomObject><br>
 
 Adds a node to the cluster configuration. This call is for internal use.
 
@@ -4282,10 +4428,11 @@ Adds a node to the cluster configuration. This call is for internal use.
 
 ### Example
 ```powershell
+$POSTClusterConfigNodesRB = Initialize-POSTClusterConfigNodesRB -Votes 0 -NewNodeIp "MyNewNodeIp" -LinkN "MyLinkN" -Force 0 -Node "MyNode" -Apiversion 0 -Nodeid 0 # POSTClusterConfigNodesRB | Adds a node to the cluster configuration. This call is for internal use. (optional)
 
 # Adds a node to the cluster configuration. This call is for internal use.
 try {
-    $Result = New-PVEClusterConfigNodesByNode
+    $Result = New-PVEClusterConfigNodesByNode -POSTClusterConfigNodesRB $POSTClusterConfigNodesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterConfigNodesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4293,11 +4440,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterConfigNodesRB** | [**POSTClusterConfigNodesRB**](POSTClusterConfigNodesRB.md)| Adds a node to the cluster configuration. This call is for internal use. | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**ClusterConfigNodes**](ClusterConfigNodes.md) (PSCustomObject)
 
 ### Authorization
 
@@ -4305,14 +4455,15 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="New-PVEClusterFirewallAliases"></a>
 # **New-PVEClusterFirewallAliases**
 > void New-PVEClusterFirewallAliases<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterFirewallAliasesRB] <PSCustomObject><br>
 
 Create IP or Network Alias.
 
@@ -4320,10 +4471,11 @@ Create IP or Network Alias.
 
 ### Example
 ```powershell
+$POSTClusterFirewallAliasesRB = Initialize-POSTClusterFirewallAliasesRB -Comment "MyComment" -Name "MyName" -Cidr "MyCidr" # POSTClusterFirewallAliasesRB | Create IP or Network Alias. (optional)
 
 # Create IP or Network Alias.
 try {
-    $Result = New-PVEClusterFirewallAliases
+    $Result = New-PVEClusterFirewallAliases -POSTClusterFirewallAliasesRB $POSTClusterFirewallAliasesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterFirewallAliases: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4331,7 +4483,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterFirewallAliasesRB** | [**POSTClusterFirewallAliasesRB**](POSTClusterFirewallAliasesRB.md)| Create IP or Network Alias. | [optional] 
 
 ### Return type
 
@@ -4343,7 +4498,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4351,6 +4506,7 @@ No authorization required
 <a name="New-PVEClusterFirewallGroups"></a>
 # **New-PVEClusterFirewallGroups**
 > void New-PVEClusterFirewallGroups<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterFirewallGroupsRB] <PSCustomObject><br>
 
 Create new security group.
 
@@ -4358,10 +4514,11 @@ Create new security group.
 
 ### Example
 ```powershell
+$POSTClusterFirewallGroupsRB = Initialize-POSTClusterFirewallGroupsRB -Pos 0 -Type "in" -Dest "MyDest" -Source "MySource" -Dport "MyDport" -Enable 0 -Macro "MyMacro" -Action "MyAction" -Log "emerg" -Sport "MySport" -Iface "MyIface" -Comment "MyComment" -Proto "MyProto" -Group "MyGroup" -Digest "MyDigest" -IcmpType "MyIcmpType" # POSTClusterFirewallGroupsRB | Create new security group. (optional)
 
 # Create new security group.
 try {
-    $Result = New-PVEClusterFirewallGroups
+    $Result = New-PVEClusterFirewallGroups -POSTClusterFirewallGroupsRB $POSTClusterFirewallGroupsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterFirewallGroups: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4369,7 +4526,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterFirewallGroupsRB** | [**POSTClusterFirewallGroupsRB**](POSTClusterFirewallGroupsRB.md)| Create new security group. | [optional] 
 
 ### Return type
 
@@ -4381,7 +4541,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4389,6 +4549,7 @@ No authorization required
 <a name="New-PVEClusterFirewallGroupsByGroup"></a>
 # **New-PVEClusterFirewallGroupsByGroup**
 > void New-PVEClusterFirewallGroupsByGroup<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterFirewallGroupsRB] <PSCustomObject><br>
 
 Create new rule.
 
@@ -4396,10 +4557,11 @@ Create new rule.
 
 ### Example
 ```powershell
+$POSTClusterFirewallGroupsRB = Initialize-POSTClusterFirewallGroupsRB -Pos 0 -Type "in" -Dest "MyDest" -Source "MySource" -Dport "MyDport" -Enable 0 -Macro "MyMacro" -Action "MyAction" -Log "emerg" -Sport "MySport" -Iface "MyIface" -Comment "MyComment" -Proto "MyProto" -Group "MyGroup" -Digest "MyDigest" -IcmpType "MyIcmpType" # POSTClusterFirewallGroupsRB | Create new rule. (optional)
 
 # Create new rule.
 try {
-    $Result = New-PVEClusterFirewallGroupsByGroup
+    $Result = New-PVEClusterFirewallGroupsByGroup -POSTClusterFirewallGroupsRB $POSTClusterFirewallGroupsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterFirewallGroupsByGroup: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4407,7 +4569,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterFirewallGroupsRB** | [**POSTClusterFirewallGroupsRB**](POSTClusterFirewallGroupsRB.md)| Create new rule. | [optional] 
 
 ### Return type
 
@@ -4419,7 +4584,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4427,6 +4592,7 @@ No authorization required
 <a name="New-PVEClusterFirewallIpset"></a>
 # **New-PVEClusterFirewallIpset**
 > void New-PVEClusterFirewallIpset<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterFirewallIpsetRB] <PSCustomObject><br>
 
 Create new IPSet
 
@@ -4434,10 +4600,11 @@ Create new IPSet
 
 ### Example
 ```powershell
+$POSTClusterFirewallIpsetRB = Initialize-POSTClusterFirewallIpsetRB -Comment "MyComment" -Name "MyName" -Nomatch 0 -Cidr "MyCidr" # POSTClusterFirewallIpsetRB | Create new IPSet (optional)
 
 # Create new IPSet
 try {
-    $Result = New-PVEClusterFirewallIpset
+    $Result = New-PVEClusterFirewallIpset -POSTClusterFirewallIpsetRB $POSTClusterFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterFirewallIpset: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4445,7 +4612,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterFirewallIpsetRB** | [**POSTClusterFirewallIpsetRB**](POSTClusterFirewallIpsetRB.md)| Create new IPSet | [optional] 
 
 ### Return type
 
@@ -4457,7 +4627,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4465,6 +4635,7 @@ No authorization required
 <a name="New-PVEClusterFirewallIpsetByName"></a>
 # **New-PVEClusterFirewallIpsetByName**
 > void New-PVEClusterFirewallIpsetByName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterFirewallIpsetRB] <PSCustomObject><br>
 
 Add IP or Network to IPSet.
 
@@ -4472,10 +4643,11 @@ Add IP or Network to IPSet.
 
 ### Example
 ```powershell
+$POSTClusterFirewallIpsetRB = Initialize-POSTClusterFirewallIpsetRB -Comment "MyComment" -Name "MyName" -Nomatch 0 -Cidr "MyCidr" # POSTClusterFirewallIpsetRB | Add IP or Network to IPSet. (optional)
 
 # Add IP or Network to IPSet.
 try {
-    $Result = New-PVEClusterFirewallIpsetByName
+    $Result = New-PVEClusterFirewallIpsetByName -POSTClusterFirewallIpsetRB $POSTClusterFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterFirewallIpsetByName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4483,7 +4655,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterFirewallIpsetRB** | [**POSTClusterFirewallIpsetRB**](POSTClusterFirewallIpsetRB.md)| Add IP or Network to IPSet. | [optional] 
 
 ### Return type
 
@@ -4495,7 +4670,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4503,6 +4678,7 @@ No authorization required
 <a name="New-PVEClusterFirewallRules"></a>
 # **New-PVEClusterFirewallRules**
 > void New-PVEClusterFirewallRules<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterFirewallRulesRB] <PSCustomObject><br>
 
 Create new rule.
 
@@ -4510,10 +4686,11 @@ Create new rule.
 
 ### Example
 ```powershell
+$POSTClusterFirewallRulesRB = Initialize-POSTClusterFirewallRulesRB -Pos 0 -Type "in" -Dest "MyDest" -Source "MySource" -Dport "MyDport" -Enable 0 -Action "MyAction" -Macro "MyMacro" -Iface "MyIface" -Log "emerg" -Sport "MySport" -Comment "MyComment" -Proto "MyProto" -Digest "MyDigest" -IcmpType "MyIcmpType" # POSTClusterFirewallRulesRB | Create new rule. (optional)
 
 # Create new rule.
 try {
-    $Result = New-PVEClusterFirewallRules
+    $Result = New-PVEClusterFirewallRules -POSTClusterFirewallRulesRB $POSTClusterFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterFirewallRules: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4521,7 +4698,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterFirewallRulesRB** | [**POSTClusterFirewallRulesRB**](POSTClusterFirewallRulesRB.md)| Create new rule. | [optional] 
 
 ### Return type
 
@@ -4533,7 +4713,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4541,6 +4721,7 @@ No authorization required
 <a name="New-PVEClusterHaGroups"></a>
 # **New-PVEClusterHaGroups**
 > void New-PVEClusterHaGroups<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterHaGroupsRB] <PSCustomObject><br>
 
 Create a new HA group.
 
@@ -4548,10 +4729,11 @@ Create a new HA group.
 
 ### Example
 ```powershell
+$POSTClusterHaGroupsRB = Initialize-POSTClusterHaGroupsRB -Nofailback 0 -Type "group" -Restricted 0 -Nodes "MyNodes" -Comment "MyComment" -Group "MyGroup" # POSTClusterHaGroupsRB | Create a new HA group. (optional)
 
 # Create a new HA group.
 try {
-    $Result = New-PVEClusterHaGroups
+    $Result = New-PVEClusterHaGroups -POSTClusterHaGroupsRB $POSTClusterHaGroupsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterHaGroups: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4559,7 +4741,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterHaGroupsRB** | [**POSTClusterHaGroupsRB**](POSTClusterHaGroupsRB.md)| Create a new HA group. | [optional] 
 
 ### Return type
 
@@ -4571,7 +4756,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4579,6 +4764,7 @@ No authorization required
 <a name="New-PVEClusterHaResources"></a>
 # **New-PVEClusterHaResources**
 > void New-PVEClusterHaResources<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterHaResourcesRB] <PSCustomObject><br>
 
 Create a new HA resource.
 
@@ -4586,10 +4772,11 @@ Create a new HA resource.
 
 ### Example
 ```powershell
+$POSTClusterHaResourcesRB = Initialize-POSTClusterHaResourcesRB -Sid "MySid" -MaxRestart 0 -State "started" -Type "ct" -MaxRelocate 0 -Comment "MyComment" -Group "MyGroup" # POSTClusterHaResourcesRB | Create a new HA resource. (optional)
 
 # Create a new HA resource.
 try {
-    $Result = New-PVEClusterHaResources
+    $Result = New-PVEClusterHaResources -POSTClusterHaResourcesRB $POSTClusterHaResourcesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterHaResources: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4597,7 +4784,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterHaResourcesRB** | [**POSTClusterHaResourcesRB**](POSTClusterHaResourcesRB.md)| Create a new HA resource. | [optional] 
 
 ### Return type
 
@@ -4609,7 +4799,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4617,6 +4807,7 @@ No authorization required
 <a name="New-PVEClusterHaResourcesMigrateBySid"></a>
 # **New-PVEClusterHaResourcesMigrateBySid**
 > void New-PVEClusterHaResourcesMigrateBySid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterHaResourcesMigrateRB] <PSCustomObject><br>
 
 Request resource migration (online) to another node.
 
@@ -4624,10 +4815,11 @@ Request resource migration (online) to another node.
 
 ### Example
 ```powershell
+$POSTClusterHaResourcesMigrateRB = Initialize-POSTClusterHaResourcesMigrateRB -Node "MyNode" -Sid "MySid" # POSTClusterHaResourcesMigrateRB | Request resource migration (online) to another node. (optional)
 
 # Request resource migration (online) to another node.
 try {
-    $Result = New-PVEClusterHaResourcesMigrateBySid
+    $Result = New-PVEClusterHaResourcesMigrateBySid -POSTClusterHaResourcesMigrateRB $POSTClusterHaResourcesMigrateRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterHaResourcesMigrateBySid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4635,7 +4827,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterHaResourcesMigrateRB** | [**POSTClusterHaResourcesMigrateRB**](POSTClusterHaResourcesMigrateRB.md)| Request resource migration (online) to another node. | [optional] 
 
 ### Return type
 
@@ -4647,7 +4842,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4655,6 +4850,7 @@ No authorization required
 <a name="New-PVEClusterHaResourcesRelocateBySid"></a>
 # **New-PVEClusterHaResourcesRelocateBySid**
 > void New-PVEClusterHaResourcesRelocateBySid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterHaResourcesRelocateRB] <PSCustomObject><br>
 
 Request resource relocatzion to another node. This stops the service on the old node, and restarts it on the target node.
 
@@ -4662,10 +4858,11 @@ Request resource relocatzion to another node. This stops the service on the old 
 
 ### Example
 ```powershell
+$POSTClusterHaResourcesRelocateRB = Initialize-POSTClusterHaResourcesRelocateRB -Node "MyNode" -Sid "MySid" # POSTClusterHaResourcesRelocateRB | Request resource relocatzion to another node. This stops the service on the old node, and restarts it on the target node. (optional)
 
 # Request resource relocatzion to another node. This stops the service on the old node, and restarts it on the target node.
 try {
-    $Result = New-PVEClusterHaResourcesRelocateBySid
+    $Result = New-PVEClusterHaResourcesRelocateBySid -POSTClusterHaResourcesRelocateRB $POSTClusterHaResourcesRelocateRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterHaResourcesRelocateBySid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4673,7 +4870,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterHaResourcesRelocateRB** | [**POSTClusterHaResourcesRelocateRB**](POSTClusterHaResourcesRelocateRB.md)| Request resource relocatzion to another node. This stops the service on the old node, and restarts it on the target node. | [optional] 
 
 ### Return type
 
@@ -4685,7 +4885,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4693,6 +4893,7 @@ No authorization required
 <a name="New-PVEClusterJobsRealmsyncById"></a>
 # **New-PVEClusterJobsRealmsyncById**
 > void New-PVEClusterJobsRealmsyncById<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterJobsRealmsyncRB] <PSCustomObject><br>
 
 Create new realm-sync job.
 
@@ -4700,10 +4901,11 @@ Create new realm-sync job.
 
 ### Example
 ```powershell
+$POSTClusterJobsRealmsyncRB = Initialize-POSTClusterJobsRealmsyncRB -Enabled 0 -Scope "users" -Schedule "MySchedule" -RemoveVanished "MyRemoveVanished" -EnableNew 0 -Comment "MyComment" -Realm "MyRealm" -Id "MyId" # POSTClusterJobsRealmsyncRB | Create new realm-sync job. (optional)
 
 # Create new realm-sync job.
 try {
-    $Result = New-PVEClusterJobsRealmsyncById
+    $Result = New-PVEClusterJobsRealmsyncById -POSTClusterJobsRealmsyncRB $POSTClusterJobsRealmsyncRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterJobsRealmsyncById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4711,7 +4913,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterJobsRealmsyncRB** | [**POSTClusterJobsRealmsyncRB**](POSTClusterJobsRealmsyncRB.md)| Create new realm-sync job. | [optional] 
 
 ### Return type
 
@@ -4723,7 +4928,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4731,6 +4936,7 @@ No authorization required
 <a name="New-PVEClusterMappingPci"></a>
 # **New-PVEClusterMappingPci**
 > void New-PVEClusterMappingPci<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterMappingPciRB] <PSCustomObject><br>
 
 Create a new hardware mapping.
 
@@ -4738,10 +4944,11 @@ Create a new hardware mapping.
 
 ### Example
 ```powershell
+$POSTClusterMappingPciRB = Initialize-POSTClusterMappingPciRB -Description "MyDescription" -Map "MyMap" -Mdev 0 -Id "MyId" # POSTClusterMappingPciRB | Create a new hardware mapping. (optional)
 
 # Create a new hardware mapping.
 try {
-    $Result = New-PVEClusterMappingPci
+    $Result = New-PVEClusterMappingPci -POSTClusterMappingPciRB $POSTClusterMappingPciRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterMappingPci: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4749,7 +4956,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterMappingPciRB** | [**POSTClusterMappingPciRB**](POSTClusterMappingPciRB.md)| Create a new hardware mapping. | [optional] 
 
 ### Return type
 
@@ -4761,7 +4971,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4769,6 +4979,7 @@ No authorization required
 <a name="New-PVEClusterMappingUsb"></a>
 # **New-PVEClusterMappingUsb**
 > void New-PVEClusterMappingUsb<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterMappingUsbRB] <PSCustomObject><br>
 
 Create a new hardware mapping.
 
@@ -4776,10 +4987,11 @@ Create a new hardware mapping.
 
 ### Example
 ```powershell
+$POSTClusterMappingUsbRB = Initialize-POSTClusterMappingUsbRB -Description "MyDescription" -Map "MyMap" -Id "MyId" # POSTClusterMappingUsbRB | Create a new hardware mapping. (optional)
 
 # Create a new hardware mapping.
 try {
-    $Result = New-PVEClusterMappingUsb
+    $Result = New-PVEClusterMappingUsb -POSTClusterMappingUsbRB $POSTClusterMappingUsbRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterMappingUsb: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4787,7 +4999,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterMappingUsbRB** | [**POSTClusterMappingUsbRB**](POSTClusterMappingUsbRB.md)| Create a new hardware mapping. | [optional] 
 
 ### Return type
 
@@ -4799,7 +5014,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4807,6 +5022,7 @@ No authorization required
 <a name="New-PVEClusterMetricsServerById"></a>
 # **New-PVEClusterMetricsServerById**
 > void New-PVEClusterMetricsServerById<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterMetricsServerRB] <PSCustomObject><br>
 
 Create a new external metric server config
 
@@ -4814,10 +5030,11 @@ Create a new external metric server config
 
 ### Example
 ```powershell
+$POSTClusterMetricsServerRB = Initialize-POSTClusterMetricsServerRB -Path "MyPath" -Proto "udp" -Organization "MyOrganization" -Port 0 -Disable 0 -Type "graphite" -Influxdbproto "udp" -Server "MyServer" -Mtu 0 -Bucket "MyBucket" -VerifyCertificate 0 -Token "MyToken" -Id "MyId" -Timeout 0 -ApiPathPrefix "MyApiPathPrefix" -MaxBodySize 0 # POSTClusterMetricsServerRB | Create a new external metric server config (optional)
 
 # Create a new external metric server config
 try {
-    $Result = New-PVEClusterMetricsServerById
+    $Result = New-PVEClusterMetricsServerById -POSTClusterMetricsServerRB $POSTClusterMetricsServerRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterMetricsServerById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4825,7 +5042,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterMetricsServerRB** | [**POSTClusterMetricsServerRB**](POSTClusterMetricsServerRB.md)| Create a new external metric server config | [optional] 
 
 ### Return type
 
@@ -4837,7 +5057,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4845,6 +5065,7 @@ No authorization required
 <a name="New-PVEClusterNotificationsEndpointsGotify"></a>
 # **New-PVEClusterNotificationsEndpointsGotify**
 > void New-PVEClusterNotificationsEndpointsGotify<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterNotificationsEndpointsGotifyRB] <PSCustomObject><br>
 
 Create a new gotify endpoint
 
@@ -4852,10 +5073,11 @@ Create a new gotify endpoint
 
 ### Example
 ```powershell
+$POSTClusterNotificationsEndpointsGotifyRB = Initialize-POSTClusterNotificationsEndpointsGotifyRB -Comment "MyComment" -Server "MyServer" -Name "MyName" -Disable 0 -Token "MyToken" # POSTClusterNotificationsEndpointsGotifyRB | Create a new gotify endpoint (optional)
 
 # Create a new gotify endpoint
 try {
-    $Result = New-PVEClusterNotificationsEndpointsGotify
+    $Result = New-PVEClusterNotificationsEndpointsGotify -POSTClusterNotificationsEndpointsGotifyRB $POSTClusterNotificationsEndpointsGotifyRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterNotificationsEndpointsGotify: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4863,7 +5085,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterNotificationsEndpointsGotifyRB** | [**POSTClusterNotificationsEndpointsGotifyRB**](POSTClusterNotificationsEndpointsGotifyRB.md)| Create a new gotify endpoint | [optional] 
 
 ### Return type
 
@@ -4875,7 +5100,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4883,6 +5108,7 @@ No authorization required
 <a name="New-PVEClusterNotificationsEndpointsSendmail"></a>
 # **New-PVEClusterNotificationsEndpointsSendmail**
 > void New-PVEClusterNotificationsEndpointsSendmail<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterNotificationsEndpointsSendmailRB] <PSCustomObject><br>
 
 Create a new sendmail endpoint
 
@@ -4890,10 +5116,11 @@ Create a new sendmail endpoint
 
 ### Example
 ```powershell
+$POSTClusterNotificationsEndpointsSendmailRB = Initialize-POSTClusterNotificationsEndpointsSendmailRB -Author "MyAuthor" -MailtoUser "MyMailtoUser" -FromAddress "MyFromAddress" -Mailto "MyMailto" -Comment "MyComment" -Disable 0 -Name "MyName" # POSTClusterNotificationsEndpointsSendmailRB | Create a new sendmail endpoint (optional)
 
 # Create a new sendmail endpoint
 try {
-    $Result = New-PVEClusterNotificationsEndpointsSendmail
+    $Result = New-PVEClusterNotificationsEndpointsSendmail -POSTClusterNotificationsEndpointsSendmailRB $POSTClusterNotificationsEndpointsSendmailRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterNotificationsEndpointsSendmail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4901,7 +5128,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterNotificationsEndpointsSendmailRB** | [**POSTClusterNotificationsEndpointsSendmailRB**](POSTClusterNotificationsEndpointsSendmailRB.md)| Create a new sendmail endpoint | [optional] 
 
 ### Return type
 
@@ -4913,7 +5143,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4921,6 +5151,7 @@ No authorization required
 <a name="New-PVEClusterNotificationsEndpointsSmtp"></a>
 # **New-PVEClusterNotificationsEndpointsSmtp**
 > void New-PVEClusterNotificationsEndpointsSmtp<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterNotificationsEndpointsSmtpRB] <PSCustomObject><br>
 
 Create a new smtp endpoint
 
@@ -4928,10 +5159,11 @@ Create a new smtp endpoint
 
 ### Example
 ```powershell
+$POSTClusterNotificationsEndpointsSmtpRB = Initialize-POSTClusterNotificationsEndpointsSmtpRB -Username "MyUsername" -Mode "insecure" -Password "MyPassword" -Author "MyAuthor" -MailtoUser "MyMailtoUser" -FromAddress "MyFromAddress" -Port 0 -Server "MyServer" -Mailto "MyMailto" -Comment "MyComment" -Disable 0 -Name "MyName" # POSTClusterNotificationsEndpointsSmtpRB | Create a new smtp endpoint (optional)
 
 # Create a new smtp endpoint
 try {
-    $Result = New-PVEClusterNotificationsEndpointsSmtp
+    $Result = New-PVEClusterNotificationsEndpointsSmtp -POSTClusterNotificationsEndpointsSmtpRB $POSTClusterNotificationsEndpointsSmtpRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterNotificationsEndpointsSmtp: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4939,7 +5171,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterNotificationsEndpointsSmtpRB** | [**POSTClusterNotificationsEndpointsSmtpRB**](POSTClusterNotificationsEndpointsSmtpRB.md)| Create a new smtp endpoint | [optional] 
 
 ### Return type
 
@@ -4951,7 +5186,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4959,6 +5194,7 @@ No authorization required
 <a name="New-PVEClusterNotificationsEndpointsWebhook"></a>
 # **New-PVEClusterNotificationsEndpointsWebhook**
 > void New-PVEClusterNotificationsEndpointsWebhook<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterNotificationsEndpointsWebhookRB] <PSCustomObject><br>
 
 Create a new webhook endpoint
 
@@ -4966,10 +5202,11 @@ Create a new webhook endpoint
 
 ### Example
 ```powershell
+$POSTClusterNotificationsEndpointsWebhookRB = Initialize-POSTClusterNotificationsEndpointsWebhookRB -Url "MyUrl" -Header "MyHeader" -Secret "MySecret" -Method "post" -Body "MyBody" -Comment "MyComment" -Disable 0 -Name "MyName" # POSTClusterNotificationsEndpointsWebhookRB | Create a new webhook endpoint (optional)
 
 # Create a new webhook endpoint
 try {
-    $Result = New-PVEClusterNotificationsEndpointsWebhook
+    $Result = New-PVEClusterNotificationsEndpointsWebhook -POSTClusterNotificationsEndpointsWebhookRB $POSTClusterNotificationsEndpointsWebhookRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterNotificationsEndpointsWebhook: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4977,7 +5214,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterNotificationsEndpointsWebhookRB** | [**POSTClusterNotificationsEndpointsWebhookRB**](POSTClusterNotificationsEndpointsWebhookRB.md)| Create a new webhook endpoint | [optional] 
 
 ### Return type
 
@@ -4989,7 +5229,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4997,6 +5237,7 @@ No authorization required
 <a name="New-PVEClusterNotificationsMatchers"></a>
 # **New-PVEClusterNotificationsMatchers**
 > void New-PVEClusterNotificationsMatchers<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterNotificationsMatchersRB] <PSCustomObject><br>
 
 Create a new matcher
 
@@ -5004,10 +5245,11 @@ Create a new matcher
 
 ### Example
 ```powershell
+$POSTClusterNotificationsMatchersRB = Initialize-POSTClusterNotificationsMatchersRB -InvertMatch 0 -Mode "all" -MatchSeverity "MyMatchSeverity" -Target "MyTarget" -MatchCalendar "MyMatchCalendar" -Comment "MyComment" -MatchField "MyMatchField" -Disable 0 -Name "MyName" # POSTClusterNotificationsMatchersRB | Create a new matcher (optional)
 
 # Create a new matcher
 try {
-    $Result = New-PVEClusterNotificationsMatchers
+    $Result = New-PVEClusterNotificationsMatchers -POSTClusterNotificationsMatchersRB $POSTClusterNotificationsMatchersRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterNotificationsMatchers: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5015,7 +5257,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterNotificationsMatchersRB** | [**POSTClusterNotificationsMatchersRB**](POSTClusterNotificationsMatchersRB.md)| Create a new matcher | [optional] 
 
 ### Return type
 
@@ -5027,7 +5272,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5073,6 +5318,7 @@ No authorization required
 <a name="New-PVEClusterReplication"></a>
 # **New-PVEClusterReplication**
 > void New-PVEClusterReplication<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterReplicationRB] <PSCustomObject><br>
 
 Create a new replication job
 
@@ -5080,10 +5326,11 @@ Create a new replication job
 
 ### Example
 ```powershell
+$POSTClusterReplicationRB = Initialize-POSTClusterReplicationRB -Source "MySource" -Schedule "MySchedule" -Target "MyTarget" -Type "local" -Rate 0 -Comment "MyComment" -Disable 0 -RemoveJob "local" -Id "MyId" # POSTClusterReplicationRB | Create a new replication job (optional)
 
 # Create a new replication job
 try {
-    $Result = New-PVEClusterReplication
+    $Result = New-PVEClusterReplication -POSTClusterReplicationRB $POSTClusterReplicationRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterReplication: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5091,7 +5338,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterReplicationRB** | [**POSTClusterReplicationRB**](POSTClusterReplicationRB.md)| Create a new replication job | [optional] 
 
 ### Return type
 
@@ -5103,7 +5353,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5111,6 +5361,7 @@ No authorization required
 <a name="New-PVEClusterSdnControllers"></a>
 # **New-PVEClusterSdnControllers**
 > void New-PVEClusterSdnControllers<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterSdnControllersRB] <PSCustomObject><br>
 
 Create a new sdn controller object.
 
@@ -5118,10 +5369,11 @@ Create a new sdn controller object.
 
 ### Example
 ```powershell
+$POSTClusterSdnControllersRB = Initialize-POSTClusterSdnControllersRB -Asn 0 -IsisNet "MyIsisNet" -IsisIfaces "MyIsisIfaces" -Controller "MyController" -Loopback "MyLoopback" -Ebgp 0 -Type "bgp" -Node "MyNode" -IsisDomain "MyIsisDomain" -BgpMultipathAsPathRelax 0 -Peers "MyPeers" -EbgpMultihop 0 # POSTClusterSdnControllersRB | Create a new sdn controller object. (optional)
 
 # Create a new sdn controller object.
 try {
-    $Result = New-PVEClusterSdnControllers
+    $Result = New-PVEClusterSdnControllers -POSTClusterSdnControllersRB $POSTClusterSdnControllersRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterSdnControllers: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5129,7 +5381,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterSdnControllersRB** | [**POSTClusterSdnControllersRB**](POSTClusterSdnControllersRB.md)| Create a new sdn controller object. | [optional] 
 
 ### Return type
 
@@ -5141,7 +5396,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5149,6 +5404,7 @@ No authorization required
 <a name="New-PVEClusterSdnDns"></a>
 # **New-PVEClusterSdnDns**
 > void New-PVEClusterSdnDns<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterSdnDnsRB] <PSCustomObject><br>
 
 Create a new sdn dns object.
 
@@ -5156,10 +5412,11 @@ Create a new sdn dns object.
 
 ### Example
 ```powershell
+$POSTClusterSdnDnsRB = Initialize-POSTClusterSdnDnsRB -Key "MyKey" -Ttl 0 -Url "MyUrl" -Type "powerdns" -Reversemaskv6 0 -Dns "MyDns" -Reversev6mask 0 # POSTClusterSdnDnsRB | Create a new sdn dns object. (optional)
 
 # Create a new sdn dns object.
 try {
-    $Result = New-PVEClusterSdnDns
+    $Result = New-PVEClusterSdnDns -POSTClusterSdnDnsRB $POSTClusterSdnDnsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterSdnDns: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5167,7 +5424,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterSdnDnsRB** | [**POSTClusterSdnDnsRB**](POSTClusterSdnDnsRB.md)| Create a new sdn dns object. | [optional] 
 
 ### Return type
 
@@ -5179,7 +5439,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5187,6 +5447,7 @@ No authorization required
 <a name="New-PVEClusterSdnIpams"></a>
 # **New-PVEClusterSdnIpams**
 > void New-PVEClusterSdnIpams<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterSdnIpamsRB] <PSCustomObject><br>
 
 Create a new sdn ipam object.
 
@@ -5194,10 +5455,11 @@ Create a new sdn ipam object.
 
 ### Example
 ```powershell
+$POSTClusterSdnIpamsRB = Initialize-POSTClusterSdnIpamsRB -Url "MyUrl" -Ipam "MyIpam" -Section 0 -Token "MyToken" -Type "netbox" # POSTClusterSdnIpamsRB | Create a new sdn ipam object. (optional)
 
 # Create a new sdn ipam object.
 try {
-    $Result = New-PVEClusterSdnIpams
+    $Result = New-PVEClusterSdnIpams -POSTClusterSdnIpamsRB $POSTClusterSdnIpamsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterSdnIpams: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5205,7 +5467,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterSdnIpamsRB** | [**POSTClusterSdnIpamsRB**](POSTClusterSdnIpamsRB.md)| Create a new sdn ipam object. | [optional] 
 
 ### Return type
 
@@ -5217,7 +5482,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5225,6 +5490,7 @@ No authorization required
 <a name="New-PVEClusterSdnVnets"></a>
 # **New-PVEClusterSdnVnets**
 > void New-PVEClusterSdnVnets<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterSdnVnetsRB] <PSCustomObject><br>
 
 Create a new sdn vnet object.
 
@@ -5232,10 +5498,11 @@ Create a new sdn vnet object.
 
 ### Example
 ```powershell
+$POSTClusterSdnVnetsRB = Initialize-POSTClusterSdnVnetsRB -IsolatePorts 0 -Alias "MyAlias" -Type "vnet" -Vnet "MyVnet" -Vlanaware 0 -Zone "MyZone" -Tag 0 # POSTClusterSdnVnetsRB | Create a new sdn vnet object. (optional)
 
 # Create a new sdn vnet object.
 try {
-    $Result = New-PVEClusterSdnVnets
+    $Result = New-PVEClusterSdnVnets -POSTClusterSdnVnetsRB $POSTClusterSdnVnetsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterSdnVnets: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5243,7 +5510,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterSdnVnetsRB** | [**POSTClusterSdnVnetsRB**](POSTClusterSdnVnetsRB.md)| Create a new sdn vnet object. | [optional] 
 
 ### Return type
 
@@ -5255,7 +5525,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5263,6 +5533,7 @@ No authorization required
 <a name="New-PVEClusterSdnVnetsFirewallRulesByVnet"></a>
 # **New-PVEClusterSdnVnetsFirewallRulesByVnet**
 > void New-PVEClusterSdnVnetsFirewallRulesByVnet<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterSdnVnetsFirewallRulesRB] <PSCustomObject><br>
 
 Create new rule.
 
@@ -5270,10 +5541,11 @@ Create new rule.
 
 ### Example
 ```powershell
+$POSTClusterSdnVnetsFirewallRulesRB = Initialize-POSTClusterSdnVnetsFirewallRulesRB -Pos 0 -Type "in" -Dest "MyDest" -Source "MySource" -Dport "MyDport" -Enable 0 -Action "MyAction" -Macro "MyMacro" -Iface "MyIface" -Log "emerg" -Sport "MySport" -Comment "MyComment" -Vnet "MyVnet" -Proto "MyProto" -Digest "MyDigest" -IcmpType "MyIcmpType" # POSTClusterSdnVnetsFirewallRulesRB | Create new rule. (optional)
 
 # Create new rule.
 try {
-    $Result = New-PVEClusterSdnVnetsFirewallRulesByVnet
+    $Result = New-PVEClusterSdnVnetsFirewallRulesByVnet -POSTClusterSdnVnetsFirewallRulesRB $POSTClusterSdnVnetsFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterSdnVnetsFirewallRulesByVnet: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5281,7 +5553,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterSdnVnetsFirewallRulesRB** | [**POSTClusterSdnVnetsFirewallRulesRB**](POSTClusterSdnVnetsFirewallRulesRB.md)| Create new rule. | [optional] 
 
 ### Return type
 
@@ -5293,7 +5568,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5301,6 +5576,7 @@ No authorization required
 <a name="New-PVEClusterSdnVnetsIpsByVnet"></a>
 # **New-PVEClusterSdnVnetsIpsByVnet**
 > void New-PVEClusterSdnVnetsIpsByVnet<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterSdnVnetsIpsRB] <PSCustomObject><br>
 
 Create IP Mapping in a VNet
 
@@ -5308,10 +5584,11 @@ Create IP Mapping in a VNet
 
 ### Example
 ```powershell
+$POSTClusterSdnVnetsIpsRB = Initialize-POSTClusterSdnVnetsIpsRB -Mac "MyMac" -Zone "MyZone" -Vnet "MyVnet" -Ip "MyIp" # POSTClusterSdnVnetsIpsRB | Create IP Mapping in a VNet (optional)
 
 # Create IP Mapping in a VNet
 try {
-    $Result = New-PVEClusterSdnVnetsIpsByVnet
+    $Result = New-PVEClusterSdnVnetsIpsByVnet -POSTClusterSdnVnetsIpsRB $POSTClusterSdnVnetsIpsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterSdnVnetsIpsByVnet: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5319,7 +5596,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterSdnVnetsIpsRB** | [**POSTClusterSdnVnetsIpsRB**](POSTClusterSdnVnetsIpsRB.md)| Create IP Mapping in a VNet | [optional] 
 
 ### Return type
 
@@ -5331,7 +5611,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5339,6 +5619,7 @@ No authorization required
 <a name="New-PVEClusterSdnVnetsSubnetsByVnet"></a>
 # **New-PVEClusterSdnVnetsSubnetsByVnet**
 > void New-PVEClusterSdnVnetsSubnetsByVnet<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterSdnVnetsSubnetsRB] <PSCustomObject><br>
 
 Create a new sdn subnet object.
 
@@ -5346,10 +5627,11 @@ Create a new sdn subnet object.
 
 ### Example
 ```powershell
+$POSTClusterSdnVnetsSubnetsRB = Initialize-POSTClusterSdnVnetsSubnetsRB -DhcpRange "MyDhcpRange" -Snat 0 -Subnet "MySubnet" -Type "subnet" -Vnet "MyVnet" -Dnszoneprefix "MyDnszoneprefix" -DhcpDnsServer "MyDhcpDnsServer" -Gateway "MyGateway" # POSTClusterSdnVnetsSubnetsRB | Create a new sdn subnet object. (optional)
 
 # Create a new sdn subnet object.
 try {
-    $Result = New-PVEClusterSdnVnetsSubnetsByVnet
+    $Result = New-PVEClusterSdnVnetsSubnetsByVnet -POSTClusterSdnVnetsSubnetsRB $POSTClusterSdnVnetsSubnetsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterSdnVnetsSubnetsByVnet: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5357,7 +5639,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterSdnVnetsSubnetsRB** | [**POSTClusterSdnVnetsSubnetsRB**](POSTClusterSdnVnetsSubnetsRB.md)| Create a new sdn subnet object. | [optional] 
 
 ### Return type
 
@@ -5369,7 +5654,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5377,6 +5662,7 @@ No authorization required
 <a name="New-PVEClusterSdnZones"></a>
 # **New-PVEClusterSdnZones**
 > void New-PVEClusterSdnZones<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterSdnZonesRB] <PSCustomObject><br>
 
 Create a new sdn zone object.
 
@@ -5384,10 +5670,11 @@ Create a new sdn zone object.
 
 ### Example
 ```powershell
+$POSTClusterSdnZonesRB = Initialize-POSTClusterSdnZonesRB -Reversedns "MyReversedns" -Zone "MyZone" -Ipam "MyIpam" -Type "evpn" -Mac "MyMac" -VrfVxlan 0 -Nodes "MyNodes" -Controller "MyController" -VlanProtocol "802.1q" -Dns "MyDns" -Bridge "MyBridge" -Dhcp "dnsmasq" -ExitnodesPrimary "MyExitnodesPrimary" -VxlanPort 0 -DpId 0 -DisableArpNdSuppression 0 -Peers "MyPeers" -Tag 0 -AdvertiseSubnets 0 -RtImport "MyRtImport" -BridgeDisableMacLearning 0 -Exitnodes "MyExitnodes" -Mtu 0 -ExitnodesLocalRouting 0 -Dnszone "MyDnszone" # POSTClusterSdnZonesRB | Create a new sdn zone object. (optional)
 
 # Create a new sdn zone object.
 try {
-    $Result = New-PVEClusterSdnZones
+    $Result = New-PVEClusterSdnZones -POSTClusterSdnZonesRB $POSTClusterSdnZonesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEClusterSdnZones: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5395,7 +5682,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterSdnZonesRB** | [**POSTClusterSdnZonesRB**](POSTClusterSdnZonesRB.md)| Create a new sdn zone object. | [optional] 
 
 ### Return type
 
@@ -5407,7 +5697,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5567,6 +5857,7 @@ No authorization required
 <a name="Remove-PVEClusterFirewallAliasesByName"></a>
 # **Remove-PVEClusterFirewallAliasesByName**
 > void Remove-PVEClusterFirewallAliasesByName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETEClusterFirewallAliasesRB] <PSCustomObject><br>
 
 Remove IP or Network alias.
 
@@ -5574,10 +5865,11 @@ Remove IP or Network alias.
 
 ### Example
 ```powershell
+$DELETEClusterFirewallAliasesRB = Initialize-DELETEClusterFirewallAliasesRB -Digest "MyDigest" -Name "MyName" # DELETEClusterFirewallAliasesRB | Remove IP or Network alias. (optional)
 
 # Remove IP or Network alias.
 try {
-    $Result = Remove-PVEClusterFirewallAliasesByName
+    $Result = Remove-PVEClusterFirewallAliasesByName -DELETEClusterFirewallAliasesRB $DELETEClusterFirewallAliasesRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEClusterFirewallAliasesByName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5585,7 +5877,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **DELETEClusterFirewallAliasesRB** | [**DELETEClusterFirewallAliasesRB**](DELETEClusterFirewallAliasesRB.md)| Remove IP or Network alias. | [optional] 
 
 ### Return type
 
@@ -5597,7 +5892,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5643,6 +5938,7 @@ No authorization required
 <a name="Remove-PVEClusterFirewallGroupsByGroupAndPos"></a>
 # **Remove-PVEClusterFirewallGroupsByGroupAndPos**
 > void Remove-PVEClusterFirewallGroupsByGroupAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETEClusterFirewallGroupsRB] <PSCustomObject><br>
 
 Delete rule.
 
@@ -5650,10 +5946,11 @@ Delete rule.
 
 ### Example
 ```powershell
+$DELETEClusterFirewallGroupsRB = Initialize-DELETEClusterFirewallGroupsRB -Digest "MyDigest" -Group "MyGroup" -Pos 0 # DELETEClusterFirewallGroupsRB | Delete rule. (optional)
 
 # Delete rule.
 try {
-    $Result = Remove-PVEClusterFirewallGroupsByGroupAndPos
+    $Result = Remove-PVEClusterFirewallGroupsByGroupAndPos -DELETEClusterFirewallGroupsRB $DELETEClusterFirewallGroupsRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEClusterFirewallGroupsByGroupAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5661,7 +5958,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **DELETEClusterFirewallGroupsRB** | [**DELETEClusterFirewallGroupsRB**](DELETEClusterFirewallGroupsRB.md)| Delete rule. | [optional] 
 
 ### Return type
 
@@ -5673,7 +5973,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5681,6 +5981,7 @@ No authorization required
 <a name="Remove-PVEClusterFirewallIpsetByName"></a>
 # **Remove-PVEClusterFirewallIpsetByName**
 > void Remove-PVEClusterFirewallIpsetByName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETEClusterFirewallIpsetRB] <PSCustomObject><br>
 
 Delete IPSet
 
@@ -5688,10 +5989,11 @@ Delete IPSet
 
 ### Example
 ```powershell
+$DELETEClusterFirewallIpsetRB = Initialize-DELETEClusterFirewallIpsetRB -Cidr "MyCidr" -Digest "MyDigest" -Name "MyName" # DELETEClusterFirewallIpsetRB | Delete IPSet (optional)
 
 # Delete IPSet
 try {
-    $Result = Remove-PVEClusterFirewallIpsetByName
+    $Result = Remove-PVEClusterFirewallIpsetByName -DELETEClusterFirewallIpsetRB $DELETEClusterFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEClusterFirewallIpsetByName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5699,7 +6001,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **DELETEClusterFirewallIpsetRB** | [**DELETEClusterFirewallIpsetRB**](DELETEClusterFirewallIpsetRB.md)| Delete IPSet | [optional] 
 
 ### Return type
 
@@ -5711,7 +6016,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5719,6 +6024,7 @@ No authorization required
 <a name="Remove-PVEClusterFirewallIpsetByNameAndCidr"></a>
 # **Remove-PVEClusterFirewallIpsetByNameAndCidr**
 > void Remove-PVEClusterFirewallIpsetByNameAndCidr<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETEClusterFirewallIpsetRB] <PSCustomObject><br>
 
 Remove IP or Network from IPSet.
 
@@ -5726,10 +6032,11 @@ Remove IP or Network from IPSet.
 
 ### Example
 ```powershell
+$DELETEClusterFirewallIpsetRB = Initialize-DELETEClusterFirewallIpsetRB -Cidr "MyCidr" -Digest "MyDigest" -Name "MyName" # DELETEClusterFirewallIpsetRB | Remove IP or Network from IPSet. (optional)
 
 # Remove IP or Network from IPSet.
 try {
-    $Result = Remove-PVEClusterFirewallIpsetByNameAndCidr
+    $Result = Remove-PVEClusterFirewallIpsetByNameAndCidr -DELETEClusterFirewallIpsetRB $DELETEClusterFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEClusterFirewallIpsetByNameAndCidr: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5737,7 +6044,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **DELETEClusterFirewallIpsetRB** | [**DELETEClusterFirewallIpsetRB**](DELETEClusterFirewallIpsetRB.md)| Remove IP or Network from IPSet. | [optional] 
 
 ### Return type
 
@@ -5749,7 +6059,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5757,6 +6067,7 @@ No authorization required
 <a name="Remove-PVEClusterFirewallRulesByPos"></a>
 # **Remove-PVEClusterFirewallRulesByPos**
 > void Remove-PVEClusterFirewallRulesByPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETEClusterFirewallRulesRB] <PSCustomObject><br>
 
 Delete rule.
 
@@ -5764,10 +6075,11 @@ Delete rule.
 
 ### Example
 ```powershell
+$DELETEClusterFirewallRulesRB = Initialize-DELETEClusterFirewallRulesRB -Digest "MyDigest" -Pos 0 # DELETEClusterFirewallRulesRB | Delete rule. (optional)
 
 # Delete rule.
 try {
-    $Result = Remove-PVEClusterFirewallRulesByPos
+    $Result = Remove-PVEClusterFirewallRulesByPos -DELETEClusterFirewallRulesRB $DELETEClusterFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEClusterFirewallRulesByPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5775,7 +6087,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **DELETEClusterFirewallRulesRB** | [**DELETEClusterFirewallRulesRB**](DELETEClusterFirewallRulesRB.md)| Delete rule. | [optional] 
 
 ### Return type
 
@@ -5787,7 +6102,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6213,6 +6528,7 @@ No authorization required
 <a name="Remove-PVEClusterReplicationById"></a>
 # **Remove-PVEClusterReplicationById**
 > void Remove-PVEClusterReplicationById<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETEClusterReplicationRB] <PSCustomObject><br>
 
 Mark replication job for removal.
 
@@ -6220,10 +6536,11 @@ Mark replication job for removal.
 
 ### Example
 ```powershell
+$DELETEClusterReplicationRB = Initialize-DELETEClusterReplicationRB -Force 0 -Keep 0 -Id "MyId" # DELETEClusterReplicationRB | Mark replication job for removal. (optional)
 
 # Mark replication job for removal.
 try {
-    $Result = Remove-PVEClusterReplicationById
+    $Result = Remove-PVEClusterReplicationById -DELETEClusterReplicationRB $DELETEClusterReplicationRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEClusterReplicationById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6231,7 +6548,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **DELETEClusterReplicationRB** | [**DELETEClusterReplicationRB**](DELETEClusterReplicationRB.md)| Mark replication job for removal. | [optional] 
 
 ### Return type
 
@@ -6243,7 +6563,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6403,6 +6723,7 @@ No authorization required
 <a name="Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos"></a>
 # **Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos**
 > void Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETEClusterSdnVnetsFirewallRulesRB] <PSCustomObject><br>
 
 Delete rule.
 
@@ -6410,10 +6731,11 @@ Delete rule.
 
 ### Example
 ```powershell
+$DELETEClusterSdnVnetsFirewallRulesRB = Initialize-DELETEClusterSdnVnetsFirewallRulesRB -Digest "MyDigest" -Vnet "MyVnet" -Pos 0 # DELETEClusterSdnVnetsFirewallRulesRB | Delete rule. (optional)
 
 # Delete rule.
 try {
-    $Result = Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos
+    $Result = Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos -DELETEClusterSdnVnetsFirewallRulesRB $DELETEClusterSdnVnetsFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6421,7 +6743,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **DELETEClusterSdnVnetsFirewallRulesRB** | [**DELETEClusterSdnVnetsFirewallRulesRB**](DELETEClusterSdnVnetsFirewallRulesRB.md)| Delete rule. | [optional] 
 
 ### Return type
 
@@ -6433,7 +6758,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6441,6 +6766,7 @@ No authorization required
 <a name="Remove-PVEClusterSdnVnetsIpsByVnet"></a>
 # **Remove-PVEClusterSdnVnetsIpsByVnet**
 > void Remove-PVEClusterSdnVnetsIpsByVnet<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETEClusterSdnVnetsIpsRB] <PSCustomObject><br>
 
 Delete IP Mappings in a VNet
 
@@ -6448,10 +6774,11 @@ Delete IP Mappings in a VNet
 
 ### Example
 ```powershell
+$DELETEClusterSdnVnetsIpsRB = Initialize-DELETEClusterSdnVnetsIpsRB -Mac "MyMac" -Zone "MyZone" -Vnet "MyVnet" -Ip "MyIp" # DELETEClusterSdnVnetsIpsRB | Delete IP Mappings in a VNet (optional)
 
 # Delete IP Mappings in a VNet
 try {
-    $Result = Remove-PVEClusterSdnVnetsIpsByVnet
+    $Result = Remove-PVEClusterSdnVnetsIpsByVnet -DELETEClusterSdnVnetsIpsRB $DELETEClusterSdnVnetsIpsRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEClusterSdnVnetsIpsByVnet: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6459,7 +6786,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **DELETEClusterSdnVnetsIpsRB** | [**DELETEClusterSdnVnetsIpsRB**](DELETEClusterSdnVnetsIpsRB.md)| Delete IP Mappings in a VNet | [optional] 
 
 ### Return type
 
@@ -6471,7 +6801,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6555,6 +6885,7 @@ No authorization required
 <a name="Set-PVEClusterAcmeAccountByName"></a>
 # **Set-PVEClusterAcmeAccountByName**
 > void Set-PVEClusterAcmeAccountByName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterAcmeAccountRB] <PSCustomObject><br>
 
 Update existing ACME account information with CA. Note: not specifying any new account information triggers a refresh.
 
@@ -6562,10 +6893,11 @@ Update existing ACME account information with CA. Note: not specifying any new a
 
 ### Example
 ```powershell
+$PUTClusterAcmeAccountRB = Initialize-PUTClusterAcmeAccountRB -Contact "MyContact" -Name "MyName" # PUTClusterAcmeAccountRB | Update existing ACME account information with CA. Note: not specifying any new account information triggers a refresh. (optional)
 
 # Update existing ACME account information with CA. Note: not specifying any new account information triggers a refresh.
 try {
-    $Result = Set-PVEClusterAcmeAccountByName
+    $Result = Set-PVEClusterAcmeAccountByName -PUTClusterAcmeAccountRB $PUTClusterAcmeAccountRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterAcmeAccountByName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6573,7 +6905,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterAcmeAccountRB** | [**PUTClusterAcmeAccountRB**](PUTClusterAcmeAccountRB.md)| Update existing ACME account information with CA. Note: not specifying any new account information triggers a refresh. | [optional] 
 
 ### Return type
 
@@ -6585,7 +6920,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6593,6 +6928,7 @@ No authorization required
 <a name="Set-PVEClusterAcmePluginsById"></a>
 # **Set-PVEClusterAcmePluginsById**
 > void Set-PVEClusterAcmePluginsById<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterAcmePluginsRB] <PSCustomObject><br>
 
 Update ACME plugin configuration.
 
@@ -6600,10 +6936,11 @@ Update ACME plugin configuration.
 
 ### Example
 ```powershell
+$PUTClusterAcmePluginsRB = Initialize-PUTClusterAcmePluginsRB -Api "1984hosting" -ValidationDelay 0 -Digest "MyDigest" -VarData "MyVarData" -Nodes "MyNodes" -Delete "MyDelete" -Disable 0 -Id "MyId" # PUTClusterAcmePluginsRB | Update ACME plugin configuration. (optional)
 
 # Update ACME plugin configuration.
 try {
-    $Result = Set-PVEClusterAcmePluginsById
+    $Result = Set-PVEClusterAcmePluginsById -PUTClusterAcmePluginsRB $PUTClusterAcmePluginsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterAcmePluginsById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6611,7 +6948,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterAcmePluginsRB** | [**PUTClusterAcmePluginsRB**](PUTClusterAcmePluginsRB.md)| Update ACME plugin configuration. | [optional] 
 
 ### Return type
 
@@ -6623,7 +6963,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6631,6 +6971,7 @@ No authorization required
 <a name="Set-PVEClusterBackupById"></a>
 # **Set-PVEClusterBackupById**
 > void Set-PVEClusterBackupById<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterBackupRB] <PSCustomObject><br>
 
 Update vzdump backup job definition.
 
@@ -6638,10 +6979,11 @@ Update vzdump backup job definition.
 
 ### Example
 ```powershell
+$PUTClusterBackupRB = Initialize-PUTClusterBackupRB -Id "MyId" -PruneBackups "MyPruneBackups" -Bwlimit 0 -Remove 0 -Fleecing "MyFleecing" -Schedule "MySchedule" -All 0 -Dow "MyDow" -Protected 0 -ExcludePath "MyExcludePath" -PbsChangeDetectionMode "legacy" -Script "MyScript" -RepeatMissed 0 -Comment "MyComment" -Tmpdir "MyTmpdir" -Pool "MyPool" -Dumpdir "MyDumpdir" -Delete "MyDelete" -Stopwait 0 -Enabled 0 -Exclude "MyExclude" -Stop 0 -Mailto "MyMailto" -Storage "MyStorage" -NotesTemplate "MyNotesTemplate" -NotificationTarget "MyNotificationTarget" -Stdexcludes 0 -Mailnotification "always" -Mode "snapshot" -Lockwait 0 -Ionice 0 -Zstd 0 -Pigz 0 -Performance "MyPerformance" -Maxfiles 0 -NotificationPolicy "always" -Starttime "MyStarttime" -Vmid "MyVmid" -Compress "0" -Node "MyNode" -Quiet 0 -NotificationMode "auto" # PUTClusterBackupRB | Update vzdump backup job definition. (optional)
 
 # Update vzdump backup job definition.
 try {
-    $Result = Set-PVEClusterBackupById
+    $Result = Set-PVEClusterBackupById -PUTClusterBackupRB $PUTClusterBackupRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterBackupById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6649,7 +6991,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterBackupRB** | [**PUTClusterBackupRB**](PUTClusterBackupRB.md)| Update vzdump backup job definition. | [optional] 
 
 ### Return type
 
@@ -6661,7 +7006,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6669,6 +7014,7 @@ No authorization required
 <a name="Set-PVEClusterCephFlags"></a>
 # **Set-PVEClusterCephFlags**
 > void Set-PVEClusterCephFlags<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterCephFlagsRB] <PSCustomObject><br>
 
 Set/Unset multiple ceph flags at once.
 
@@ -6676,10 +7022,11 @@ Set/Unset multiple ceph flags at once.
 
 ### Example
 ```powershell
+$PUTClusterCephFlagsRB = Initialize-PUTClusterCephFlagsRB -Flag "nobackfill" -Value 0 # PUTClusterCephFlagsRB | Set/Unset multiple ceph flags at once. (optional)
 
 # Set/Unset multiple ceph flags at once.
 try {
-    $Result = Set-PVEClusterCephFlags
+    $Result = Set-PVEClusterCephFlags -PUTClusterCephFlagsRB $PUTClusterCephFlagsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterCephFlags: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6687,7 +7034,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterCephFlagsRB** | [**PUTClusterCephFlagsRB**](PUTClusterCephFlagsRB.md)| Set/Unset multiple ceph flags at once. | [optional] 
 
 ### Return type
 
@@ -6699,7 +7049,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6707,6 +7057,7 @@ No authorization required
 <a name="Set-PVEClusterCephFlagsByFlag"></a>
 # **Set-PVEClusterCephFlagsByFlag**
 > void Set-PVEClusterCephFlagsByFlag<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterCephFlagsRB] <PSCustomObject><br>
 
 Set or clear (unset) a specific ceph flag
 
@@ -6714,10 +7065,11 @@ Set or clear (unset) a specific ceph flag
 
 ### Example
 ```powershell
+$PUTClusterCephFlagsRB = Initialize-PUTClusterCephFlagsRB -Flag "nobackfill" -Value 0 # PUTClusterCephFlagsRB | Set or clear (unset) a specific ceph flag (optional)
 
 # Set or clear (unset) a specific ceph flag
 try {
-    $Result = Set-PVEClusterCephFlagsByFlag
+    $Result = Set-PVEClusterCephFlagsByFlag -PUTClusterCephFlagsRB $PUTClusterCephFlagsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterCephFlagsByFlag: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6725,7 +7077,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterCephFlagsRB** | [**PUTClusterCephFlagsRB**](PUTClusterCephFlagsRB.md)| Set or clear (unset) a specific ceph flag | [optional] 
 
 ### Return type
 
@@ -6737,7 +7092,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6745,6 +7100,7 @@ No authorization required
 <a name="Set-PVEClusterFirewallAliasesByName"></a>
 # **Set-PVEClusterFirewallAliasesByName**
 > void Set-PVEClusterFirewallAliasesByName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterFirewallAliasesRB] <PSCustomObject><br>
 
 Update IP or Network alias.
 
@@ -6752,10 +7108,11 @@ Update IP or Network alias.
 
 ### Example
 ```powershell
+$PUTClusterFirewallAliasesRB = Initialize-PUTClusterFirewallAliasesRB -Comment "MyComment" -Digest "MyDigest" -Name "MyName" -Rename "MyRename" -Cidr "MyCidr" # PUTClusterFirewallAliasesRB | Update IP or Network alias. (optional)
 
 # Update IP or Network alias.
 try {
-    $Result = Set-PVEClusterFirewallAliasesByName
+    $Result = Set-PVEClusterFirewallAliasesByName -PUTClusterFirewallAliasesRB $PUTClusterFirewallAliasesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterFirewallAliasesByName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6763,7 +7120,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterFirewallAliasesRB** | [**PUTClusterFirewallAliasesRB**](PUTClusterFirewallAliasesRB.md)| Update IP or Network alias. | [optional] 
 
 ### Return type
 
@@ -6775,7 +7135,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6783,6 +7143,7 @@ No authorization required
 <a name="Set-PVEClusterFirewallGroupsByGroupAndPos"></a>
 # **Set-PVEClusterFirewallGroupsByGroupAndPos**
 > void Set-PVEClusterFirewallGroupsByGroupAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterFirewallGroupsRB] <PSCustomObject><br>
 
 Modify rule data.
 
@@ -6790,10 +7151,11 @@ Modify rule data.
 
 ### Example
 ```powershell
+$PUTClusterFirewallGroupsRB = Initialize-PUTClusterFirewallGroupsRB -Pos 0 -Moveto 0 -Type "in" -Dest "MyDest" -Source "MySource" -Comment "MyComment" -Enable 0 -Macro "MyMacro" -Action "MyAction" -Dport "MyDport" -Log "emerg" -Sport "MySport" -Iface "MyIface" -Delete "MyDelete" -Proto "MyProto" -Group "MyGroup" -Digest "MyDigest" -IcmpType "MyIcmpType" # PUTClusterFirewallGroupsRB | Modify rule data. (optional)
 
 # Modify rule data.
 try {
-    $Result = Set-PVEClusterFirewallGroupsByGroupAndPos
+    $Result = Set-PVEClusterFirewallGroupsByGroupAndPos -PUTClusterFirewallGroupsRB $PUTClusterFirewallGroupsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterFirewallGroupsByGroupAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6801,7 +7163,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterFirewallGroupsRB** | [**PUTClusterFirewallGroupsRB**](PUTClusterFirewallGroupsRB.md)| Modify rule data. | [optional] 
 
 ### Return type
 
@@ -6813,7 +7178,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6821,6 +7186,7 @@ No authorization required
 <a name="Set-PVEClusterFirewallIpsetByNameAndCidr"></a>
 # **Set-PVEClusterFirewallIpsetByNameAndCidr**
 > void Set-PVEClusterFirewallIpsetByNameAndCidr<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterFirewallIpsetRB] <PSCustomObject><br>
 
 Update IP or Network settings
 
@@ -6828,10 +7194,11 @@ Update IP or Network settings
 
 ### Example
 ```powershell
+$PUTClusterFirewallIpsetRB = Initialize-PUTClusterFirewallIpsetRB -Comment "MyComment" -Digest "MyDigest" -Name "MyName" -Nomatch 0 -Cidr "MyCidr" # PUTClusterFirewallIpsetRB | Update IP or Network settings (optional)
 
 # Update IP or Network settings
 try {
-    $Result = Set-PVEClusterFirewallIpsetByNameAndCidr
+    $Result = Set-PVEClusterFirewallIpsetByNameAndCidr -PUTClusterFirewallIpsetRB $PUTClusterFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterFirewallIpsetByNameAndCidr: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6839,7 +7206,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterFirewallIpsetRB** | [**PUTClusterFirewallIpsetRB**](PUTClusterFirewallIpsetRB.md)| Update IP or Network settings | [optional] 
 
 ### Return type
 
@@ -6851,7 +7221,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6859,6 +7229,7 @@ No authorization required
 <a name="Set-PVEClusterFirewallOptions"></a>
 # **Set-PVEClusterFirewallOptions**
 > void Set-PVEClusterFirewallOptions<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterFirewallOptionsRB] <PSCustomObject><br>
 
 Set Firewall options.
 
@@ -6866,10 +7237,11 @@ Set Firewall options.
 
 ### Example
 ```powershell
+$PUTClusterFirewallOptionsRB = Initialize-PUTClusterFirewallOptionsRB -PolicyIn "ACCEPT" -Digest "MyDigest" -LogRatelimit "MyLogRatelimit" -Ebtables 0 -Enable 0 -PolicyOut "ACCEPT" -PolicyForward "ACCEPT" -Delete "MyDelete" # PUTClusterFirewallOptionsRB | Set Firewall options. (optional)
 
 # Set Firewall options.
 try {
-    $Result = Set-PVEClusterFirewallOptions
+    $Result = Set-PVEClusterFirewallOptions -PUTClusterFirewallOptionsRB $PUTClusterFirewallOptionsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterFirewallOptions: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6877,7 +7249,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterFirewallOptionsRB** | [**PUTClusterFirewallOptionsRB**](PUTClusterFirewallOptionsRB.md)| Set Firewall options. | [optional] 
 
 ### Return type
 
@@ -6889,7 +7264,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6897,6 +7272,7 @@ No authorization required
 <a name="Set-PVEClusterFirewallRulesByPos"></a>
 # **Set-PVEClusterFirewallRulesByPos**
 > void Set-PVEClusterFirewallRulesByPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterFirewallRulesRB] <PSCustomObject><br>
 
 Modify rule data.
 
@@ -6904,10 +7280,11 @@ Modify rule data.
 
 ### Example
 ```powershell
+$PUTClusterFirewallRulesRB = Initialize-PUTClusterFirewallRulesRB -Pos 0 -Moveto 0 -Type "in" -Dest "MyDest" -Source "MySource" -Comment "MyComment" -Enable 0 -Macro "MyMacro" -Action "MyAction" -Dport "MyDport" -Log "emerg" -Sport "MySport" -Iface "MyIface" -Delete "MyDelete" -Proto "MyProto" -Digest "MyDigest" -IcmpType "MyIcmpType" # PUTClusterFirewallRulesRB | Modify rule data. (optional)
 
 # Modify rule data.
 try {
-    $Result = Set-PVEClusterFirewallRulesByPos
+    $Result = Set-PVEClusterFirewallRulesByPos -PUTClusterFirewallRulesRB $PUTClusterFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterFirewallRulesByPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6915,7 +7292,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterFirewallRulesRB** | [**PUTClusterFirewallRulesRB**](PUTClusterFirewallRulesRB.md)| Modify rule data. | [optional] 
 
 ### Return type
 
@@ -6927,7 +7307,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6935,6 +7315,7 @@ No authorization required
 <a name="Set-PVEClusterHaGroupsByGroup"></a>
 # **Set-PVEClusterHaGroupsByGroup**
 > void Set-PVEClusterHaGroupsByGroup<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterHaGroupsRB] <PSCustomObject><br>
 
 Update ha group configuration.
 
@@ -6942,10 +7323,11 @@ Update ha group configuration.
 
 ### Example
 ```powershell
+$PUTClusterHaGroupsRB = Initialize-PUTClusterHaGroupsRB -Digest "MyDigest" -Nofailback 0 -Restricted 0 -Nodes "MyNodes" -Delete "MyDelete" -Comment "MyComment" -Group "MyGroup" # PUTClusterHaGroupsRB | Update ha group configuration. (optional)
 
 # Update ha group configuration.
 try {
-    $Result = Set-PVEClusterHaGroupsByGroup
+    $Result = Set-PVEClusterHaGroupsByGroup -PUTClusterHaGroupsRB $PUTClusterHaGroupsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterHaGroupsByGroup: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6953,7 +7335,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterHaGroupsRB** | [**PUTClusterHaGroupsRB**](PUTClusterHaGroupsRB.md)| Update ha group configuration. | [optional] 
 
 ### Return type
 
@@ -6965,7 +7350,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6973,6 +7358,7 @@ No authorization required
 <a name="Set-PVEClusterHaResourcesBySid"></a>
 # **Set-PVEClusterHaResourcesBySid**
 > void Set-PVEClusterHaResourcesBySid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterHaResourcesRB] <PSCustomObject><br>
 
 Update resource configuration.
 
@@ -6980,10 +7366,11 @@ Update resource configuration.
 
 ### Example
 ```powershell
+$PUTClusterHaResourcesRB = Initialize-PUTClusterHaResourcesRB -Sid "MySid" -MaxRestart 0 -Digest "MyDigest" -Delete "MyDelete" -State "started" -MaxRelocate 0 -Comment "MyComment" -Group "MyGroup" # PUTClusterHaResourcesRB | Update resource configuration. (optional)
 
 # Update resource configuration.
 try {
-    $Result = Set-PVEClusterHaResourcesBySid
+    $Result = Set-PVEClusterHaResourcesBySid -PUTClusterHaResourcesRB $PUTClusterHaResourcesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterHaResourcesBySid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6991,7 +7378,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterHaResourcesRB** | [**PUTClusterHaResourcesRB**](PUTClusterHaResourcesRB.md)| Update resource configuration. | [optional] 
 
 ### Return type
 
@@ -7003,7 +7393,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7011,6 +7401,7 @@ No authorization required
 <a name="Set-PVEClusterJobsRealmsyncById"></a>
 # **Set-PVEClusterJobsRealmsyncById**
 > void Set-PVEClusterJobsRealmsyncById<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterJobsRealmsyncRB] <PSCustomObject><br>
 
 Update realm-sync job definition.
 
@@ -7018,10 +7409,11 @@ Update realm-sync job definition.
 
 ### Example
 ```powershell
+$PUTClusterJobsRealmsyncRB = Initialize-PUTClusterJobsRealmsyncRB -Enabled 0 -Scope "users" -Schedule "MySchedule" -RemoveVanished "MyRemoveVanished" -Comment "MyComment" -Delete "MyDelete" -EnableNew 0 -Id "MyId" # PUTClusterJobsRealmsyncRB | Update realm-sync job definition. (optional)
 
 # Update realm-sync job definition.
 try {
-    $Result = Set-PVEClusterJobsRealmsyncById
+    $Result = Set-PVEClusterJobsRealmsyncById -PUTClusterJobsRealmsyncRB $PUTClusterJobsRealmsyncRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterJobsRealmsyncById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7029,7 +7421,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterJobsRealmsyncRB** | [**PUTClusterJobsRealmsyncRB**](PUTClusterJobsRealmsyncRB.md)| Update realm-sync job definition. | [optional] 
 
 ### Return type
 
@@ -7041,7 +7436,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7049,6 +7444,7 @@ No authorization required
 <a name="Set-PVEClusterMappingPciById"></a>
 # **Set-PVEClusterMappingPciById**
 > void Set-PVEClusterMappingPciById<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterMappingPciRB] <PSCustomObject><br>
 
 Update a hardware mapping.
 
@@ -7056,10 +7452,11 @@ Update a hardware mapping.
 
 ### Example
 ```powershell
+$PUTClusterMappingPciRB = Initialize-PUTClusterMappingPciRB -Digest "MyDigest" -Mdev 0 -Map "MyMap" -Description "MyDescription" -Delete "MyDelete" -Id "MyId" # PUTClusterMappingPciRB | Update a hardware mapping. (optional)
 
 # Update a hardware mapping.
 try {
-    $Result = Set-PVEClusterMappingPciById
+    $Result = Set-PVEClusterMappingPciById -PUTClusterMappingPciRB $PUTClusterMappingPciRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterMappingPciById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7067,7 +7464,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterMappingPciRB** | [**PUTClusterMappingPciRB**](PUTClusterMappingPciRB.md)| Update a hardware mapping. | [optional] 
 
 ### Return type
 
@@ -7079,7 +7479,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7087,6 +7487,7 @@ No authorization required
 <a name="Set-PVEClusterMappingUsbById"></a>
 # **Set-PVEClusterMappingUsbById**
 > void Set-PVEClusterMappingUsbById<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterMappingUsbRB] <PSCustomObject><br>
 
 Update a hardware mapping.
 
@@ -7094,10 +7495,11 @@ Update a hardware mapping.
 
 ### Example
 ```powershell
+$PUTClusterMappingUsbRB = Initialize-PUTClusterMappingUsbRB -Digest "MyDigest" -Description "MyDescription" -Delete "MyDelete" -Map "MyMap" -Id "MyId" # PUTClusterMappingUsbRB | Update a hardware mapping. (optional)
 
 # Update a hardware mapping.
 try {
-    $Result = Set-PVEClusterMappingUsbById
+    $Result = Set-PVEClusterMappingUsbById -PUTClusterMappingUsbRB $PUTClusterMappingUsbRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterMappingUsbById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7105,7 +7507,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterMappingUsbRB** | [**PUTClusterMappingUsbRB**](PUTClusterMappingUsbRB.md)| Update a hardware mapping. | [optional] 
 
 ### Return type
 
@@ -7117,7 +7522,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7125,6 +7530,7 @@ No authorization required
 <a name="Set-PVEClusterMetricsServerById"></a>
 # **Set-PVEClusterMetricsServerById**
 > void Set-PVEClusterMetricsServerById<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterMetricsServerRB] <PSCustomObject><br>
 
 Update metric server configuration.
 
@@ -7132,10 +7538,11 @@ Update metric server configuration.
 
 ### Example
 ```powershell
+$PUTClusterMetricsServerRB = Initialize-PUTClusterMetricsServerRB -Path "MyPath" -Bucket "MyBucket" -Organization "MyOrganization" -Port 0 -Disable 0 -Influxdbproto "udp" -Server "MyServer" -Mtu 0 -VerifyCertificate 0 -Delete "MyDelete" -Token "MyToken" -Id "MyId" -Timeout 0 -Proto "udp" -ApiPathPrefix "MyApiPathPrefix" -Digest "MyDigest" -MaxBodySize 0 # PUTClusterMetricsServerRB | Update metric server configuration. (optional)
 
 # Update metric server configuration.
 try {
-    $Result = Set-PVEClusterMetricsServerById
+    $Result = Set-PVEClusterMetricsServerById -PUTClusterMetricsServerRB $PUTClusterMetricsServerRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterMetricsServerById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7143,7 +7550,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterMetricsServerRB** | [**PUTClusterMetricsServerRB**](PUTClusterMetricsServerRB.md)| Update metric server configuration. | [optional] 
 
 ### Return type
 
@@ -7155,7 +7565,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7163,6 +7573,7 @@ No authorization required
 <a name="Set-PVEClusterNotificationsEndpointsGotifyByName"></a>
 # **Set-PVEClusterNotificationsEndpointsGotifyByName**
 > void Set-PVEClusterNotificationsEndpointsGotifyByName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterNotificationsEndpointsGotifyRB] <PSCustomObject><br>
 
 Update existing gotify endpoint
 
@@ -7170,10 +7581,11 @@ Update existing gotify endpoint
 
 ### Example
 ```powershell
+$PUTClusterNotificationsEndpointsGotifyRB = Initialize-PUTClusterNotificationsEndpointsGotifyRB -Digest "MyDigest" -Server "MyServer" -Comment "MyComment" -Delete "MyDelete" -Disable 0 -Token "MyToken" -Name "MyName" # PUTClusterNotificationsEndpointsGotifyRB | Update existing gotify endpoint (optional)
 
 # Update existing gotify endpoint
 try {
-    $Result = Set-PVEClusterNotificationsEndpointsGotifyByName
+    $Result = Set-PVEClusterNotificationsEndpointsGotifyByName -PUTClusterNotificationsEndpointsGotifyRB $PUTClusterNotificationsEndpointsGotifyRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterNotificationsEndpointsGotifyByName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7181,7 +7593,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterNotificationsEndpointsGotifyRB** | [**PUTClusterNotificationsEndpointsGotifyRB**](PUTClusterNotificationsEndpointsGotifyRB.md)| Update existing gotify endpoint | [optional] 
 
 ### Return type
 
@@ -7193,7 +7608,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7201,6 +7616,7 @@ No authorization required
 <a name="Set-PVEClusterNotificationsEndpointsSendmailByName"></a>
 # **Set-PVEClusterNotificationsEndpointsSendmailByName**
 > void Set-PVEClusterNotificationsEndpointsSendmailByName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterNotificationsEndpointsSendmailRB] <PSCustomObject><br>
 
 Update existing sendmail endpoint
 
@@ -7208,10 +7624,11 @@ Update existing sendmail endpoint
 
 ### Example
 ```powershell
+$PUTClusterNotificationsEndpointsSendmailRB = Initialize-PUTClusterNotificationsEndpointsSendmailRB -Author "MyAuthor" -Digest "MyDigest" -FromAddress "MyFromAddress" -Mailto "MyMailto" -MailtoUser "MyMailtoUser" -Comment "MyComment" -Delete "MyDelete" -Disable 0 -Name "MyName" # PUTClusterNotificationsEndpointsSendmailRB | Update existing sendmail endpoint (optional)
 
 # Update existing sendmail endpoint
 try {
-    $Result = Set-PVEClusterNotificationsEndpointsSendmailByName
+    $Result = Set-PVEClusterNotificationsEndpointsSendmailByName -PUTClusterNotificationsEndpointsSendmailRB $PUTClusterNotificationsEndpointsSendmailRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterNotificationsEndpointsSendmailByName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7219,7 +7636,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterNotificationsEndpointsSendmailRB** | [**PUTClusterNotificationsEndpointsSendmailRB**](PUTClusterNotificationsEndpointsSendmailRB.md)| Update existing sendmail endpoint | [optional] 
 
 ### Return type
 
@@ -7231,7 +7651,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7239,6 +7659,7 @@ No authorization required
 <a name="Set-PVEClusterNotificationsEndpointsSmtpByName"></a>
 # **Set-PVEClusterNotificationsEndpointsSmtpByName**
 > void Set-PVEClusterNotificationsEndpointsSmtpByName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterNotificationsEndpointsSmtpRB] <PSCustomObject><br>
 
 Update existing smtp endpoint
 
@@ -7246,10 +7667,11 @@ Update existing smtp endpoint
 
 ### Example
 ```powershell
+$PUTClusterNotificationsEndpointsSmtpRB = Initialize-PUTClusterNotificationsEndpointsSmtpRB -MailtoUser "MyMailtoUser" -Password "MyPassword" -FromAddress "MyFromAddress" -Name "MyName" -Comment "MyComment" -Port 0 -Disable 0 -Server "MyServer" -Mode "insecure" -Author "MyAuthor" -Delete "MyDelete" -Mailto "MyMailto" -Username "MyUsername" -Digest "MyDigest" # PUTClusterNotificationsEndpointsSmtpRB | Update existing smtp endpoint (optional)
 
 # Update existing smtp endpoint
 try {
-    $Result = Set-PVEClusterNotificationsEndpointsSmtpByName
+    $Result = Set-PVEClusterNotificationsEndpointsSmtpByName -PUTClusterNotificationsEndpointsSmtpRB $PUTClusterNotificationsEndpointsSmtpRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterNotificationsEndpointsSmtpByName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7257,7 +7679,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterNotificationsEndpointsSmtpRB** | [**PUTClusterNotificationsEndpointsSmtpRB**](PUTClusterNotificationsEndpointsSmtpRB.md)| Update existing smtp endpoint | [optional] 
 
 ### Return type
 
@@ -7269,7 +7694,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7277,6 +7702,7 @@ No authorization required
 <a name="Set-PVEClusterNotificationsEndpointsWebhookByName"></a>
 # **Set-PVEClusterNotificationsEndpointsWebhookByName**
 > void Set-PVEClusterNotificationsEndpointsWebhookByName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterNotificationsEndpointsWebhookRB] <PSCustomObject><br>
 
 Update existing webhook endpoint
 
@@ -7284,10 +7710,11 @@ Update existing webhook endpoint
 
 ### Example
 ```powershell
+$PUTClusterNotificationsEndpointsWebhookRB = Initialize-PUTClusterNotificationsEndpointsWebhookRB -Secret "MySecret" -Header "MyHeader" -Digest "MyDigest" -Method "post" -Body "MyBody" -Url "MyUrl" -Comment "MyComment" -Delete "MyDelete" -Disable 0 -Name "MyName" # PUTClusterNotificationsEndpointsWebhookRB | Update existing webhook endpoint (optional)
 
 # Update existing webhook endpoint
 try {
-    $Result = Set-PVEClusterNotificationsEndpointsWebhookByName
+    $Result = Set-PVEClusterNotificationsEndpointsWebhookByName -PUTClusterNotificationsEndpointsWebhookRB $PUTClusterNotificationsEndpointsWebhookRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterNotificationsEndpointsWebhookByName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7295,7 +7722,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterNotificationsEndpointsWebhookRB** | [**PUTClusterNotificationsEndpointsWebhookRB**](PUTClusterNotificationsEndpointsWebhookRB.md)| Update existing webhook endpoint | [optional] 
 
 ### Return type
 
@@ -7307,7 +7737,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7315,6 +7745,7 @@ No authorization required
 <a name="Set-PVEClusterNotificationsMatchersByName"></a>
 # **Set-PVEClusterNotificationsMatchersByName**
 > void Set-PVEClusterNotificationsMatchersByName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterNotificationsMatchersRB] <PSCustomObject><br>
 
 Update existing matcher
 
@@ -7322,10 +7753,11 @@ Update existing matcher
 
 ### Example
 ```powershell
+$PUTClusterNotificationsMatchersRB = Initialize-PUTClusterNotificationsMatchersRB -InvertMatch 0 -Mode "all" -Digest "MyDigest" -MatchField "MyMatchField" -Target "MyTarget" -MatchCalendar "MyMatchCalendar" -MatchSeverity "MyMatchSeverity" -Comment "MyComment" -Delete "MyDelete" -Disable 0 -Name "MyName" # PUTClusterNotificationsMatchersRB | Update existing matcher (optional)
 
 # Update existing matcher
 try {
-    $Result = Set-PVEClusterNotificationsMatchersByName
+    $Result = Set-PVEClusterNotificationsMatchersByName -PUTClusterNotificationsMatchersRB $PUTClusterNotificationsMatchersRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterNotificationsMatchersByName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7333,7 +7765,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterNotificationsMatchersRB** | [**PUTClusterNotificationsMatchersRB**](PUTClusterNotificationsMatchersRB.md)| Update existing matcher | [optional] 
 
 ### Return type
 
@@ -7345,7 +7780,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7353,6 +7788,7 @@ No authorization required
 <a name="Set-PVEClusterOptions"></a>
 # **Set-PVEClusterOptions**
 > void Set-PVEClusterOptions<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterOptionsRB] <PSCustomObject><br>
 
 Set datacenter options.
 
@@ -7360,10 +7796,11 @@ Set datacenter options.
 
 ### Example
 ```powershell
+$PUTClusterOptionsRB = Initialize-PUTClusterOptionsRB -HttpProxy "MyHttpProxy" -Description "MyDescription" -U2f "MyU2f" -MaxWorkers 0 -NextId "MyNextId" -MigrationUnsecure 0 -Notify "MyNotify" -Ha "MyHa" -Console "applet" -Language "ar" -MacPrefix "MyMacPrefix" -RegisteredTags "MyRegisteredTags" -Keyboard "de" -Bwlimit "MyBwlimit" -EmailFrom "MyEmailFrom" -Fencing "watchdog" -Migration "MyMigration" -Delete "MyDelete" -Webauthn "MyWebauthn" -UserTagAccess "MyUserTagAccess" -Crs "MyCrs" -TagStyle "MyTagStyle" # PUTClusterOptionsRB | Set datacenter options. (optional)
 
 # Set datacenter options.
 try {
-    $Result = Set-PVEClusterOptions
+    $Result = Set-PVEClusterOptions -PUTClusterOptionsRB $PUTClusterOptionsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterOptions: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7371,7 +7808,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterOptionsRB** | [**PUTClusterOptionsRB**](PUTClusterOptionsRB.md)| Set datacenter options. | [optional] 
 
 ### Return type
 
@@ -7383,7 +7823,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7391,6 +7831,7 @@ No authorization required
 <a name="Set-PVEClusterReplicationById"></a>
 # **Set-PVEClusterReplicationById**
 > void Set-PVEClusterReplicationById<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterReplicationRB] <PSCustomObject><br>
 
 Update replication job configuration.
 
@@ -7398,10 +7839,11 @@ Update replication job configuration.
 
 ### Example
 ```powershell
+$PUTClusterReplicationRB = Initialize-PUTClusterReplicationRB -Source "MySource" -Schedule "MySchedule" -Digest "MyDigest" -Rate 0 -Comment "MyComment" -Delete "MyDelete" -Disable 0 -RemoveJob "local" -Id "MyId" # PUTClusterReplicationRB | Update replication job configuration. (optional)
 
 # Update replication job configuration.
 try {
-    $Result = Set-PVEClusterReplicationById
+    $Result = Set-PVEClusterReplicationById -PUTClusterReplicationRB $PUTClusterReplicationRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterReplicationById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7409,7 +7851,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterReplicationRB** | [**PUTClusterReplicationRB**](PUTClusterReplicationRB.md)| Update replication job configuration. | [optional] 
 
 ### Return type
 
@@ -7421,7 +7866,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7467,6 +7912,7 @@ No authorization required
 <a name="Set-PVEClusterSdnControllersByController"></a>
 # **Set-PVEClusterSdnControllersByController**
 > void Set-PVEClusterSdnControllersByController<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterSdnControllersRB] <PSCustomObject><br>
 
 Update sdn controller object configuration.
 
@@ -7474,10 +7920,11 @@ Update sdn controller object configuration.
 
 ### Example
 ```powershell
+$PUTClusterSdnControllersRB = Initialize-PUTClusterSdnControllersRB -IsisDomain "MyIsisDomain" -IsisIfaces "MyIsisIfaces" -Digest "MyDigest" -Controller "MyController" -BgpMultipathAsPathRelax 0 -EbgpMultihop 0 -Ebgp 0 -IsisNet "MyIsisNet" -Node "MyNode" -Peers "MyPeers" -Asn 0 -Delete "MyDelete" -Loopback "MyLoopback" # PUTClusterSdnControllersRB | Update sdn controller object configuration. (optional)
 
 # Update sdn controller object configuration.
 try {
-    $Result = Set-PVEClusterSdnControllersByController
+    $Result = Set-PVEClusterSdnControllersByController -PUTClusterSdnControllersRB $PUTClusterSdnControllersRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterSdnControllersByController: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7485,7 +7932,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterSdnControllersRB** | [**PUTClusterSdnControllersRB**](PUTClusterSdnControllersRB.md)| Update sdn controller object configuration. | [optional] 
 
 ### Return type
 
@@ -7497,7 +7947,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7505,6 +7955,7 @@ No authorization required
 <a name="Set-PVEClusterSdnDnsByDns"></a>
 # **Set-PVEClusterSdnDnsByDns**
 > void Set-PVEClusterSdnDnsByDns<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterSdnDnsRB] <PSCustomObject><br>
 
 Update sdn dns object configuration.
 
@@ -7512,10 +7963,11 @@ Update sdn dns object configuration.
 
 ### Example
 ```powershell
+$PUTClusterSdnDnsRB = Initialize-PUTClusterSdnDnsRB -Key "MyKey" -Ttl 0 -Digest "MyDigest" -Reversemaskv6 0 -Dns "MyDns" -Delete "MyDelete" -Url "MyUrl" # PUTClusterSdnDnsRB | Update sdn dns object configuration. (optional)
 
 # Update sdn dns object configuration.
 try {
-    $Result = Set-PVEClusterSdnDnsByDns
+    $Result = Set-PVEClusterSdnDnsByDns -PUTClusterSdnDnsRB $PUTClusterSdnDnsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterSdnDnsByDns: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7523,7 +7975,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterSdnDnsRB** | [**PUTClusterSdnDnsRB**](PUTClusterSdnDnsRB.md)| Update sdn dns object configuration. | [optional] 
 
 ### Return type
 
@@ -7535,7 +7990,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7543,6 +7998,7 @@ No authorization required
 <a name="Set-PVEClusterSdnIpamsByIpam"></a>
 # **Set-PVEClusterSdnIpamsByIpam**
 > void Set-PVEClusterSdnIpamsByIpam<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterSdnIpamsRB] <PSCustomObject><br>
 
 Update sdn ipam object configuration.
 
@@ -7550,10 +8006,11 @@ Update sdn ipam object configuration.
 
 ### Example
 ```powershell
+$PUTClusterSdnIpamsRB = Initialize-PUTClusterSdnIpamsRB -Url "MyUrl" -Ipam "MyIpam" -Section 0 -Digest "MyDigest" -Delete "MyDelete" -Token "MyToken" # PUTClusterSdnIpamsRB | Update sdn ipam object configuration. (optional)
 
 # Update sdn ipam object configuration.
 try {
-    $Result = Set-PVEClusterSdnIpamsByIpam
+    $Result = Set-PVEClusterSdnIpamsByIpam -PUTClusterSdnIpamsRB $PUTClusterSdnIpamsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterSdnIpamsByIpam: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7561,7 +8018,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterSdnIpamsRB** | [**PUTClusterSdnIpamsRB**](PUTClusterSdnIpamsRB.md)| Update sdn ipam object configuration. | [optional] 
 
 ### Return type
 
@@ -7573,7 +8033,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7581,6 +8041,7 @@ No authorization required
 <a name="Set-PVEClusterSdnVnetsByVnet"></a>
 # **Set-PVEClusterSdnVnetsByVnet**
 > void Set-PVEClusterSdnVnetsByVnet<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterSdnVnetsRB] <PSCustomObject><br>
 
 Update sdn vnet object configuration.
 
@@ -7588,10 +8049,11 @@ Update sdn vnet object configuration.
 
 ### Example
 ```powershell
+$PUTClusterSdnVnetsRB = Initialize-PUTClusterSdnVnetsRB -Alias "MyAlias" -Digest "MyDigest" -IsolatePorts 0 -Vnet "MyVnet" -Vlanaware 0 -Delete "MyDelete" -Zone "MyZone" -Tag 0 # PUTClusterSdnVnetsRB | Update sdn vnet object configuration. (optional)
 
 # Update sdn vnet object configuration.
 try {
-    $Result = Set-PVEClusterSdnVnetsByVnet
+    $Result = Set-PVEClusterSdnVnetsByVnet -PUTClusterSdnVnetsRB $PUTClusterSdnVnetsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterSdnVnetsByVnet: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7599,7 +8061,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterSdnVnetsRB** | [**PUTClusterSdnVnetsRB**](PUTClusterSdnVnetsRB.md)| Update sdn vnet object configuration. | [optional] 
 
 ### Return type
 
@@ -7611,7 +8076,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7619,6 +8084,7 @@ No authorization required
 <a name="Set-PVEClusterSdnVnetsFirewallOptionsByVnet"></a>
 # **Set-PVEClusterSdnVnetsFirewallOptionsByVnet**
 > void Set-PVEClusterSdnVnetsFirewallOptionsByVnet<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterSdnVnetsFirewallOptionsRB] <PSCustomObject><br>
 
 Set Firewall options.
 
@@ -7626,10 +8092,11 @@ Set Firewall options.
 
 ### Example
 ```powershell
+$PUTClusterSdnVnetsFirewallOptionsRB = Initialize-PUTClusterSdnVnetsFirewallOptionsRB -Digest "MyDigest" -PolicyForward "ACCEPT" -Vnet "MyVnet" -Enable 0 -Delete "MyDelete" -LogLevelForward "emerg" # PUTClusterSdnVnetsFirewallOptionsRB | Set Firewall options. (optional)
 
 # Set Firewall options.
 try {
-    $Result = Set-PVEClusterSdnVnetsFirewallOptionsByVnet
+    $Result = Set-PVEClusterSdnVnetsFirewallOptionsByVnet -PUTClusterSdnVnetsFirewallOptionsRB $PUTClusterSdnVnetsFirewallOptionsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterSdnVnetsFirewallOptionsByVnet: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7637,7 +8104,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterSdnVnetsFirewallOptionsRB** | [**PUTClusterSdnVnetsFirewallOptionsRB**](PUTClusterSdnVnetsFirewallOptionsRB.md)| Set Firewall options. | [optional] 
 
 ### Return type
 
@@ -7649,7 +8119,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7657,6 +8127,7 @@ No authorization required
 <a name="Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos"></a>
 # **Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos**
 > void Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterSdnVnetsFirewallRulesRB] <PSCustomObject><br>
 
 Modify rule data.
 
@@ -7664,10 +8135,11 @@ Modify rule data.
 
 ### Example
 ```powershell
+$PUTClusterSdnVnetsFirewallRulesRB = Initialize-PUTClusterSdnVnetsFirewallRulesRB -Pos 0 -Moveto 0 -Type "in" -Dest "MyDest" -Source "MySource" -Comment "MyComment" -Enable 0 -Macro "MyMacro" -Action "MyAction" -Dport "MyDport" -Log "emerg" -Sport "MySport" -Iface "MyIface" -Delete "MyDelete" -Vnet "MyVnet" -Proto "MyProto" -Digest "MyDigest" -IcmpType "MyIcmpType" # PUTClusterSdnVnetsFirewallRulesRB | Modify rule data. (optional)
 
 # Modify rule data.
 try {
-    $Result = Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos
+    $Result = Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos -PUTClusterSdnVnetsFirewallRulesRB $PUTClusterSdnVnetsFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7675,7 +8147,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterSdnVnetsFirewallRulesRB** | [**PUTClusterSdnVnetsFirewallRulesRB**](PUTClusterSdnVnetsFirewallRulesRB.md)| Modify rule data. | [optional] 
 
 ### Return type
 
@@ -7687,7 +8162,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7695,6 +8170,7 @@ No authorization required
 <a name="Set-PVEClusterSdnVnetsIpsByVnet"></a>
 # **Set-PVEClusterSdnVnetsIpsByVnet**
 > void Set-PVEClusterSdnVnetsIpsByVnet<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterSdnVnetsIpsRB] <PSCustomObject><br>
 
 Update IP Mapping in a VNet
 
@@ -7702,10 +8178,11 @@ Update IP Mapping in a VNet
 
 ### Example
 ```powershell
+$PUTClusterSdnVnetsIpsRB = Initialize-PUTClusterSdnVnetsIpsRB -Mac "MyMac" -Zone "MyZone" -Vmid 0 -Vnet "MyVnet" -Ip "MyIp" # PUTClusterSdnVnetsIpsRB | Update IP Mapping in a VNet (optional)
 
 # Update IP Mapping in a VNet
 try {
-    $Result = Set-PVEClusterSdnVnetsIpsByVnet
+    $Result = Set-PVEClusterSdnVnetsIpsByVnet -PUTClusterSdnVnetsIpsRB $PUTClusterSdnVnetsIpsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterSdnVnetsIpsByVnet: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7713,7 +8190,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterSdnVnetsIpsRB** | [**PUTClusterSdnVnetsIpsRB**](PUTClusterSdnVnetsIpsRB.md)| Update IP Mapping in a VNet | [optional] 
 
 ### Return type
 
@@ -7725,7 +8205,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7733,6 +8213,7 @@ No authorization required
 <a name="Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet"></a>
 # **Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet**
 > void Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterSdnVnetsSubnetsRB] <PSCustomObject><br>
 
 Update sdn subnet object configuration.
 
@@ -7740,10 +8221,11 @@ Update sdn subnet object configuration.
 
 ### Example
 ```powershell
+$PUTClusterSdnVnetsSubnetsRB = Initialize-PUTClusterSdnVnetsSubnetsRB -DhcpRange "MyDhcpRange" -Snat 0 -Digest "MyDigest" -Subnet "MySubnet" -Vnet "MyVnet" -Dnszoneprefix "MyDnszoneprefix" -Delete "MyDelete" -DhcpDnsServer "MyDhcpDnsServer" -Gateway "MyGateway" # PUTClusterSdnVnetsSubnetsRB | Update sdn subnet object configuration. (optional)
 
 # Update sdn subnet object configuration.
 try {
-    $Result = Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet
+    $Result = Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet -PUTClusterSdnVnetsSubnetsRB $PUTClusterSdnVnetsSubnetsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7751,7 +8233,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterSdnVnetsSubnetsRB** | [**PUTClusterSdnVnetsSubnetsRB**](PUTClusterSdnVnetsSubnetsRB.md)| Update sdn subnet object configuration. | [optional] 
 
 ### Return type
 
@@ -7763,7 +8248,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7771,6 +8256,7 @@ No authorization required
 <a name="Set-PVEClusterSdnZonesByZone"></a>
 # **Set-PVEClusterSdnZonesByZone**
 > void Set-PVEClusterSdnZonesByZone<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTClusterSdnZonesRB] <PSCustomObject><br>
 
 Update sdn zone object configuration.
 
@@ -7778,10 +8264,11 @@ Update sdn zone object configuration.
 
 ### Example
 ```powershell
+$PUTClusterSdnZonesRB = Initialize-PUTClusterSdnZonesRB -Reversedns "MyReversedns" -Zone "MyZone" -Ipam "MyIpam" -VxlanPort 0 -Mac "MyMac" -VrfVxlan 0 -Nodes "MyNodes" -Controller "MyController" -VlanProtocol "802.1q" -Dns "MyDns" -Bridge "MyBridge" -Dhcp "dnsmasq" -ExitnodesPrimary "MyExitnodesPrimary" -DpId 0 -DisableArpNdSuppression 0 -Peers "MyPeers" -Tag 0 -AdvertiseSubnets 0 -RtImport "MyRtImport" -BridgeDisableMacLearning 0 -Exitnodes "MyExitnodes" -Delete "MyDelete" -Mtu 0 -ExitnodesLocalRouting 0 -Digest "MyDigest" -Dnszone "MyDnszone" # PUTClusterSdnZonesRB | Update sdn zone object configuration. (optional)
 
 # Update sdn zone object configuration.
 try {
-    $Result = Set-PVEClusterSdnZonesByZone
+    $Result = Set-PVEClusterSdnZonesByZone -PUTClusterSdnZonesRB $PUTClusterSdnZonesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEClusterSdnZonesByZone: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7789,7 +8276,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTClusterSdnZonesRB** | [**PUTClusterSdnZonesRB**](PUTClusterSdnZonesRB.md)| Update sdn zone object configuration. | [optional] 
 
 ### Return type
 
@@ -7801,7 +8291,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

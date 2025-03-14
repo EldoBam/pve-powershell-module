@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Name
 No description available.
-.PARAMETER Type
-No description available.
 .PARAMETER Vmid
+No description available.
+.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -33,12 +33,12 @@ function Initialize-PVEClusterBackupinfoNotbackedupInner {
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("qemu", "lxc")]
         [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid}
+        ${Type}
     )
 
     Process {
@@ -47,7 +47,7 @@ function Initialize-PVEClusterBackupinfoNotbackedupInner {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Type"="type"; "Vmid"="vmid"
+			"Name"="name"; "Vmid"="vmid"; "Type"="type"
         }
 		
 		 $OBJ = @{}
@@ -93,7 +93,7 @@ function ConvertFrom-PVEJsonToClusterBackupinfoNotbackedupInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterBackupinfoNotbackedupInner
-        $AllProperties = ("name", "type", "vmid")
+        $AllProperties = ("name", "vmid", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -106,22 +106,22 @@ function ConvertFrom-PVEJsonToClusterBackupinfoNotbackedupInner {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "name" = ${Name}
-            "type" = ${Type}
             "vmid" = ${Vmid}
+            "type" = ${Type}
         }
 
         return $PSO

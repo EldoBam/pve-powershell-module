@@ -4,14 +4,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InvertMatch** | **Int32** |  | [optional] 
-**MatchField** | **String[]** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**MatchCalendar** | **String[]** |  | [optional] 
 **Mode** | **String** |  | [optional] 
-**Target** | **String[]** |  | [optional] 
-**Disable** | **Int32** |  | [optional] 
-**MatchSeverity** | **String[]** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Target** | **String[]** |  | [optional] 
+**MatchCalendar** | **String[]** |  | [optional] 
+**MatchSeverity** | **String[]** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**MatchField** | **String[]** |  | [optional] 
+**Disable** | **Int32** |  | [optional] 
 **Name** | **String** |  | [optional] 
 
 ## Examples
@@ -19,14 +19,14 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $ClusterNotificationsMatchers = Initialize-PVEClusterNotificationsMatchers  -InvertMatch null `
- -MatchField null `
- -Comment null `
- -MatchCalendar null `
  -Mode null `
- -Target null `
- -Disable null `
- -MatchSeverity null `
  -Digest null `
+ -Target null `
+ -MatchCalendar null `
+ -MatchSeverity null `
+ -Comment null `
+ -MatchField null `
+ -Disable null `
  -Name null
 ```
 

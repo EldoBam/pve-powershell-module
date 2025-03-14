@@ -15,7 +15,8 @@ Method | HTTP request | Description
 
 <a name="Get-PVEPools"></a>
 # **Get-PVEPools**
-> Pools Get-PVEPools<br>
+> PoolsGETInner[] Get-PVEPools<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETPoolsRB] <PSCustomObject><br>
 
 List pools or get pool configuration.
 
@@ -23,10 +24,11 @@ List pools or get pool configuration.
 
 ### Example
 ```powershell
+$GETPoolsRB = Initialize-GETPoolsRB -Type "qemu" -Poolid "MyPoolid" # GETPoolsRB | List pools or get pool configuration. (optional)
 
 # List pools or get pool configuration.
 try {
-    $Result = Get-PVEPools
+    $Result = Get-PVEPools -GETPoolsRB $GETPoolsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEPools: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -34,11 +36,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETPoolsRB** | [**GETPoolsRB**](GETPoolsRB.md)| List pools or get pool configuration. | [optional] 
 
 ### Return type
 
-[**Pools**](Pools.md) (PSCustomObject)
+[**PoolsGETInner[]**](PoolsGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -46,7 +51,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -54,6 +59,7 @@ No authorization required
 <a name="Get-PVEPoolsByPoolid"></a>
 # **Get-PVEPoolsByPoolid**
 > Pools Get-PVEPoolsByPoolid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETPoolsRB] <PSCustomObject><br>
 
 Get pool configuration (deprecated, no support for nested pools, use 'GET /pools/?poolid={poolid}').
 
@@ -61,10 +67,11 @@ Get pool configuration (deprecated, no support for nested pools, use 'GET /pools
 
 ### Example
 ```powershell
+$GETPoolsRB = Initialize-GETPoolsRB -Type "qemu" -Poolid "MyPoolid" # GETPoolsRB | Get pool configuration (deprecated, no support for nested pools, use 'GET /pools/?poolid={poolid}'). (optional)
 
 # Get pool configuration (deprecated, no support for nested pools, use 'GET /pools/?poolid={poolid}').
 try {
-    $Result = Get-PVEPoolsByPoolid
+    $Result = Get-PVEPoolsByPoolid -GETPoolsRB $GETPoolsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEPoolsByPoolid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -72,7 +79,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **GETPoolsRB** | [**GETPoolsRB**](GETPoolsRB.md)| Get pool configuration (deprecated, no support for nested pools, use &#39;GET /pools/?poolid&#x3D;{poolid}&#39;). | [optional] 
 
 ### Return type
 
@@ -84,7 +94,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -92,6 +102,7 @@ No authorization required
 <a name="New-PVEPools"></a>
 # **New-PVEPools**
 > void New-PVEPools<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTPoolsRB] <PSCustomObject><br>
 
 Create new pool.
 
@@ -99,10 +110,11 @@ Create new pool.
 
 ### Example
 ```powershell
+$POSTPoolsRB = Initialize-POSTPoolsRB -Comment "MyComment" -Poolid "MyPoolid" # POSTPoolsRB | Create new pool. (optional)
 
 # Create new pool.
 try {
-    $Result = New-PVEPools
+    $Result = New-PVEPools -POSTPoolsRB $POSTPoolsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEPools: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -110,7 +122,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTPoolsRB** | [**POSTPoolsRB**](POSTPoolsRB.md)| Create new pool. | [optional] 
 
 ### Return type
 
@@ -122,7 +137,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -130,6 +145,7 @@ No authorization required
 <a name="Remove-PVEPools"></a>
 # **Remove-PVEPools**
 > void Remove-PVEPools<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETEPoolsRB] <PSCustomObject><br>
 
 Delete pool.
 
@@ -137,10 +153,11 @@ Delete pool.
 
 ### Example
 ```powershell
+$DELETEPoolsRB = Initialize-DELETEPoolsRB -Poolid "MyPoolid" # DELETEPoolsRB | Delete pool. (optional)
 
 # Delete pool.
 try {
-    $Result = Remove-PVEPools
+    $Result = Remove-PVEPools -DELETEPoolsRB $DELETEPoolsRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEPools: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -148,7 +165,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **DELETEPoolsRB** | [**DELETEPoolsRB**](DELETEPoolsRB.md)| Delete pool. | [optional] 
 
 ### Return type
 
@@ -160,7 +180,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -206,6 +226,7 @@ No authorization required
 <a name="Set-PVEPools"></a>
 # **Set-PVEPools**
 > void Set-PVEPools<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTPoolsRB] <PSCustomObject><br>
 
 Update pool.
 
@@ -213,10 +234,11 @@ Update pool.
 
 ### Example
 ```powershell
+$PUTPoolsRB = Initialize-PUTPoolsRB -Poolid "MyPoolid" -AllowMove 0 -Storage "MyStorage" -Delete 0 -Comment "MyComment" -Vms "MyVms" # PUTPoolsRB | Update pool. (optional)
 
 # Update pool.
 try {
-    $Result = Set-PVEPools
+    $Result = Set-PVEPools -PUTPoolsRB $PUTPoolsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEPools: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -224,7 +246,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTPoolsRB** | [**PUTPoolsRB**](PUTPoolsRB.md)| Update pool. | [optional] 
 
 ### Return type
 
@@ -236,7 +261,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -244,6 +269,7 @@ No authorization required
 <a name="Set-PVEPoolsByPoolid"></a>
 # **Set-PVEPoolsByPoolid**
 > void Set-PVEPoolsByPoolid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTPoolsRB] <PSCustomObject><br>
 
 Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poolid={poolid}' instead).
 
@@ -251,10 +277,11 @@ Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poo
 
 ### Example
 ```powershell
+$PUTPoolsRB = Initialize-PUTPoolsRB -Poolid "MyPoolid" -AllowMove 0 -Storage "MyStorage" -Delete 0 -Comment "MyComment" -Vms "MyVms" # PUTPoolsRB | Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poolid={poolid}' instead). (optional)
 
 # Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poolid={poolid}' instead).
 try {
-    $Result = Set-PVEPoolsByPoolid
+    $Result = Set-PVEPoolsByPoolid -PUTPoolsRB $PUTPoolsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEPoolsByPoolid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -262,7 +289,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **PUTPoolsRB** | [**PUTPoolsRB**](PUTPoolsRB.md)| Update pool data (deprecated, no support for nested pools - use &#39;PUT /pools/?poolid&#x3D;{poolid}&#39; instead). | [optional] 
 
 ### Return type
 
@@ -274,7 +304,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

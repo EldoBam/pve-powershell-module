@@ -17,11 +17,11 @@ No description available.
 
 .PARAMETER Comment
 No description available.
-.PARAMETER Name
-No description available.
 .PARAMETER Digest
 No description available.
 .PARAMETER Server
+No description available.
+.PARAMETER Name
 No description available.
 .PARAMETER Disable
 No description available.
@@ -38,13 +38,13 @@ function Initialize-PVEClusterNotificationsEndpointsGotify {
         ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Server},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Disable}
@@ -68,7 +68,7 @@ function Initialize-PVEClusterNotificationsEndpointsGotify {
 
 
 		 $DisplayNameMapping =@{
-			"Comment"="comment"; "Name"="name"; "Digest"="digest"; "Server"="server"; "Disable"="disable"
+			"Comment"="comment"; "Digest"="digest"; "Server"="server"; "Name"="name"; "Disable"="disable"
         }
 		
 		 $OBJ = @{}
@@ -114,7 +114,7 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsGotify {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterNotificationsEndpointsGotify
-        $AllProperties = ("comment", "name", "digest", "server", "disable")
+        $AllProperties = ("comment", "digest", "server", "name", "disable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -125,12 +125,6 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsGotify {
             $Comment = $null
         } else {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -145,6 +139,12 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsGotify {
             $Server = $JsonParameters.PSobject.Properties["server"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
             $Disable = $null
         } else {
@@ -153,9 +153,9 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsGotify {
 
         $PSO = [PSCustomObject]@{
             "comment" = ${Comment}
-            "name" = ${Name}
             "digest" = ${Digest}
             "server" = ${Server}
+            "name" = ${Name}
             "disable" = ${Disable}
         }
 

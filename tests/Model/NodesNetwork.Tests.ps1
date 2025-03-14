@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesNetwork' {
     Context 'PVENodesNetwork' {
         It 'Initialize-PVENodesNetwork' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesNetwork -Method "TEST_VALUE" -Type "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesNetwork -Type "TEST_VALUE" -Method "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesNetwork
             #$NewObject.property | Should -Be 0
         }

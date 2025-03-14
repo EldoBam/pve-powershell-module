@@ -4,12 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Author** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**MailtoUser** | **String[]** |  | [optional] 
-**Disable** | **Int32** |  | [optional] 
-**Mailto** | **String[]** |  | [optional] 
-**FromAddress** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**FromAddress** | **String** |  | [optional] 
+**Mailto** | **String[]** |  | [optional] 
+**MailtoUser** | **String[]** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Disable** | **Int32** |  | [optional] 
 **Name** | **String** |  | [optional] 
 
 ## Examples
@@ -17,12 +17,12 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $ClusterNotificationsEndpointsSendmail = Initialize-PVEClusterNotificationsEndpointsSendmail  -Author null `
- -Comment null `
- -MailtoUser null `
- -Disable null `
- -Mailto null `
- -FromAddress null `
  -Digest null `
+ -FromAddress null `
+ -Mailto null `
+ -MailtoUser null `
+ -Comment null `
+ -Disable null `
  -Name null
 ```
 

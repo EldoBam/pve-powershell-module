@@ -19,11 +19,11 @@ No description available.
 No description available.
 .PARAMETER Name
 No description available.
-.PARAMETER Origin
-No description available.
 .PARAMETER Type
 No description available.
 .PARAMETER Disable
+No description available.
+.PARAMETER Origin
 No description available.
 .OUTPUTS
 
@@ -40,16 +40,16 @@ function Initialize-PVEClusterNotificationsTargetsInner {
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("user-created", "builtin", "modified-builtin")]
-        [String]
-        ${Origin},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("sendmail", "gotify", "smtp", "webhook")]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Disable}
+        ${Disable},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("user-created", "builtin", "modified-builtin")]
+        [String]
+        ${Origin}
     )
 
     Process {
@@ -66,7 +66,7 @@ function Initialize-PVEClusterNotificationsTargetsInner {
 
 
 		 $DisplayNameMapping =@{
-			"Comment"="comment"; "Name"="name"; "Origin"="origin"; "Type"="type"; "Disable"="disable"
+			"Comment"="comment"; "Name"="name"; "Type"="type"; "Disable"="disable"; "Origin"="origin"
         }
 		
 		 $OBJ = @{}
@@ -112,7 +112,7 @@ function ConvertFrom-PVEJsonToClusterNotificationsTargetsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterNotificationsTargetsInner
-        $AllProperties = ("comment", "name", "origin", "type", "disable")
+        $AllProperties = ("comment", "name", "type", "disable", "origin")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -131,12 +131,6 @@ function ConvertFrom-PVEJsonToClusterNotificationsTargetsInner {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "origin"))) { #optional property not found
-            $Origin = $null
-        } else {
-            $Origin = $JsonParameters.PSobject.Properties["origin"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
             $Type = $null
         } else {
@@ -149,12 +143,18 @@ function ConvertFrom-PVEJsonToClusterNotificationsTargetsInner {
             $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "origin"))) { #optional property not found
+            $Origin = $null
+        } else {
+            $Origin = $JsonParameters.PSobject.Properties["origin"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "comment" = ${Comment}
             "name" = ${Name}
-            "origin" = ${Origin}
             "type" = ${Type}
             "disable" = ${Disable}
+            "origin" = ${Origin}
         }
 
         return $PSO

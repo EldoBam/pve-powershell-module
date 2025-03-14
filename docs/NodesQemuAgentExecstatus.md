@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ErrTruncated** | **Int32** |  | [optional] 
-**Exited** | **Int32** |  | [optional] 
-**OutTruncated** | **Int32** |  | [optional] 
-**OutData** | **String** |  | [optional] 
 **ErrData** | **String** |  | [optional] 
+**OutData** | **String** |  | [optional] 
 **Exitcode** | **Int32** |  | [optional] 
+**OutTruncated** | **Int32** |  | [optional] 
+**Exited** | **Int32** |  | [optional] 
 **Signal** | **Int32** |  | [optional] 
+**ErrTruncated** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuAgentExecstatus = Initialize-PVENodesQemuAgentExecstatus  -ErrTruncated null `
- -Exited null `
- -OutTruncated null `
+$NodesQemuAgentExecstatus = Initialize-PVENodesQemuAgentExecstatus  -ErrData null `
  -OutData null `
- -ErrData null `
  -Exitcode null `
- -Signal null
+ -OutTruncated null `
+ -Exited null `
+ -Signal null `
+ -ErrTruncated null
 ```
 
 - Convert the resource to JSON

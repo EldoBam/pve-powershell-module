@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Types** | **String[]** |  | [optional] 
 **Realm** | **String** |  | [optional] 
 **User** | **String** |  | [optional] 
+**Types** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessUsersTfa = Initialize-PVEAccessUsersTfa  -Types null `
- -Realm null `
- -User null
+$AccessUsersTfa = Initialize-PVEAccessUsersTfa  -Realm null `
+ -User null `
+ -Types null
 ```
 
 - Convert the resource to JSON

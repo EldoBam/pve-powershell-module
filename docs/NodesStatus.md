@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CurrentKernel** | [**NodesStatusCurrentKernel**](NodesStatusCurrentKernel.md) |  | [optional] 
 **BootInfo** | [**NodesStatusBootInfo**](NodesStatusBootInfo.md) |  | [optional] 
+**CurrentKernel** | [**NodesStatusCurrentKernel**](NodesStatusCurrentKernel.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStatus = Initialize-PVENodesStatus  -CurrentKernel null `
- -BootInfo null
+$NodesStatus = Initialize-PVENodesStatus  -BootInfo null `
+ -CurrentKernel null
 ```
 
 - Convert the resource to JSON

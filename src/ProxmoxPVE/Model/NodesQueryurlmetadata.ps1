@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Mimetype
-No description available.
 .PARAMETER Filename
+No description available.
+.PARAMETER Mimetype
 No description available.
 .PARAMETER Size
 No description available.
@@ -31,10 +31,10 @@ function Initialize-PVENodesQueryurlmetadata {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Mimetype},
+        ${Filename},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Filename},
+        ${Mimetype},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Size}
@@ -46,7 +46,7 @@ function Initialize-PVENodesQueryurlmetadata {
 
 
 		 $DisplayNameMapping =@{
-			"Mimetype"="mimetype"; "Filename"="filename"; "Size"="size"
+			"Filename"="filename"; "Mimetype"="mimetype"; "Size"="size"
         }
 		
 		 $OBJ = @{}
@@ -92,23 +92,23 @@ function ConvertFrom-PVEJsonToNodesQueryurlmetadata {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesQueryurlmetadata
-        $AllProperties = ("mimetype", "filename", "size")
+        $AllProperties = ("filename", "mimetype", "size")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mimetype"))) { #optional property not found
-            $Mimetype = $null
-        } else {
-            $Mimetype = $JsonParameters.PSobject.Properties["mimetype"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "filename"))) { #optional property not found
             $Filename = $null
         } else {
             $Filename = $JsonParameters.PSobject.Properties["filename"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mimetype"))) { #optional property not found
+            $Mimetype = $null
+        } else {
+            $Mimetype = $JsonParameters.PSobject.Properties["mimetype"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
@@ -118,8 +118,8 @@ function ConvertFrom-PVEJsonToNodesQueryurlmetadata {
         }
 
         $PSO = [PSCustomObject]@{
-            "mimetype" = ${Mimetype}
             "filename" = ${Filename}
+            "mimetype" = ${Mimetype}
             "size" = ${Size}
         }
 

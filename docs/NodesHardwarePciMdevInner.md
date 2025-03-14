@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Available** | **Int32** |  | [optional] 
 **Type** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$NodesHardwarePciMdevInner = Initialize-PVENodesHardwarePciMdevInner  -Name null `
- -Description null `
+$NodesHardwarePciMdevInner = Initialize-PVENodesHardwarePciMdevInner  -Description null `
+ -Name null `
  -Available null `
  -Type null
 ```

@@ -15,35 +15,35 @@ No summary available.
 
 No description available.
 
-.PARAMETER Enable
+.PARAMETER Pos
 No description available.
 .PARAMETER Type
 No description available.
-.PARAMETER Dest
+.PARAMETER Ipversion
 No description available.
-.PARAMETER IcmpType
+.PARAMETER Dest
 No description available.
 .PARAMETER Source
 No description available.
 .PARAMETER Comment
 No description available.
+.PARAMETER Enable
+No description available.
+.PARAMETER Action
+No description available.
+.PARAMETER Macro
+No description available.
+.PARAMETER Iface
+No description available.
 .PARAMETER Dport
 No description available.
 .PARAMETER Log
 No description available.
-.PARAMETER Macro
-No description available.
-.PARAMETER Pos
-No description available.
-.PARAMETER Ipversion
+.PARAMETER Sport
 No description available.
 .PARAMETER Proto
 No description available.
-.PARAMETER Iface
-No description available.
-.PARAMETER Sport
-No description available.
-.PARAMETER Action
+.PARAMETER IcmpType
 No description available.
 .OUTPUTS
 
@@ -55,22 +55,34 @@ function Initialize-PVENodesLxcFirewallRules {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Enable},
+        ${Pos},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Dest},
+        [System.Nullable[Int32]]
+        ${Ipversion},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${IcmpType},
+        ${Dest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Source},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Enable},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Action},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Macro},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Iface},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Dport},
@@ -80,25 +92,13 @@ function Initialize-PVENodesLxcFirewallRules {
         ${Log},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Macro},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Pos},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Ipversion},
+        ${Sport},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Proto},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Iface},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Sport},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Action}
+        ${IcmpType}
     )
 
     Process {
@@ -107,7 +107,7 @@ function Initialize-PVENodesLxcFirewallRules {
 
 
 		 $DisplayNameMapping =@{
-			"Enable"="enable"; "Type"="type"; "Dest"="dest"; "IcmpType"="icmp-type"; "Source"="source"; "Comment"="comment"; "Dport"="dport"; "Log"="log"; "Macro"="macro"; "Pos"="pos"; "Ipversion"="ipversion"; "Proto"="proto"; "Iface"="iface"; "Sport"="sport"; "Action"="action"
+			"Pos"="pos"; "Type"="type"; "Ipversion"="ipversion"; "Dest"="dest"; "Source"="source"; "Comment"="comment"; "Enable"="enable"; "Action"="action"; "Macro"="macro"; "Iface"="iface"; "Dport"="dport"; "Log"="log"; "Sport"="sport"; "Proto"="proto"; "IcmpType"="icmp-type"
         }
 		
 		 $OBJ = @{}
@@ -153,17 +153,17 @@ function ConvertFrom-PVEJsonToNodesLxcFirewallRules {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesLxcFirewallRules
-        $AllProperties = ("enable", "type", "dest", "icmp-type", "source", "comment", "dport", "log", "macro", "pos", "ipversion", "proto", "iface", "sport", "action")
+        $AllProperties = ("pos", "type", "ipversion", "dest", "source", "comment", "enable", "action", "macro", "iface", "dport", "log", "sport", "proto", "icmp-type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
-            $Enable = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
+            $Pos = $null
         } else {
-            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+            $Pos = $JsonParameters.PSobject.Properties["pos"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
@@ -172,16 +172,16 @@ function ConvertFrom-PVEJsonToNodesLxcFirewallRules {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipversion"))) { #optional property not found
+            $Ipversion = $null
+        } else {
+            $Ipversion = $JsonParameters.PSobject.Properties["ipversion"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dest"))) { #optional property not found
             $Dest = $null
         } else {
             $Dest = $JsonParameters.PSobject.Properties["dest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "icmp-type"))) { #optional property not found
-            $IcmpType = $null
-        } else {
-            $IcmpType = $JsonParameters.PSobject.Properties["icmp-type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
@@ -196,6 +196,30 @@ function ConvertFrom-PVEJsonToNodesLxcFirewallRules {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
+            $Enable = $null
+        } else {
+            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "action"))) { #optional property not found
+            $Action = $null
+        } else {
+            $Action = $JsonParameters.PSobject.Properties["action"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "macro"))) { #optional property not found
+            $Macro = $null
+        } else {
+            $Macro = $JsonParameters.PSobject.Properties["macro"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "iface"))) { #optional property not found
+            $Iface = $null
+        } else {
+            $Iface = $JsonParameters.PSobject.Properties["iface"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dport"))) { #optional property not found
             $Dport = $null
         } else {
@@ -208,22 +232,10 @@ function ConvertFrom-PVEJsonToNodesLxcFirewallRules {
             $Log = $JsonParameters.PSobject.Properties["log"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "macro"))) { #optional property not found
-            $Macro = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sport"))) { #optional property not found
+            $Sport = $null
         } else {
-            $Macro = $JsonParameters.PSobject.Properties["macro"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
-            $Pos = $null
-        } else {
-            $Pos = $JsonParameters.PSobject.Properties["pos"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipversion"))) { #optional property not found
-            $Ipversion = $null
-        } else {
-            $Ipversion = $JsonParameters.PSobject.Properties["ipversion"].value
+            $Sport = $JsonParameters.PSobject.Properties["sport"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "proto"))) { #optional property not found
@@ -232,40 +244,28 @@ function ConvertFrom-PVEJsonToNodesLxcFirewallRules {
             $Proto = $JsonParameters.PSobject.Properties["proto"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "iface"))) { #optional property not found
-            $Iface = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "icmp-type"))) { #optional property not found
+            $IcmpType = $null
         } else {
-            $Iface = $JsonParameters.PSobject.Properties["iface"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sport"))) { #optional property not found
-            $Sport = $null
-        } else {
-            $Sport = $JsonParameters.PSobject.Properties["sport"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "action"))) { #optional property not found
-            $Action = $null
-        } else {
-            $Action = $JsonParameters.PSobject.Properties["action"].value
+            $IcmpType = $JsonParameters.PSobject.Properties["icmp-type"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "enable" = ${Enable}
+            "pos" = ${Pos}
             "type" = ${Type}
+            "ipversion" = ${Ipversion}
             "dest" = ${Dest}
-            "icmp-type" = ${IcmpType}
             "source" = ${Source}
             "comment" = ${Comment}
+            "enable" = ${Enable}
+            "action" = ${Action}
+            "macro" = ${Macro}
+            "iface" = ${Iface}
             "dport" = ${Dport}
             "log" = ${Log}
-            "macro" = ${Macro}
-            "pos" = ${Pos}
-            "ipversion" = ${Ipversion}
-            "proto" = ${Proto}
-            "iface" = ${Iface}
             "sport" = ${Sport}
-            "action" = ${Action}
+            "proto" = ${Proto}
+            "icmp-type" = ${IcmpType}
         }
 
         return $PSO

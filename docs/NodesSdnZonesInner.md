@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Zone** | **String** |  | [optional] 
 **Status** | **String** |  | [optional] 
+**Zone** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesSdnZonesInner = Initialize-PVENodesSdnZonesInner  -Zone null `
- -Status null
+$NodesSdnZonesInner = Initialize-PVENodesSdnZonesInner  -Status null `
+ -Zone null
 ```
 
 - Convert the resource to JSON

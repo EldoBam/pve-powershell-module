@@ -15,15 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Challenge
+No description available.
+.PARAMETER Recovery
+No description available.
 .PARAMETER Id
-No description available.
-.PARAMETER Type
-No description available.
-.PARAMETER Description
-No description available.
-.PARAMETER Enable
-No description available.
-.PARAMETER Created
 No description available.
 .OUTPUTS
 
@@ -35,37 +31,22 @@ function Initialize-PVEAccessTfa {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
+        ${Challenge},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("totp", "u2f", "webauthn", "recovery", "yubico")]
+        [String[]]
+        ${Recovery},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Description},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Created}
+        ${Id}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEAccessTfa' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Enable -and $Enable -gt 1) {
-          throw "invalid value for 'Enable', must be smaller than or equal to 1."
-        }
-
-        if ($Enable -and $Enable -lt 0) {
-          throw "invalid value for 'Enable', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Id"="id"; "Type"="type"; "Description"="description"; "Enable"="enable"; "Created"="created"
+			"Challenge"="challenge"; "Recovery"="recovery"; "Id"="id"
         }
 		
 		 $OBJ = @{}
@@ -111,11 +92,23 @@ function ConvertFrom-PVEJsonToAccessTfa {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessTfa
-        $AllProperties = ("id", "type", "description", "enable", "created")
+        $AllProperties = ("challenge", "recovery", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "challenge"))) { #optional property not found
+            $Challenge = $null
+        } else {
+            $Challenge = $JsonParameters.PSobject.Properties["challenge"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "recovery"))) { #optional property not found
+            $Recovery = $null
+        } else {
+            $Recovery = $JsonParameters.PSobject.Properties["recovery"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -124,36 +117,10 @@ function ConvertFrom-PVEJsonToAccessTfa {
             $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
-            $Enable = $null
-        } else {
-            $Enable = $JsonParameters.PSobject.Properties["enable"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created"))) { #optional property not found
-            $Created = $null
-        } else {
-            $Created = $JsonParameters.PSobject.Properties["created"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "challenge" = ${Challenge}
+            "recovery" = ${Recovery}
             "id" = ${Id}
-            "type" = ${Type}
-            "description" = ${Description}
-            "enable" = ${Enable}
-            "created" = ${Created}
         }
 
         return $PSO

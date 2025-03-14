@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER CurrentKernel
-No description available.
 .PARAMETER BootInfo
+No description available.
+.PARAMETER CurrentKernel
 No description available.
 .OUTPUTS
 
@@ -29,10 +29,10 @@ function Initialize-PVENodesStatus {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
-        ${CurrentKernel},
+        ${BootInfo},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
-        ${BootInfo}
+        ${CurrentKernel}
     )
 
     Process {
@@ -41,7 +41,7 @@ function Initialize-PVENodesStatus {
 
 
 		 $DisplayNameMapping =@{
-			"CurrentKernel"="current-kernel"; "BootInfo"="boot-info"
+			"BootInfo"="boot-info"; "CurrentKernel"="current-kernel"
         }
 		
 		 $OBJ = @{}
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToNodesStatus {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesStatus
-        $AllProperties = ("current-kernel", "boot-info")
+        $AllProperties = ("boot-info", "current-kernel")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "current-kernel"))) { #optional property not found
-            $CurrentKernel = $null
-        } else {
-            $CurrentKernel = $JsonParameters.PSobject.Properties["current-kernel"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "boot-info"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToNodesStatus {
             $BootInfo = $JsonParameters.PSobject.Properties["boot-info"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "current-kernel"))) { #optional property not found
+            $CurrentKernel = $null
+        } else {
+            $CurrentKernel = $JsonParameters.PSobject.Properties["current-kernel"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "current-kernel" = ${CurrentKernel}
             "boot-info" = ${BootInfo}
+            "current-kernel" = ${CurrentKernel}
         }
 
         return $PSO

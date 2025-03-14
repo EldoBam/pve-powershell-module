@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Username** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**Author** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**MailtoUser** | **String[]** |  | [optional] 
-**Server** | **String** |  | [optional] 
 **Mode** | **String** |  | [optional] 
-**Disable** | **Int32** |  | [optional] 
-**Mailto** | **String[]** |  | [optional] 
-**FromAddress** | **String** |  | [optional] 
+**Author** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**FromAddress** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Mailto** | **String[]** |  | [optional] 
+**MailtoUser** | **String[]** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Disable** | **Int32** |  | [optional] 
 **Name** | **String** |  | [optional] 
 
 ## Examples
@@ -21,16 +21,16 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $ClusterNotificationsEndpointsSmtp = Initialize-PVEClusterNotificationsEndpointsSmtp  -Username null `
- -Port null `
- -Author null `
- -Comment null `
- -MailtoUser null `
- -Server null `
  -Mode null `
- -Disable null `
- -Mailto null `
- -FromAddress null `
+ -Author null `
  -Digest null `
+ -FromAddress null `
+ -Port null `
+ -Server null `
+ -Mailto null `
+ -MailtoUser null `
+ -Comment null `
+ -Disable null `
  -Name null
 ```
 

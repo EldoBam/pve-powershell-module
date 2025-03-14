@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ugid** | **String** |  | [optional] 
 **Propagate** | **Int32** |  | [optional] 
 **Roleid** | **String** |  | [optional] 
 **Path** | **String** |  | [optional] 
+**Ugid** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessAclInner = Initialize-PVEAccessAclInner  -Ugid null `
- -Propagate null `
+$AccessAclInner = Initialize-PVEAccessAclInner  -Propagate null `
  -Roleid null `
  -Path null `
+ -Ugid null `
  -Type null
 ```
 

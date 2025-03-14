@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Zone
-No description available.
 .PARAMETER Status
+No description available.
+.PARAMETER Zone
 No description available.
 .OUTPUTS
 
@@ -28,12 +28,12 @@ function Initialize-PVENodesSdnZonesInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Zone},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("available", "pending", "error")]
         [String]
-        ${Status}
+        ${Status},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Zone}
     )
 
     Process {
@@ -42,7 +42,7 @@ function Initialize-PVENodesSdnZonesInner {
 
 
 		 $DisplayNameMapping =@{
-			"Zone"="zone"; "Status"="status"
+			"Status"="status"; "Zone"="zone"
         }
 		
 		 $OBJ = @{}
@@ -88,17 +88,11 @@ function ConvertFrom-PVEJsonToNodesSdnZonesInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesSdnZonesInner
-        $AllProperties = ("zone", "status")
+        $AllProperties = ("status", "zone")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
-            $Zone = $null
-        } else {
-            $Zone = $JsonParameters.PSobject.Properties["zone"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
@@ -107,9 +101,15 @@ function ConvertFrom-PVEJsonToNodesSdnZonesInner {
             $Status = $JsonParameters.PSobject.Properties["status"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
+            $Zone = $null
+        } else {
+            $Zone = $JsonParameters.PSobject.Properties["zone"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "zone" = ${Zone}
             "status" = ${Status}
+            "zone" = ${Zone}
         }
 
         return $PSO

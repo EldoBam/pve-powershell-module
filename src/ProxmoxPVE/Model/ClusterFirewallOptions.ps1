@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER PolicyOut
-No description available.
 .PARAMETER PolicyIn
 No description available.
 .PARAMETER PolicyForward
 No description available.
+.PARAMETER LogRatelimit
+No description available.
 .PARAMETER Ebtables
 No description available.
-.PARAMETER LogRatelimit
+.PARAMETER PolicyOut
 No description available.
 .PARAMETER Enable
 No description available.
@@ -38,21 +38,21 @@ function Initialize-PVEClusterFirewallOptions {
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ACCEPT", "REJECT", "DROP")]
         [String]
-        ${PolicyOut},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("ACCEPT", "REJECT", "DROP")]
-        [String]
         ${PolicyIn},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ACCEPT", "DROP")]
         [String]
         ${PolicyForward},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${LogRatelimit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Ebtables},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("ACCEPT", "REJECT", "DROP")]
         [String]
-        ${LogRatelimit},
+        ${PolicyOut},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Enable}
@@ -72,7 +72,7 @@ function Initialize-PVEClusterFirewallOptions {
 
 
 		 $DisplayNameMapping =@{
-			"PolicyOut"="policy_out"; "PolicyIn"="policy_in"; "PolicyForward"="policy_forward"; "Ebtables"="ebtables"; "LogRatelimit"="log_ratelimit"; "Enable"="enable"
+			"PolicyIn"="policy_in"; "PolicyForward"="policy_forward"; "LogRatelimit"="log_ratelimit"; "Ebtables"="ebtables"; "PolicyOut"="policy_out"; "Enable"="enable"
         }
 		
 		 $OBJ = @{}
@@ -118,17 +118,11 @@ function ConvertFrom-PVEJsonToClusterFirewallOptions {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterFirewallOptions
-        $AllProperties = ("policy_out", "policy_in", "policy_forward", "ebtables", "log_ratelimit", "enable")
+        $AllProperties = ("policy_in", "policy_forward", "log_ratelimit", "ebtables", "policy_out", "enable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_out"))) { #optional property not found
-            $PolicyOut = $null
-        } else {
-            $PolicyOut = $JsonParameters.PSobject.Properties["policy_out"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_in"))) { #optional property not found
@@ -143,16 +137,22 @@ function ConvertFrom-PVEJsonToClusterFirewallOptions {
             $PolicyForward = $JsonParameters.PSobject.Properties["policy_forward"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_ratelimit"))) { #optional property not found
+            $LogRatelimit = $null
+        } else {
+            $LogRatelimit = $JsonParameters.PSobject.Properties["log_ratelimit"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "ebtables"))) { #optional property not found
             $Ebtables = $null
         } else {
             $Ebtables = $JsonParameters.PSobject.Properties["ebtables"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_ratelimit"))) { #optional property not found
-            $LogRatelimit = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_out"))) { #optional property not found
+            $PolicyOut = $null
         } else {
-            $LogRatelimit = $JsonParameters.PSobject.Properties["log_ratelimit"].value
+            $PolicyOut = $JsonParameters.PSobject.Properties["policy_out"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
@@ -162,11 +162,11 @@ function ConvertFrom-PVEJsonToClusterFirewallOptions {
         }
 
         $PSO = [PSCustomObject]@{
-            "policy_out" = ${PolicyOut}
             "policy_in" = ${PolicyIn}
             "policy_forward" = ${PolicyForward}
-            "ebtables" = ${Ebtables}
             "log_ratelimit" = ${LogRatelimit}
+            "ebtables" = ${Ebtables}
+            "policy_out" = ${PolicyOut}
             "enable" = ${Enable}
         }
 

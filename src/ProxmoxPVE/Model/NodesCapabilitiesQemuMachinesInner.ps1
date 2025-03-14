@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Id
+.PARAMETER Version
 No description available.
 .PARAMETER Type
 No description available.
-.PARAMETER Version
+.PARAMETER Id
 No description available.
 .OUTPUTS
 
@@ -31,14 +31,14 @@ function Initialize-PVENodesCapabilitiesQemuMachinesInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
+        ${Version},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("q35", "i440fx")]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Version}
+        ${Id}
     )
 
     Process {
@@ -47,7 +47,7 @@ function Initialize-PVENodesCapabilitiesQemuMachinesInner {
 
 
 		 $DisplayNameMapping =@{
-			"Id"="id"; "Type"="type"; "Version"="version"
+			"Version"="version"; "Type"="type"; "Id"="id"
         }
 		
 		 $OBJ = @{}
@@ -93,23 +93,11 @@ function ConvertFrom-PVEJsonToNodesCapabilitiesQemuMachinesInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCapabilitiesQemuMachinesInner
-        $AllProperties = ("id", "type", "version")
+        $AllProperties = ("version", "type", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "version"))) { #optional property not found
@@ -118,10 +106,22 @@ function ConvertFrom-PVEJsonToNodesCapabilitiesQemuMachinesInner {
             $Version = $JsonParameters.PSobject.Properties["version"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "type" = ${Type}
             "version" = ${Version}
+            "type" = ${Type}
+            "id" = ${Id}
         }
 
         return $PSO

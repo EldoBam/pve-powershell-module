@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterConfigJoin' {
     Context 'PVEClusterConfigJoin' {
         It 'Initialize-PVEClusterConfigJoin' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterConfigJoin -PreferredNode "TEST_VALUE" -Nodelist "TEST_VALUE" -ConfigDigest "TEST_VALUE" -Totem "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterConfigJoin -Nodelist "TEST_VALUE" -Totem "TEST_VALUE" -ConfigDigest "TEST_VALUE" -PreferredNode "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterConfigJoin
             #$NewObject.property | Should -Be 0
         }

@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Ctime
-No description available.
-.PARAMETER Type
+.PARAMETER Mark
 No description available.
 .PARAMETER Volid
 No description available.
-.PARAMETER Mark
+.PARAMETER Ctime
 No description available.
 .PARAMETER Vmid
+No description available.
+.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -34,21 +34,21 @@ function Initialize-PVENodesStoragePrunebackupsInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Ctime},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Volid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("keep", "remove", "protected", "renamed")]
         [String]
         ${Mark},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Volid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid}
+        ${Ctime},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type}
     )
 
     Process {
@@ -57,7 +57,7 @@ function Initialize-PVENodesStoragePrunebackupsInner {
 
 
 		 $DisplayNameMapping =@{
-			"Ctime"="ctime"; "Type"="type"; "Volid"="volid"; "Mark"="mark"; "Vmid"="vmid"
+			"Mark"="mark"; "Volid"="volid"; "Ctime"="ctime"; "Vmid"="vmid"; "Type"="type"
         }
 		
 		 $OBJ = @{}
@@ -103,29 +103,11 @@ function ConvertFrom-PVEJsonToNodesStoragePrunebackupsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesStoragePrunebackupsInner
-        $AllProperties = ("ctime", "type", "volid", "mark", "vmid")
+        $AllProperties = ("mark", "volid", "ctime", "vmid", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ctime"))) { #optional property not found
-            $Ctime = $null
-        } else {
-            $Ctime = $JsonParameters.PSobject.Properties["ctime"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volid"))) { #optional property not found
-            $Volid = $null
-        } else {
-            $Volid = $JsonParameters.PSobject.Properties["volid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "mark"))) { #optional property not found
@@ -134,18 +116,36 @@ function ConvertFrom-PVEJsonToNodesStoragePrunebackupsInner {
             $Mark = $JsonParameters.PSobject.Properties["mark"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volid"))) { #optional property not found
+            $Volid = $null
+        } else {
+            $Volid = $JsonParameters.PSobject.Properties["volid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ctime"))) { #optional property not found
+            $Ctime = $null
+        } else {
+            $Ctime = $JsonParameters.PSobject.Properties["ctime"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "ctime" = ${Ctime}
-            "type" = ${Type}
-            "volid" = ${Volid}
             "mark" = ${Mark}
+            "volid" = ${Volid}
+            "ctime" = ${Ctime}
             "vmid" = ${Vmid}
+            "type" = ${Type}
         }
 
         return $PSO

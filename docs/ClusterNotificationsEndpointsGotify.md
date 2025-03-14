@@ -4,9 +4,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Comment** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **Server** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Disable** | **Int32** |  | [optional] 
 
 ## Examples
@@ -14,9 +14,9 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $ClusterNotificationsEndpointsGotify = Initialize-PVEClusterNotificationsEndpointsGotify  -Comment null `
- -Name null `
  -Digest null `
  -Server null `
+ -Name null `
  -Disable null
 ```
 

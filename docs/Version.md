@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | **String** |  | [optional] 
-**Repoid** | **String** |  | [optional] 
 **Release** | **String** |  | [optional] 
+**Repoid** | **String** |  | [optional] 
+**Version** | **String** |  | [optional] 
 **Console** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$Version = Initialize-PVEVersion  -Version null `
+$Version = Initialize-PVEVersion  -Release null `
  -Repoid null `
- -Release null `
+ -Version null `
  -Console null
 ```
 

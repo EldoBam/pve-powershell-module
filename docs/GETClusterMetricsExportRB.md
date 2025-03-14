@@ -1,0 +1,25 @@
+# GETClusterMetricsExportRB
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**History** | **Int32** |  | [optional] 
+**StartTime** | **Int32** |  | [optional] 
+**LocalOnly** | **Int32** |  | [optional] 
+
+## Examples
+
+- Prepare the resource
+```powershell
+$GETClusterMetricsExportRB = Initialize-PVEGETClusterMetricsExportRB  -History null `
+ -StartTime null `
+ -LocalOnly null
+```
+
+- Convert the resource to JSON
+```powershell
+$GETClusterMetricsExportRB | ConvertTo-JSON
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

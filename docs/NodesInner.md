@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Maxcpu** | **Int32** |  | [optional] 
 **Cpu** | **Decimal** |  | [optional] 
 **Level** | **String** |  | [optional] 
-**Maxmem** | **Int32** |  | [optional] 
-**Mem** | **Int32** |  | [optional] 
-**Uptime** | **Int32** |  | [optional] 
 **SslFingerprint** | **String** |  | [optional] 
-**Status** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Maxcpu** | **Int32** |  | [optional] 
+**Maxmem** | **Int32** |  | [optional] 
+**Uptime** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
+**Mem** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesInner = Initialize-PVENodesInner  -Maxcpu null `
- -Cpu null `
+$NodesInner = Initialize-PVENodesInner  -Cpu null `
  -Level null `
- -Maxmem null `
- -Mem null `
- -Uptime null `
  -SslFingerprint null `
+ -Node null `
+ -Maxcpu null `
+ -Maxmem null `
+ -Uptime null `
  -Status null `
- -Node null
+ -Mem null
 ```
 
 - Convert the resource to JSON

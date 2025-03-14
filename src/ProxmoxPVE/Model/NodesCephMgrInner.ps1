@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER VarHost
-No description available.
-.PARAMETER Name
-No description available.
 .PARAMETER Addr
 No description available.
 .PARAMETER State
+No description available.
+.PARAMETER Name
+No description available.
+.PARAMETER VarHost
 No description available.
 .OUTPUTS
 
@@ -33,16 +33,16 @@ function Initialize-PVENodesCephMgrInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${VarHost},
+        ${Addr},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${State},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Addr},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${State}
+        ${VarHost}
     )
 
     Process {
@@ -51,7 +51,7 @@ function Initialize-PVENodesCephMgrInner {
 
 
 		 $DisplayNameMapping =@{
-			"VarHost"="host"; "Name"="name"; "Addr"="addr"; "State"="state"
+			"Addr"="addr"; "State"="state"; "Name"="name"; "VarHost"="host"
         }
 		
 		 $OBJ = @{}
@@ -97,23 +97,11 @@ function ConvertFrom-PVEJsonToNodesCephMgrInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCephMgrInner
-        $AllProperties = ("host", "name", "addr", "state")
+        $AllProperties = ("addr", "state", "name", "host")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "host"))) { #optional property not found
-            $VarHost = $null
-        } else {
-            $VarHost = $JsonParameters.PSobject.Properties["host"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "addr"))) { #optional property not found
@@ -128,11 +116,23 @@ function ConvertFrom-PVEJsonToNodesCephMgrInner {
             $State = $JsonParameters.PSobject.Properties["state"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "host"))) { #optional property not found
+            $VarHost = $null
+        } else {
+            $VarHost = $JsonParameters.PSobject.Properties["host"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "host" = ${VarHost}
-            "name" = ${Name}
             "addr" = ${Addr}
             "state" = ${State}
+            "name" = ${Name}
+            "host" = ${VarHost}
         }
 
         return $PSO

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterSdnControllersInner' {
     Context 'PVEClusterSdnControllersInner' {
         It 'Initialize-PVEClusterSdnControllersInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterSdnControllersInner -Pending "TEST_VALUE" -Type "TEST_VALUE" -State "TEST_VALUE" -Controller "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterSdnControllersInner -Pending "TEST_VALUE" -State "TEST_VALUE" -Controller "TEST_VALUE" -Type "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterSdnControllersInner
             #$NewObject.property | Should -Be 0
         }

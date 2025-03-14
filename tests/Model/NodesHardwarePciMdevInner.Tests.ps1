@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesHardwarePciMdevInner' {
     Context 'PVENodesHardwarePciMdevInner' {
         It 'Initialize-PVENodesHardwarePciMdevInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesHardwarePciMdevInner -Name "TEST_VALUE" -Description "TEST_VALUE" -Available "TEST_VALUE" -Type "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesHardwarePciMdevInner -Description "TEST_VALUE" -Name "TEST_VALUE" -Available "TEST_VALUE" -Type "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesHardwarePciMdevInner
             #$NewObject.property | Should -Be 0
         }

@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Devices
-No description available.
 .PARAMETER Osd
+No description available.
+.PARAMETER Devices
 No description available.
 .OUTPUTS
 
@@ -28,11 +28,11 @@ function Initialize-PVENodesCephOsdMetadata {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Devices},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
-        ${Osd}
+        ${Osd},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
+        ${Devices}
     )
 
     Process {
@@ -41,7 +41,7 @@ function Initialize-PVENodesCephOsdMetadata {
 
 
 		 $DisplayNameMapping =@{
-			"Devices"="devices"; "Osd"="osd"
+			"Osd"="osd"; "Devices"="devices"
         }
 		
 		 $OBJ = @{}
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToNodesCephOsdMetadata {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCephOsdMetadata
-        $AllProperties = ("devices", "osd")
+        $AllProperties = ("osd", "devices")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "devices"))) { #optional property not found
-            $Devices = $null
-        } else {
-            $Devices = $JsonParameters.PSobject.Properties["devices"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "osd"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToNodesCephOsdMetadata {
             $Osd = $JsonParameters.PSobject.Properties["osd"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "devices"))) { #optional property not found
+            $Devices = $null
+        } else {
+            $Devices = $JsonParameters.PSobject.Properties["devices"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "devices" = ${Devices}
             "osd" = ${Osd}
+            "devices" = ${Devices}
         }
 
         return $PSO

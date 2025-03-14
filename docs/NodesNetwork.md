@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Method** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Method** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesNetwork = Initialize-PVENodesNetwork  -Method null `
- -Type null
+$NodesNetwork = Initialize-PVENodesNetwork  -Type null `
+ -Method null
 ```
 
 - Convert the resource to JSON

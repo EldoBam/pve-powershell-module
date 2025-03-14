@@ -17,13 +17,13 @@ No description available.
 
 .PARAMETER Parent
 No description available.
-.PARAMETER Name
-No description available.
 .PARAMETER Description
 No description available.
-.PARAMETER Snaptime
+.PARAMETER Name
 No description available.
 .PARAMETER Vmstate
+No description available.
+.PARAMETER Snaptime
 No description available.
 .OUTPUTS
 
@@ -38,16 +38,16 @@ function Initialize-PVENodesQemuSnapshotInner {
         ${Parent},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Snaptime},
+        [String]
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmstate}
+        ${Vmstate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Snaptime}
     )
 
     Process {
@@ -64,7 +64,7 @@ function Initialize-PVENodesQemuSnapshotInner {
 
 
 		 $DisplayNameMapping =@{
-			"Parent"="parent"; "Name"="name"; "Description"="description"; "Snaptime"="snaptime"; "Vmstate"="vmstate"
+			"Parent"="parent"; "Description"="description"; "Name"="name"; "Vmstate"="vmstate"; "Snaptime"="snaptime"
         }
 		
 		 $OBJ = @{}
@@ -110,7 +110,7 @@ function ConvertFrom-PVEJsonToNodesQemuSnapshotInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesQemuSnapshotInner
-        $AllProperties = ("parent", "name", "description", "snaptime", "vmstate")
+        $AllProperties = ("parent", "description", "name", "vmstate", "snaptime")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -123,22 +123,16 @@ function ConvertFrom-PVEJsonToNodesQemuSnapshotInner {
             $Parent = $JsonParameters.PSobject.Properties["parent"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
             $Description = $null
         } else {
             $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snaptime"))) { #optional property not found
-            $Snaptime = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
         } else {
-            $Snaptime = $JsonParameters.PSobject.Properties["snaptime"].value
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmstate"))) { #optional property not found
@@ -147,12 +141,18 @@ function ConvertFrom-PVEJsonToNodesQemuSnapshotInner {
             $Vmstate = $JsonParameters.PSobject.Properties["vmstate"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snaptime"))) { #optional property not found
+            $Snaptime = $null
+        } else {
+            $Snaptime = $JsonParameters.PSobject.Properties["snaptime"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "parent" = ${Parent}
-            "name" = ${Name}
             "description" = ${Description}
-            "snaptime" = ${Snaptime}
+            "name" = ${Name}
             "vmstate" = ${Vmstate}
+            "snaptime" = ${Snaptime}
         }
 
         return $PSO

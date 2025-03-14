@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Description
+.PARAMETER Wakeonlan
 No description available.
 .PARAMETER AcmedomainN
 No description available.
-.PARAMETER Wakeonlan
+.PARAMETER Digest
 No description available.
 .PARAMETER Acme
 No description available.
 .PARAMETER StartallOnbootDelay
 No description available.
-.PARAMETER Digest
+.PARAMETER Description
 No description available.
 .OUTPUTS
 
@@ -37,13 +37,13 @@ function Initialize-PVENodesConfig {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description},
+        ${Wakeonlan},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${AcmedomainN},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Wakeonlan},
+        ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Acme},
@@ -52,28 +52,28 @@ function Initialize-PVENodesConfig {
         ${StartallOnbootDelay},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest}
+        ${Description}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if (!$Description -and $Description.length -gt 65536) {
-            throw "invalid value for 'Description', the character length must be smaller than or equal to 65536."
+        if (!$Digest -and $Digest.length -gt 40) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 40."
         }
 
         if ($StartallOnbootDelay -and $StartallOnbootDelay -gt 300) {
           throw "invalid value for 'StartallOnbootDelay', must be smaller than or equal to 300."
         }
 
-        if (!$Digest -and $Digest.length -gt 40) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 40."
+        if (!$Description -and $Description.length -gt 65536) {
+            throw "invalid value for 'Description', the character length must be smaller than or equal to 65536."
         }
 
 
 		 $DisplayNameMapping =@{
-			"Description"="description"; "AcmedomainN"="acmedomain[n]"; "Wakeonlan"="wakeonlan"; "Acme"="acme"; "StartallOnbootDelay"="startall-onboot-delay"; "Digest"="digest"
+			"Wakeonlan"="wakeonlan"; "AcmedomainN"="acmedomain[n]"; "Digest"="digest"; "Acme"="acme"; "StartallOnbootDelay"="startall-onboot-delay"; "Description"="description"
         }
 		
 		 $OBJ = @{}
@@ -119,17 +119,17 @@ function ConvertFrom-PVEJsonToNodesConfig {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesConfig
-        $AllProperties = ("description", "acmedomain[n]", "wakeonlan", "acme", "startall-onboot-delay", "digest")
+        $AllProperties = ("wakeonlan", "acmedomain[n]", "digest", "acme", "startall-onboot-delay", "description")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wakeonlan"))) { #optional property not found
+            $Wakeonlan = $null
         } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
+            $Wakeonlan = $JsonParameters.PSobject.Properties["wakeonlan"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "acmedomain[n]"))) { #optional property not found
@@ -138,10 +138,10 @@ function ConvertFrom-PVEJsonToNodesConfig {
             $AcmedomainN = $JsonParameters.PSobject.Properties["acmedomain[n]"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wakeonlan"))) { #optional property not found
-            $Wakeonlan = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
         } else {
-            $Wakeonlan = $JsonParameters.PSobject.Properties["wakeonlan"].value
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "acme"))) { #optional property not found
@@ -156,19 +156,19 @@ function ConvertFrom-PVEJsonToNodesConfig {
             $StartallOnbootDelay = $JsonParameters.PSobject.Properties["startall-onboot-delay"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
         } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+            $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "description" = ${Description}
-            "acmedomain[n]" = ${AcmedomainN}
             "wakeonlan" = ${Wakeonlan}
+            "acmedomain[n]" = ${AcmedomainN}
+            "digest" = ${Digest}
             "acme" = ${Acme}
             "startall-onboot-delay" = ${StartallOnbootDelay}
-            "digest" = ${Digest}
+            "description" = ${Description}
         }
 
         return $PSO

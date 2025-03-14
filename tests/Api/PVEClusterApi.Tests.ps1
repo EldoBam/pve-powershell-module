@@ -57,7 +57,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterAcmeMeta' {
         It 'Test Get-PVEClusterAcmeMeta' {
-            #$TestResult = Get-PVEClusterAcmeMeta
+            #$TestResult = Get-PVEClusterAcmeMeta -GETClusterAcmeMetaRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -65,7 +65,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterAcmePlugins' {
         It 'Test Get-PVEClusterAcmePlugins' {
-            #$TestResult = Get-PVEClusterAcmePlugins
+            #$TestResult = Get-PVEClusterAcmePlugins -GETClusterAcmePluginsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -81,7 +81,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterAcmeTos' {
         It 'Test Get-PVEClusterAcmeTos' {
-            #$TestResult = Get-PVEClusterAcmeTos
+            #$TestResult = Get-PVEClusterAcmeTos -GETClusterAcmeTosRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -153,7 +153,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterCephMetadata' {
         It 'Test Get-PVEClusterCephMetadata' {
-            #$TestResult = Get-PVEClusterCephMetadata
+            #$TestResult = Get-PVEClusterCephMetadata -GETClusterCephMetadataRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -185,7 +185,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterConfigJoin' {
         It 'Test Get-PVEClusterConfigJoin' {
-            #$TestResult = Get-PVEClusterConfigJoin
+            #$TestResult = Get-PVEClusterConfigJoin -GETClusterConfigJoinRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -305,7 +305,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterFirewallRefs' {
         It 'Test Get-PVEClusterFirewallRefs' {
-            #$TestResult = Get-PVEClusterFirewallRefs
+            #$TestResult = Get-PVEClusterFirewallRefs -GETClusterFirewallRefsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -353,7 +353,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterHaResources' {
         It 'Test Get-PVEClusterHaResources' {
-            #$TestResult = Get-PVEClusterHaResources
+            #$TestResult = Get-PVEClusterHaResources -GETClusterHaResourcesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -417,7 +417,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterJobsScheduleanalyze' {
         It 'Test Get-PVEClusterJobsScheduleanalyze' {
-            #$TestResult = Get-PVEClusterJobsScheduleanalyze
+            #$TestResult = Get-PVEClusterJobsScheduleanalyze -GETClusterJobsScheduleanalyzeRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -425,7 +425,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterLog' {
         It 'Test Get-PVEClusterLog' {
-            #$TestResult = Get-PVEClusterLog
+            #$TestResult = Get-PVEClusterLog -GETClusterLogRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -441,7 +441,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterMappingPci' {
         It 'Test Get-PVEClusterMappingPci' {
-            #$TestResult = Get-PVEClusterMappingPci
+            #$TestResult = Get-PVEClusterMappingPci -GETClusterMappingPciRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -457,7 +457,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterMappingUsb' {
         It 'Test Get-PVEClusterMappingUsb' {
-            #$TestResult = Get-PVEClusterMappingUsb
+            #$TestResult = Get-PVEClusterMappingUsb -GETClusterMappingUsbRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -481,7 +481,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterMetricsExport' {
         It 'Test Get-PVEClusterMetricsExport' {
-            #$TestResult = Get-PVEClusterMetricsExport
+            #$TestResult = Get-PVEClusterMetricsExport -GETClusterMetricsExportRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -505,7 +505,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterNextid' {
         It 'Test Get-PVEClusterNextid' {
-            #$TestResult = Get-PVEClusterNextid
+            #$TestResult = Get-PVEClusterNextid -GETClusterNextidRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -657,7 +657,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterResources' {
         It 'Test Get-PVEClusterResources' {
-            #$TestResult = Get-PVEClusterResources
+            #$TestResult = Get-PVEClusterResources -GETClusterResourcesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -673,7 +673,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterSdnControllers' {
         It 'Test Get-PVEClusterSdnControllers' {
-            #$TestResult = Get-PVEClusterSdnControllers
+            #$TestResult = Get-PVEClusterSdnControllers -GETClusterSdnControllersRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -681,7 +681,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterSdnControllersByController' {
         It 'Test Get-PVEClusterSdnControllersByController' {
-            #$TestResult = Get-PVEClusterSdnControllersByController
+            #$TestResult = Get-PVEClusterSdnControllersByController -GETClusterSdnControllersRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -689,7 +689,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterSdnDns' {
         It 'Test Get-PVEClusterSdnDns' {
-            #$TestResult = Get-PVEClusterSdnDns
+            #$TestResult = Get-PVEClusterSdnDns -GETClusterSdnDnsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -705,7 +705,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterSdnIpams' {
         It 'Test Get-PVEClusterSdnIpams' {
-            #$TestResult = Get-PVEClusterSdnIpams
+            #$TestResult = Get-PVEClusterSdnIpams -GETClusterSdnIpamsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -729,7 +729,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterSdnVnets' {
         It 'Test Get-PVEClusterSdnVnets' {
-            #$TestResult = Get-PVEClusterSdnVnets
+            #$TestResult = Get-PVEClusterSdnVnets -GETClusterSdnVnetsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -737,7 +737,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterSdnVnetsByVnet' {
         It 'Test Get-PVEClusterSdnVnetsByVnet' {
-            #$TestResult = Get-PVEClusterSdnVnetsByVnet
+            #$TestResult = Get-PVEClusterSdnVnetsByVnet -GETClusterSdnVnetsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -777,7 +777,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterSdnVnetsSubnetsByVnet' {
         It 'Test Get-PVEClusterSdnVnetsSubnetsByVnet' {
-            #$TestResult = Get-PVEClusterSdnVnetsSubnetsByVnet
+            #$TestResult = Get-PVEClusterSdnVnetsSubnetsByVnet -GETClusterSdnVnetsSubnetsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -785,7 +785,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet' {
         It 'Test Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet' {
-            #$TestResult = Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet
+            #$TestResult = Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet -GETClusterSdnVnetsSubnetsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -793,7 +793,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterSdnZones' {
         It 'Test Get-PVEClusterSdnZones' {
-            #$TestResult = Get-PVEClusterSdnZones
+            #$TestResult = Get-PVEClusterSdnZones -GETClusterSdnZonesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -801,7 +801,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Get-PVEClusterSdnZonesByZone' {
         It 'Test Get-PVEClusterSdnZonesByZone' {
-            #$TestResult = Get-PVEClusterSdnZonesByZone
+            #$TestResult = Get-PVEClusterSdnZonesByZone -GETClusterSdnZonesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -825,7 +825,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterAcmeAccount' {
         It 'Test New-PVEClusterAcmeAccount' {
-            #$TestResult = New-PVEClusterAcmeAccount
+            #$TestResult = New-PVEClusterAcmeAccount -POSTClusterAcmeAccountRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -833,7 +833,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterAcmePlugins' {
         It 'Test New-PVEClusterAcmePlugins' {
-            #$TestResult = New-PVEClusterAcmePlugins
+            #$TestResult = New-PVEClusterAcmePlugins -POSTClusterAcmePluginsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -841,7 +841,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterBackup' {
         It 'Test New-PVEClusterBackup' {
-            #$TestResult = New-PVEClusterBackup
+            #$TestResult = New-PVEClusterBackup -POSTClusterBackupRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -849,7 +849,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterConfig' {
         It 'Test New-PVEClusterConfig' {
-            #$TestResult = New-PVEClusterConfig
+            #$TestResult = New-PVEClusterConfig -POSTClusterConfigRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -857,7 +857,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterConfigJoin' {
         It 'Test New-PVEClusterConfigJoin' {
-            #$TestResult = New-PVEClusterConfigJoin
+            #$TestResult = New-PVEClusterConfigJoin -POSTClusterConfigJoinRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -865,7 +865,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterConfigNodesByNode' {
         It 'Test New-PVEClusterConfigNodesByNode' {
-            #$TestResult = New-PVEClusterConfigNodesByNode
+            #$TestResult = New-PVEClusterConfigNodesByNode -POSTClusterConfigNodesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -873,7 +873,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterFirewallAliases' {
         It 'Test New-PVEClusterFirewallAliases' {
-            #$TestResult = New-PVEClusterFirewallAliases
+            #$TestResult = New-PVEClusterFirewallAliases -POSTClusterFirewallAliasesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -881,7 +881,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterFirewallGroups' {
         It 'Test New-PVEClusterFirewallGroups' {
-            #$TestResult = New-PVEClusterFirewallGroups
+            #$TestResult = New-PVEClusterFirewallGroups -POSTClusterFirewallGroupsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -889,7 +889,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterFirewallGroupsByGroup' {
         It 'Test New-PVEClusterFirewallGroupsByGroup' {
-            #$TestResult = New-PVEClusterFirewallGroupsByGroup
+            #$TestResult = New-PVEClusterFirewallGroupsByGroup -POSTClusterFirewallGroupsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -897,7 +897,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterFirewallIpset' {
         It 'Test New-PVEClusterFirewallIpset' {
-            #$TestResult = New-PVEClusterFirewallIpset
+            #$TestResult = New-PVEClusterFirewallIpset -POSTClusterFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -905,7 +905,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterFirewallIpsetByName' {
         It 'Test New-PVEClusterFirewallIpsetByName' {
-            #$TestResult = New-PVEClusterFirewallIpsetByName
+            #$TestResult = New-PVEClusterFirewallIpsetByName -POSTClusterFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -913,7 +913,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterFirewallRules' {
         It 'Test New-PVEClusterFirewallRules' {
-            #$TestResult = New-PVEClusterFirewallRules
+            #$TestResult = New-PVEClusterFirewallRules -POSTClusterFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -921,7 +921,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterHaGroups' {
         It 'Test New-PVEClusterHaGroups' {
-            #$TestResult = New-PVEClusterHaGroups
+            #$TestResult = New-PVEClusterHaGroups -POSTClusterHaGroupsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -929,7 +929,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterHaResources' {
         It 'Test New-PVEClusterHaResources' {
-            #$TestResult = New-PVEClusterHaResources
+            #$TestResult = New-PVEClusterHaResources -POSTClusterHaResourcesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -937,7 +937,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterHaResourcesMigrateBySid' {
         It 'Test New-PVEClusterHaResourcesMigrateBySid' {
-            #$TestResult = New-PVEClusterHaResourcesMigrateBySid
+            #$TestResult = New-PVEClusterHaResourcesMigrateBySid -POSTClusterHaResourcesMigrateRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -945,7 +945,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterHaResourcesRelocateBySid' {
         It 'Test New-PVEClusterHaResourcesRelocateBySid' {
-            #$TestResult = New-PVEClusterHaResourcesRelocateBySid
+            #$TestResult = New-PVEClusterHaResourcesRelocateBySid -POSTClusterHaResourcesRelocateRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -953,7 +953,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterJobsRealmsyncById' {
         It 'Test New-PVEClusterJobsRealmsyncById' {
-            #$TestResult = New-PVEClusterJobsRealmsyncById
+            #$TestResult = New-PVEClusterJobsRealmsyncById -POSTClusterJobsRealmsyncRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -961,7 +961,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterMappingPci' {
         It 'Test New-PVEClusterMappingPci' {
-            #$TestResult = New-PVEClusterMappingPci
+            #$TestResult = New-PVEClusterMappingPci -POSTClusterMappingPciRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -969,7 +969,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterMappingUsb' {
         It 'Test New-PVEClusterMappingUsb' {
-            #$TestResult = New-PVEClusterMappingUsb
+            #$TestResult = New-PVEClusterMappingUsb -POSTClusterMappingUsbRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -977,7 +977,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterMetricsServerById' {
         It 'Test New-PVEClusterMetricsServerById' {
-            #$TestResult = New-PVEClusterMetricsServerById
+            #$TestResult = New-PVEClusterMetricsServerById -POSTClusterMetricsServerRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -985,7 +985,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterNotificationsEndpointsGotify' {
         It 'Test New-PVEClusterNotificationsEndpointsGotify' {
-            #$TestResult = New-PVEClusterNotificationsEndpointsGotify
+            #$TestResult = New-PVEClusterNotificationsEndpointsGotify -POSTClusterNotificationsEndpointsGotifyRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -993,7 +993,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterNotificationsEndpointsSendmail' {
         It 'Test New-PVEClusterNotificationsEndpointsSendmail' {
-            #$TestResult = New-PVEClusterNotificationsEndpointsSendmail
+            #$TestResult = New-PVEClusterNotificationsEndpointsSendmail -POSTClusterNotificationsEndpointsSendmailRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1001,7 +1001,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterNotificationsEndpointsSmtp' {
         It 'Test New-PVEClusterNotificationsEndpointsSmtp' {
-            #$TestResult = New-PVEClusterNotificationsEndpointsSmtp
+            #$TestResult = New-PVEClusterNotificationsEndpointsSmtp -POSTClusterNotificationsEndpointsSmtpRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1009,7 +1009,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterNotificationsEndpointsWebhook' {
         It 'Test New-PVEClusterNotificationsEndpointsWebhook' {
-            #$TestResult = New-PVEClusterNotificationsEndpointsWebhook
+            #$TestResult = New-PVEClusterNotificationsEndpointsWebhook -POSTClusterNotificationsEndpointsWebhookRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1017,7 +1017,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterNotificationsMatchers' {
         It 'Test New-PVEClusterNotificationsMatchers' {
-            #$TestResult = New-PVEClusterNotificationsMatchers
+            #$TestResult = New-PVEClusterNotificationsMatchers -POSTClusterNotificationsMatchersRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1033,7 +1033,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterReplication' {
         It 'Test New-PVEClusterReplication' {
-            #$TestResult = New-PVEClusterReplication
+            #$TestResult = New-PVEClusterReplication -POSTClusterReplicationRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1041,7 +1041,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterSdnControllers' {
         It 'Test New-PVEClusterSdnControllers' {
-            #$TestResult = New-PVEClusterSdnControllers
+            #$TestResult = New-PVEClusterSdnControllers -POSTClusterSdnControllersRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1049,7 +1049,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterSdnDns' {
         It 'Test New-PVEClusterSdnDns' {
-            #$TestResult = New-PVEClusterSdnDns
+            #$TestResult = New-PVEClusterSdnDns -POSTClusterSdnDnsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1057,7 +1057,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterSdnIpams' {
         It 'Test New-PVEClusterSdnIpams' {
-            #$TestResult = New-PVEClusterSdnIpams
+            #$TestResult = New-PVEClusterSdnIpams -POSTClusterSdnIpamsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1065,7 +1065,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterSdnVnets' {
         It 'Test New-PVEClusterSdnVnets' {
-            #$TestResult = New-PVEClusterSdnVnets
+            #$TestResult = New-PVEClusterSdnVnets -POSTClusterSdnVnetsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1073,7 +1073,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterSdnVnetsFirewallRulesByVnet' {
         It 'Test New-PVEClusterSdnVnetsFirewallRulesByVnet' {
-            #$TestResult = New-PVEClusterSdnVnetsFirewallRulesByVnet
+            #$TestResult = New-PVEClusterSdnVnetsFirewallRulesByVnet -POSTClusterSdnVnetsFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1081,7 +1081,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterSdnVnetsIpsByVnet' {
         It 'Test New-PVEClusterSdnVnetsIpsByVnet' {
-            #$TestResult = New-PVEClusterSdnVnetsIpsByVnet
+            #$TestResult = New-PVEClusterSdnVnetsIpsByVnet -POSTClusterSdnVnetsIpsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1089,7 +1089,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterSdnVnetsSubnetsByVnet' {
         It 'Test New-PVEClusterSdnVnetsSubnetsByVnet' {
-            #$TestResult = New-PVEClusterSdnVnetsSubnetsByVnet
+            #$TestResult = New-PVEClusterSdnVnetsSubnetsByVnet -POSTClusterSdnVnetsSubnetsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1097,7 +1097,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'New-PVEClusterSdnZones' {
         It 'Test New-PVEClusterSdnZones' {
-            #$TestResult = New-PVEClusterSdnZones
+            #$TestResult = New-PVEClusterSdnZones -POSTClusterSdnZonesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1137,7 +1137,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Remove-PVEClusterFirewallAliasesByName' {
         It 'Test Remove-PVEClusterFirewallAliasesByName' {
-            #$TestResult = Remove-PVEClusterFirewallAliasesByName
+            #$TestResult = Remove-PVEClusterFirewallAliasesByName -DELETEClusterFirewallAliasesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1153,7 +1153,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Remove-PVEClusterFirewallGroupsByGroupAndPos' {
         It 'Test Remove-PVEClusterFirewallGroupsByGroupAndPos' {
-            #$TestResult = Remove-PVEClusterFirewallGroupsByGroupAndPos
+            #$TestResult = Remove-PVEClusterFirewallGroupsByGroupAndPos -DELETEClusterFirewallGroupsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1161,7 +1161,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Remove-PVEClusterFirewallIpsetByName' {
         It 'Test Remove-PVEClusterFirewallIpsetByName' {
-            #$TestResult = Remove-PVEClusterFirewallIpsetByName
+            #$TestResult = Remove-PVEClusterFirewallIpsetByName -DELETEClusterFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1169,7 +1169,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Remove-PVEClusterFirewallIpsetByNameAndCidr' {
         It 'Test Remove-PVEClusterFirewallIpsetByNameAndCidr' {
-            #$TestResult = Remove-PVEClusterFirewallIpsetByNameAndCidr
+            #$TestResult = Remove-PVEClusterFirewallIpsetByNameAndCidr -DELETEClusterFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1177,7 +1177,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Remove-PVEClusterFirewallRulesByPos' {
         It 'Test Remove-PVEClusterFirewallRulesByPos' {
-            #$TestResult = Remove-PVEClusterFirewallRulesByPos
+            #$TestResult = Remove-PVEClusterFirewallRulesByPos -DELETEClusterFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1273,7 +1273,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Remove-PVEClusterReplicationById' {
         It 'Test Remove-PVEClusterReplicationById' {
-            #$TestResult = Remove-PVEClusterReplicationById
+            #$TestResult = Remove-PVEClusterReplicationById -DELETEClusterReplicationRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1313,7 +1313,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos' {
         It 'Test Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos' {
-            #$TestResult = Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos
+            #$TestResult = Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos -DELETEClusterSdnVnetsFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1321,7 +1321,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Remove-PVEClusterSdnVnetsIpsByVnet' {
         It 'Test Remove-PVEClusterSdnVnetsIpsByVnet' {
-            #$TestResult = Remove-PVEClusterSdnVnetsIpsByVnet
+            #$TestResult = Remove-PVEClusterSdnVnetsIpsByVnet -DELETEClusterSdnVnetsIpsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1345,7 +1345,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterAcmeAccountByName' {
         It 'Test Set-PVEClusterAcmeAccountByName' {
-            #$TestResult = Set-PVEClusterAcmeAccountByName
+            #$TestResult = Set-PVEClusterAcmeAccountByName -PUTClusterAcmeAccountRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1353,7 +1353,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterAcmePluginsById' {
         It 'Test Set-PVEClusterAcmePluginsById' {
-            #$TestResult = Set-PVEClusterAcmePluginsById
+            #$TestResult = Set-PVEClusterAcmePluginsById -PUTClusterAcmePluginsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1361,7 +1361,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterBackupById' {
         It 'Test Set-PVEClusterBackupById' {
-            #$TestResult = Set-PVEClusterBackupById
+            #$TestResult = Set-PVEClusterBackupById -PUTClusterBackupRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1369,7 +1369,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterCephFlags' {
         It 'Test Set-PVEClusterCephFlags' {
-            #$TestResult = Set-PVEClusterCephFlags
+            #$TestResult = Set-PVEClusterCephFlags -PUTClusterCephFlagsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1377,7 +1377,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterCephFlagsByFlag' {
         It 'Test Set-PVEClusterCephFlagsByFlag' {
-            #$TestResult = Set-PVEClusterCephFlagsByFlag
+            #$TestResult = Set-PVEClusterCephFlagsByFlag -PUTClusterCephFlagsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1385,7 +1385,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterFirewallAliasesByName' {
         It 'Test Set-PVEClusterFirewallAliasesByName' {
-            #$TestResult = Set-PVEClusterFirewallAliasesByName
+            #$TestResult = Set-PVEClusterFirewallAliasesByName -PUTClusterFirewallAliasesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1393,7 +1393,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterFirewallGroupsByGroupAndPos' {
         It 'Test Set-PVEClusterFirewallGroupsByGroupAndPos' {
-            #$TestResult = Set-PVEClusterFirewallGroupsByGroupAndPos
+            #$TestResult = Set-PVEClusterFirewallGroupsByGroupAndPos -PUTClusterFirewallGroupsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1401,7 +1401,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterFirewallIpsetByNameAndCidr' {
         It 'Test Set-PVEClusterFirewallIpsetByNameAndCidr' {
-            #$TestResult = Set-PVEClusterFirewallIpsetByNameAndCidr
+            #$TestResult = Set-PVEClusterFirewallIpsetByNameAndCidr -PUTClusterFirewallIpsetRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1409,7 +1409,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterFirewallOptions' {
         It 'Test Set-PVEClusterFirewallOptions' {
-            #$TestResult = Set-PVEClusterFirewallOptions
+            #$TestResult = Set-PVEClusterFirewallOptions -PUTClusterFirewallOptionsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1417,7 +1417,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterFirewallRulesByPos' {
         It 'Test Set-PVEClusterFirewallRulesByPos' {
-            #$TestResult = Set-PVEClusterFirewallRulesByPos
+            #$TestResult = Set-PVEClusterFirewallRulesByPos -PUTClusterFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1425,7 +1425,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterHaGroupsByGroup' {
         It 'Test Set-PVEClusterHaGroupsByGroup' {
-            #$TestResult = Set-PVEClusterHaGroupsByGroup
+            #$TestResult = Set-PVEClusterHaGroupsByGroup -PUTClusterHaGroupsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1433,7 +1433,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterHaResourcesBySid' {
         It 'Test Set-PVEClusterHaResourcesBySid' {
-            #$TestResult = Set-PVEClusterHaResourcesBySid
+            #$TestResult = Set-PVEClusterHaResourcesBySid -PUTClusterHaResourcesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1441,7 +1441,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterJobsRealmsyncById' {
         It 'Test Set-PVEClusterJobsRealmsyncById' {
-            #$TestResult = Set-PVEClusterJobsRealmsyncById
+            #$TestResult = Set-PVEClusterJobsRealmsyncById -PUTClusterJobsRealmsyncRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1449,7 +1449,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterMappingPciById' {
         It 'Test Set-PVEClusterMappingPciById' {
-            #$TestResult = Set-PVEClusterMappingPciById
+            #$TestResult = Set-PVEClusterMappingPciById -PUTClusterMappingPciRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1457,7 +1457,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterMappingUsbById' {
         It 'Test Set-PVEClusterMappingUsbById' {
-            #$TestResult = Set-PVEClusterMappingUsbById
+            #$TestResult = Set-PVEClusterMappingUsbById -PUTClusterMappingUsbRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1465,7 +1465,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterMetricsServerById' {
         It 'Test Set-PVEClusterMetricsServerById' {
-            #$TestResult = Set-PVEClusterMetricsServerById
+            #$TestResult = Set-PVEClusterMetricsServerById -PUTClusterMetricsServerRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1473,7 +1473,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterNotificationsEndpointsGotifyByName' {
         It 'Test Set-PVEClusterNotificationsEndpointsGotifyByName' {
-            #$TestResult = Set-PVEClusterNotificationsEndpointsGotifyByName
+            #$TestResult = Set-PVEClusterNotificationsEndpointsGotifyByName -PUTClusterNotificationsEndpointsGotifyRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1481,7 +1481,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterNotificationsEndpointsSendmailByName' {
         It 'Test Set-PVEClusterNotificationsEndpointsSendmailByName' {
-            #$TestResult = Set-PVEClusterNotificationsEndpointsSendmailByName
+            #$TestResult = Set-PVEClusterNotificationsEndpointsSendmailByName -PUTClusterNotificationsEndpointsSendmailRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1489,7 +1489,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterNotificationsEndpointsSmtpByName' {
         It 'Test Set-PVEClusterNotificationsEndpointsSmtpByName' {
-            #$TestResult = Set-PVEClusterNotificationsEndpointsSmtpByName
+            #$TestResult = Set-PVEClusterNotificationsEndpointsSmtpByName -PUTClusterNotificationsEndpointsSmtpRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1497,7 +1497,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterNotificationsEndpointsWebhookByName' {
         It 'Test Set-PVEClusterNotificationsEndpointsWebhookByName' {
-            #$TestResult = Set-PVEClusterNotificationsEndpointsWebhookByName
+            #$TestResult = Set-PVEClusterNotificationsEndpointsWebhookByName -PUTClusterNotificationsEndpointsWebhookRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1505,7 +1505,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterNotificationsMatchersByName' {
         It 'Test Set-PVEClusterNotificationsMatchersByName' {
-            #$TestResult = Set-PVEClusterNotificationsMatchersByName
+            #$TestResult = Set-PVEClusterNotificationsMatchersByName -PUTClusterNotificationsMatchersRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1513,7 +1513,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterOptions' {
         It 'Test Set-PVEClusterOptions' {
-            #$TestResult = Set-PVEClusterOptions
+            #$TestResult = Set-PVEClusterOptions -PUTClusterOptionsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1521,7 +1521,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterReplicationById' {
         It 'Test Set-PVEClusterReplicationById' {
-            #$TestResult = Set-PVEClusterReplicationById
+            #$TestResult = Set-PVEClusterReplicationById -PUTClusterReplicationRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1537,7 +1537,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterSdnControllersByController' {
         It 'Test Set-PVEClusterSdnControllersByController' {
-            #$TestResult = Set-PVEClusterSdnControllersByController
+            #$TestResult = Set-PVEClusterSdnControllersByController -PUTClusterSdnControllersRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1545,7 +1545,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterSdnDnsByDns' {
         It 'Test Set-PVEClusterSdnDnsByDns' {
-            #$TestResult = Set-PVEClusterSdnDnsByDns
+            #$TestResult = Set-PVEClusterSdnDnsByDns -PUTClusterSdnDnsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1553,7 +1553,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterSdnIpamsByIpam' {
         It 'Test Set-PVEClusterSdnIpamsByIpam' {
-            #$TestResult = Set-PVEClusterSdnIpamsByIpam
+            #$TestResult = Set-PVEClusterSdnIpamsByIpam -PUTClusterSdnIpamsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1561,7 +1561,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterSdnVnetsByVnet' {
         It 'Test Set-PVEClusterSdnVnetsByVnet' {
-            #$TestResult = Set-PVEClusterSdnVnetsByVnet
+            #$TestResult = Set-PVEClusterSdnVnetsByVnet -PUTClusterSdnVnetsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1569,7 +1569,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterSdnVnetsFirewallOptionsByVnet' {
         It 'Test Set-PVEClusterSdnVnetsFirewallOptionsByVnet' {
-            #$TestResult = Set-PVEClusterSdnVnetsFirewallOptionsByVnet
+            #$TestResult = Set-PVEClusterSdnVnetsFirewallOptionsByVnet -PUTClusterSdnVnetsFirewallOptionsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1577,7 +1577,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos' {
         It 'Test Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos' {
-            #$TestResult = Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos
+            #$TestResult = Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos -PUTClusterSdnVnetsFirewallRulesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1585,7 +1585,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterSdnVnetsIpsByVnet' {
         It 'Test Set-PVEClusterSdnVnetsIpsByVnet' {
-            #$TestResult = Set-PVEClusterSdnVnetsIpsByVnet
+            #$TestResult = Set-PVEClusterSdnVnetsIpsByVnet -PUTClusterSdnVnetsIpsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1593,7 +1593,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet' {
         It 'Test Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet' {
-            #$TestResult = Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet
+            #$TestResult = Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet -PUTClusterSdnVnetsSubnetsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -1601,7 +1601,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEClusterApi' {
 
     Context 'Set-PVEClusterSdnZonesByZone' {
         It 'Test Set-PVEClusterSdnZonesByZone' {
-            #$TestResult = Set-PVEClusterSdnZonesByZone
+            #$TestResult = Set-PVEClusterSdnZonesByZone -PUTClusterSdnZonesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }

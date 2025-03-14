@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEAccessTfa' {
     Context 'PVEAccessTfa' {
         It 'Initialize-PVEAccessTfa' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEAccessTfa -Id "TEST_VALUE" -Type "TEST_VALUE" -Description "TEST_VALUE" -Enable "TEST_VALUE" -Created "TEST_VALUE"
+            #$NewObject = Initialize-PVEAccessTfa -Challenge "TEST_VALUE" -Recovery "TEST_VALUE" -Id "TEST_VALUE"
             #$NewObject | Should -BeOfType AccessTfa
             #$NewObject.property | Should -Be 0
         }

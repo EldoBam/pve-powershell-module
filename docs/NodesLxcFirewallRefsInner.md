@@ -5,9 +5,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Comment** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**Ref** | **String** |  | [optional] 
 **Scope** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Ref** | **String** |  | [optional] 
 
 ## Examples
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 ```powershell
 $NodesLxcFirewallRefsInner = Initialize-PVENodesLxcFirewallRefsInner  -Comment null `
  -Name null `
- -Ref null `
  -Scope null `
- -Type null
+ -Type null `
+ -Ref null
 ```
 
 - Convert the resource to JSON

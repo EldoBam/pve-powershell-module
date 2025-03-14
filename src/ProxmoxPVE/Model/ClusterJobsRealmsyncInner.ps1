@@ -17,13 +17,9 @@ No description available.
 
 .PARAMETER Realm
 No description available.
-.PARAMETER Comment
-No description available.
-.PARAMETER Id
-No description available.
 .PARAMETER Enabled
 No description available.
-.PARAMETER LastRun
+.PARAMETER Scope
 No description available.
 .PARAMETER RemoveVanished
 No description available.
@@ -31,7 +27,11 @@ No description available.
 No description available.
 .PARAMETER NextRun
 No description available.
-.PARAMETER Scope
+.PARAMETER LastRun
+No description available.
+.PARAMETER Comment
+No description available.
+.PARAMETER Id
 No description available.
 .OUTPUTS
 
@@ -45,17 +45,12 @@ function Initialize-PVEClusterJobsRealmsyncInner {
         [String]
         ${Realm},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Enabled},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${LastRun},
+        [ValidateSet("users", "groups", "both")]
+        [String]
+        ${Scope},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("(?:(?:(?:acl|properties|entry);)*(?:acl|properties|entry))|none")]
         [String]
@@ -67,9 +62,14 @@ function Initialize-PVEClusterJobsRealmsyncInner {
         [System.Nullable[Int32]]
         ${NextRun},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("users", "groups", "both")]
+        [System.Nullable[Int32]]
+        ${LastRun},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Scope}
+        ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Id}
     )
 
     Process {
@@ -90,7 +90,7 @@ function Initialize-PVEClusterJobsRealmsyncInner {
 
 
 		 $DisplayNameMapping =@{
-			"Realm"="realm"; "Comment"="comment"; "Id"="id"; "Enabled"="enabled"; "LastRun"="last-run"; "RemoveVanished"="remove-vanished"; "Schedule"="schedule"; "NextRun"="next-run"; "Scope"="scope"
+			"Realm"="realm"; "Enabled"="enabled"; "Scope"="scope"; "RemoveVanished"="remove-vanished"; "Schedule"="schedule"; "NextRun"="next-run"; "LastRun"="last-run"; "Comment"="comment"; "Id"="id"
         }
 		
 		 $OBJ = @{}
@@ -136,7 +136,7 @@ function ConvertFrom-PVEJsonToClusterJobsRealmsyncInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterJobsRealmsyncInner
-        $AllProperties = ("realm", "comment", "id", "enabled", "last-run", "remove-vanished", "schedule", "next-run", "scope")
+        $AllProperties = ("realm", "enabled", "scope", "remove-vanished", "schedule", "next-run", "last-run", "comment", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -149,28 +149,16 @@ function ConvertFrom-PVEJsonToClusterJobsRealmsyncInner {
             $Realm = $JsonParameters.PSobject.Properties["realm"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
             $Enabled = $null
         } else {
             $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "last-run"))) { #optional property not found
-            $LastRun = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scope"))) { #optional property not found
+            $Scope = $null
         } else {
-            $LastRun = $JsonParameters.PSobject.Properties["last-run"].value
+            $Scope = $JsonParameters.PSobject.Properties["scope"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove-vanished"))) { #optional property not found
@@ -191,22 +179,34 @@ function ConvertFrom-PVEJsonToClusterJobsRealmsyncInner {
             $NextRun = $JsonParameters.PSobject.Properties["next-run"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scope"))) { #optional property not found
-            $Scope = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "last-run"))) { #optional property not found
+            $LastRun = $null
         } else {
-            $Scope = $JsonParameters.PSobject.Properties["scope"].value
+            $LastRun = $JsonParameters.PSobject.Properties["last-run"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
         $PSO = [PSCustomObject]@{
             "realm" = ${Realm}
-            "comment" = ${Comment}
-            "id" = ${Id}
             "enabled" = ${Enabled}
-            "last-run" = ${LastRun}
+            "scope" = ${Scope}
             "remove-vanished" = ${RemoveVanished}
             "schedule" = ${Schedule}
             "next-run" = ${NextRun}
-            "scope" = ${Scope}
+            "last-run" = ${LastRun}
+            "comment" = ${Comment}
+            "id" = ${Id}
         }
 
         return $PSO

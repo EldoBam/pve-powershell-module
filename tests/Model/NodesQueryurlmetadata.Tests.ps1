@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesQueryurlmetadata' {
     Context 'PVENodesQueryurlmetadata' {
         It 'Initialize-PVENodesQueryurlmetadata' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesQueryurlmetadata -Mimetype "TEST_VALUE" -Filename "TEST_VALUE" -Size "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesQueryurlmetadata -Filename "TEST_VALUE" -Mimetype "TEST_VALUE" -Size "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesQueryurlmetadata
             #$NewObject.property | Should -Be 0
         }

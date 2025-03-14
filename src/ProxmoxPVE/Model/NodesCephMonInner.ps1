@@ -15,25 +15,25 @@ No summary available.
 
 No description available.
 
-.PARAMETER Rank
-No description available.
-.PARAMETER CephVersion
-No description available.
 .PARAMETER Name
 No description available.
+.PARAMETER Quorum
+No description available.
 .PARAMETER Addr
-No description available.
-.PARAMETER CephVersionShort
-No description available.
-.PARAMETER Direxists
 No description available.
 .PARAMETER Service
 No description available.
 .PARAMETER State
 No description available.
-.PARAMETER VarHost
+.PARAMETER CephVersion
 No description available.
-.PARAMETER Quorum
+.PARAMETER Rank
+No description available.
+.PARAMETER CephVersionShort
+No description available.
+.PARAMETER Direxists
+No description available.
+.PARAMETER VarHost
 No description available.
 .OUTPUTS
 
@@ -44,17 +44,26 @@ function Initialize-PVENodesCephMonInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Rank},
+        ${Quorum},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Addr},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Service},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${State},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${CephVersion},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Addr},
+        [System.Nullable[Int32]]
+        ${Rank},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${CephVersionShort},
@@ -63,29 +72,12 @@ function Initialize-PVENodesCephMonInner {
         ${Direxists},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Service},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${State},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VarHost},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Quorum}
+        ${VarHost}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesCephMonInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($VarHost -and $VarHost -gt 1) {
-          throw "invalid value for 'VarHost', must be smaller than or equal to 1."
-        }
-
-        if ($VarHost -and $VarHost -lt 0) {
-          throw "invalid value for 'VarHost', must be greater than or equal to 0."
-        }
 
         if ($Quorum -and $Quorum -gt 1) {
           throw "invalid value for 'Quorum', must be smaller than or equal to 1."
@@ -95,9 +87,17 @@ function Initialize-PVENodesCephMonInner {
           throw "invalid value for 'Quorum', must be greater than or equal to 0."
         }
 
+        if ($VarHost -and $VarHost -gt 1) {
+          throw "invalid value for 'VarHost', must be smaller than or equal to 1."
+        }
+
+        if ($VarHost -and $VarHost -lt 0) {
+          throw "invalid value for 'VarHost', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Rank"="rank"; "CephVersion"="ceph_version"; "Name"="name"; "Addr"="addr"; "CephVersionShort"="ceph_version_short"; "Direxists"="direxists"; "Service"="service"; "State"="state"; "VarHost"="host"; "Quorum"="quorum"
+			"Name"="name"; "Quorum"="quorum"; "Addr"="addr"; "Service"="service"; "State"="state"; "CephVersion"="ceph_version"; "Rank"="rank"; "CephVersionShort"="ceph_version_short"; "Direxists"="direxists"; "VarHost"="host"
         }
 		
 		 $OBJ = @{}
@@ -143,23 +143,11 @@ function ConvertFrom-PVEJsonToNodesCephMonInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCephMonInner
-        $AllProperties = ("rank", "ceph_version", "name", "addr", "ceph_version_short", "direxists", "service", "state", "host", "quorum")
+        $AllProperties = ("name", "quorum", "addr", "service", "state", "ceph_version", "rank", "ceph_version_short", "direxists", "host")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rank"))) { #optional property not found
-            $Rank = $null
-        } else {
-            $Rank = $JsonParameters.PSobject.Properties["rank"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ceph_version"))) { #optional property not found
-            $CephVersion = $null
-        } else {
-            $CephVersion = $JsonParameters.PSobject.Properties["ceph_version"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -168,22 +156,16 @@ function ConvertFrom-PVEJsonToNodesCephMonInner {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "quorum"))) { #optional property not found
+            $Quorum = $null
+        } else {
+            $Quorum = $JsonParameters.PSobject.Properties["quorum"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "addr"))) { #optional property not found
             $Addr = $null
         } else {
             $Addr = $JsonParameters.PSobject.Properties["addr"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ceph_version_short"))) { #optional property not found
-            $CephVersionShort = $null
-        } else {
-            $CephVersionShort = $JsonParameters.PSobject.Properties["ceph_version_short"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "direxists"))) { #optional property not found
-            $Direxists = $null
-        } else {
-            $Direxists = $JsonParameters.PSobject.Properties["direxists"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "service"))) { #optional property not found
@@ -198,29 +180,47 @@ function ConvertFrom-PVEJsonToNodesCephMonInner {
             $State = $JsonParameters.PSobject.Properties["state"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ceph_version"))) { #optional property not found
+            $CephVersion = $null
+        } else {
+            $CephVersion = $JsonParameters.PSobject.Properties["ceph_version"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rank"))) { #optional property not found
+            $Rank = $null
+        } else {
+            $Rank = $JsonParameters.PSobject.Properties["rank"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ceph_version_short"))) { #optional property not found
+            $CephVersionShort = $null
+        } else {
+            $CephVersionShort = $JsonParameters.PSobject.Properties["ceph_version_short"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "direxists"))) { #optional property not found
+            $Direxists = $null
+        } else {
+            $Direxists = $JsonParameters.PSobject.Properties["direxists"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "host"))) { #optional property not found
             $VarHost = $null
         } else {
             $VarHost = $JsonParameters.PSobject.Properties["host"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "quorum"))) { #optional property not found
-            $Quorum = $null
-        } else {
-            $Quorum = $JsonParameters.PSobject.Properties["quorum"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "rank" = ${Rank}
-            "ceph_version" = ${CephVersion}
             "name" = ${Name}
+            "quorum" = ${Quorum}
             "addr" = ${Addr}
-            "ceph_version_short" = ${CephVersionShort}
-            "direxists" = ${Direxists}
             "service" = ${Service}
             "state" = ${State}
+            "ceph_version" = ${CephVersion}
+            "rank" = ${Rank}
+            "ceph_version_short" = ${CephVersionShort}
+            "direxists" = ${Direxists}
             "host" = ${VarHost}
-            "quorum" = ${Quorum}
         }
 
         return $PSO

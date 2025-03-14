@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesFirewallOptions' {
     Context 'PVENodesFirewallOptions' {
         It 'Initialize-PVENodesFirewallOptions' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesFirewallOptions -Enable "TEST_VALUE" -ProtectionSynfloodRate "TEST_VALUE" -Tcpflags "TEST_VALUE" -NfConntrackTcpTimeoutSynRecv "TEST_VALUE" -LogLevelIn "TEST_VALUE" -NfConntrackMax "TEST_VALUE" -LogLevelForward "TEST_VALUE" -Nftables "TEST_VALUE" -TcpFlagsLogLevel "TEST_VALUE" -NfConntrackAllowInvalid "TEST_VALUE" -Ndp "TEST_VALUE" -NfConntrackTcpTimeoutEstablished "TEST_VALUE" -ProtectionSynfloodBurst "TEST_VALUE" -LogNfConntrack "TEST_VALUE" -Nosmurfs "TEST_VALUE" -LogLevelOut "TEST_VALUE" -SmurfLogLevel "TEST_VALUE" -ProtectionSynflood "TEST_VALUE" -NfConntrackHelpers "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesFirewallOptions -TcpFlagsLogLevel "TEST_VALUE" -Enable "TEST_VALUE" -Nosmurfs "TEST_VALUE" -NfConntrackMax "TEST_VALUE" -ProtectionSynflood "TEST_VALUE" -LogNfConntrack "TEST_VALUE" -LogLevelOut "TEST_VALUE" -LogLevelIn "TEST_VALUE" -ProtectionSynfloodBurst "TEST_VALUE" -Nftables "TEST_VALUE" -ProtectionSynfloodRate "TEST_VALUE" -Tcpflags "TEST_VALUE" -LogLevelForward "TEST_VALUE" -NfConntrackAllowInvalid "TEST_VALUE" -NfConntrackTcpTimeoutSynRecv "TEST_VALUE" -SmurfLogLevel "TEST_VALUE" -Ndp "TEST_VALUE" -NfConntrackHelpers "TEST_VALUE" -NfConntrackTcpTimeoutEstablished "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesFirewallOptions
             #$NewObject.property | Should -Be 0
         }

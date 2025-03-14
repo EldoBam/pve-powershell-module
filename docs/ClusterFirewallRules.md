@@ -3,41 +3,41 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enable** | **Int32** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Ipversion** | **Int32** |  | [optional] 
 **Dest** | **String** |  | [optional] 
-**IcmpType** | **String** |  | [optional] 
 **Source** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**Macro** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
 **Dport** | **String** |  | [optional] 
 **Log** | **String** |  | [optional] 
-**Macro** | **String** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
-**Ipversion** | **Int32** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
 **Sport** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**IcmpType** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterFirewallRules = Initialize-PVEClusterFirewallRules  -Enable null `
+$ClusterFirewallRules = Initialize-PVEClusterFirewallRules  -Pos null `
  -Type null `
+ -Ipversion null `
  -Dest null `
- -IcmpType null `
  -Source null `
  -Comment null `
+ -Enable null `
+ -Action null `
+ -Macro null `
+ -Iface null `
  -Dport null `
  -Log null `
- -Macro null `
- -Pos null `
- -Ipversion null `
- -Proto null `
- -Iface null `
  -Sport null `
- -Action null
+ -Proto null `
+ -IcmpType null
 ```
 
 - Convert the resource to JSON

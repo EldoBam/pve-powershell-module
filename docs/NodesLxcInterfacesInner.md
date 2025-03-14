@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Inet6** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **Inet** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Inet6** | **String** |  | [optional] 
 **Hwaddr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcInterfacesInner = Initialize-PVENodesLxcInterfacesInner  -Inet6 null `
+$NodesLxcInterfacesInner = Initialize-PVENodesLxcInterfacesInner  -Inet null `
  -Name null `
- -Inet null `
+ -Inet6 null `
  -Hwaddr null
 ```
 

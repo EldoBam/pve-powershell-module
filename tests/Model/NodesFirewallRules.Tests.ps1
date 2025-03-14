@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesFirewallRules' {
     Context 'PVENodesFirewallRules' {
         It 'Initialize-PVENodesFirewallRules' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesFirewallRules -Enable "TEST_VALUE" -Type "TEST_VALUE" -Dest "TEST_VALUE" -IcmpType "TEST_VALUE" -Source "TEST_VALUE" -Comment "TEST_VALUE" -Dport "TEST_VALUE" -Log "TEST_VALUE" -Macro "TEST_VALUE" -Pos "TEST_VALUE" -Ipversion "TEST_VALUE" -Proto "TEST_VALUE" -Iface "TEST_VALUE" -Sport "TEST_VALUE" -Action "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesFirewallRules -Pos "TEST_VALUE" -Type "TEST_VALUE" -Ipversion "TEST_VALUE" -Dest "TEST_VALUE" -Source "TEST_VALUE" -Comment "TEST_VALUE" -Enable "TEST_VALUE" -Action "TEST_VALUE" -Macro "TEST_VALUE" -Iface "TEST_VALUE" -Dport "TEST_VALUE" -Log "TEST_VALUE" -Sport "TEST_VALUE" -Proto "TEST_VALUE" -IcmpType "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesFirewallRules
             #$NewObject.property | Should -Be 0
         }

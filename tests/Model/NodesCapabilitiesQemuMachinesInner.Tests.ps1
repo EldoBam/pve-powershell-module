@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesCapabilitiesQemuMachinesInner' {
     Context 'PVENodesCapabilitiesQemuMachinesInner' {
         It 'Initialize-PVENodesCapabilitiesQemuMachinesInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesCapabilitiesQemuMachinesInner -Id "TEST_VALUE" -Type "TEST_VALUE" -Version "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesCapabilitiesQemuMachinesInner -Version "TEST_VALUE" -Type "TEST_VALUE" -Id "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesCapabilitiesQemuMachinesInner
             #$NewObject.property | Should -Be 0
         }

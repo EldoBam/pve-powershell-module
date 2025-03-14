@@ -147,7 +147,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterHaInner[]
+ClusterSdnInner[]
 #>
 function Get-PVENodesAptByNode {
     [CmdletBinding()]
@@ -184,7 +184,7 @@ function Get-PVENodesAptByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterHaInner[]" `
+                                -ReturnType "ClusterSdnInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -204,6 +204,9 @@ Get package changelogs.
 
 No description available.
 
+.PARAMETER GETNodesAptChangelogRB
+Get package changelogs.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -215,6 +218,9 @@ None
 function Get-PVENodesAptChangelogByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesAptChangelogRB},
         [Switch]
         $WithHttpInfo
     )
@@ -233,7 +239,12 @@ function Get-PVENodesAptChangelogByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/apt/changelog'
+
+        $LocalVarBodyParameter = $GETNodesAptChangelogRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1017,6 +1028,9 @@ Get configured values from either the config file or config DB.
 
 No description available.
 
+.PARAMETER GETNodesCephCfgValueRB
+Get configured values from either the config file or config DB.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1028,6 +1042,9 @@ None
 function Get-PVENodesCephCfgValueByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesCephCfgValueRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1046,7 +1063,12 @@ function Get-PVENodesCephCfgValueByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/cfg/value'
+
+        $LocalVarBodyParameter = $GETNodesCephCfgValueRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1077,6 +1099,9 @@ Heuristical check if it is safe to perform an action.
 
 No description available.
 
+.PARAMETER GETNodesCephCmdsafetyRB
+Heuristical check if it is safe to perform an action.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1088,6 +1113,9 @@ NodesCephCmdsafety
 function Get-PVENodesCephCmdsafetyByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesCephCmdsafetyRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1109,7 +1137,12 @@ function Get-PVENodesCephCmdsafetyByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/cmd-safety'
+
+        $LocalVarBodyParameter = $GETNodesCephCmdsafetyRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1263,17 +1296,23 @@ Read ceph log
 
 No description available.
 
+.PARAMETER GETNodesCephLogRB
+Read ceph log
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesQemuFirewallLogInner[]
 #>
 function Get-PVENodesCephLogByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesCephLogRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1295,7 +1334,12 @@ function Get-PVENodesCephLogByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/log'
+
+        $LocalVarBodyParameter = $GETNodesCephLogRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1306,7 +1350,7 @@ function Get-PVENodesCephLogByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesQemuFirewallLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1638,6 +1682,9 @@ Get OSD volume details
 
 No description available.
 
+.PARAMETER GETNodesCephOsdLvinfoRB
+Get OSD volume details
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1649,6 +1696,9 @@ NodesCephOsdLvinfo
 function Get-PVENodesCephOsdLvinfoByNodeAndOsdid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesCephOsdLvinfoRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1670,7 +1720,12 @@ function Get-PVENodesCephOsdLvinfoByNodeAndOsdid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/osd/{osdid}/lv-info'
+
+        $LocalVarBodyParameter = $GETNodesCephOsdLvinfoRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1890,6 +1945,9 @@ Show the current pool status.
 
 No description available.
 
+.PARAMETER GETNodesCephPoolStatusRB
+Show the current pool status.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1901,6 +1959,9 @@ NodesCephPoolStatus
 function Get-PVENodesCephPoolStatusByNodeAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesCephPoolStatusRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1922,7 +1983,12 @@ function Get-PVENodesCephPoolStatusByNodeAndName {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/pool/{name}/status'
+
+        $LocalVarBodyParameter = $GETNodesCephPoolStatusRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1959,7 +2025,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterNotificationsMatcherfieldsInner[]
+NodesCephRulesInner[]
 #>
 function Get-PVENodesCephRulesByNode {
     [CmdletBinding()]
@@ -1996,7 +2062,7 @@ function Get-PVENodesCephRulesByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterNotificationsMatcherfieldsInner[]" `
+                                -ReturnType "NodesCephRulesInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2265,6 +2331,9 @@ Get node configuration options.
 
 No description available.
 
+.PARAMETER GETNodesConfigRB
+Get node configuration options.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2276,6 +2345,9 @@ NodesConfig
 function Get-PVENodesConfigByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesConfigRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2297,7 +2369,12 @@ function Get-PVENodesConfigByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/config'
+
+        $LocalVarBodyParameter = $GETNodesConfigRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2454,6 +2531,9 @@ List local disks.
 
 No description available.
 
+.PARAMETER GETNodesDisksListRB
+List local disks.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2465,6 +2545,9 @@ NodesDisksListInner[]
 function Get-PVENodesDisksListByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesDisksListRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2486,7 +2569,12 @@ function Get-PVENodesDisksListByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/disks/list'
+
+        $LocalVarBodyParameter = $GETNodesDisksListRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2643,6 +2731,9 @@ Get SMART Health of a disk.
 
 No description available.
 
+.PARAMETER GETNodesDisksSmartRB
+Get SMART Health of a disk.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2654,6 +2745,9 @@ NodesDisksSmart
 function Get-PVENodesDisksSmartByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesDisksSmartRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2675,7 +2769,12 @@ function Get-PVENodesDisksSmartByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/disks/smart'
+
+        $LocalVarBodyParameter = $GETNodesDisksSmartRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2712,7 +2811,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesDisksZfs
+NodesDisksZfsGETInner[]
 #>
 function Get-PVENodesDisksZfsByNode {
     [CmdletBinding()]
@@ -2749,7 +2848,7 @@ function Get-PVENodesDisksZfsByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesDisksZfs" `
+                                -ReturnType "NodesDisksZfsGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2958,17 +3057,23 @@ Read firewall log
 
 No description available.
 
+.PARAMETER GETNodesFirewallLogRB
+Read firewall log
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesQemuFirewallLogInner[]
 #>
 function Get-PVENodesFirewallLogByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesFirewallLogRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2990,7 +3095,12 @@ function Get-PVENodesFirewallLogByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/firewall/log'
+
+        $LocalVarBodyParameter = $GETNodesFirewallLogRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3001,7 +3111,7 @@ function Get-PVENodesFirewallLogByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesQemuFirewallLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -3090,7 +3200,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesFirewallRules
+NodesFirewallRulesGETInner[]
 #>
 function Get-PVENodesFirewallRulesByNode {
     [CmdletBinding()]
@@ -3127,7 +3237,7 @@ function Get-PVENodesFirewallRulesByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallRules" `
+                                -ReturnType "NodesFirewallRulesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -3273,6 +3383,9 @@ List local PCI devices.
 
 No description available.
 
+.PARAMETER GETNodesHardwarePciRB
+List local PCI devices.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3284,6 +3397,9 @@ NodesHardwarePciInner[]
 function Get-PVENodesHardwarePciByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesHardwarePciRB},
         [Switch]
         $WithHttpInfo
     )
@@ -3305,7 +3421,12 @@ function Get-PVENodesHardwarePciByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/hardware/pci'
+
+        $LocalVarBodyParameter = $GETNodesHardwarePciRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3342,7 +3463,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesScanInner[]
+NodesHardwarePciGETInner[]
 #>
 function Get-PVENodesHardwarePciByNodeAndPciidormapping {
     [CmdletBinding()]
@@ -3379,7 +3500,7 @@ function Get-PVENodesHardwarePciByNodeAndPciidormapping {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesScanInner[]" `
+                                -ReturnType "NodesHardwarePciGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -3588,6 +3709,9 @@ Read Journal
 
 No description available.
 
+.PARAMETER GETNodesJournalRB
+Read Journal
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3599,6 +3723,9 @@ None
 function Get-PVENodesJournalByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesJournalRB},
         [Switch]
         $WithHttpInfo
     )
@@ -3617,7 +3744,12 @@ function Get-PVENodesJournalByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/journal'
+
+        $LocalVarBodyParameter = $GETNodesJournalRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3771,6 +3903,9 @@ Get container configuration.
 
 No description available.
 
+.PARAMETER GETNodesLxcConfigRB
+Get container configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3782,6 +3917,9 @@ NodesLxcConfig
 function Get-PVENodesLxcConfigByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesLxcConfigRB},
         [Switch]
         $WithHttpInfo
     )
@@ -3803,7 +3941,12 @@ function Get-PVENodesLxcConfigByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/config'
+
+        $LocalVarBodyParameter = $GETNodesLxcConfigRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3834,6 +3977,9 @@ Check if feature for virtual machine is available.
 
 No description available.
 
+.PARAMETER GETNodesLxcFeatureRB
+Check if feature for virtual machine is available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3845,6 +3991,9 @@ NodesLxcFeature
 function Get-PVENodesLxcFeatureByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesLxcFeatureRB},
         [Switch]
         $WithHttpInfo
     )
@@ -3866,7 +4015,12 @@ function Get-PVENodesLxcFeatureByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/feature'
+
+        $LocalVarBodyParameter = $GETNodesLxcFeatureRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3903,7 +4057,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterFirewallAliasesInner[]
+NodesQemuFirewallAliasesInner[]
 #>
 function Get-PVENodesLxcFirewallAliasesByNodeAndVmid {
     [CmdletBinding()]
@@ -3940,7 +4094,7 @@ function Get-PVENodesLxcFirewallAliasesByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterFirewallAliasesInner[]" `
+                                -ReturnType "NodesQemuFirewallAliasesInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4089,7 +4243,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallIpsetInner[]
+NodesQemuFirewallIpsetInner[]
 #>
 function Get-PVENodesLxcFirewallIpsetByNodeAndVmid {
     [CmdletBinding()]
@@ -4126,7 +4280,7 @@ function Get-PVENodesLxcFirewallIpsetByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallIpsetInner[]" `
+                                -ReturnType "NodesQemuFirewallIpsetInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4152,7 +4306,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterFirewallIpsetAVInner[]
+ClusterFirewallIpsetGETInner[]
 #>
 function Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
@@ -4189,7 +4343,7 @@ function Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterFirewallIpsetAVInner[]" `
+                                -ReturnType "ClusterFirewallIpsetGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4269,17 +4423,23 @@ Read firewall log
 
 No description available.
 
+.PARAMETER GETNodesLxcFirewallLogRB
+Read firewall log
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesQemuFirewallLogInner[]
 #>
 function Get-PVENodesLxcFirewallLogByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesLxcFirewallLogRB},
         [Switch]
         $WithHttpInfo
     )
@@ -4301,7 +4461,12 @@ function Get-PVENodesLxcFirewallLogByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/log'
+
+        $LocalVarBodyParameter = $GETNodesLxcFirewallLogRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4312,7 +4477,7 @@ function Get-PVENodesLxcFirewallLogByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesQemuFirewallLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4395,6 +4560,9 @@ Lists possible IPSet/Alias reference which are allowed in source/dest properties
 
 No description available.
 
+.PARAMETER GETNodesLxcFirewallRefsRB
+Lists possible IPSet/Alias reference which are allowed in source/dest properties.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4406,6 +4574,9 @@ NodesLxcFirewallRefsInner[]
 function Get-PVENodesLxcFirewallRefsByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesLxcFirewallRefsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -4427,7 +4598,12 @@ function Get-PVENodesLxcFirewallRefsByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/refs'
+
+        $LocalVarBodyParameter = $GETNodesLxcFirewallRefsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4464,7 +4640,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallRules
+NodesFirewallRulesGETInner[]
 #>
 function Get-PVENodesLxcFirewallRulesByNodeAndVmid {
     [CmdletBinding()]
@@ -4501,7 +4677,7 @@ function Get-PVENodesLxcFirewallRulesByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallRules" `
+                                -ReturnType "NodesFirewallRulesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4647,6 +4823,9 @@ Migration tunnel endpoint for websocket upgrade - only for internal use by VM mi
 
 No description available.
 
+.PARAMETER GETNodesLxcMtunnelwebsocketRB
+Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4658,6 +4837,9 @@ NodesLxcMtunnelwebsocket
 function Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesLxcMtunnelwebsocketRB},
         [Switch]
         $WithHttpInfo
     )
@@ -4679,7 +4861,12 @@ function Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/mtunnelwebsocket'
+
+        $LocalVarBodyParameter = $GETNodesLxcMtunnelwebsocketRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4716,7 +4903,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcPendingInner[]
+NodesQemuPendingInner[]
 #>
 function Get-PVENodesLxcPendingByNodeAndVmid {
     [CmdletBinding()]
@@ -4753,7 +4940,7 @@ function Get-PVENodesLxcPendingByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcPendingInner[]" `
+                                -ReturnType "NodesQemuPendingInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4773,6 +4960,9 @@ Read VM RRD statistics (returns PNG)
 
 No description available.
 
+.PARAMETER GETNodesLxcRrdRB
+Read VM RRD statistics (returns PNG)
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4784,6 +4974,9 @@ NodesLxcRrd
 function Get-PVENodesLxcRrdByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesLxcRrdRB},
         [Switch]
         $WithHttpInfo
     )
@@ -4805,7 +4998,12 @@ function Get-PVENodesLxcRrdByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/rrd'
+
+        $LocalVarBodyParameter = $GETNodesLxcRrdRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4836,6 +5034,9 @@ Read VM RRD statistics
 
 No description available.
 
+.PARAMETER GETNodesLxcRrddataRB
+Read VM RRD statistics
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4847,6 +5048,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesLxcRrddataByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesLxcRrddataRB},
         [Switch]
         $WithHttpInfo
     )
@@ -4868,7 +5072,12 @@ function Get-PVENodesLxcRrddataByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/rrddata'
+
+        $LocalVarBodyParameter = $GETNodesLxcRrddataRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5208,6 +5417,9 @@ Opens a weksocket for VNC traffic.
 
 No description available.
 
+.PARAMETER GETNodesLxcVncwebsocketRB
+Opens a weksocket for VNC traffic.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5219,6 +5431,9 @@ NodesLxcVncwebsocket
 function Get-PVENodesLxcVncwebsocketByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesLxcVncwebsocketRB},
         [Switch]
         $WithHttpInfo
     )
@@ -5240,7 +5455,12 @@ function Get-PVENodesLxcVncwebsocketByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/vncwebsocket'
+
+        $LocalVarBodyParameter = $GETNodesLxcVncwebsocketRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5334,17 +5554,23 @@ List available networks
 
 No description available.
 
+.PARAMETER GETNodesNetworkRB
+List available networks
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesNetwork
+SystemCollectionsHashtable[]
 #>
 function Get-PVENodesNetworkByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesNetworkRB},
         [Switch]
         $WithHttpInfo
     )
@@ -5366,7 +5592,12 @@ function Get-PVENodesNetworkByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/network'
+
+        $LocalVarBodyParameter = $GETNodesNetworkRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5377,7 +5608,7 @@ function Get-PVENodesNetworkByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesNetwork" `
+                                -ReturnType "SystemCollectionsHashtable[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -5523,6 +5754,9 @@ Gets the status of the given pid started by the guest-agent
 
 No description available.
 
+.PARAMETER GETNodesQemuAgentExecstatusRB
+Gets the status of the given pid started by the guest-agent
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5534,6 +5768,9 @@ NodesQemuAgentExecstatus
 function Get-PVENodesQemuAgentExecstatusByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuAgentExecstatusRB},
         [Switch]
         $WithHttpInfo
     )
@@ -5555,7 +5792,12 @@ function Get-PVENodesQemuAgentExecstatusByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/exec-status'
+
+        $LocalVarBodyParameter = $GETNodesQemuAgentExecstatusRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5586,6 +5828,9 @@ Reads the given file via guest agent. Is limited to 16777216 bytes.
 
 No description available.
 
+.PARAMETER GETNodesQemuAgentFilereadRB
+Reads the given file via guest agent. Is limited to 16777216 bytes.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5597,6 +5842,9 @@ NodesQemuAgentFileread
 function Get-PVENodesQemuAgentFilereadByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuAgentFilereadRB},
         [Switch]
         $WithHttpInfo
     )
@@ -5618,7 +5866,12 @@ function Get-PVENodesQemuAgentFilereadByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/file-read'
+
+        $LocalVarBodyParameter = $GETNodesQemuAgentFilereadRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6309,6 +6562,9 @@ Virtual machine index (per node).
 
 No description available.
 
+.PARAMETER GETNodesQemuRB
+Virtual machine index (per node).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6320,6 +6576,9 @@ NodesQemuInner[]
 function Get-PVENodesQemuByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6341,7 +6600,12 @@ function Get-PVENodesQemuByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu'
+
+        $LocalVarBodyParameter = $GETNodesQemuRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6495,6 +6759,9 @@ Get automatically generated cloudinit config.
 
 No description available.
 
+.PARAMETER GETNodesQemuCloudinitDumpRB
+Get automatically generated cloudinit config.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6506,6 +6773,9 @@ None
 function Get-PVENodesQemuCloudinitDumpByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuCloudinitDumpRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6524,7 +6794,12 @@ function Get-PVENodesQemuCloudinitDumpByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/cloudinit/dump'
+
+        $LocalVarBodyParameter = $GETNodesQemuCloudinitDumpRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6555,6 +6830,9 @@ Get the virtual machine configuration with pending configuration changes applied
 
 No description available.
 
+.PARAMETER GETNodesQemuConfigRB
+Get the virtual machine configuration with pending configuration changes applied. Set the 'current' parameter to get the current configuration instead.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6566,6 +6844,9 @@ NodesQemuConfig
 function Get-PVENodesQemuConfigByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuConfigRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6587,7 +6868,12 @@ function Get-PVENodesQemuConfigByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/config'
+
+        $LocalVarBodyParameter = $GETNodesQemuConfigRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6618,6 +6904,9 @@ Check if feature for virtual machine is available.
 
 No description available.
 
+.PARAMETER GETNodesQemuFeatureRB
+Check if feature for virtual machine is available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6629,6 +6918,9 @@ NodesQemuFeature
 function Get-PVENodesQemuFeatureByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuFeatureRB},
         [Switch]
         $WithHttpInfo
     )
@@ -6650,7 +6942,12 @@ function Get-PVENodesQemuFeatureByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/feature'
+
+        $LocalVarBodyParameter = $GETNodesQemuFeatureRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6687,7 +6984,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterFirewallAliasesInner[]
+NodesQemuFirewallAliasesInner[]
 #>
 function Get-PVENodesQemuFirewallAliasesByNodeAndVmid {
     [CmdletBinding()]
@@ -6724,7 +7021,7 @@ function Get-PVENodesQemuFirewallAliasesByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterFirewallAliasesInner[]" `
+                                -ReturnType "NodesQemuFirewallAliasesInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -6873,7 +7170,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallIpsetInner[]
+NodesQemuFirewallIpsetInner[]
 #>
 function Get-PVENodesQemuFirewallIpsetByNodeAndVmid {
     [CmdletBinding()]
@@ -6910,7 +7207,7 @@ function Get-PVENodesQemuFirewallIpsetByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallIpsetInner[]" `
+                                -ReturnType "NodesQemuFirewallIpsetInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -6936,7 +7233,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterFirewallIpsetAVInner[]
+ClusterFirewallIpsetGETInner[]
 #>
 function Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
@@ -6973,7 +7270,7 @@ function Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterFirewallIpsetAVInner[]" `
+                                -ReturnType "ClusterFirewallIpsetGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -7053,17 +7350,23 @@ Read firewall log
 
 No description available.
 
+.PARAMETER GETNodesQemuFirewallLogRB
+Read firewall log
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesQemuFirewallLogInner[]
 #>
 function Get-PVENodesQemuFirewallLogByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuFirewallLogRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7085,7 +7388,12 @@ function Get-PVENodesQemuFirewallLogByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/log'
+
+        $LocalVarBodyParameter = $GETNodesQemuFirewallLogRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7096,7 +7404,7 @@ function Get-PVENodesQemuFirewallLogByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesQemuFirewallLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -7179,6 +7487,9 @@ Lists possible IPSet/Alias reference which are allowed in source/dest properties
 
 No description available.
 
+.PARAMETER GETNodesQemuFirewallRefsRB
+Lists possible IPSet/Alias reference which are allowed in source/dest properties.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7190,6 +7501,9 @@ NodesLxcFirewallRefsInner[]
 function Get-PVENodesQemuFirewallRefsByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuFirewallRefsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7211,7 +7525,12 @@ function Get-PVENodesQemuFirewallRefsByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/refs'
+
+        $LocalVarBodyParameter = $GETNodesQemuFirewallRefsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7248,7 +7567,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesQemuFirewallRules
+NodesFirewallRulesGETInner[]
 #>
 function Get-PVENodesQemuFirewallRulesByNodeAndVmid {
     [CmdletBinding()]
@@ -7285,7 +7604,7 @@ function Get-PVENodesQemuFirewallRulesByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesQemuFirewallRules" `
+                                -ReturnType "NodesFirewallRulesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -7368,6 +7687,9 @@ Get preconditions for migration.
 
 No description available.
 
+.PARAMETER GETNodesQemuMigrateRB
+Get preconditions for migration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7379,6 +7701,9 @@ NodesQemuMigrate
 function Get-PVENodesQemuMigrateByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuMigrateRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7400,7 +7725,12 @@ function Get-PVENodesQemuMigrateByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/migrate'
+
+        $LocalVarBodyParameter = $GETNodesQemuMigrateRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7431,6 +7761,9 @@ Migration tunnel endpoint for websocket upgrade - only for internal use by VM mi
 
 No description available.
 
+.PARAMETER GETNodesQemuMtunnelwebsocketRB
+Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7442,6 +7775,9 @@ NodesQemuMtunnelwebsocket
 function Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuMtunnelwebsocketRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7463,7 +7799,12 @@ function Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/mtunnelwebsocket'
+
+        $LocalVarBodyParameter = $GETNodesQemuMtunnelwebsocketRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7500,7 +7841,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcPendingInner[]
+NodesQemuPendingInner[]
 #>
 function Get-PVENodesQemuPendingByNodeAndVmid {
     [CmdletBinding()]
@@ -7537,7 +7878,7 @@ function Get-PVENodesQemuPendingByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcPendingInner[]" `
+                                -ReturnType "NodesQemuPendingInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -7557,6 +7898,9 @@ Read VM RRD statistics (returns PNG)
 
 No description available.
 
+.PARAMETER GETNodesQemuRrdRB
+Read VM RRD statistics (returns PNG)
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7568,6 +7912,9 @@ NodesQemuRrd
 function Get-PVENodesQemuRrdByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuRrdRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7589,7 +7936,12 @@ function Get-PVENodesQemuRrdByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/rrd'
+
+        $LocalVarBodyParameter = $GETNodesQemuRrdRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7620,6 +7972,9 @@ Read VM RRD statistics
 
 No description available.
 
+.PARAMETER GETNodesQemuRrddataRB
+Read VM RRD statistics
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7631,6 +7986,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesQemuRrddataByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuRrddataRB},
         [Switch]
         $WithHttpInfo
     )
@@ -7652,7 +8010,12 @@ function Get-PVENodesQemuRrddataByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/rrddata'
+
+        $LocalVarBodyParameter = $GETNodesQemuRrddataRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7992,6 +8355,9 @@ Opens a weksocket for VNC traffic.
 
 No description available.
 
+.PARAMETER GETNodesQemuVncwebsocketRB
+Opens a weksocket for VNC traffic.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8003,6 +8369,9 @@ NodesQemuVncwebsocket
 function Get-PVENodesQemuVncwebsocketByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQemuVncwebsocketRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8024,7 +8393,12 @@ function Get-PVENodesQemuVncwebsocketByNodeAndVmid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/vncwebsocket'
+
+        $LocalVarBodyParameter = $GETNodesQemuVncwebsocketRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8055,6 +8429,9 @@ Query metadata of an URL: file size, file name and mime type.
 
 No description available.
 
+.PARAMETER GETNodesQueryurlmetadataRB
+Query metadata of an URL: file size, file name and mime type.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8066,6 +8443,9 @@ NodesQueryurlmetadata
 function Get-PVENodesQueryurlmetadataByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesQueryurlmetadataRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8087,7 +8467,12 @@ function Get-PVENodesQueryurlmetadataByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/query-url-metadata'
+
+        $LocalVarBodyParameter = $GETNodesQueryurlmetadataRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8118,17 +8503,23 @@ List status of all replication jobs on this node.
 
 No description available.
 
+.PARAMETER GETNodesReplicationRB
+List status of all replication jobs on this node.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-ClusterHaInner[]
+ClusterSdnInner[]
 #>
 function Get-PVENodesReplicationByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesReplicationRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8150,7 +8541,12 @@ function Get-PVENodesReplicationByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/replication'
+
+        $LocalVarBodyParameter = $GETNodesReplicationRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8161,7 +8557,7 @@ function Get-PVENodesReplicationByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterHaInner[]" `
+                                -ReturnType "ClusterSdnInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -8244,17 +8640,23 @@ Read replication job log.
 
 No description available.
 
+.PARAMETER GETNodesReplicationLogRB
+Read replication job log.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesQemuFirewallLogInner[]
 #>
 function Get-PVENodesReplicationLogByNodeAndId {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesReplicationLogRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8276,7 +8678,12 @@ function Get-PVENodesReplicationLogByNodeAndId {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/replication/{id}/log'
+
+        $LocalVarBodyParameter = $GETNodesReplicationLogRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8287,7 +8694,7 @@ function Get-PVENodesReplicationLogByNodeAndId {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesQemuFirewallLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -8427,6 +8834,9 @@ Read node RRD statistics (returns PNG)
 
 No description available.
 
+.PARAMETER GETNodesRrdRB
+Read node RRD statistics (returns PNG)
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8438,6 +8848,9 @@ NodesRrd
 function Get-PVENodesRrdByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesRrdRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8459,7 +8872,12 @@ function Get-PVENodesRrdByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/rrd'
+
+        $LocalVarBodyParameter = $GETNodesRrdRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8490,6 +8908,9 @@ Read node RRD statistics
 
 No description available.
 
+.PARAMETER GETNodesRrddataRB
+Read node RRD statistics
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8501,6 +8922,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesRrddataByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesRrddataRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8522,7 +8946,12 @@ function Get-PVENodesRrddataByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/rrddata'
+
+        $LocalVarBodyParameter = $GETNodesRrddataRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8559,7 +8988,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesScanInner[]
+NodesHardwarePciGETInner[]
 #>
 function Get-PVENodesScanByNode {
     [CmdletBinding()]
@@ -8596,7 +9025,7 @@ function Get-PVENodesScanByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesScanInner[]" `
+                                -ReturnType "NodesHardwarePciGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -8616,6 +9045,9 @@ Scan remote CIFS server.
 
 No description available.
 
+.PARAMETER GETNodesScanCifsRB
+Scan remote CIFS server.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8627,6 +9059,9 @@ NodesScanCifsInner[]
 function Get-PVENodesScanCifsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesScanCifsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8648,7 +9083,12 @@ function Get-PVENodesScanCifsByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/scan/cifs'
+
+        $LocalVarBodyParameter = $GETNodesScanCifsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8679,6 +9119,9 @@ Scan remote GlusterFS server.
 
 No description available.
 
+.PARAMETER GETNodesScanGlusterfsRB
+Scan remote GlusterFS server.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8690,6 +9133,9 @@ NodesScanGlusterfsInner[]
 function Get-PVENodesScanGlusterfsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesScanGlusterfsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8711,7 +9157,12 @@ function Get-PVENodesScanGlusterfsByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/scan/glusterfs'
+
+        $LocalVarBodyParameter = $GETNodesScanGlusterfsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8742,6 +9193,9 @@ Scan remote iSCSI server.
 
 No description available.
 
+.PARAMETER GETNodesScanIscsiRB
+Scan remote iSCSI server.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8753,6 +9207,9 @@ NodesScanIscsiInner[]
 function Get-PVENodesScanIscsiByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesScanIscsiRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8774,7 +9231,12 @@ function Get-PVENodesScanIscsiByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/scan/iscsi'
+
+        $LocalVarBodyParameter = $GETNodesScanIscsiRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8868,6 +9330,9 @@ List local LVM Thin Pools.
 
 No description available.
 
+.PARAMETER GETNodesScanLvmthinRB
+List local LVM Thin Pools.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8879,6 +9344,9 @@ NodesScanLvmthinInner[]
 function Get-PVENodesScanLvmthinByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesScanLvmthinRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8900,7 +9368,12 @@ function Get-PVENodesScanLvmthinByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/scan/lvmthin'
+
+        $LocalVarBodyParameter = $GETNodesScanLvmthinRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8931,6 +9404,9 @@ Scan remote NFS server.
 
 No description available.
 
+.PARAMETER GETNodesScanNfsRB
+Scan remote NFS server.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8942,6 +9418,9 @@ NodesScanNfsInner[]
 function Get-PVENodesScanNfsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesScanNfsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -8963,7 +9442,12 @@ function Get-PVENodesScanNfsByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/scan/nfs'
+
+        $LocalVarBodyParameter = $GETNodesScanNfsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8994,6 +9478,9 @@ Scan remote Proxmox Backup Server.
 
 No description available.
 
+.PARAMETER GETNodesScanPbsRB
+Scan remote Proxmox Backup Server.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9005,6 +9492,9 @@ NodesScanPbsInner[]
 function Get-PVENodesScanPbsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesScanPbsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -9026,7 +9516,12 @@ function Get-PVENodesScanPbsByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/scan/pbs'
+
+        $LocalVarBodyParameter = $GETNodesScanPbsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9615,6 +10110,9 @@ Get status for all datastores.
 
 No description available.
 
+.PARAMETER GETNodesStorageRB
+Get status for all datastores.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9626,6 +10124,9 @@ NodesStorageInner[]
 function Get-PVENodesStorageByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesStorageRB},
         [Switch]
         $WithHttpInfo
     )
@@ -9647,7 +10148,12 @@ function Get-PVENodesStorageByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage'
+
+        $LocalVarBodyParameter = $GETNodesStorageRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9738,17 +10244,23 @@ List storage content.
 
 No description available.
 
+.PARAMETER GETNodesStorageContentRB
+List storage content.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesStorageContent
+NodesStorageContentGETInner[]
 #>
 function Get-PVENodesStorageContentByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesStorageContentRB},
         [Switch]
         $WithHttpInfo
     )
@@ -9770,7 +10282,12 @@ function Get-PVENodesStorageContentByNodeAndStorage {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/content'
+
+        $LocalVarBodyParameter = $GETNodesStorageContentRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9781,7 +10298,7 @@ function Get-PVENodesStorageContentByNodeAndStorage {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesStorageContent" `
+                                -ReturnType "NodesStorageContentGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -9864,17 +10381,23 @@ Extract a file or directory (as zip archive) from a PBS backup.
 
 No description available.
 
+.PARAMETER GETNodesStorageFilerestoreDownloadRB
+Extract a file or directory (as zip archive) from a PBS backup.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-None
+System.IO.FileInfo
 #>
 function Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesStorageFilerestoreDownloadRB},
         [Switch]
         $WithHttpInfo
     )
@@ -9893,7 +10416,15 @@ function Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/file-restore/download'
+
+        $LocalVarBodyParameter = $GETNodesStorageFilerestoreDownloadRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9904,7 +10435,7 @@ function Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "System.IO.FileInfo" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -9924,6 +10455,9 @@ List files and directories for single file restore under the given path.
 
 No description available.
 
+.PARAMETER GETNodesStorageFilerestoreListRB
+List files and directories for single file restore under the given path.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9935,6 +10469,9 @@ NodesStorageFilerestoreListInner[]
 function Get-PVENodesStorageFilerestoreListByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesStorageFilerestoreListRB},
         [Switch]
         $WithHttpInfo
     )
@@ -9956,7 +10493,12 @@ function Get-PVENodesStorageFilerestoreListByNodeAndStorage {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/file-restore/list'
+
+        $LocalVarBodyParameter = $GETNodesStorageFilerestoreListRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9987,6 +10529,9 @@ Get the base parameters for creating a guest which imports data from a foreign i
 
 No description available.
 
+.PARAMETER GETNodesStorageImportmetadataRB
+Get the base parameters for creating a guest which imports data from a foreign importable guest, like an ESXi VM
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9998,6 +10543,9 @@ NodesStorageImportmetadata
 function Get-PVENodesStorageImportmetadataByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesStorageImportmetadataRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10019,7 +10567,12 @@ function Get-PVENodesStorageImportmetadataByNodeAndStorage {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/import-metadata'
+
+        $LocalVarBodyParameter = $GETNodesStorageImportmetadataRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10050,6 +10603,9 @@ Get prune information for backups. NOTE: this is only a preview and might not be
 
 No description available.
 
+.PARAMETER GETNodesStoragePrunebackupsRB
+Get prune information for backups. NOTE: this is only a preview and might not be what a subsequent prune call does if backups are removed/added in the meantime.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10061,6 +10617,9 @@ NodesStoragePrunebackupsInner[]
 function Get-PVENodesStoragePrunebackupsByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesStoragePrunebackupsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10082,7 +10641,12 @@ function Get-PVENodesStoragePrunebackupsByNodeAndStorage {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/prunebackups'
+
+        $LocalVarBodyParameter = $GETNodesStoragePrunebackupsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10113,6 +10677,9 @@ Read storage RRD statistics (returns PNG).
 
 No description available.
 
+.PARAMETER GETNodesStorageRrdRB
+Read storage RRD statistics (returns PNG).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10124,6 +10691,9 @@ NodesStorageRrd
 function Get-PVENodesStorageRrdByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesStorageRrdRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10145,7 +10715,12 @@ function Get-PVENodesStorageRrdByNodeAndStorage {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/rrd'
+
+        $LocalVarBodyParameter = $GETNodesStorageRrdRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10176,6 +10751,9 @@ Read storage RRD statistics.
 
 No description available.
 
+.PARAMETER GETNodesStorageRrddataRB
+Read storage RRD statistics.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10187,6 +10765,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesStorageRrddataByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesStorageRrddataRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10208,7 +10789,12 @@ function Get-PVENodesStorageRrddataByNodeAndStorage {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/rrddata'
+
+        $LocalVarBodyParameter = $GETNodesStorageRrddataRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10362,17 +10948,23 @@ Read system log
 
 No description available.
 
+.PARAMETER GETNodesSyslogRB
+Read system log
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesQemuFirewallLogInner[]
 #>
 function Get-PVENodesSyslogByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesSyslogRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10394,7 +10986,12 @@ function Get-PVENodesSyslogByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/syslog'
+
+        $LocalVarBodyParameter = $GETNodesSyslogRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10405,7 +11002,7 @@ function Get-PVENodesSyslogByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesQemuFirewallLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -10425,6 +11022,9 @@ Read task list for one node (finished tasks).
 
 No description available.
 
+.PARAMETER GETNodesTasksRB
+Read task list for one node (finished tasks).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10436,6 +11036,9 @@ NodesTasksInner[]
 function Get-PVENodesTasksByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesTasksRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10457,7 +11060,12 @@ function Get-PVENodesTasksByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/tasks'
+
+        $LocalVarBodyParameter = $GETNodesTasksRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10551,17 +11159,23 @@ Read task log.
 
 No description available.
 
+.PARAMETER GETNodesTasksLogRB
+Read task log.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesQemuFirewallLogInner[]
 #>
 function Get-PVENodesTasksLogByNodeAndUpid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesTasksLogRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10583,7 +11197,12 @@ function Get-PVENodesTasksLogByNodeAndUpid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/tasks/{upid}/log'
+
+        $LocalVarBodyParameter = $GETNodesTasksLogRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10594,7 +11213,7 @@ function Get-PVENodesTasksLogByNodeAndUpid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesQemuFirewallLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -10803,6 +11422,9 @@ Opens a websocket for VNC traffic.
 
 No description available.
 
+.PARAMETER GETNodesVncwebsocketRB
+Opens a websocket for VNC traffic.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10814,6 +11436,9 @@ NodesVncwebsocket
 function Get-PVENodesVncwebsocketByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesVncwebsocketRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10835,7 +11460,12 @@ function Get-PVENodesVncwebsocketByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/vncwebsocket'
+
+        $LocalVarBodyParameter = $GETNodesVncwebsocketRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10866,6 +11496,9 @@ Get the currently configured vzdump defaults.
 
 No description available.
 
+.PARAMETER GETNodesVzdumpDefaultsRB
+Get the currently configured vzdump defaults.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10877,6 +11510,9 @@ NodesVzdumpDefaults
 function Get-PVENodesVzdumpDefaultsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesVzdumpDefaultsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10898,7 +11534,12 @@ function Get-PVENodesVzdumpDefaultsByNode {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/vzdump/defaults'
+
+        $LocalVarBodyParameter = $GETNodesVzdumpDefaultsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10929,6 +11570,9 @@ Extract configuration from vzdump backup archive.
 
 No description available.
 
+.PARAMETER GETNodesVzdumpExtractconfigRB
+Extract configuration from vzdump backup archive.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10940,6 +11584,9 @@ None
 function Get-PVENodesVzdumpExtractconfigByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETNodesVzdumpExtractconfigRB},
         [Switch]
         $WithHttpInfo
     )
@@ -10958,7 +11605,12 @@ function Get-PVENodesVzdumpExtractconfigByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/vzdump/extractconfig'
+
+        $LocalVarBodyParameter = $GETNodesVzdumpExtractconfigRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10989,6 +11641,9 @@ Download appliance templates.
 
 No description available.
 
+.PARAMETER POSTNodesAplinfoRB
+Download appliance templates.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11000,6 +11655,9 @@ None
 function New-PVENodesAplinfoByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesAplinfoRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11018,7 +11676,12 @@ function New-PVENodesAplinfoByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/aplinfo'
+
+        $LocalVarBodyParameter = $POSTNodesAplinfoRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11049,6 +11712,9 @@ Change the properties of a repository. Currently only allows enabling/disabling.
 
 No description available.
 
+.PARAMETER POSTNodesAptRepositoriesRB
+Change the properties of a repository. Currently only allows enabling/disabling.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11060,6 +11726,9 @@ None
 function New-PVENodesAptRepositoriesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesAptRepositoriesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11078,7 +11747,12 @@ function New-PVENodesAptRepositoriesByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/apt/repositories'
+
+        $LocalVarBodyParameter = $POSTNodesAptRepositoriesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11109,6 +11783,9 @@ This is used to resynchronize the package index files from their sources (apt-ge
 
 No description available.
 
+.PARAMETER POSTNodesAptUpdateRB
+This is used to resynchronize the package index files from their sources (apt-get update).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11120,6 +11797,9 @@ None
 function New-PVENodesAptUpdateByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesAptUpdateRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11138,7 +11818,12 @@ function New-PVENodesAptUpdateByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/apt/update'
+
+        $LocalVarBodyParameter = $POSTNodesAptUpdateRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11169,6 +11854,9 @@ Create a Ceph filesystem
 
 No description available.
 
+.PARAMETER POSTNodesCephFsRB
+Create a Ceph filesystem
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11180,6 +11868,9 @@ None
 function New-PVENodesCephFsByNodeAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesCephFsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11198,7 +11889,12 @@ function New-PVENodesCephFsByNodeAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/fs/{name}'
+
+        $LocalVarBodyParameter = $POSTNodesCephFsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11229,6 +11925,9 @@ Create initial ceph default configuration and setup symlinks.
 
 No description available.
 
+.PARAMETER POSTNodesCephInitRB
+Create initial ceph default configuration and setup symlinks.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11240,6 +11939,9 @@ None
 function New-PVENodesCephInitByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesCephInitRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11258,7 +11960,12 @@ function New-PVENodesCephInitByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/init'
+
+        $LocalVarBodyParameter = $POSTNodesCephInitRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11289,6 +11996,9 @@ Create Ceph Metadata Server (MDS)
 
 No description available.
 
+.PARAMETER POSTNodesCephMdsRB
+Create Ceph Metadata Server (MDS)
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11300,6 +12010,9 @@ None
 function New-PVENodesCephMdsByNodeAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesCephMdsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11318,7 +12031,12 @@ function New-PVENodesCephMdsByNodeAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/mds/{name}'
+
+        $LocalVarBodyParameter = $POSTNodesCephMdsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11409,6 +12127,9 @@ Create Ceph Monitor and Manager
 
 No description available.
 
+.PARAMETER POSTNodesCephMonRB
+Create Ceph Monitor and Manager
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11420,6 +12141,9 @@ None
 function New-PVENodesCephMonByNodeAndMonid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesCephMonRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11438,7 +12162,12 @@ function New-PVENodesCephMonByNodeAndMonid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/mon/{monid}'
+
+        $LocalVarBodyParameter = $POSTNodesCephMonRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11469,6 +12198,9 @@ Create OSD
 
 No description available.
 
+.PARAMETER POSTNodesCephOsdRB
+Create OSD
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11480,6 +12212,9 @@ None
 function New-PVENodesCephOsdByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesCephOsdRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11498,7 +12233,12 @@ function New-PVENodesCephOsdByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/osd'
+
+        $LocalVarBodyParameter = $POSTNodesCephOsdRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11649,6 +12389,9 @@ Instruct the OSD to scrub.
 
 No description available.
 
+.PARAMETER POSTNodesCephOsdScrubRB
+Instruct the OSD to scrub.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11660,6 +12403,9 @@ None
 function New-PVENodesCephOsdScrubByNodeAndOsdid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesCephOsdScrubRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11678,7 +12424,12 @@ function New-PVENodesCephOsdScrubByNodeAndOsdid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/osd/{osdid}/scrub'
+
+        $LocalVarBodyParameter = $POSTNodesCephOsdScrubRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11709,6 +12460,9 @@ Create Ceph pool
 
 No description available.
 
+.PARAMETER POSTNodesCephPoolRB
+Create Ceph pool
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11720,6 +12474,9 @@ None
 function New-PVENodesCephPoolByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesCephPoolRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11738,7 +12495,12 @@ function New-PVENodesCephPoolByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/pool'
+
+        $LocalVarBodyParameter = $POSTNodesCephPoolRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11769,6 +12531,9 @@ Restart ceph services.
 
 No description available.
 
+.PARAMETER POSTNodesCephRestartRB
+Restart ceph services.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11780,6 +12545,9 @@ None
 function New-PVENodesCephRestartByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesCephRestartRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11798,7 +12566,12 @@ function New-PVENodesCephRestartByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/restart'
+
+        $LocalVarBodyParameter = $POSTNodesCephRestartRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11829,6 +12602,9 @@ Start ceph services.
 
 No description available.
 
+.PARAMETER POSTNodesCephStartRB
+Start ceph services.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11840,6 +12616,9 @@ None
 function New-PVENodesCephStartByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesCephStartRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11858,7 +12637,12 @@ function New-PVENodesCephStartByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/start'
+
+        $LocalVarBodyParameter = $POSTNodesCephStartRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11889,6 +12673,9 @@ Stop ceph services.
 
 No description available.
 
+.PARAMETER POSTNodesCephStopRB
+Stop ceph services.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11900,6 +12687,9 @@ None
 function New-PVENodesCephStopByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesCephStopRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11918,7 +12708,12 @@ function New-PVENodesCephStopByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/stop'
+
+        $LocalVarBodyParameter = $POSTNodesCephStopRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -11949,6 +12744,9 @@ Order a new certificate from ACME-compatible CA.
 
 No description available.
 
+.PARAMETER POSTNodesCertificatesAcmeCertificateRB
+Order a new certificate from ACME-compatible CA.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11960,6 +12758,9 @@ None
 function New-PVENodesCertificatesAcmeCertificateByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesCertificatesAcmeCertificateRB},
         [Switch]
         $WithHttpInfo
     )
@@ -11978,7 +12779,12 @@ function New-PVENodesCertificatesAcmeCertificateByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/certificates/acme/certificate'
+
+        $LocalVarBodyParameter = $POSTNodesCertificatesAcmeCertificateRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12009,17 +12815,23 @@ Upload or update custom certificate chain and key.
 
 No description available.
 
+.PARAMETER POSTNodesCertificatesCustomRB
+Upload or update custom certificate chain and key.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-None
+NodesCertificatesCustom
 #>
 function New-PVENodesCertificatesCustomByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesCertificatesCustomRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12038,7 +12850,15 @@ function New-PVENodesCertificatesCustomByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/certificates/custom'
+
+        $LocalVarBodyParameter = $POSTNodesCertificatesCustomRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12049,7 +12869,7 @@ function New-PVENodesCertificatesCustomByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "NodesCertificatesCustom" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -12069,6 +12889,9 @@ Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'.
 
 No description available.
 
+.PARAMETER POSTNodesDisksDirectoryRB
+Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12080,6 +12903,9 @@ None
 function New-PVENodesDisksDirectoryByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesDisksDirectoryRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12098,7 +12924,12 @@ function New-PVENodesDisksDirectoryByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/disks/directory'
+
+        $LocalVarBodyParameter = $POSTNodesDisksDirectoryRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12129,6 +12960,9 @@ Initialize Disk with GPT
 
 No description available.
 
+.PARAMETER POSTNodesDisksInitgptRB
+Initialize Disk with GPT
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12140,6 +12974,9 @@ None
 function New-PVENodesDisksInitgptByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesDisksInitgptRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12158,7 +12995,12 @@ function New-PVENodesDisksInitgptByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/disks/initgpt'
+
+        $LocalVarBodyParameter = $POSTNodesDisksInitgptRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12189,6 +13031,9 @@ Create an LVM Volume Group
 
 No description available.
 
+.PARAMETER POSTNodesDisksLvmRB
+Create an LVM Volume Group
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12200,6 +13045,9 @@ None
 function New-PVENodesDisksLvmByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesDisksLvmRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12218,7 +13066,12 @@ function New-PVENodesDisksLvmByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/disks/lvm'
+
+        $LocalVarBodyParameter = $POSTNodesDisksLvmRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12249,6 +13102,9 @@ Create an LVM thinpool
 
 No description available.
 
+.PARAMETER POSTNodesDisksLvmthinRB
+Create an LVM thinpool
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12260,6 +13116,9 @@ None
 function New-PVENodesDisksLvmthinByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesDisksLvmthinRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12278,7 +13137,12 @@ function New-PVENodesDisksLvmthinByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/disks/lvmthin'
+
+        $LocalVarBodyParameter = $POSTNodesDisksLvmthinRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12309,6 +13173,9 @@ Create a ZFS pool.
 
 No description available.
 
+.PARAMETER POSTNodesDisksZfsRB
+Create a ZFS pool.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12320,6 +13187,9 @@ None
 function New-PVENodesDisksZfsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesDisksZfsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12338,7 +13208,12 @@ function New-PVENodesDisksZfsByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/disks/zfs'
+
+        $LocalVarBodyParameter = $POSTNodesDisksZfsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12369,17 +13244,23 @@ Execute multiple commands in order, root only.
 
 No description available.
 
+.PARAMETER POSTNodesExecuteRB
+Execute multiple commands in order, root only.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-None
+SystemCollectionsHashtable[]
 #>
 function New-PVENodesExecuteByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesExecuteRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12398,7 +13279,15 @@ function New-PVENodesExecuteByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/execute'
+
+        $LocalVarBodyParameter = $POSTNodesExecuteRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12409,7 +13298,7 @@ function New-PVENodesExecuteByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "SystemCollectionsHashtable[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -12429,6 +13318,9 @@ Create new rule.
 
 No description available.
 
+.PARAMETER POSTNodesFirewallRulesRB
+Create new rule.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12440,6 +13332,9 @@ None
 function New-PVENodesFirewallRulesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12458,7 +13353,12 @@ function New-PVENodesFirewallRulesByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/firewall/rules'
+
+        $LocalVarBodyParameter = $POSTNodesFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12489,6 +13389,9 @@ Write /etc/hosts.
 
 No description available.
 
+.PARAMETER POSTNodesHostsRB
+Write /etc/hosts.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12500,6 +13403,9 @@ None
 function New-PVENodesHostsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesHostsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12518,7 +13424,12 @@ function New-PVENodesHostsByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/hosts'
+
+        $LocalVarBodyParameter = $POSTNodesHostsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12549,6 +13460,9 @@ Create or restore a container.
 
 No description available.
 
+.PARAMETER POSTNodesLxcRB
+Create or restore a container.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12560,6 +13474,9 @@ None
 function New-PVENodesLxcByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12578,7 +13495,12 @@ function New-PVENodesLxcByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc'
+
+        $LocalVarBodyParameter = $POSTNodesLxcRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12609,6 +13531,9 @@ Create a container clone/copy
 
 No description available.
 
+.PARAMETER POSTNodesLxcCloneRB
+Create a container clone/copy
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12620,6 +13545,9 @@ None
 function New-PVENodesLxcCloneByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcCloneRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12638,7 +13566,12 @@ function New-PVENodesLxcCloneByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/clone'
+
+        $LocalVarBodyParameter = $POSTNodesLxcCloneRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12669,6 +13602,9 @@ Create IP or Network Alias.
 
 No description available.
 
+.PARAMETER POSTNodesLxcFirewallAliasesRB
+Create IP or Network Alias.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12680,6 +13616,9 @@ None
 function New-PVENodesLxcFirewallAliasesByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcFirewallAliasesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12698,7 +13637,12 @@ function New-PVENodesLxcFirewallAliasesByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/aliases'
+
+        $LocalVarBodyParameter = $POSTNodesLxcFirewallAliasesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12729,6 +13673,9 @@ Create new IPSet
 
 No description available.
 
+.PARAMETER POSTNodesLxcFirewallIpsetRB
+Create new IPSet
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12740,6 +13687,9 @@ None
 function New-PVENodesLxcFirewallIpsetByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12758,7 +13708,12 @@ function New-PVENodesLxcFirewallIpsetByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset'
+
+        $LocalVarBodyParameter = $POSTNodesLxcFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12789,6 +13744,9 @@ Add IP or Network to IPSet.
 
 No description available.
 
+.PARAMETER POSTNodesLxcFirewallIpsetRB
+Add IP or Network to IPSet.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12800,6 +13758,9 @@ None
 function New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12818,7 +13779,12 @@ function New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}'
+
+        $LocalVarBodyParameter = $POSTNodesLxcFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12849,6 +13815,9 @@ Create new rule.
 
 No description available.
 
+.PARAMETER POSTNodesLxcFirewallRulesRB
+Create new rule.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12860,6 +13829,9 @@ None
 function New-PVENodesLxcFirewallRulesByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12878,7 +13850,12 @@ function New-PVENodesLxcFirewallRulesByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/rules'
+
+        $LocalVarBodyParameter = $POSTNodesLxcFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12909,6 +13886,9 @@ Migrate the container to another node. Creates a new migration task.
 
 No description available.
 
+.PARAMETER POSTNodesLxcMigrateRB
+Migrate the container to another node. Creates a new migration task.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12920,6 +13900,9 @@ None
 function New-PVENodesLxcMigrateByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcMigrateRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12938,7 +13921,12 @@ function New-PVENodesLxcMigrateByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/migrate'
+
+        $LocalVarBodyParameter = $POSTNodesLxcMigrateRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12969,6 +13957,9 @@ Move a rootfs-/mp-volume to a different storage or to a different container.
 
 No description available.
 
+.PARAMETER POSTNodesLxcMovevolumeRB
+Move a rootfs-/mp-volume to a different storage or to a different container.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12980,6 +13971,9 @@ None
 function New-PVENodesLxcMovevolumeByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcMovevolumeRB},
         [Switch]
         $WithHttpInfo
     )
@@ -12998,7 +13992,12 @@ function New-PVENodesLxcMovevolumeByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/move_volume'
+
+        $LocalVarBodyParameter = $POSTNodesLxcMovevolumeRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13029,6 +14028,9 @@ Migration tunnel endpoint - only for internal use by CT migration.
 
 No description available.
 
+.PARAMETER POSTNodesLxcMtunnelRB
+Migration tunnel endpoint - only for internal use by CT migration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -13040,6 +14042,9 @@ None
 function New-PVENodesLxcMtunnelByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcMtunnelRB},
         [Switch]
         $WithHttpInfo
     )
@@ -13058,7 +14063,12 @@ function New-PVENodesLxcMtunnelByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/mtunnel'
+
+        $LocalVarBodyParameter = $POSTNodesLxcMtunnelRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13089,6 +14099,9 @@ Migrate the container to another cluster. Creates a new migration task. EXPERIME
 
 No description available.
 
+.PARAMETER POSTNodesLxcRemotemigrateRB
+Migrate the container to another cluster. Creates a new migration task. EXPERIMENTAL feature!
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -13100,6 +14113,9 @@ None
 function New-PVENodesLxcRemotemigrateByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcRemotemigrateRB},
         [Switch]
         $WithHttpInfo
     )
@@ -13118,7 +14134,12 @@ function New-PVENodesLxcRemotemigrateByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/remote_migrate'
+
+        $LocalVarBodyParameter = $POSTNodesLxcRemotemigrateRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13149,6 +14170,9 @@ Snapshot a container.
 
 No description available.
 
+.PARAMETER POSTNodesLxcSnapshotRB
+Snapshot a container.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -13160,6 +14184,9 @@ None
 function New-PVENodesLxcSnapshotByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcSnapshotRB},
         [Switch]
         $WithHttpInfo
     )
@@ -13178,7 +14205,12 @@ function New-PVENodesLxcSnapshotByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/snapshot'
+
+        $LocalVarBodyParameter = $POSTNodesLxcSnapshotRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13209,6 +14241,9 @@ Rollback LXC state to specified snapshot.
 
 No description available.
 
+.PARAMETER POSTNodesLxcSnapshotRollbackRB
+Rollback LXC state to specified snapshot.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -13220,6 +14255,9 @@ None
 function New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcSnapshotRollbackRB},
         [Switch]
         $WithHttpInfo
     )
@@ -13238,7 +14276,12 @@ function New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/rollback'
+
+        $LocalVarBodyParameter = $POSTNodesLxcSnapshotRollbackRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13269,6 +14312,9 @@ Returns a SPICE configuration to connect to the CT.
 
 No description available.
 
+.PARAMETER POSTNodesLxcSpiceproxyRB
+Returns a SPICE configuration to connect to the CT.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -13280,6 +14326,9 @@ None
 function New-PVENodesLxcSpiceproxyByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcSpiceproxyRB},
         [Switch]
         $WithHttpInfo
     )
@@ -13298,7 +14347,12 @@ function New-PVENodesLxcSpiceproxyByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/spiceproxy'
+
+        $LocalVarBodyParameter = $POSTNodesLxcSpiceproxyRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13329,6 +14383,9 @@ Reboot the container by shutting it down, and starting it again. Applies pending
 
 No description available.
 
+.PARAMETER POSTNodesLxcStatusRebootRB
+Reboot the container by shutting it down, and starting it again. Applies pending changes.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -13340,6 +14397,9 @@ None
 function New-PVENodesLxcStatusRebootByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcStatusRebootRB},
         [Switch]
         $WithHttpInfo
     )
@@ -13358,7 +14418,12 @@ function New-PVENodesLxcStatusRebootByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/status/reboot'
+
+        $LocalVarBodyParameter = $POSTNodesLxcStatusRebootRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13449,6 +14514,9 @@ Shutdown the container. This will trigger a clean shutdown of the container, see
 
 No description available.
 
+.PARAMETER POSTNodesLxcStatusShutdownRB
+Shutdown the container. This will trigger a clean shutdown of the container, see lxc-stop(1) for details.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -13460,6 +14528,9 @@ None
 function New-PVENodesLxcStatusShutdownByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcStatusShutdownRB},
         [Switch]
         $WithHttpInfo
     )
@@ -13478,7 +14549,12 @@ function New-PVENodesLxcStatusShutdownByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/status/shutdown'
+
+        $LocalVarBodyParameter = $POSTNodesLxcStatusShutdownRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13509,6 +14585,9 @@ Start the container.
 
 No description available.
 
+.PARAMETER POSTNodesLxcStatusStartRB
+Start the container.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -13520,6 +14599,9 @@ None
 function New-PVENodesLxcStatusStartByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcStatusStartRB},
         [Switch]
         $WithHttpInfo
     )
@@ -13538,7 +14620,12 @@ function New-PVENodesLxcStatusStartByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/status/start'
+
+        $LocalVarBodyParameter = $POSTNodesLxcStatusStartRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13569,6 +14656,9 @@ Stop the container. This will abruptly stop all processes running in the contain
 
 No description available.
 
+.PARAMETER POSTNodesLxcStatusStopRB
+Stop the container. This will abruptly stop all processes running in the container.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -13580,6 +14670,9 @@ None
 function New-PVENodesLxcStatusStopByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcStatusStopRB},
         [Switch]
         $WithHttpInfo
     )
@@ -13598,7 +14691,12 @@ function New-PVENodesLxcStatusStopByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/status/stop'
+
+        $LocalVarBodyParameter = $POSTNodesLxcStatusStopRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13809,6 +14907,9 @@ Creates a TCP VNC proxy connections.
 
 No description available.
 
+.PARAMETER POSTNodesLxcVncproxyRB
+Creates a TCP VNC proxy connections.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -13820,6 +14921,9 @@ None
 function New-PVENodesLxcVncproxyByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesLxcVncproxyRB},
         [Switch]
         $WithHttpInfo
     )
@@ -13838,7 +14942,12 @@ function New-PVENodesLxcVncproxyByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/vncproxy'
+
+        $LocalVarBodyParameter = $POSTNodesLxcVncproxyRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13869,6 +14978,9 @@ Migrate all VMs and Containers.
 
 No description available.
 
+.PARAMETER POSTNodesMigrateallRB
+Migrate all VMs and Containers.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -13880,6 +14992,9 @@ None
 function New-PVENodesMigrateallByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesMigrateallRB},
         [Switch]
         $WithHttpInfo
     )
@@ -13898,7 +15013,12 @@ function New-PVENodesMigrateallByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/migrateall'
+
+        $LocalVarBodyParameter = $POSTNodesMigrateallRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13929,6 +15049,9 @@ Create network device configuration
 
 No description available.
 
+.PARAMETER POSTNodesNetworkRB
+Create network device configuration
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -13940,6 +15063,9 @@ None
 function New-PVENodesNetworkByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesNetworkRB},
         [Switch]
         $WithHttpInfo
     )
@@ -13958,7 +15084,12 @@ function New-PVENodesNetworkByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/network'
+
+        $LocalVarBodyParameter = $POSTNodesNetworkRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -13989,6 +15120,9 @@ Execute QEMU Guest Agent commands.
 
 No description available.
 
+.PARAMETER POSTNodesQemuAgentRB
+Execute QEMU Guest Agent commands.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -14000,6 +15134,9 @@ None
 function New-PVENodesQemuAgentByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuAgentRB},
         [Switch]
         $WithHttpInfo
     )
@@ -14018,7 +15155,12 @@ function New-PVENodesQemuAgentByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent'
+
+        $LocalVarBodyParameter = $POSTNodesQemuAgentRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -14049,17 +15191,23 @@ Executes the given command in the vm via the guest-agent and returns an object w
 
 No description available.
 
+.PARAMETER POSTNodesQemuAgentExecRB
+Executes the given command in the vm via the guest-agent and returns an object with the pid.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-None
+NodesQemuAgentExec
 #>
 function New-PVENodesQemuAgentExecByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuAgentExecRB},
         [Switch]
         $WithHttpInfo
     )
@@ -14078,7 +15226,15 @@ function New-PVENodesQemuAgentExecByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/exec'
+
+        $LocalVarBodyParameter = $POSTNodesQemuAgentExecRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -14089,7 +15245,7 @@ function New-PVENodesQemuAgentExecByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "NodesQemuAgentExec" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -14109,6 +15265,9 @@ Writes the given file via guest agent.
 
 No description available.
 
+.PARAMETER POSTNodesQemuAgentFilewriteRB
+Writes the given file via guest agent.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -14120,6 +15279,9 @@ None
 function New-PVENodesQemuAgentFilewriteByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuAgentFilewriteRB},
         [Switch]
         $WithHttpInfo
     )
@@ -14138,7 +15300,12 @@ function New-PVENodesQemuAgentFilewriteByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/file-write'
+
+        $LocalVarBodyParameter = $POSTNodesQemuAgentFilewriteRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -14469,6 +15636,9 @@ Sets the password for the given user to the given password
 
 No description available.
 
+.PARAMETER POSTNodesQemuAgentSetuserpasswordRB
+Sets the password for the given user to the given password
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -14480,6 +15650,9 @@ None
 function New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuAgentSetuserpasswordRB},
         [Switch]
         $WithHttpInfo
     )
@@ -14498,7 +15671,12 @@ function New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/set-user-password'
+
+        $LocalVarBodyParameter = $POSTNodesQemuAgentSetuserpasswordRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -14769,6 +15947,9 @@ Create or restore a virtual machine.
 
 No description available.
 
+.PARAMETER POSTNodesQemuRB
+Create or restore a virtual machine.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -14780,6 +15961,9 @@ None
 function New-PVENodesQemuByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuRB},
         [Switch]
         $WithHttpInfo
     )
@@ -14798,7 +15982,12 @@ function New-PVENodesQemuByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu'
+
+        $LocalVarBodyParameter = $POSTNodesQemuRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -14829,6 +16018,9 @@ Create a copy of virtual machine/template.
 
 No description available.
 
+.PARAMETER POSTNodesQemuCloneRB
+Create a copy of virtual machine/template.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -14840,6 +16032,9 @@ None
 function New-PVENodesQemuCloneByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuCloneRB},
         [Switch]
         $WithHttpInfo
     )
@@ -14858,7 +16053,12 @@ function New-PVENodesQemuCloneByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/clone'
+
+        $LocalVarBodyParameter = $POSTNodesQemuCloneRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -14889,6 +16089,9 @@ Set virtual machine options (asynchronous API).
 
 No description available.
 
+.PARAMETER POSTNodesQemuConfigRB
+Set virtual machine options (asynchronous API).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -14900,6 +16103,9 @@ None
 function New-PVENodesQemuConfigByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuConfigRB},
         [Switch]
         $WithHttpInfo
     )
@@ -14918,7 +16124,12 @@ function New-PVENodesQemuConfigByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/config'
+
+        $LocalVarBodyParameter = $POSTNodesQemuConfigRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -14949,6 +16160,9 @@ Create IP or Network Alias.
 
 No description available.
 
+.PARAMETER POSTNodesQemuFirewallAliasesRB
+Create IP or Network Alias.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -14960,6 +16174,9 @@ None
 function New-PVENodesQemuFirewallAliasesByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuFirewallAliasesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -14978,7 +16195,12 @@ function New-PVENodesQemuFirewallAliasesByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/aliases'
+
+        $LocalVarBodyParameter = $POSTNodesQemuFirewallAliasesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15009,6 +16231,9 @@ Create new IPSet
 
 No description available.
 
+.PARAMETER POSTNodesQemuFirewallIpsetRB
+Create new IPSet
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15020,6 +16245,9 @@ None
 function New-PVENodesQemuFirewallIpsetByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15038,7 +16266,12 @@ function New-PVENodesQemuFirewallIpsetByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset'
+
+        $LocalVarBodyParameter = $POSTNodesQemuFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15069,6 +16302,9 @@ Add IP or Network to IPSet.
 
 No description available.
 
+.PARAMETER POSTNodesQemuFirewallIpsetRB
+Add IP or Network to IPSet.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15080,6 +16316,9 @@ None
 function New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15098,7 +16337,12 @@ function New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}'
+
+        $LocalVarBodyParameter = $POSTNodesQemuFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15129,6 +16373,9 @@ Create new rule.
 
 No description available.
 
+.PARAMETER POSTNodesQemuFirewallRulesRB
+Create new rule.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15140,6 +16387,9 @@ None
 function New-PVENodesQemuFirewallRulesByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15158,7 +16408,12 @@ function New-PVENodesQemuFirewallRulesByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/rules'
+
+        $LocalVarBodyParameter = $POSTNodesQemuFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15189,6 +16444,9 @@ Migrate virtual machine. Creates a new migration task.
 
 No description available.
 
+.PARAMETER POSTNodesQemuMigrateRB
+Migrate virtual machine. Creates a new migration task.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15200,6 +16458,9 @@ None
 function New-PVENodesQemuMigrateByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuMigrateRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15218,7 +16479,12 @@ function New-PVENodesQemuMigrateByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/migrate'
+
+        $LocalVarBodyParameter = $POSTNodesQemuMigrateRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15249,6 +16515,9 @@ Execute QEMU monitor commands.
 
 No description available.
 
+.PARAMETER POSTNodesQemuMonitorRB
+Execute QEMU monitor commands.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15260,6 +16529,9 @@ None
 function New-PVENodesQemuMonitorByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuMonitorRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15278,7 +16550,12 @@ function New-PVENodesQemuMonitorByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/monitor'
+
+        $LocalVarBodyParameter = $POSTNodesQemuMonitorRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15309,6 +16586,9 @@ Move volume to different storage or to a different VM.
 
 No description available.
 
+.PARAMETER POSTNodesQemuMovediskRB
+Move volume to different storage or to a different VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15320,6 +16600,9 @@ None
 function New-PVENodesQemuMovediskByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuMovediskRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15338,7 +16621,12 @@ function New-PVENodesQemuMovediskByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/move_disk'
+
+        $LocalVarBodyParameter = $POSTNodesQemuMovediskRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15369,6 +16657,9 @@ Migration tunnel endpoint - only for internal use by VM migration.
 
 No description available.
 
+.PARAMETER POSTNodesQemuMtunnelRB
+Migration tunnel endpoint - only for internal use by VM migration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15380,6 +16671,9 @@ None
 function New-PVENodesQemuMtunnelByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuMtunnelRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15398,7 +16692,12 @@ function New-PVENodesQemuMtunnelByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/mtunnel'
+
+        $LocalVarBodyParameter = $POSTNodesQemuMtunnelRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15429,6 +16728,9 @@ Migrate virtual machine to a remote cluster. Creates a new migration task. EXPER
 
 No description available.
 
+.PARAMETER POSTNodesQemuRemotemigrateRB
+Migrate virtual machine to a remote cluster. Creates a new migration task. EXPERIMENTAL feature!
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15440,6 +16742,9 @@ None
 function New-PVENodesQemuRemotemigrateByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuRemotemigrateRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15458,7 +16763,12 @@ function New-PVENodesQemuRemotemigrateByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/remote_migrate'
+
+        $LocalVarBodyParameter = $POSTNodesQemuRemotemigrateRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15489,6 +16799,9 @@ Snapshot a VM.
 
 No description available.
 
+.PARAMETER POSTNodesQemuSnapshotRB
+Snapshot a VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15500,6 +16813,9 @@ None
 function New-PVENodesQemuSnapshotByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuSnapshotRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15518,7 +16834,12 @@ function New-PVENodesQemuSnapshotByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/snapshot'
+
+        $LocalVarBodyParameter = $POSTNodesQemuSnapshotRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15549,6 +16870,9 @@ Rollback VM state to specified snapshot.
 
 No description available.
 
+.PARAMETER POSTNodesQemuSnapshotRollbackRB
+Rollback VM state to specified snapshot.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15560,6 +16884,9 @@ None
 function New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuSnapshotRollbackRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15578,7 +16905,12 @@ function New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/snapshot/{snapname}/rollback'
+
+        $LocalVarBodyParameter = $POSTNodesQemuSnapshotRollbackRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15609,6 +16941,9 @@ Returns a SPICE configuration to connect to the VM.
 
 No description available.
 
+.PARAMETER POSTNodesQemuSpiceproxyRB
+Returns a SPICE configuration to connect to the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15620,6 +16955,9 @@ None
 function New-PVENodesQemuSpiceproxyByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuSpiceproxyRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15638,7 +16976,12 @@ function New-PVENodesQemuSpiceproxyByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/spiceproxy'
+
+        $LocalVarBodyParameter = $POSTNodesQemuSpiceproxyRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15669,6 +17012,9 @@ Reboot the VM by shutting it down, and starting it again. Applies pending change
 
 No description available.
 
+.PARAMETER POSTNodesQemuStatusRebootRB
+Reboot the VM by shutting it down, and starting it again. Applies pending changes.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15680,6 +17026,9 @@ None
 function New-PVENodesQemuStatusRebootByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuStatusRebootRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15698,7 +17047,12 @@ function New-PVENodesQemuStatusRebootByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/reboot'
+
+        $LocalVarBodyParameter = $POSTNodesQemuStatusRebootRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15729,6 +17083,9 @@ Reset virtual machine.
 
 No description available.
 
+.PARAMETER POSTNodesQemuStatusResetRB
+Reset virtual machine.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15740,6 +17097,9 @@ None
 function New-PVENodesQemuStatusResetByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuStatusResetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15758,7 +17118,12 @@ function New-PVENodesQemuStatusResetByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/reset'
+
+        $LocalVarBodyParameter = $POSTNodesQemuStatusResetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15789,6 +17154,9 @@ Resume virtual machine.
 
 No description available.
 
+.PARAMETER POSTNodesQemuStatusResumeRB
+Resume virtual machine.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15800,6 +17168,9 @@ None
 function New-PVENodesQemuStatusResumeByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuStatusResumeRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15818,7 +17189,12 @@ function New-PVENodesQemuStatusResumeByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/resume'
+
+        $LocalVarBodyParameter = $POSTNodesQemuStatusResumeRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15849,6 +17225,9 @@ Shutdown virtual machine. This is similar to pressing the power button on a phys
 
 No description available.
 
+.PARAMETER POSTNodesQemuStatusShutdownRB
+Shutdown virtual machine. This is similar to pressing the power button on a physical machine. This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15860,6 +17239,9 @@ None
 function New-PVENodesQemuStatusShutdownByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuStatusShutdownRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15878,7 +17260,12 @@ function New-PVENodesQemuStatusShutdownByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/shutdown'
+
+        $LocalVarBodyParameter = $POSTNodesQemuStatusShutdownRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15909,6 +17296,9 @@ Start virtual machine.
 
 No description available.
 
+.PARAMETER POSTNodesQemuStatusStartRB
+Start virtual machine.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15920,6 +17310,9 @@ None
 function New-PVENodesQemuStatusStartByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuStatusStartRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15938,7 +17331,12 @@ function New-PVENodesQemuStatusStartByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/start'
+
+        $LocalVarBodyParameter = $POSTNodesQemuStatusStartRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15969,6 +17367,9 @@ Stop virtual machine. The qemu process will exit immediately. This is akin to pu
 
 No description available.
 
+.PARAMETER POSTNodesQemuStatusStopRB
+Stop virtual machine. The qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15980,6 +17381,9 @@ None
 function New-PVENodesQemuStatusStopByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuStatusStopRB},
         [Switch]
         $WithHttpInfo
     )
@@ -15998,7 +17402,12 @@ function New-PVENodesQemuStatusStopByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/stop'
+
+        $LocalVarBodyParameter = $POSTNodesQemuStatusStopRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -16029,6 +17438,9 @@ Suspend virtual machine.
 
 No description available.
 
+.PARAMETER POSTNodesQemuStatusSuspendRB
+Suspend virtual machine.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -16040,6 +17452,9 @@ None
 function New-PVENodesQemuStatusSuspendByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuStatusSuspendRB},
         [Switch]
         $WithHttpInfo
     )
@@ -16058,7 +17473,12 @@ function New-PVENodesQemuStatusSuspendByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/suspend'
+
+        $LocalVarBodyParameter = $POSTNodesQemuStatusSuspendRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -16089,6 +17509,9 @@ Create a Template.
 
 No description available.
 
+.PARAMETER POSTNodesQemuTemplateRB
+Create a Template.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -16100,6 +17523,9 @@ None
 function New-PVENodesQemuTemplateByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuTemplateRB},
         [Switch]
         $WithHttpInfo
     )
@@ -16118,7 +17544,12 @@ function New-PVENodesQemuTemplateByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/template'
+
+        $LocalVarBodyParameter = $POSTNodesQemuTemplateRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -16149,6 +17580,9 @@ Creates a TCP proxy connections.
 
 No description available.
 
+.PARAMETER POSTNodesQemuTermproxyRB
+Creates a TCP proxy connections.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -16160,6 +17594,9 @@ None
 function New-PVENodesQemuTermproxyByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuTermproxyRB},
         [Switch]
         $WithHttpInfo
     )
@@ -16178,7 +17615,12 @@ function New-PVENodesQemuTermproxyByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/termproxy'
+
+        $LocalVarBodyParameter = $POSTNodesQemuTermproxyRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -16209,6 +17651,9 @@ Creates a TCP VNC proxy connections.
 
 No description available.
 
+.PARAMETER POSTNodesQemuVncproxyRB
+Creates a TCP VNC proxy connections.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -16220,6 +17665,9 @@ None
 function New-PVENodesQemuVncproxyByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesQemuVncproxyRB},
         [Switch]
         $WithHttpInfo
     )
@@ -16238,7 +17686,12 @@ function New-PVENodesQemuVncproxyByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/vncproxy'
+
+        $LocalVarBodyParameter = $POSTNodesQemuVncproxyRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -16569,6 +18022,9 @@ Creates a SPICE shell.
 
 No description available.
 
+.PARAMETER POSTNodesSpiceshellRB
+Creates a SPICE shell.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -16580,6 +18036,9 @@ None
 function New-PVENodesSpiceshellByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesSpiceshellRB},
         [Switch]
         $WithHttpInfo
     )
@@ -16598,7 +18057,12 @@ function New-PVENodesSpiceshellByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/spiceshell'
+
+        $LocalVarBodyParameter = $POSTNodesSpiceshellRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -16629,6 +18093,9 @@ Start all VMs and containers located on this node (by default only those with on
 
 No description available.
 
+.PARAMETER POSTNodesStartallRB
+Start all VMs and containers located on this node (by default only those with onboot=1).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -16640,6 +18107,9 @@ None
 function New-PVENodesStartallByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesStartallRB},
         [Switch]
         $WithHttpInfo
     )
@@ -16658,7 +18128,12 @@ function New-PVENodesStartallByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/startall'
+
+        $LocalVarBodyParameter = $POSTNodesStartallRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -16689,6 +18164,9 @@ Reboot or shutdown a node.
 
 No description available.
 
+.PARAMETER POSTNodesStatusRB
+Reboot or shutdown a node.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -16700,6 +18178,9 @@ None
 function New-PVENodesStatusByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesStatusRB},
         [Switch]
         $WithHttpInfo
     )
@@ -16718,7 +18199,12 @@ function New-PVENodesStatusByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/status'
+
+        $LocalVarBodyParameter = $POSTNodesStatusRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -16749,6 +18235,9 @@ Stop all VMs and Containers.
 
 No description available.
 
+.PARAMETER POSTNodesStopallRB
+Stop all VMs and Containers.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -16760,6 +18249,9 @@ None
 function New-PVENodesStopallByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesStopallRB},
         [Switch]
         $WithHttpInfo
     )
@@ -16778,7 +18270,12 @@ function New-PVENodesStopallByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/stopall'
+
+        $LocalVarBodyParameter = $POSTNodesStopallRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -16809,6 +18306,9 @@ Allocate disk images.
 
 No description available.
 
+.PARAMETER POSTNodesStorageContentRB
+Allocate disk images.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -16820,6 +18320,9 @@ None
 function New-PVENodesStorageContentByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesStorageContentRB},
         [Switch]
         $WithHttpInfo
     )
@@ -16838,7 +18341,12 @@ function New-PVENodesStorageContentByNodeAndStorage {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/content'
+
+        $LocalVarBodyParameter = $POSTNodesStorageContentRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -16869,6 +18377,9 @@ Copy a volume. This is experimental code - do not use.
 
 No description available.
 
+.PARAMETER POSTNodesStorageContentRB
+Copy a volume. This is experimental code - do not use.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -16880,6 +18391,9 @@ None
 function New-PVENodesStorageContentByNodeAndStorageAndVolume {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesStorageContentRB},
         [Switch]
         $WithHttpInfo
     )
@@ -16898,7 +18412,12 @@ function New-PVENodesStorageContentByNodeAndStorageAndVolume {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/content/{volume}'
+
+        $LocalVarBodyParameter = $POSTNodesStorageContentRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -16929,6 +18448,9 @@ Download templates, ISO images and OVAs by using an URL.
 
 No description available.
 
+.PARAMETER POSTNodesStorageDownloadurlRB
+Download templates, ISO images and OVAs by using an URL.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -16940,6 +18462,9 @@ None
 function New-PVENodesStorageDownloadurlByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesStorageDownloadurlRB},
         [Switch]
         $WithHttpInfo
     )
@@ -16958,7 +18483,12 @@ function New-PVENodesStorageDownloadurlByNodeAndStorage {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/download-url'
+
+        $LocalVarBodyParameter = $POSTNodesStorageDownloadurlRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -16989,6 +18519,9 @@ Upload templates, ISO images and OVAs.
 
 No description available.
 
+.PARAMETER POSTNodesStorageUploadRB
+Upload templates, ISO images and OVAs.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17000,6 +18533,9 @@ None
 function New-PVENodesStorageUploadByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesStorageUploadRB},
         [Switch]
         $WithHttpInfo
     )
@@ -17018,7 +18554,12 @@ function New-PVENodesStorageUploadByNodeAndStorage {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/upload'
+
+        $LocalVarBodyParameter = $POSTNodesStorageUploadRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -17049,6 +18590,9 @@ Update subscription info.
 
 No description available.
 
+.PARAMETER POSTNodesSubscriptionRB
+Update subscription info.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17060,6 +18604,9 @@ None
 function New-PVENodesSubscriptionByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesSubscriptionRB},
         [Switch]
         $WithHttpInfo
     )
@@ -17078,7 +18625,12 @@ function New-PVENodesSubscriptionByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/subscription'
+
+        $LocalVarBodyParameter = $POSTNodesSubscriptionRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -17109,6 +18661,9 @@ Suspend all VMs.
 
 No description available.
 
+.PARAMETER POSTNodesSuspendallRB
+Suspend all VMs.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17120,6 +18675,9 @@ None
 function New-PVENodesSuspendallByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesSuspendallRB},
         [Switch]
         $WithHttpInfo
     )
@@ -17138,7 +18696,12 @@ function New-PVENodesSuspendallByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/suspendall'
+
+        $LocalVarBodyParameter = $POSTNodesSuspendallRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -17169,6 +18732,9 @@ Creates a VNC Shell proxy.
 
 No description available.
 
+.PARAMETER POSTNodesTermproxyRB
+Creates a VNC Shell proxy.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17180,6 +18746,9 @@ None
 function New-PVENodesTermproxyByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesTermproxyRB},
         [Switch]
         $WithHttpInfo
     )
@@ -17198,7 +18767,12 @@ function New-PVENodesTermproxyByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/termproxy'
+
+        $LocalVarBodyParameter = $POSTNodesTermproxyRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -17229,6 +18803,9 @@ Creates a VNC Shell proxy.
 
 No description available.
 
+.PARAMETER POSTNodesVncshellRB
+Creates a VNC Shell proxy.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17240,6 +18817,9 @@ None
 function New-PVENodesVncshellByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesVncshellRB},
         [Switch]
         $WithHttpInfo
     )
@@ -17258,7 +18838,12 @@ function New-PVENodesVncshellByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/vncshell'
+
+        $LocalVarBodyParameter = $POSTNodesVncshellRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -17289,6 +18874,9 @@ Create backup.
 
 No description available.
 
+.PARAMETER POSTNodesVzdumpRB
+Create backup.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17300,6 +18888,9 @@ None
 function New-PVENodesVzdumpByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTNodesVzdumpRB},
         [Switch]
         $WithHttpInfo
     )
@@ -17318,7 +18909,12 @@ function New-PVENodesVzdumpByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/vzdump'
+
+        $LocalVarBodyParameter = $POSTNodesVzdumpRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -17589,6 +19185,9 @@ Destroy OSD
 
 No description available.
 
+.PARAMETER DELETENodesCephOsdRB
+Destroy OSD
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17600,6 +19199,9 @@ None
 function Remove-PVENodesCephOsdByNodeAndOsdid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesCephOsdRB},
         [Switch]
         $WithHttpInfo
     )
@@ -17618,7 +19220,12 @@ function Remove-PVENodesCephOsdByNodeAndOsdid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/osd/{osdid}'
+
+        $LocalVarBodyParameter = $DELETENodesCephOsdRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -17649,6 +19256,9 @@ Destroy pool
 
 No description available.
 
+.PARAMETER DELETENodesCephPoolRB
+Destroy pool
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17660,6 +19270,9 @@ None
 function Remove-PVENodesCephPoolByNodeAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesCephPoolRB},
         [Switch]
         $WithHttpInfo
     )
@@ -17678,7 +19291,12 @@ function Remove-PVENodesCephPoolByNodeAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/pool/{name}'
+
+        $LocalVarBodyParameter = $DELETENodesCephPoolRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -17769,6 +19387,9 @@ DELETE custom certificate chain and key.
 
 No description available.
 
+.PARAMETER DELETENodesCertificatesCustomRB
+DELETE custom certificate chain and key.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17780,6 +19401,9 @@ None
 function Remove-PVENodesCertificatesCustomByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesCertificatesCustomRB},
         [Switch]
         $WithHttpInfo
     )
@@ -17798,7 +19422,12 @@ function Remove-PVENodesCertificatesCustomByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/certificates/custom'
+
+        $LocalVarBodyParameter = $DELETENodesCertificatesCustomRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -17829,6 +19458,9 @@ Unmounts the storage and removes the mount unit.
 
 No description available.
 
+.PARAMETER DELETENodesDisksDirectoryRB
+Unmounts the storage and removes the mount unit.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17840,6 +19472,9 @@ None
 function Remove-PVENodesDisksDirectoryByNodeAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesDisksDirectoryRB},
         [Switch]
         $WithHttpInfo
     )
@@ -17858,7 +19493,12 @@ function Remove-PVENodesDisksDirectoryByNodeAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/disks/directory/{name}'
+
+        $LocalVarBodyParameter = $DELETENodesDisksDirectoryRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -17889,6 +19529,9 @@ Remove an LVM Volume Group.
 
 No description available.
 
+.PARAMETER DELETENodesDisksLvmRB
+Remove an LVM Volume Group.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17900,6 +19543,9 @@ None
 function Remove-PVENodesDisksLvmByNodeAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesDisksLvmRB},
         [Switch]
         $WithHttpInfo
     )
@@ -17918,7 +19564,12 @@ function Remove-PVENodesDisksLvmByNodeAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/disks/lvm/{name}'
+
+        $LocalVarBodyParameter = $DELETENodesDisksLvmRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -17949,6 +19600,9 @@ Remove an LVM thin pool.
 
 No description available.
 
+.PARAMETER DELETENodesDisksLvmthinRB
+Remove an LVM thin pool.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17960,6 +19614,9 @@ None
 function Remove-PVENodesDisksLvmthinByNodeAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesDisksLvmthinRB},
         [Switch]
         $WithHttpInfo
     )
@@ -17978,7 +19635,12 @@ function Remove-PVENodesDisksLvmthinByNodeAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/disks/lvmthin/{name}'
+
+        $LocalVarBodyParameter = $DELETENodesDisksLvmthinRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18009,6 +19671,9 @@ Destroy a ZFS pool.
 
 No description available.
 
+.PARAMETER DELETENodesDisksZfsRB
+Destroy a ZFS pool.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18020,6 +19685,9 @@ None
 function Remove-PVENodesDisksZfsByNodeAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesDisksZfsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18038,7 +19706,12 @@ function Remove-PVENodesDisksZfsByNodeAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/disks/zfs/{name}'
+
+        $LocalVarBodyParameter = $DELETENodesDisksZfsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18069,6 +19742,9 @@ Delete rule.
 
 No description available.
 
+.PARAMETER DELETENodesFirewallRulesRB
+Delete rule.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18080,6 +19756,9 @@ None
 function Remove-PVENodesFirewallRulesByNodeAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18098,7 +19777,12 @@ function Remove-PVENodesFirewallRulesByNodeAndPos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/firewall/rules/{pos}'
+
+        $LocalVarBodyParameter = $DELETENodesFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18129,6 +19813,9 @@ Destroy the container (also delete all uses files).
 
 No description available.
 
+.PARAMETER DELETENodesLxcRB
+Destroy the container (also delete all uses files).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18140,6 +19827,9 @@ None
 function Remove-PVENodesLxcByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesLxcRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18158,7 +19848,12 @@ function Remove-PVENodesLxcByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}'
+
+        $LocalVarBodyParameter = $DELETENodesLxcRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18189,6 +19884,9 @@ Remove IP or Network alias.
 
 No description available.
 
+.PARAMETER DELETENodesLxcFirewallAliasesRB
+Remove IP or Network alias.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18200,6 +19898,9 @@ None
 function Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesLxcFirewallAliasesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18218,7 +19919,12 @@ function Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/aliases/{name}'
+
+        $LocalVarBodyParameter = $DELETENodesLxcFirewallAliasesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18249,6 +19955,9 @@ Delete IPSet
 
 No description available.
 
+.PARAMETER DELETENodesLxcFirewallIpsetRB
+Delete IPSet
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18260,6 +19969,9 @@ None
 function Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesLxcFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18278,7 +19990,12 @@ function Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}'
+
+        $LocalVarBodyParameter = $DELETENodesLxcFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18309,6 +20026,9 @@ Remove IP or Network from IPSet.
 
 No description available.
 
+.PARAMETER DELETENodesLxcFirewallIpsetRB
+Remove IP or Network from IPSet.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18320,6 +20040,9 @@ None
 function Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesLxcFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18338,7 +20061,12 @@ function Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}/{cidr}'
+
+        $LocalVarBodyParameter = $DELETENodesLxcFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18369,6 +20097,9 @@ Delete rule.
 
 No description available.
 
+.PARAMETER DELETENodesLxcFirewallRulesRB
+Delete rule.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18380,6 +20111,9 @@ None
 function Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesLxcFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18398,7 +20132,12 @@ function Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/rules/{pos}'
+
+        $LocalVarBodyParameter = $DELETENodesLxcFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18429,6 +20168,9 @@ Delete a LXC snapshot.
 
 No description available.
 
+.PARAMETER DELETENodesLxcSnapshotRB
+Delete a LXC snapshot.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18440,6 +20182,9 @@ None
 function Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesLxcSnapshotRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18458,7 +20203,12 @@ function Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/snapshot/{snapname}'
+
+        $LocalVarBodyParameter = $DELETENodesLxcSnapshotRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18609,6 +20359,9 @@ Destroy the VM and  all used/owned volumes. Removes any VM specific permissions 
 
 No description available.
 
+.PARAMETER DELETENodesQemuRB
+Destroy the VM and  all used/owned volumes. Removes any VM specific permissions and firewall rules
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18620,6 +20373,9 @@ None
 function Remove-PVENodesQemuByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesQemuRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18638,7 +20394,12 @@ function Remove-PVENodesQemuByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}'
+
+        $LocalVarBodyParameter = $DELETENodesQemuRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18669,6 +20430,9 @@ Remove IP or Network alias.
 
 No description available.
 
+.PARAMETER DELETENodesQemuFirewallAliasesRB
+Remove IP or Network alias.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18680,6 +20444,9 @@ None
 function Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesQemuFirewallAliasesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18698,7 +20465,12 @@ function Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/aliases/{name}'
+
+        $LocalVarBodyParameter = $DELETENodesQemuFirewallAliasesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18729,6 +20501,9 @@ Delete IPSet
 
 No description available.
 
+.PARAMETER DELETENodesQemuFirewallIpsetRB
+Delete IPSet
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18740,6 +20515,9 @@ None
 function Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesQemuFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18758,7 +20536,12 @@ function Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}'
+
+        $LocalVarBodyParameter = $DELETENodesQemuFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18789,6 +20572,9 @@ Remove IP or Network from IPSet.
 
 No description available.
 
+.PARAMETER DELETENodesQemuFirewallIpsetRB
+Remove IP or Network from IPSet.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18800,6 +20586,9 @@ None
 function Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesQemuFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18818,7 +20607,12 @@ function Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}/{cidr}'
+
+        $LocalVarBodyParameter = $DELETENodesQemuFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18849,6 +20643,9 @@ Delete rule.
 
 No description available.
 
+.PARAMETER DELETENodesQemuFirewallRulesRB
+Delete rule.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18860,6 +20657,9 @@ None
 function Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesQemuFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18878,7 +20678,12 @@ function Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/rules/{pos}'
+
+        $LocalVarBodyParameter = $DELETENodesQemuFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18909,6 +20714,9 @@ Delete a VM snapshot.
 
 No description available.
 
+.PARAMETER DELETENodesQemuSnapshotRB
+Delete a VM snapshot.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18920,6 +20728,9 @@ None
 function Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesQemuSnapshotRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18938,7 +20749,12 @@ function Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/snapshot/{snapname}'
+
+        $LocalVarBodyParameter = $DELETENodesQemuSnapshotRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -18969,6 +20785,9 @@ Delete volume
 
 No description available.
 
+.PARAMETER DELETENodesStorageContentRB
+Delete volume
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18980,6 +20799,9 @@ None
 function Remove-PVENodesStorageContentByNodeAndStorageAndVolume {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesStorageContentRB},
         [Switch]
         $WithHttpInfo
     )
@@ -18998,7 +20820,12 @@ function Remove-PVENodesStorageContentByNodeAndStorageAndVolume {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/content/{volume}'
+
+        $LocalVarBodyParameter = $DELETENodesStorageContentRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -19029,6 +20856,9 @@ Prune backups. Only those using the standard naming scheme are considered.
 
 No description available.
 
+.PARAMETER DELETENodesStoragePrunebackupsRB
+Prune backups. Only those using the standard naming scheme are considered.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19040,6 +20870,9 @@ None
 function Remove-PVENodesStoragePrunebackupsByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETENodesStoragePrunebackupsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19058,7 +20891,12 @@ function Remove-PVENodesStoragePrunebackupsByNodeAndStorage {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/prunebackups'
+
+        $LocalVarBodyParameter = $DELETENodesStoragePrunebackupsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -19209,6 +21047,9 @@ Add a standard repository to the configuration
 
 No description available.
 
+.PARAMETER PUTNodesAptRepositoriesRB
+Add a standard repository to the configuration
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19220,6 +21061,9 @@ None
 function Set-PVENodesAptRepositoriesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesAptRepositoriesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19238,7 +21082,12 @@ function Set-PVENodesAptRepositoriesByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/apt/repositories'
+
+        $LocalVarBodyParameter = $PUTNodesAptRepositoriesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19269,6 +21118,9 @@ Change POOL settings
 
 No description available.
 
+.PARAMETER PUTNodesCephPoolRB
+Change POOL settings
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19280,6 +21132,9 @@ None
 function Set-PVENodesCephPoolByNodeAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesCephPoolRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19298,7 +21153,12 @@ function Set-PVENodesCephPoolByNodeAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/ceph/pool/{name}'
+
+        $LocalVarBodyParameter = $PUTNodesCephPoolRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19329,6 +21189,9 @@ Renew existing certificate from CA.
 
 No description available.
 
+.PARAMETER PUTNodesCertificatesAcmeCertificateRB
+Renew existing certificate from CA.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19340,6 +21203,9 @@ None
 function Set-PVENodesCertificatesAcmeCertificateByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesCertificatesAcmeCertificateRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19358,7 +21224,12 @@ function Set-PVENodesCertificatesAcmeCertificateByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/certificates/acme/certificate'
+
+        $LocalVarBodyParameter = $PUTNodesCertificatesAcmeCertificateRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19389,6 +21260,9 @@ Set node configuration options.
 
 No description available.
 
+.PARAMETER PUTNodesConfigRB
+Set node configuration options.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19400,6 +21274,9 @@ None
 function Set-PVENodesConfigByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesConfigRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19418,7 +21295,12 @@ function Set-PVENodesConfigByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/config'
+
+        $LocalVarBodyParameter = $PUTNodesConfigRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19449,6 +21331,9 @@ Wipe a disk or partition.
 
 No description available.
 
+.PARAMETER PUTNodesDisksWipediskRB
+Wipe a disk or partition.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19460,6 +21345,9 @@ None
 function Set-PVENodesDisksWipediskByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesDisksWipediskRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19478,7 +21366,12 @@ function Set-PVENodesDisksWipediskByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/disks/wipedisk'
+
+        $LocalVarBodyParameter = $PUTNodesDisksWipediskRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19509,6 +21402,9 @@ Write DNS settings.
 
 No description available.
 
+.PARAMETER PUTNodesDnsRB
+Write DNS settings.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19520,6 +21416,9 @@ None
 function Set-PVENodesDnsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesDnsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19538,7 +21437,12 @@ function Set-PVENodesDnsByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/dns'
+
+        $LocalVarBodyParameter = $PUTNodesDnsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19569,6 +21473,9 @@ Set Firewall options.
 
 No description available.
 
+.PARAMETER PUTNodesFirewallOptionsRB
+Set Firewall options.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19580,6 +21487,9 @@ None
 function Set-PVENodesFirewallOptionsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesFirewallOptionsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19598,7 +21508,12 @@ function Set-PVENodesFirewallOptionsByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/firewall/options'
+
+        $LocalVarBodyParameter = $PUTNodesFirewallOptionsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19629,6 +21544,9 @@ Modify rule data.
 
 No description available.
 
+.PARAMETER PUTNodesFirewallRulesRB
+Modify rule data.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19640,6 +21558,9 @@ None
 function Set-PVENodesFirewallRulesByNodeAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19658,7 +21579,12 @@ function Set-PVENodesFirewallRulesByNodeAndPos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/firewall/rules/{pos}'
+
+        $LocalVarBodyParameter = $PUTNodesFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19689,6 +21615,9 @@ Set container options.
 
 No description available.
 
+.PARAMETER PUTNodesLxcConfigRB
+Set container options.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19700,6 +21629,9 @@ None
 function Set-PVENodesLxcConfigByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesLxcConfigRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19718,7 +21650,12 @@ function Set-PVENodesLxcConfigByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/config'
+
+        $LocalVarBodyParameter = $PUTNodesLxcConfigRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19749,6 +21686,9 @@ Update IP or Network alias.
 
 No description available.
 
+.PARAMETER PUTNodesLxcFirewallAliasesRB
+Update IP or Network alias.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19760,6 +21700,9 @@ None
 function Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesLxcFirewallAliasesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19778,7 +21721,12 @@ function Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/aliases/{name}'
+
+        $LocalVarBodyParameter = $PUTNodesLxcFirewallAliasesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19809,6 +21757,9 @@ Update IP or Network settings
 
 No description available.
 
+.PARAMETER PUTNodesLxcFirewallIpsetRB
+Update IP or Network settings
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19820,6 +21771,9 @@ None
 function Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesLxcFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19838,7 +21792,12 @@ function Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}/{cidr}'
+
+        $LocalVarBodyParameter = $PUTNodesLxcFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19869,6 +21828,9 @@ Set Firewall options.
 
 No description available.
 
+.PARAMETER PUTNodesLxcFirewallOptionsRB
+Set Firewall options.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19880,6 +21842,9 @@ None
 function Set-PVENodesLxcFirewallOptionsByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesLxcFirewallOptionsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19898,7 +21863,12 @@ function Set-PVENodesLxcFirewallOptionsByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/options'
+
+        $LocalVarBodyParameter = $PUTNodesLxcFirewallOptionsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19929,6 +21899,9 @@ Modify rule data.
 
 No description available.
 
+.PARAMETER PUTNodesLxcFirewallRulesRB
+Modify rule data.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19940,6 +21913,9 @@ None
 function Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesLxcFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -19958,7 +21934,12 @@ function Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/rules/{pos}'
+
+        $LocalVarBodyParameter = $PUTNodesLxcFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -19989,6 +21970,9 @@ Resize a container mount point.
 
 No description available.
 
+.PARAMETER PUTNodesLxcResizeRB
+Resize a container mount point.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20000,6 +21984,9 @@ None
 function Set-PVENodesLxcResizeByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesLxcResizeRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20018,7 +22005,12 @@ function Set-PVENodesLxcResizeByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/resize'
+
+        $LocalVarBodyParameter = $PUTNodesLxcResizeRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20049,6 +22041,9 @@ Update snapshot metadata.
 
 No description available.
 
+.PARAMETER PUTNodesLxcSnapshotConfigRB
+Update snapshot metadata.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20060,6 +22055,9 @@ None
 function Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesLxcSnapshotConfigRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20078,7 +22076,12 @@ function Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config'
+
+        $LocalVarBodyParameter = $PUTNodesLxcSnapshotConfigRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20169,6 +22172,9 @@ Update network device configuration
 
 No description available.
 
+.PARAMETER PUTNodesNetworkRB
+Update network device configuration
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20180,6 +22186,9 @@ None
 function Set-PVENodesNetworkByNodeAndIface {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesNetworkRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20198,7 +22207,12 @@ function Set-PVENodesNetworkByNodeAndIface {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/network/{iface}'
+
+        $LocalVarBodyParameter = $PUTNodesNetworkRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20289,6 +22303,9 @@ Set virtual machine options (synchronous API) - You should consider using the PO
 
 No description available.
 
+.PARAMETER PUTNodesQemuConfigRB
+Set virtual machine options (synchronous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20300,6 +22317,9 @@ None
 function Set-PVENodesQemuConfigByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesQemuConfigRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20318,7 +22338,12 @@ function Set-PVENodesQemuConfigByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/config'
+
+        $LocalVarBodyParameter = $PUTNodesQemuConfigRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20349,6 +22374,9 @@ Update IP or Network alias.
 
 No description available.
 
+.PARAMETER PUTNodesQemuFirewallAliasesRB
+Update IP or Network alias.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20360,6 +22388,9 @@ None
 function Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesQemuFirewallAliasesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20378,7 +22409,12 @@ function Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/aliases/{name}'
+
+        $LocalVarBodyParameter = $PUTNodesQemuFirewallAliasesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20409,6 +22445,9 @@ Update IP or Network settings
 
 No description available.
 
+.PARAMETER PUTNodesQemuFirewallIpsetRB
+Update IP or Network settings
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20420,6 +22459,9 @@ None
 function Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesQemuFirewallIpsetRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20438,7 +22480,12 @@ function Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}/{cidr}'
+
+        $LocalVarBodyParameter = $PUTNodesQemuFirewallIpsetRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20469,6 +22516,9 @@ Set Firewall options.
 
 No description available.
 
+.PARAMETER PUTNodesQemuFirewallOptionsRB
+Set Firewall options.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20480,6 +22530,9 @@ None
 function Set-PVENodesQemuFirewallOptionsByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesQemuFirewallOptionsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20498,7 +22551,12 @@ function Set-PVENodesQemuFirewallOptionsByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/options'
+
+        $LocalVarBodyParameter = $PUTNodesQemuFirewallOptionsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20529,6 +22587,9 @@ Modify rule data.
 
 No description available.
 
+.PARAMETER PUTNodesQemuFirewallRulesRB
+Modify rule data.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20540,6 +22601,9 @@ None
 function Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesQemuFirewallRulesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20558,7 +22622,12 @@ function Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/rules/{pos}'
+
+        $LocalVarBodyParameter = $PUTNodesQemuFirewallRulesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20589,6 +22658,9 @@ Extend volume size.
 
 No description available.
 
+.PARAMETER PUTNodesQemuResizeRB
+Extend volume size.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20600,6 +22672,9 @@ None
 function Set-PVENodesQemuResizeByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesQemuResizeRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20618,7 +22693,12 @@ function Set-PVENodesQemuResizeByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/resize'
+
+        $LocalVarBodyParameter = $PUTNodesQemuResizeRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20649,6 +22729,9 @@ Send key event to virtual machine.
 
 No description available.
 
+.PARAMETER PUTNodesQemuSendkeyRB
+Send key event to virtual machine.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20660,6 +22743,9 @@ None
 function Set-PVENodesQemuSendkeyByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesQemuSendkeyRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20678,7 +22764,12 @@ function Set-PVENodesQemuSendkeyByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/sendkey'
+
+        $LocalVarBodyParameter = $PUTNodesQemuSendkeyRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20709,6 +22800,9 @@ Update snapshot metadata.
 
 No description available.
 
+.PARAMETER PUTNodesQemuSnapshotConfigRB
+Update snapshot metadata.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20720,6 +22814,9 @@ None
 function Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesQemuSnapshotConfigRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20738,7 +22835,12 @@ function Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config'
+
+        $LocalVarBodyParameter = $PUTNodesQemuSnapshotConfigRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20769,6 +22871,9 @@ Unlink/delete disk images.
 
 No description available.
 
+.PARAMETER PUTNodesQemuUnlinkRB
+Unlink/delete disk images.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20780,6 +22885,9 @@ None
 function Set-PVENodesQemuUnlinkByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesQemuUnlinkRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20798,7 +22906,12 @@ function Set-PVENodesQemuUnlinkByNodeAndVmid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/unlink'
+
+        $LocalVarBodyParameter = $PUTNodesQemuUnlinkRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20829,6 +22942,9 @@ Update volume attributes
 
 No description available.
 
+.PARAMETER PUTNodesStorageContentRB
+Update volume attributes
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20840,6 +22956,9 @@ None
 function Set-PVENodesStorageContentByNodeAndStorageAndVolume {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesStorageContentRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20858,7 +22977,12 @@ function Set-PVENodesStorageContentByNodeAndStorageAndVolume {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/storage/{storage}/content/{volume}'
+
+        $LocalVarBodyParameter = $PUTNodesStorageContentRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20889,6 +23013,9 @@ Set subscription key.
 
 No description available.
 
+.PARAMETER PUTNodesSubscriptionRB
+Set subscription key.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20900,6 +23027,9 @@ None
 function Set-PVENodesSubscriptionByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesSubscriptionRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20918,7 +23048,12 @@ function Set-PVENodesSubscriptionByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/subscription'
+
+        $LocalVarBodyParameter = $PUTNodesSubscriptionRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -20949,6 +23084,9 @@ Set time zone.
 
 No description available.
 
+.PARAMETER PUTNodesTimeRB
+Set time zone.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20960,6 +23098,9 @@ None
 function Set-PVENodesTimeByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTNodesTimeRB},
         [Switch]
         $WithHttpInfo
     )
@@ -20978,7 +23119,12 @@ function Set-PVENodesTimeByNode {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/nodes/{node}/time'
+
+        $LocalVarBodyParameter = $PUTNodesTimeRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `

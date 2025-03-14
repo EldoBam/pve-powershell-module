@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER TermsOfService
-No description available.
-.PARAMETER ExternalAccountRequired
-No description available.
 .PARAMETER CaaIdentities
 No description available.
+.PARAMETER TermsOfService
+No description available.
 .PARAMETER Website
+No description available.
+.PARAMETER ExternalAccountRequired
 No description available.
 .OUTPUTS
 
@@ -32,17 +32,17 @@ function Initialize-PVEClusterAcmeMeta {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${TermsOfService},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${ExternalAccountRequired},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${CaaIdentities},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Website}
+        ${TermsOfService},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Website},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${ExternalAccountRequired}
     )
 
     Process {
@@ -59,7 +59,7 @@ function Initialize-PVEClusterAcmeMeta {
 
 
 		 $DisplayNameMapping =@{
-			"TermsOfService"="termsOfService"; "ExternalAccountRequired"="externalAccountRequired"; "CaaIdentities"="caaIdentities"; "Website"="website"
+			"CaaIdentities"="caaIdentities"; "TermsOfService"="termsOfService"; "Website"="website"; "ExternalAccountRequired"="externalAccountRequired"
         }
 		
 		 $OBJ = @{}
@@ -105,23 +105,11 @@ function ConvertFrom-PVEJsonToClusterAcmeMeta {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterAcmeMeta
-        $AllProperties = ("termsOfService", "externalAccountRequired", "caaIdentities", "website")
+        $AllProperties = ("caaIdentities", "termsOfService", "website", "externalAccountRequired")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "termsOfService"))) { #optional property not found
-            $TermsOfService = $null
-        } else {
-            $TermsOfService = $JsonParameters.PSobject.Properties["termsOfService"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "externalAccountRequired"))) { #optional property not found
-            $ExternalAccountRequired = $null
-        } else {
-            $ExternalAccountRequired = $JsonParameters.PSobject.Properties["externalAccountRequired"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "caaIdentities"))) { #optional property not found
@@ -130,17 +118,29 @@ function ConvertFrom-PVEJsonToClusterAcmeMeta {
             $CaaIdentities = $JsonParameters.PSobject.Properties["caaIdentities"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "termsOfService"))) { #optional property not found
+            $TermsOfService = $null
+        } else {
+            $TermsOfService = $JsonParameters.PSobject.Properties["termsOfService"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "website"))) { #optional property not found
             $Website = $null
         } else {
             $Website = $JsonParameters.PSobject.Properties["website"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "externalAccountRequired"))) { #optional property not found
+            $ExternalAccountRequired = $null
+        } else {
+            $ExternalAccountRequired = $JsonParameters.PSobject.Properties["externalAccountRequired"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "termsOfService" = ${TermsOfService}
-            "externalAccountRequired" = ${ExternalAccountRequired}
             "caaIdentities" = ${CaaIdentities}
+            "termsOfService" = ${TermsOfService}
             "website" = ${Website}
+            "externalAccountRequired" = ${ExternalAccountRequired}
         }
 
         return $PSO

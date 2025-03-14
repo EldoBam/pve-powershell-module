@@ -267,7 +267,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-AccessGroups
+AccessGroupsGETInner[]
 #>
 function Get-PVEAccessGroups {
     [CmdletBinding()]
@@ -304,7 +304,7 @@ function Get-PVEAccessGroups {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "AccessGroups" `
+                                -ReturnType "AccessGroupsGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -447,6 +447,9 @@ Retrieve effective permissions of given user/token.
 
 No description available.
 
+.PARAMETER GETAccessPermissionsRB
+Retrieve effective permissions of given user/token.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -458,6 +461,9 @@ None
 function Get-PVEAccessPermissions {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETAccessPermissionsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -476,7 +482,12 @@ function Get-PVEAccessPermissions {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/permissions'
+
+        $LocalVarBodyParameter = $GETAccessPermissionsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -513,7 +524,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-AccessRoles
+AccessRolesGETInner[]
 #>
 function Get-PVEAccessRoles {
     [CmdletBinding()]
@@ -550,7 +561,7 @@ function Get-PVEAccessRoles {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "AccessRoles" `
+                                -ReturnType "AccessRolesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -639,7 +650,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-AccessTfa
+AccessTfaGET
 #>
 function Get-PVEAccessTfa {
     [CmdletBinding()]
@@ -676,7 +687,7 @@ function Get-PVEAccessTfa {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "AccessTfa" `
+                                -ReturnType "AccessTfaGET" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -702,7 +713,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-AccessTfaAVInner[]
+AccessTfaGETAVInner[]
 #>
 function Get-PVEAccessTfaByUserid {
     [CmdletBinding()]
@@ -739,7 +750,7 @@ function Get-PVEAccessTfaByUserid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "AccessTfaAVInner[]" `
+                                -ReturnType "AccessTfaGETAVInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -765,7 +776,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-AccessTfa
+AccessTfaGET
 #>
 function Get-PVEAccessTfaByUseridAndId {
     [CmdletBinding()]
@@ -802,7 +813,7 @@ function Get-PVEAccessTfaByUseridAndId {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "AccessTfa" `
+                                -ReturnType "AccessTfaGET" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -882,17 +893,23 @@ User index.
 
 No description available.
 
+.PARAMETER GETAccessUsersRB
+User index.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-AccessUsers
+AccessUsersGETInner[]
 #>
 function Get-PVEAccessUsers {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETAccessUsersRB},
         [Switch]
         $WithHttpInfo
     )
@@ -914,7 +931,12 @@ function Get-PVEAccessUsers {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/users'
+
+        $LocalVarBodyParameter = $GETAccessUsersRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -925,7 +947,7 @@ function Get-PVEAccessUsers {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "AccessUsers" `
+                                -ReturnType "AccessUsersGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1008,6 +1030,9 @@ Get user TFA types (Personal and Realm).
 
 No description available.
 
+.PARAMETER GETAccessUsersTfaRB
+Get user TFA types (Personal and Realm).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1019,6 +1044,9 @@ AccessUsersTfa
 function Get-PVEAccessUsersTfaByUserid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETAccessUsersTfaRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1040,7 +1068,12 @@ function Get-PVEAccessUsersTfaByUserid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/users/{userid}/tfa'
+
+        $LocalVarBodyParameter = $GETAccessUsersTfaRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1077,7 +1110,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-AccessUsersToken
+AccessUsersTokenGETInner[]
 #>
 function Get-PVEAccessUsersTokenByUserid {
     [CmdletBinding()]
@@ -1114,7 +1147,7 @@ function Get-PVEAccessUsersTokenByUserid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "AccessUsersToken" `
+                                -ReturnType "AccessUsersTokenGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1197,6 +1230,9 @@ Add an authentication server.
 
 No description available.
 
+.PARAMETER POSTAccessDomainsRB
+Add an authentication server.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1208,6 +1244,9 @@ None
 function New-PVEAccessDomains {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTAccessDomainsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1226,7 +1265,12 @@ function New-PVEAccessDomains {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/domains'
+
+        $LocalVarBodyParameter = $POSTAccessDomainsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -1257,6 +1301,9 @@ Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced gro
 
 No description available.
 
+.PARAMETER POSTAccessDomainsSyncRB
+Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1268,6 +1315,9 @@ None
 function New-PVEAccessDomainsSyncByRealm {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTAccessDomainsSyncRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1286,7 +1336,12 @@ function New-PVEAccessDomainsSyncByRealm {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/domains/{realm}/sync'
+
+        $LocalVarBodyParameter = $POSTAccessDomainsSyncRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -1317,6 +1372,9 @@ Create new group.
 
 No description available.
 
+.PARAMETER POSTAccessGroupsRB
+Create new group.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1328,6 +1386,9 @@ None
 function New-PVEAccessGroups {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTAccessGroupsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1346,7 +1407,12 @@ function New-PVEAccessGroups {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/groups'
+
+        $LocalVarBodyParameter = $POSTAccessGroupsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -1377,6 +1443,9 @@ Get the OpenId Authorization Url for the specified realm.
 
 No description available.
 
+.PARAMETER POSTAccessOpenidAuthurlRB
+Get the OpenId Authorization Url for the specified realm.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1388,6 +1457,9 @@ None
 function New-PVEAccessOpenidAuthurl {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTAccessOpenidAuthurlRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1406,7 +1478,12 @@ function New-PVEAccessOpenidAuthurl {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/openid/auth-url'
+
+        $LocalVarBodyParameter = $POSTAccessOpenidAuthurlRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -1437,6 +1514,9 @@ function New-PVEAccessOpenidAuthurl {
 
 No description available.
 
+.PARAMETER POSTAccessOpenidLoginRB
+ Verify OpenID authorization code and create a ticket.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1448,6 +1528,9 @@ None
 function New-PVEAccessOpenidLogin {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTAccessOpenidLoginRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1466,7 +1549,12 @@ function New-PVEAccessOpenidLogin {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/openid/login'
+
+        $LocalVarBodyParameter = $POSTAccessOpenidLoginRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -1497,6 +1585,9 @@ Create new role.
 
 No description available.
 
+.PARAMETER POSTAccessRolesRB
+Create new role.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1508,6 +1599,9 @@ None
 function New-PVEAccessRoles {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTAccessRolesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1526,7 +1620,12 @@ function New-PVEAccessRoles {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/roles'
+
+        $LocalVarBodyParameter = $POSTAccessRolesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -1557,17 +1656,23 @@ Add a TFA entry for a user.
 
 No description available.
 
+.PARAMETER POSTAccessTfaRB
+Add a TFA entry for a user.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-None
+AccessTfa
 #>
 function New-PVEAccessTfaByUserid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTAccessTfaRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1586,7 +1691,15 @@ function New-PVEAccessTfaByUserid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/tfa/{userid}'
+
+        $LocalVarBodyParameter = $POSTAccessTfaRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -1597,7 +1710,7 @@ function New-PVEAccessTfaByUserid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "AccessTfa" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1617,17 +1730,23 @@ Create or verify authentication ticket.
 
 No description available.
 
+.PARAMETER POSTAccessTicketRB
+Create or verify authentication ticket.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-None
+AccessTicket
 #>
 function New-PVEAccessTicket {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTAccessTicketRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1646,7 +1765,15 @@ function New-PVEAccessTicket {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/ticket'
+
+        $LocalVarBodyParameter = $POSTAccessTicketRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -1657,7 +1784,7 @@ function New-PVEAccessTicket {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "AccessTicket" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1677,6 +1804,9 @@ Create new user.
 
 No description available.
 
+.PARAMETER POSTAccessUsersRB
+Create new user.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1688,6 +1818,9 @@ None
 function New-PVEAccessUsers {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTAccessUsersRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1706,7 +1839,12 @@ function New-PVEAccessUsers {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/users'
+
+        $LocalVarBodyParameter = $POSTAccessUsersRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -1737,17 +1875,23 @@ Generate a new API token for a specific user. NOTE: returns API token value, whi
 
 No description available.
 
+.PARAMETER POSTAccessUsersTokenRB
+Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards!
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-None
+AccessUsersTokenPOST
 #>
 function New-PVEAccessUsersTokenByUseridAndTokenid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTAccessUsersTokenRB},
         [Switch]
         $WithHttpInfo
     )
@@ -1766,7 +1910,15 @@ function New-PVEAccessUsersTokenByUseridAndTokenid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/users/{userid}/token/{tokenid}'
+
+        $LocalVarBodyParameter = $POSTAccessUsersTokenRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -1777,7 +1929,7 @@ function New-PVEAccessUsersTokenByUseridAndTokenid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "AccessUsersTokenPOST" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1977,6 +2129,9 @@ Delete a TFA entry by ID.
 
 No description available.
 
+.PARAMETER DELETEAccessTfaRB
+Delete a TFA entry by ID.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1988,6 +2143,9 @@ None
 function Remove-PVEAccessTfaByUseridAndId {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETEAccessTfaRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2006,7 +2164,12 @@ function Remove-PVEAccessTfaByUseridAndId {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/tfa/{userid}/{id}'
+
+        $LocalVarBodyParameter = $DELETEAccessTfaRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -2157,6 +2320,9 @@ Update Access Control List (add or remove permissions).
 
 No description available.
 
+.PARAMETER PUTAccessAclRB
+Update Access Control List (add or remove permissions).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2168,6 +2334,9 @@ None
 function Set-PVEAccessAcl {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTAccessAclRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2186,7 +2355,12 @@ function Set-PVEAccessAcl {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/acl'
+
+        $LocalVarBodyParameter = $PUTAccessAclRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -2217,6 +2391,9 @@ Update authentication server settings.
 
 No description available.
 
+.PARAMETER PUTAccessDomainsRB
+Update authentication server settings.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2228,6 +2405,9 @@ None
 function Set-PVEAccessDomainsByRealm {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTAccessDomainsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2246,7 +2426,12 @@ function Set-PVEAccessDomainsByRealm {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/domains/{realm}'
+
+        $LocalVarBodyParameter = $PUTAccessDomainsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -2277,6 +2462,9 @@ Update group data.
 
 No description available.
 
+.PARAMETER PUTAccessGroupsRB
+Update group data.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2288,6 +2476,9 @@ None
 function Set-PVEAccessGroupsByGroupid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTAccessGroupsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2306,7 +2497,12 @@ function Set-PVEAccessGroupsByGroupid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/groups/{groupid}'
+
+        $LocalVarBodyParameter = $PUTAccessGroupsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -2337,6 +2533,9 @@ Change user password.
 
 No description available.
 
+.PARAMETER PUTAccessPasswordRB
+Change user password.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2348,6 +2547,9 @@ None
 function Set-PVEAccessPassword {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTAccessPasswordRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2366,7 +2568,12 @@ function Set-PVEAccessPassword {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/password'
+
+        $LocalVarBodyParameter = $PUTAccessPasswordRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -2397,6 +2604,9 @@ Update an existing role.
 
 No description available.
 
+.PARAMETER PUTAccessRolesRB
+Update an existing role.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2408,6 +2618,9 @@ None
 function Set-PVEAccessRolesByRoleid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTAccessRolesRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2426,7 +2639,12 @@ function Set-PVEAccessRolesByRoleid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/roles/{roleid}'
+
+        $LocalVarBodyParameter = $PUTAccessRolesRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -2457,6 +2675,9 @@ Add a TFA entry for a user.
 
 No description available.
 
+.PARAMETER PUTAccessTfaRB
+Add a TFA entry for a user.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2468,6 +2689,9 @@ None
 function Set-PVEAccessTfaByUseridAndId {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTAccessTfaRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2486,7 +2710,12 @@ function Set-PVEAccessTfaByUseridAndId {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/tfa/{userid}/{id}'
+
+        $LocalVarBodyParameter = $PUTAccessTfaRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -2517,6 +2746,9 @@ Update user configuration.
 
 No description available.
 
+.PARAMETER PUTAccessUsersRB
+Update user configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2528,6 +2760,9 @@ None
 function Set-PVEAccessUsersByUserid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTAccessUsersRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2546,7 +2781,12 @@ function Set-PVEAccessUsersByUserid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/users/{userid}'
+
+        $LocalVarBodyParameter = $PUTAccessUsersRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -2577,17 +2817,23 @@ Update API token for a specific user.
 
 No description available.
 
+.PARAMETER PUTAccessUsersTokenRB
+Update API token for a specific user.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-None
+AccessUsersTokenPUT
 #>
 function Set-PVEAccessUsersTokenByUseridAndTokenid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTAccessUsersTokenRB},
         [Switch]
         $WithHttpInfo
     )
@@ -2606,7 +2852,15 @@ function Set-PVEAccessUsersTokenByUseridAndTokenid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/access/users/{userid}/token/{tokenid}'
+
+        $LocalVarBodyParameter = $PUTAccessUsersTokenRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -2617,7 +2871,7 @@ function Set-PVEAccessUsersTokenByUseridAndTokenid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "AccessUsersTokenPUT" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2643,7 +2897,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-None
+Int32
 #>
 function Set-PVEAccessUsersUnlocktfaByUserid {
     [CmdletBinding()]
@@ -2666,6 +2920,9 @@ function Set-PVEAccessUsersUnlocktfaByUserid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Accept' (if needed)
+        $LocalVarAccepts = @('application/json')
+
         $LocalVarUri = '/access/users/{userid}/unlock-tfa'
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
@@ -2677,7 +2934,7 @@ function Set-PVEAccessUsersUnlocktfaByUserid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "" `
+                                -ReturnType "Int32" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {

@@ -3,22 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PolicyOut** | **String** |  | [optional] 
 **PolicyIn** | **String** |  | [optional] 
 **PolicyForward** | **String** |  | [optional] 
-**Ebtables** | **Int32** |  | [optional] 
 **LogRatelimit** | **String** |  | [optional] 
+**Ebtables** | **Int32** |  | [optional] 
+**PolicyOut** | **String** |  | [optional] 
 **Enable** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterFirewallOptions = Initialize-PVEClusterFirewallOptions  -PolicyOut null `
- -PolicyIn null `
+$ClusterFirewallOptions = Initialize-PVEClusterFirewallOptions  -PolicyIn null `
  -PolicyForward null `
- -Ebtables null `
  -LogRatelimit null `
+ -Ebtables null `
+ -PolicyOut null `
  -Enable null
 ```
 

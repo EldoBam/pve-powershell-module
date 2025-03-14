@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER PreferredNode
-No description available.
 .PARAMETER Nodelist
+No description available.
+.PARAMETER Totem
 No description available.
 .PARAMETER ConfigDigest
 No description available.
-.PARAMETER Totem
+.PARAMETER PreferredNode
 No description available.
 .OUTPUTS
 
@@ -32,17 +32,17 @@ function Initialize-PVEClusterConfigJoin {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${PreferredNode},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${Nodelist},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${Totem},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${ConfigDigest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Totem}
+        [String]
+        ${PreferredNode}
     )
 
     Process {
@@ -51,7 +51,7 @@ function Initialize-PVEClusterConfigJoin {
 
 
 		 $DisplayNameMapping =@{
-			"PreferredNode"="preferred_node"; "Nodelist"="nodelist"; "ConfigDigest"="config_digest"; "Totem"="totem"
+			"Nodelist"="nodelist"; "Totem"="totem"; "ConfigDigest"="config_digest"; "PreferredNode"="preferred_node"
         }
 		
 		 $OBJ = @{}
@@ -97,17 +97,11 @@ function ConvertFrom-PVEJsonToClusterConfigJoin {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterConfigJoin
-        $AllProperties = ("preferred_node", "nodelist", "config_digest", "totem")
+        $AllProperties = ("nodelist", "totem", "config_digest", "preferred_node")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "preferred_node"))) { #optional property not found
-            $PreferredNode = $null
-        } else {
-            $PreferredNode = $JsonParameters.PSobject.Properties["preferred_node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodelist"))) { #optional property not found
@@ -116,23 +110,29 @@ function ConvertFrom-PVEJsonToClusterConfigJoin {
             $Nodelist = $JsonParameters.PSobject.Properties["nodelist"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "config_digest"))) { #optional property not found
-            $ConfigDigest = $null
-        } else {
-            $ConfigDigest = $JsonParameters.PSobject.Properties["config_digest"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "totem"))) { #optional property not found
             $Totem = $null
         } else {
             $Totem = $JsonParameters.PSobject.Properties["totem"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "config_digest"))) { #optional property not found
+            $ConfigDigest = $null
+        } else {
+            $ConfigDigest = $JsonParameters.PSobject.Properties["config_digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "preferred_node"))) { #optional property not found
+            $PreferredNode = $null
+        } else {
+            $PreferredNode = $JsonParameters.PSobject.Properties["preferred_node"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "preferred_node" = ${PreferredNode}
             "nodelist" = ${Nodelist}
-            "config_digest" = ${ConfigDigest}
             "totem" = ${Totem}
+            "config_digest" = ${ConfigDigest}
+            "preferred_node" = ${PreferredNode}
         }
 
         return $PSO

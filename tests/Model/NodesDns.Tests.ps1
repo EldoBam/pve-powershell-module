@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesDns' {
     Context 'PVENodesDns' {
         It 'Initialize-PVENodesDns' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesDns -Dns1 "TEST_VALUE" -Dns3 "TEST_VALUE" -Search "TEST_VALUE" -Dns2 "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesDns -Search "TEST_VALUE" -Dns3 "TEST_VALUE" -Dns1 "TEST_VALUE" -Dns2 "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesDns
             #$NewObject.property | Should -Be 0
         }

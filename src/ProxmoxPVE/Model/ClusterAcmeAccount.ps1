@@ -17,11 +17,11 @@ No description available.
 
 .PARAMETER Account
 No description available.
-.PARAMETER Tos
-No description available.
 .PARAMETER Directory
 No description available.
 .PARAMETER Location
+No description available.
+.PARAMETER Tos
 No description available.
 .OUTPUTS
 
@@ -35,15 +35,15 @@ function Initialize-PVEClusterAcmeAccount {
         [PSCustomObject]
         ${Account},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Tos},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("^https?://.*")]
         [String]
         ${Directory},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Location}
+        ${Location},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Tos}
     )
 
     Process {
@@ -52,7 +52,7 @@ function Initialize-PVEClusterAcmeAccount {
 
 
 		 $DisplayNameMapping =@{
-			"Account"="account"; "Tos"="tos"; "Directory"="directory"; "Location"="location"
+			"Account"="account"; "Directory"="directory"; "Location"="location"; "Tos"="tos"
         }
 		
 		 $OBJ = @{}
@@ -98,7 +98,7 @@ function ConvertFrom-PVEJsonToClusterAcmeAccount {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterAcmeAccount
-        $AllProperties = ("account", "tos", "directory", "location")
+        $AllProperties = ("account", "directory", "location", "tos")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -109,12 +109,6 @@ function ConvertFrom-PVEJsonToClusterAcmeAccount {
             $Account = $null
         } else {
             $Account = $JsonParameters.PSobject.Properties["account"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tos"))) { #optional property not found
-            $Tos = $null
-        } else {
-            $Tos = $JsonParameters.PSobject.Properties["tos"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "directory"))) { #optional property not found
@@ -129,11 +123,17 @@ function ConvertFrom-PVEJsonToClusterAcmeAccount {
             $Location = $JsonParameters.PSobject.Properties["location"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tos"))) { #optional property not found
+            $Tos = $null
+        } else {
+            $Tos = $JsonParameters.PSobject.Properties["tos"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "account" = ${Account}
-            "tos" = ${Tos}
             "directory" = ${Directory}
             "location" = ${Location}
+            "tos" = ${Tos}
         }
 
         return $PSO

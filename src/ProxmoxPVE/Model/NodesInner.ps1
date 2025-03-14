@@ -15,23 +15,23 @@ No summary available.
 
 No description available.
 
-.PARAMETER Maxcpu
-No description available.
 .PARAMETER Cpu
 No description available.
 .PARAMETER Level
 No description available.
-.PARAMETER Maxmem
+.PARAMETER SslFingerprint
 No description available.
-.PARAMETER Mem
+.PARAMETER Node
+No description available.
+.PARAMETER Maxcpu
+No description available.
+.PARAMETER Maxmem
 No description available.
 .PARAMETER Uptime
 No description available.
-.PARAMETER SslFingerprint
-No description available.
 .PARAMETER Status
 No description available.
-.PARAMETER Node
+.PARAMETER Mem
 No description available.
 .OUTPUTS
 
@@ -42,33 +42,33 @@ function Initialize-PVENodesInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Maxcpu},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Decimal]]
         ${Cpu},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Level},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${SslFingerprint},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Maxcpu},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Maxmem},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Mem},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${Uptime},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${SslFingerprint},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("unknown", "online", "offline")]
         [String]
         ${Status},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Int32]]
+        ${Mem}
     )
 
     Process {
@@ -77,7 +77,7 @@ function Initialize-PVENodesInner {
 
 
 		 $DisplayNameMapping =@{
-			"Maxcpu"="maxcpu"; "Cpu"="cpu"; "Level"="level"; "Maxmem"="maxmem"; "Mem"="mem"; "Uptime"="uptime"; "SslFingerprint"="ssl_fingerprint"; "Status"="status"; "Node"="node"
+			"Cpu"="cpu"; "Level"="level"; "SslFingerprint"="ssl_fingerprint"; "Node"="node"; "Maxcpu"="maxcpu"; "Maxmem"="maxmem"; "Uptime"="uptime"; "Status"="status"; "Mem"="mem"
         }
 		
 		 $OBJ = @{}
@@ -123,17 +123,11 @@ function ConvertFrom-PVEJsonToNodesInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesInner
-        $AllProperties = ("maxcpu", "cpu", "level", "maxmem", "mem", "uptime", "ssl_fingerprint", "status", "node")
+        $AllProperties = ("cpu", "level", "ssl_fingerprint", "node", "maxcpu", "maxmem", "uptime", "status", "mem")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxcpu"))) { #optional property not found
-            $Maxcpu = $null
-        } else {
-            $Maxcpu = $JsonParameters.PSobject.Properties["maxcpu"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpu"))) { #optional property not found
@@ -148,34 +142,10 @@ function ConvertFrom-PVEJsonToNodesInner {
             $Level = $JsonParameters.PSobject.Properties["level"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxmem"))) { #optional property not found
-            $Maxmem = $null
-        } else {
-            $Maxmem = $JsonParameters.PSobject.Properties["maxmem"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mem"))) { #optional property not found
-            $Mem = $null
-        } else {
-            $Mem = $JsonParameters.PSobject.Properties["mem"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "uptime"))) { #optional property not found
-            $Uptime = $null
-        } else {
-            $Uptime = $JsonParameters.PSobject.Properties["uptime"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "ssl_fingerprint"))) { #optional property not found
             $SslFingerprint = $null
         } else {
             $SslFingerprint = $JsonParameters.PSobject.Properties["ssl_fingerprint"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
-            $Status = $null
-        } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -184,16 +154,46 @@ function ConvertFrom-PVEJsonToNodesInner {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxcpu"))) { #optional property not found
+            $Maxcpu = $null
+        } else {
+            $Maxcpu = $JsonParameters.PSobject.Properties["maxcpu"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxmem"))) { #optional property not found
+            $Maxmem = $null
+        } else {
+            $Maxmem = $JsonParameters.PSobject.Properties["maxmem"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "uptime"))) { #optional property not found
+            $Uptime = $null
+        } else {
+            $Uptime = $JsonParameters.PSobject.Properties["uptime"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
+            $Status = $null
+        } else {
+            $Status = $JsonParameters.PSobject.Properties["status"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mem"))) { #optional property not found
+            $Mem = $null
+        } else {
+            $Mem = $JsonParameters.PSobject.Properties["mem"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "maxcpu" = ${Maxcpu}
             "cpu" = ${Cpu}
             "level" = ${Level}
-            "maxmem" = ${Maxmem}
-            "mem" = ${Mem}
-            "uptime" = ${Uptime}
             "ssl_fingerprint" = ${SslFingerprint}
-            "status" = ${Status}
             "node" = ${Node}
+            "maxcpu" = ${Maxcpu}
+            "maxmem" = ${Maxmem}
+            "uptime" = ${Uptime}
+            "status" = ${Status}
+            "mem" = ${Mem}
         }
 
         return $PSO

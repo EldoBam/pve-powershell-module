@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterNotificationsEndpointsWebhook' {
     Context 'PVEClusterNotificationsEndpointsWebhook' {
         It 'Initialize-PVEClusterNotificationsEndpointsWebhook' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterNotificationsEndpointsWebhook -Url "TEST_VALUE" -Name "TEST_VALUE" -Comment "TEST_VALUE" -Header "TEST_VALUE" -Secret "TEST_VALUE" -Disable "TEST_VALUE" -Method "TEST_VALUE" -Digest "TEST_VALUE" -Body "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterNotificationsEndpointsWebhook -Secret "TEST_VALUE" -Header "TEST_VALUE" -Digest "TEST_VALUE" -Method "TEST_VALUE" -Body "TEST_VALUE" -Url "TEST_VALUE" -Comment "TEST_VALUE" -Disable "TEST_VALUE" -Name "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterNotificationsEndpointsWebhook
             #$NewObject.property | Should -Be 0
         }

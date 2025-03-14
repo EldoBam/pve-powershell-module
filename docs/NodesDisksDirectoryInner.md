@@ -4,20 +4,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Options** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Device** | **String** |  | [optional] 
-**Path** | **String** |  | [optional] 
 **Unitfile** | **String** |  | [optional] 
+**Path** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $NodesDisksDirectoryInner = Initialize-PVENodesDisksDirectoryInner  -Options null `
- -Type null `
  -Device null `
+ -Unitfile null `
  -Path null `
- -Unitfile null
+ -Type null
 ```
 
 - Convert the resource to JSON

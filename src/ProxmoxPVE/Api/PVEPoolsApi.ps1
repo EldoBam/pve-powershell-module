@@ -15,17 +15,23 @@ List pools or get pool configuration.
 
 No description available.
 
+.PARAMETER GETPoolsRB
+List pools or get pool configuration.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-Pools
+PoolsGETInner[]
 #>
 function Get-PVEPools {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETPoolsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -47,7 +53,12 @@ function Get-PVEPools {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/pools'
+
+        $LocalVarBodyParameter = $GETPoolsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -58,7 +69,7 @@ function Get-PVEPools {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "Pools" `
+                                -ReturnType "PoolsGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -78,6 +89,9 @@ Get pool configuration (deprecated, no support for nested pools, use 'GET /pools
 
 No description available.
 
+.PARAMETER GETPoolsRB
+Get pool configuration (deprecated, no support for nested pools, use 'GET /pools/?poolid={poolid}').
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -89,6 +103,9 @@ Pools
 function Get-PVEPoolsByPoolid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${GETPoolsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -110,7 +127,12 @@ function Get-PVEPoolsByPoolid {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/pools/{poolid}'
+
+        $LocalVarBodyParameter = $GETPoolsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -141,6 +163,9 @@ Create new pool.
 
 No description available.
 
+.PARAMETER POSTPoolsRB
+Create new pool.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -152,6 +177,9 @@ None
 function New-PVEPools {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${POSTPoolsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -170,7 +198,12 @@ function New-PVEPools {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/pools'
+
+        $LocalVarBodyParameter = $POSTPoolsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -201,6 +234,9 @@ Delete pool.
 
 No description available.
 
+.PARAMETER DELETEPoolsRB
+Delete pool.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -212,6 +248,9 @@ None
 function Remove-PVEPools {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${DELETEPoolsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -230,7 +269,12 @@ function Remove-PVEPools {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/pools'
+
+        $LocalVarBodyParameter = $DELETEPoolsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -321,6 +365,9 @@ Update pool.
 
 No description available.
 
+.PARAMETER PUTPoolsRB
+Update pool.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -332,6 +379,9 @@ None
 function Set-PVEPools {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTPoolsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -350,7 +400,12 @@ function Set-PVEPools {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/pools'
+
+        $LocalVarBodyParameter = $PUTPoolsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -381,6 +436,9 @@ Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poo
 
 No description available.
 
+.PARAMETER PUTPoolsRB
+Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poolid={poolid}' instead).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -392,6 +450,9 @@ None
 function Set-PVEPoolsByPoolid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [PSCustomObject]
+        ${PUTPoolsRB},
         [Switch]
         $WithHttpInfo
     )
@@ -410,7 +471,12 @@ function Set-PVEPoolsByPoolid {
         $LocalVarBodyParameter = $null
 
         $Configuration = Get-PVEConfiguration
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/json')
+
         $LocalVarUri = '/pools/{poolid}'
+
+        $LocalVarBodyParameter = $PUTPoolsRB | ConvertTo-Json -Depth 100
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `

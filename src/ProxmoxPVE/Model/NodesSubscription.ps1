@@ -15,29 +15,29 @@ No summary available.
 
 No description available.
 
+.PARAMETER Checktime
+No description available.
 .PARAMETER Nextduedate
 No description available.
-.PARAMETER Sockets
-No description available.
-.PARAMETER Serverid
-No description available.
-.PARAMETER Key
-No description available.
 .PARAMETER Regdate
+No description available.
+.PARAMETER Url
 No description available.
 .PARAMETER Productname
 No description available.
 .PARAMETER Level
 No description available.
+.PARAMETER Message
+No description available.
+.PARAMETER Serverid
+No description available.
 .PARAMETER Signature
 No description available.
-.PARAMETER Checktime
-No description available.
-.PARAMETER Url
+.PARAMETER Key
 No description available.
 .PARAMETER Status
 No description available.
-.PARAMETER Message
+.PARAMETER Sockets
 No description available.
 .OUTPUTS
 
@@ -48,20 +48,17 @@ function Initialize-PVENodesSubscription {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Checktime},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Nextduedate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Sockets},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Serverid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Key},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Regdate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Url},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Productname},
@@ -70,20 +67,23 @@ function Initialize-PVENodesSubscription {
         ${Level},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Signature},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Checktime},
+        ${Message},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Url},
+        ${Serverid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Signature},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Key},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("new", "notfound", "active", "invalid", "expired", "suspended")]
         [String]
         ${Status},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Message}
+        [System.Nullable[Int32]]
+        ${Sockets}
     )
 
     Process {
@@ -92,7 +92,7 @@ function Initialize-PVENodesSubscription {
 
 
 		 $DisplayNameMapping =@{
-			"Nextduedate"="nextduedate"; "Sockets"="sockets"; "Serverid"="serverid"; "Key"="key"; "Regdate"="regdate"; "Productname"="productname"; "Level"="level"; "Signature"="signature"; "Checktime"="checktime"; "Url"="url"; "Status"="status"; "Message"="message"
+			"Checktime"="checktime"; "Nextduedate"="nextduedate"; "Regdate"="regdate"; "Url"="url"; "Productname"="productname"; "Level"="level"; "Message"="message"; "Serverid"="serverid"; "Signature"="signature"; "Key"="key"; "Status"="status"; "Sockets"="sockets"
         }
 		
 		 $OBJ = @{}
@@ -138,11 +138,17 @@ function ConvertFrom-PVEJsonToNodesSubscription {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesSubscription
-        $AllProperties = ("nextduedate", "sockets", "serverid", "key", "regdate", "productname", "level", "signature", "checktime", "url", "status", "message")
+        $AllProperties = ("checktime", "nextduedate", "regdate", "url", "productname", "level", "message", "serverid", "signature", "key", "status", "sockets")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "checktime"))) { #optional property not found
+            $Checktime = $null
+        } else {
+            $Checktime = $JsonParameters.PSobject.Properties["checktime"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "nextduedate"))) { #optional property not found
@@ -151,28 +157,16 @@ function ConvertFrom-PVEJsonToNodesSubscription {
             $Nextduedate = $JsonParameters.PSobject.Properties["nextduedate"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sockets"))) { #optional property not found
-            $Sockets = $null
-        } else {
-            $Sockets = $JsonParameters.PSobject.Properties["sockets"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "serverid"))) { #optional property not found
-            $Serverid = $null
-        } else {
-            $Serverid = $JsonParameters.PSobject.Properties["serverid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
-            $Key = $null
-        } else {
-            $Key = $JsonParameters.PSobject.Properties["key"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "regdate"))) { #optional property not found
             $Regdate = $null
         } else {
             $Regdate = $JsonParameters.PSobject.Properties["regdate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
+            $Url = $null
+        } else {
+            $Url = $JsonParameters.PSobject.Properties["url"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "productname"))) { #optional property not found
@@ -187,22 +181,28 @@ function ConvertFrom-PVEJsonToNodesSubscription {
             $Level = $JsonParameters.PSobject.Properties["level"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "message"))) { #optional property not found
+            $Message = $null
+        } else {
+            $Message = $JsonParameters.PSobject.Properties["message"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "serverid"))) { #optional property not found
+            $Serverid = $null
+        } else {
+            $Serverid = $JsonParameters.PSobject.Properties["serverid"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "signature"))) { #optional property not found
             $Signature = $null
         } else {
             $Signature = $JsonParameters.PSobject.Properties["signature"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "checktime"))) { #optional property not found
-            $Checktime = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
+            $Key = $null
         } else {
-            $Checktime = $JsonParameters.PSobject.Properties["checktime"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
-            $Url = $null
-        } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
+            $Key = $JsonParameters.PSobject.Properties["key"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
@@ -211,25 +211,25 @@ function ConvertFrom-PVEJsonToNodesSubscription {
             $Status = $JsonParameters.PSobject.Properties["status"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "message"))) { #optional property not found
-            $Message = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sockets"))) { #optional property not found
+            $Sockets = $null
         } else {
-            $Message = $JsonParameters.PSobject.Properties["message"].value
+            $Sockets = $JsonParameters.PSobject.Properties["sockets"].value
         }
 
         $PSO = [PSCustomObject]@{
+            "checktime" = ${Checktime}
             "nextduedate" = ${Nextduedate}
-            "sockets" = ${Sockets}
-            "serverid" = ${Serverid}
-            "key" = ${Key}
             "regdate" = ${Regdate}
+            "url" = ${Url}
             "productname" = ${Productname}
             "level" = ${Level}
-            "signature" = ${Signature}
-            "checktime" = ${Checktime}
-            "url" = ${Url}
-            "status" = ${Status}
             "message" = ${Message}
+            "serverid" = ${Serverid}
+            "signature" = ${Signature}
+            "key" = ${Key}
+            "status" = ${Status}
+            "sockets" = ${Sockets}
         }
 
         return $PSO
