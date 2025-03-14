@@ -24,6 +24,11 @@ This module is currently under beta release.
 
 ## Installation
 
+To install from PSGallery, run the following command to install and import the PowerShell module locally:
+```powershell
+Install-Module -Name ProxmoxPVE
+Import-Module ProxmoxPVE
+```
 
 To install from the source, run the following command to build and install the PowerShell module locally:
 ```powershell
