@@ -196,7 +196,7 @@ function Invoke-PVELogin {
         $AskMethod = $true
         $AskCount = 0
         while($AskMethod){
-            $UserChoice = Read-Host -Prompt "LoginMetthod not set, please choose one of the following by inserting: [token]|ticket"
+            $UserChoice = Read-Host -Prompt "LoginMethod not set, please choose one of the following by inserting: [token]|ticket"
             $LoginMethod = (!$UserChoice) ? "token" : $UserChoice
             
             $AskMethod = $LoginMethod -notmatch "token|ticket"
