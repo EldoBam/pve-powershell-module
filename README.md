@@ -17,14 +17,14 @@ This module is currently under beta release.
 - waiting for issues
 
 ## Contact
-- Timo Wolf 
+- Timo Wolf - amna.wolf@gmail.com
 - [eldobam.bsky.social](https://bsky.app/profile/eldobam.bsky.social)
 
 ## Dependencies
 
 ## Installation
 
-To install from PSGallery, run the following command to install and import the PowerShell module locally:
+To install from [PSGallery](https://www.powershellgallery.com/packages/ProxmoxPVE), run the following command to install and import the PowerShell module locally:
 ```powershell
 Install-Module -Name ProxmoxPVE
 Import-Module ProxmoxPVE
@@ -32,6 +32,7 @@ Import-Module ProxmoxPVE
 
 To install from the source, run the following command to build and install the PowerShell module locally:
 ```powershell
+Build.ps1
 Import-Module -Name '.\src\ProxmoxPVE\ProxmoxPVE.psm1' -Verbose
 ```
 
