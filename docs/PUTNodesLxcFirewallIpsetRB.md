@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cidr** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Nomatch** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Nomatch** | **Int32** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesLxcFirewallIpsetRB = Initialize-PVEPUTNodesLxcFirewallIpsetRB  -Cidr null `
- -Digest null `
+$PUTNodesLxcFirewallIpsetRB = Initialize-PVEPUTNodesLxcFirewallIpsetRB  -Name null `
  -Nomatch null `
- -Node null `
- -Vmid null `
  -Comment null `
- -Name null
+ -Vmid null `
+ -Digest null `
+ -Node null `
+ -Cidr null
 ```
 
 - Convert the resource to JSON

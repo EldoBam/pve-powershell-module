@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Node** | **String** |  | [optional] 
+**Purge** | **Int32** |  | [optional] 
 **Force** | **Int32** |  | [optional] 
 **DestroyUnreferencedDisks** | **Int32** |  | [optional] 
-**Purge** | **Int32** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesLxcRB = Initialize-PVEDELETENodesLxcRB  -Force null `
- -DestroyUnreferencedDisks null `
+$DELETENodesLxcRB = Initialize-PVEDELETENodesLxcRB  -Node null `
  -Purge null `
- -Vmid null `
- -Node null
+ -Force null `
+ -DestroyUnreferencedDisks null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

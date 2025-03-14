@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Wakeonlan** | **String** |  | [optional] 
-**AcmedomainN** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**AcmedomainN** | **String** |  | [optional] 
 **Acme** | **String** |  | [optional] 
 **StartallOnbootDelay** | **Int32** |  | [optional] 
-**Description** | **String** |  | [optional] 
+**Wakeonlan** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesConfig = Initialize-PVENodesConfig  -Wakeonlan null `
- -AcmedomainN null `
+$NodesConfig = Initialize-PVENodesConfig  -Description null `
  -Digest null `
+ -AcmedomainN null `
  -Acme null `
  -StartallOnbootDelay null `
- -Description null
+ -Wakeonlan null
 ```
 
 - Convert the resource to JSON

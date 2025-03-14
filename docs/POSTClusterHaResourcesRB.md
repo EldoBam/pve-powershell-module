@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Sid** | **String** |  | [optional] 
-**MaxRestart** | **Int32** |  | [optional] 
-**State** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**MaxRelocate** | **Int32** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
+**Sid** | **String** |  | [optional] 
+**MaxRelocate** | **Int32** |  | [optional] 
+**MaxRestart** | **Int32** |  | [optional] 
 **Group** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterHaResourcesRB = Initialize-PVEPOSTClusterHaResourcesRB  -Sid null `
- -MaxRestart null `
- -State null `
+$POSTClusterHaResourcesRB = Initialize-PVEPOSTClusterHaResourcesRB  -Comment null `
  -Type null `
+ -State null `
+ -Sid null `
  -MaxRelocate null `
- -Comment null `
+ -MaxRestart null `
  -Group null
 ```
 

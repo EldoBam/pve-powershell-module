@@ -3,30 +3,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Expire** | **Int32** |  | [optional] 
-**Userid** | **String** |  | [optional] 
-**Lastname** | **String** |  | [optional] 
 **Groups** | **String** |  | [optional] 
-**Append** | **Int32** |  | [optional] 
-**Keys** | **String** |  | [optional] 
-**Email** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
+**Userid** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Email** | **String** |  | [optional] 
+**Append** | **Int32** |  | [optional] 
+**Lastname** | **String** |  | [optional] 
+**Expire** | **Int32** |  | [optional] 
+**Keys** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
 **Firstname** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTAccessUsersRB = Initialize-PVEPUTAccessUsersRB  -Expire null `
+$PUTAccessUsersRB = Initialize-PVEPUTAccessUsersRB  -Groups null `
  -Userid null `
- -Lastname null `
- -Groups null `
- -Append null `
- -Keys null `
- -Email null `
- -Enable null `
  -Comment null `
+ -Email null `
+ -Append null `
+ -Lastname null `
+ -Expire null `
+ -Keys null `
+ -Enable null `
  -Firstname null
 ```
 

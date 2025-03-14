@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Server** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Disable** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterNotificationsEndpointsGotify = Initialize-PVEClusterNotificationsEndpointsGotify  -Comment null `
- -Digest null `
+$ClusterNotificationsEndpointsGotify = Initialize-PVEClusterNotificationsEndpointsGotify  -Name null `
  -Server null `
- -Name null `
+ -Digest null `
+ -Comment null `
  -Disable null
 ```
 

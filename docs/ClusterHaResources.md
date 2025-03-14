@@ -3,26 +3,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Sid** | **String** |  | [optional] 
-**MaxRestart** | **Int32** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **State** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
+**Sid** | **String** |  | [optional] 
 **MaxRelocate** | **Int32** |  | [optional] 
-**Comment** | **String** |  | [optional] 
+**MaxRestart** | **Int32** |  | [optional] 
 **Group** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterHaResources = Initialize-PVEClusterHaResources  -Sid null `
- -MaxRestart null `
+$ClusterHaResources = Initialize-PVEClusterHaResources  -Comment null `
+ -Type null `
  -Digest null `
  -State null `
- -Type null `
+ -Sid null `
  -MaxRelocate null `
- -Comment null `
+ -MaxRestart null `
  -Group null
 ```
 

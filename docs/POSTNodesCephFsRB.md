@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PgNum** | **Int32** |  | [optional] 
 **AddStorage** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**PgNum** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephFsRB = Initialize-PVEPOSTNodesCephFsRB  -PgNum null `
- -AddStorage null `
+$POSTNodesCephFsRB = Initialize-PVEPOSTNodesCephFsRB  -AddStorage null `
+ -Node null `
  -Name null `
- -Node null
+ -PgNum null
 ```
 
 - Convert the resource to JSON

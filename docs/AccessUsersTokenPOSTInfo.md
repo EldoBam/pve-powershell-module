@@ -1,4 +1,4 @@
-# AccessUsersTokens
+# AccessUsersTokenPOSTInfo
 ## Properties
 
 Name | Type | Description | Notes
@@ -11,14 +11,14 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$AccessUsersTokens = Initialize-PVEAccessUsersTokens  -Comment null `
+$AccessUsersTokenPOSTInfo = Initialize-PVEAccessUsersTokenPOSTInfo  -Comment null `
  -Expire null `
  -Privsep null
 ```
 
 - Convert the resource to JSON
 ```powershell
-$AccessUsersTokens | ConvertTo-JSON
+$AccessUsersTokenPOSTInfo | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Volume** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**TargetVolume** | **String** |  | [optional] 
-**Bwlimit** | **Decimal** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
-**TargetVmid** | **Int32** |  | [optional] 
 **Delete** | **Int32** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **TargetDigest** | **String** |  | [optional] 
+**Bwlimit** | **Decimal** |  | [optional] 
+**Volume** | **String** |  | [optional] 
+**TargetVmid** | **Int32** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**TargetVolume** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcMovevolumeRB = Initialize-PVEPOSTNodesLxcMovevolumeRB  -Volume null `
- -Digest null `
- -TargetVolume null `
- -Bwlimit null `
- -Vmid null `
- -Node null `
- -Storage null `
- -TargetVmid null `
+$POSTNodesLxcMovevolumeRB = Initialize-PVEPOSTNodesLxcMovevolumeRB  -Vmid null `
  -Delete null `
- -TargetDigest null
+ -Digest null `
+ -Node null `
+ -TargetDigest null `
+ -Bwlimit null `
+ -Volume null `
+ -TargetVmid null `
+ -Storage null `
+ -TargetVolume null
 ```
 
 - Convert the resource to JSON

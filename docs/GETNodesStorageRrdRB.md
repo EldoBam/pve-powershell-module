@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timeframe** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
 **Ds** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Timeframe** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
 **Cf** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesStorageRrdRB = Initialize-PVEGETNodesStorageRrdRB  -Timeframe null `
+$GETNodesStorageRrdRB = Initialize-PVEGETNodesStorageRrdRB  -Ds null `
  -Node null `
+ -Timeframe null `
  -Storage null `
- -Ds null `
  -Cf null
 ```
 

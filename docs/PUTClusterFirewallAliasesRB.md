@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Rename** | **String** |  | [optional] 
 **Cidr** | **String** |  | [optional] 
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$PUTClusterFirewallAliasesRB = Initialize-PVEPUTClusterFirewallAliasesRB  -Comment null `
+$PUTClusterFirewallAliasesRB = Initialize-PVEPUTClusterFirewallAliasesRB  -Name null `
  -Digest null `
- -Name null `
+ -Comment null `
  -Rename null `
  -Cidr null
 ```

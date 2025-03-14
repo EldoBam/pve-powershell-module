@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Node** | **String** |  | [optional] 
 **Force** | **Int32** |  | [optional] 
 **Snapname** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesQemuSnapshotRB = Initialize-PVEDELETENodesQemuSnapshotRB  -Force null `
+$DELETENodesQemuSnapshotRB = Initialize-PVEDELETENodesQemuSnapshotRB  -Node null `
+ -Force null `
  -Snapname null `
- -Vmid null `
- -Node null
+ -Vmid null
 ```
 
 - Convert the resource to JSON

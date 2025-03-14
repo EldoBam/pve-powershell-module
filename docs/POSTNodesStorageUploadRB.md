@@ -4,24 +4,24 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Tmpfilename** | **String** |  | [optional] 
-**Content** | **String** |  | [optional] 
 **ChecksumAlgorithm** | **String** |  | [optional] 
-**Checksum** | **String** |  | [optional] 
-**Filename** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Content** | **String** |  | [optional] 
+**Checksum** | **String** |  | [optional] 
 **Storage** | **String** |  | [optional] 
+**Filename** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTNodesStorageUploadRB = Initialize-PVEPOSTNodesStorageUploadRB  -Tmpfilename null `
- -Content null `
  -ChecksumAlgorithm null `
- -Checksum null `
- -Filename null `
  -Node null `
- -Storage null
+ -Content null `
+ -Checksum null `
+ -Storage null `
+ -Filename null
 ```
 
 - Convert the resource to JSON

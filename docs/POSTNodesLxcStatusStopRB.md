@@ -4,18 +4,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Node** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Skiplock** | **Int32** |  | [optional] 
 **OverruleShutdown** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTNodesLxcStatusStopRB = Initialize-PVEPOSTNodesLxcStatusStopRB  -Node null `
- -Vmid null `
  -Skiplock null `
- -OverruleShutdown null
+ -OverruleShutdown null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

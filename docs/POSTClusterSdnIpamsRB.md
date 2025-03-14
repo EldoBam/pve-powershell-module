@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | **String** |  | [optional] 
+**Token** | **String** |  | [optional] 
+**Section** | **Int32** |  | [optional] 
 **Url** | **String** |  | [optional] 
 **Ipam** | **String** |  | [optional] 
-**Section** | **Int32** |  | [optional] 
-**Token** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnIpamsRB = Initialize-PVEPOSTClusterSdnIpamsRB  -Url null `
- -Ipam null `
- -Section null `
+$POSTClusterSdnIpamsRB = Initialize-PVEPOSTClusterSdnIpamsRB  -Type null `
  -Token null `
- -Type null
+ -Section null `
+ -Url null `
+ -Ipam null
 ```
 
 - Convert the resource to JSON

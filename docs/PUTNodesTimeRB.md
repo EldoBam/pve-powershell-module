@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Timezone** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesTimeRB = Initialize-PVEPUTNodesTimeRB  -Node null `
- -Timezone null
+$PUTNodesTimeRB = Initialize-PVEPUTNodesTimeRB  -Timezone null `
+ -Node null
 ```
 
 - Convert the resource to JSON

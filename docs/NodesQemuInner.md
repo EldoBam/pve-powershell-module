@@ -3,47 +3,47 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | **String** |  | [optional] 
+**Netout** | **Int32** |  | [optional] 
+**Cpus** | **Decimal** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Maxdisk** | **Int32** |  | [optional] 
 **Template** | **Int32** |  | [optional] 
-**Netin** | **Int32** |  | [optional] 
-**Qmpstatus** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
+**VarPid** | **Int32** |  | [optional] 
 **Diskread** | **Int32** |  | [optional] 
+**RunningMachine** | **String** |  | [optional] 
+**Netin** | **Int32** |  | [optional] 
 **Diskwrite** | **Int32** |  | [optional] 
 **Tags** | **String** |  | [optional] 
-**Cpus** | **Decimal** |  | [optional] 
-**RunningMachine** | **String** |  | [optional] 
-**VarPid** | **Int32** |  | [optional] 
-**Uptime** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Maxmem** | **Int32** |  | [optional] 
-**RunningQemu** | **String** |  | [optional] 
-**Maxdisk** | **Int32** |  | [optional] 
+**Qmpstatus** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Uptime** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
 **Lock** | **String** |  | [optional] 
-**Netout** | **Int32** |  | [optional] 
+**RunningQemu** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuInner = Initialize-PVENodesQemuInner  -Status null `
+$NodesQemuInner = Initialize-PVENodesQemuInner  -Netout null `
+ -Cpus null `
+ -Vmid null `
+ -Maxdisk null `
  -Template null `
- -Netin null `
- -Qmpstatus null `
- -Name null `
+ -VarPid null `
  -Diskread null `
+ -RunningMachine null `
+ -Netin null `
  -Diskwrite null `
  -Tags null `
- -Cpus null `
- -RunningMachine null `
- -VarPid null `
- -Uptime null `
- -Vmid null `
  -Maxmem null `
- -RunningQemu null `
- -Maxdisk null `
+ -Qmpstatus null `
+ -Name null `
+ -Uptime null `
+ -Status null `
  -Lock null `
- -Netout null
+ -RunningQemu null
 ```
 
 - Convert the resource to JSON

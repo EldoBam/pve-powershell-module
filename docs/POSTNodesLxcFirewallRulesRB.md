@@ -3,45 +3,45 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pos** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**IcmpType** | **String** |  | [optional] 
+**Macro** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Source** | **String** |  | [optional] 
 **Dport** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**Action** | **String** |  | [optional] 
-**Macro** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
-**Log** | **String** |  | [optional] 
-**Sport** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **Proto** | **String** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Sport** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**IcmpType** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
+**Iface** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcFirewallRulesRB = Initialize-PVEPOSTNodesLxcFirewallRulesRB  -Pos null `
- -Type null `
- -Dest null `
+$POSTNodesLxcFirewallRulesRB = Initialize-PVEPOSTNodesLxcFirewallRulesRB  -Log null `
+ -Action null `
+ -IcmpType null `
+ -Macro null `
+ -Comment null `
  -Source null `
  -Dport null `
- -Enable null `
- -Action null `
- -Macro null `
- -Node null `
- -Iface null `
- -Log null `
- -Sport null `
  -Vmid null `
- -Comment null `
  -Proto null `
+ -Dest null `
+ -Node null `
+ -Sport null `
+ -Type null `
+ -Enable null `
  -Digest null `
- -IcmpType null
+ -Pos null `
+ -Iface null
 ```
 
 - Convert the resource to JSON

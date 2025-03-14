@@ -1,20 +1,26 @@
-# NodesHardwarePciGETInner
+# ClusterFirewallAliasesInner
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Method** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesHardwarePciGETInner = Initialize-PVENodesHardwarePciGETInner  -Method null
+$ClusterFirewallAliasesInner = Initialize-PVEClusterFirewallAliasesInner  -Name null `
+ -Digest null `
+ -Comment null `
+ -Cidr null
 ```
 
 - Convert the resource to JSON
 ```powershell
-$NodesHardwarePciGETInner | ConvertTo-JSON
+$ClusterFirewallAliasesInner | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

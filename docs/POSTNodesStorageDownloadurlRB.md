@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **String** |  | [optional] 
-**Content** | **String** |  | [optional] 
-**ChecksumAlgorithm** | **String** |  | [optional] 
-**Checksum** | **String** |  | [optional] 
-**Filename** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
-**VerifyCertificates** | **Int32** |  | [optional] 
+**Url** | **String** |  | [optional] 
 **Compression** | **String** |  | [optional] 
+**ChecksumAlgorithm** | **String** |  | [optional] 
+**Content** | **String** |  | [optional] 
+**Checksum** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**Filename** | **String** |  | [optional] 
+**VerifyCertificates** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesStorageDownloadurlRB = Initialize-PVEPOSTNodesStorageDownloadurlRB  -Url null `
- -Content null `
+$POSTNodesStorageDownloadurlRB = Initialize-PVEPOSTNodesStorageDownloadurlRB  -Node null `
+ -Url null `
+ -Compression null `
  -ChecksumAlgorithm null `
+ -Content null `
  -Checksum null `
- -Filename null `
- -Node null `
  -Storage null `
- -VerifyCertificates null `
- -Compression null
+ -Filename null `
+ -VerifyCertificates null
 ```
 
 - Convert the resource to JSON

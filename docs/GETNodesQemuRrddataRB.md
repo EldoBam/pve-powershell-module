@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timeframe** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Timeframe** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Cf** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuRrddataRB = Initialize-PVEGETNodesQemuRrddataRB  -Timeframe null `
- -Node null `
+$GETNodesQemuRrddataRB = Initialize-PVEGETNodesQemuRrddataRB  -Node null `
+ -Timeframe null `
  -Vmid null `
  -Cf null
 ```

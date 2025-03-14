@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Property** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesConfigRB = Initialize-PVEGETNodesConfigRB  -Node null `
- -Property null
+$GETNodesConfigRB = Initialize-PVEGETNodesConfigRB  -Property null `
+ -Node null
 ```
 
 - Convert the resource to JSON

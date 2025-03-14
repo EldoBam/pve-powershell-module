@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConfirmationPassword** | **String** |  | [optional] 
 **Password** | **String** |  | [optional] 
+**ConfirmationPassword** | **String** |  | [optional] 
 **Userid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTAccessPasswordRB = Initialize-PVEPUTAccessPasswordRB  -ConfirmationPassword null `
- -Password null `
+$PUTAccessPasswordRB = Initialize-PVEPUTAccessPasswordRB  -Password null `
+ -ConfirmationPassword null `
  -Userid null
 ```
 

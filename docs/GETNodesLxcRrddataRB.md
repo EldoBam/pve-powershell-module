@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timeframe** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Timeframe** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Cf** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$GETNodesLxcRrddataRB = Initialize-PVEGETNodesLxcRrddataRB  -Timeframe null `
- -Node null `
+$GETNodesLxcRrddataRB = Initialize-PVEGETNodesLxcRrddataRB  -Node null `
+ -Timeframe null `
  -Vmid null `
  -Cf null
 ```

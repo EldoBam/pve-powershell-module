@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timeframe** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Timeframe** | **String** |  | [optional] 
 **Storage** | **String** |  | [optional] 
 **Cf** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$GETNodesStorageRrddataRB = Initialize-PVEGETNodesStorageRrddataRB  -Timeframe null `
- -Node null `
+$GETNodesStorageRrddataRB = Initialize-PVEGETNodesStorageRrddataRB  -Node null `
+ -Timeframe null `
  -Storage null `
  -Cf null
 ```

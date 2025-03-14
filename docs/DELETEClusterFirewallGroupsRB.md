@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
 **Group** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 **Pos** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEClusterFirewallGroupsRB = Initialize-PVEDELETEClusterFirewallGroupsRB  -Digest null `
- -Group null `
+$DELETEClusterFirewallGroupsRB = Initialize-PVEDELETEClusterFirewallGroupsRB  -Group null `
+ -Digest null `
  -Pos null
 ```
 

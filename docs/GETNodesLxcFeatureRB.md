@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Node** | **String** |  | [optional] 
 **Feature** | **String** |  | [optional] 
 **Snapname** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesLxcFeatureRB = Initialize-PVEGETNodesLxcFeatureRB  -Feature null `
+$GETNodesLxcFeatureRB = Initialize-PVEGETNodesLxcFeatureRB  -Node null `
+ -Feature null `
  -Snapname null `
- -Vmid null `
- -Node null
+ -Vmid null
 ```
 
 - Convert the resource to JSON

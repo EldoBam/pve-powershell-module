@@ -3,44 +3,44 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BytesUsed** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**PgNum** | **Int32** |  | [optional] 
-**Size** | **Int32** |  | [optional] 
-**TargetSize** | **Int32** |  | [optional] 
-**PgNumFinal** | **Int32** |  | [optional] 
-**PgNumMin** | **Int32** |  | [optional] 
-**TargetSizeRatio** | **Decimal** |  | [optional] 
-**PgAutoscaleMode** | **String** |  | [optional] 
-**MinSize** | **Int32** |  | [optional] 
-**AutoscaleStatus** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**CrushRule** | **Int32** |  | [optional] 
-**PoolName** | **String** |  | [optional] 
-**CrushRuleName** | **String** |  | [optional] 
 **ApplicationMetadata** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**CrushRuleName** | **String** |  | [optional] 
+**AutoscaleStatus** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**BytesUsed** | **Int32** |  | [optional] 
+**TargetSizeRatio** | **Decimal** |  | [optional] 
+**MinSize** | **Int32** |  | [optional] 
 **PercentUsed** | **Decimal** |  | [optional] 
+**PgNum** | **Int32** |  | [optional] 
+**PoolName** | **String** |  | [optional] 
+**PgNumMin** | **Int32** |  | [optional] 
+**CrushRule** | **Int32** |  | [optional] 
+**PgNumFinal** | **Int32** |  | [optional] 
+**Size** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**TargetSize** | **Int32** |  | [optional] 
+**PgAutoscaleMode** | **String** |  | [optional] 
 **Pool** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephPoolInner = Initialize-PVENodesCephPoolInner  -BytesUsed null `
- -Type null `
- -PgNum null `
- -Size null `
- -TargetSize null `
- -PgNumFinal null `
- -PgNumMin null `
- -TargetSizeRatio null `
- -PgAutoscaleMode null `
- -MinSize null `
- -AutoscaleStatus null `
- -CrushRule null `
- -PoolName null `
+$NodesCephPoolInner = Initialize-PVENodesCephPoolInner  -ApplicationMetadata null `
  -CrushRuleName null `
- -ApplicationMetadata null `
+ -AutoscaleStatus null `
+ -BytesUsed null `
+ -TargetSizeRatio null `
+ -MinSize null `
  -PercentUsed null `
+ -PgNum null `
+ -PoolName null `
+ -PgNumMin null `
+ -CrushRule null `
+ -PgNumFinal null `
+ -Size null `
+ -Type null `
+ -TargetSize null `
+ -PgAutoscaleMode null `
  -Pool null
 ```
 

@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Node** | **String** |  | [optional] 
 **ForceStop** | **Int32** |  | [optional] 
 **Vms** | **String** |  | [optional] 
 **Timeout** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesStopallRB = Initialize-PVEPOSTNodesStopallRB  -ForceStop null `
+$POSTNodesStopallRB = Initialize-PVEPOSTNodesStopallRB  -Node null `
+ -ForceStop null `
  -Vms null `
- -Timeout null `
- -Node null
+ -Timeout null
 ```
 
 - Convert the resource to JSON

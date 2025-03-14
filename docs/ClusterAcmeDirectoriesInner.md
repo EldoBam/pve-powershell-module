@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
 **Url** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterAcmeDirectoriesInner = Initialize-PVEClusterAcmeDirectoriesInner  -Name null `
- -Url null
+$ClusterAcmeDirectoriesInner = Initialize-PVEClusterAcmeDirectoriesInner  -Url null `
+ -Name null
 ```
 
 - Convert the resource to JSON

@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
 **Ipam** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnIpamsInner = Initialize-PVEClusterSdnIpamsInner  -Type null `
- -Ipam null
+$ClusterSdnIpamsInner = Initialize-PVEClusterSdnIpamsInner  -Ipam null `
+ -Type null
 ```
 
 - Convert the resource to JSON

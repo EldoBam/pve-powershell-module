@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Verbose** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Verbose** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesCephPoolStatusRB = Initialize-PVEGETNodesCephPoolStatusRB  -Verbose null `
+$GETNodesCephPoolStatusRB = Initialize-PVEGETNodesCephPoolStatusRB  -Node null `
  -Name null `
- -Node null
+ -Verbose null
 ```
 
 - Convert the resource to JSON

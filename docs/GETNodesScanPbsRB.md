@@ -4,22 +4,22 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Username** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
 **Fingerprint** | **String** |  | [optional] 
 **Password** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
 **Server** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesScanPbsRB = Initialize-PVEGETNodesScanPbsRB  -Username null `
+ -Node null `
+ -Port null `
  -Fingerprint null `
  -Password null `
- -Port null `
- -Server null `
- -Node null
+ -Server null
 ```
 
 - Convert the resource to JSON

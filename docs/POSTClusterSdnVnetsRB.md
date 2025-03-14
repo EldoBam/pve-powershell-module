@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Zone** | **String** |  | [optional] 
 **IsolatePorts** | **Int32** |  | [optional] 
-**Alias** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Vnet** | **String** |  | [optional] 
 **Vlanaware** | **Int32** |  | [optional] 
-**Zone** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Alias** | **String** |  | [optional] 
 **Tag** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnVnetsRB = Initialize-PVEPOSTClusterSdnVnetsRB  -IsolatePorts null `
- -Alias null `
- -Type null `
+$POSTClusterSdnVnetsRB = Initialize-PVEPOSTClusterSdnVnetsRB  -Zone null `
+ -IsolatePorts null `
  -Vnet null `
  -Vlanaware null `
- -Zone null `
+ -Type null `
+ -Alias null `
  -Tag null
 ```
 

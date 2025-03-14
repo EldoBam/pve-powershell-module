@@ -3,10 +3,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Endcursor** | **String** |  | [optional] 
 **VarUntil** | **Int32** |  | [optional] 
 **Startcursor** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Endcursor** | **String** |  | [optional] 
 **Since** | **Int32** |  | [optional] 
 **Lastentries** | **Int32** |  | [optional] 
 
@@ -14,10 +14,10 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$GETNodesJournalRB = Initialize-PVEGETNodesJournalRB  -Endcursor null `
- -VarUntil null `
+$GETNodesJournalRB = Initialize-PVEGETNodesJournalRB  -VarUntil null `
  -Startcursor null `
  -Node null `
+ -Endcursor null `
  -Since null `
  -Lastentries null
 ```

@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Node** | **String** |  | [optional] 
+**Snapshot** | **String** |  | [optional] 
 **Current** | **Int32** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Snapshot** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuConfigRB = Initialize-PVEGETNodesQemuConfigRB  -Current null `
- -Vmid null `
+$GETNodesQemuConfigRB = Initialize-PVEGETNodesQemuConfigRB  -Node null `
  -Snapshot null `
- -Node null
+ -Current null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

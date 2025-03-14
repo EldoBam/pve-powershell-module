@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Issuer** | **String** |  | [optional] 
-**Notafter** | **Int32** |  | [optional] 
-**Fingerprint** | **String** |  | [optional] 
-**Pem** | **String** |  | [optional] 
-**Filename** | **String** |  | [optional] 
-**Notbefore** | **Int32** |  | [optional] 
 **PublicKeyBits** | **Int32** |  | [optional] 
+**Notafter** | **Int32** |  | [optional] 
 **PublicKeyType** | **String** |  | [optional] 
+**Pem** | **String** |  | [optional] 
+**Notbefore** | **Int32** |  | [optional] 
 **Subject** | **String** |  | [optional] 
+**Fingerprint** | **String** |  | [optional] 
 **San** | **String[]** |  | [optional] 
+**Filename** | **String** |  | [optional] 
+**Issuer** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCertificatesCustom = Initialize-PVENodesCertificatesCustom  -Issuer null `
+$NodesCertificatesCustom = Initialize-PVENodesCertificatesCustom  -PublicKeyBits null `
  -Notafter null `
- -Fingerprint null `
- -Pem null `
- -Filename null `
- -Notbefore null `
- -PublicKeyBits null `
  -PublicKeyType null `
+ -Pem null `
+ -Notbefore null `
  -Subject null `
- -San null
+ -Fingerprint null `
+ -San null `
+ -Filename null `
+ -Issuer null
 ```
 
 - Convert the resource to JSON

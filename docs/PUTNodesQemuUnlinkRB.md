@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Force** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Idlist** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Force** | **Int32** |  | [optional] 
+**Idlist** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuUnlinkRB = Initialize-PVEPUTNodesQemuUnlinkRB  -Force null `
- -Vmid null `
+$PUTNodesQemuUnlinkRB = Initialize-PVEPUTNodesQemuUnlinkRB  -Node null `
+ -Force null `
  -Idlist null `
- -Node null
+ -Vmid null
 ```
 
 - Convert the resource to JSON

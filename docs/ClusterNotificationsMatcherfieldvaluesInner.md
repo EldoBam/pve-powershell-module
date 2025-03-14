@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
 **Field** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Value** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterNotificationsMatcherfieldvaluesInner = Initialize-PVEClusterNotificationsMatcherfieldvaluesInner  -Comment null `
- -Field null `
+$ClusterNotificationsMatcherfieldvaluesInner = Initialize-PVEClusterNotificationsMatcherfieldvaluesInner  -Field null `
+ -Comment null `
  -Value null
 ```
 

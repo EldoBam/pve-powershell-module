@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Name** | **String** |  | [optional] 
+**MatchCalendar** | **String[]** |  | [optional] 
+**MatchSeverity** | **String[]** |  | [optional] 
+**Disable** | **Int32** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Target** | **String[]** |  | [optional] 
+**Origin** | **String** |  | [optional] 
+**MatchField** | **String[]** |  | [optional] 
 **InvertMatch** | **Int32** |  | [optional] 
 **Mode** | **String** |  | [optional] 
-**MatchSeverity** | **String[]** |  | [optional] 
-**Origin** | **String** |  | [optional] 
-**MatchCalendar** | **String[]** |  | [optional] 
-**Target** | **String[]** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**MatchField** | **String[]** |  | [optional] 
-**Disable** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterNotificationsMatchersGETInner = Initialize-PVEClusterNotificationsMatchersGETInner  -InvertMatch null `
- -Mode null `
- -MatchSeverity null `
- -Origin null `
+$ClusterNotificationsMatchersGETInner = Initialize-PVEClusterNotificationsMatchersGETInner  -Name null `
  -MatchCalendar null `
- -Target null `
- -Comment null `
- -MatchField null `
+ -MatchSeverity null `
  -Disable null `
- -Name null
+ -Comment null `
+ -Target null `
+ -Origin null `
+ -MatchField null `
+ -InvertMatch null `
+ -Mode null
 ```
 
 - Convert the resource to JSON

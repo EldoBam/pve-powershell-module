@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | **String** |  | [optional] 
-**VarError** | [**AnyType**](.md) |  | [optional] 
 **Map** | **String[]** |  | [optional] 
+**VarError** | [**AnyType**](.md) |  | [optional] 
 **Id** | **String** |  | [optional] 
 
 ## Examples
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $ClusterMappingUsbInner = Initialize-PVEClusterMappingUsbInner  -Description null `
- -VarError null `
  -Map null `
+ -VarError null `
  -Id null
 ```
 

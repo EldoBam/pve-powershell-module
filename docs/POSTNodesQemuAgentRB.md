@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Node** | **String** |  | [optional] 
 **Command** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuAgentRB = Initialize-PVEPOSTNodesQemuAgentRB  -Command null `
- -Vmid null `
- -Node null
+$POSTNodesQemuAgentRB = Initialize-PVEPOSTNodesQemuAgentRB  -Node null `
+ -Command null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

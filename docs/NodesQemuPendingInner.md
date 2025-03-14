@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pending** | **String** |  | [optional] 
-**Value** | **String** |  | [optional] 
 **Key** | **String** |  | [optional] 
+**Pending** | **String** |  | [optional] 
 **Delete** | **Int32** |  | [optional] 
+**Value** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuPendingInner = Initialize-PVENodesQemuPendingInner  -Pending null `
- -Value null `
- -Key null `
- -Delete null
+$NodesQemuPendingInner = Initialize-PVENodesQemuPendingInner  -Key null `
+ -Pending null `
+ -Delete null `
+ -Value null
 ```
 
 - Convert the resource to JSON

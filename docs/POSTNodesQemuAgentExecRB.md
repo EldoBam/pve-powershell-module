@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InputData** | **String** |  | [optional] 
-**Command** | [**AnyType[]**](AnyType.md) |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Command** | [**AnyType[]**](AnyType.md) |  | [optional] 
+**InputData** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuAgentExecRB = Initialize-PVEPOSTNodesQemuAgentExecRB  -InputData null `
+$POSTNodesQemuAgentExecRB = Initialize-PVEPOSTNodesQemuAgentExecRB  -Node null `
  -Command null `
- -Vmid null `
- -Node null
+ -InputData null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

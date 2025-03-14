@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Options** | **String** |  | [optional] 
-**Device** | **String** |  | [optional] 
-**Unitfile** | **String** |  | [optional] 
-**Path** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Device** | **String** |  | [optional] 
+**Path** | **String** |  | [optional] 
+**Options** | **String** |  | [optional] 
+**Unitfile** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesDisksDirectoryInner = Initialize-PVENodesDisksDirectoryInner  -Options null `
+$NodesDisksDirectoryInner = Initialize-PVENodesDisksDirectoryInner  -Type null `
  -Device null `
- -Unitfile null `
  -Path null `
- -Type null
+ -Options null `
+ -Unitfile null
 ```
 
 - Convert the resource to JSON

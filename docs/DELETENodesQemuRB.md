@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Skiplock** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **DestroyUnreferencedDisks** | **Int32** |  | [optional] 
 **Purge** | **Int32** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Skiplock** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesQemuRB = Initialize-PVEDELETENodesQemuRB  -Skiplock null `
+$DELETENodesQemuRB = Initialize-PVEDELETENodesQemuRB  -Node null `
  -DestroyUnreferencedDisks null `
  -Purge null `
  -Vmid null `
- -Node null
+ -Skiplock null
 ```
 
 - Convert the resource to JSON

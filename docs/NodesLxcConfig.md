@@ -3,75 +3,75 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Startup** | **String** |  | [optional] 
-**Lxc** | [**String[][]**](Array.md) |  | [optional] 
-**Tags** | **String** |  | [optional] 
-**Swap** | **Int32** |  | [optional] 
 **Nameserver** | **String** |  | [optional] 
-**Timezone** | **String** |  | [optional] 
-**Ostype** | **String** |  | [optional] 
-**Debug** | **Int32** |  | [optional] 
-**UnusedN** | **String** |  | [optional] 
-**Cpulimit** | **Decimal** |  | [optional] 
-**Tty** | **Int32** |  | [optional] 
-**Cmode** | **String** |  | [optional] 
-**Template** | **Int32** |  | [optional] 
+**Lxc** | [**String[][]**](Array.md) |  | [optional] 
 **Hookscript** | **String** |  | [optional] 
-**Onboot** | **Int32** |  | [optional] 
-**NetN** | **String** |  | [optional] 
-**Lock** | **String** |  | [optional] 
-**MpN** | **String** |  | [optional] 
 **Searchdomain** | **String** |  | [optional] 
-**Hostname** | **String** |  | [optional] 
-**Arch** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**Cores** | **Int32** |  | [optional] 
-**Memory** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Features** | **String** |  | [optional] 
-**Unprivileged** | **Int32** |  | [optional] 
+**NetN** | **String** |  | [optional] 
 **Console** | **Int32** |  | [optional] 
-**DevN** | **String** |  | [optional] 
 **Rootfs** | **String** |  | [optional] 
+**Ostype** | **String** |  | [optional] 
+**MpN** | **String** |  | [optional] 
 **Protection** | **Int32** |  | [optional] 
+**Tty** | **Int32** |  | [optional] 
+**Cpulimit** | **Decimal** |  | [optional] 
+**UnusedN** | **String** |  | [optional] 
+**Arch** | **String** |  | [optional] 
+**Template** | **Int32** |  | [optional] 
+**Swap** | **Int32** |  | [optional] 
+**Features** | **String** |  | [optional] 
+**Debug** | **Int32** |  | [optional] 
+**Lock** | **String** |  | [optional] 
+**Unprivileged** | **Int32** |  | [optional] 
+**Hostname** | **String** |  | [optional] 
+**Startup** | **String** |  | [optional] 
+**Cores** | **Int32** |  | [optional] 
+**DevN** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Memory** | **Int32** |  | [optional] 
+**Onboot** | **Int32** |  | [optional] 
+**Tags** | **String** |  | [optional] 
+**Timezone** | **String** |  | [optional] 
 **Cpuunits** | **Int32** |  | [optional] 
+**Cmode** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcConfig = Initialize-PVENodesLxcConfig  -Startup null `
+$NodesLxcConfig = Initialize-PVENodesLxcConfig  -Nameserver null `
  -Lxc null `
- -Tags null `
- -Swap null `
- -Nameserver null `
- -Timezone null `
- -Ostype null `
- -Debug null `
- -UnusedN null `
- -Cpulimit null `
- -Tty null `
- -Cmode null `
- -Template null `
  -Hookscript null `
- -Onboot null `
- -NetN null `
- -Lock null `
- -MpN null `
  -Searchdomain null `
- -Hostname null `
- -Arch null `
- -Description null `
- -Cores null `
- -Memory null `
- -Digest null `
- -Features null `
- -Unprivileged null `
+ -NetN null `
  -Console null `
- -DevN null `
  -Rootfs null `
+ -Ostype null `
+ -MpN null `
  -Protection null `
- -Cpuunits null
+ -Tty null `
+ -Cpulimit null `
+ -UnusedN null `
+ -Arch null `
+ -Template null `
+ -Swap null `
+ -Features null `
+ -Debug null `
+ -Lock null `
+ -Unprivileged null `
+ -Hostname null `
+ -Startup null `
+ -Cores null `
+ -DevN null `
+ -Digest null `
+ -Description null `
+ -Memory null `
+ -Onboot null `
+ -Tags null `
+ -Timezone null `
+ -Cpuunits null `
+ -Cmode null
 ```
 
 - Convert the resource to JSON

@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Storage** | **String** |  | [optional] 
-**Volume** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Volume** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesStorageImportmetadataRB = Initialize-PVEGETNodesStorageImportmetadataRB  -Storage null `
+$GETNodesStorageImportmetadataRB = Initialize-PVEGETNodesStorageImportmetadataRB  -Node null `
  -Volume null `
- -Node null
+ -Storage null
 ```
 
 - Convert the resource to JSON

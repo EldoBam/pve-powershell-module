@@ -3,37 +3,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ErasureCoding** | **String** |  | [optional] 
-**Application** | **String** |  | [optional] 
-**PgNum** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**TargetSizeRatio** | **Decimal** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**TargetSize** | **String** |  | [optional] 
-**AddStorages** | **Int32** |  | [optional] 
-**MinSize** | **Int32** |  | [optional] 
-**PgNumMin** | **Int32** |  | [optional] 
-**CrushRule** | **String** |  | [optional] 
-**Size** | **Int32** |  | [optional] 
 **PgAutoscaleMode** | **String** |  | [optional] 
+**Application** | **String** |  | [optional] 
+**TargetSizeRatio** | **Decimal** |  | [optional] 
+**MinSize** | **Int32** |  | [optional] 
+**PgNum** | **Int32** |  | [optional] 
+**CrushRule** | **String** |  | [optional] 
+**AddStorages** | **Int32** |  | [optional] 
+**PgNumMin** | **Int32** |  | [optional] 
+**TargetSize** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Size** | **Int32** |  | [optional] 
+**ErasureCoding** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephPoolRB = Initialize-PVEPOSTNodesCephPoolRB  -ErasureCoding null `
+$POSTNodesCephPoolRB = Initialize-PVEPOSTNodesCephPoolRB  -PgAutoscaleMode null `
  -Application null `
- -PgNum null `
- -Name null `
  -TargetSizeRatio null `
- -Node null `
- -TargetSize null `
- -AddStorages null `
  -MinSize null `
- -PgNumMin null `
+ -PgNum null `
  -CrushRule null `
+ -AddStorages null `
+ -PgNumMin null `
+ -TargetSize null `
+ -Node null `
  -Size null `
- -PgAutoscaleMode null
+ -ErasureCoding null `
+ -Name null
 ```
 
 - Convert the resource to JSON

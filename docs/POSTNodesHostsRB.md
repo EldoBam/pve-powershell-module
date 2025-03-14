@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 **VarData** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesHostsRB = Initialize-PVEPOSTNodesHostsRB  -Digest null `
- -Node null `
+$POSTNodesHostsRB = Initialize-PVEPOSTNodesHostsRB  -Node null `
+ -Digest null `
  -VarData null
 ```
 

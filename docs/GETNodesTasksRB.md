@@ -3,33 +3,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Typefilter** | **String** |  | [optional] 
 **Source** | **String** |  | [optional] 
-**Limit** | **Int32** |  | [optional] 
-**Userfilter** | **String** |  | [optional] 
-**Statusfilter** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Errors** | **Int32** |  | [optional] 
-**Since** | **Int32** |  | [optional] 
-**Start** | **Int32** |  | [optional] 
+**Typefilter** | **String** |  | [optional] 
+**Userfilter** | **String** |  | [optional] 
 **VarUntil** | **Int32** |  | [optional] 
+**Start** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Limit** | **Int32** |  | [optional] 
+**Errors** | **Int32** |  | [optional] 
+**Statusfilter** | **String** |  | [optional] 
+**Since** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesTasksRB = Initialize-PVEGETNodesTasksRB  -Typefilter null `
- -Source null `
- -Limit null `
- -Userfilter null `
- -Statusfilter null `
- -Node null `
+$GETNodesTasksRB = Initialize-PVEGETNodesTasksRB  -Source null `
  -Vmid null `
- -Errors null `
- -Since null `
+ -Typefilter null `
+ -Userfilter null `
+ -VarUntil null `
  -Start null `
- -VarUntil null
+ -Node null `
+ -Limit null `
+ -Errors null `
+ -Statusfilter null `
+ -Since null
 ```
 
 - Convert the resource to JSON

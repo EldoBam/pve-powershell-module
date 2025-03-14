@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Osdid** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Osdid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesCephOsdLvinfoRB = Initialize-PVEGETNodesCephOsdLvinfoRB  -Osdid null `
+$GETNodesCephOsdLvinfoRB = Initialize-PVEGETNodesCephOsdLvinfoRB  -Node null `
  -Type null `
- -Node null
+ -Osdid null
 ```
 
 - Convert the resource to JSON

@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Monid** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Monid** | **String** |  | [optional] 
 **MonAddress** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephMonRB = Initialize-PVEPOSTNodesCephMonRB  -Monid null `
- -Node null `
+$POSTNodesCephMonRB = Initialize-PVEPOSTNodesCephMonRB  -Node null `
+ -Monid null `
  -MonAddress null
 ```
 

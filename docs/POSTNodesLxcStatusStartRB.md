@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Debug** | **Int32** |  | [optional] 
-**Skiplock** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Skiplock** | **Int32** |  | [optional] 
+**Debug** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcStatusStartRB = Initialize-PVEPOSTNodesLxcStatusStartRB  -Debug null `
+$POSTNodesLxcStatusStartRB = Initialize-PVEPOSTNodesLxcStatusStartRB  -Node null `
  -Skiplock null `
- -Vmid null `
- -Node null
+ -Debug null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

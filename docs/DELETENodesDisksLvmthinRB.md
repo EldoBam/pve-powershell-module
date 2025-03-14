@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VolumeGroup** | **String** |  | [optional] 
-**CleanupDisks** | **Int32** |  | [optional] 
 **Name** | **String** |  | [optional] 
 **CleanupConfig** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**VolumeGroup** | **String** |  | [optional] 
+**CleanupDisks** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesDisksLvmthinRB = Initialize-PVEDELETENodesDisksLvmthinRB  -VolumeGroup null `
- -CleanupDisks null `
- -Name null `
+$DELETENodesDisksLvmthinRB = Initialize-PVEDELETENodesDisksLvmthinRB  -Name null `
  -CleanupConfig null `
- -Node null
+ -Node null `
+ -VolumeGroup null `
+ -CleanupDisks null
 ```
 
 - Convert the resource to JSON

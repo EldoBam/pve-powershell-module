@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cidr** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEClusterFirewallIpsetRB = Initialize-PVEDELETEClusterFirewallIpsetRB  -Cidr null `
+$DELETEClusterFirewallIpsetRB = Initialize-PVEDELETEClusterFirewallIpsetRB  -Name null `
  -Digest null `
- -Name null
+ -Cidr null
 ```
 
 - Convert the resource to JSON

@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Disk** | **String** |  | [optional] 
-**Healthonly** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Healthonly** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesDisksSmartRB = Initialize-PVEGETNodesDisksSmartRB  -Disk null `
- -Healthonly null `
- -Node null
+ -Node null `
+ -Healthonly null
 ```
 
 - Convert the resource to JSON

@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Addr** | **String** |  | [optional] 
-**State** | **String** |  | [optional] 
 **Name** | [**AnyType**](.md) |  | [optional] 
+**State** | **String** |  | [optional] 
 **VarHost** | **String** |  | [optional] 
+**Addr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephMgrInner = Initialize-PVENodesCephMgrInner  -Addr null `
+$NodesCephMgrInner = Initialize-PVENodesCephMgrInner  -Name null `
  -State null `
- -Name null `
- -VarHost null
+ -VarHost null `
+ -Addr null
 ```
 
 - Convert the resource to JSON

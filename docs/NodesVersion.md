@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Release** | **String** |  | [optional] 
-**Repoid** | **String** |  | [optional] 
 **Version** | **String** |  | [optional] 
+**Repoid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $NodesVersion = Initialize-PVENodesVersion  -Release null `
- -Repoid null `
- -Version null
+ -Version null `
+ -Repoid null
 ```
 
 - Convert the resource to JSON

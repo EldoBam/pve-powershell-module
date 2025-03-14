@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timeout** | **Int32** |  | [optional] 
-**ForceStop** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**ForceStop** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcStatusShutdownRB = Initialize-PVEPOSTNodesLxcStatusShutdownRB  -Timeout null `
- -ForceStop null `
+$POSTNodesLxcStatusShutdownRB = Initialize-PVEPOSTNodesLxcStatusShutdownRB  -Node null `
+ -Timeout null `
  -Vmid null `
- -Node null
+ -ForceStop null
 ```
 
 - Convert the resource to JSON

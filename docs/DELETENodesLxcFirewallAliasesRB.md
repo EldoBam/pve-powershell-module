@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesLxcFirewallAliasesRB = Initialize-PVEDELETENodesLxcFirewallAliasesRB  -Digest null `
- -Name null `
- -Vmid null `
- -Node null
+$DELETENodesLxcFirewallAliasesRB = Initialize-PVEDELETENodesLxcFirewallAliasesRB  -Name null `
+ -Node null `
+ -Digest null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

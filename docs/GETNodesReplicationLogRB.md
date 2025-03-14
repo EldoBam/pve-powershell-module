@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Start** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Limit** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Id** | **String** |  | [optional] 
+**Start** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesReplicationLogRB = Initialize-PVEGETNodesReplicationLogRB  -Start null `
+$GETNodesReplicationLogRB = Initialize-PVEGETNodesReplicationLogRB  -Limit null `
  -Node null `
- -Limit null `
- -Id null
+ -Id null `
+ -Start null
 ```
 
 - Convert the resource to JSON

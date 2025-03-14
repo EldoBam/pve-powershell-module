@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Snapname** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Snapname** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcSnapshotRB = Initialize-PVEPOSTNodesLxcSnapshotRB  -Snapname null `
+$POSTNodesLxcSnapshotRB = Initialize-PVEPOSTNodesLxcSnapshotRB  -Node null `
  -Description null `
- -Vmid null `
- -Node null
+ -Snapname null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

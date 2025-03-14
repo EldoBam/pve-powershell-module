@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Key** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesSubscriptionRB = Initialize-PVEPUTNodesSubscriptionRB  -Node null `
- -Key null
+$PUTNodesSubscriptionRB = Initialize-PVEPUTNodesSubscriptionRB  -Key null `
+ -Node null
 ```
 
 - Convert the resource to JSON

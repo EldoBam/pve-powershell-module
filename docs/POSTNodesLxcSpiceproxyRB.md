@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Node** | **String** |  | [optional] 
 **Proxy** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcSpiceproxyRB = Initialize-PVEPOSTNodesLxcSpiceproxyRB  -Proxy null `
- -Vmid null `
- -Node null
+$POSTNodesLxcSpiceproxyRB = Initialize-PVEPOSTNodesLxcSpiceproxyRB  -Node null `
+ -Proxy null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

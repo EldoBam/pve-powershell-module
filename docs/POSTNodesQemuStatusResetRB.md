@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vmid** | **Int32** |  | [optional] 
-**Skiplock** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Skiplock** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuStatusResetRB = Initialize-PVEPOSTNodesQemuStatusResetRB  -Vmid null `
+$POSTNodesQemuStatusResetRB = Initialize-PVEPOSTNodesQemuStatusResetRB  -Node null `
  -Skiplock null `
- -Node null
+ -Vmid null
 ```
 
 - Convert the resource to JSON

@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Digest** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
 **Map** | **String[]** |  | [optional] 
+**Delete** | **String** |  | [optional] 
 **Id** | **String** |  | [optional] 
 
 ## Examples
@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 ```powershell
 $PUTClusterMappingUsbRB = Initialize-PVEPUTClusterMappingUsbRB  -Digest null `
  -Description null `
- -Delete null `
  -Map null `
+ -Delete null `
  -Id null
 ```
 

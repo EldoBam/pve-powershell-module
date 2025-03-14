@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LogLevelOut** | **String** |  | [optional] 
-**Dhcp** | **Int32** |  | [optional] 
-**Macfilter** | **Int32** |  | [optional] 
-**Ndp** | **Int32** |  | [optional] 
-**PolicyIn** | **String** |  | [optional] 
-**Ipfilter** | **Int32** |  | [optional] 
-**PolicyOut** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
 **LogLevelIn** | **String** |  | [optional] 
+**Ipfilter** | **Int32** |  | [optional] 
+**Dhcp** | **Int32** |  | [optional] 
 **Radv** | **Int32** |  | [optional] 
+**PolicyIn** | **String** |  | [optional] 
+**Ndp** | **Int32** |  | [optional] 
+**Macfilter** | **Int32** |  | [optional] 
+**LogLevelOut** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
+**PolicyOut** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcFirewallOptions = Initialize-PVENodesLxcFirewallOptions  -LogLevelOut null `
- -Dhcp null `
- -Macfilter null `
- -Ndp null `
- -PolicyIn null `
+$NodesLxcFirewallOptions = Initialize-PVENodesLxcFirewallOptions  -LogLevelIn null `
  -Ipfilter null `
- -PolicyOut null `
+ -Dhcp null `
+ -Radv null `
+ -PolicyIn null `
+ -Ndp null `
+ -Macfilter null `
+ -LogLevelOut null `
  -Enable null `
- -LogLevelIn null `
- -Radv null
+ -PolicyOut null
 ```
 
 - Convert the resource to JSON

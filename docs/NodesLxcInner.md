@@ -3,43 +3,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | **String** |  | [optional] 
-**Template** | **Int32** |  | [optional] 
-**Maxmem** | **Int32** |  | [optional] 
-**Netin** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Diskread** | **Int32** |  | [optional] 
-**Diskwrite** | **Int32** |  | [optional] 
-**Maxswap** | **Int32** |  | [optional] 
-**Tags** | **String** |  | [optional] 
-**Uptime** | **Int32** |  | [optional] 
+**Netout** | **Int32** |  | [optional] 
 **Cpus** | **Decimal** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Disk** | **Int32** |  | [optional] 
 **Maxdisk** | **Int32** |  | [optional] 
+**Template** | **Int32** |  | [optional] 
+**Diskread** | **Int32** |  | [optional] 
+**Netin** | **Int32** |  | [optional] 
+**Diskwrite** | **Int32** |  | [optional] 
+**Tags** | **String** |  | [optional] 
+**Maxmem** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Uptime** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
 **Lock** | **String** |  | [optional] 
-**Netout** | **Int32** |  | [optional] 
+**Maxswap** | **Int32** |  | [optional] 
+**Disk** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcInner = Initialize-PVENodesLxcInner  -Status null `
- -Template null `
- -Maxmem null `
- -Netin null `
- -Name null `
- -Diskread null `
- -Diskwrite null `
- -Maxswap null `
- -Tags null `
- -Uptime null `
+$NodesLxcInner = Initialize-PVENodesLxcInner  -Netout null `
  -Cpus null `
  -Vmid null `
- -Disk null `
  -Maxdisk null `
+ -Template null `
+ -Diskread null `
+ -Netin null `
+ -Diskwrite null `
+ -Tags null `
+ -Maxmem null `
+ -Name null `
+ -Uptime null `
+ -Status null `
  -Lock null `
- -Netout null
+ -Maxswap null `
+ -Disk null
 ```
 
 - Convert the resource to JSON

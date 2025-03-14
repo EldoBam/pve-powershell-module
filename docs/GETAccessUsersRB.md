@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Full** | **Int32** |  | [optional] 
 **Enabled** | **Int32** |  | [optional] 
+**Full** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETAccessUsersRB = Initialize-PVEGETAccessUsersRB  -Full null `
- -Enabled null
+$GETAccessUsersRB = Initialize-PVEGETAccessUsersRB  -Enabled null `
+ -Full null
 ```
 
 - Convert the resource to JSON

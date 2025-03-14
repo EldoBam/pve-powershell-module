@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Cidr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterFirewallAliasesRB = Initialize-PVEPOSTClusterFirewallAliasesRB  -Comment null `
- -Name null `
+$POSTClusterFirewallAliasesRB = Initialize-PVEPOSTClusterFirewallAliasesRB  -Name null `
+ -Comment null `
  -Cidr null
 ```
 

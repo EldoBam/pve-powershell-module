@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Node** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Pos** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesQemuFirewallRulesRB = Initialize-PVEDELETENodesQemuFirewallRulesRB  -Digest null `
+$DELETENodesQemuFirewallRulesRB = Initialize-PVEDELETENodesQemuFirewallRulesRB  -Node null `
+ -Digest null `
  -Vmid null `
- -Pos null `
- -Node null
+ -Pos null
 ```
 
 - Convert the resource to JSON

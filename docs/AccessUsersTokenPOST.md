@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Info** | [**AccessUsersTokenPOSTInfo**](AccessUsersTokenPOSTInfo.md) |  | [optional] 
 **FullTokenid** | **String** |  | [optional] 
-**Info** | [**AccessUsersTokens**](AccessUsersTokens.md) |  | [optional] 
 **Value** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessUsersTokenPOST = Initialize-PVEAccessUsersTokenPOST  -FullTokenid null `
- -Info null `
+$AccessUsersTokenPOST = Initialize-PVEAccessUsersTokenPOST  -Info null `
+ -FullTokenid null `
  -Value null
 ```
 

@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cidr** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesLxcFirewallIpsetRB = Initialize-PVEDELETENodesLxcFirewallIpsetRB  -Cidr null `
+$DELETENodesLxcFirewallIpsetRB = Initialize-PVEDELETENodesLxcFirewallIpsetRB  -Name null `
+ -Node null `
  -Digest null `
- -Name null `
- -Vmid null `
- -Node null
+ -Cidr null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

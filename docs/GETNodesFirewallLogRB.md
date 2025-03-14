@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Since** | **Int32** |  | [optional] 
-**Start** | **Int32** |  | [optional] 
 **Limit** | **Int32** |  | [optional] 
-**VarUntil** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Since** | **Int32** |  | [optional] 
+**VarUntil** | **Int32** |  | [optional] 
+**Start** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesFirewallLogRB = Initialize-PVEGETNodesFirewallLogRB  -Since null `
- -Start null `
- -Limit null `
+$GETNodesFirewallLogRB = Initialize-PVEGETNodesFirewallLogRB  -Limit null `
+ -Node null `
+ -Since null `
  -VarUntil null `
- -Node null
+ -Start null
 ```
 
 - Convert the resource to JSON

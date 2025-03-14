@@ -3,33 +3,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Timeout** | **Int32** |  | [optional] 
+**ForceCpu** | **String** |  | [optional] 
 **Migratedfrom** | **String** |  | [optional] 
+**MigrationType** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Skiplock** | **Int32** |  | [optional] 
 **Stateuri** | **String** |  | [optional] 
 **Targetstorage** | **String** |  | [optional] 
-**ForceCpu** | **String** |  | [optional] 
-**MigrationType** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Timeout** | **Int32** |  | [optional] 
 **MigrationNetwork** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 **Machine** | **String** |  | [optional] 
-**Skiplock** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuStatusStartRB = Initialize-PVEPOSTNodesQemuStatusStartRB  -Migratedfrom null `
+$POSTNodesQemuStatusStartRB = Initialize-PVEPOSTNodesQemuStatusStartRB  -Timeout null `
+ -ForceCpu null `
+ -Migratedfrom null `
+ -MigrationType null `
  -Node null `
+ -Skiplock null `
  -Stateuri null `
  -Targetstorage null `
- -ForceCpu null `
- -MigrationType null `
- -Vmid null `
- -Timeout null `
  -MigrationNetwork null `
- -Machine null `
- -Skiplock null
+ -Vmid null `
+ -Machine null
 ```
 
 - Convert the resource to JSON

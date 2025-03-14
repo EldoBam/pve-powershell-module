@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Node** | **String** |  | [optional] 
 **Url** | **String** |  | [optional] 
 **VerifyCertificates** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQueryurlmetadataRB = Initialize-PVEGETNodesQueryurlmetadataRB  -Url null `
- -VerifyCertificates null `
- -Node null
+$GETNodesQueryurlmetadataRB = Initialize-PVEGETNodesQueryurlmetadataRB  -Node null `
+ -Url null `
+ -VerifyCertificates null
 ```
 
 - Convert the resource to JSON

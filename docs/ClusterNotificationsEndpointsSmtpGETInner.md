@@ -3,35 +3,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Username** | **String** |  | [optional] 
-**Mode** | **String** |  | [optional] 
-**Author** | **String** |  | [optional] 
 **MailtoUser** | **String[]** |  | [optional] 
-**FromAddress** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
+**Mode** | **String** |  | [optional] 
+**Username** | **String** |  | [optional] 
 **Origin** | **String** |  | [optional] 
-**Mailto** | **String[]** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Server** | **String** |  | [optional] 
 **Disable** | **Int32** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Author** | **String** |  | [optional] 
+**Mailto** | **String[]** |  | [optional] 
+**Server** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**FromAddress** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterNotificationsEndpointsSmtpGETInner = Initialize-PVEClusterNotificationsEndpointsSmtpGETInner  -Username null `
+$ClusterNotificationsEndpointsSmtpGETInner = Initialize-PVEClusterNotificationsEndpointsSmtpGETInner  -MailtoUser null `
  -Mode null `
- -Author null `
- -MailtoUser null `
- -FromAddress null `
- -Port null `
+ -Username null `
  -Origin null `
- -Mailto null `
- -Comment null `
- -Server null `
  -Disable null `
- -Name null
+ -Comment null `
+ -Author null `
+ -Mailto null `
+ -Server null `
+ -Name null `
+ -Port null `
+ -FromAddress null
 ```
 
 - Convert the resource to JSON

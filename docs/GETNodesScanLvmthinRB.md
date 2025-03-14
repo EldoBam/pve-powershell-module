@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Vg** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesScanLvmthinRB = Initialize-PVEGETNodesScanLvmthinRB  -Node null `
- -Vg null
+$GETNodesScanLvmthinRB = Initialize-PVEGETNodesScanLvmthinRB  -Vg null `
+ -Node null
 ```
 
 - Convert the resource to JSON

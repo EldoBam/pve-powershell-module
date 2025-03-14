@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**State** | **String** |  | [optional] 
 **Code** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
 **RedirectUrl** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTAccessOpenidLoginRB = Initialize-PVEPOSTAccessOpenidLoginRB  -State null `
- -Code null `
+$POSTAccessOpenidLoginRB = Initialize-PVEPOSTAccessOpenidLoginRB  -Code null `
+ -State null `
  -RedirectUrl null
 ```
 

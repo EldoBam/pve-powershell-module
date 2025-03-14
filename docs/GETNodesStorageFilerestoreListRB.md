@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Storage** | **String** |  | [optional] 
-**Volume** | **String** |  | [optional] 
-**Filepath** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Volume** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**Filepath** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesStorageFilerestoreListRB = Initialize-PVEGETNodesStorageFilerestoreListRB  -Storage null `
+$GETNodesStorageFilerestoreListRB = Initialize-PVEGETNodesStorageFilerestoreListRB  -Node null `
  -Volume null `
- -Filepath null `
- -Node null
+ -Storage null `
+ -Filepath null
 ```
 
 - Convert the resource to JSON

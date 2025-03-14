@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Node** | **String** |  | [optional] 
 **Key** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Skiplock** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuSendkeyRB = Initialize-PVEPUTNodesQemuSendkeyRB  -Key null `
+$PUTNodesQemuSendkeyRB = Initialize-PVEPUTNodesQemuSendkeyRB  -Node null `
+ -Key null `
  -Vmid null `
- -Skiplock null `
- -Node null
+ -Skiplock null
 ```
 
 - Convert the resource to JSON

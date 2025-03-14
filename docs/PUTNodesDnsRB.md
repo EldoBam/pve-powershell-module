@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Search** | **String** |  | [optional] 
-**Dns3** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Dns1** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Dns3** | **String** |  | [optional] 
+**Search** | **String** |  | [optional] 
 **Dns2** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesDnsRB = Initialize-PVEPUTNodesDnsRB  -Search null `
- -Dns3 null `
+$PUTNodesDnsRB = Initialize-PVEPUTNodesDnsRB  -Dns1 null `
  -Node null `
- -Dns1 null `
+ -Dns3 null `
+ -Search null `
  -Dns2 null
 ```
 

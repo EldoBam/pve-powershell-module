@@ -3,39 +3,39 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vmid** | **Int32** |  | [optional] 
-**Macfilter** | **Int32** |  | [optional] 
 **PolicyIn** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
 **Radv** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Dhcp** | **Int32** |  | [optional] 
-**LogLevelIn** | **String** |  | [optional] 
-**PolicyOut** | **String** |  | [optional] 
 **Ipfilter** | **Int32** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Ndp** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
+**LogLevelIn** | **String** |  | [optional] 
+**Macfilter** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 **LogLevelOut** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**PolicyOut** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Ndp** | **Int32** |  | [optional] 
+**Dhcp** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuFirewallOptionsRB = Initialize-PVEPUTNodesQemuFirewallOptionsRB  -Vmid null `
- -Macfilter null `
- -PolicyIn null `
- -Enable null `
+$PUTNodesQemuFirewallOptionsRB = Initialize-PVEPUTNodesQemuFirewallOptionsRB  -PolicyIn null `
  -Radv null `
- -Node null `
- -Dhcp null `
- -LogLevelIn null `
- -PolicyOut null `
  -Ipfilter null `
+ -LogLevelIn null `
+ -Macfilter null `
+ -Vmid null `
+ -LogLevelOut null `
  -Delete null `
- -Ndp null `
+ -PolicyOut null `
+ -Node null `
+ -Enable null `
  -Digest null `
- -LogLevelOut null
+ -Ndp null `
+ -Dhcp null
 ```
 
 - Convert the resource to JSON

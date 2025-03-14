@@ -3,49 +3,49 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Log** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**IcmpType** | **String** |  | [optional] 
+**Macro** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Sport** | **String** |  | [optional] 
 **Moveto** | **Int32** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **Enable** | **Int32** |  | [optional] 
-**Macro** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
-**Dport** | **String** |  | [optional] 
-**Log** | **String** |  | [optional] 
-**Sport** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**IcmpType** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
+**Iface** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuFirewallRulesRB = Initialize-PVEPUTNodesQemuFirewallRulesRB  -Vmid null `
- -Pos null `
+$PUTNodesQemuFirewallRulesRB = Initialize-PVEPUTNodesQemuFirewallRulesRB  -Log null `
+ -Action null `
+ -IcmpType null `
+ -Macro null `
+ -Comment null `
+ -Source null `
+ -Dport null `
+ -Vmid null `
+ -Proto null `
+ -Dest null `
+ -Delete null `
+ -Node null `
+ -Sport null `
  -Moveto null `
  -Type null `
- -Dest null `
- -Source null `
- -Comment null `
  -Enable null `
- -Macro null `
- -Node null `
- -Action null `
- -Dport null `
- -Log null `
- -Sport null `
- -Iface null `
- -Delete null `
- -Proto null `
  -Digest null `
- -IcmpType null
+ -Pos null `
+ -Iface null
 ```
 
 - Convert the resource to JSON

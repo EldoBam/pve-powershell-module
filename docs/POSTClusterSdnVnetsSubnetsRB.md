@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DhcpRange** | **String[]** |  | [optional] 
-**Snat** | **Int32** |  | [optional] 
-**Subnet** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Vnet** | **String** |  | [optional] 
-**Dnszoneprefix** | **String** |  | [optional] 
-**DhcpDnsServer** | **String** |  | [optional] 
 **Gateway** | **String** |  | [optional] 
+**Snat** | **Int32** |  | [optional] 
+**DhcpRange** | **String[]** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Dnszoneprefix** | **String** |  | [optional] 
+**Subnet** | **String** |  | [optional] 
+**Vnet** | **String** |  | [optional] 
+**DhcpDnsServer** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnVnetsSubnetsRB = Initialize-PVEPOSTClusterSdnVnetsSubnetsRB  -DhcpRange null `
+$POSTClusterSdnVnetsSubnetsRB = Initialize-PVEPOSTClusterSdnVnetsSubnetsRB  -Gateway null `
  -Snat null `
- -Subnet null `
+ -DhcpRange null `
  -Type null `
- -Vnet null `
  -Dnszoneprefix null `
- -DhcpDnsServer null `
- -Gateway null
+ -Subnet null `
+ -Vnet null `
+ -DhcpDnsServer null
 ```
 
 - Convert the resource to JSON

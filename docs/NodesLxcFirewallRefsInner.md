@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 **Scope** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 **Ref** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcFirewallRefsInner = Initialize-PVENodesLxcFirewallRefsInner  -Comment null `
- -Name null `
+$NodesLxcFirewallRefsInner = Initialize-PVENodesLxcFirewallRefsInner  -Name null `
  -Scope null `
  -Type null `
- -Ref null
+ -Ref null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

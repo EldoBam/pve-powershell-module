@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Disk** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Size** | **String** |  | [optional] 
+**Skiplock** | **Int32** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Skiplock** | **Int32** |  | [optional] 
-**Size** | **String** |  | [optional] 
+**Disk** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuResizeRB = Initialize-PVEPUTNodesQemuResizeRB  -Disk null `
+$PUTNodesQemuResizeRB = Initialize-PVEPUTNodesQemuResizeRB  -Vmid null `
+ -Size null `
+ -Skiplock null `
  -Digest null `
  -Node null `
- -Vmid null `
- -Skiplock null `
- -Size null
+ -Disk null
 ```
 
 - Convert the resource to JSON

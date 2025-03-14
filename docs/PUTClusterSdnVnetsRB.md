@@ -3,26 +3,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Alias** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**IsolatePorts** | **Int32** |  | [optional] 
 **Vnet** | **String** |  | [optional] 
-**Vlanaware** | **Int32** |  | [optional] 
 **Delete** | **String** |  | [optional] 
+**IsolatePorts** | **Int32** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Vlanaware** | **Int32** |  | [optional] 
 **Zone** | **String** |  | [optional] 
+**Alias** | **String** |  | [optional] 
 **Tag** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnVnetsRB = Initialize-PVEPUTClusterSdnVnetsRB  -Alias null `
- -Digest null `
- -IsolatePorts null `
- -Vnet null `
- -Vlanaware null `
+$PUTClusterSdnVnetsRB = Initialize-PVEPUTClusterSdnVnetsRB  -Vnet null `
  -Delete null `
+ -IsolatePorts null `
+ -Digest null `
+ -Vlanaware null `
  -Zone null `
+ -Alias null `
  -Tag null
 ```
 

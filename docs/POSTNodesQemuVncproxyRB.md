@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vmid** | **Int32** |  | [optional] 
-**GeneratePassword** | **Int32** |  | [optional] 
-**Websocket** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Websocket** | **Int32** |  | [optional] 
+**GeneratePassword** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuVncproxyRB = Initialize-PVEPOSTNodesQemuVncproxyRB  -Vmid null `
- -GeneratePassword null `
+$POSTNodesQemuVncproxyRB = Initialize-PVEPOSTNodesQemuVncproxyRB  -Node null `
  -Websocket null `
- -Node null
+ -GeneratePassword null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

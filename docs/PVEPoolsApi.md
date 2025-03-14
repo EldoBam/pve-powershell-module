@@ -234,7 +234,7 @@ Update pool.
 
 ### Example
 ```powershell
-$PUTPoolsRB = Initialize-PUTPoolsRB -Poolid "MyPoolid" -AllowMove 0 -Storage "MyStorage" -Delete 0 -Comment "MyComment" -Vms "MyVms" # PUTPoolsRB | Update pool. (optional)
+$PUTPoolsRB = Initialize-PUTPoolsRB -Delete 0 -Comment "MyComment" -Poolid "MyPoolid" -Vms "MyVms" -Storage "MyStorage" -AllowMove 0 # PUTPoolsRB | Update pool. (optional)
 
 # Update pool.
 try {
@@ -277,7 +277,7 @@ Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poo
 
 ### Example
 ```powershell
-$PUTPoolsRB = Initialize-PUTPoolsRB -Poolid "MyPoolid" -AllowMove 0 -Storage "MyStorage" -Delete 0 -Comment "MyComment" -Vms "MyVms" # PUTPoolsRB | Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poolid={poolid}' instead). (optional)
+$PUTPoolsRB = Initialize-PUTPoolsRB -Delete 0 -Comment "MyComment" -Poolid "MyPoolid" -Vms "MyVms" -Storage "MyStorage" -AllowMove 0 # PUTPoolsRB | Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poolid={poolid}' instead). (optional)
 
 # Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poolid={poolid}' instead).
 try {
