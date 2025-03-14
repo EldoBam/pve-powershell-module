@@ -731,7 +731,6 @@ Class | Method | HTTP request | Description
  - [ProxmoxPVE\Model.AccessUsersToken](docs/AccessUsersToken.md)
  - [ProxmoxPVE\Model.AccessUsersTokenGETInner](docs/AccessUsersTokenGETInner.md)
  - [ProxmoxPVE\Model.AccessUsersTokenPOST](docs/AccessUsersTokenPOST.md)
- - [ProxmoxPVE\Model.AccessUsersTokenPOSTInfo](docs/AccessUsersTokenPOSTInfo.md)
  - [ProxmoxPVE\Model.AccessUsersTokenPUT](docs/AccessUsersTokenPUT.md)
  - [ProxmoxPVE\Model.AccessUsersTokens](docs/AccessUsersTokens.md)
  - [ProxmoxPVE\Model.ClusterAcmeAccount](docs/ClusterAcmeAccount.md)

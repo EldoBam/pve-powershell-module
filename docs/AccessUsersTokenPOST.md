@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FullTokenid** | **String** |  | [optional] 
-**Info** | [**AccessUsersTokenPOSTInfo**](AccessUsersTokenPOSTInfo.md) |  | [optional] 
+**Info** | [**AccessUsersTokens**](AccessUsersTokens.md) |  | [optional] 
 **Value** | **String** |  | [optional] 
 
 ## Examples

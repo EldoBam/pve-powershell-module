@@ -19,7 +19,6 @@ docs/AccessUsersTfa.md
 docs/AccessUsersToken.md
 docs/AccessUsersTokenGETInner.md
 docs/AccessUsersTokenPOST.md
-docs/AccessUsersTokenPOSTInfo.md
 docs/AccessUsersTokenPUT.md
 docs/AccessUsersTokens.md
 docs/ClusterAcmeAccount.md
@@ -541,7 +540,6 @@ src/ProxmoxPVE/Model/AccessUsersTfa.ps1
 src/ProxmoxPVE/Model/AccessUsersToken.ps1
 src/ProxmoxPVE/Model/AccessUsersTokenGETInner.ps1
 src/ProxmoxPVE/Model/AccessUsersTokenPOST.ps1
-src/ProxmoxPVE/Model/AccessUsersTokenPOSTInfo.ps1
 src/ProxmoxPVE/Model/AccessUsersTokenPUT.ps1
 src/ProxmoxPVE/Model/AccessUsersTokens.ps1
 src/ProxmoxPVE/Model/ClusterAcmeAccount.ps1
@@ -1063,7 +1061,6 @@ tests/Model/AccessUsersTfa.Tests.ps1
 tests/Model/AccessUsersToken.Tests.ps1
 tests/Model/AccessUsersTokenGETInner.Tests.ps1
 tests/Model/AccessUsersTokenPOST.Tests.ps1
-tests/Model/AccessUsersTokenPOSTInfo.Tests.ps1
 tests/Model/AccessUsersTokenPUT.Tests.ps1
 tests/Model/AccessUsersTokens.Tests.ps1
 tests/Model/ClusterAcmeAccount.Tests.ps1

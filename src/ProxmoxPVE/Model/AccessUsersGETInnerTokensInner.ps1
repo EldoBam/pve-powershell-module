@@ -36,7 +36,7 @@ function Initialize-PVEAccessUsersGETInnerTokensInner {
         ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Expire} = same as user,
+        ${Expire},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Boolean]]
         ${Privsep} = $false,
