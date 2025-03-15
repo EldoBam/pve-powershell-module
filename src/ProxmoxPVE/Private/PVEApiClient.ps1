@@ -185,17 +185,17 @@ function DeserializeResponse {
         [string[]]$ContentTypes
     )
 
-    If ($ContentTypes -eq $null) {
+    if ($ContentTypes -eq $null) {
         $ContentTypes = [string[]]@()
     }
 
-    If ([string]::IsNullOrEmpty($ReturnType) -and $ContentTypes.Count -eq 0) { # void response
+    if ([string]::IsNullOrEmpty($ReturnType) -and $ContentTypes.Count -eq 0) { # void response
         return $Response
-    } Elseif ($ReturnType -match '\[\]$') { # array
-        return ConvertFrom-Json $Response
-    } Elseif (@("String", "Boolean", "System.DateTime") -contains $ReturnType) { # string, boolean ,datetime
+    } elseif ($ReturnType -match '\[\]$') { # array
+        return (ConvertFrom-Json $Response).data
+    } elseif (@("String", "Boolean", "System.DateTime") -contains $ReturnType) { # string, boolean ,datetime
         return $Response
-    } Else { # others (e.g. model, file)
+    } else { # others (e.g. model, file)
         if ($ContentTypes) {
             $ContentType = $null
             if ($ContentTypes.Count -gt 1) {
