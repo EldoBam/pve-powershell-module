@@ -59,8 +59,8 @@ Token based authentication allows a stateless access to the REST API and can be 
 $LoginMethod = "token"
 # insert your Proxmox TokenId <USER@REALM>!<GROUP> as Username and your Proxmox VE ApiToken as Password.
 $Credentials = Get-Credential
-Set-PVEConfiguration -BaseUrl "https://pve.local:8006/api2/json"`
-                     -LoginMethod $LoginMethod`
+Set-PVEConfiguration -BaseUrl "https://pve.local:8006/api2/json" `
+                     -LoginMethod $LoginMethod `
                      -Credential $Credentials
 # Invoke the login with silent switch. --> no interaction no output. returns $true on success
 if((Invoke-PVELogin -Silent)){
@@ -74,12 +74,12 @@ if((Invoke-PVELogin -Silent)){
 This Authentication method allows you to connect with your proxmox user credentials.
 NOTE: Tickets have a limited lifetime of 2 hours. After that you have to call Invoke-PVELogin again.
 ```powershell
-# choosing LoginMethod token
+# choosing LoginMethod ticket
 $LoginMethod = "ticket"
 # insert your Proxmox Username <USER@REALM> and Password
 $Credentials = Get-Credential
-Set-PVEConfiguration -BaseUrl "https://pve.local:8006/api2/json"`
-                     -LoginMethod $LoginMethod`
+Set-PVEConfiguration -BaseUrl "https://pve.local:8006/api2/json" `
+                     -LoginMethod $LoginMethod `
                      -Credential $Credentials
 # Invoke the login with silent switch. --> no interaction no output. returns $true on success
 if((Invoke-PVELogin -Silent)){
@@ -92,12 +92,45 @@ if((Invoke-PVELogin -Silent)){
 ## Basic Example to get started
 ```powershell
 Import-Module -Name '.\src\ProxmoxPVE\ProxmoxPVE.psm1' -Verbose
-Invoke-PVELogin
+Initialize-PVEPVE
 $nodes = Get-PVENodes
+$nodes
 ```
 
-## Tests
+## Using persistent configuration
+This module can store the configuration in a secured file under the current users profile.
+The configuration is converted to json and is saved as SecureString.
+Therefore the Set-PVEConfiguration has a -Persistent switch, which can be used while passing the configuration initial
+or after performing the Invoke-PVE CMDline.
+### Example
+Run the following code once with the user on the system, where you want to to store the configuration for.
+If you want to use this for your automation user, you have to open a shell in the context of this user and perform the following commands.
+This is very important, because the encrypted data won't work on another computer or in another user context.
+```powershell
+Import-Module ProxmoxPVE
+# You first have to set the configuration. This only has to be done once.
+# option 1 - call the Initialize-PVE
+Initialize-PVE
+# option 2
+# choosing LoginMethod --> they work both but please consider using token auth for automation purposes
+$LoginMethod = "token"
+# insert your Proxmox Credentials according your login method
+$Credentials = Get-Credential
+# Set the configuration persistent
+Set-PVEConfiguration -BaseUrl "https://pve.local:8006/api2/json" `
+                     -LoginMethod $LoginMethod `
+                     -Credential $Credentials `
+                     -Persistent
+```
+After you have stored the configuration once, you're now able to connect to the api by using following code at the beginning of your automation scripts.
+```powershell
+Import-Module ProxmoxPVE
+Initialize-PVE
+```
+done.
 
+## Tests
+Tests are currently not implemented properly. I'm sad to tell, that they're currently useless.
 To install and run `Pester`, please execute the following commands in the terminal:
 
 ```powershell

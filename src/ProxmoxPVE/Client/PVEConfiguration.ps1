@@ -9,6 +9,54 @@
 <#
 .SYNOPSIS
 
+Get the configuration object 'PVEConfiguration' from file.
+
+.DESCRIPTION
+
+Get the configuration object 'PVEConfiguration' from file.
+
+.OUTPUTS
+
+System.Collections.Hashtable
+#>
+function Get-PVEConfigurationFromFile{
+    if((Test-Path ($env:USERPROFILE + '\PVESettings.txt'))){
+        $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR((Get-Content ($env:USERPROFILE + '\PVESettings.txt') | ConvertTo-SecureString))
+        $Unsecure = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+        $FileConfig = $Unsecure | ConvertFrom-Json -AsHashtable
+        $Credential = New-Object System.Management.Automation.PSCredential($FileConfig["Credential"].UserName, (ConvertTo-SecureString $FileConfig["Credential"].Password))
+        $FileConfig["Credential"] = $Credential
+        return $FileConfig
+    }else{
+        return $false
+    }
+}
+<#
+.SYNOPSIS
+
+Initialize 'PVE'.
+
+.DESCRIPTION
+
+Loads an existing configuration if exists from current userprofile, performs login.
+
+.OUTPUTS
+
+boolean
+#>
+function Initialize-PVE{
+    $FileConfig = Get-PVEConfigurationFromFile
+    if($FileConfig){
+        $Script:Configuration = $FileConfig
+        return Invoke-PVELogin -Silent
+    }else{
+        Invoke-PVELogin
+    }
+}
+
+<#
+.SYNOPSIS
+
 Get the configuration object 'PVEConfiguration'.
 
 .DESCRIPTION
@@ -21,14 +69,9 @@ System.Collections.Hashtable
 #>
 function Get-PVEConfiguration{
 
-	if(($Script:Configuration.Count -eq 0) -and (Test-Path ($env:USERPROFILE + '\PVESettings.txt'))){
-			$BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR((Get-Content ($env:USERPROFILE + '\PVESettings.txt') | ConvertTo-SecureString))
-			$Unsecure = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
-			$Script:Configuration = $Unsecure | ConvertFrom-Json -AsHashtable
-            $Credential = New-Object System.Management.Automation.PSCredential($Script:Configuration["Credential"].UserName, (ConvertTo-SecureString $Script:Configuration["Credential"].Password))
-			Invoke-PVELogin -Silent
-		    return $Script:Configuration
-	}
+    if(($Script:Configuration.Count -eq 0) -and (Test-Path ($env:USERPROFILE + '\PVESettings.txt'))){
+        Initialize-PVE
+    }
 
     $Configuration = $Script:Configuration
 
@@ -59,7 +102,7 @@ function Get-PVEConfiguration{
     if (!$Configuration.containsKey("Proxy")){
         $Configuration["Proxy"] = $null
     }
-	
+    
     Return $Configuration
 }
 
@@ -108,7 +151,7 @@ function Set-PVEConfiguration{
     [CmdletBinding()]
     Param(
         [string]$BaseUrl,
-		[PSCredential] $Credential,
+        [PSCredential] $Credential,
         [ValidateSet('token','ticket')]
         [string] $LoginMethod,
         [AllowEmptyString()]
@@ -151,11 +194,11 @@ function Set-PVEConfiguration{
         } else{
             $Script:Configuration['Proxy'] = $null
         }
-		if ($Persistent){
+        if ($Persistent){
             $SaveConfig = $Script:Configuration
             $SaveConfig["Credential"] = @{
                 UserName = $Script:Configuration["Credential"].UserName
-                Password = (ConvertFrom-SecureString -String $Script:Configuration["Credential"].Password)
+                Password = (ConvertFrom-SecureString -SecureString $Script:Configuration["Credential"].Password)
             }
             $SaveConfig | ConvertTo-Json -Compress | ConvertTo-SecureString -AsPlainText | ConvertFrom-SecureString  | set-content ($env:USERPROFILE + '\PVESettings.txt')
         }
@@ -227,6 +270,9 @@ function Invoke-PVELogin {
                 }
             }
         }
+    }
+    if($Silent){
+        $UserChoice = "n"
     }
     if($UserChoice -eq "y"){
         switch($LoginMethod){
