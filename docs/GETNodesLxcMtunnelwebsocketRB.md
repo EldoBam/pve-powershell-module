@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Ticket** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Socket** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$GETNodesLxcMtunnelwebsocketRB = Initialize-PVEGETNodesLxcMtunnelwebsocketRB  -Node null `
- -Ticket null `
+$GETNodesLxcMtunnelwebsocketRB = Initialize-PVEGETNodesLxcMtunnelwebsocketRB  -Ticket null `
+ -Node null `
  -Vmid null `
  -Socket null
 ```

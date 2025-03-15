@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterHaStatusCurrentInner' {
     Context 'PVEClusterHaStatusCurrentInner' {
         It 'Initialize-PVEClusterHaStatusCurrentInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterHaStatusCurrentInner -Timestamp "TEST_VALUE" -Id "TEST_VALUE" -RequestState "TEST_VALUE" -Status "TEST_VALUE" -Type "TEST_VALUE" -State "TEST_VALUE" -Node "TEST_VALUE" -Sid "TEST_VALUE" -CrmState "TEST_VALUE" -Quorate "TEST_VALUE" -MaxRelocate "TEST_VALUE" -MaxRestart "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterHaStatusCurrentInner -State "TEST_VALUE" -CrmState "TEST_VALUE" -MaxRestart "TEST_VALUE" -Type "TEST_VALUE" -Node "TEST_VALUE" -Sid "TEST_VALUE" -RequestState "TEST_VALUE" -Timestamp "TEST_VALUE" -Status "TEST_VALUE" -Id "TEST_VALUE" -MaxRelocate "TEST_VALUE" -Quorate "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterHaStatusCurrentInner
             #$NewObject.property | Should -Be 0
         }

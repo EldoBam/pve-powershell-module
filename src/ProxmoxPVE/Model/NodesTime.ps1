@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Localtime
-No description available.
 .PARAMETER Timezone
+No description available.
+.PARAMETER Localtime
 No description available.
 .PARAMETER Time
 No description available.
@@ -30,11 +30,11 @@ function Initialize-PVENodesTime {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Localtime},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Timezone},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Localtime},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Time}
@@ -54,7 +54,7 @@ function Initialize-PVENodesTime {
 
 
 		 $DisplayNameMapping =@{
-			"Localtime"="localtime"; "Timezone"="timezone"; "Time"="time"
+			"Timezone"="timezone"; "Localtime"="localtime"; "Time"="time"
         }
 		
 		 $OBJ = @{}
@@ -100,23 +100,23 @@ function ConvertFrom-PVEJsonToNodesTime {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesTime
-        $AllProperties = ("localtime", "timezone", "time")
+        $AllProperties = ("timezone", "localtime", "time")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "localtime"))) { #optional property not found
-            $Localtime = $null
-        } else {
-            $Localtime = $JsonParameters.PSobject.Properties["localtime"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "timezone"))) { #optional property not found
             $Timezone = $null
         } else {
             $Timezone = $JsonParameters.PSobject.Properties["timezone"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "localtime"))) { #optional property not found
+            $Localtime = $null
+        } else {
+            $Localtime = $JsonParameters.PSobject.Properties["localtime"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "time"))) { #optional property not found
@@ -126,8 +126,8 @@ function ConvertFrom-PVEJsonToNodesTime {
         }
 
         $PSO = [PSCustomObject]@{
-            "localtime" = ${Localtime}
             "timezone" = ${Timezone}
+            "localtime" = ${Localtime}
             "time" = ${Time}
         }
 

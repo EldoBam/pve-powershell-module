@@ -15,41 +15,41 @@ No summary available.
 
 No description available.
 
-.PARAMETER Log
-No description available.
-.PARAMETER Action
-No description available.
 .PARAMETER IcmpType
 No description available.
-.PARAMETER Macro
+.PARAMETER Digest
+No description available.
+.PARAMETER Source
+No description available.
+.PARAMETER Sport
+No description available.
+.PARAMETER Action
 No description available.
 .PARAMETER Comment
 No description available.
 .PARAMETER Group
 No description available.
-.PARAMETER Source
-No description available.
-.PARAMETER Dport
-No description available.
 .PARAMETER Proto
-No description available.
-.PARAMETER Dest
-No description available.
-.PARAMETER Delete
-No description available.
-.PARAMETER Sport
-No description available.
-.PARAMETER Moveto
-No description available.
-.PARAMETER Type
 No description available.
 .PARAMETER Enable
 No description available.
-.PARAMETER Digest
+.PARAMETER Dest
+No description available.
+.PARAMETER Macro
+No description available.
+.PARAMETER Moveto
 No description available.
 .PARAMETER Pos
 No description available.
+.PARAMETER Type
+No description available.
 .PARAMETER Iface
+No description available.
+.PARAMETER Log
+No description available.
+.PARAMETER Delete
+No description available.
+.PARAMETER Dport
 No description available.
 .OUTPUTS
 
@@ -60,19 +60,21 @@ function Initialize-PVEPUTClusterFirewallGroupsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
-        [String]
-        ${Log},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
-        [String]
-        ${Action},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${IcmpType},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Macro},
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Source},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Sport},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
+        [String]
+        ${Action},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment},
@@ -82,46 +84,52 @@ function Initialize-PVEPUTClusterFirewallGroupsRB {
         ${Group},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Source},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Dport},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Proto},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Dest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Sport},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Moveto},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("in", "out", "forward", "group")]
-        [String]
-        ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Enable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest},
+        ${Dest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Macro},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Moveto},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Pos},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("in", "out", "forward", "group")]
         [String]
-        ${Iface}
+        ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Iface},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
+        [String]
+        ${Log},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Delete},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Dport}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterFirewallGroupsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        }
+
+        if (!$Source -and $Source.length -gt 512) {
+            throw "invalid value for 'Source', the character length must be smaller than or equal to 512."
+        }
 
         if (!$Action -and $Action.length -gt 20) {
             throw "invalid value for 'Action', the character length must be smaller than or equal to 20."
@@ -129,10 +137,6 @@ function Initialize-PVEPUTClusterFirewallGroupsRB {
 
         if (!$Action -and $Action.length -lt 2) {
             throw "invalid value for 'Action', the character length must be great than or equal to 2."
-        }
-
-        if (!$Macro -and $Macro.length -gt 128) {
-            throw "invalid value for 'Macro', the character length must be smaller than or equal to 128."
         }
 
         if (!$Group -and $Group.length -gt 18) {
@@ -143,16 +147,12 @@ function Initialize-PVEPUTClusterFirewallGroupsRB {
             throw "invalid value for 'Group', the character length must be great than or equal to 2."
         }
 
-        if (!$Source -and $Source.length -gt 512) {
-            throw "invalid value for 'Source', the character length must be smaller than or equal to 512."
-        }
-
         if (!$Dest -and $Dest.length -gt 512) {
             throw "invalid value for 'Dest', the character length must be smaller than or equal to 512."
         }
 
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        if (!$Macro -and $Macro.length -gt 128) {
+            throw "invalid value for 'Macro', the character length must be smaller than or equal to 128."
         }
 
         if (!$Iface -and $Iface.length -gt 20) {
@@ -165,7 +165,7 @@ function Initialize-PVEPUTClusterFirewallGroupsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Log"="log"; "Action"="action"; "IcmpType"="icmp-type"; "Macro"="macro"; "Comment"="comment"; "Group"="group"; "Source"="source"; "Dport"="dport"; "Proto"="proto"; "Dest"="dest"; "Delete"="delete"; "Sport"="sport"; "Moveto"="moveto"; "Type"="type"; "Enable"="enable"; "Digest"="digest"; "Pos"="pos"; "Iface"="iface"
+			"IcmpType"="icmp-type"; "Digest"="digest"; "Source"="source"; "Sport"="sport"; "Action"="action"; "Comment"="comment"; "Group"="group"; "Proto"="proto"; "Enable"="enable"; "Dest"="dest"; "Macro"="macro"; "Moveto"="moveto"; "Pos"="pos"; "Type"="type"; "Iface"="iface"; "Log"="log"; "Delete"="delete"; "Dport"="dport"
         }
 		
 		 $OBJ = @{}
@@ -211,23 +211,11 @@ function ConvertFrom-PVEJsonToPUTClusterFirewallGroupsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterFirewallGroupsRB
-        $AllProperties = ("log", "action", "icmp-type", "macro", "comment", "group", "source", "dport", "proto", "dest", "delete", "sport", "moveto", "type", "enable", "digest", "pos", "iface")
+        $AllProperties = ("icmp-type", "digest", "source", "sport", "action", "comment", "group", "proto", "enable", "dest", "macro", "moveto", "pos", "type", "iface", "log", "delete", "dport")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log"))) { #optional property not found
-            $Log = $null
-        } else {
-            $Log = $JsonParameters.PSobject.Properties["log"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "action"))) { #optional property not found
-            $Action = $null
-        } else {
-            $Action = $JsonParameters.PSobject.Properties["action"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "icmp-type"))) { #optional property not found
@@ -236,10 +224,28 @@ function ConvertFrom-PVEJsonToPUTClusterFirewallGroupsRB {
             $IcmpType = $JsonParameters.PSobject.Properties["icmp-type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "macro"))) { #optional property not found
-            $Macro = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
         } else {
-            $Macro = $JsonParameters.PSobject.Properties["macro"].value
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
+            $Source = $null
+        } else {
+            $Source = $JsonParameters.PSobject.Properties["source"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sport"))) { #optional property not found
+            $Sport = $null
+        } else {
+            $Sport = $JsonParameters.PSobject.Properties["sport"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "action"))) { #optional property not found
+            $Action = $null
+        } else {
+            $Action = $JsonParameters.PSobject.Properties["action"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -254,52 +260,10 @@ function ConvertFrom-PVEJsonToPUTClusterFirewallGroupsRB {
             $Group = $JsonParameters.PSobject.Properties["group"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
-            $Source = $null
-        } else {
-            $Source = $JsonParameters.PSobject.Properties["source"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dport"))) { #optional property not found
-            $Dport = $null
-        } else {
-            $Dport = $JsonParameters.PSobject.Properties["dport"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "proto"))) { #optional property not found
             $Proto = $null
         } else {
             $Proto = $JsonParameters.PSobject.Properties["proto"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dest"))) { #optional property not found
-            $Dest = $null
-        } else {
-            $Dest = $JsonParameters.PSobject.Properties["dest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sport"))) { #optional property not found
-            $Sport = $null
-        } else {
-            $Sport = $JsonParameters.PSobject.Properties["sport"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "moveto"))) { #optional property not found
-            $Moveto = $null
-        } else {
-            $Moveto = $JsonParameters.PSobject.Properties["moveto"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
@@ -308,10 +272,22 @@ function ConvertFrom-PVEJsonToPUTClusterFirewallGroupsRB {
             $Enable = $JsonParameters.PSobject.Properties["enable"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dest"))) { #optional property not found
+            $Dest = $null
         } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+            $Dest = $JsonParameters.PSobject.Properties["dest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "macro"))) { #optional property not found
+            $Macro = $null
+        } else {
+            $Macro = $JsonParameters.PSobject.Properties["macro"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "moveto"))) { #optional property not found
+            $Moveto = $null
+        } else {
+            $Moveto = $JsonParameters.PSobject.Properties["moveto"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
@@ -320,31 +296,55 @@ function ConvertFrom-PVEJsonToPUTClusterFirewallGroupsRB {
             $Pos = $JsonParameters.PSobject.Properties["pos"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "iface"))) { #optional property not found
             $Iface = $null
         } else {
             $Iface = $JsonParameters.PSobject.Properties["iface"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log"))) { #optional property not found
+            $Log = $null
+        } else {
+            $Log = $JsonParameters.PSobject.Properties["log"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dport"))) { #optional property not found
+            $Dport = $null
+        } else {
+            $Dport = $JsonParameters.PSobject.Properties["dport"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "log" = ${Log}
-            "action" = ${Action}
             "icmp-type" = ${IcmpType}
-            "macro" = ${Macro}
+            "digest" = ${Digest}
+            "source" = ${Source}
+            "sport" = ${Sport}
+            "action" = ${Action}
             "comment" = ${Comment}
             "group" = ${Group}
-            "source" = ${Source}
-            "dport" = ${Dport}
             "proto" = ${Proto}
-            "dest" = ${Dest}
-            "delete" = ${Delete}
-            "sport" = ${Sport}
-            "moveto" = ${Moveto}
-            "type" = ${Type}
             "enable" = ${Enable}
-            "digest" = ${Digest}
+            "dest" = ${Dest}
+            "macro" = ${Macro}
+            "moveto" = ${Moveto}
             "pos" = ${Pos}
+            "type" = ${Type}
             "iface" = ${Iface}
+            "log" = ${Log}
+            "delete" = ${Delete}
+            "dport" = ${Dport}
         }
 
         return $PSO

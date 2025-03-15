@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Storages** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
 **Bridges** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Storages** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuMtunnelRB = Initialize-PVEPOSTNodesQemuMtunnelRB  -Node null `
+$POSTNodesQemuMtunnelRB = Initialize-PVEPOSTNodesQemuMtunnelRB  -Storages null `
+ -Node null `
  -Bridges null `
- -Vmid null `
- -Storages null
+ -Vmid null
 ```
 
 - Convert the resource to JSON

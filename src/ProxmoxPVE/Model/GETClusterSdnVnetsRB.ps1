@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Pending
 No description available.
-.PARAMETER Running
-No description available.
 .PARAMETER Vnet
+No description available.
+.PARAMETER Running
 No description available.
 .OUTPUTS
 
@@ -33,11 +33,11 @@ function Initialize-PVEGETClusterSdnVnetsRB {
         [System.Nullable[Int32]]
         ${Pending},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Running},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vnet}
+        ${Vnet},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Running}
     )
 
     Process {
@@ -62,7 +62,7 @@ function Initialize-PVEGETClusterSdnVnetsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Pending"="pending"; "Running"="running"; "Vnet"="vnet"
+			"Pending"="pending"; "Vnet"="vnet"; "Running"="running"
         }
 		
 		 $OBJ = @{}
@@ -108,7 +108,7 @@ function ConvertFrom-PVEJsonToGETClusterSdnVnetsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETClusterSdnVnetsRB
-        $AllProperties = ("pending", "running", "vnet")
+        $AllProperties = ("pending", "vnet", "running")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -121,22 +121,22 @@ function ConvertFrom-PVEJsonToGETClusterSdnVnetsRB {
             $Pending = $JsonParameters.PSobject.Properties["pending"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "running"))) { #optional property not found
-            $Running = $null
-        } else {
-            $Running = $JsonParameters.PSobject.Properties["running"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
             $Vnet = $null
         } else {
             $Vnet = $JsonParameters.PSobject.Properties["vnet"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "running"))) { #optional property not found
+            $Running = $null
+        } else {
+            $Running = $JsonParameters.PSobject.Properties["running"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "pending" = ${Pending}
-            "running" = ${Running}
             "vnet" = ${Vnet}
+            "running" = ${Running}
         }
 
         return $PSO

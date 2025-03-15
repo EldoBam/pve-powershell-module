@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterMetricsServerRB' {
     Context 'PVEPUTClusterMetricsServerRB' {
         It 'Initialize-PVEPUTClusterMetricsServerRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterMetricsServerRB -Organization "TEST_VALUE" -Timeout "TEST_VALUE" -Token "TEST_VALUE" -Port "TEST_VALUE" -Id "TEST_VALUE" -Influxdbproto "TEST_VALUE" -Bucket "TEST_VALUE" -MaxBodySize "TEST_VALUE" -Path "TEST_VALUE" -VerifyCertificate "TEST_VALUE" -Disable "TEST_VALUE" -Proto "TEST_VALUE" -Delete "TEST_VALUE" -Server "TEST_VALUE" -Mtu "TEST_VALUE" -ApiPathPrefix "TEST_VALUE" -Digest "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterMetricsServerRB -Path "TEST_VALUE" -Bucket "TEST_VALUE" -Digest "TEST_VALUE" -Influxdbproto "TEST_VALUE" -Server "TEST_VALUE" -MaxBodySize "TEST_VALUE" -ApiPathPrefix "TEST_VALUE" -Timeout "TEST_VALUE" -Organization "TEST_VALUE" -Proto "TEST_VALUE" -Delete "TEST_VALUE" -Port "TEST_VALUE" -Id "TEST_VALUE" -Token "TEST_VALUE" -VerifyCertificate "TEST_VALUE" -Disable "TEST_VALUE" -Mtu "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterMetricsServerRB
             #$NewObject.property | Should -Be 0
         }

@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
 **Snaptime** | **Int32** |  | [optional] 
-**Parent** | **String** |  | [optional] 
 **Vmstate** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Parent** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuSnapshotInner = Initialize-PVENodesQemuSnapshotInner  -Name null `
- -Description null `
- -Snaptime null `
+$NodesQemuSnapshotInner = Initialize-PVENodesQemuSnapshotInner  -Snaptime null `
+ -Vmstate null `
+ -Name null `
  -Parent null `
- -Vmstate null
+ -Description null
 ```
 
 - Convert the resource to JSON

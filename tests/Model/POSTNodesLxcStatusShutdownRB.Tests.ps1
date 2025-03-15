@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesLxcStatusShutdownRB' {
     Context 'PVEPOSTNodesLxcStatusShutdownRB' {
         It 'Initialize-PVEPOSTNodesLxcStatusShutdownRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesLxcStatusShutdownRB -Node "TEST_VALUE" -Timeout "TEST_VALUE" -Vmid "TEST_VALUE" -ForceStop "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesLxcStatusShutdownRB -Vmid "TEST_VALUE" -Node "TEST_VALUE" -ForceStop "TEST_VALUE" -Timeout "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesLxcStatusShutdownRB
             #$NewObject.property | Should -Be 0
         }

@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Username
+.PARAMETER Clustername
 No description available.
 .PARAMETER Ticket
 No description available.
-.PARAMETER Clustername
-No description available.
 .PARAMETER CSRFPreventionToken
+No description available.
+.PARAMETER Username
 No description available.
 .OUTPUTS
 
@@ -33,16 +33,16 @@ function Initialize-PVEAccessTicket {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Username},
+        ${Clustername},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Ticket},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Clustername},
+        ${CSRFPreventionToken},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${CSRFPreventionToken}
+        ${Username}
     )
 
     Process {
@@ -51,7 +51,7 @@ function Initialize-PVEAccessTicket {
 
 
 		 $DisplayNameMapping =@{
-			"Username"="username"; "Ticket"="ticket"; "Clustername"="clustername"; "CSRFPreventionToken"="CSRFPreventionToken"
+			"Clustername"="clustername"; "Ticket"="ticket"; "CSRFPreventionToken"="CSRFPreventionToken"; "Username"="username"
         }
 		
 		 $OBJ = @{}
@@ -97,23 +97,11 @@ function ConvertFrom-PVEJsonToAccessTicket {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessTicket
-        $AllProperties = ("username", "ticket", "clustername", "CSRFPreventionToken")
+        $AllProperties = ("clustername", "ticket", "CSRFPreventionToken", "username")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
-            $Username = $null
-        } else {
-            $Username = $JsonParameters.PSobject.Properties["username"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ticket"))) { #optional property not found
-            $Ticket = $null
-        } else {
-            $Ticket = $JsonParameters.PSobject.Properties["ticket"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "clustername"))) { #optional property not found
@@ -122,17 +110,29 @@ function ConvertFrom-PVEJsonToAccessTicket {
             $Clustername = $JsonParameters.PSobject.Properties["clustername"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ticket"))) { #optional property not found
+            $Ticket = $null
+        } else {
+            $Ticket = $JsonParameters.PSobject.Properties["ticket"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "CSRFPreventionToken"))) { #optional property not found
             $CSRFPreventionToken = $null
         } else {
             $CSRFPreventionToken = $JsonParameters.PSobject.Properties["CSRFPreventionToken"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
+            $Username = $null
+        } else {
+            $Username = $JsonParameters.PSobject.Properties["username"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "username" = ${Username}
-            "ticket" = ${Ticket}
             "clustername" = ${Clustername}
+            "ticket" = ${Ticket}
             "CSRFPreventionToken" = ${CSRFPreventionToken}
+            "username" = ${Username}
         }
 
         return $PSO

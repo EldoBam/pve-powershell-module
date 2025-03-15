@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Force
-No description available.
 .PARAMETER Node
+No description available.
+.PARAMETER Force
 No description available.
 .OUTPUTS
 
@@ -28,11 +28,11 @@ function Initialize-PVEPOSTNodesCertificatesAcmeCertificateRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Force},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Force}
     )
 
     Process {
@@ -49,7 +49,7 @@ function Initialize-PVEPOSTNodesCertificatesAcmeCertificateRB {
 
 
 		 $DisplayNameMapping =@{
-			"Force"="force"; "Node"="node"
+			"Node"="node"; "Force"="force"
         }
 		
 		 $OBJ = @{}
@@ -95,17 +95,11 @@ function ConvertFrom-PVEJsonToPOSTNodesCertificatesAcmeCertificateRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCertificatesAcmeCertificateRB
-        $AllProperties = ("force", "node")
+        $AllProperties = ("node", "force")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
-            $Force = $null
-        } else {
-            $Force = $JsonParameters.PSobject.Properties["force"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -114,9 +108,15 @@ function ConvertFrom-PVEJsonToPOSTNodesCertificatesAcmeCertificateRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
+            $Force = $null
+        } else {
+            $Force = $JsonParameters.PSobject.Properties["force"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "force" = ${Force}
             "node" = ${Node}
+            "force" = ${Force}
         }
 
         return $PSO

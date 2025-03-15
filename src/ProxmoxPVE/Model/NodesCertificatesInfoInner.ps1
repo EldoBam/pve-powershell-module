@@ -15,23 +15,23 @@ No summary available.
 
 No description available.
 
-.PARAMETER PublicKeyBits
-No description available.
-.PARAMETER Notafter
-No description available.
 .PARAMETER PublicKeyType
-No description available.
-.PARAMETER Pem
-No description available.
-.PARAMETER Notbefore
 No description available.
 .PARAMETER Subject
 No description available.
 .PARAMETER Fingerprint
 No description available.
+.PARAMETER Notafter
+No description available.
+.PARAMETER PublicKeyBits
+No description available.
+.PARAMETER Notbefore
+No description available.
 .PARAMETER San
 No description available.
 .PARAMETER Filename
+No description available.
+.PARAMETER Pem
 No description available.
 .PARAMETER Issuer
 No description available.
@@ -44,20 +44,8 @@ function Initialize-PVENodesCertificatesInfoInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${PublicKeyBits},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Notafter},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${PublicKeyType},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Pem},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Notbefore},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Subject},
@@ -66,11 +54,23 @@ function Initialize-PVENodesCertificatesInfoInner {
         [String]
         ${Fingerprint},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Notafter},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${PublicKeyBits},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Notbefore},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${San},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Filename},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Pem},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Issuer}
@@ -82,7 +82,7 @@ function Initialize-PVENodesCertificatesInfoInner {
 
 
 		 $DisplayNameMapping =@{
-			"PublicKeyBits"="public-key-bits"; "Notafter"="notafter"; "PublicKeyType"="public-key-type"; "Pem"="pem"; "Notbefore"="notbefore"; "Subject"="subject"; "Fingerprint"="fingerprint"; "San"="san"; "Filename"="filename"; "Issuer"="issuer"
+			"PublicKeyType"="public-key-type"; "Subject"="subject"; "Fingerprint"="fingerprint"; "Notafter"="notafter"; "PublicKeyBits"="public-key-bits"; "Notbefore"="notbefore"; "San"="san"; "Filename"="filename"; "Pem"="pem"; "Issuer"="issuer"
         }
 		
 		 $OBJ = @{}
@@ -128,41 +128,17 @@ function ConvertFrom-PVEJsonToNodesCertificatesInfoInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCertificatesInfoInner
-        $AllProperties = ("public-key-bits", "notafter", "public-key-type", "pem", "notbefore", "subject", "fingerprint", "san", "filename", "issuer")
+        $AllProperties = ("public-key-type", "subject", "fingerprint", "notafter", "public-key-bits", "notbefore", "san", "filename", "pem", "issuer")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "public-key-bits"))) { #optional property not found
-            $PublicKeyBits = $null
-        } else {
-            $PublicKeyBits = $JsonParameters.PSobject.Properties["public-key-bits"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notafter"))) { #optional property not found
-            $Notafter = $null
-        } else {
-            $Notafter = $JsonParameters.PSobject.Properties["notafter"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "public-key-type"))) { #optional property not found
             $PublicKeyType = $null
         } else {
             $PublicKeyType = $JsonParameters.PSobject.Properties["public-key-type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pem"))) { #optional property not found
-            $Pem = $null
-        } else {
-            $Pem = $JsonParameters.PSobject.Properties["pem"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notbefore"))) { #optional property not found
-            $Notbefore = $null
-        } else {
-            $Notbefore = $JsonParameters.PSobject.Properties["notbefore"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "subject"))) { #optional property not found
@@ -177,6 +153,24 @@ function ConvertFrom-PVEJsonToNodesCertificatesInfoInner {
             $Fingerprint = $JsonParameters.PSobject.Properties["fingerprint"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notafter"))) { #optional property not found
+            $Notafter = $null
+        } else {
+            $Notafter = $JsonParameters.PSobject.Properties["notafter"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "public-key-bits"))) { #optional property not found
+            $PublicKeyBits = $null
+        } else {
+            $PublicKeyBits = $JsonParameters.PSobject.Properties["public-key-bits"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notbefore"))) { #optional property not found
+            $Notbefore = $null
+        } else {
+            $Notbefore = $JsonParameters.PSobject.Properties["notbefore"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "san"))) { #optional property not found
             $San = $null
         } else {
@@ -189,6 +183,12 @@ function ConvertFrom-PVEJsonToNodesCertificatesInfoInner {
             $Filename = $JsonParameters.PSobject.Properties["filename"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pem"))) { #optional property not found
+            $Pem = $null
+        } else {
+            $Pem = $JsonParameters.PSobject.Properties["pem"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "issuer"))) { #optional property not found
             $Issuer = $null
         } else {
@@ -196,15 +196,15 @@ function ConvertFrom-PVEJsonToNodesCertificatesInfoInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "public-key-bits" = ${PublicKeyBits}
-            "notafter" = ${Notafter}
             "public-key-type" = ${PublicKeyType}
-            "pem" = ${Pem}
-            "notbefore" = ${Notbefore}
             "subject" = ${Subject}
             "fingerprint" = ${Fingerprint}
+            "notafter" = ${Notafter}
+            "public-key-bits" = ${PublicKeyBits}
+            "notbefore" = ${Notbefore}
             "san" = ${San}
             "filename" = ${Filename}
+            "pem" = ${Pem}
             "issuer" = ${Issuer}
         }
 

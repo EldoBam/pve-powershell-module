@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Vms** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
 **ForceStop** | **Int32** |  | [optional] 
-**Vms** | **String** |  | [optional] 
 **Timeout** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesStopallRB = Initialize-PVEPOSTNodesStopallRB  -Node null `
+$POSTNodesStopallRB = Initialize-PVEPOSTNodesStopallRB  -Vms null `
+ -Node null `
  -ForceStop null `
- -Vms null `
  -Timeout null
 ```
 

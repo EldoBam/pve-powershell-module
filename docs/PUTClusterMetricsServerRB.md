@@ -3,45 +3,45 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Organization** | **String** |  | [optional] 
-**Timeout** | **Int32** |  | [optional] 
-**Token** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Influxdbproto** | **String** |  | [optional] 
-**Bucket** | **String** |  | [optional] 
-**MaxBodySize** | **Int32** |  | [optional] 
 **Path** | **String** |  | [optional] 
-**VerifyCertificate** | **Int32** |  | [optional] 
-**Disable** | **Int32** |  | [optional] 
+**Bucket** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Influxdbproto** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**MaxBodySize** | **Int32** |  | [optional] 
+**ApiPathPrefix** | **String** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
+**Organization** | **String** |  | [optional] 
 **Proto** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**Server** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Token** | **String** |  | [optional] 
+**VerifyCertificate** | **Int32** |  | [optional] 
+**Disable** | **Int32** |  | [optional] 
 **Mtu** | **Int32** |  | [optional] 
-**ApiPathPrefix** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterMetricsServerRB = Initialize-PVEPUTClusterMetricsServerRB  -Organization null `
- -Timeout null `
- -Token null `
- -Port null `
- -Id null `
- -Influxdbproto null `
+$PUTClusterMetricsServerRB = Initialize-PVEPUTClusterMetricsServerRB  -Path null `
  -Bucket null `
+ -Digest null `
+ -Influxdbproto null `
+ -Server null `
  -MaxBodySize null `
- -Path null `
- -VerifyCertificate null `
- -Disable null `
+ -ApiPathPrefix null `
+ -Timeout null `
+ -Organization null `
  -Proto null `
  -Delete null `
- -Server null `
- -Mtu null `
- -ApiPathPrefix null `
- -Digest null
+ -Port null `
+ -Id null `
+ -Token null `
+ -VerifyCertificate null `
+ -Disable null `
+ -Mtu null
 ```
 
 - Convert the resource to JSON

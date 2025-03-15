@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Ds
+.PARAMETER Cf
 No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Timeframe
 No description available.
-.PARAMETER Cf
+.PARAMETER Ds
 No description available.
 .OUTPUTS
 
@@ -32,8 +32,9 @@ function Initialize-PVEGETNodesRrdRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("AVERAGE", "MAX")]
         [String]
-        ${Ds},
+        ${Cf},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
@@ -42,9 +43,8 @@ function Initialize-PVEGETNodesRrdRB {
         [String]
         ${Timeframe},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("AVERAGE", "MAX")]
         [String]
-        ${Cf}
+        ${Ds}
     )
 
     Process {
@@ -53,7 +53,7 @@ function Initialize-PVEGETNodesRrdRB {
 
 
 		 $DisplayNameMapping =@{
-			"Ds"="ds"; "Node"="node"; "Timeframe"="timeframe"; "Cf"="cf"
+			"Cf"="cf"; "Node"="node"; "Timeframe"="timeframe"; "Ds"="ds"
         }
 		
 		 $OBJ = @{}
@@ -99,17 +99,17 @@ function ConvertFrom-PVEJsonToGETNodesRrdRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesRrdRB
-        $AllProperties = ("ds", "node", "timeframe", "cf")
+        $AllProperties = ("cf", "node", "timeframe", "ds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ds"))) { #optional property not found
-            $Ds = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cf"))) { #optional property not found
+            $Cf = $null
         } else {
-            $Ds = $JsonParameters.PSobject.Properties["ds"].value
+            $Cf = $JsonParameters.PSobject.Properties["cf"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -124,17 +124,17 @@ function ConvertFrom-PVEJsonToGETNodesRrdRB {
             $Timeframe = $JsonParameters.PSobject.Properties["timeframe"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cf"))) { #optional property not found
-            $Cf = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ds"))) { #optional property not found
+            $Ds = $null
         } else {
-            $Cf = $JsonParameters.PSobject.Properties["cf"].value
+            $Ds = $JsonParameters.PSobject.Properties["ds"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "ds" = ${Ds}
+            "cf" = ${Cf}
             "node" = ${Node}
             "timeframe" = ${Timeframe}
-            "cf" = ${Cf}
+            "ds" = ${Ds}
         }
 
         return $PSO

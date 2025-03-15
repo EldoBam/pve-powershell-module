@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEAccessDomainsInner' {
     Context 'PVEAccessDomainsInner' {
         It 'Initialize-PVEAccessDomainsInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEAccessDomainsInner -Type "TEST_VALUE" -Realm "TEST_VALUE" -Tfa "TEST_VALUE" -Comment "TEST_VALUE"
+            #$NewObject = Initialize-PVEAccessDomainsInner -Tfa "TEST_VALUE" -Type "TEST_VALUE" -Realm "TEST_VALUE" -Comment "TEST_VALUE"
             #$NewObject | Should -BeOfType AccessDomainsInner
             #$NewObject.property | Should -Be 0
         }

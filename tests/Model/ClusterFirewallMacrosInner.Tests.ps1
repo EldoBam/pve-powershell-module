@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterFirewallMacrosInner' {
     Context 'PVEClusterFirewallMacrosInner' {
         It 'Initialize-PVEClusterFirewallMacrosInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterFirewallMacrosInner -Macro "TEST_VALUE" -Descr "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterFirewallMacrosInner -Descr "TEST_VALUE" -Macro "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterFirewallMacrosInner
             #$NewObject.property | Should -Be 0
         }

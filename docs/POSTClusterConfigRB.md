@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LinkN** | **String** |  | [optional] 
-**Nodeid** | **Int32** |  | [optional] 
 **Clustername** | **String** |  | [optional] 
+**Nodeid** | **Int32** |  | [optional] 
 **Votes** | **Int32** |  | [optional] 
+**LinkN** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterConfigRB = Initialize-PVEPOSTClusterConfigRB  -LinkN null `
+$POSTClusterConfigRB = Initialize-PVEPOSTClusterConfigRB  -Clustername null `
  -Nodeid null `
- -Clustername null `
- -Votes null
+ -Votes null `
+ -LinkN null
 ```
 
 - Convert the resource to JSON

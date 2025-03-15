@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Cf** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
 **Timeframe** | **String** |  | [optional] 
-**Cf** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesRrddataRB = Initialize-PVEGETNodesRrddataRB  -Node null `
- -Timeframe null `
- -Cf null
+$GETNodesRrddataRB = Initialize-PVEGETNodesRrddataRB  -Cf null `
+ -Node null `
+ -Timeframe null
 ```
 
 - Convert the resource to JSON

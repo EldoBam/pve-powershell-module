@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Rename** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Cidr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuFirewallAliasesRB = Initialize-PVEPUTNodesQemuFirewallAliasesRB  -Name null `
+$PUTNodesQemuFirewallAliasesRB = Initialize-PVEPUTNodesQemuFirewallAliasesRB  -Cidr null `
  -Comment null `
+ -Node null `
+ -Name null `
  -Rename null `
  -Vmid null `
- -Digest null `
- -Node null `
- -Cidr null
+ -Digest null
 ```
 
 - Convert the resource to JSON

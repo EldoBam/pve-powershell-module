@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Vnet** | **String** |  | [optional] 
 **Status** | **String** |  | [optional] 
 **Statusmsg** | **String** |  | [optional] 
-**Vnet** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesSdnZonesContentInner = Initialize-PVENodesSdnZonesContentInner  -Status null `
- -Statusmsg null `
- -Vnet null
+$NodesSdnZonesContentInner = Initialize-PVENodesSdnZonesContentInner  -Vnet null `
+ -Status null `
+ -Statusmsg null
 ```
 
 - Convert the resource to JSON

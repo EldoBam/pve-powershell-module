@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Userid
+No description available.
 .PARAMETER Password
 No description available.
 .PARAMETER ConfirmationPassword
-No description available.
-.PARAMETER Userid
 No description available.
 .OUTPUTS
 
@@ -31,18 +31,22 @@ function Initialize-PVEPUTAccessPasswordRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Userid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Password},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ConfirmationPassword},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Userid}
+        ${ConfirmationPassword}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTAccessPasswordRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if (!$Userid -and $Userid.length -gt 64) {
+            throw "invalid value for 'Userid', the character length must be smaller than or equal to 64."
+        }
 
         if (!$Password -and $Password.length -gt 64) {
             throw "invalid value for 'Password', the character length must be smaller than or equal to 64."
@@ -60,13 +64,9 @@ function Initialize-PVEPUTAccessPasswordRB {
             throw "invalid value for 'ConfirmationPassword', the character length must be great than or equal to 5."
         }
 
-        if (!$Userid -and $Userid.length -gt 64) {
-            throw "invalid value for 'Userid', the character length must be smaller than or equal to 64."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Password"="password"; "ConfirmationPassword"="confirmation-password"; "Userid"="userid"
+			"Userid"="userid"; "Password"="password"; "ConfirmationPassword"="confirmation-password"
         }
 		
 		 $OBJ = @{}
@@ -112,11 +112,17 @@ function ConvertFrom-PVEJsonToPUTAccessPasswordRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTAccessPasswordRB
-        $AllProperties = ("password", "confirmation-password", "userid")
+        $AllProperties = ("userid", "password", "confirmation-password")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "userid"))) { #optional property not found
+            $Userid = $null
+        } else {
+            $Userid = $JsonParameters.PSobject.Properties["userid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
@@ -131,16 +137,10 @@ function ConvertFrom-PVEJsonToPUTAccessPasswordRB {
             $ConfirmationPassword = $JsonParameters.PSobject.Properties["confirmation-password"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "userid"))) { #optional property not found
-            $Userid = $null
-        } else {
-            $Userid = $JsonParameters.PSobject.Properties["userid"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "userid" = ${Userid}
             "password" = ${Password}
             "confirmation-password" = ${ConfirmationPassword}
-            "userid" = ${Userid}
         }
 
         return $PSO

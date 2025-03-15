@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesStorageDownloadurlRB' {
     Context 'PVEPOSTNodesStorageDownloadurlRB' {
         It 'Initialize-PVEPOSTNodesStorageDownloadurlRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesStorageDownloadurlRB -Node "TEST_VALUE" -Url "TEST_VALUE" -Compression "TEST_VALUE" -ChecksumAlgorithm "TEST_VALUE" -Content "TEST_VALUE" -Checksum "TEST_VALUE" -Storage "TEST_VALUE" -Filename "TEST_VALUE" -VerifyCertificates "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesStorageDownloadurlRB -Compression "TEST_VALUE" -Node "TEST_VALUE" -VerifyCertificates "TEST_VALUE" -Content "TEST_VALUE" -Filename "TEST_VALUE" -Checksum "TEST_VALUE" -Storage "TEST_VALUE" -ChecksumAlgorithm "TEST_VALUE" -Url "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesStorageDownloadurlRB
             #$NewObject.property | Should -Be 0
         }

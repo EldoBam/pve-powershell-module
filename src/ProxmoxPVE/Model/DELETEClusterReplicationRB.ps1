@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Id
-No description available.
 .PARAMETER Force
+No description available.
+.PARAMETER Id
 No description available.
 .PARAMETER Keep
 No description available.
@@ -30,12 +30,12 @@ function Initialize-PVEDELETEClusterReplicationRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Force},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[1-9][0-9]{2,8}-\d{1,9}")]
         [String]
         ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Force},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Keep}
@@ -63,7 +63,7 @@ function Initialize-PVEDELETEClusterReplicationRB {
 
 
 		 $DisplayNameMapping =@{
-			"Id"="id"; "Force"="force"; "Keep"="keep"
+			"Force"="force"; "Id"="id"; "Keep"="keep"
         }
 		
 		 $OBJ = @{}
@@ -109,23 +109,23 @@ function ConvertFrom-PVEJsonToDELETEClusterReplicationRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEClusterReplicationRB
-        $AllProperties = ("id", "force", "keep")
+        $AllProperties = ("force", "id", "keep")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
             $Force = $null
         } else {
             $Force = $JsonParameters.PSobject.Properties["force"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "keep"))) { #optional property not found
@@ -135,8 +135,8 @@ function ConvertFrom-PVEJsonToDELETEClusterReplicationRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
             "force" = ${Force}
+            "id" = ${Id}
             "keep" = ${Keep}
         }
 

@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
 .PARAMETER Storage
 No description available.
 .PARAMETER Content
+No description available.
+.PARAMETER Node
 No description available.
 .PARAMETER Vmid
 No description available.
@@ -33,13 +33,13 @@ function Initialize-PVEGETNodesStorageContentRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Storage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Content},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid}
@@ -59,7 +59,7 @@ function Initialize-PVEGETNodesStorageContentRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Storage"="storage"; "Content"="content"; "Vmid"="vmid"
+			"Storage"="storage"; "Content"="content"; "Node"="node"; "Vmid"="vmid"
         }
 		
 		 $OBJ = @{}
@@ -105,17 +105,11 @@ function ConvertFrom-PVEJsonToGETNodesStorageContentRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesStorageContentRB
-        $AllProperties = ("node", "storage", "content", "vmid")
+        $AllProperties = ("storage", "content", "node", "vmid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
@@ -130,6 +124,12 @@ function ConvertFrom-PVEJsonToGETNodesStorageContentRB {
             $Content = $JsonParameters.PSobject.Properties["content"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
@@ -137,9 +137,9 @@ function ConvertFrom-PVEJsonToGETNodesStorageContentRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
             "storage" = ${Storage}
             "content" = ${Content}
+            "node" = ${Node}
             "vmid" = ${Vmid}
         }
 

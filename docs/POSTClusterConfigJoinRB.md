@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Force** | **Int32** |  | [optional] 
 **Password** | **String** |  | [optional] 
-**Hostname** | **String** |  | [optional] 
 **Nodeid** | **Int32** |  | [optional] 
-**Fingerprint** | **String** |  | [optional] 
 **LinkN** | **String** |  | [optional] 
+**Fingerprint** | **String** |  | [optional] 
+**Hostname** | **String** |  | [optional] 
+**Force** | **Int32** |  | [optional] 
 **Votes** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterConfigJoinRB = Initialize-PVEPOSTClusterConfigJoinRB  -Force null `
- -Password null `
- -Hostname null `
+$POSTClusterConfigJoinRB = Initialize-PVEPOSTClusterConfigJoinRB  -Password null `
  -Nodeid null `
- -Fingerprint null `
  -LinkN null `
+ -Fingerprint null `
+ -Hostname null `
+ -Force null `
  -Votes null
 ```
 

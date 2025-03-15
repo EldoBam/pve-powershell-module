@@ -15,28 +15,33 @@ No summary available.
 
 No description available.
 
-.PARAMETER Method
+.PARAMETER N
+No description available.
+.PARAMETER T
 No description available.
 .OUTPUTS
 
-NodesScanInner<PSCustomObject>
+NodesReplicationLogInner<PSCustomObject>
 #>
 
-function Initialize-PVENodesScanInner {
+function Initialize-PVENodesReplicationLogInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${N},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Method}
+        ${T}
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVENodesScanInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVENodesReplicationLogInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
 		 $DisplayNameMapping =@{
-			"Method"="method"
+			"N"="n"; "T"="t"
         }
 		
 		 $OBJ = @{}
@@ -55,11 +60,11 @@ function Initialize-PVENodesScanInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to NodesScanInner<PSCustomObject>
+Convert from JSON to NodesReplicationLogInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to NodesScanInner<PSCustomObject>
+Convert from JSON to NodesReplicationLogInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -67,36 +72,43 @@ Json object
 
 .OUTPUTS
 
-NodesScanInner<PSCustomObject>
+NodesReplicationLogInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToNodesScanInner {
+function ConvertFrom-PVEJsonToNodesReplicationLogInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesScanInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesReplicationLogInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVENodesScanInner
-        $AllProperties = ("method")
+        # check if Json contains properties not defined in PVENodesReplicationLogInner
+        $AllProperties = ("n", "t")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method"))) { #optional property not found
-            $Method = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "n"))) { #optional property not found
+            $N = $null
         } else {
-            $Method = $JsonParameters.PSobject.Properties["method"].value
+            $N = $JsonParameters.PSobject.Properties["n"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "t"))) { #optional property not found
+            $T = $null
+        } else {
+            $T = $JsonParameters.PSobject.Properties["t"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "method" = ${Method}
+            "n" = ${N}
+            "t" = ${T}
         }
 
         return $PSO

@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Node** | **String** |  | [optional] 
-**Skiplock** | **Int32** |  | [optional] 
 **OverruleShutdown** | **Int32** |  | [optional] 
+**Skiplock** | **Int32** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 
 ## Examples
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $POSTNodesLxcStatusStopRB = Initialize-PVEPOSTNodesLxcStatusStopRB  -Node null `
- -Skiplock null `
  -OverruleShutdown null `
+ -Skiplock null `
  -Vmid null
 ```
 

@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
+.PARAMETER Device
 No description available.
-.PARAMETER AddStorage
+.PARAMETER Name
 No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER Device
+.PARAMETER AddStorage
 No description available.
 .OUTPUTS
 
@@ -33,16 +33,16 @@ function Initialize-PVEPOSTNodesDisksLvmthinRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
+        ${Device},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${AddStorage},
+        [String]
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Device}
+        [System.Nullable[Int32]]
+        ${AddStorage}
     )
 
     Process {
@@ -59,7 +59,7 @@ function Initialize-PVEPOSTNodesDisksLvmthinRB {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "AddStorage"="add_storage"; "Node"="node"; "Device"="device"
+			"Device"="device"; "Name"="name"; "Node"="node"; "AddStorage"="add_storage"
         }
 		
 		 $OBJ = @{}
@@ -105,29 +105,11 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksLvmthinRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesDisksLvmthinRB
-        $AllProperties = ("name", "add_storage", "node", "device")
+        $AllProperties = ("device", "name", "node", "add_storage")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "add_storage"))) { #optional property not found
-            $AddStorage = $null
-        } else {
-            $AddStorage = $JsonParameters.PSobject.Properties["add_storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "device"))) { #optional property not found
@@ -136,11 +118,29 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksLvmthinRB {
             $Device = $JsonParameters.PSobject.Properties["device"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "add_storage"))) { #optional property not found
+            $AddStorage = $null
+        } else {
+            $AddStorage = $JsonParameters.PSobject.Properties["add_storage"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "add_storage" = ${AddStorage}
-            "node" = ${Node}
             "device" = ${Device}
+            "name" = ${Name}
+            "node" = ${Node}
+            "add_storage" = ${AddStorage}
         }
 
         return $PSO

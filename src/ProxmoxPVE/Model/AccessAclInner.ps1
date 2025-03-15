@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Type
-No description available.
 .PARAMETER Path
 No description available.
-.PARAMETER Roleid
+.PARAMETER Ugid
+No description available.
+.PARAMETER Type
 No description available.
 .PARAMETER Propagate
 No description available.
-.PARAMETER Ugid
+.PARAMETER Roleid
 No description available.
 .OUTPUTS
 
@@ -34,21 +34,21 @@ function Initialize-PVEAccessAclInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("user", "group", "token")]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Path},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Roleid},
+        ${Ugid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("user", "group", "token")]
+        [String]
+        ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Propagate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Ugid}
+        ${Roleid}
     )
 
     Process {
@@ -65,7 +65,7 @@ function Initialize-PVEAccessAclInner {
 
 
 		 $DisplayNameMapping =@{
-			"Type"="type"; "Path"="path"; "Roleid"="roleid"; "Propagate"="propagate"; "Ugid"="ugid"
+			"Path"="path"; "Ugid"="ugid"; "Type"="type"; "Propagate"="propagate"; "Roleid"="roleid"
         }
 		
 		 $OBJ = @{}
@@ -111,17 +111,11 @@ function ConvertFrom-PVEJsonToAccessAclInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessAclInner
-        $AllProperties = ("type", "path", "roleid", "propagate", "ugid")
+        $AllProperties = ("path", "ugid", "type", "propagate", "roleid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
@@ -130,10 +124,16 @@ function ConvertFrom-PVEJsonToAccessAclInner {
             $Path = $JsonParameters.PSobject.Properties["path"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "roleid"))) { #optional property not found
-            $Roleid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ugid"))) { #optional property not found
+            $Ugid = $null
         } else {
-            $Roleid = $JsonParameters.PSobject.Properties["roleid"].value
+            $Ugid = $JsonParameters.PSobject.Properties["ugid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "propagate"))) { #optional property not found
@@ -142,18 +142,18 @@ function ConvertFrom-PVEJsonToAccessAclInner {
             $Propagate = $JsonParameters.PSobject.Properties["propagate"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ugid"))) { #optional property not found
-            $Ugid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "roleid"))) { #optional property not found
+            $Roleid = $null
         } else {
-            $Ugid = $JsonParameters.PSobject.Properties["ugid"].value
+            $Roleid = $JsonParameters.PSobject.Properties["roleid"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
             "path" = ${Path}
-            "roleid" = ${Roleid}
-            "propagate" = ${Propagate}
             "ugid" = ${Ugid}
+            "type" = ${Type}
+            "propagate" = ${Propagate}
+            "roleid" = ${Roleid}
         }
 
         return $PSO

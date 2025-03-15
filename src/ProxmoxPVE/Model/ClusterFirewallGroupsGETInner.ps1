@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Group
-No description available.
 .PARAMETER Digest
+No description available.
+.PARAMETER Group
 No description available.
 .PARAMETER Comment
 No description available.
@@ -30,12 +30,12 @@ function Initialize-PVEClusterFirewallGroupsGETInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
         ${Group},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment}
@@ -45,6 +45,10 @@ function Initialize-PVEClusterFirewallGroupsGETInner {
         'Creating PSCustomObject: ProxmoxPVE => PVEClusterFirewallGroupsGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        }
+
         if (!$Group -and $Group.length -gt 18) {
             throw "invalid value for 'Group', the character length must be smaller than or equal to 18."
         }
@@ -53,13 +57,9 @@ function Initialize-PVEClusterFirewallGroupsGETInner {
             throw "invalid value for 'Group', the character length must be great than or equal to 2."
         }
 
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Group"="group"; "Digest"="digest"; "Comment"="comment"
+			"Digest"="digest"; "Group"="group"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -105,23 +105,23 @@ function ConvertFrom-PVEJsonToClusterFirewallGroupsGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterFirewallGroupsGETInner
-        $AllProperties = ("group", "digest", "comment")
+        $AllProperties = ("digest", "group", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "group"))) { #optional property not found
-            $Group = $null
-        } else {
-            $Group = $JsonParameters.PSobject.Properties["group"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "group"))) { #optional property not found
+            $Group = $null
+        } else {
+            $Group = $JsonParameters.PSobject.Properties["group"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -131,8 +131,8 @@ function ConvertFrom-PVEJsonToClusterFirewallGroupsGETInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "group" = ${Group}
             "digest" = ${Digest}
+            "group" = ${Group}
             "comment" = ${Comment}
         }
 

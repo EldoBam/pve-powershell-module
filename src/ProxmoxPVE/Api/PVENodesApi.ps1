@@ -78,6 +78,9 @@ Get list of appliances.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -89,6 +92,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesAplinfoByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -111,6 +117,10 @@ function Get-PVENodesAplinfoByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/aplinfo'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesAplinfoByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -141,6 +151,9 @@ Directory index for apt (Advanced Package Tool).
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -152,6 +165,9 @@ NodesAptInner[]
 function Get-PVENodesAptByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -174,6 +190,10 @@ function Get-PVENodesAptByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/apt'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesAptByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -204,6 +224,9 @@ Get package changelogs.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesAptChangelogRB
 Get package changelogs.
 
@@ -219,6 +242,9 @@ function Get-PVENodesAptChangelogByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesAptChangelogRB},
         [Switch]
@@ -243,6 +269,10 @@ function Get-PVENodesAptChangelogByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/apt/changelog'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesAptChangelogByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesAptChangelogRB | ConvertTo-Json -Depth 100
 
@@ -275,6 +305,9 @@ Get APT repository information.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -286,6 +319,9 @@ NodesAptRepositories
 function Get-PVENodesAptRepositoriesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -308,6 +344,10 @@ function Get-PVENodesAptRepositoriesByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/apt/repositories'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesAptRepositoriesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -338,6 +378,9 @@ List available updates.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -349,6 +392,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesAptUpdateByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -371,6 +417,10 @@ function Get-PVENodesAptUpdateByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/apt/update'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesAptUpdateByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -401,6 +451,9 @@ Get package information for important Proxmox packages.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -412,6 +465,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesAptVersionsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -434,6 +490,10 @@ function Get-PVENodesAptVersionsByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/apt/versions'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesAptVersionsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -464,6 +524,9 @@ Node index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -475,6 +538,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -497,6 +563,10 @@ function Get-PVENodesByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -527,6 +597,9 @@ Node capabilities index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -538,6 +611,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesCapabilitiesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -560,6 +636,10 @@ function Get-PVENodesCapabilitiesByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/capabilities'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCapabilitiesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -590,6 +670,9 @@ QEMU capabilities index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -601,6 +684,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesCapabilitiesQemuByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -623,6 +709,10 @@ function Get-PVENodesCapabilitiesQemuByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/capabilities/qemu'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCapabilitiesQemuByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -653,6 +743,9 @@ List all custom and default CPU models.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -664,6 +757,9 @@ NodesCapabilitiesQemuCpuInner[]
 function Get-PVENodesCapabilitiesQemuCpuByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -686,6 +782,10 @@ function Get-PVENodesCapabilitiesQemuCpuByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/capabilities/qemu/cpu'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCapabilitiesQemuCpuByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -716,6 +816,9 @@ Get available QEMU/KVM machine types.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -727,6 +830,9 @@ NodesCapabilitiesQemuMachinesInner[]
 function Get-PVENodesCapabilitiesQemuMachinesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -749,6 +855,10 @@ function Get-PVENodesCapabilitiesQemuMachinesByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/capabilities/qemu/machines'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCapabilitiesQemuMachinesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -779,6 +889,9 @@ Directory index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -790,6 +903,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesCephByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -812,6 +928,10 @@ function Get-PVENodesCephByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -842,6 +962,9 @@ Directory index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -853,6 +976,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesCephCfgByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -875,6 +1001,10 @@ function Get-PVENodesCephCfgByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/cfg'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephCfgByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -905,6 +1035,9 @@ Get the Ceph configuration database.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -916,6 +1049,9 @@ NodesCephCfgDbInner[]
 function Get-PVENodesCephCfgDbByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -938,6 +1074,10 @@ function Get-PVENodesCephCfgDbByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/cfg/db'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephCfgDbByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -968,6 +1108,9 @@ Get the Ceph configuration file.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -979,6 +1122,9 @@ None
 function Get-PVENodesCephCfgRawByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -998,6 +1144,10 @@ function Get-PVENodesCephCfgRawByNode {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/ceph/cfg/raw'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephCfgRawByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1028,6 +1178,9 @@ Get configured values from either the config file or config DB.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesCephCfgValueRB
 Get configured values from either the config file or config DB.
 
@@ -1043,6 +1196,9 @@ function Get-PVENodesCephCfgValueByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesCephCfgValueRB},
         [Switch]
@@ -1067,6 +1223,10 @@ function Get-PVENodesCephCfgValueByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/cfg/value'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephCfgValueByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesCephCfgValueRB | ConvertTo-Json -Depth 100
 
@@ -1099,6 +1259,9 @@ Heuristical check if it is safe to perform an action.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesCephCmdsafetyRB
 Heuristical check if it is safe to perform an action.
 
@@ -1114,6 +1277,9 @@ function Get-PVENodesCephCmdsafetyByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesCephCmdsafetyRB},
         [Switch]
@@ -1141,6 +1307,10 @@ function Get-PVENodesCephCmdsafetyByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/cmd-safety'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephCmdsafetyByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesCephCmdsafetyRB | ConvertTo-Json -Depth 100
 
@@ -1173,6 +1343,9 @@ Get OSD crush map
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1184,6 +1357,9 @@ None
 function Get-PVENodesCephCrushByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -1203,6 +1379,10 @@ function Get-PVENodesCephCrushByNode {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/ceph/crush'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephCrushByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1233,6 +1413,9 @@ Directory index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1244,6 +1427,9 @@ NodesCephFsInner[]
 function Get-PVENodesCephFsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -1266,6 +1452,10 @@ function Get-PVENodesCephFsByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/fs'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephFsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1296,6 +1486,9 @@ Read ceph log
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesCephLogRB
 Read ceph log
 
@@ -1305,12 +1498,15 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesFirewallLogInner[]
+NodesReplicationLogInner[]
 #>
 function Get-PVENodesCephLogByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesCephLogRB},
         [Switch]
@@ -1338,6 +1534,10 @@ function Get-PVENodesCephLogByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/log'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephLogByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesCephLogRB | ConvertTo-Json -Depth 100
 
@@ -1350,7 +1550,7 @@ function Get-PVENodesCephLogByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallLogInner[]" `
+                                -ReturnType "NodesReplicationLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1370,6 +1570,9 @@ MDS directory index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1381,6 +1584,9 @@ NodesCephMdsInner[]
 function Get-PVENodesCephMdsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -1403,6 +1609,10 @@ function Get-PVENodesCephMdsByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/mds'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephMdsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1433,6 +1643,9 @@ MGR directory index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1444,6 +1657,9 @@ NodesCephMgrInner[]
 function Get-PVENodesCephMgrByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -1466,6 +1682,10 @@ function Get-PVENodesCephMgrByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/mgr'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephMgrByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1496,6 +1716,9 @@ Get Ceph monitor list.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1507,6 +1730,9 @@ NodesCephMonInner[]
 function Get-PVENodesCephMonByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -1529,6 +1755,10 @@ function Get-PVENodesCephMonByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/mon'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephMonByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1559,6 +1789,9 @@ Get Ceph osd list/tree.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1570,6 +1803,9 @@ None
 function Get-PVENodesCephOsdByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -1589,6 +1825,10 @@ function Get-PVENodesCephOsdByNode {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/ceph/osd'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephOsdByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1619,6 +1859,12 @@ OSD index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Osdid
+OSD ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1630,6 +1876,12 @@ SystemCollectionsHashtable[]
 function Get-PVENodesCephOsdByNodeAndOsdid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Osdid},
         [Switch]
         $WithHttpInfo
     )
@@ -1652,6 +1904,14 @@ function Get-PVENodesCephOsdByNodeAndOsdid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/osd/{osdid}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephOsdByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Osdid) {
+            throw "Error! The required parameter `Osdid` missing when calling getNodesCephOsdByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{osdid}', [System.Web.HTTPUtility]::UrlEncode($Osdid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1682,6 +1942,12 @@ Get OSD volume details
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Osdid
+OSD ID
+
 .PARAMETER GETNodesCephOsdLvinfoRB
 Get OSD volume details
 
@@ -1697,6 +1963,12 @@ function Get-PVENodesCephOsdLvinfoByNodeAndOsdid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Osdid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesCephOsdLvinfoRB},
         [Switch]
@@ -1724,6 +1996,14 @@ function Get-PVENodesCephOsdLvinfoByNodeAndOsdid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/osd/{osdid}/lv-info'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephOsdLvinfoByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Osdid) {
+            throw "Error! The required parameter `Osdid` missing when calling getNodesCephOsdLvinfoByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{osdid}', [System.Web.HTTPUtility]::UrlEncode($Osdid))
 
         $LocalVarBodyParameter = $GETNodesCephOsdLvinfoRB | ConvertTo-Json -Depth 100
 
@@ -1756,6 +2036,12 @@ Get OSD details
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Osdid
+OSD ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1767,6 +2053,12 @@ NodesCephOsdMetadata
 function Get-PVENodesCephOsdMetadataByNodeAndOsdid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Osdid},
         [Switch]
         $WithHttpInfo
     )
@@ -1789,6 +2081,14 @@ function Get-PVENodesCephOsdMetadataByNodeAndOsdid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/osd/{osdid}/metadata'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephOsdMetadataByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Osdid) {
+            throw "Error! The required parameter `Osdid` missing when calling getNodesCephOsdMetadataByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{osdid}', [System.Web.HTTPUtility]::UrlEncode($Osdid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1819,6 +2119,9 @@ List all pools and their settings (which are settable by the POST/PUT endpoints)
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1830,6 +2133,9 @@ NodesCephPoolInner[]
 function Get-PVENodesCephPoolByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -1852,6 +2158,10 @@ function Get-PVENodesCephPoolByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/pool'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephPoolByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1882,6 +2192,12 @@ Pool index.
 
 No description available.
 
+.PARAMETER Name
+The name of the pool.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1893,6 +2209,12 @@ SystemCollectionsHashtable[]
 function Get-PVENodesCephPoolByNodeAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -1915,6 +2237,14 @@ function Get-PVENodesCephPoolByNodeAndName {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/pool/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getNodesCephPoolByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephPoolByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1945,6 +2275,12 @@ Show the current pool status.
 
 No description available.
 
+.PARAMETER Name
+The name of the pool. It must be unique.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesCephPoolStatusRB
 Show the current pool status.
 
@@ -1960,6 +2296,12 @@ function Get-PVENodesCephPoolStatusByNodeAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesCephPoolStatusRB},
         [Switch]
@@ -1987,6 +2329,14 @@ function Get-PVENodesCephPoolStatusByNodeAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/pool/{name}/status'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getNodesCephPoolStatusByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephPoolStatusByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesCephPoolStatusRB | ConvertTo-Json -Depth 100
 
@@ -2019,6 +2369,9 @@ List ceph rules.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2030,6 +2383,9 @@ ClusterNotificationsMatcherfieldsInner[]
 function Get-PVENodesCephRulesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -2052,6 +2408,10 @@ function Get-PVENodesCephRulesByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/rules'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephRulesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2082,6 +2442,9 @@ Get ceph status.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2093,6 +2456,9 @@ None
 function Get-PVENodesCephStatusByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -2112,6 +2478,10 @@ function Get-PVENodesCephStatusByNode {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/ceph/status'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCephStatusByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2142,6 +2512,9 @@ ACME index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2153,6 +2526,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesCertificatesAcmeByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -2175,6 +2551,10 @@ function Get-PVENodesCertificatesAcmeByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/certificates/acme'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCertificatesAcmeByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2205,6 +2585,9 @@ Node index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2216,6 +2599,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesCertificatesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -2238,6 +2624,10 @@ function Get-PVENodesCertificatesByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/certificates'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCertificatesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2268,6 +2658,9 @@ Get information about node's certificates.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2279,6 +2672,9 @@ NodesCertificatesInfoInner[]
 function Get-PVENodesCertificatesInfoByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -2301,6 +2697,10 @@ function Get-PVENodesCertificatesInfoByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/certificates/info'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesCertificatesInfoByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2331,6 +2731,9 @@ Get node configuration options.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesConfigRB
 Get node configuration options.
 
@@ -2346,6 +2749,9 @@ function Get-PVENodesConfigByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesConfigRB},
         [Switch]
@@ -2373,6 +2779,10 @@ function Get-PVENodesConfigByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/config'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesConfigByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesConfigRB | ConvertTo-Json -Depth 100
 
@@ -2405,6 +2815,9 @@ Node index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2416,6 +2829,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesDisksByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -2438,6 +2854,10 @@ function Get-PVENodesDisksByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesDisksByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2468,6 +2888,9 @@ PVE Managed Directory storages.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2479,6 +2902,9 @@ NodesDisksDirectoryInner[]
 function Get-PVENodesDisksDirectoryByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -2501,6 +2927,10 @@ function Get-PVENodesDisksDirectoryByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/directory'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesDisksDirectoryByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2531,6 +2961,9 @@ List local disks.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesDisksListRB
 List local disks.
 
@@ -2546,6 +2979,9 @@ function Get-PVENodesDisksListByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesDisksListRB},
         [Switch]
@@ -2573,6 +3009,10 @@ function Get-PVENodesDisksListByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/list'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesDisksListByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesDisksListRB | ConvertTo-Json -Depth 100
 
@@ -2605,6 +3045,9 @@ List LVM Volume Groups
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2616,6 +3059,9 @@ NodesDisksLvm
 function Get-PVENodesDisksLvmByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -2638,6 +3084,10 @@ function Get-PVENodesDisksLvmByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/lvm'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesDisksLvmByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2668,6 +3118,9 @@ List LVM thinpools
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2679,6 +3132,9 @@ NodesDisksLvmthinInner[]
 function Get-PVENodesDisksLvmthinByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -2701,6 +3157,10 @@ function Get-PVENodesDisksLvmthinByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/lvmthin'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesDisksLvmthinByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2731,6 +3191,9 @@ Get SMART Health of a disk.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesDisksSmartRB
 Get SMART Health of a disk.
 
@@ -2746,6 +3209,9 @@ function Get-PVENodesDisksSmartByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesDisksSmartRB},
         [Switch]
@@ -2773,6 +3239,10 @@ function Get-PVENodesDisksSmartByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/smart'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesDisksSmartByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesDisksSmartRB | ConvertTo-Json -Depth 100
 
@@ -2805,6 +3275,9 @@ List Zpools.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2816,6 +3289,9 @@ NodesDisksZfsGETInner[]
 function Get-PVENodesDisksZfsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -2838,6 +3314,10 @@ function Get-PVENodesDisksZfsByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/zfs'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesDisksZfsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2868,6 +3348,12 @@ Get details about a zpool.
 
 No description available.
 
+.PARAMETER Name
+The storage identifier.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2879,6 +3365,12 @@ NodesDisksZfs
 function Get-PVENodesDisksZfsByNodeAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -2901,6 +3393,14 @@ function Get-PVENodesDisksZfsByNodeAndName {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/zfs/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getNodesDisksZfsByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesDisksZfsByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2931,6 +3431,9 @@ Read DNS settings.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2942,6 +3445,9 @@ NodesDns
 function Get-PVENodesDnsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -2964,6 +3470,10 @@ function Get-PVENodesDnsByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/dns'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesDnsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2994,6 +3504,9 @@ Directory index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3005,6 +3518,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesFirewallByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -3027,6 +3543,10 @@ function Get-PVENodesFirewallByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/firewall'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesFirewallByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3057,6 +3577,9 @@ Read firewall log
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesFirewallLogRB
 Read firewall log
 
@@ -3066,12 +3589,15 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesFirewallLogInner[]
+NodesReplicationLogInner[]
 #>
 function Get-PVENodesFirewallLogByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesFirewallLogRB},
         [Switch]
@@ -3099,6 +3625,10 @@ function Get-PVENodesFirewallLogByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/firewall/log'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesFirewallLogByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesFirewallLogRB | ConvertTo-Json -Depth 100
 
@@ -3111,7 +3641,7 @@ function Get-PVENodesFirewallLogByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallLogInner[]" `
+                                -ReturnType "NodesReplicationLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -3131,6 +3661,9 @@ Get host firewall options.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3142,6 +3675,9 @@ NodesFirewallOptions
 function Get-PVENodesFirewallOptionsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -3164,6 +3700,10 @@ function Get-PVENodesFirewallOptionsByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/firewall/options'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesFirewallOptionsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3194,17 +3734,23 @@ List rules.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesFirewallRulesGETInner[]
+ClusterFirewallGroupsGETAVInner[]
 #>
 function Get-PVENodesFirewallRulesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -3227,6 +3773,10 @@ function Get-PVENodesFirewallRulesByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/firewall/rules'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesFirewallRulesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3237,7 +3787,7 @@ function Get-PVENodesFirewallRulesByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallRulesGETInner[]" `
+                                -ReturnType "ClusterFirewallGroupsGETAVInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -3257,6 +3807,12 @@ Get single rule data.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Pos
+Update rule at position <pos>.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3268,6 +3824,12 @@ NodesFirewallRules
 function Get-PVENodesFirewallRulesByNodeAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
         [Switch]
         $WithHttpInfo
     )
@@ -3290,6 +3852,14 @@ function Get-PVENodesFirewallRulesByNodeAndPos {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/firewall/rules/{pos}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesFirewallRulesByNodeAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling getNodesFirewallRulesByNodeAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3320,6 +3890,9 @@ Index of hardware types
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3331,6 +3904,9 @@ NodesHardwareInner[]
 function Get-PVENodesHardwareByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -3353,6 +3929,10 @@ function Get-PVENodesHardwareByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/hardware'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesHardwareByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3383,6 +3963,9 @@ List local PCI devices.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesHardwarePciRB
 List local PCI devices.
 
@@ -3398,6 +3981,9 @@ function Get-PVENodesHardwarePciByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesHardwarePciRB},
         [Switch]
@@ -3425,6 +4011,10 @@ function Get-PVENodesHardwarePciByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/hardware/pci'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesHardwarePciByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesHardwarePciRB | ConvertTo-Json -Depth 100
 
@@ -3457,17 +4047,29 @@ Index of available pci methods
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER PciIdOrMapping
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesScanInner[]
+NodesHardwarePciGETInner[]
 #>
 function Get-PVENodesHardwarePciByNodeAndPciidormapping {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${PciIdOrMapping},
         [Switch]
         $WithHttpInfo
     )
@@ -3490,6 +4092,14 @@ function Get-PVENodesHardwarePciByNodeAndPciidormapping {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/hardware/pci/{pci-id-or-mapping}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesHardwarePciByNodeAndPciidormapping."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$PciIdOrMapping) {
+            throw "Error! The required parameter `PciIdOrMapping` missing when calling getNodesHardwarePciByNodeAndPciidormapping."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pci-id-or-mapping}', [System.Web.HTTPUtility]::UrlEncode($PciIdOrMapping))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3500,7 +4110,7 @@ function Get-PVENodesHardwarePciByNodeAndPciidormapping {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesScanInner[]" `
+                                -ReturnType "NodesHardwarePciGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -3520,6 +4130,12 @@ List mediated device types for given PCI device.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER PciIdOrMapping
+The PCI ID or mapping to list the mdev types for.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3531,6 +4147,12 @@ NodesHardwarePciMdevInner[]
 function Get-PVENodesHardwarePciMdevByNodeAndPciidormapping {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${PciIdOrMapping},
         [Switch]
         $WithHttpInfo
     )
@@ -3553,6 +4175,14 @@ function Get-PVENodesHardwarePciMdevByNodeAndPciidormapping {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/hardware/pci/{pci-id-or-mapping}/mdev'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesHardwarePciMdevByNodeAndPciidormapping."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$PciIdOrMapping) {
+            throw "Error! The required parameter `PciIdOrMapping` missing when calling getNodesHardwarePciMdevByNodeAndPciidormapping."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pci-id-or-mapping}', [System.Web.HTTPUtility]::UrlEncode($PciIdOrMapping))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3583,6 +4213,9 @@ List local USB devices.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3594,6 +4227,9 @@ NodesHardwareUsbInner[]
 function Get-PVENodesHardwareUsbByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -3616,6 +4252,10 @@ function Get-PVENodesHardwareUsbByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/hardware/usb'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesHardwareUsbByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3646,6 +4286,9 @@ Get the content of /etc/hosts.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3657,6 +4300,9 @@ NodesHosts
 function Get-PVENodesHostsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -3679,6 +4325,10 @@ function Get-PVENodesHostsByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/hosts'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesHostsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3709,6 +4359,9 @@ Read Journal
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesJournalRB
 Read Journal
 
@@ -3724,6 +4377,9 @@ function Get-PVENodesJournalByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesJournalRB},
         [Switch]
@@ -3748,6 +4404,10 @@ function Get-PVENodesJournalByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/journal'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesJournalByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesJournalRB | ConvertTo-Json -Depth 100
 
@@ -3780,6 +4440,9 @@ LXC container index (per node).
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3791,6 +4454,9 @@ NodesLxcInner[]
 function Get-PVENodesLxcByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -3813,6 +4479,10 @@ function Get-PVENodesLxcByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3843,6 +4513,12 @@ Directory index
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3854,6 +4530,12 @@ None
 function Get-PVENodesLxcByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -3873,6 +4555,14 @@ function Get-PVENodesLxcByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3903,6 +4593,12 @@ Get container configuration.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesLxcConfigRB
 Get container configuration.
 
@@ -3918,6 +4614,12 @@ function Get-PVENodesLxcConfigByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesLxcConfigRB},
         [Switch]
@@ -3945,6 +4647,14 @@ function Get-PVENodesLxcConfigByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/config'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcConfigByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcConfigByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesLxcConfigRB | ConvertTo-Json -Depth 100
 
@@ -3977,6 +4687,12 @@ Check if feature for virtual machine is available.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesLxcFeatureRB
 Check if feature for virtual machine is available.
 
@@ -3992,6 +4708,12 @@ function Get-PVENodesLxcFeatureByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesLxcFeatureRB},
         [Switch]
@@ -4019,6 +4741,14 @@ function Get-PVENodesLxcFeatureByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/feature'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcFeatureByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcFeatureByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesLxcFeatureRB | ConvertTo-Json -Depth 100
 
@@ -4051,6 +4781,12 @@ List aliases
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4062,6 +4798,12 @@ ClusterFirewallAliasesInner[]
 function Get-PVENodesLxcFirewallAliasesByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -4084,6 +4826,14 @@ function Get-PVENodesLxcFirewallAliasesByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/aliases'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcFirewallAliasesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcFirewallAliasesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4114,6 +4864,15 @@ Read alias.
 
 No description available.
 
+.PARAMETER Name
+Alias name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4125,6 +4884,15 @@ None
 function Get-PVENodesLxcFirewallAliasesByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -4144,6 +4912,18 @@ function Get-PVENodesLxcFirewallAliasesByNodeAndVmidAndName {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/aliases/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getNodesLxcFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4174,6 +4954,12 @@ Directory index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4185,6 +4971,12 @@ SystemCollectionsHashtable[]
 function Get-PVENodesLxcFirewallByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -4207,6 +4999,14 @@ function Get-PVENodesLxcFirewallByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcFirewallByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcFirewallByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4237,17 +5037,29 @@ List IPSets
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesQemuFirewallIpsetInner[]
+NodesLxcFirewallIpsetInner[]
 #>
 function Get-PVENodesLxcFirewallIpsetByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -4270,6 +5082,14 @@ function Get-PVENodesLxcFirewallIpsetByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcFirewallIpsetByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcFirewallIpsetByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4280,7 +5100,7 @@ function Get-PVENodesLxcFirewallIpsetByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesQemuFirewallIpsetInner[]" `
+                                -ReturnType "NodesLxcFirewallIpsetInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4300,17 +5120,35 @@ List IPSet content
 
 No description available.
 
+.PARAMETER Name
+IP set name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesLxcFirewallIpsetGETInner[]
+ClusterFirewallIpsetGETInner[]
 #>
 function Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -4333,6 +5171,18 @@ function Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getNodesLxcFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4343,7 +5193,7 @@ function Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallIpsetGETInner[]" `
+                                -ReturnType "ClusterFirewallIpsetGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4363,6 +5213,18 @@ Read IP or Network settings from IPSet.
 
 No description available.
 
+.PARAMETER Cidr
+Network/IP specification in CIDR format.
+
+.PARAMETER Name
+IP set name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4374,6 +5236,18 @@ None
 function Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Cidr},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -4393,6 +5267,22 @@ function Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}/{cidr}'
+        if (!$Cidr) {
+            throw "Error! The required parameter `Cidr` missing when calling getNodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{cidr}', [System.Web.HTTPUtility]::UrlEncode($Cidr))
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getNodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4423,6 +5313,12 @@ Read firewall log
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesLxcFirewallLogRB
 Read firewall log
 
@@ -4432,12 +5328,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesFirewallLogInner[]
+NodesReplicationLogInner[]
 #>
 function Get-PVENodesLxcFirewallLogByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesLxcFirewallLogRB},
         [Switch]
@@ -4465,6 +5367,14 @@ function Get-PVENodesLxcFirewallLogByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/log'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcFirewallLogByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcFirewallLogByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesLxcFirewallLogRB | ConvertTo-Json -Depth 100
 
@@ -4477,7 +5387,7 @@ function Get-PVENodesLxcFirewallLogByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallLogInner[]" `
+                                -ReturnType "NodesReplicationLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4497,6 +5407,12 @@ Get VM firewall options.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4508,6 +5424,12 @@ NodesLxcFirewallOptions
 function Get-PVENodesLxcFirewallOptionsByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -4530,6 +5452,14 @@ function Get-PVENodesLxcFirewallOptionsByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/options'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcFirewallOptionsByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcFirewallOptionsByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4560,6 +5490,12 @@ Lists possible IPSet/Alias reference which are allowed in source/dest properties
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesLxcFirewallRefsRB
 Lists possible IPSet/Alias reference which are allowed in source/dest properties.
 
@@ -4569,12 +5505,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallRefsInner[]
+NodesQemuFirewallRefsInner[]
 #>
 function Get-PVENodesLxcFirewallRefsByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesLxcFirewallRefsRB},
         [Switch]
@@ -4602,6 +5544,14 @@ function Get-PVENodesLxcFirewallRefsByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/refs'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcFirewallRefsByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcFirewallRefsByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesLxcFirewallRefsRB | ConvertTo-Json -Depth 100
 
@@ -4614,7 +5564,7 @@ function Get-PVENodesLxcFirewallRefsByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallRefsInner[]" `
+                                -ReturnType "NodesQemuFirewallRefsInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4634,17 +5584,29 @@ List rules.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesFirewallRulesGETInner[]
+ClusterFirewallGroupsGETAVInner[]
 #>
 function Get-PVENodesLxcFirewallRulesByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -4667,6 +5629,14 @@ function Get-PVENodesLxcFirewallRulesByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/rules'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcFirewallRulesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcFirewallRulesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4677,7 +5647,7 @@ function Get-PVENodesLxcFirewallRulesByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallRulesGETInner[]" `
+                                -ReturnType "ClusterFirewallGroupsGETAVInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4697,6 +5667,15 @@ Get single rule data.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Pos
+Update rule at position <pos>.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4708,6 +5687,15 @@ NodesLxcFirewallRules
 function Get-PVENodesLxcFirewallRulesByNodeAndVmidAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -4730,6 +5718,18 @@ function Get-PVENodesLxcFirewallRulesByNodeAndVmidAndPos {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/rules/{pos}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling getNodesLxcFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4760,6 +5760,12 @@ Get IP addresses of the specified container interface.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4771,6 +5777,12 @@ NodesLxcInterfacesInner[]
 function Get-PVENodesLxcInterfacesByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -4793,6 +5805,14 @@ function Get-PVENodesLxcInterfacesByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/interfaces'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcInterfacesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcInterfacesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4823,6 +5843,12 @@ Migration tunnel endpoint for websocket upgrade - only for internal use by VM mi
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesLxcMtunnelwebsocketRB
 Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration.
 
@@ -4838,6 +5864,12 @@ function Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesLxcMtunnelwebsocketRB},
         [Switch]
@@ -4865,6 +5897,14 @@ function Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/mtunnelwebsocket'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcMtunnelwebsocketByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcMtunnelwebsocketByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesLxcMtunnelwebsocketRB | ConvertTo-Json -Depth 100
 
@@ -4897,17 +5937,29 @@ Get container configuration, including pending changes.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesQemuPendingInner[]
+NodesLxcPendingInner[]
 #>
 function Get-PVENodesLxcPendingByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -4930,6 +5982,14 @@ function Get-PVENodesLxcPendingByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/pending'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcPendingByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcPendingByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4940,7 +6000,7 @@ function Get-PVENodesLxcPendingByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesQemuPendingInner[]" `
+                                -ReturnType "NodesLxcPendingInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -4960,6 +6020,12 @@ Read VM RRD statistics (returns PNG)
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesLxcRrdRB
 Read VM RRD statistics (returns PNG)
 
@@ -4975,6 +6041,12 @@ function Get-PVENodesLxcRrdByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesLxcRrdRB},
         [Switch]
@@ -5002,6 +6074,14 @@ function Get-PVENodesLxcRrdByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/rrd'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcRrdByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcRrdByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesLxcRrdRB | ConvertTo-Json -Depth 100
 
@@ -5034,6 +6114,12 @@ Read VM RRD statistics
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesLxcRrddataRB
 Read VM RRD statistics
 
@@ -5049,6 +6135,12 @@ function Get-PVENodesLxcRrddataByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesLxcRrddataRB},
         [Switch]
@@ -5076,6 +6168,14 @@ function Get-PVENodesLxcRrddataByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/rrddata'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcRrddataByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcRrddataByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesLxcRrddataRB | ConvertTo-Json -Depth 100
 
@@ -5108,6 +6208,12 @@ List all snapshots.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5119,6 +6225,12 @@ NodesLxcSnapshotInner[]
 function Get-PVENodesLxcSnapshotByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -5141,6 +6253,14 @@ function Get-PVENodesLxcSnapshotByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/snapshot'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcSnapshotByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcSnapshotByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5171,6 +6291,15 @@ function Get-PVENodesLxcSnapshotByNodeAndVmid {
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Snapname
+The name of the snapshot.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5182,6 +6311,15 @@ SystemCollectionsHashtable[]
 function Get-PVENodesLxcSnapshotByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Snapname},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -5204,6 +6342,18 @@ function Get-PVENodesLxcSnapshotByNodeAndVmidAndSnapname {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/snapshot/{snapname}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcSnapshotByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Snapname) {
+            throw "Error! The required parameter `Snapname` missing when calling getNodesLxcSnapshotByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{snapname}', [System.Web.HTTPUtility]::UrlEncode($Snapname))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcSnapshotByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5234,6 +6384,15 @@ Get snapshot configuration
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Snapname
+The name of the snapshot.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5245,6 +6404,15 @@ None
 function Get-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Snapname},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -5264,6 +6432,18 @@ function Get-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcSnapshotConfigByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Snapname) {
+            throw "Error! The required parameter `Snapname` missing when calling getNodesLxcSnapshotConfigByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{snapname}', [System.Web.HTTPUtility]::UrlEncode($Snapname))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcSnapshotConfigByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5294,6 +6474,12 @@ Directory index
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5305,6 +6491,12 @@ None
 function Get-PVENodesLxcStatusByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -5324,6 +6516,14 @@ function Get-PVENodesLxcStatusByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/status'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcStatusByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcStatusByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5354,6 +6554,12 @@ Get virtual machine status.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5365,6 +6571,12 @@ NodesLxcStatusCurrent
 function Get-PVENodesLxcStatusCurrentByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -5387,6 +6599,14 @@ function Get-PVENodesLxcStatusCurrentByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/status/current'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcStatusCurrentByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcStatusCurrentByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5417,6 +6637,12 @@ Opens a weksocket for VNC traffic.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesLxcVncwebsocketRB
 Opens a weksocket for VNC traffic.
 
@@ -5432,6 +6658,12 @@ function Get-PVENodesLxcVncwebsocketByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesLxcVncwebsocketRB},
         [Switch]
@@ -5459,6 +6691,14 @@ function Get-PVENodesLxcVncwebsocketByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/vncwebsocket'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesLxcVncwebsocketByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesLxcVncwebsocketByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesLxcVncwebsocketRB | ConvertTo-Json -Depth 100
 
@@ -5491,6 +6731,9 @@ Read tap/vm network device interface counters
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5502,6 +6745,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesNetstatByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -5524,6 +6770,10 @@ function Get-PVENodesNetstatByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/netstat'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesNetstatByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5554,6 +6804,9 @@ List available networks
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesNetworkRB
 List available networks
 
@@ -5569,6 +6822,9 @@ function Get-PVENodesNetworkByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesNetworkRB},
         [Switch]
@@ -5596,6 +6852,10 @@ function Get-PVENodesNetworkByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/network'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesNetworkByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesNetworkRB | ConvertTo-Json -Depth 100
 
@@ -5628,6 +6888,12 @@ Read network device configuration
 
 No description available.
 
+.PARAMETER Iface
+Network interface name.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5639,6 +6905,12 @@ NodesNetwork
 function Get-PVENodesNetworkByNodeAndIface {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Iface},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -5661,6 +6933,14 @@ function Get-PVENodesNetworkByNodeAndIface {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/network/{iface}'
+        if (!$Iface) {
+            throw "Error! The required parameter `Iface` missing when calling getNodesNetworkByNodeAndIface."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{iface}', [System.Web.HTTPUtility]::UrlEncode($Iface))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesNetworkByNodeAndIface."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5691,6 +6971,12 @@ QEMU Guest Agent command index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5702,6 +6988,12 @@ SystemCollectionsHashtable[]
 function Get-PVENodesQemuAgentByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -5724,6 +7016,14 @@ function Get-PVENodesQemuAgentByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5754,6 +7054,12 @@ Gets the status of the given pid started by the guest-agent
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesQemuAgentExecstatusRB
 Gets the status of the given pid started by the guest-agent
 
@@ -5769,6 +7075,12 @@ function Get-PVENodesQemuAgentExecstatusByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuAgentExecstatusRB},
         [Switch]
@@ -5796,6 +7108,14 @@ function Get-PVENodesQemuAgentExecstatusByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/exec-status'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentExecstatusByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentExecstatusByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesQemuAgentExecstatusRB | ConvertTo-Json -Depth 100
 
@@ -5828,6 +7148,12 @@ Reads the given file via guest agent. Is limited to 16777216 bytes.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesQemuAgentFilereadRB
 Reads the given file via guest agent. Is limited to 16777216 bytes.
 
@@ -5843,6 +7169,12 @@ function Get-PVENodesQemuAgentFilereadByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuAgentFilereadRB},
         [Switch]
@@ -5870,6 +7202,14 @@ function Get-PVENodesQemuAgentFilereadByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/file-read'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentFilereadByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentFilereadByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesQemuAgentFilereadRB | ConvertTo-Json -Depth 100
 
@@ -5902,6 +7242,12 @@ Execute get-fsinfo.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5913,6 +7259,12 @@ None
 function Get-PVENodesQemuAgentGetfsinfoByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -5932,6 +7284,14 @@ function Get-PVENodesQemuAgentGetfsinfoByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/get-fsinfo'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentGetfsinfoByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentGetfsinfoByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5962,6 +7322,12 @@ Execute get-host-name.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5973,6 +7339,12 @@ None
 function Get-PVENodesQemuAgentGethostnameByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -5992,6 +7364,14 @@ function Get-PVENodesQemuAgentGethostnameByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/get-host-name'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentGethostnameByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentGethostnameByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6022,6 +7402,12 @@ Execute get-memory-block-info.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6033,6 +7419,12 @@ None
 function Get-PVENodesQemuAgentGetmemoryblockinfoByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -6052,6 +7444,14 @@ function Get-PVENodesQemuAgentGetmemoryblockinfoByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/get-memory-block-info'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentGetmemoryblockinfoByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentGetmemoryblockinfoByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6082,6 +7482,12 @@ Execute get-memory-blocks.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6093,6 +7499,12 @@ None
 function Get-PVENodesQemuAgentGetmemoryblocksByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -6112,6 +7524,14 @@ function Get-PVENodesQemuAgentGetmemoryblocksByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/get-memory-blocks'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentGetmemoryblocksByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentGetmemoryblocksByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6142,6 +7562,12 @@ Execute get-osinfo.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6153,6 +7579,12 @@ None
 function Get-PVENodesQemuAgentGetosinfoByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -6172,6 +7604,14 @@ function Get-PVENodesQemuAgentGetosinfoByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/get-osinfo'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentGetosinfoByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentGetosinfoByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6202,6 +7642,12 @@ Execute get-time.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6213,6 +7659,12 @@ None
 function Get-PVENodesQemuAgentGettimeByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -6232,6 +7684,14 @@ function Get-PVENodesQemuAgentGettimeByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/get-time'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentGettimeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentGettimeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6262,6 +7722,12 @@ Execute get-timezone.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6273,6 +7739,12 @@ None
 function Get-PVENodesQemuAgentGettimezoneByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -6292,6 +7764,14 @@ function Get-PVENodesQemuAgentGettimezoneByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/get-timezone'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentGettimezoneByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentGettimezoneByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6322,6 +7802,12 @@ Execute get-users.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6333,6 +7819,12 @@ None
 function Get-PVENodesQemuAgentGetusersByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -6352,6 +7844,14 @@ function Get-PVENodesQemuAgentGetusersByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/get-users'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentGetusersByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentGetusersByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6382,6 +7882,12 @@ Execute get-vcpus.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6393,6 +7899,12 @@ None
 function Get-PVENodesQemuAgentGetvcpusByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -6412,6 +7924,14 @@ function Get-PVENodesQemuAgentGetvcpusByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/get-vcpus'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentGetvcpusByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentGetvcpusByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6442,6 +7962,12 @@ Execute info.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6453,6 +7979,12 @@ None
 function Get-PVENodesQemuAgentInfoByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -6472,6 +8004,14 @@ function Get-PVENodesQemuAgentInfoByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/info'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentInfoByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentInfoByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6502,6 +8042,12 @@ Execute network-get-interfaces.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6513,6 +8059,12 @@ None
 function Get-PVENodesQemuAgentNetworkgetinterfacesByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -6532,6 +8084,14 @@ function Get-PVENodesQemuAgentNetworkgetinterfacesByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/network-get-interfaces'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuAgentNetworkgetinterfacesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuAgentNetworkgetinterfacesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6562,6 +8122,9 @@ Virtual machine index (per node).
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesQemuRB
 Virtual machine index (per node).
 
@@ -6577,6 +8140,9 @@ function Get-PVENodesQemuByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuRB},
         [Switch]
@@ -6604,6 +8170,10 @@ function Get-PVENodesQemuByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesQemuRB | ConvertTo-Json -Depth 100
 
@@ -6636,6 +8206,12 @@ Directory index
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6647,6 +8223,12 @@ None
 function Get-PVENodesQemuByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -6666,6 +8248,14 @@ function Get-PVENodesQemuByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6696,6 +8286,12 @@ Get the cloudinit configuration with both current and pending values.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6707,6 +8303,12 @@ NodesQemuCloudinitInner[]
 function Get-PVENodesQemuCloudinitByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -6729,6 +8331,14 @@ function Get-PVENodesQemuCloudinitByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/cloudinit'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuCloudinitByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuCloudinitByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6759,6 +8369,12 @@ Get automatically generated cloudinit config.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesQemuCloudinitDumpRB
 Get automatically generated cloudinit config.
 
@@ -6774,6 +8390,12 @@ function Get-PVENodesQemuCloudinitDumpByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuCloudinitDumpRB},
         [Switch]
@@ -6798,6 +8420,14 @@ function Get-PVENodesQemuCloudinitDumpByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/cloudinit/dump'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuCloudinitDumpByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuCloudinitDumpByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesQemuCloudinitDumpRB | ConvertTo-Json -Depth 100
 
@@ -6830,6 +8460,12 @@ Get the virtual machine configuration with pending configuration changes applied
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesQemuConfigRB
 Get the virtual machine configuration with pending configuration changes applied. Set the 'current' parameter to get the current configuration instead.
 
@@ -6845,6 +8481,12 @@ function Get-PVENodesQemuConfigByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuConfigRB},
         [Switch]
@@ -6872,6 +8514,14 @@ function Get-PVENodesQemuConfigByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/config'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuConfigByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuConfigByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesQemuConfigRB | ConvertTo-Json -Depth 100
 
@@ -6904,6 +8554,12 @@ Check if feature for virtual machine is available.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesQemuFeatureRB
 Check if feature for virtual machine is available.
 
@@ -6919,6 +8575,12 @@ function Get-PVENodesQemuFeatureByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuFeatureRB},
         [Switch]
@@ -6946,6 +8608,14 @@ function Get-PVENodesQemuFeatureByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/feature'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuFeatureByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuFeatureByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesQemuFeatureRB | ConvertTo-Json -Depth 100
 
@@ -6978,6 +8648,12 @@ List aliases
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6989,6 +8665,12 @@ ClusterFirewallAliasesInner[]
 function Get-PVENodesQemuFirewallAliasesByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -7011,6 +8693,14 @@ function Get-PVENodesQemuFirewallAliasesByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/aliases'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuFirewallAliasesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuFirewallAliasesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7041,6 +8731,15 @@ Read alias.
 
 No description available.
 
+.PARAMETER Name
+Alias name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7052,6 +8751,15 @@ None
 function Get-PVENodesQemuFirewallAliasesByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -7071,6 +8779,18 @@ function Get-PVENodesQemuFirewallAliasesByNodeAndVmidAndName {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/aliases/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getNodesQemuFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7101,6 +8821,12 @@ Directory index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7112,6 +8838,12 @@ SystemCollectionsHashtable[]
 function Get-PVENodesQemuFirewallByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -7134,6 +8866,14 @@ function Get-PVENodesQemuFirewallByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuFirewallByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuFirewallByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7164,17 +8904,29 @@ List IPSets
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesQemuFirewallIpsetInner[]
+NodesLxcFirewallIpsetInner[]
 #>
 function Get-PVENodesQemuFirewallIpsetByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -7197,6 +8949,14 @@ function Get-PVENodesQemuFirewallIpsetByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuFirewallIpsetByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuFirewallIpsetByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7207,7 +8967,7 @@ function Get-PVENodesQemuFirewallIpsetByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesQemuFirewallIpsetInner[]" `
+                                -ReturnType "NodesLxcFirewallIpsetInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -7227,17 +8987,35 @@ List IPSet content
 
 No description available.
 
+.PARAMETER Name
+IP set name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesLxcFirewallIpsetGETInner[]
+ClusterFirewallIpsetGETInner[]
 #>
 function Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -7260,6 +9038,18 @@ function Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getNodesQemuFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7270,7 +9060,7 @@ function Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallIpsetGETInner[]" `
+                                -ReturnType "ClusterFirewallIpsetGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -7290,6 +9080,18 @@ Read IP or Network settings from IPSet.
 
 No description available.
 
+.PARAMETER Cidr
+Network/IP specification in CIDR format.
+
+.PARAMETER Name
+IP set name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7301,6 +9103,18 @@ None
 function Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Cidr},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -7320,6 +9134,22 @@ function Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}/{cidr}'
+        if (!$Cidr) {
+            throw "Error! The required parameter `Cidr` missing when calling getNodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{cidr}', [System.Web.HTTPUtility]::UrlEncode($Cidr))
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getNodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7350,6 +9180,12 @@ Read firewall log
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesQemuFirewallLogRB
 Read firewall log
 
@@ -7359,12 +9195,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesFirewallLogInner[]
+NodesReplicationLogInner[]
 #>
 function Get-PVENodesQemuFirewallLogByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuFirewallLogRB},
         [Switch]
@@ -7392,6 +9234,14 @@ function Get-PVENodesQemuFirewallLogByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/log'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuFirewallLogByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuFirewallLogByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesQemuFirewallLogRB | ConvertTo-Json -Depth 100
 
@@ -7404,7 +9254,7 @@ function Get-PVENodesQemuFirewallLogByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallLogInner[]" `
+                                -ReturnType "NodesReplicationLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -7424,6 +9274,12 @@ Get VM firewall options.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7435,6 +9291,12 @@ NodesQemuFirewallOptions
 function Get-PVENodesQemuFirewallOptionsByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -7457,6 +9319,14 @@ function Get-PVENodesQemuFirewallOptionsByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/options'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuFirewallOptionsByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuFirewallOptionsByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7487,6 +9357,12 @@ Lists possible IPSet/Alias reference which are allowed in source/dest properties
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesQemuFirewallRefsRB
 Lists possible IPSet/Alias reference which are allowed in source/dest properties.
 
@@ -7496,12 +9372,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallRefsInner[]
+NodesQemuFirewallRefsInner[]
 #>
 function Get-PVENodesQemuFirewallRefsByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuFirewallRefsRB},
         [Switch]
@@ -7529,6 +9411,14 @@ function Get-PVENodesQemuFirewallRefsByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/refs'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuFirewallRefsByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuFirewallRefsByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesQemuFirewallRefsRB | ConvertTo-Json -Depth 100
 
@@ -7541,7 +9431,7 @@ function Get-PVENodesQemuFirewallRefsByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallRefsInner[]" `
+                                -ReturnType "NodesQemuFirewallRefsInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -7561,17 +9451,29 @@ List rules.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesFirewallRulesGETInner[]
+ClusterFirewallGroupsGETAVInner[]
 #>
 function Get-PVENodesQemuFirewallRulesByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -7594,6 +9496,14 @@ function Get-PVENodesQemuFirewallRulesByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/rules'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuFirewallRulesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuFirewallRulesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7604,7 +9514,7 @@ function Get-PVENodesQemuFirewallRulesByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallRulesGETInner[]" `
+                                -ReturnType "ClusterFirewallGroupsGETAVInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -7624,6 +9534,15 @@ Get single rule data.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Pos
+Update rule at position <pos>.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -7635,6 +9554,15 @@ NodesQemuFirewallRules
 function Get-PVENodesQemuFirewallRulesByNodeAndVmidAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -7657,6 +9585,18 @@ function Get-PVENodesQemuFirewallRulesByNodeAndVmidAndPos {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/rules/{pos}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling getNodesQemuFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7687,6 +9627,12 @@ Get preconditions for migration.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesQemuMigrateRB
 Get preconditions for migration.
 
@@ -7702,6 +9648,12 @@ function Get-PVENodesQemuMigrateByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuMigrateRB},
         [Switch]
@@ -7729,6 +9681,14 @@ function Get-PVENodesQemuMigrateByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/migrate'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuMigrateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuMigrateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesQemuMigrateRB | ConvertTo-Json -Depth 100
 
@@ -7761,6 +9721,12 @@ Migration tunnel endpoint for websocket upgrade - only for internal use by VM mi
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesQemuMtunnelwebsocketRB
 Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration.
 
@@ -7776,6 +9742,12 @@ function Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuMtunnelwebsocketRB},
         [Switch]
@@ -7803,6 +9775,14 @@ function Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/mtunnelwebsocket'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuMtunnelwebsocketByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuMtunnelwebsocketByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesQemuMtunnelwebsocketRB | ConvertTo-Json -Depth 100
 
@@ -7835,17 +9815,29 @@ Get the virtual machine configuration with both current and pending values.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesQemuPendingInner[]
+NodesLxcPendingInner[]
 #>
 function Get-PVENodesQemuPendingByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -7868,6 +9860,14 @@ function Get-PVENodesQemuPendingByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/pending'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuPendingByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuPendingByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -7878,7 +9878,7 @@ function Get-PVENodesQemuPendingByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesQemuPendingInner[]" `
+                                -ReturnType "NodesLxcPendingInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -7898,6 +9898,12 @@ Read VM RRD statistics (returns PNG)
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesQemuRrdRB
 Read VM RRD statistics (returns PNG)
 
@@ -7913,6 +9919,12 @@ function Get-PVENodesQemuRrdByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuRrdRB},
         [Switch]
@@ -7940,6 +9952,14 @@ function Get-PVENodesQemuRrdByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/rrd'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuRrdByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuRrdByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesQemuRrdRB | ConvertTo-Json -Depth 100
 
@@ -7972,6 +9992,12 @@ Read VM RRD statistics
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesQemuRrddataRB
 Read VM RRD statistics
 
@@ -7987,6 +10013,12 @@ function Get-PVENodesQemuRrddataByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuRrddataRB},
         [Switch]
@@ -8014,6 +10046,14 @@ function Get-PVENodesQemuRrddataByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/rrddata'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuRrddataByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuRrddataByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesQemuRrddataRB | ConvertTo-Json -Depth 100
 
@@ -8046,6 +10086,12 @@ List all snapshots.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8057,6 +10103,12 @@ NodesQemuSnapshotInner[]
 function Get-PVENodesQemuSnapshotByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -8079,6 +10131,14 @@ function Get-PVENodesQemuSnapshotByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/snapshot'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuSnapshotByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuSnapshotByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8109,6 +10169,15 @@ function Get-PVENodesQemuSnapshotByNodeAndVmid {
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Snapname
+The name of the snapshot.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8120,6 +10189,15 @@ SystemCollectionsHashtable[]
 function Get-PVENodesQemuSnapshotByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Snapname},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -8142,6 +10220,18 @@ function Get-PVENodesQemuSnapshotByNodeAndVmidAndSnapname {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/snapshot/{snapname}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuSnapshotByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Snapname) {
+            throw "Error! The required parameter `Snapname` missing when calling getNodesQemuSnapshotByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{snapname}', [System.Web.HTTPUtility]::UrlEncode($Snapname))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuSnapshotByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8172,6 +10262,15 @@ Get snapshot configuration
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Snapname
+The name of the snapshot.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8183,6 +10282,15 @@ None
 function Get-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Snapname},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -8202,6 +10310,18 @@ function Get-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuSnapshotConfigByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Snapname) {
+            throw "Error! The required parameter `Snapname` missing when calling getNodesQemuSnapshotConfigByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{snapname}', [System.Web.HTTPUtility]::UrlEncode($Snapname))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuSnapshotConfigByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8232,6 +10352,12 @@ Directory index
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8243,6 +10369,12 @@ None
 function Get-PVENodesQemuStatusByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -8262,6 +10394,14 @@ function Get-PVENodesQemuStatusByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuStatusByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuStatusByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8292,6 +10432,12 @@ Get virtual machine status.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8303,6 +10449,12 @@ NodesQemuStatusCurrent
 function Get-PVENodesQemuStatusCurrentByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -8325,6 +10477,14 @@ function Get-PVENodesQemuStatusCurrentByNodeAndVmid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/current'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuStatusCurrentByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuStatusCurrentByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8355,6 +10515,12 @@ Opens a weksocket for VNC traffic.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER GETNodesQemuVncwebsocketRB
 Opens a weksocket for VNC traffic.
 
@@ -8370,6 +10536,12 @@ function Get-PVENodesQemuVncwebsocketByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQemuVncwebsocketRB},
         [Switch]
@@ -8397,6 +10569,14 @@ function Get-PVENodesQemuVncwebsocketByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/vncwebsocket'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQemuVncwebsocketByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling getNodesQemuVncwebsocketByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $GETNodesQemuVncwebsocketRB | ConvertTo-Json -Depth 100
 
@@ -8429,6 +10609,9 @@ Query metadata of an URL: file size, file name and mime type.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesQueryurlmetadataRB
 Query metadata of an URL: file size, file name and mime type.
 
@@ -8444,6 +10627,9 @@ function Get-PVENodesQueryurlmetadataByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesQueryurlmetadataRB},
         [Switch]
@@ -8471,6 +10657,10 @@ function Get-PVENodesQueryurlmetadataByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/query-url-metadata'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesQueryurlmetadataByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesQueryurlmetadataRB | ConvertTo-Json -Depth 100
 
@@ -8503,6 +10693,9 @@ List status of all replication jobs on this node.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesReplicationRB
 List status of all replication jobs on this node.
 
@@ -8518,6 +10711,9 @@ function Get-PVENodesReplicationByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesReplicationRB},
         [Switch]
@@ -8545,6 +10741,10 @@ function Get-PVENodesReplicationByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/replication'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesReplicationByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesReplicationRB | ConvertTo-Json -Depth 100
 
@@ -8577,6 +10777,12 @@ Directory index.
 
 No description available.
 
+.PARAMETER Id
+Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8588,6 +10794,12 @@ SystemCollectionsHashtable[]
 function Get-PVENodesReplicationByNodeAndId {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -8610,6 +10822,14 @@ function Get-PVENodesReplicationByNodeAndId {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/replication/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getNodesReplicationByNodeAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesReplicationByNodeAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8640,6 +10860,12 @@ Read replication job log.
 
 No description available.
 
+.PARAMETER Id
+Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesReplicationLogRB
 Read replication job log.
 
@@ -8649,12 +10875,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesFirewallLogInner[]
+NodesReplicationLogInner[]
 #>
 function Get-PVENodesReplicationLogByNodeAndId {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesReplicationLogRB},
         [Switch]
@@ -8682,6 +10914,14 @@ function Get-PVENodesReplicationLogByNodeAndId {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/replication/{id}/log'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getNodesReplicationLogByNodeAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesReplicationLogByNodeAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesReplicationLogRB | ConvertTo-Json -Depth 100
 
@@ -8694,7 +10934,7 @@ function Get-PVENodesReplicationLogByNodeAndId {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallLogInner[]" `
+                                -ReturnType "NodesReplicationLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -8714,6 +10954,12 @@ Get replication job status.
 
 No description available.
 
+.PARAMETER Id
+Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8725,6 +10971,12 @@ None
 function Get-PVENodesReplicationStatusByNodeAndId {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -8744,6 +10996,14 @@ function Get-PVENodesReplicationStatusByNodeAndId {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/replication/{id}/status'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getNodesReplicationStatusByNodeAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesReplicationStatusByNodeAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8774,6 +11034,9 @@ Gather various systems information about a node
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8785,6 +11048,9 @@ None
 function Get-PVENodesReportByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -8804,6 +11070,10 @@ function Get-PVENodesReportByNode {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/report'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesReportByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -8834,6 +11104,9 @@ Read node RRD statistics (returns PNG)
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesRrdRB
 Read node RRD statistics (returns PNG)
 
@@ -8849,6 +11122,9 @@ function Get-PVENodesRrdByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesRrdRB},
         [Switch]
@@ -8876,6 +11152,10 @@ function Get-PVENodesRrdByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/rrd'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesRrdByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesRrdRB | ConvertTo-Json -Depth 100
 
@@ -8908,6 +11188,9 @@ Read node RRD statistics
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesRrddataRB
 Read node RRD statistics
 
@@ -8923,6 +11206,9 @@ function Get-PVENodesRrddataByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesRrddataRB},
         [Switch]
@@ -8950,6 +11236,10 @@ function Get-PVENodesRrddataByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/rrddata'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesRrddataByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesRrddataRB | ConvertTo-Json -Depth 100
 
@@ -8982,17 +11272,23 @@ Index of available scan methods
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesScanInner[]
+NodesHardwarePciGETInner[]
 #>
 function Get-PVENodesScanByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -9015,6 +11311,10 @@ function Get-PVENodesScanByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/scan'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesScanByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9025,7 +11325,7 @@ function Get-PVENodesScanByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesScanInner[]" `
+                                -ReturnType "NodesHardwarePciGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -9045,6 +11345,9 @@ Scan remote CIFS server.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesScanCifsRB
 Scan remote CIFS server.
 
@@ -9060,6 +11363,9 @@ function Get-PVENodesScanCifsByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesScanCifsRB},
         [Switch]
@@ -9087,6 +11393,10 @@ function Get-PVENodesScanCifsByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/scan/cifs'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesScanCifsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesScanCifsRB | ConvertTo-Json -Depth 100
 
@@ -9119,6 +11429,9 @@ Scan remote GlusterFS server.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesScanGlusterfsRB
 Scan remote GlusterFS server.
 
@@ -9134,6 +11447,9 @@ function Get-PVENodesScanGlusterfsByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesScanGlusterfsRB},
         [Switch]
@@ -9161,6 +11477,10 @@ function Get-PVENodesScanGlusterfsByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/scan/glusterfs'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesScanGlusterfsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesScanGlusterfsRB | ConvertTo-Json -Depth 100
 
@@ -9193,6 +11513,9 @@ Scan remote iSCSI server.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesScanIscsiRB
 Scan remote iSCSI server.
 
@@ -9208,6 +11531,9 @@ function Get-PVENodesScanIscsiByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesScanIscsiRB},
         [Switch]
@@ -9235,6 +11561,10 @@ function Get-PVENodesScanIscsiByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/scan/iscsi'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesScanIscsiByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesScanIscsiRB | ConvertTo-Json -Depth 100
 
@@ -9267,6 +11597,9 @@ List local LVM volume groups.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9278,6 +11611,9 @@ NodesScanLvmInner[]
 function Get-PVENodesScanLvmByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -9300,6 +11636,10 @@ function Get-PVENodesScanLvmByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/scan/lvm'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesScanLvmByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9330,6 +11670,9 @@ List local LVM Thin Pools.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesScanLvmthinRB
 List local LVM Thin Pools.
 
@@ -9345,6 +11688,9 @@ function Get-PVENodesScanLvmthinByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesScanLvmthinRB},
         [Switch]
@@ -9372,6 +11718,10 @@ function Get-PVENodesScanLvmthinByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/scan/lvmthin'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesScanLvmthinByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesScanLvmthinRB | ConvertTo-Json -Depth 100
 
@@ -9404,6 +11754,9 @@ Scan remote NFS server.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesScanNfsRB
 Scan remote NFS server.
 
@@ -9419,6 +11772,9 @@ function Get-PVENodesScanNfsByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesScanNfsRB},
         [Switch]
@@ -9446,6 +11802,10 @@ function Get-PVENodesScanNfsByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/scan/nfs'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesScanNfsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesScanNfsRB | ConvertTo-Json -Depth 100
 
@@ -9478,6 +11838,9 @@ Scan remote Proxmox Backup Server.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesScanPbsRB
 Scan remote Proxmox Backup Server.
 
@@ -9493,6 +11856,9 @@ function Get-PVENodesScanPbsByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesScanPbsRB},
         [Switch]
@@ -9520,6 +11886,10 @@ function Get-PVENodesScanPbsByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/scan/pbs'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesScanPbsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesScanPbsRB | ConvertTo-Json -Depth 100
 
@@ -9552,6 +11922,9 @@ Scan zfs pool list on local node.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9563,6 +11936,9 @@ NodesScanZfsInner[]
 function Get-PVENodesScanZfsByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -9585,6 +11961,10 @@ function Get-PVENodesScanZfsByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/scan/zfs'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesScanZfsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9615,6 +11995,9 @@ SDN index.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9626,6 +12009,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesSdnByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -9648,6 +12034,10 @@ function Get-PVENodesSdnByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/sdn'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesSdnByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9678,6 +12068,9 @@ Get status for all zones.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9689,6 +12082,9 @@ NodesSdnZonesInner[]
 function Get-PVENodesSdnZonesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -9711,6 +12107,10 @@ function Get-PVENodesSdnZonesByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/sdn/zones'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesSdnZonesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9741,6 +12141,12 @@ function Get-PVENodesSdnZonesByNode {
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Zone
+The SDN zone object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9752,6 +12158,12 @@ None
 function Get-PVENodesSdnZonesByNodeAndZone {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Zone},
         [Switch]
         $WithHttpInfo
     )
@@ -9771,6 +12183,14 @@ function Get-PVENodesSdnZonesByNodeAndZone {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/sdn/zones/{zone}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesSdnZonesByNodeAndZone."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Zone) {
+            throw "Error! The required parameter `Zone` missing when calling getNodesSdnZonesByNodeAndZone."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{zone}', [System.Web.HTTPUtility]::UrlEncode($Zone))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9801,6 +12221,12 @@ List zone content.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Zone
+The SDN zone object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9812,6 +12238,12 @@ NodesSdnZonesContentInner[]
 function Get-PVENodesSdnZonesContentByNodeAndZone {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Zone},
         [Switch]
         $WithHttpInfo
     )
@@ -9834,6 +12266,14 @@ function Get-PVENodesSdnZonesContentByNodeAndZone {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/sdn/zones/{zone}/content'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesSdnZonesContentByNodeAndZone."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Zone) {
+            throw "Error! The required parameter `Zone` missing when calling getNodesSdnZonesContentByNodeAndZone."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{zone}', [System.Web.HTTPUtility]::UrlEncode($Zone))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9864,6 +12304,9 @@ Service list.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9875,6 +12318,9 @@ SystemCollectionsHashtable[]
 function Get-PVENodesServicesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -9897,6 +12343,10 @@ function Get-PVENodesServicesByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/services'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesServicesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9927,6 +12377,12 @@ Directory index
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Service
+Service ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9938,6 +12394,12 @@ None
 function Get-PVENodesServicesByNodeAndService {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Service},
         [Switch]
         $WithHttpInfo
     )
@@ -9957,6 +12419,14 @@ function Get-PVENodesServicesByNodeAndService {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/services/{service}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesServicesByNodeAndService."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Service) {
+            throw "Error! The required parameter `Service` missing when calling getNodesServicesByNodeAndService."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{service}', [System.Web.HTTPUtility]::UrlEncode($Service))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -9987,6 +12457,12 @@ Read service properties
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Service
+Service ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9998,6 +12474,12 @@ None
 function Get-PVENodesServicesStateByNodeAndService {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Service},
         [Switch]
         $WithHttpInfo
     )
@@ -10017,6 +12499,14 @@ function Get-PVENodesServicesStateByNodeAndService {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/services/{service}/state'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesServicesStateByNodeAndService."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Service) {
+            throw "Error! The required parameter `Service` missing when calling getNodesServicesStateByNodeAndService."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{service}', [System.Web.HTTPUtility]::UrlEncode($Service))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10047,6 +12537,9 @@ Read node status
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10058,6 +12551,9 @@ NodesStatus
 function Get-PVENodesStatusByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -10080,6 +12576,10 @@ function Get-PVENodesStatusByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/status'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesStatusByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10110,6 +12610,9 @@ Get status for all datastores.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesStorageRB
 Get status for all datastores.
 
@@ -10125,6 +12628,9 @@ function Get-PVENodesStorageByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesStorageRB},
         [Switch]
@@ -10152,6 +12658,10 @@ function Get-PVENodesStorageByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesStorageByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesStorageRB | ConvertTo-Json -Depth 100
 
@@ -10184,6 +12694,12 @@ function Get-PVENodesStorageByNode {
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10195,6 +12711,12 @@ None
 function Get-PVENodesStorageByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
         [Switch]
         $WithHttpInfo
     )
@@ -10214,6 +12736,14 @@ function Get-PVENodesStorageByNodeAndStorage {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/storage/{storage}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesStorageByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling getNodesStorageByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10244,6 +12774,12 @@ List storage content.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER GETNodesStorageContentRB
 List storage content.
 
@@ -10259,6 +12795,12 @@ function Get-PVENodesStorageContentByNodeAndStorage {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesStorageContentRB},
         [Switch]
@@ -10286,6 +12828,14 @@ function Get-PVENodesStorageContentByNodeAndStorage {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/content'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesStorageContentByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling getNodesStorageContentByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarBodyParameter = $GETNodesStorageContentRB | ConvertTo-Json -Depth 100
 
@@ -10318,6 +12868,15 @@ Get volume attributes
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
+.PARAMETER Volume
+Volume identifier
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10329,6 +12888,15 @@ NodesStorageContent
 function Get-PVENodesStorageContentByNodeAndStorageAndVolume {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Volume},
         [Switch]
         $WithHttpInfo
     )
@@ -10351,6 +12919,18 @@ function Get-PVENodesStorageContentByNodeAndStorageAndVolume {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/content/{volume}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesStorageContentByNodeAndStorageAndVolume."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling getNodesStorageContentByNodeAndStorageAndVolume."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
+        if (!$Volume) {
+            throw "Error! The required parameter `Volume` missing when calling getNodesStorageContentByNodeAndStorageAndVolume."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{volume}', [System.Web.HTTPUtility]::UrlEncode($Volume))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10381,6 +12961,12 @@ Extract a file or directory (as zip archive) from a PBS backup.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER GETNodesStorageFilerestoreDownloadRB
 Extract a file or directory (as zip archive) from a PBS backup.
 
@@ -10396,6 +12982,12 @@ function Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesStorageFilerestoreDownloadRB},
         [Switch]
@@ -10423,6 +13015,14 @@ function Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/file-restore/download'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesStorageFilerestoreDownloadByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling getNodesStorageFilerestoreDownloadByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarBodyParameter = $GETNodesStorageFilerestoreDownloadRB | ConvertTo-Json -Depth 100
 
@@ -10455,6 +13055,12 @@ List files and directories for single file restore under the given path.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER GETNodesStorageFilerestoreListRB
 List files and directories for single file restore under the given path.
 
@@ -10470,6 +13076,12 @@ function Get-PVENodesStorageFilerestoreListByNodeAndStorage {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesStorageFilerestoreListRB},
         [Switch]
@@ -10497,6 +13109,14 @@ function Get-PVENodesStorageFilerestoreListByNodeAndStorage {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/file-restore/list'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesStorageFilerestoreListByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling getNodesStorageFilerestoreListByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarBodyParameter = $GETNodesStorageFilerestoreListRB | ConvertTo-Json -Depth 100
 
@@ -10529,6 +13149,12 @@ Get the base parameters for creating a guest which imports data from a foreign i
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER GETNodesStorageImportmetadataRB
 Get the base parameters for creating a guest which imports data from a foreign importable guest, like an ESXi VM
 
@@ -10544,6 +13170,12 @@ function Get-PVENodesStorageImportmetadataByNodeAndStorage {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesStorageImportmetadataRB},
         [Switch]
@@ -10571,6 +13203,14 @@ function Get-PVENodesStorageImportmetadataByNodeAndStorage {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/import-metadata'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesStorageImportmetadataByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling getNodesStorageImportmetadataByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarBodyParameter = $GETNodesStorageImportmetadataRB | ConvertTo-Json -Depth 100
 
@@ -10603,6 +13243,12 @@ Get prune information for backups. NOTE: this is only a preview and might not be
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER GETNodesStoragePrunebackupsRB
 Get prune information for backups. NOTE: this is only a preview and might not be what a subsequent prune call does if backups are removed/added in the meantime.
 
@@ -10618,6 +13264,12 @@ function Get-PVENodesStoragePrunebackupsByNodeAndStorage {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesStoragePrunebackupsRB},
         [Switch]
@@ -10645,6 +13297,14 @@ function Get-PVENodesStoragePrunebackupsByNodeAndStorage {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/prunebackups'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesStoragePrunebackupsByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling getNodesStoragePrunebackupsByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarBodyParameter = $GETNodesStoragePrunebackupsRB | ConvertTo-Json -Depth 100
 
@@ -10677,6 +13337,12 @@ Read storage RRD statistics (returns PNG).
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER GETNodesStorageRrdRB
 Read storage RRD statistics (returns PNG).
 
@@ -10692,6 +13358,12 @@ function Get-PVENodesStorageRrdByNodeAndStorage {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesStorageRrdRB},
         [Switch]
@@ -10719,6 +13391,14 @@ function Get-PVENodesStorageRrdByNodeAndStorage {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/rrd'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesStorageRrdByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling getNodesStorageRrdByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarBodyParameter = $GETNodesStorageRrdRB | ConvertTo-Json -Depth 100
 
@@ -10751,6 +13431,12 @@ Read storage RRD statistics.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER GETNodesStorageRrddataRB
 Read storage RRD statistics.
 
@@ -10766,6 +13452,12 @@ function Get-PVENodesStorageRrddataByNodeAndStorage {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesStorageRrddataRB},
         [Switch]
@@ -10793,6 +13485,14 @@ function Get-PVENodesStorageRrddataByNodeAndStorage {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/rrddata'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesStorageRrddataByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling getNodesStorageRrddataByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarBodyParameter = $GETNodesStorageRrddataRB | ConvertTo-Json -Depth 100
 
@@ -10825,6 +13525,12 @@ Read storage status.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10836,6 +13542,12 @@ None
 function Get-PVENodesStorageStatusByNodeAndStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
         [Switch]
         $WithHttpInfo
     )
@@ -10855,6 +13567,14 @@ function Get-PVENodesStorageStatusByNodeAndStorage {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/storage/{storage}/status'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesStorageStatusByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling getNodesStorageStatusByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10885,6 +13605,9 @@ Read subscription info.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10896,6 +13619,9 @@ NodesSubscription
 function Get-PVENodesSubscriptionByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -10918,6 +13644,10 @@ function Get-PVENodesSubscriptionByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/subscription'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesSubscriptionByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -10948,6 +13678,9 @@ Read system log
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesSyslogRB
 Read system log
 
@@ -10957,12 +13690,15 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesFirewallLogInner[]
+NodesReplicationLogInner[]
 #>
 function Get-PVENodesSyslogByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesSyslogRB},
         [Switch]
@@ -10990,6 +13726,10 @@ function Get-PVENodesSyslogByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/syslog'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesSyslogByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesSyslogRB | ConvertTo-Json -Depth 100
 
@@ -11002,7 +13742,7 @@ function Get-PVENodesSyslogByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallLogInner[]" `
+                                -ReturnType "NodesReplicationLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -11022,6 +13762,9 @@ Read task list for one node (finished tasks).
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesTasksRB
 Read task list for one node (finished tasks).
 
@@ -11037,6 +13780,9 @@ function Get-PVENodesTasksByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesTasksRB},
         [Switch]
@@ -11064,6 +13810,10 @@ function Get-PVENodesTasksByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/tasks'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesTasksByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesTasksRB | ConvertTo-Json -Depth 100
 
@@ -11096,6 +13846,12 @@ function Get-PVENodesTasksByNode {
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Upid
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11107,6 +13863,12 @@ SystemCollectionsHashtable[]
 function Get-PVENodesTasksByNodeAndUpid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Upid},
         [Switch]
         $WithHttpInfo
     )
@@ -11129,6 +13891,14 @@ function Get-PVENodesTasksByNodeAndUpid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/tasks/{upid}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesTasksByNodeAndUpid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Upid) {
+            throw "Error! The required parameter `Upid` missing when calling getNodesTasksByNodeAndUpid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{upid}', [System.Web.HTTPUtility]::UrlEncode($Upid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -11159,6 +13929,12 @@ Read task log.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Upid
+The task's unique ID.
+
 .PARAMETER GETNodesTasksLogRB
 Read task log.
 
@@ -11168,12 +13944,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesFirewallLogInner[]
+NodesReplicationLogInner[]
 #>
 function Get-PVENodesTasksLogByNodeAndUpid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Upid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesTasksLogRB},
         [Switch]
@@ -11201,6 +13983,14 @@ function Get-PVENodesTasksLogByNodeAndUpid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/tasks/{upid}/log'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesTasksLogByNodeAndUpid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Upid) {
+            throw "Error! The required parameter `Upid` missing when calling getNodesTasksLogByNodeAndUpid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{upid}', [System.Web.HTTPUtility]::UrlEncode($Upid))
 
         $LocalVarBodyParameter = $GETNodesTasksLogRB | ConvertTo-Json -Depth 100
 
@@ -11213,7 +14003,7 @@ function Get-PVENodesTasksLogByNodeAndUpid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallLogInner[]" `
+                                -ReturnType "NodesReplicationLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -11233,6 +14023,12 @@ Read task status.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Upid
+The task's unique ID.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11244,6 +14040,12 @@ NodesTasksStatus
 function Get-PVENodesTasksStatusByNodeAndUpid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Upid},
         [Switch]
         $WithHttpInfo
     )
@@ -11266,6 +14068,14 @@ function Get-PVENodesTasksStatusByNodeAndUpid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/tasks/{upid}/status'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesTasksStatusByNodeAndUpid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Upid) {
+            throw "Error! The required parameter `Upid` missing when calling getNodesTasksStatusByNodeAndUpid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{upid}', [System.Web.HTTPUtility]::UrlEncode($Upid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -11296,6 +14106,9 @@ Read server time and time zone settings.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11307,6 +14120,9 @@ NodesTime
 function Get-PVENodesTimeByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -11329,6 +14145,10 @@ function Get-PVENodesTimeByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/time'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesTimeByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -11359,6 +14179,9 @@ API version details
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -11370,6 +14193,9 @@ NodesVersion
 function Get-PVENodesVersionByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -11392,6 +14218,10 @@ function Get-PVENodesVersionByNode {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/version'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesVersionByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -11422,6 +14252,9 @@ Opens a websocket for VNC traffic.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesVncwebsocketRB
 Opens a websocket for VNC traffic.
 
@@ -11437,6 +14270,9 @@ function Get-PVENodesVncwebsocketByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesVncwebsocketRB},
         [Switch]
@@ -11464,6 +14300,10 @@ function Get-PVENodesVncwebsocketByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/vncwebsocket'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesVncwebsocketByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesVncwebsocketRB | ConvertTo-Json -Depth 100
 
@@ -11496,6 +14336,9 @@ Get the currently configured vzdump defaults.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesVzdumpDefaultsRB
 Get the currently configured vzdump defaults.
 
@@ -11511,6 +14354,9 @@ function Get-PVENodesVzdumpDefaultsByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesVzdumpDefaultsRB},
         [Switch]
@@ -11538,6 +14384,10 @@ function Get-PVENodesVzdumpDefaultsByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/vzdump/defaults'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesVzdumpDefaultsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesVzdumpDefaultsRB | ConvertTo-Json -Depth 100
 
@@ -11570,6 +14420,9 @@ Extract configuration from vzdump backup archive.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER GETNodesVzdumpExtractconfigRB
 Extract configuration from vzdump backup archive.
 
@@ -11585,6 +14438,9 @@ function Get-PVENodesVzdumpExtractconfigByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETNodesVzdumpExtractconfigRB},
         [Switch]
@@ -11609,6 +14465,10 @@ function Get-PVENodesVzdumpExtractconfigByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/vzdump/extractconfig'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling getNodesVzdumpExtractconfigByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $GETNodesVzdumpExtractconfigRB | ConvertTo-Json -Depth 100
 
@@ -11641,6 +14501,9 @@ Download appliance templates.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesAplinfoRB
 Download appliance templates.
 
@@ -11656,6 +14519,9 @@ function New-PVENodesAplinfoByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesAplinfoRB},
         [Switch]
@@ -11680,6 +14546,10 @@ function New-PVENodesAplinfoByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/aplinfo'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesAplinfoByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesAplinfoRB | ConvertTo-Json -Depth 100
 
@@ -11712,6 +14582,9 @@ Change the properties of a repository. Currently only allows enabling/disabling.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesAptRepositoriesRB
 Change the properties of a repository. Currently only allows enabling/disabling.
 
@@ -11727,6 +14600,9 @@ function New-PVENodesAptRepositoriesByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesAptRepositoriesRB},
         [Switch]
@@ -11751,6 +14627,10 @@ function New-PVENodesAptRepositoriesByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/apt/repositories'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesAptRepositoriesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesAptRepositoriesRB | ConvertTo-Json -Depth 100
 
@@ -11783,6 +14663,9 @@ This is used to resynchronize the package index files from their sources (apt-ge
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesAptUpdateRB
 This is used to resynchronize the package index files from their sources (apt-get update).
 
@@ -11798,6 +14681,9 @@ function New-PVENodesAptUpdateByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesAptUpdateRB},
         [Switch]
@@ -11822,6 +14708,10 @@ function New-PVENodesAptUpdateByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/apt/update'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesAptUpdateByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesAptUpdateRB | ConvertTo-Json -Depth 100
 
@@ -11854,6 +14744,12 @@ Create a Ceph filesystem
 
 No description available.
 
+.PARAMETER Name
+The ceph filesystem name.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesCephFsRB
 Create a Ceph filesystem
 
@@ -11869,6 +14765,12 @@ function New-PVENodesCephFsByNodeAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesCephFsRB},
         [Switch]
@@ -11893,6 +14795,14 @@ function New-PVENodesCephFsByNodeAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/fs/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling newNodesCephFsByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephFsByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesCephFsRB | ConvertTo-Json -Depth 100
 
@@ -11925,6 +14835,9 @@ Create initial ceph default configuration and setup symlinks.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesCephInitRB
 Create initial ceph default configuration and setup symlinks.
 
@@ -11940,6 +14853,9 @@ function New-PVENodesCephInitByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesCephInitRB},
         [Switch]
@@ -11964,6 +14880,10 @@ function New-PVENodesCephInitByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/init'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephInitByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesCephInitRB | ConvertTo-Json -Depth 100
 
@@ -11996,6 +14916,12 @@ Create Ceph Metadata Server (MDS)
 
 No description available.
 
+.PARAMETER Name
+The ID for the mds, when omitted the same as the nodename
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesCephMdsRB
 Create Ceph Metadata Server (MDS)
 
@@ -12011,6 +14937,12 @@ function New-PVENodesCephMdsByNodeAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesCephMdsRB},
         [Switch]
@@ -12035,6 +14967,14 @@ function New-PVENodesCephMdsByNodeAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/mds/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling newNodesCephMdsByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephMdsByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesCephMdsRB | ConvertTo-Json -Depth 100
 
@@ -12067,6 +15007,12 @@ Create Ceph Manager
 
 No description available.
 
+.PARAMETER Id
+The ID for the manager, when omitted the same as the nodename
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12078,6 +15024,12 @@ None
 function New-PVENodesCephMgrByNodeAndId {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -12097,6 +15049,14 @@ function New-PVENodesCephMgrByNodeAndId {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/ceph/mgr/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling newNodesCephMgrByNodeAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephMgrByNodeAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12127,6 +15087,12 @@ Create Ceph Monitor and Manager
 
 No description available.
 
+.PARAMETER Monid
+The ID for the monitor, when omitted the same as the nodename
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesCephMonRB
 Create Ceph Monitor and Manager
 
@@ -12142,6 +15108,12 @@ function New-PVENodesCephMonByNodeAndMonid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Monid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesCephMonRB},
         [Switch]
@@ -12166,6 +15138,14 @@ function New-PVENodesCephMonByNodeAndMonid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/mon/{monid}'
+        if (!$Monid) {
+            throw "Error! The required parameter `Monid` missing when calling newNodesCephMonByNodeAndMonid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{monid}', [System.Web.HTTPUtility]::UrlEncode($Monid))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephMonByNodeAndMonid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesCephMonRB | ConvertTo-Json -Depth 100
 
@@ -12198,6 +15178,9 @@ Create OSD
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesCephOsdRB
 Create OSD
 
@@ -12213,6 +15196,9 @@ function New-PVENodesCephOsdByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesCephOsdRB},
         [Switch]
@@ -12237,6 +15223,10 @@ function New-PVENodesCephOsdByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/osd'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephOsdByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesCephOsdRB | ConvertTo-Json -Depth 100
 
@@ -12269,6 +15259,12 @@ ceph osd in
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Osdid
+OSD ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12280,6 +15276,12 @@ None
 function New-PVENodesCephOsdInByNodeAndOsdid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Osdid},
         [Switch]
         $WithHttpInfo
     )
@@ -12299,6 +15301,14 @@ function New-PVENodesCephOsdInByNodeAndOsdid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/ceph/osd/{osdid}/in'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephOsdInByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Osdid) {
+            throw "Error! The required parameter `Osdid` missing when calling newNodesCephOsdInByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{osdid}', [System.Web.HTTPUtility]::UrlEncode($Osdid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12329,6 +15339,12 @@ ceph osd out
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Osdid
+OSD ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -12340,6 +15356,12 @@ None
 function New-PVENodesCephOsdOutByNodeAndOsdid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Osdid},
         [Switch]
         $WithHttpInfo
     )
@@ -12359,6 +15381,14 @@ function New-PVENodesCephOsdOutByNodeAndOsdid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/ceph/osd/{osdid}/out'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephOsdOutByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Osdid) {
+            throw "Error! The required parameter `Osdid` missing when calling newNodesCephOsdOutByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{osdid}', [System.Web.HTTPUtility]::UrlEncode($Osdid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -12389,6 +15419,12 @@ Instruct the OSD to scrub.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Osdid
+OSD ID
+
 .PARAMETER POSTNodesCephOsdScrubRB
 Instruct the OSD to scrub.
 
@@ -12404,6 +15440,12 @@ function New-PVENodesCephOsdScrubByNodeAndOsdid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Osdid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesCephOsdScrubRB},
         [Switch]
@@ -12428,6 +15470,14 @@ function New-PVENodesCephOsdScrubByNodeAndOsdid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/osd/{osdid}/scrub'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephOsdScrubByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Osdid) {
+            throw "Error! The required parameter `Osdid` missing when calling newNodesCephOsdScrubByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{osdid}', [System.Web.HTTPUtility]::UrlEncode($Osdid))
 
         $LocalVarBodyParameter = $POSTNodesCephOsdScrubRB | ConvertTo-Json -Depth 100
 
@@ -12460,6 +15510,9 @@ Create Ceph pool
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesCephPoolRB
 Create Ceph pool
 
@@ -12475,6 +15528,9 @@ function New-PVENodesCephPoolByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesCephPoolRB},
         [Switch]
@@ -12499,6 +15555,10 @@ function New-PVENodesCephPoolByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/pool'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephPoolByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesCephPoolRB | ConvertTo-Json -Depth 100
 
@@ -12531,6 +15591,9 @@ Restart ceph services.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesCephRestartRB
 Restart ceph services.
 
@@ -12546,6 +15609,9 @@ function New-PVENodesCephRestartByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesCephRestartRB},
         [Switch]
@@ -12570,6 +15636,10 @@ function New-PVENodesCephRestartByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/restart'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephRestartByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesCephRestartRB | ConvertTo-Json -Depth 100
 
@@ -12602,6 +15672,9 @@ Start ceph services.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesCephStartRB
 Start ceph services.
 
@@ -12617,6 +15690,9 @@ function New-PVENodesCephStartByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesCephStartRB},
         [Switch]
@@ -12641,6 +15717,10 @@ function New-PVENodesCephStartByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/start'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephStartByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesCephStartRB | ConvertTo-Json -Depth 100
 
@@ -12673,6 +15753,9 @@ Stop ceph services.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesCephStopRB
 Stop ceph services.
 
@@ -12688,6 +15771,9 @@ function New-PVENodesCephStopByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesCephStopRB},
         [Switch]
@@ -12712,6 +15798,10 @@ function New-PVENodesCephStopByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/stop'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCephStopByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesCephStopRB | ConvertTo-Json -Depth 100
 
@@ -12744,6 +15834,9 @@ Order a new certificate from ACME-compatible CA.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesCertificatesAcmeCertificateRB
 Order a new certificate from ACME-compatible CA.
 
@@ -12759,6 +15852,9 @@ function New-PVENodesCertificatesAcmeCertificateByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesCertificatesAcmeCertificateRB},
         [Switch]
@@ -12783,6 +15879,10 @@ function New-PVENodesCertificatesAcmeCertificateByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/certificates/acme/certificate'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCertificatesAcmeCertificateByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesCertificatesAcmeCertificateRB | ConvertTo-Json -Depth 100
 
@@ -12815,6 +15915,9 @@ Upload or update custom certificate chain and key.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesCertificatesCustomRB
 Upload or update custom certificate chain and key.
 
@@ -12830,6 +15933,9 @@ function New-PVENodesCertificatesCustomByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesCertificatesCustomRB},
         [Switch]
@@ -12857,6 +15963,10 @@ function New-PVENodesCertificatesCustomByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/certificates/custom'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesCertificatesCustomByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesCertificatesCustomRB | ConvertTo-Json -Depth 100
 
@@ -12889,6 +15999,9 @@ Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesDisksDirectoryRB
 Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'.
 
@@ -12904,6 +16017,9 @@ function New-PVENodesDisksDirectoryByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesDisksDirectoryRB},
         [Switch]
@@ -12928,6 +16044,10 @@ function New-PVENodesDisksDirectoryByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/directory'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesDisksDirectoryByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesDisksDirectoryRB | ConvertTo-Json -Depth 100
 
@@ -12960,6 +16080,9 @@ Initialize Disk with GPT
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesDisksInitgptRB
 Initialize Disk with GPT
 
@@ -12975,6 +16098,9 @@ function New-PVENodesDisksInitgptByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesDisksInitgptRB},
         [Switch]
@@ -12999,6 +16125,10 @@ function New-PVENodesDisksInitgptByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/initgpt'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesDisksInitgptByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesDisksInitgptRB | ConvertTo-Json -Depth 100
 
@@ -13031,6 +16161,9 @@ Create an LVM Volume Group
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesDisksLvmRB
 Create an LVM Volume Group
 
@@ -13046,6 +16179,9 @@ function New-PVENodesDisksLvmByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesDisksLvmRB},
         [Switch]
@@ -13070,6 +16206,10 @@ function New-PVENodesDisksLvmByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/lvm'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesDisksLvmByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesDisksLvmRB | ConvertTo-Json -Depth 100
 
@@ -13102,6 +16242,9 @@ Create an LVM thinpool
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesDisksLvmthinRB
 Create an LVM thinpool
 
@@ -13117,6 +16260,9 @@ function New-PVENodesDisksLvmthinByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesDisksLvmthinRB},
         [Switch]
@@ -13141,6 +16287,10 @@ function New-PVENodesDisksLvmthinByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/lvmthin'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesDisksLvmthinByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesDisksLvmthinRB | ConvertTo-Json -Depth 100
 
@@ -13173,6 +16323,9 @@ Create a ZFS pool.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesDisksZfsRB
 Create a ZFS pool.
 
@@ -13188,6 +16341,9 @@ function New-PVENodesDisksZfsByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesDisksZfsRB},
         [Switch]
@@ -13212,6 +16368,10 @@ function New-PVENodesDisksZfsByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/zfs'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesDisksZfsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesDisksZfsRB | ConvertTo-Json -Depth 100
 
@@ -13244,6 +16404,9 @@ Execute multiple commands in order, root only.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesExecuteRB
 Execute multiple commands in order, root only.
 
@@ -13259,6 +16422,9 @@ function New-PVENodesExecuteByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesExecuteRB},
         [Switch]
@@ -13286,6 +16452,10 @@ function New-PVENodesExecuteByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/execute'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesExecuteByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesExecuteRB | ConvertTo-Json -Depth 100
 
@@ -13318,6 +16488,9 @@ Create new rule.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesFirewallRulesRB
 Create new rule.
 
@@ -13333,6 +16506,9 @@ function New-PVENodesFirewallRulesByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesFirewallRulesRB},
         [Switch]
@@ -13357,6 +16533,10 @@ function New-PVENodesFirewallRulesByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/firewall/rules'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesFirewallRulesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -13389,6 +16569,9 @@ Write /etc/hosts.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesHostsRB
 Write /etc/hosts.
 
@@ -13404,6 +16587,9 @@ function New-PVENodesHostsByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesHostsRB},
         [Switch]
@@ -13428,6 +16614,10 @@ function New-PVENodesHostsByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/hosts'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesHostsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesHostsRB | ConvertTo-Json -Depth 100
 
@@ -13460,6 +16650,9 @@ Create or restore a container.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesLxcRB
 Create or restore a container.
 
@@ -13475,6 +16668,9 @@ function New-PVENodesLxcByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcRB},
         [Switch]
@@ -13499,6 +16695,10 @@ function New-PVENodesLxcByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesLxcRB | ConvertTo-Json -Depth 100
 
@@ -13531,6 +16731,12 @@ Create a container clone/copy
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcCloneRB
 Create a container clone/copy
 
@@ -13546,6 +16752,12 @@ function New-PVENodesLxcCloneByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcCloneRB},
         [Switch]
@@ -13570,6 +16782,14 @@ function New-PVENodesLxcCloneByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/clone'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcCloneByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcCloneByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcCloneRB | ConvertTo-Json -Depth 100
 
@@ -13602,6 +16822,12 @@ Create IP or Network Alias.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcFirewallAliasesRB
 Create IP or Network Alias.
 
@@ -13617,6 +16843,12 @@ function New-PVENodesLxcFirewallAliasesByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcFirewallAliasesRB},
         [Switch]
@@ -13641,6 +16873,14 @@ function New-PVENodesLxcFirewallAliasesByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/aliases'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcFirewallAliasesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcFirewallAliasesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcFirewallAliasesRB | ConvertTo-Json -Depth 100
 
@@ -13673,6 +16913,12 @@ Create new IPSet
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcFirewallIpsetRB
 Create new IPSet
 
@@ -13688,6 +16934,12 @@ function New-PVENodesLxcFirewallIpsetByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcFirewallIpsetRB},
         [Switch]
@@ -13712,6 +16964,14 @@ function New-PVENodesLxcFirewallIpsetByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcFirewallIpsetByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcFirewallIpsetByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -13744,6 +17004,15 @@ Add IP or Network to IPSet.
 
 No description available.
 
+.PARAMETER Name
+IP set name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcFirewallIpsetRB
 Add IP or Network to IPSet.
 
@@ -13759,6 +17028,15 @@ function New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcFirewallIpsetRB},
         [Switch]
@@ -13783,6 +17061,18 @@ function New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling newNodesLxcFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -13815,6 +17105,12 @@ Create new rule.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcFirewallRulesRB
 Create new rule.
 
@@ -13830,6 +17126,12 @@ function New-PVENodesLxcFirewallRulesByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcFirewallRulesRB},
         [Switch]
@@ -13854,6 +17156,14 @@ function New-PVENodesLxcFirewallRulesByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/rules'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcFirewallRulesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcFirewallRulesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -13886,6 +17196,12 @@ Migrate the container to another node. Creates a new migration task.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcMigrateRB
 Migrate the container to another node. Creates a new migration task.
 
@@ -13901,6 +17217,12 @@ function New-PVENodesLxcMigrateByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcMigrateRB},
         [Switch]
@@ -13925,6 +17247,14 @@ function New-PVENodesLxcMigrateByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/migrate'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcMigrateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcMigrateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcMigrateRB | ConvertTo-Json -Depth 100
 
@@ -13957,6 +17287,12 @@ Move a rootfs-/mp-volume to a different storage or to a different container.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcMovevolumeRB
 Move a rootfs-/mp-volume to a different storage or to a different container.
 
@@ -13972,6 +17308,12 @@ function New-PVENodesLxcMovevolumeByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcMovevolumeRB},
         [Switch]
@@ -13996,6 +17338,14 @@ function New-PVENodesLxcMovevolumeByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/move_volume'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcMovevolumeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcMovevolumeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcMovevolumeRB | ConvertTo-Json -Depth 100
 
@@ -14028,6 +17378,12 @@ Migration tunnel endpoint - only for internal use by CT migration.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcMtunnelRB
 Migration tunnel endpoint - only for internal use by CT migration.
 
@@ -14043,6 +17399,12 @@ function New-PVENodesLxcMtunnelByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcMtunnelRB},
         [Switch]
@@ -14067,6 +17429,14 @@ function New-PVENodesLxcMtunnelByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/mtunnel'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcMtunnelByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcMtunnelByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcMtunnelRB | ConvertTo-Json -Depth 100
 
@@ -14099,6 +17469,12 @@ Migrate the container to another cluster. Creates a new migration task. EXPERIME
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcRemotemigrateRB
 Migrate the container to another cluster. Creates a new migration task. EXPERIMENTAL feature!
 
@@ -14114,6 +17490,12 @@ function New-PVENodesLxcRemotemigrateByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcRemotemigrateRB},
         [Switch]
@@ -14138,6 +17520,14 @@ function New-PVENodesLxcRemotemigrateByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/remote_migrate'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcRemotemigrateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcRemotemigrateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcRemotemigrateRB | ConvertTo-Json -Depth 100
 
@@ -14170,6 +17560,12 @@ Snapshot a container.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcSnapshotRB
 Snapshot a container.
 
@@ -14185,6 +17581,12 @@ function New-PVENodesLxcSnapshotByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcSnapshotRB},
         [Switch]
@@ -14209,6 +17611,14 @@ function New-PVENodesLxcSnapshotByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/snapshot'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcSnapshotByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcSnapshotByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcSnapshotRB | ConvertTo-Json -Depth 100
 
@@ -14241,6 +17651,15 @@ Rollback LXC state to specified snapshot.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Snapname
+The name of the snapshot.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcSnapshotRollbackRB
 Rollback LXC state to specified snapshot.
 
@@ -14256,6 +17675,15 @@ function New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Snapname},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcSnapshotRollbackRB},
         [Switch]
@@ -14280,6 +17708,18 @@ function New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/rollback'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcSnapshotRollbackByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Snapname) {
+            throw "Error! The required parameter `Snapname` missing when calling newNodesLxcSnapshotRollbackByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{snapname}', [System.Web.HTTPUtility]::UrlEncode($Snapname))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcSnapshotRollbackByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcSnapshotRollbackRB | ConvertTo-Json -Depth 100
 
@@ -14312,6 +17752,12 @@ Returns a SPICE configuration to connect to the CT.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcSpiceproxyRB
 Returns a SPICE configuration to connect to the CT.
 
@@ -14327,6 +17773,12 @@ function New-PVENodesLxcSpiceproxyByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcSpiceproxyRB},
         [Switch]
@@ -14351,6 +17803,14 @@ function New-PVENodesLxcSpiceproxyByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/spiceproxy'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcSpiceproxyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcSpiceproxyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcSpiceproxyRB | ConvertTo-Json -Depth 100
 
@@ -14383,6 +17843,12 @@ Reboot the container by shutting it down, and starting it again. Applies pending
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcStatusRebootRB
 Reboot the container by shutting it down, and starting it again. Applies pending changes.
 
@@ -14398,6 +17864,12 @@ function New-PVENodesLxcStatusRebootByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcStatusRebootRB},
         [Switch]
@@ -14422,6 +17894,14 @@ function New-PVENodesLxcStatusRebootByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/status/reboot'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcStatusRebootByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcStatusRebootByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcStatusRebootRB | ConvertTo-Json -Depth 100
 
@@ -14454,6 +17934,12 @@ Resume the container.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -14465,6 +17951,12 @@ None
 function New-PVENodesLxcStatusResumeByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -14484,6 +17976,14 @@ function New-PVENodesLxcStatusResumeByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/status/resume'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcStatusResumeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcStatusResumeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -14514,6 +18014,12 @@ Shutdown the container. This will trigger a clean shutdown of the container, see
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcStatusShutdownRB
 Shutdown the container. This will trigger a clean shutdown of the container, see lxc-stop(1) for details.
 
@@ -14529,6 +18035,12 @@ function New-PVENodesLxcStatusShutdownByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcStatusShutdownRB},
         [Switch]
@@ -14553,6 +18065,14 @@ function New-PVENodesLxcStatusShutdownByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/status/shutdown'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcStatusShutdownByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcStatusShutdownByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcStatusShutdownRB | ConvertTo-Json -Depth 100
 
@@ -14585,6 +18105,12 @@ Start the container.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcStatusStartRB
 Start the container.
 
@@ -14600,6 +18126,12 @@ function New-PVENodesLxcStatusStartByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcStatusStartRB},
         [Switch]
@@ -14624,6 +18156,14 @@ function New-PVENodesLxcStatusStartByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/status/start'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcStatusStartByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcStatusStartByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcStatusStartRB | ConvertTo-Json -Depth 100
 
@@ -14656,6 +18196,12 @@ Stop the container. This will abruptly stop all processes running in the contain
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcStatusStopRB
 Stop the container. This will abruptly stop all processes running in the container.
 
@@ -14671,6 +18217,12 @@ function New-PVENodesLxcStatusStopByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcStatusStopRB},
         [Switch]
@@ -14695,6 +18247,14 @@ function New-PVENodesLxcStatusStopByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/status/stop'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcStatusStopByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcStatusStopByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcStatusStopRB | ConvertTo-Json -Depth 100
 
@@ -14727,6 +18287,12 @@ Suspend the container. This is experimental.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -14738,6 +18304,12 @@ None
 function New-PVENodesLxcStatusSuspendByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -14757,6 +18329,14 @@ function New-PVENodesLxcStatusSuspendByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/status/suspend'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcStatusSuspendByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcStatusSuspendByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -14787,6 +18367,12 @@ Create a Template.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -14798,6 +18384,12 @@ None
 function New-PVENodesLxcTemplateByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -14817,6 +18409,14 @@ function New-PVENodesLxcTemplateByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/template'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcTemplateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcTemplateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -14847,6 +18447,12 @@ Creates a TCP proxy connection.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -14858,6 +18464,12 @@ None
 function New-PVENodesLxcTermproxyByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -14877,6 +18489,14 @@ function New-PVENodesLxcTermproxyByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/termproxy'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcTermproxyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcTermproxyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -14907,6 +18527,12 @@ Creates a TCP VNC proxy connections.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesLxcVncproxyRB
 Creates a TCP VNC proxy connections.
 
@@ -14922,6 +18548,12 @@ function New-PVENodesLxcVncproxyByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesLxcVncproxyRB},
         [Switch]
@@ -14946,6 +18578,14 @@ function New-PVENodesLxcVncproxyByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/vncproxy'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesLxcVncproxyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesLxcVncproxyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesLxcVncproxyRB | ConvertTo-Json -Depth 100
 
@@ -14978,6 +18618,9 @@ Migrate all VMs and Containers.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesMigrateallRB
 Migrate all VMs and Containers.
 
@@ -14993,6 +18636,9 @@ function New-PVENodesMigrateallByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesMigrateallRB},
         [Switch]
@@ -15017,6 +18663,10 @@ function New-PVENodesMigrateallByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/migrateall'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesMigrateallByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesMigrateallRB | ConvertTo-Json -Depth 100
 
@@ -15049,6 +18699,9 @@ Create network device configuration
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesNetworkRB
 Create network device configuration
 
@@ -15064,6 +18717,9 @@ function New-PVENodesNetworkByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesNetworkRB},
         [Switch]
@@ -15088,6 +18744,10 @@ function New-PVENodesNetworkByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/network'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesNetworkByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesNetworkRB | ConvertTo-Json -Depth 100
 
@@ -15120,6 +18780,12 @@ Execute QEMU Guest Agent commands.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuAgentRB
 Execute QEMU Guest Agent commands.
 
@@ -15135,6 +18801,12 @@ function New-PVENodesQemuAgentByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuAgentRB},
         [Switch]
@@ -15159,6 +18831,14 @@ function New-PVENodesQemuAgentByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuAgentRB | ConvertTo-Json -Depth 100
 
@@ -15191,6 +18871,12 @@ Executes the given command in the vm via the guest-agent and returns an object w
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuAgentExecRB
 Executes the given command in the vm via the guest-agent and returns an object with the pid.
 
@@ -15206,6 +18892,12 @@ function New-PVENodesQemuAgentExecByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuAgentExecRB},
         [Switch]
@@ -15233,6 +18925,14 @@ function New-PVENodesQemuAgentExecByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/exec'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentExecByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentExecByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuAgentExecRB | ConvertTo-Json -Depth 100
 
@@ -15265,6 +18965,12 @@ Writes the given file via guest agent.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuAgentFilewriteRB
 Writes the given file via guest agent.
 
@@ -15280,6 +18986,12 @@ function New-PVENodesQemuAgentFilewriteByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuAgentFilewriteRB},
         [Switch]
@@ -15304,6 +19016,14 @@ function New-PVENodesQemuAgentFilewriteByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/file-write'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentFilewriteByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentFilewriteByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuAgentFilewriteRB | ConvertTo-Json -Depth 100
 
@@ -15336,6 +19056,12 @@ Execute fsfreeze-freeze.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15347,6 +19073,12 @@ None
 function New-PVENodesQemuAgentFsfreezefreezeByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -15366,6 +19098,14 @@ function New-PVENodesQemuAgentFsfreezefreezeByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/fsfreeze-freeze'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentFsfreezefreezeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentFsfreezefreezeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15396,6 +19136,12 @@ Execute fsfreeze-status.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15407,6 +19153,12 @@ None
 function New-PVENodesQemuAgentFsfreezestatusByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -15426,6 +19178,14 @@ function New-PVENodesQemuAgentFsfreezestatusByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/fsfreeze-status'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentFsfreezestatusByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentFsfreezestatusByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15456,6 +19216,12 @@ Execute fsfreeze-thaw.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15467,6 +19233,12 @@ None
 function New-PVENodesQemuAgentFsfreezethawByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -15486,6 +19258,14 @@ function New-PVENodesQemuAgentFsfreezethawByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/fsfreeze-thaw'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentFsfreezethawByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentFsfreezethawByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15516,6 +19296,12 @@ Execute fstrim.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15527,6 +19313,12 @@ None
 function New-PVENodesQemuAgentFstrimByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -15546,6 +19338,14 @@ function New-PVENodesQemuAgentFstrimByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/fstrim'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentFstrimByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentFstrimByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15576,6 +19376,12 @@ Execute ping.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15587,6 +19393,12 @@ None
 function New-PVENodesQemuAgentPingByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -15606,6 +19418,14 @@ function New-PVENodesQemuAgentPingByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/ping'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentPingByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentPingByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15636,6 +19456,12 @@ Sets the password for the given user to the given password
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuAgentSetuserpasswordRB
 Sets the password for the given user to the given password
 
@@ -15651,6 +19477,12 @@ function New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuAgentSetuserpasswordRB},
         [Switch]
@@ -15675,6 +19507,14 @@ function New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/set-user-password'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentSetuserpasswordByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentSetuserpasswordByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuAgentSetuserpasswordRB | ConvertTo-Json -Depth 100
 
@@ -15707,6 +19547,12 @@ Execute shutdown.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15718,6 +19564,12 @@ None
 function New-PVENodesQemuAgentShutdownByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -15737,6 +19589,14 @@ function New-PVENodesQemuAgentShutdownByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/shutdown'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentShutdownByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentShutdownByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15767,6 +19627,12 @@ Execute suspend-disk.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15778,6 +19644,12 @@ None
 function New-PVENodesQemuAgentSuspenddiskByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -15797,6 +19669,14 @@ function New-PVENodesQemuAgentSuspenddiskByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/suspend-disk'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentSuspenddiskByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentSuspenddiskByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15827,6 +19707,12 @@ Execute suspend-hybrid.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15838,6 +19724,12 @@ None
 function New-PVENodesQemuAgentSuspendhybridByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -15857,6 +19749,14 @@ function New-PVENodesQemuAgentSuspendhybridByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/suspend-hybrid'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentSuspendhybridByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentSuspendhybridByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15887,6 +19787,12 @@ Execute suspend-ram.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -15898,6 +19804,12 @@ None
 function New-PVENodesQemuAgentSuspendramByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -15917,6 +19829,14 @@ function New-PVENodesQemuAgentSuspendramByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/agent/suspend-ram'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuAgentSuspendramByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuAgentSuspendramByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -15947,6 +19867,9 @@ Create or restore a virtual machine.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesQemuRB
 Create or restore a virtual machine.
 
@@ -15962,6 +19885,9 @@ function New-PVENodesQemuByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuRB},
         [Switch]
@@ -15986,6 +19912,10 @@ function New-PVENodesQemuByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesQemuRB | ConvertTo-Json -Depth 100
 
@@ -16018,6 +19948,12 @@ Create a copy of virtual machine/template.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuCloneRB
 Create a copy of virtual machine/template.
 
@@ -16033,6 +19969,12 @@ function New-PVENodesQemuCloneByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuCloneRB},
         [Switch]
@@ -16057,6 +19999,14 @@ function New-PVENodesQemuCloneByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/clone'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuCloneByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuCloneByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuCloneRB | ConvertTo-Json -Depth 100
 
@@ -16089,6 +20039,12 @@ Set virtual machine options (asynchronous API).
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuConfigRB
 Set virtual machine options (asynchronous API).
 
@@ -16104,6 +20060,12 @@ function New-PVENodesQemuConfigByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuConfigRB},
         [Switch]
@@ -16128,6 +20090,14 @@ function New-PVENodesQemuConfigByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/config'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuConfigByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuConfigByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuConfigRB | ConvertTo-Json -Depth 100
 
@@ -16160,6 +20130,12 @@ Create IP or Network Alias.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuFirewallAliasesRB
 Create IP or Network Alias.
 
@@ -16175,6 +20151,12 @@ function New-PVENodesQemuFirewallAliasesByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuFirewallAliasesRB},
         [Switch]
@@ -16199,6 +20181,14 @@ function New-PVENodesQemuFirewallAliasesByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/aliases'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuFirewallAliasesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuFirewallAliasesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuFirewallAliasesRB | ConvertTo-Json -Depth 100
 
@@ -16231,6 +20221,12 @@ Create new IPSet
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuFirewallIpsetRB
 Create new IPSet
 
@@ -16246,6 +20242,12 @@ function New-PVENodesQemuFirewallIpsetByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuFirewallIpsetRB},
         [Switch]
@@ -16270,6 +20272,14 @@ function New-PVENodesQemuFirewallIpsetByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuFirewallIpsetByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuFirewallIpsetByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -16302,6 +20312,15 @@ Add IP or Network to IPSet.
 
 No description available.
 
+.PARAMETER Name
+IP set name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuFirewallIpsetRB
 Add IP or Network to IPSet.
 
@@ -16317,6 +20336,15 @@ function New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuFirewallIpsetRB},
         [Switch]
@@ -16341,6 +20369,18 @@ function New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling newNodesQemuFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -16373,6 +20413,12 @@ Create new rule.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuFirewallRulesRB
 Create new rule.
 
@@ -16388,6 +20434,12 @@ function New-PVENodesQemuFirewallRulesByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuFirewallRulesRB},
         [Switch]
@@ -16412,6 +20464,14 @@ function New-PVENodesQemuFirewallRulesByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/rules'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuFirewallRulesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuFirewallRulesByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -16444,6 +20504,12 @@ Migrate virtual machine. Creates a new migration task.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuMigrateRB
 Migrate virtual machine. Creates a new migration task.
 
@@ -16459,6 +20525,12 @@ function New-PVENodesQemuMigrateByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuMigrateRB},
         [Switch]
@@ -16483,6 +20555,14 @@ function New-PVENodesQemuMigrateByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/migrate'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuMigrateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuMigrateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuMigrateRB | ConvertTo-Json -Depth 100
 
@@ -16515,6 +20595,12 @@ Execute QEMU monitor commands.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuMonitorRB
 Execute QEMU monitor commands.
 
@@ -16530,6 +20616,12 @@ function New-PVENodesQemuMonitorByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuMonitorRB},
         [Switch]
@@ -16554,6 +20646,14 @@ function New-PVENodesQemuMonitorByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/monitor'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuMonitorByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuMonitorByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuMonitorRB | ConvertTo-Json -Depth 100
 
@@ -16586,6 +20686,12 @@ Move volume to different storage or to a different VM.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuMovediskRB
 Move volume to different storage or to a different VM.
 
@@ -16601,6 +20707,12 @@ function New-PVENodesQemuMovediskByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuMovediskRB},
         [Switch]
@@ -16625,6 +20737,14 @@ function New-PVENodesQemuMovediskByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/move_disk'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuMovediskByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuMovediskByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuMovediskRB | ConvertTo-Json -Depth 100
 
@@ -16657,6 +20777,12 @@ Migration tunnel endpoint - only for internal use by VM migration.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuMtunnelRB
 Migration tunnel endpoint - only for internal use by VM migration.
 
@@ -16672,6 +20798,12 @@ function New-PVENodesQemuMtunnelByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuMtunnelRB},
         [Switch]
@@ -16696,6 +20828,14 @@ function New-PVENodesQemuMtunnelByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/mtunnel'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuMtunnelByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuMtunnelByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuMtunnelRB | ConvertTo-Json -Depth 100
 
@@ -16728,6 +20868,12 @@ Migrate virtual machine to a remote cluster. Creates a new migration task. EXPER
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuRemotemigrateRB
 Migrate virtual machine to a remote cluster. Creates a new migration task. EXPERIMENTAL feature!
 
@@ -16743,6 +20889,12 @@ function New-PVENodesQemuRemotemigrateByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuRemotemigrateRB},
         [Switch]
@@ -16767,6 +20919,14 @@ function New-PVENodesQemuRemotemigrateByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/remote_migrate'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuRemotemigrateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuRemotemigrateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuRemotemigrateRB | ConvertTo-Json -Depth 100
 
@@ -16799,6 +20959,12 @@ Snapshot a VM.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuSnapshotRB
 Snapshot a VM.
 
@@ -16814,6 +20980,12 @@ function New-PVENodesQemuSnapshotByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuSnapshotRB},
         [Switch]
@@ -16838,6 +21010,14 @@ function New-PVENodesQemuSnapshotByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/snapshot'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuSnapshotByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuSnapshotByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuSnapshotRB | ConvertTo-Json -Depth 100
 
@@ -16870,6 +21050,15 @@ Rollback VM state to specified snapshot.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Snapname
+The name of the snapshot.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuSnapshotRollbackRB
 Rollback VM state to specified snapshot.
 
@@ -16885,6 +21074,15 @@ function New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Snapname},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuSnapshotRollbackRB},
         [Switch]
@@ -16909,6 +21107,18 @@ function New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/snapshot/{snapname}/rollback'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuSnapshotRollbackByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Snapname) {
+            throw "Error! The required parameter `Snapname` missing when calling newNodesQemuSnapshotRollbackByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{snapname}', [System.Web.HTTPUtility]::UrlEncode($Snapname))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuSnapshotRollbackByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuSnapshotRollbackRB | ConvertTo-Json -Depth 100
 
@@ -16941,6 +21151,12 @@ Returns a SPICE configuration to connect to the VM.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuSpiceproxyRB
 Returns a SPICE configuration to connect to the VM.
 
@@ -16956,6 +21172,12 @@ function New-PVENodesQemuSpiceproxyByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuSpiceproxyRB},
         [Switch]
@@ -16980,6 +21202,14 @@ function New-PVENodesQemuSpiceproxyByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/spiceproxy'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuSpiceproxyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuSpiceproxyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuSpiceproxyRB | ConvertTo-Json -Depth 100
 
@@ -17012,6 +21242,12 @@ Reboot the VM by shutting it down, and starting it again. Applies pending change
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuStatusRebootRB
 Reboot the VM by shutting it down, and starting it again. Applies pending changes.
 
@@ -17027,6 +21263,12 @@ function New-PVENodesQemuStatusRebootByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuStatusRebootRB},
         [Switch]
@@ -17051,6 +21293,14 @@ function New-PVENodesQemuStatusRebootByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/reboot'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuStatusRebootByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuStatusRebootByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuStatusRebootRB | ConvertTo-Json -Depth 100
 
@@ -17083,6 +21333,12 @@ Reset virtual machine.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuStatusResetRB
 Reset virtual machine.
 
@@ -17098,6 +21354,12 @@ function New-PVENodesQemuStatusResetByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuStatusResetRB},
         [Switch]
@@ -17122,6 +21384,14 @@ function New-PVENodesQemuStatusResetByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/reset'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuStatusResetByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuStatusResetByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuStatusResetRB | ConvertTo-Json -Depth 100
 
@@ -17154,6 +21424,12 @@ Resume virtual machine.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuStatusResumeRB
 Resume virtual machine.
 
@@ -17169,6 +21445,12 @@ function New-PVENodesQemuStatusResumeByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuStatusResumeRB},
         [Switch]
@@ -17193,6 +21475,14 @@ function New-PVENodesQemuStatusResumeByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/resume'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuStatusResumeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuStatusResumeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuStatusResumeRB | ConvertTo-Json -Depth 100
 
@@ -17225,6 +21515,12 @@ Shutdown virtual machine. This is similar to pressing the power button on a phys
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuStatusShutdownRB
 Shutdown virtual machine. This is similar to pressing the power button on a physical machine. This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
 
@@ -17240,6 +21536,12 @@ function New-PVENodesQemuStatusShutdownByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuStatusShutdownRB},
         [Switch]
@@ -17264,6 +21566,14 @@ function New-PVENodesQemuStatusShutdownByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/shutdown'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuStatusShutdownByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuStatusShutdownByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuStatusShutdownRB | ConvertTo-Json -Depth 100
 
@@ -17296,6 +21606,12 @@ Start virtual machine.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuStatusStartRB
 Start virtual machine.
 
@@ -17311,6 +21627,12 @@ function New-PVENodesQemuStatusStartByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuStatusStartRB},
         [Switch]
@@ -17335,6 +21657,14 @@ function New-PVENodesQemuStatusStartByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/start'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuStatusStartByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuStatusStartByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuStatusStartRB | ConvertTo-Json -Depth 100
 
@@ -17367,6 +21697,12 @@ Stop virtual machine. The qemu process will exit immediately. This is akin to pu
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuStatusStopRB
 Stop virtual machine. The qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data.
 
@@ -17382,6 +21718,12 @@ function New-PVENodesQemuStatusStopByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuStatusStopRB},
         [Switch]
@@ -17406,6 +21748,14 @@ function New-PVENodesQemuStatusStopByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/stop'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuStatusStopByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuStatusStopByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuStatusStopRB | ConvertTo-Json -Depth 100
 
@@ -17438,6 +21788,12 @@ Suspend virtual machine.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuStatusSuspendRB
 Suspend virtual machine.
 
@@ -17453,6 +21809,12 @@ function New-PVENodesQemuStatusSuspendByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuStatusSuspendRB},
         [Switch]
@@ -17477,6 +21839,14 @@ function New-PVENodesQemuStatusSuspendByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/status/suspend'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuStatusSuspendByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuStatusSuspendByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuStatusSuspendRB | ConvertTo-Json -Depth 100
 
@@ -17509,6 +21879,12 @@ Create a Template.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuTemplateRB
 Create a Template.
 
@@ -17524,6 +21900,12 @@ function New-PVENodesQemuTemplateByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuTemplateRB},
         [Switch]
@@ -17548,6 +21930,14 @@ function New-PVENodesQemuTemplateByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/template'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuTemplateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuTemplateByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuTemplateRB | ConvertTo-Json -Depth 100
 
@@ -17580,6 +21970,12 @@ Creates a TCP proxy connections.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuTermproxyRB
 Creates a TCP proxy connections.
 
@@ -17595,6 +21991,12 @@ function New-PVENodesQemuTermproxyByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuTermproxyRB},
         [Switch]
@@ -17619,6 +22021,14 @@ function New-PVENodesQemuTermproxyByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/termproxy'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuTermproxyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuTermproxyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuTermproxyRB | ConvertTo-Json -Depth 100
 
@@ -17651,6 +22061,12 @@ Creates a TCP VNC proxy connections.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER POSTNodesQemuVncproxyRB
 Creates a TCP VNC proxy connections.
 
@@ -17666,6 +22082,12 @@ function New-PVENodesQemuVncproxyByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesQemuVncproxyRB},
         [Switch]
@@ -17690,6 +22112,14 @@ function New-PVENodesQemuVncproxyByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/vncproxy'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesQemuVncproxyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling newNodesQemuVncproxyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $POSTNodesQemuVncproxyRB | ConvertTo-Json -Depth 100
 
@@ -17722,6 +22152,12 @@ Schedule replication job to start as soon as possible.
 
 No description available.
 
+.PARAMETER Id
+Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17733,6 +22169,12 @@ None
 function New-PVENodesReplicationSchedulenowByNodeAndId {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -17752,6 +22194,14 @@ function New-PVENodesReplicationSchedulenowByNodeAndId {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/replication/{id}/schedule_now'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling newNodesReplicationSchedulenowByNodeAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesReplicationSchedulenowByNodeAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -17782,6 +22232,12 @@ Reload service. Falls back to restart if service cannot be reloaded.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Service
+Service ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17793,6 +22249,12 @@ None
 function New-PVENodesServicesReloadByNodeAndService {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Service},
         [Switch]
         $WithHttpInfo
     )
@@ -17812,6 +22274,14 @@ function New-PVENodesServicesReloadByNodeAndService {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/services/{service}/reload'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesServicesReloadByNodeAndService."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Service) {
+            throw "Error! The required parameter `Service` missing when calling newNodesServicesReloadByNodeAndService."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{service}', [System.Web.HTTPUtility]::UrlEncode($Service))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -17842,6 +22312,12 @@ Hard restart service. Use reload if you want to reduce interruptions.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Service
+Service ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17853,6 +22329,12 @@ None
 function New-PVENodesServicesRestartByNodeAndService {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Service},
         [Switch]
         $WithHttpInfo
     )
@@ -17872,6 +22354,14 @@ function New-PVENodesServicesRestartByNodeAndService {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/services/{service}/restart'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesServicesRestartByNodeAndService."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Service) {
+            throw "Error! The required parameter `Service` missing when calling newNodesServicesRestartByNodeAndService."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{service}', [System.Web.HTTPUtility]::UrlEncode($Service))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -17902,6 +22392,12 @@ Start service.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Service
+Service ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17913,6 +22409,12 @@ None
 function New-PVENodesServicesStartByNodeAndService {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Service},
         [Switch]
         $WithHttpInfo
     )
@@ -17932,6 +22434,14 @@ function New-PVENodesServicesStartByNodeAndService {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/services/{service}/start'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesServicesStartByNodeAndService."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Service) {
+            throw "Error! The required parameter `Service` missing when calling newNodesServicesStartByNodeAndService."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{service}', [System.Web.HTTPUtility]::UrlEncode($Service))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -17962,6 +22472,12 @@ Stop service.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Service
+Service ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -17973,6 +22489,12 @@ None
 function New-PVENodesServicesStopByNodeAndService {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Service},
         [Switch]
         $WithHttpInfo
     )
@@ -17992,6 +22514,14 @@ function New-PVENodesServicesStopByNodeAndService {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/services/{service}/stop'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesServicesStopByNodeAndService."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Service) {
+            throw "Error! The required parameter `Service` missing when calling newNodesServicesStopByNodeAndService."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{service}', [System.Web.HTTPUtility]::UrlEncode($Service))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -18022,6 +22552,9 @@ Creates a SPICE shell.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesSpiceshellRB
 Creates a SPICE shell.
 
@@ -18037,6 +22570,9 @@ function New-PVENodesSpiceshellByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesSpiceshellRB},
         [Switch]
@@ -18061,6 +22597,10 @@ function New-PVENodesSpiceshellByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/spiceshell'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesSpiceshellByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesSpiceshellRB | ConvertTo-Json -Depth 100
 
@@ -18093,6 +22633,9 @@ Start all VMs and containers located on this node (by default only those with on
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesStartallRB
 Start all VMs and containers located on this node (by default only those with onboot=1).
 
@@ -18108,6 +22651,9 @@ function New-PVENodesStartallByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesStartallRB},
         [Switch]
@@ -18132,6 +22678,10 @@ function New-PVENodesStartallByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/startall'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesStartallByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesStartallRB | ConvertTo-Json -Depth 100
 
@@ -18164,6 +22714,9 @@ Reboot or shutdown a node.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesStatusRB
 Reboot or shutdown a node.
 
@@ -18179,6 +22732,9 @@ function New-PVENodesStatusByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesStatusRB},
         [Switch]
@@ -18203,6 +22759,10 @@ function New-PVENodesStatusByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/status'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesStatusByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesStatusRB | ConvertTo-Json -Depth 100
 
@@ -18235,6 +22795,9 @@ Stop all VMs and Containers.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesStopallRB
 Stop all VMs and Containers.
 
@@ -18250,6 +22813,9 @@ function New-PVENodesStopallByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesStopallRB},
         [Switch]
@@ -18274,6 +22840,10 @@ function New-PVENodesStopallByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/stopall'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesStopallByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesStopallRB | ConvertTo-Json -Depth 100
 
@@ -18306,6 +22876,12 @@ Allocate disk images.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER POSTNodesStorageContentRB
 Allocate disk images.
 
@@ -18321,6 +22897,12 @@ function New-PVENodesStorageContentByNodeAndStorage {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesStorageContentRB},
         [Switch]
@@ -18345,6 +22927,14 @@ function New-PVENodesStorageContentByNodeAndStorage {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/content'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesStorageContentByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling newNodesStorageContentByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarBodyParameter = $POSTNodesStorageContentRB | ConvertTo-Json -Depth 100
 
@@ -18377,6 +22967,15 @@ Copy a volume. This is experimental code - do not use.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
+.PARAMETER Volume
+Source volume identifier
+
 .PARAMETER POSTNodesStorageContentRB
 Copy a volume. This is experimental code - do not use.
 
@@ -18392,6 +22991,15 @@ function New-PVENodesStorageContentByNodeAndStorageAndVolume {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Volume},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesStorageContentRB},
         [Switch]
@@ -18416,6 +23024,18 @@ function New-PVENodesStorageContentByNodeAndStorageAndVolume {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/content/{volume}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesStorageContentByNodeAndStorageAndVolume."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling newNodesStorageContentByNodeAndStorageAndVolume."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
+        if (!$Volume) {
+            throw "Error! The required parameter `Volume` missing when calling newNodesStorageContentByNodeAndStorageAndVolume."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{volume}', [System.Web.HTTPUtility]::UrlEncode($Volume))
 
         $LocalVarBodyParameter = $POSTNodesStorageContentRB | ConvertTo-Json -Depth 100
 
@@ -18448,6 +23068,12 @@ Download templates, ISO images and OVAs by using an URL.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER POSTNodesStorageDownloadurlRB
 Download templates, ISO images and OVAs by using an URL.
 
@@ -18463,6 +23089,12 @@ function New-PVENodesStorageDownloadurlByNodeAndStorage {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesStorageDownloadurlRB},
         [Switch]
@@ -18487,6 +23119,14 @@ function New-PVENodesStorageDownloadurlByNodeAndStorage {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/download-url'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesStorageDownloadurlByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling newNodesStorageDownloadurlByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarBodyParameter = $POSTNodesStorageDownloadurlRB | ConvertTo-Json -Depth 100
 
@@ -18519,6 +23159,12 @@ Upload templates, ISO images and OVAs.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER POSTNodesStorageUploadRB
 Upload templates, ISO images and OVAs.
 
@@ -18534,6 +23180,12 @@ function New-PVENodesStorageUploadByNodeAndStorage {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesStorageUploadRB},
         [Switch]
@@ -18558,6 +23210,14 @@ function New-PVENodesStorageUploadByNodeAndStorage {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/upload'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesStorageUploadByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling newNodesStorageUploadByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarBodyParameter = $POSTNodesStorageUploadRB | ConvertTo-Json -Depth 100
 
@@ -18590,6 +23250,9 @@ Update subscription info.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesSubscriptionRB
 Update subscription info.
 
@@ -18605,6 +23268,9 @@ function New-PVENodesSubscriptionByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesSubscriptionRB},
         [Switch]
@@ -18629,6 +23295,10 @@ function New-PVENodesSubscriptionByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/subscription'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesSubscriptionByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesSubscriptionRB | ConvertTo-Json -Depth 100
 
@@ -18661,6 +23331,9 @@ Suspend all VMs.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesSuspendallRB
 Suspend all VMs.
 
@@ -18676,6 +23349,9 @@ function New-PVENodesSuspendallByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesSuspendallRB},
         [Switch]
@@ -18700,6 +23376,10 @@ function New-PVENodesSuspendallByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/suspendall'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesSuspendallByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesSuspendallRB | ConvertTo-Json -Depth 100
 
@@ -18732,6 +23412,9 @@ Creates a VNC Shell proxy.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesTermproxyRB
 Creates a VNC Shell proxy.
 
@@ -18747,6 +23430,9 @@ function New-PVENodesTermproxyByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesTermproxyRB},
         [Switch]
@@ -18771,6 +23457,10 @@ function New-PVENodesTermproxyByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/termproxy'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesTermproxyByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesTermproxyRB | ConvertTo-Json -Depth 100
 
@@ -18803,6 +23493,9 @@ Creates a VNC Shell proxy.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTNodesVncshellRB
 Creates a VNC Shell proxy.
 
@@ -18818,6 +23511,9 @@ function New-PVENodesVncshellByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesVncshellRB},
         [Switch]
@@ -18842,6 +23538,10 @@ function New-PVENodesVncshellByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/vncshell'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesVncshellByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesVncshellRB | ConvertTo-Json -Depth 100
 
@@ -18874,6 +23574,9 @@ Create backup.
 
 No description available.
 
+.PARAMETER Node
+Only run if executed on this node.
+
 .PARAMETER POSTNodesVzdumpRB
 Create backup.
 
@@ -18889,6 +23592,9 @@ function New-PVENodesVzdumpByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTNodesVzdumpRB},
         [Switch]
@@ -18913,6 +23619,10 @@ function New-PVENodesVzdumpByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/vzdump'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesVzdumpByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTNodesVzdumpRB | ConvertTo-Json -Depth 100
 
@@ -18945,6 +23655,9 @@ Try to wake a node via 'wake on LAN' network packet.
 
 No description available.
 
+.PARAMETER Node
+target node for wake on LAN packet
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -18956,6 +23669,9 @@ None
 function New-PVENodesWakeonlanByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -18975,6 +23691,10 @@ function New-PVENodesWakeonlanByNode {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/wakeonlan'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newNodesWakeonlanByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -19005,6 +23725,12 @@ Destroy Ceph Metadata Server
 
 No description available.
 
+.PARAMETER Name
+The name (ID) of the mds
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19016,6 +23742,12 @@ None
 function Remove-PVENodesCephMdsByNodeAndName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -19035,6 +23767,14 @@ function Remove-PVENodesCephMdsByNodeAndName {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/ceph/mds/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeNodesCephMdsByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesCephMdsByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -19065,6 +23805,12 @@ Destroy Ceph Manager.
 
 No description available.
 
+.PARAMETER Id
+The ID of the manager
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19076,6 +23822,12 @@ None
 function Remove-PVENodesCephMgrByNodeAndId {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -19095,6 +23847,14 @@ function Remove-PVENodesCephMgrByNodeAndId {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/ceph/mgr/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling removeNodesCephMgrByNodeAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesCephMgrByNodeAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -19125,6 +23885,12 @@ Destroy Ceph Monitor and Manager.
 
 No description available.
 
+.PARAMETER Monid
+Monitor ID
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19136,6 +23902,12 @@ None
 function Remove-PVENodesCephMonByNodeAndMonid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Monid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -19155,6 +23927,14 @@ function Remove-PVENodesCephMonByNodeAndMonid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/ceph/mon/{monid}'
+        if (!$Monid) {
+            throw "Error! The required parameter `Monid` missing when calling removeNodesCephMonByNodeAndMonid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{monid}', [System.Web.HTTPUtility]::UrlEncode($Monid))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesCephMonByNodeAndMonid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -19185,6 +23965,12 @@ Destroy OSD
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Osdid
+OSD ID
+
 .PARAMETER DELETENodesCephOsdRB
 Destroy OSD
 
@@ -19200,6 +23986,12 @@ function Remove-PVENodesCephOsdByNodeAndOsdid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Osdid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesCephOsdRB},
         [Switch]
@@ -19224,6 +24016,14 @@ function Remove-PVENodesCephOsdByNodeAndOsdid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/osd/{osdid}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesCephOsdByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Osdid) {
+            throw "Error! The required parameter `Osdid` missing when calling removeNodesCephOsdByNodeAndOsdid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{osdid}', [System.Web.HTTPUtility]::UrlEncode($Osdid))
 
         $LocalVarBodyParameter = $DELETENodesCephOsdRB | ConvertTo-Json -Depth 100
 
@@ -19256,6 +24056,12 @@ Destroy pool
 
 No description available.
 
+.PARAMETER Name
+The name of the pool. It must be unique.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER DELETENodesCephPoolRB
 Destroy pool
 
@@ -19271,6 +24077,12 @@ function Remove-PVENodesCephPoolByNodeAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesCephPoolRB},
         [Switch]
@@ -19295,6 +24107,14 @@ function Remove-PVENodesCephPoolByNodeAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/pool/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeNodesCephPoolByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesCephPoolByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $DELETENodesCephPoolRB | ConvertTo-Json -Depth 100
 
@@ -19327,6 +24147,9 @@ Revoke existing certificate from CA.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -19338,6 +24161,9 @@ None
 function Remove-PVENodesCertificatesAcmeCertificateByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -19357,6 +24183,10 @@ function Remove-PVENodesCertificatesAcmeCertificateByNode {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/certificates/acme/certificate'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesCertificatesAcmeCertificateByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -19387,6 +24217,9 @@ DELETE custom certificate chain and key.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER DELETENodesCertificatesCustomRB
 DELETE custom certificate chain and key.
 
@@ -19402,6 +24235,9 @@ function Remove-PVENodesCertificatesCustomByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesCertificatesCustomRB},
         [Switch]
@@ -19426,6 +24262,10 @@ function Remove-PVENodesCertificatesCustomByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/certificates/custom'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesCertificatesCustomByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $DELETENodesCertificatesCustomRB | ConvertTo-Json -Depth 100
 
@@ -19458,6 +24298,12 @@ Unmounts the storage and removes the mount unit.
 
 No description available.
 
+.PARAMETER Name
+The storage identifier.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER DELETENodesDisksDirectoryRB
 Unmounts the storage and removes the mount unit.
 
@@ -19473,6 +24319,12 @@ function Remove-PVENodesDisksDirectoryByNodeAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesDisksDirectoryRB},
         [Switch]
@@ -19497,6 +24349,14 @@ function Remove-PVENodesDisksDirectoryByNodeAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/directory/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeNodesDisksDirectoryByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesDisksDirectoryByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $DELETENodesDisksDirectoryRB | ConvertTo-Json -Depth 100
 
@@ -19529,6 +24389,12 @@ Remove an LVM Volume Group.
 
 No description available.
 
+.PARAMETER Name
+The storage identifier.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER DELETENodesDisksLvmRB
 Remove an LVM Volume Group.
 
@@ -19544,6 +24410,12 @@ function Remove-PVENodesDisksLvmByNodeAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesDisksLvmRB},
         [Switch]
@@ -19568,6 +24440,14 @@ function Remove-PVENodesDisksLvmByNodeAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/lvm/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeNodesDisksLvmByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesDisksLvmByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $DELETENodesDisksLvmRB | ConvertTo-Json -Depth 100
 
@@ -19600,6 +24480,12 @@ Remove an LVM thin pool.
 
 No description available.
 
+.PARAMETER Name
+The storage identifier.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER DELETENodesDisksLvmthinRB
 Remove an LVM thin pool.
 
@@ -19615,6 +24501,12 @@ function Remove-PVENodesDisksLvmthinByNodeAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesDisksLvmthinRB},
         [Switch]
@@ -19639,6 +24531,14 @@ function Remove-PVENodesDisksLvmthinByNodeAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/lvmthin/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeNodesDisksLvmthinByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesDisksLvmthinByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $DELETENodesDisksLvmthinRB | ConvertTo-Json -Depth 100
 
@@ -19671,6 +24571,12 @@ Destroy a ZFS pool.
 
 No description available.
 
+.PARAMETER Name
+The storage identifier.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER DELETENodesDisksZfsRB
 Destroy a ZFS pool.
 
@@ -19686,6 +24592,12 @@ function Remove-PVENodesDisksZfsByNodeAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesDisksZfsRB},
         [Switch]
@@ -19710,6 +24622,14 @@ function Remove-PVENodesDisksZfsByNodeAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/zfs/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeNodesDisksZfsByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesDisksZfsByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $DELETENodesDisksZfsRB | ConvertTo-Json -Depth 100
 
@@ -19742,6 +24662,12 @@ Delete rule.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Pos
+Update rule at position <pos>.
+
 .PARAMETER DELETENodesFirewallRulesRB
 Delete rule.
 
@@ -19757,6 +24683,12 @@ function Remove-PVENodesFirewallRulesByNodeAndPos {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesFirewallRulesRB},
         [Switch]
@@ -19781,6 +24713,14 @@ function Remove-PVENodesFirewallRulesByNodeAndPos {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/firewall/rules/{pos}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesFirewallRulesByNodeAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling removeNodesFirewallRulesByNodeAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
 
         $LocalVarBodyParameter = $DELETENodesFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -19813,6 +24753,12 @@ Destroy the container (also delete all uses files).
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER DELETENodesLxcRB
 Destroy the container (also delete all uses files).
 
@@ -19828,6 +24774,12 @@ function Remove-PVENodesLxcByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesLxcRB},
         [Switch]
@@ -19852,6 +24804,14 @@ function Remove-PVENodesLxcByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesLxcByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling removeNodesLxcByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $DELETENodesLxcRB | ConvertTo-Json -Depth 100
 
@@ -19884,6 +24844,15 @@ Remove IP or Network alias.
 
 No description available.
 
+.PARAMETER Name
+Alias name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER DELETENodesLxcFirewallAliasesRB
 Remove IP or Network alias.
 
@@ -19899,6 +24868,15 @@ function Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesLxcFirewallAliasesRB},
         [Switch]
@@ -19923,6 +24901,18 @@ function Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/aliases/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeNodesLxcFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesLxcFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling removeNodesLxcFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $DELETENodesLxcFirewallAliasesRB | ConvertTo-Json -Depth 100
 
@@ -19955,6 +24945,15 @@ Delete IPSet
 
 No description available.
 
+.PARAMETER Name
+IP set name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER DELETENodesLxcFirewallIpsetRB
 Delete IPSet
 
@@ -19970,6 +24969,15 @@ function Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesLxcFirewallIpsetRB},
         [Switch]
@@ -19994,6 +25002,18 @@ function Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeNodesLxcFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesLxcFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling removeNodesLxcFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $DELETENodesLxcFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -20026,6 +25046,18 @@ Remove IP or Network from IPSet.
 
 No description available.
 
+.PARAMETER Cidr
+Network/IP specification in CIDR format.
+
+.PARAMETER Name
+IP set name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER DELETENodesLxcFirewallIpsetRB
 Remove IP or Network from IPSet.
 
@@ -20041,6 +25073,18 @@ function Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Cidr},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesLxcFirewallIpsetRB},
         [Switch]
@@ -20065,6 +25109,22 @@ function Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}/{cidr}'
+        if (!$Cidr) {
+            throw "Error! The required parameter `Cidr` missing when calling removeNodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{cidr}', [System.Web.HTTPUtility]::UrlEncode($Cidr))
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeNodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling removeNodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $DELETENodesLxcFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -20097,6 +25157,15 @@ Delete rule.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Pos
+Update rule at position <pos>.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER DELETENodesLxcFirewallRulesRB
 Delete rule.
 
@@ -20112,6 +25181,15 @@ function Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesLxcFirewallRulesRB},
         [Switch]
@@ -20136,6 +25214,18 @@ function Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/rules/{pos}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesLxcFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling removeNodesLxcFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling removeNodesLxcFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $DELETENodesLxcFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -20168,6 +25258,15 @@ Delete a LXC snapshot.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Snapname
+The name of the snapshot.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER DELETENodesLxcSnapshotRB
 Delete a LXC snapshot.
 
@@ -20183,6 +25282,15 @@ function Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Snapname},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesLxcSnapshotRB},
         [Switch]
@@ -20207,6 +25315,18 @@ function Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/snapshot/{snapname}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesLxcSnapshotByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Snapname) {
+            throw "Error! The required parameter `Snapname` missing when calling removeNodesLxcSnapshotByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{snapname}', [System.Web.HTTPUtility]::UrlEncode($Snapname))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling removeNodesLxcSnapshotByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $DELETENodesLxcSnapshotRB | ConvertTo-Json -Depth 100
 
@@ -20239,6 +25359,9 @@ Revert network configuration changes.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20250,6 +25373,9 @@ None
 function Remove-PVENodesNetworkByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -20269,6 +25395,10 @@ function Remove-PVENodesNetworkByNode {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/network'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesNetworkByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -20299,6 +25429,12 @@ Delete network device configuration
 
 No description available.
 
+.PARAMETER Iface
+Network interface name.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20310,6 +25446,12 @@ None
 function Remove-PVENodesNetworkByNodeAndIface {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Iface},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -20329,6 +25471,14 @@ function Remove-PVENodesNetworkByNodeAndIface {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/network/{iface}'
+        if (!$Iface) {
+            throw "Error! The required parameter `Iface` missing when calling removeNodesNetworkByNodeAndIface."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{iface}', [System.Web.HTTPUtility]::UrlEncode($Iface))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesNetworkByNodeAndIface."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -20359,6 +25509,12 @@ Destroy the VM and  all used/owned volumes. Removes any VM specific permissions 
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER DELETENodesQemuRB
 Destroy the VM and  all used/owned volumes. Removes any VM specific permissions and firewall rules
 
@@ -20374,6 +25530,12 @@ function Remove-PVENodesQemuByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesQemuRB},
         [Switch]
@@ -20398,6 +25560,14 @@ function Remove-PVENodesQemuByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesQemuByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling removeNodesQemuByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $DELETENodesQemuRB | ConvertTo-Json -Depth 100
 
@@ -20430,6 +25600,15 @@ Remove IP or Network alias.
 
 No description available.
 
+.PARAMETER Name
+Alias name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER DELETENodesQemuFirewallAliasesRB
 Remove IP or Network alias.
 
@@ -20445,6 +25624,15 @@ function Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesQemuFirewallAliasesRB},
         [Switch]
@@ -20469,6 +25657,18 @@ function Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/aliases/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeNodesQemuFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesQemuFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling removeNodesQemuFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $DELETENodesQemuFirewallAliasesRB | ConvertTo-Json -Depth 100
 
@@ -20501,6 +25701,15 @@ Delete IPSet
 
 No description available.
 
+.PARAMETER Name
+IP set name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER DELETENodesQemuFirewallIpsetRB
 Delete IPSet
 
@@ -20516,6 +25725,15 @@ function Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesQemuFirewallIpsetRB},
         [Switch]
@@ -20540,6 +25758,18 @@ function Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeNodesQemuFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesQemuFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling removeNodesQemuFirewallIpsetByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $DELETENodesQemuFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -20572,6 +25802,18 @@ Remove IP or Network from IPSet.
 
 No description available.
 
+.PARAMETER Cidr
+Network/IP specification in CIDR format.
+
+.PARAMETER Name
+IP set name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER DELETENodesQemuFirewallIpsetRB
 Remove IP or Network from IPSet.
 
@@ -20587,6 +25829,18 @@ function Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Cidr},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesQemuFirewallIpsetRB},
         [Switch]
@@ -20611,6 +25865,22 @@ function Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}/{cidr}'
+        if (!$Cidr) {
+            throw "Error! The required parameter `Cidr` missing when calling removeNodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{cidr}', [System.Web.HTTPUtility]::UrlEncode($Cidr))
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeNodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling removeNodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $DELETENodesQemuFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -20643,6 +25913,15 @@ Delete rule.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Pos
+Update rule at position <pos>.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER DELETENodesQemuFirewallRulesRB
 Delete rule.
 
@@ -20658,6 +25937,15 @@ function Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesQemuFirewallRulesRB},
         [Switch]
@@ -20682,6 +25970,18 @@ function Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/rules/{pos}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesQemuFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling removeNodesQemuFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling removeNodesQemuFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $DELETENodesQemuFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -20714,6 +26014,15 @@ Delete a VM snapshot.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Snapname
+The name of the snapshot.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER DELETENodesQemuSnapshotRB
 Delete a VM snapshot.
 
@@ -20729,6 +26038,15 @@ function Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Snapname},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesQemuSnapshotRB},
         [Switch]
@@ -20753,6 +26071,18 @@ function Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/snapshot/{snapname}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesQemuSnapshotByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Snapname) {
+            throw "Error! The required parameter `Snapname` missing when calling removeNodesQemuSnapshotByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{snapname}', [System.Web.HTTPUtility]::UrlEncode($Snapname))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling removeNodesQemuSnapshotByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $DELETENodesQemuSnapshotRB | ConvertTo-Json -Depth 100
 
@@ -20785,6 +26115,15 @@ Delete volume
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
+.PARAMETER Volume
+Volume identifier
+
 .PARAMETER DELETENodesStorageContentRB
 Delete volume
 
@@ -20800,6 +26139,15 @@ function Remove-PVENodesStorageContentByNodeAndStorageAndVolume {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Volume},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesStorageContentRB},
         [Switch]
@@ -20824,6 +26172,18 @@ function Remove-PVENodesStorageContentByNodeAndStorageAndVolume {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/content/{volume}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesStorageContentByNodeAndStorageAndVolume."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling removeNodesStorageContentByNodeAndStorageAndVolume."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
+        if (!$Volume) {
+            throw "Error! The required parameter `Volume` missing when calling removeNodesStorageContentByNodeAndStorageAndVolume."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{volume}', [System.Web.HTTPUtility]::UrlEncode($Volume))
 
         $LocalVarBodyParameter = $DELETENodesStorageContentRB | ConvertTo-Json -Depth 100
 
@@ -20856,6 +26216,12 @@ Prune backups. Only those using the standard naming scheme are considered.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER DELETENodesStoragePrunebackupsRB
 Prune backups. Only those using the standard naming scheme are considered.
 
@@ -20871,6 +26237,12 @@ function Remove-PVENodesStoragePrunebackupsByNodeAndStorage {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETENodesStoragePrunebackupsRB},
         [Switch]
@@ -20895,6 +26267,14 @@ function Remove-PVENodesStoragePrunebackupsByNodeAndStorage {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/prunebackups'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesStoragePrunebackupsByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling removeNodesStoragePrunebackupsByNodeAndStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarBodyParameter = $DELETENodesStoragePrunebackupsRB | ConvertTo-Json -Depth 100
 
@@ -20927,6 +26307,9 @@ Delete subscription key of this node.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20938,6 +26321,9 @@ None
 function Remove-PVENodesSubscriptionByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -20957,6 +26343,10 @@ function Remove-PVENodesSubscriptionByNode {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/subscription'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesSubscriptionByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -20987,6 +26377,12 @@ Stop a task.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Upid
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -20998,6 +26394,12 @@ None
 function Remove-PVENodesTasksByNodeAndUpid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Upid},
         [Switch]
         $WithHttpInfo
     )
@@ -21017,6 +26419,14 @@ function Remove-PVENodesTasksByNodeAndUpid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/tasks/{upid}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeNodesTasksByNodeAndUpid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Upid) {
+            throw "Error! The required parameter `Upid` missing when calling removeNodesTasksByNodeAndUpid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{upid}', [System.Web.HTTPUtility]::UrlEncode($Upid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -21047,6 +26457,9 @@ Add a standard repository to the configuration
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER PUTNodesAptRepositoriesRB
 Add a standard repository to the configuration
 
@@ -21062,6 +26475,9 @@ function Set-PVENodesAptRepositoriesByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesAptRepositoriesRB},
         [Switch]
@@ -21086,6 +26502,10 @@ function Set-PVENodesAptRepositoriesByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/apt/repositories'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesAptRepositoriesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $PUTNodesAptRepositoriesRB | ConvertTo-Json -Depth 100
 
@@ -21118,6 +26538,12 @@ Change POOL settings
 
 No description available.
 
+.PARAMETER Name
+The name of the pool. It must be unique.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER PUTNodesCephPoolRB
 Change POOL settings
 
@@ -21133,6 +26559,12 @@ function Set-PVENodesCephPoolByNodeAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesCephPoolRB},
         [Switch]
@@ -21157,6 +26589,14 @@ function Set-PVENodesCephPoolByNodeAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/ceph/pool/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setNodesCephPoolByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesCephPoolByNodeAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $PUTNodesCephPoolRB | ConvertTo-Json -Depth 100
 
@@ -21189,6 +26629,9 @@ Renew existing certificate from CA.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER PUTNodesCertificatesAcmeCertificateRB
 Renew existing certificate from CA.
 
@@ -21204,6 +26647,9 @@ function Set-PVENodesCertificatesAcmeCertificateByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesCertificatesAcmeCertificateRB},
         [Switch]
@@ -21228,6 +26674,10 @@ function Set-PVENodesCertificatesAcmeCertificateByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/certificates/acme/certificate'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesCertificatesAcmeCertificateByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $PUTNodesCertificatesAcmeCertificateRB | ConvertTo-Json -Depth 100
 
@@ -21260,6 +26710,9 @@ Set node configuration options.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER PUTNodesConfigRB
 Set node configuration options.
 
@@ -21275,6 +26728,9 @@ function Set-PVENodesConfigByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesConfigRB},
         [Switch]
@@ -21299,6 +26755,10 @@ function Set-PVENodesConfigByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/config'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesConfigByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $PUTNodesConfigRB | ConvertTo-Json -Depth 100
 
@@ -21331,6 +26791,9 @@ Wipe a disk or partition.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER PUTNodesDisksWipediskRB
 Wipe a disk or partition.
 
@@ -21346,6 +26809,9 @@ function Set-PVENodesDisksWipediskByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesDisksWipediskRB},
         [Switch]
@@ -21370,6 +26836,10 @@ function Set-PVENodesDisksWipediskByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/disks/wipedisk'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesDisksWipediskByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $PUTNodesDisksWipediskRB | ConvertTo-Json -Depth 100
 
@@ -21402,6 +26872,9 @@ Write DNS settings.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER PUTNodesDnsRB
 Write DNS settings.
 
@@ -21417,6 +26890,9 @@ function Set-PVENodesDnsByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesDnsRB},
         [Switch]
@@ -21441,6 +26917,10 @@ function Set-PVENodesDnsByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/dns'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesDnsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $PUTNodesDnsRB | ConvertTo-Json -Depth 100
 
@@ -21473,6 +26953,9 @@ Set Firewall options.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER PUTNodesFirewallOptionsRB
 Set Firewall options.
 
@@ -21488,6 +26971,9 @@ function Set-PVENodesFirewallOptionsByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesFirewallOptionsRB},
         [Switch]
@@ -21512,6 +26998,10 @@ function Set-PVENodesFirewallOptionsByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/firewall/options'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesFirewallOptionsByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $PUTNodesFirewallOptionsRB | ConvertTo-Json -Depth 100
 
@@ -21544,6 +27034,12 @@ Modify rule data.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Pos
+Update rule at position <pos>.
+
 .PARAMETER PUTNodesFirewallRulesRB
 Modify rule data.
 
@@ -21559,6 +27055,12 @@ function Set-PVENodesFirewallRulesByNodeAndPos {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesFirewallRulesRB},
         [Switch]
@@ -21583,6 +27085,14 @@ function Set-PVENodesFirewallRulesByNodeAndPos {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/firewall/rules/{pos}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesFirewallRulesByNodeAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling setNodesFirewallRulesByNodeAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
 
         $LocalVarBodyParameter = $PUTNodesFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -21615,6 +27125,12 @@ Set container options.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesLxcConfigRB
 Set container options.
 
@@ -21630,6 +27146,12 @@ function Set-PVENodesLxcConfigByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesLxcConfigRB},
         [Switch]
@@ -21654,6 +27176,14 @@ function Set-PVENodesLxcConfigByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/config'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesLxcConfigByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesLxcConfigByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesLxcConfigRB | ConvertTo-Json -Depth 100
 
@@ -21686,6 +27216,15 @@ Update IP or Network alias.
 
 No description available.
 
+.PARAMETER Name
+Alias name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesLxcFirewallAliasesRB
 Update IP or Network alias.
 
@@ -21701,6 +27240,15 @@ function Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesLxcFirewallAliasesRB},
         [Switch]
@@ -21725,6 +27273,18 @@ function Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/aliases/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setNodesLxcFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesLxcFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesLxcFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesLxcFirewallAliasesRB | ConvertTo-Json -Depth 100
 
@@ -21757,6 +27317,18 @@ Update IP or Network settings
 
 No description available.
 
+.PARAMETER Cidr
+Network/IP specification in CIDR format.
+
+.PARAMETER Name
+IP set name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesLxcFirewallIpsetRB
 Update IP or Network settings
 
@@ -21772,6 +27344,18 @@ function Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Cidr},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesLxcFirewallIpsetRB},
         [Switch]
@@ -21796,6 +27380,22 @@ function Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}/{cidr}'
+        if (!$Cidr) {
+            throw "Error! The required parameter `Cidr` missing when calling setNodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{cidr}', [System.Web.HTTPUtility]::UrlEncode($Cidr))
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setNodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesLxcFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -21828,6 +27428,12 @@ Set Firewall options.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesLxcFirewallOptionsRB
 Set Firewall options.
 
@@ -21843,6 +27449,12 @@ function Set-PVENodesLxcFirewallOptionsByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesLxcFirewallOptionsRB},
         [Switch]
@@ -21867,6 +27479,14 @@ function Set-PVENodesLxcFirewallOptionsByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/options'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesLxcFirewallOptionsByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesLxcFirewallOptionsByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesLxcFirewallOptionsRB | ConvertTo-Json -Depth 100
 
@@ -21899,6 +27519,15 @@ Modify rule data.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Pos
+Update rule at position <pos>.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesLxcFirewallRulesRB
 Modify rule data.
 
@@ -21914,6 +27543,15 @@ function Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesLxcFirewallRulesRB},
         [Switch]
@@ -21938,6 +27576,18 @@ function Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/firewall/rules/{pos}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesLxcFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling setNodesLxcFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesLxcFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesLxcFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -21970,6 +27620,12 @@ Resize a container mount point.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesLxcResizeRB
 Resize a container mount point.
 
@@ -21985,6 +27641,12 @@ function Set-PVENodesLxcResizeByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesLxcResizeRB},
         [Switch]
@@ -22009,6 +27671,14 @@ function Set-PVENodesLxcResizeByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/resize'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesLxcResizeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesLxcResizeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesLxcResizeRB | ConvertTo-Json -Depth 100
 
@@ -22041,6 +27711,15 @@ Update snapshot metadata.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Snapname
+The name of the snapshot.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesLxcSnapshotConfigRB
 Update snapshot metadata.
 
@@ -22056,6 +27735,15 @@ function Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Snapname},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesLxcSnapshotConfigRB},
         [Switch]
@@ -22080,6 +27768,18 @@ function Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesLxcSnapshotConfigByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Snapname) {
+            throw "Error! The required parameter `Snapname` missing when calling setNodesLxcSnapshotConfigByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{snapname}', [System.Web.HTTPUtility]::UrlEncode($Snapname))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesLxcSnapshotConfigByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesLxcSnapshotConfigRB | ConvertTo-Json -Depth 100
 
@@ -22112,6 +27812,9 @@ Reload network configuration
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -22123,6 +27826,9 @@ None
 function Set-PVENodesNetworkByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -22142,6 +27848,10 @@ function Set-PVENodesNetworkByNode {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/network'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesNetworkByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -22172,6 +27882,12 @@ Update network device configuration
 
 No description available.
 
+.PARAMETER Iface
+Network interface name.
+
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER PUTNodesNetworkRB
 Update network device configuration
 
@@ -22187,6 +27903,12 @@ function Set-PVENodesNetworkByNodeAndIface {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Iface},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesNetworkRB},
         [Switch]
@@ -22211,6 +27933,14 @@ function Set-PVENodesNetworkByNodeAndIface {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/network/{iface}'
+        if (!$Iface) {
+            throw "Error! The required parameter `Iface` missing when calling setNodesNetworkByNodeAndIface."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{iface}', [System.Web.HTTPUtility]::UrlEncode($Iface))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesNetworkByNodeAndIface."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $PUTNodesNetworkRB | ConvertTo-Json -Depth 100
 
@@ -22243,6 +27973,12 @@ Regenerate and change cloudinit config drive.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -22254,6 +27990,12 @@ None
 function Set-PVENodesQemuCloudinitByNodeAndVmid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
         [Switch]
         $WithHttpInfo
     )
@@ -22273,6 +28015,14 @@ function Set-PVENodesQemuCloudinitByNodeAndVmid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/cloudinit'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesQemuCloudinitByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesQemuCloudinitByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `
@@ -22303,6 +28053,12 @@ Set virtual machine options (synchronous API) - You should consider using the PO
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesQemuConfigRB
 Set virtual machine options (synchronous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation.
 
@@ -22318,6 +28074,12 @@ function Set-PVENodesQemuConfigByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesQemuConfigRB},
         [Switch]
@@ -22342,6 +28104,14 @@ function Set-PVENodesQemuConfigByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/config'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesQemuConfigByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesQemuConfigByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesQemuConfigRB | ConvertTo-Json -Depth 100
 
@@ -22374,6 +28144,15 @@ Update IP or Network alias.
 
 No description available.
 
+.PARAMETER Name
+Alias name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesQemuFirewallAliasesRB
 Update IP or Network alias.
 
@@ -22389,6 +28168,15 @@ function Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesQemuFirewallAliasesRB},
         [Switch]
@@ -22413,6 +28201,18 @@ function Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/aliases/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setNodesQemuFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesQemuFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesQemuFirewallAliasesByNodeAndVmidAndName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesQemuFirewallAliasesRB | ConvertTo-Json -Depth 100
 
@@ -22445,6 +28245,18 @@ Update IP or Network settings
 
 No description available.
 
+.PARAMETER Cidr
+Network/IP specification in CIDR format.
+
+.PARAMETER Name
+IP set name.
+
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesQemuFirewallIpsetRB
 Update IP or Network settings
 
@@ -22460,6 +28272,18 @@ function Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Cidr},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesQemuFirewallIpsetRB},
         [Switch]
@@ -22484,6 +28308,22 @@ function Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}/{cidr}'
+        if (!$Cidr) {
+            throw "Error! The required parameter `Cidr` missing when calling setNodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{cidr}', [System.Web.HTTPUtility]::UrlEncode($Cidr))
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setNodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesQemuFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -22516,6 +28356,12 @@ Set Firewall options.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesQemuFirewallOptionsRB
 Set Firewall options.
 
@@ -22531,6 +28377,12 @@ function Set-PVENodesQemuFirewallOptionsByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesQemuFirewallOptionsRB},
         [Switch]
@@ -22555,6 +28407,14 @@ function Set-PVENodesQemuFirewallOptionsByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/options'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesQemuFirewallOptionsByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesQemuFirewallOptionsByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesQemuFirewallOptionsRB | ConvertTo-Json -Depth 100
 
@@ -22587,6 +28447,15 @@ Modify rule data.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Pos
+Update rule at position <pos>.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesQemuFirewallRulesRB
 Modify rule data.
 
@@ -22602,6 +28471,15 @@ function Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesQemuFirewallRulesRB},
         [Switch]
@@ -22626,6 +28504,18 @@ function Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/firewall/rules/{pos}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesQemuFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling setNodesQemuFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesQemuFirewallRulesByNodeAndVmidAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesQemuFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -22658,6 +28548,12 @@ Extend volume size.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesQemuResizeRB
 Extend volume size.
 
@@ -22673,6 +28569,12 @@ function Set-PVENodesQemuResizeByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesQemuResizeRB},
         [Switch]
@@ -22697,6 +28599,14 @@ function Set-PVENodesQemuResizeByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/resize'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesQemuResizeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesQemuResizeByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesQemuResizeRB | ConvertTo-Json -Depth 100
 
@@ -22729,6 +28639,12 @@ Send key event to virtual machine.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesQemuSendkeyRB
 Send key event to virtual machine.
 
@@ -22744,6 +28660,12 @@ function Set-PVENodesQemuSendkeyByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesQemuSendkeyRB},
         [Switch]
@@ -22768,6 +28690,14 @@ function Set-PVENodesQemuSendkeyByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/sendkey'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesQemuSendkeyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesQemuSendkeyByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesQemuSendkeyRB | ConvertTo-Json -Depth 100
 
@@ -22800,6 +28730,15 @@ Update snapshot metadata.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Snapname
+The name of the snapshot.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesQemuSnapshotConfigRB
 Update snapshot metadata.
 
@@ -22815,6 +28754,15 @@ function Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Snapname},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesQemuSnapshotConfigRB},
         [Switch]
@@ -22839,6 +28787,18 @@ function Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesQemuSnapshotConfigByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Snapname) {
+            throw "Error! The required parameter `Snapname` missing when calling setNodesQemuSnapshotConfigByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{snapname}', [System.Web.HTTPUtility]::UrlEncode($Snapname))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesQemuSnapshotConfigByNodeAndVmidAndSnapname."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesQemuSnapshotConfigRB | ConvertTo-Json -Depth 100
 
@@ -22871,6 +28831,12 @@ Unlink/delete disk images.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Vmid
+The (unique) ID of the VM.
+
 .PARAMETER PUTNodesQemuUnlinkRB
 Unlink/delete disk images.
 
@@ -22886,6 +28852,12 @@ function Set-PVENodesQemuUnlinkByNodeAndVmid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Vmid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesQemuUnlinkRB},
         [Switch]
@@ -22910,6 +28882,14 @@ function Set-PVENodesQemuUnlinkByNodeAndVmid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/qemu/{vmid}/unlink'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesQemuUnlinkByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Vmid) {
+            throw "Error! The required parameter `Vmid` missing when calling setNodesQemuUnlinkByNodeAndVmid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vmid}', [System.Web.HTTPUtility]::UrlEncode($Vmid))
 
         $LocalVarBodyParameter = $PUTNodesQemuUnlinkRB | ConvertTo-Json -Depth 100
 
@@ -22942,6 +28922,15 @@ Update volume attributes
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
+.PARAMETER Storage
+The storage identifier.
+
+.PARAMETER Volume
+Volume identifier
+
 .PARAMETER PUTNodesStorageContentRB
 Update volume attributes
 
@@ -22957,6 +28946,15 @@ function Set-PVENodesStorageContentByNodeAndStorageAndVolume {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Volume},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesStorageContentRB},
         [Switch]
@@ -22981,6 +28979,18 @@ function Set-PVENodesStorageContentByNodeAndStorageAndVolume {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/storage/{storage}/content/{volume}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesStorageContentByNodeAndStorageAndVolume."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling setNodesStorageContentByNodeAndStorageAndVolume."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
+        if (!$Volume) {
+            throw "Error! The required parameter `Volume` missing when calling setNodesStorageContentByNodeAndStorageAndVolume."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{volume}', [System.Web.HTTPUtility]::UrlEncode($Volume))
 
         $LocalVarBodyParameter = $PUTNodesStorageContentRB | ConvertTo-Json -Depth 100
 
@@ -23013,6 +29023,9 @@ Set subscription key.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER PUTNodesSubscriptionRB
 Set subscription key.
 
@@ -23028,6 +29041,9 @@ function Set-PVENodesSubscriptionByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesSubscriptionRB},
         [Switch]
@@ -23052,6 +29068,10 @@ function Set-PVENodesSubscriptionByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/subscription'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesSubscriptionByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $PUTNodesSubscriptionRB | ConvertTo-Json -Depth 100
 
@@ -23084,6 +29104,9 @@ Set time zone.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER PUTNodesTimeRB
 Set time zone.
 
@@ -23099,6 +29122,9 @@ function Set-PVENodesTimeByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTNodesTimeRB},
         [Switch]
@@ -23123,6 +29149,10 @@ function Set-PVENodesTimeByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/nodes/{node}/time'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling setNodesTimeByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $PUTNodesTimeRB | ConvertTo-Json -Depth 100
 

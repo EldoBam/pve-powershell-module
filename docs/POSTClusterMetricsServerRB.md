@@ -3,43 +3,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Organization** | **String** |  | [optional] 
-**Token** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Influxdbproto** | **String** |  | [optional] 
+**Path** | **String** |  | [optional] 
 **Bucket** | **String** |  | [optional] 
+**Token** | **String** |  | [optional] 
+**Influxdbproto** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
 **MaxBodySize** | **Int32** |  | [optional] 
+**ApiPathPrefix** | **String** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
+**Organization** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **VerifyCertificate** | **Int32** |  | [optional] 
 **Disable** | **Int32** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Timeout** | **Int32** |  | [optional] 
-**Server** | **String** |  | [optional] 
 **Mtu** | **Int32** |  | [optional] 
-**ApiPathPrefix** | **String** |  | [optional] 
-**Path** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterMetricsServerRB = Initialize-PVEPOSTClusterMetricsServerRB  -Organization null `
- -Token null `
- -Port null `
- -Id null `
- -Influxdbproto null `
+$POSTClusterMetricsServerRB = Initialize-PVEPOSTClusterMetricsServerRB  -Path null `
  -Bucket null `
+ -Token null `
+ -Influxdbproto null `
+ -Server null `
  -MaxBodySize null `
+ -ApiPathPrefix null `
+ -Timeout null `
+ -Organization null `
+ -Proto null `
+ -Id null `
+ -Port null `
+ -Type null `
  -VerifyCertificate null `
  -Disable null `
- -Proto null `
- -Timeout null `
- -Server null `
- -Mtu null `
- -ApiPathPrefix null `
- -Path null `
- -Type null
+ -Mtu null
 ```
 
 - Convert the resource to JSON

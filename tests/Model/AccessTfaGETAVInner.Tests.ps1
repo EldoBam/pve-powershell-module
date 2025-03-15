@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEAccessTfaGETAVInner' {
     Context 'PVEAccessTfaGETAVInner' {
         It 'Initialize-PVEAccessTfaGETAVInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEAccessTfaGETAVInner -Type "TEST_VALUE" -Description "TEST_VALUE" -Id "TEST_VALUE" -Created "TEST_VALUE" -Enable "TEST_VALUE"
+            #$NewObject = Initialize-PVEAccessTfaGETAVInner -Id "TEST_VALUE" -Enable "TEST_VALUE" -Type "TEST_VALUE" -Created "TEST_VALUE" -Description "TEST_VALUE"
             #$NewObject | Should -BeOfType AccessTfaGETAVInner
             #$NewObject.property | Should -Be 0
         }

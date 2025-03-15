@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Skipsmart** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **IncludePartitions** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesDisksListRB = Initialize-PVEGETNodesDisksListRB  -Node null `
- -Skipsmart null `
- -Type null `
- -IncludePartitions null
+$GETNodesDisksListRB = Initialize-PVEGETNodesDisksListRB  -Skipsmart null `
+ -Node null `
+ -IncludePartitions null `
+ -Type null
 ```
 
 - Convert the resource to JSON

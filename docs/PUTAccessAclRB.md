@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Groups** | **String** |  | [optional] 
-**Delete** | **Int32** |  | [optional] 
 **Users** | **String** |  | [optional] 
-**Roles** | **String** |  | [optional] 
 **Propagate** | **Int32** |  | [optional] 
 **Path** | **String** |  | [optional] 
+**Delete** | **Int32** |  | [optional] 
+**Roles** | **String** |  | [optional] 
+**Groups** | **String** |  | [optional] 
 **Tokens** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTAccessAclRB = Initialize-PVEPUTAccessAclRB  -Groups null `
- -Delete null `
- -Users null `
- -Roles null `
+$PUTAccessAclRB = Initialize-PVEPUTAccessAclRB  -Users null `
  -Propagate null `
  -Path null `
+ -Delete null `
+ -Roles null `
+ -Groups null `
  -Tokens null
 ```
 

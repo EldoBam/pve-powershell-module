@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesLxcMigrateRB' {
     Context 'PVEPOSTNodesLxcMigrateRB' {
         It 'Initialize-PVEPOSTNodesLxcMigrateRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesLxcMigrateRB -Vmid "TEST_VALUE" -Node "TEST_VALUE" -Restart "TEST_VALUE" -Bwlimit "TEST_VALUE" -Target "TEST_VALUE" -TargetStorage "TEST_VALUE" -Online "TEST_VALUE" -Timeout "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesLxcMigrateRB -Timeout "TEST_VALUE" -Target "TEST_VALUE" -Bwlimit "TEST_VALUE" -Vmid "TEST_VALUE" -Node "TEST_VALUE" -TargetStorage "TEST_VALUE" -Restart "TEST_VALUE" -Online "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesLxcMigrateRB
             #$NewObject.property | Should -Be 0
         }

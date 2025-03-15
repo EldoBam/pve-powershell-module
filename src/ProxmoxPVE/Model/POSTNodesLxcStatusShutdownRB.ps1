@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
-.PARAMETER Timeout
-No description available.
 .PARAMETER Vmid
 No description available.
+.PARAMETER Node
+No description available.
 .PARAMETER ForceStop
+No description available.
+.PARAMETER Timeout
 No description available.
 .OUTPUTS
 
@@ -32,17 +32,17 @@ function Initialize-PVEPOSTNodesLxcStatusShutdownRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Timeout},
+        ${ForceStop},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${ForceStop}
+        ${Timeout}
     )
 
     Process {
@@ -67,7 +67,7 @@ function Initialize-PVEPOSTNodesLxcStatusShutdownRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Timeout"="timeout"; "Vmid"="vmid"; "ForceStop"="forceStop"
+			"Vmid"="vmid"; "Node"="node"; "ForceStop"="forceStop"; "Timeout"="timeout"
         }
 		
 		 $OBJ = @{}
@@ -113,23 +113,11 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcStatusShutdownRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesLxcStatusShutdownRB
-        $AllProperties = ("node", "timeout", "vmid", "forceStop")
+        $AllProperties = ("vmid", "node", "forceStop", "timeout")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
-            $Timeout = $null
-        } else {
-            $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
@@ -138,17 +126,29 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcStatusShutdownRB {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "forceStop"))) { #optional property not found
             $ForceStop = $null
         } else {
             $ForceStop = $JsonParameters.PSobject.Properties["forceStop"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
+            $Timeout = $null
+        } else {
+            $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
-            "timeout" = ${Timeout}
             "vmid" = ${Vmid}
+            "node" = ${Node}
             "forceStop" = ${ForceStop}
+            "timeout" = ${Timeout}
         }
 
         return $PSO

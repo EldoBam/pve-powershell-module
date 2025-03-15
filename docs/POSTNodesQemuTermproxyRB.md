@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Node** | **String** |  | [optional] 
-**Serial** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Serial** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTNodesQemuTermproxyRB = Initialize-PVEPOSTNodesQemuTermproxyRB  -Node null `
- -Serial null `
- -Vmid null
+ -Vmid null `
+ -Serial null
 ```
 
 - Convert the resource to JSON

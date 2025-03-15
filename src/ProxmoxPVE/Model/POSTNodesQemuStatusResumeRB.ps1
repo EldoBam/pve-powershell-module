@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
-.PARAMETER Skiplock
-No description available.
 .PARAMETER Nocheck
 No description available.
+.PARAMETER Node
+No description available.
 .PARAMETER Vmid
+No description available.
+.PARAMETER Skiplock
 No description available.
 .OUTPUTS
 
@@ -32,30 +32,22 @@ function Initialize-PVEPOSTNodesQemuStatusResumeRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Nocheck},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Skiplock},
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Nocheck},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid}
+        ${Skiplock}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesQemuStatusResumeRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Skiplock -and $Skiplock -gt 1) {
-          throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
-        }
-
-        if ($Skiplock -and $Skiplock -lt 0) {
-          throw "invalid value for 'Skiplock', must be greater than or equal to 0."
-        }
 
         if ($Nocheck -and $Nocheck -gt 1) {
           throw "invalid value for 'Nocheck', must be smaller than or equal to 1."
@@ -73,9 +65,17 @@ function Initialize-PVEPOSTNodesQemuStatusResumeRB {
           throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
+        if ($Skiplock -and $Skiplock -gt 1) {
+          throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
+        }
+
+        if ($Skiplock -and $Skiplock -lt 0) {
+          throw "invalid value for 'Skiplock', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Skiplock"="skiplock"; "Nocheck"="nocheck"; "Vmid"="vmid"
+			"Nocheck"="nocheck"; "Node"="node"; "Vmid"="vmid"; "Skiplock"="skiplock"
         }
 		
 		 $OBJ = @{}
@@ -121,23 +121,11 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusResumeRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuStatusResumeRB
-        $AllProperties = ("node", "skiplock", "nocheck", "vmid")
+        $AllProperties = ("nocheck", "node", "vmid", "skiplock")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
-            $Skiplock = $null
-        } else {
-            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "nocheck"))) { #optional property not found
@@ -146,17 +134,29 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusResumeRB {
             $Nocheck = $JsonParameters.PSobject.Properties["nocheck"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
+            $Skiplock = $null
+        } else {
+            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
-            "skiplock" = ${Skiplock}
             "nocheck" = ${Nocheck}
+            "node" = ${Node}
             "vmid" = ${Vmid}
+            "skiplock" = ${Skiplock}
         }
 
         return $PSO

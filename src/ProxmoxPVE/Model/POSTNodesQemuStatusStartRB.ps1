@@ -15,27 +15,27 @@ No summary available.
 
 No description available.
 
-.PARAMETER Timeout
-No description available.
-.PARAMETER ForceCpu
-No description available.
-.PARAMETER Migratedfrom
-No description available.
 .PARAMETER MigrationType
 No description available.
-.PARAMETER Node
-No description available.
-.PARAMETER Skiplock
-No description available.
-.PARAMETER Stateuri
+.PARAMETER Timeout
 No description available.
 .PARAMETER Targetstorage
 No description available.
-.PARAMETER MigrationNetwork
+.PARAMETER Node
 No description available.
 .PARAMETER Vmid
 No description available.
+.PARAMETER Migratedfrom
+No description available.
+.PARAMETER Stateuri
+No description available.
+.PARAMETER ForceCpu
+No description available.
 .PARAMETER Machine
+No description available.
+.PARAMETER MigrationNetwork
+No description available.
+.PARAMETER Skiplock
 No description available.
 .OUTPUTS
 
@@ -46,56 +46,44 @@ function Initialize-PVEPOSTNodesQemuStatusStartRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Timeout},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${ForceCpu},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Migratedfrom},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("secure", "insecure")]
         [String]
         ${MigrationType},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Skiplock},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Stateuri},
+        ${Timeout},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Targetstorage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${MigrationNetwork},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Machine}
+        ${Migratedfrom},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Stateuri},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${ForceCpu},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Machine},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${MigrationNetwork},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Skiplock}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesQemuStatusStartRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Skiplock -and $Skiplock -gt 1) {
-          throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
-        }
-
-        if ($Skiplock -and $Skiplock -lt 0) {
-          throw "invalid value for 'Skiplock', must be greater than or equal to 0."
-        }
-
-        if (!$Stateuri -and $Stateuri.length -gt 128) {
-            throw "invalid value for 'Stateuri', the character length must be smaller than or equal to 128."
-        }
 
         if ($Vmid -and $Vmid -gt 999999999) {
           throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
@@ -105,9 +93,21 @@ function Initialize-PVEPOSTNodesQemuStatusStartRB {
           throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
+        if (!$Stateuri -and $Stateuri.length -gt 128) {
+            throw "invalid value for 'Stateuri', the character length must be smaller than or equal to 128."
+        }
+
+        if ($Skiplock -and $Skiplock -gt 1) {
+          throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
+        }
+
+        if ($Skiplock -and $Skiplock -lt 0) {
+          throw "invalid value for 'Skiplock', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Timeout"="timeout"; "ForceCpu"="force-cpu"; "Migratedfrom"="migratedfrom"; "MigrationType"="migration_type"; "Node"="node"; "Skiplock"="skiplock"; "Stateuri"="stateuri"; "Targetstorage"="targetstorage"; "MigrationNetwork"="migration_network"; "Vmid"="vmid"; "Machine"="machine"
+			"MigrationType"="migration_type"; "Timeout"="timeout"; "Targetstorage"="targetstorage"; "Node"="node"; "Vmid"="vmid"; "Migratedfrom"="migratedfrom"; "Stateuri"="stateuri"; "ForceCpu"="force-cpu"; "Machine"="machine"; "MigrationNetwork"="migration_network"; "Skiplock"="skiplock"
         }
 		
 		 $OBJ = @{}
@@ -153,29 +153,11 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusStartRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuStatusStartRB
-        $AllProperties = ("timeout", "force-cpu", "migratedfrom", "migration_type", "node", "skiplock", "stateuri", "targetstorage", "migration_network", "vmid", "machine")
+        $AllProperties = ("migration_type", "timeout", "targetstorage", "node", "vmid", "migratedfrom", "stateuri", "force-cpu", "machine", "migration_network", "skiplock")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
-            $Timeout = $null
-        } else {
-            $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force-cpu"))) { #optional property not found
-            $ForceCpu = $null
-        } else {
-            $ForceCpu = $JsonParameters.PSobject.Properties["force-cpu"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "migratedfrom"))) { #optional property not found
-            $Migratedfrom = $null
-        } else {
-            $Migratedfrom = $JsonParameters.PSobject.Properties["migratedfrom"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "migration_type"))) { #optional property not found
@@ -184,22 +166,10 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusStartRB {
             $MigrationType = $JsonParameters.PSobject.Properties["migration_type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
+            $Timeout = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
-            $Skiplock = $null
-        } else {
-            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stateuri"))) { #optional property not found
-            $Stateuri = $null
-        } else {
-            $Stateuri = $JsonParameters.PSobject.Properties["stateuri"].value
+            $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "targetstorage"))) { #optional property not found
@@ -208,10 +178,10 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusStartRB {
             $Targetstorage = $JsonParameters.PSobject.Properties["targetstorage"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "migration_network"))) { #optional property not found
-            $MigrationNetwork = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
         } else {
-            $MigrationNetwork = $JsonParameters.PSobject.Properties["migration_network"].value
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
@@ -220,24 +190,54 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusStartRB {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "migratedfrom"))) { #optional property not found
+            $Migratedfrom = $null
+        } else {
+            $Migratedfrom = $JsonParameters.PSobject.Properties["migratedfrom"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stateuri"))) { #optional property not found
+            $Stateuri = $null
+        } else {
+            $Stateuri = $JsonParameters.PSobject.Properties["stateuri"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force-cpu"))) { #optional property not found
+            $ForceCpu = $null
+        } else {
+            $ForceCpu = $JsonParameters.PSobject.Properties["force-cpu"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "machine"))) { #optional property not found
             $Machine = $null
         } else {
             $Machine = $JsonParameters.PSobject.Properties["machine"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "migration_network"))) { #optional property not found
+            $MigrationNetwork = $null
+        } else {
+            $MigrationNetwork = $JsonParameters.PSobject.Properties["migration_network"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
+            $Skiplock = $null
+        } else {
+            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "timeout" = ${Timeout}
-            "force-cpu" = ${ForceCpu}
-            "migratedfrom" = ${Migratedfrom}
             "migration_type" = ${MigrationType}
-            "node" = ${Node}
-            "skiplock" = ${Skiplock}
-            "stateuri" = ${Stateuri}
+            "timeout" = ${Timeout}
             "targetstorage" = ${Targetstorage}
-            "migration_network" = ${MigrationNetwork}
+            "node" = ${Node}
             "vmid" = ${Vmid}
+            "migratedfrom" = ${Migratedfrom}
+            "stateuri" = ${Stateuri}
+            "force-cpu" = ${ForceCpu}
             "machine" = ${Machine}
+            "migration_network" = ${MigrationNetwork}
+            "skiplock" = ${Skiplock}
         }
 
         return $PSO

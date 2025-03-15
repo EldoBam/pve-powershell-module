@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Force** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**WithLocalDisks** | **Int32** |  | [optional] 
 **MigrationType** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
 **Bwlimit** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 **Target** | **String** |  | [optional] 
-**MigrationNetwork** | **String** |  | [optional] 
-**Online** | **Int32** |  | [optional] 
 **Targetstorage** | **String** |  | [optional] 
+**Force** | **Int32** |  | [optional] 
+**MigrationNetwork** | **String** |  | [optional] 
+**WithLocalDisks** | **Int32** |  | [optional] 
+**Online** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuMigrateRB = Initialize-PVEPOSTNodesQemuMigrateRB  -Force null `
- -Vmid null `
- -WithLocalDisks null `
- -MigrationType null `
+$POSTNodesQemuMigrateRB = Initialize-PVEPOSTNodesQemuMigrateRB  -MigrationType null `
  -Node null `
  -Bwlimit null `
+ -Vmid null `
  -Target null `
+ -Targetstorage null `
+ -Force null `
  -MigrationNetwork null `
- -Online null `
- -Targetstorage null
+ -WithLocalDisks null `
+ -Online null
 ```
 
 - Convert the resource to JSON

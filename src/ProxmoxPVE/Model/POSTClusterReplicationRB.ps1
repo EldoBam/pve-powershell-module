@@ -15,23 +15,23 @@ No summary available.
 
 No description available.
 
-.PARAMETER Source
+.PARAMETER Comment
 No description available.
 .PARAMETER Id
 No description available.
 .PARAMETER Type
 No description available.
-.PARAMETER Disable
-No description available.
-.PARAMETER Comment
+.PARAMETER Rate
 No description available.
 .PARAMETER RemoveJob
 No description available.
 .PARAMETER Target
 No description available.
-.PARAMETER Rate
+.PARAMETER Source
 No description available.
 .PARAMETER Schedule
+No description available.
+.PARAMETER Disable
 No description available.
 .OUTPUTS
 
@@ -43,7 +43,7 @@ function Initialize-PVEPOSTClusterReplicationRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Source},
+        ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[1-9][0-9]{2,8}-\d{1,9}")]
         [String]
@@ -53,11 +53,8 @@ function Initialize-PVEPOSTClusterReplicationRB {
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
+        [System.Nullable[Decimal]]
+        ${Rate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("local", "full")]
         [String]
@@ -66,24 +63,19 @@ function Initialize-PVEPOSTClusterReplicationRB {
         [String]
         ${Target},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${Rate},
+        [String]
+        ${Source},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Schedule}
+        ${Schedule},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Disable}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTClusterReplicationRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Disable -and $Disable -gt 1) {
-          throw "invalid value for 'Disable', must be smaller than or equal to 1."
-        }
-
-        if ($Disable -and $Disable -lt 0) {
-          throw "invalid value for 'Disable', must be greater than or equal to 0."
-        }
 
         if (!$Comment -and $Comment.length -gt 4096) {
             throw "invalid value for 'Comment', the character length must be smaller than or equal to 4096."
@@ -97,9 +89,17 @@ function Initialize-PVEPOSTClusterReplicationRB {
             throw "invalid value for 'Schedule', the character length must be smaller than or equal to 128."
         }
 
+        if ($Disable -and $Disable -gt 1) {
+          throw "invalid value for 'Disable', must be smaller than or equal to 1."
+        }
+
+        if ($Disable -and $Disable -lt 0) {
+          throw "invalid value for 'Disable', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Source"="source"; "Id"="id"; "Type"="type"; "Disable"="disable"; "Comment"="comment"; "RemoveJob"="remove_job"; "Target"="target"; "Rate"="rate"; "Schedule"="schedule"
+			"Comment"="comment"; "Id"="id"; "Type"="type"; "Rate"="rate"; "RemoveJob"="remove_job"; "Target"="target"; "Source"="source"; "Schedule"="schedule"; "Disable"="disable"
         }
 		
 		 $OBJ = @{}
@@ -145,17 +145,17 @@ function ConvertFrom-PVEJsonToPOSTClusterReplicationRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterReplicationRB
-        $AllProperties = ("source", "id", "type", "disable", "comment", "remove_job", "target", "rate", "schedule")
+        $AllProperties = ("comment", "id", "type", "rate", "remove_job", "target", "source", "schedule", "disable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
-            $Source = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
         } else {
-            $Source = $JsonParameters.PSobject.Properties["source"].value
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -170,16 +170,10 @@ function ConvertFrom-PVEJsonToPOSTClusterReplicationRB {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rate"))) { #optional property not found
+            $Rate = $null
         } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+            $Rate = $JsonParameters.PSobject.Properties["rate"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove_job"))) { #optional property not found
@@ -194,10 +188,10 @@ function ConvertFrom-PVEJsonToPOSTClusterReplicationRB {
             $Target = $JsonParameters.PSobject.Properties["target"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rate"))) { #optional property not found
-            $Rate = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
+            $Source = $null
         } else {
-            $Rate = $JsonParameters.PSobject.Properties["rate"].value
+            $Source = $JsonParameters.PSobject.Properties["source"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "schedule"))) { #optional property not found
@@ -206,16 +200,22 @@ function ConvertFrom-PVEJsonToPOSTClusterReplicationRB {
             $Schedule = $JsonParameters.PSobject.Properties["schedule"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
+        } else {
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "source" = ${Source}
+            "comment" = ${Comment}
             "id" = ${Id}
             "type" = ${Type}
-            "disable" = ${Disable}
-            "comment" = ${Comment}
+            "rate" = ${Rate}
             "remove_job" = ${RemoveJob}
             "target" = ${Target}
-            "rate" = ${Rate}
+            "source" = ${Source}
             "schedule" = ${Schedule}
+            "disable" = ${Disable}
         }
 
         return $PSO

@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 **Version** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesAptChangelogRB = Initialize-PVEGETNodesAptChangelogRB  -Node null `
- -Name null `
- -Version null
+$GETNodesAptChangelogRB = Initialize-PVEGETNodesAptChangelogRB  -Name null `
+ -Version null `
+ -Node null
 ```
 
 - Convert the resource to JSON

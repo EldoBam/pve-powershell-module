@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Force** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
 **Purge** | **Int32** |  | [optional] 
-**Force** | **Int32** |  | [optional] 
 **DestroyUnreferencedDisks** | **Int32** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$DELETENodesLxcRB = Initialize-PVEDELETENodesLxcRB  -Node null `
+$DELETENodesLxcRB = Initialize-PVEDELETENodesLxcRB  -Force null `
+ -Node null `
  -Purge null `
- -Force null `
  -DestroyUnreferencedDisks null `
  -Vmid null
 ```

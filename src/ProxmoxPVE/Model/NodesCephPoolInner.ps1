@@ -15,39 +15,39 @@ No summary available.
 
 No description available.
 
-.PARAMETER ApplicationMetadata
-No description available.
-.PARAMETER CrushRuleName
-No description available.
-.PARAMETER AutoscaleStatus
+.PARAMETER CrushRule
 No description available.
 .PARAMETER BytesUsed
 No description available.
-.PARAMETER TargetSizeRatio
-No description available.
-.PARAMETER MinSize
-No description available.
-.PARAMETER PercentUsed
+.PARAMETER ApplicationMetadata
 No description available.
 .PARAMETER PgNum
 No description available.
-.PARAMETER PoolName
-No description available.
-.PARAMETER PgNumMin
-No description available.
-.PARAMETER CrushRule
-No description available.
 .PARAMETER PgNumFinal
+No description available.
+.PARAMETER CrushRuleName
+No description available.
+.PARAMETER Pool
+No description available.
+.PARAMETER MinSize
 No description available.
 .PARAMETER Size
 No description available.
+.PARAMETER PercentUsed
+No description available.
+.PARAMETER PoolName
+No description available.
+.PARAMETER TargetSizeRatio
+No description available.
+.PARAMETER AutoscaleStatus
+No description available.
 .PARAMETER Type
+No description available.
+.PARAMETER PgNumMin
 No description available.
 .PARAMETER TargetSize
 No description available.
 .PARAMETER PgAutoscaleMode
-No description available.
-.PARAMETER Pool
 No description available.
 .OUTPUTS
 
@@ -58,57 +58,57 @@ function Initialize-PVENodesCephPoolInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${ApplicationMetadata},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${CrushRuleName},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${AutoscaleStatus},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${BytesUsed},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${TargetSizeRatio},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${MinSize},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${PercentUsed},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${PgNum},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${PoolName},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${PgNumMin},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${CrushRule},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
+        ${BytesUsed},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${ApplicationMetadata},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${PgNum},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
         ${PgNumFinal},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${CrushRuleName},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Pool},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${MinSize},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Size},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Decimal]]
+        ${PercentUsed},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${PoolName},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Decimal]]
+        ${TargetSizeRatio},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${AutoscaleStatus},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("replicated", "erasure", "unknown")]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
+        ${PgNumMin},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
         ${TargetSize},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${PgAutoscaleMode},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Pool}
+        ${PgAutoscaleMode}
     )
 
     Process {
@@ -117,7 +117,7 @@ function Initialize-PVENodesCephPoolInner {
 
 
 		 $DisplayNameMapping =@{
-			"ApplicationMetadata"="application_metadata"; "CrushRuleName"="crush_rule_name"; "AutoscaleStatus"="autoscale_status"; "BytesUsed"="bytes_used"; "TargetSizeRatio"="target_size_ratio"; "MinSize"="min_size"; "PercentUsed"="percent_used"; "PgNum"="pg_num"; "PoolName"="pool_name"; "PgNumMin"="pg_num_min"; "CrushRule"="crush_rule"; "PgNumFinal"="pg_num_final"; "Size"="size"; "Type"="type"; "TargetSize"="target_size"; "PgAutoscaleMode"="pg_autoscale_mode"; "Pool"="pool"
+			"CrushRule"="crush_rule"; "BytesUsed"="bytes_used"; "ApplicationMetadata"="application_metadata"; "PgNum"="pg_num"; "PgNumFinal"="pg_num_final"; "CrushRuleName"="crush_rule_name"; "Pool"="pool"; "MinSize"="min_size"; "Size"="size"; "PercentUsed"="percent_used"; "PoolName"="pool_name"; "TargetSizeRatio"="target_size_ratio"; "AutoscaleStatus"="autoscale_status"; "Type"="type"; "PgNumMin"="pg_num_min"; "TargetSize"="target_size"; "PgAutoscaleMode"="pg_autoscale_mode"
         }
 		
 		 $OBJ = @{}
@@ -163,71 +163,11 @@ function ConvertFrom-PVEJsonToNodesCephPoolInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCephPoolInner
-        $AllProperties = ("application_metadata", "crush_rule_name", "autoscale_status", "bytes_used", "target_size_ratio", "min_size", "percent_used", "pg_num", "pool_name", "pg_num_min", "crush_rule", "pg_num_final", "size", "type", "target_size", "pg_autoscale_mode", "pool")
+        $AllProperties = ("crush_rule", "bytes_used", "application_metadata", "pg_num", "pg_num_final", "crush_rule_name", "pool", "min_size", "size", "percent_used", "pool_name", "target_size_ratio", "autoscale_status", "type", "pg_num_min", "target_size", "pg_autoscale_mode")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "application_metadata"))) { #optional property not found
-            $ApplicationMetadata = $null
-        } else {
-            $ApplicationMetadata = $JsonParameters.PSobject.Properties["application_metadata"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "crush_rule_name"))) { #optional property not found
-            $CrushRuleName = $null
-        } else {
-            $CrushRuleName = $JsonParameters.PSobject.Properties["crush_rule_name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "autoscale_status"))) { #optional property not found
-            $AutoscaleStatus = $null
-        } else {
-            $AutoscaleStatus = $JsonParameters.PSobject.Properties["autoscale_status"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bytes_used"))) { #optional property not found
-            $BytesUsed = $null
-        } else {
-            $BytesUsed = $JsonParameters.PSobject.Properties["bytes_used"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target_size_ratio"))) { #optional property not found
-            $TargetSizeRatio = $null
-        } else {
-            $TargetSizeRatio = $JsonParameters.PSobject.Properties["target_size_ratio"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "min_size"))) { #optional property not found
-            $MinSize = $null
-        } else {
-            $MinSize = $JsonParameters.PSobject.Properties["min_size"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "percent_used"))) { #optional property not found
-            $PercentUsed = $null
-        } else {
-            $PercentUsed = $JsonParameters.PSobject.Properties["percent_used"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num"))) { #optional property not found
-            $PgNum = $null
-        } else {
-            $PgNum = $JsonParameters.PSobject.Properties["pg_num"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool_name"))) { #optional property not found
-            $PoolName = $null
-        } else {
-            $PoolName = $JsonParameters.PSobject.Properties["pool_name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num_min"))) { #optional property not found
-            $PgNumMin = $null
-        } else {
-            $PgNumMin = $JsonParameters.PSobject.Properties["pg_num_min"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "crush_rule"))) { #optional property not found
@@ -236,10 +176,46 @@ function ConvertFrom-PVEJsonToNodesCephPoolInner {
             $CrushRule = $JsonParameters.PSobject.Properties["crush_rule"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bytes_used"))) { #optional property not found
+            $BytesUsed = $null
+        } else {
+            $BytesUsed = $JsonParameters.PSobject.Properties["bytes_used"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "application_metadata"))) { #optional property not found
+            $ApplicationMetadata = $null
+        } else {
+            $ApplicationMetadata = $JsonParameters.PSobject.Properties["application_metadata"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num"))) { #optional property not found
+            $PgNum = $null
+        } else {
+            $PgNum = $JsonParameters.PSobject.Properties["pg_num"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num_final"))) { #optional property not found
             $PgNumFinal = $null
         } else {
             $PgNumFinal = $JsonParameters.PSobject.Properties["pg_num_final"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "crush_rule_name"))) { #optional property not found
+            $CrushRuleName = $null
+        } else {
+            $CrushRuleName = $JsonParameters.PSobject.Properties["crush_rule_name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool"))) { #optional property not found
+            $Pool = $null
+        } else {
+            $Pool = $JsonParameters.PSobject.Properties["pool"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "min_size"))) { #optional property not found
+            $MinSize = $null
+        } else {
+            $MinSize = $JsonParameters.PSobject.Properties["min_size"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
@@ -248,10 +224,40 @@ function ConvertFrom-PVEJsonToNodesCephPoolInner {
             $Size = $JsonParameters.PSobject.Properties["size"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "percent_used"))) { #optional property not found
+            $PercentUsed = $null
+        } else {
+            $PercentUsed = $JsonParameters.PSobject.Properties["percent_used"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool_name"))) { #optional property not found
+            $PoolName = $null
+        } else {
+            $PoolName = $JsonParameters.PSobject.Properties["pool_name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target_size_ratio"))) { #optional property not found
+            $TargetSizeRatio = $null
+        } else {
+            $TargetSizeRatio = $JsonParameters.PSobject.Properties["target_size_ratio"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "autoscale_status"))) { #optional property not found
+            $AutoscaleStatus = $null
+        } else {
+            $AutoscaleStatus = $JsonParameters.PSobject.Properties["autoscale_status"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
             $Type = $null
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num_min"))) { #optional property not found
+            $PgNumMin = $null
+        } else {
+            $PgNumMin = $JsonParameters.PSobject.Properties["pg_num_min"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "target_size"))) { #optional property not found
@@ -266,30 +272,24 @@ function ConvertFrom-PVEJsonToNodesCephPoolInner {
             $PgAutoscaleMode = $JsonParameters.PSobject.Properties["pg_autoscale_mode"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool"))) { #optional property not found
-            $Pool = $null
-        } else {
-            $Pool = $JsonParameters.PSobject.Properties["pool"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "application_metadata" = ${ApplicationMetadata}
-            "crush_rule_name" = ${CrushRuleName}
-            "autoscale_status" = ${AutoscaleStatus}
-            "bytes_used" = ${BytesUsed}
-            "target_size_ratio" = ${TargetSizeRatio}
-            "min_size" = ${MinSize}
-            "percent_used" = ${PercentUsed}
-            "pg_num" = ${PgNum}
-            "pool_name" = ${PoolName}
-            "pg_num_min" = ${PgNumMin}
             "crush_rule" = ${CrushRule}
+            "bytes_used" = ${BytesUsed}
+            "application_metadata" = ${ApplicationMetadata}
+            "pg_num" = ${PgNum}
             "pg_num_final" = ${PgNumFinal}
+            "crush_rule_name" = ${CrushRuleName}
+            "pool" = ${Pool}
+            "min_size" = ${MinSize}
             "size" = ${Size}
+            "percent_used" = ${PercentUsed}
+            "pool_name" = ${PoolName}
+            "target_size_ratio" = ${TargetSizeRatio}
+            "autoscale_status" = ${AutoscaleStatus}
             "type" = ${Type}
+            "pg_num_min" = ${PgNumMin}
             "target_size" = ${TargetSize}
             "pg_autoscale_mode" = ${PgAutoscaleMode}
-            "pool" = ${Pool}
         }
 
         return $PSO

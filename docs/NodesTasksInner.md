@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Starttime** | **Int32** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Pstart** | **Int32** |  | [optional] 
-**Status** | **String** |  | [optional] 
-**Endtime** | **Int32** |  | [optional] 
 **VarPid** | **Int32** |  | [optional] 
-**Upid** | **String** |  | [optional] 
+**Status** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**User** | **String** |  | [optional] 
+**Starttime** | **Int32** |  | [optional] 
+**Upid** | **String** |  | [optional] 
+**Endtime** | **Int32** |  | [optional] 
+**Pstart** | **Int32** |  | [optional] 
+**Id** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**User** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesTasksInner = Initialize-PVENodesTasksInner  -Starttime null `
- -Id null `
- -Pstart null `
+$NodesTasksInner = Initialize-PVENodesTasksInner  -VarPid null `
  -Status null `
- -Endtime null `
- -VarPid null `
- -Upid null `
  -Node null `
- -User null `
- -Type null
+ -Starttime null `
+ -Upid null `
+ -Endtime null `
+ -Pstart null `
+ -Id null `
+ -Type null `
+ -User null
 ```
 
 - Convert the resource to JSON

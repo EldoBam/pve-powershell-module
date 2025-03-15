@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Node
 No description available.
-.PARAMETER Proxy
-No description available.
 .PARAMETER Vmid
+No description available.
+.PARAMETER Proxy
 No description available.
 .OUTPUTS
 
@@ -33,11 +33,11 @@ function Initialize-PVEPOSTNodesQemuSpiceproxyRB {
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Proxy},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid}
+        ${Vmid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Proxy}
     )
 
     Process {
@@ -54,7 +54,7 @@ function Initialize-PVEPOSTNodesQemuSpiceproxyRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Proxy"="proxy"; "Vmid"="vmid"
+			"Node"="node"; "Vmid"="vmid"; "Proxy"="proxy"
         }
 		
 		 $OBJ = @{}
@@ -100,7 +100,7 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuSpiceproxyRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuSpiceproxyRB
-        $AllProperties = ("node", "proxy", "vmid")
+        $AllProperties = ("node", "vmid", "proxy")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -113,22 +113,22 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuSpiceproxyRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "proxy"))) { #optional property not found
-            $Proxy = $null
-        } else {
-            $Proxy = $JsonParameters.PSobject.Properties["proxy"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "proxy"))) { #optional property not found
+            $Proxy = $null
+        } else {
+            $Proxy = $JsonParameters.PSobject.Properties["proxy"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "node" = ${Node}
-            "proxy" = ${Proxy}
             "vmid" = ${Vmid}
+            "proxy" = ${Proxy}
         }
 
         return $PSO

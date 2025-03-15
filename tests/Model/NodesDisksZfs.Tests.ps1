@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesDisksZfs' {
     Context 'PVENodesDisksZfs' {
         It 'Initialize-PVENodesDisksZfs' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesDisksZfs -Name "TEST_VALUE" -Status "TEST_VALUE" -Action "TEST_VALUE" -State "TEST_VALUE" -Errors "TEST_VALUE" -Children "TEST_VALUE" -Scan "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesDisksZfs -State "TEST_VALUE" -Action "TEST_VALUE" -Name "TEST_VALUE" -Children "TEST_VALUE" -Scan "TEST_VALUE" -Errors "TEST_VALUE" -Status "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesDisksZfs
             #$NewObject.property | Should -Be 0
         }

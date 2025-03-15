@@ -15,31 +15,31 @@ No summary available.
 
 No description available.
 
-.PARAMETER Ebgp
-No description available.
-.PARAMETER EbgpMultihop
-No description available.
-.PARAMETER Loopback
-No description available.
-.PARAMETER IsisIfaces
+.PARAMETER Digest
 No description available.
 .PARAMETER BgpMultipathAsPathRelax
 No description available.
-.PARAMETER Controller
+.PARAMETER Ebgp
 No description available.
-.PARAMETER Asn
+.PARAMETER IsisIfaces
 No description available.
 .PARAMETER Delete
 No description available.
+.PARAMETER Loopback
+No description available.
+.PARAMETER EbgpMultihop
+No description available.
+.PARAMETER Asn
+No description available.
 .PARAMETER IsisNet
+No description available.
+.PARAMETER IsisDomain
 No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Peers
 No description available.
-.PARAMETER Digest
-No description available.
-.PARAMETER IsisDomain
+.PARAMETER Controller
 No description available.
 .OUTPUTS
 
@@ -50,32 +50,35 @@ function Initialize-PVEPUTClusterSdnControllersRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Ebgp},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${EbgpMultihop},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Loopback},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${IsisIfaces},
+        ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${BgpMultipathAsPathRelax},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Controller},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Asn},
+        ${Ebgp},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${IsisIfaces},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Loopback},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${EbgpMultihop},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Asn},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${IsisNet},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${IsisDomain},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
@@ -84,22 +87,15 @@ function Initialize-PVEPUTClusterSdnControllersRB {
         ${Peers},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${IsisDomain}
+        ${Controller}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterSdnControllersRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Ebgp -and $Ebgp -gt 1) {
-          throw "invalid value for 'Ebgp', must be smaller than or equal to 1."
-        }
-
-        if ($Ebgp -and $Ebgp -lt 0) {
-          throw "invalid value for 'Ebgp', must be greater than or equal to 0."
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
         }
 
         if ($BgpMultipathAsPathRelax -and $BgpMultipathAsPathRelax -gt 1) {
@@ -110,21 +106,25 @@ function Initialize-PVEPUTClusterSdnControllersRB {
           throw "invalid value for 'BgpMultipathAsPathRelax', must be greater than or equal to 0."
         }
 
-        if ($Asn -and $Asn -gt 4294967296) {
-          throw "invalid value for 'Asn', must be smaller than or equal to 4294967296."
+        if ($Ebgp -and $Ebgp -gt 1) {
+          throw "invalid value for 'Ebgp', must be smaller than or equal to 1."
+        }
+
+        if ($Ebgp -and $Ebgp -lt 0) {
+          throw "invalid value for 'Ebgp', must be greater than or equal to 0."
         }
 
         if (!$Delete -and $Delete.length -gt 4096) {
             throw "invalid value for 'Delete', the character length must be smaller than or equal to 4096."
         }
 
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        if ($Asn -and $Asn -gt 4294967296) {
+          throw "invalid value for 'Asn', must be smaller than or equal to 4294967296."
         }
 
 
 		 $DisplayNameMapping =@{
-			"Ebgp"="ebgp"; "EbgpMultihop"="ebgp-multihop"; "Loopback"="loopback"; "IsisIfaces"="isis-ifaces"; "BgpMultipathAsPathRelax"="bgp-multipath-as-path-relax"; "Controller"="controller"; "Asn"="asn"; "Delete"="delete"; "IsisNet"="isis-net"; "Node"="node"; "Peers"="peers"; "Digest"="digest"; "IsisDomain"="isis-domain"
+			"Digest"="digest"; "BgpMultipathAsPathRelax"="bgp-multipath-as-path-relax"; "Ebgp"="ebgp"; "IsisIfaces"="isis-ifaces"; "Delete"="delete"; "Loopback"="loopback"; "EbgpMultihop"="ebgp-multihop"; "Asn"="asn"; "IsisNet"="isis-net"; "IsisDomain"="isis-domain"; "Node"="node"; "Peers"="peers"; "Controller"="controller"
         }
 		
 		 $OBJ = @{}
@@ -170,35 +170,17 @@ function ConvertFrom-PVEJsonToPUTClusterSdnControllersRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterSdnControllersRB
-        $AllProperties = ("ebgp", "ebgp-multihop", "loopback", "isis-ifaces", "bgp-multipath-as-path-relax", "controller", "asn", "delete", "isis-net", "node", "peers", "digest", "isis-domain")
+        $AllProperties = ("digest", "bgp-multipath-as-path-relax", "ebgp", "isis-ifaces", "delete", "loopback", "ebgp-multihop", "asn", "isis-net", "isis-domain", "node", "peers", "controller")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ebgp"))) { #optional property not found
-            $Ebgp = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
         } else {
-            $Ebgp = $JsonParameters.PSobject.Properties["ebgp"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ebgp-multihop"))) { #optional property not found
-            $EbgpMultihop = $null
-        } else {
-            $EbgpMultihop = $JsonParameters.PSobject.Properties["ebgp-multihop"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "loopback"))) { #optional property not found
-            $Loopback = $null
-        } else {
-            $Loopback = $JsonParameters.PSobject.Properties["loopback"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "isis-ifaces"))) { #optional property not found
-            $IsisIfaces = $null
-        } else {
-            $IsisIfaces = $JsonParameters.PSobject.Properties["isis-ifaces"].value
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "bgp-multipath-as-path-relax"))) { #optional property not found
@@ -207,16 +189,16 @@ function ConvertFrom-PVEJsonToPUTClusterSdnControllersRB {
             $BgpMultipathAsPathRelax = $JsonParameters.PSobject.Properties["bgp-multipath-as-path-relax"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "controller"))) { #optional property not found
-            $Controller = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ebgp"))) { #optional property not found
+            $Ebgp = $null
         } else {
-            $Controller = $JsonParameters.PSobject.Properties["controller"].value
+            $Ebgp = $JsonParameters.PSobject.Properties["ebgp"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "asn"))) { #optional property not found
-            $Asn = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "isis-ifaces"))) { #optional property not found
+            $IsisIfaces = $null
         } else {
-            $Asn = $JsonParameters.PSobject.Properties["asn"].value
+            $IsisIfaces = $JsonParameters.PSobject.Properties["isis-ifaces"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
@@ -225,10 +207,34 @@ function ConvertFrom-PVEJsonToPUTClusterSdnControllersRB {
             $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "loopback"))) { #optional property not found
+            $Loopback = $null
+        } else {
+            $Loopback = $JsonParameters.PSobject.Properties["loopback"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ebgp-multihop"))) { #optional property not found
+            $EbgpMultihop = $null
+        } else {
+            $EbgpMultihop = $JsonParameters.PSobject.Properties["ebgp-multihop"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "asn"))) { #optional property not found
+            $Asn = $null
+        } else {
+            $Asn = $JsonParameters.PSobject.Properties["asn"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "isis-net"))) { #optional property not found
             $IsisNet = $null
         } else {
             $IsisNet = $JsonParameters.PSobject.Properties["isis-net"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "isis-domain"))) { #optional property not found
+            $IsisDomain = $null
+        } else {
+            $IsisDomain = $JsonParameters.PSobject.Properties["isis-domain"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -243,32 +249,26 @@ function ConvertFrom-PVEJsonToPUTClusterSdnControllersRB {
             $Peers = $JsonParameters.PSobject.Properties["peers"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "controller"))) { #optional property not found
+            $Controller = $null
         } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "isis-domain"))) { #optional property not found
-            $IsisDomain = $null
-        } else {
-            $IsisDomain = $JsonParameters.PSobject.Properties["isis-domain"].value
+            $Controller = $JsonParameters.PSobject.Properties["controller"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "ebgp" = ${Ebgp}
-            "ebgp-multihop" = ${EbgpMultihop}
-            "loopback" = ${Loopback}
-            "isis-ifaces" = ${IsisIfaces}
+            "digest" = ${Digest}
             "bgp-multipath-as-path-relax" = ${BgpMultipathAsPathRelax}
-            "controller" = ${Controller}
-            "asn" = ${Asn}
+            "ebgp" = ${Ebgp}
+            "isis-ifaces" = ${IsisIfaces}
             "delete" = ${Delete}
+            "loopback" = ${Loopback}
+            "ebgp-multihop" = ${EbgpMultihop}
+            "asn" = ${Asn}
             "isis-net" = ${IsisNet}
+            "isis-domain" = ${IsisDomain}
             "node" = ${Node}
             "peers" = ${Peers}
-            "digest" = ${Digest}
-            "isis-domain" = ${IsisDomain}
+            "controller" = ${Controller}
         }
 
         return $PSO

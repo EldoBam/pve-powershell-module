@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesScanPbsInner' {
     Context 'PVENodesScanPbsInner' {
         It 'Initialize-PVENodesScanPbsInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesScanPbsInner -Store "TEST_VALUE" -Comment "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesScanPbsInner -Comment "TEST_VALUE" -Store "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesScanPbsInner
             #$NewObject.property | Should -Be 0
         }

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesLxcSnapshotInner' {
     Context 'PVENodesLxcSnapshotInner' {
         It 'Initialize-PVENodesLxcSnapshotInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesLxcSnapshotInner -Name "TEST_VALUE" -Description "TEST_VALUE" -Snaptime "TEST_VALUE" -Parent "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesLxcSnapshotInner -Snaptime "TEST_VALUE" -Name "TEST_VALUE" -Parent "TEST_VALUE" -Description "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesLxcSnapshotInner
             #$NewObject.property | Should -Be 0
         }

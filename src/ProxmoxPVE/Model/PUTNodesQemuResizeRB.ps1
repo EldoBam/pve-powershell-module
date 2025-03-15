@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Vmid
-No description available.
-.PARAMETER Size
+.PARAMETER Node
 No description available.
 .PARAMETER Skiplock
 No description available.
-.PARAMETER Digest
+.PARAMETER Size
 No description available.
-.PARAMETER Node
+.PARAMETER Vmid
+No description available.
+.PARAMETER Digest
 No description available.
 .PARAMETER Disk
 No description available.
@@ -36,21 +36,21 @@ function Initialize-PVEPUTNodesQemuResizeRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid},
+        ${Skiplock},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("\+?\d+(\.\d+)?[KMGT]?")]
         [String]
         ${Size},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Skiplock},
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ide0", "ide1", "ide2", "ide3", "scsi0", "scsi1", "scsi2", "scsi3", "scsi4", "scsi5", "scsi6", "scsi7", "scsi8", "scsi9", "scsi10", "scsi11", "scsi12", "scsi13", "scsi14", "scsi15", "scsi16", "scsi17", "scsi18", "scsi19", "scsi20", "scsi21", "scsi22", "scsi23", "scsi24", "scsi25", "scsi26", "scsi27", "scsi28", "scsi29", "scsi30", "virtio0", "virtio1", "virtio2", "virtio3", "virtio4", "virtio5", "virtio6", "virtio7", "virtio8", "virtio9", "virtio10", "virtio11", "virtio12", "virtio13", "virtio14", "virtio15", "sata0", "sata1", "sata2", "sata3", "sata4", "sata5", "efidisk0", "tpmstate0")]
         [String]
@@ -61,14 +61,6 @@ function Initialize-PVEPUTNodesQemuResizeRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTNodesQemuResizeRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
         if ($Skiplock -and $Skiplock -gt 1) {
           throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
         }
@@ -77,13 +69,21 @@ function Initialize-PVEPUTNodesQemuResizeRB {
           throw "invalid value for 'Skiplock', must be greater than or equal to 0."
         }
 
+        if ($Vmid -and $Vmid -gt 999999999) {
+          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
+        }
+
+        if ($Vmid -and $Vmid -lt 100) {
+          throw "invalid value for 'Vmid', must be greater than or equal to 100."
+        }
+
         if (!$Digest -and $Digest.length -gt 40) {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 40."
         }
 
 
 		 $DisplayNameMapping =@{
-			"Vmid"="vmid"; "Size"="size"; "Skiplock"="skiplock"; "Digest"="digest"; "Node"="node"; "Disk"="disk"
+			"Node"="node"; "Skiplock"="skiplock"; "Size"="size"; "Vmid"="vmid"; "Digest"="digest"; "Disk"="disk"
         }
 		
 		 $OBJ = @{}
@@ -129,23 +129,17 @@ function ConvertFrom-PVEJsonToPUTNodesQemuResizeRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTNodesQemuResizeRB
-        $AllProperties = ("vmid", "size", "skiplock", "digest", "node", "disk")
+        $AllProperties = ("node", "skiplock", "size", "vmid", "digest", "disk")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
         } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
-            $Size = $null
-        } else {
-            $Size = $JsonParameters.PSobject.Properties["size"].value
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
@@ -154,16 +148,22 @@ function ConvertFrom-PVEJsonToPUTNodesQemuResizeRB {
             $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
+            $Size = $null
+        } else {
+            $Size = $JsonParameters.PSobject.Properties["size"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
+        } else {
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "disk"))) { #optional property not found
@@ -173,11 +173,11 @@ function ConvertFrom-PVEJsonToPUTNodesQemuResizeRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "vmid" = ${Vmid}
-            "size" = ${Size}
-            "skiplock" = ${Skiplock}
-            "digest" = ${Digest}
             "node" = ${Node}
+            "skiplock" = ${Skiplock}
+            "size" = ${Size}
+            "vmid" = ${Vmid}
+            "digest" = ${Digest}
             "disk" = ${Disk}
         }
 

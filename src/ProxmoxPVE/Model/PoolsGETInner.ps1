@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Members
-No description available.
 .PARAMETER Poolid
+No description available.
+.PARAMETER Members
 No description available.
 .PARAMETER Comment
 No description available.
@@ -30,11 +30,11 @@ function Initialize-PVEPoolsGETInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Members},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Poolid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
+        ${Members},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment}
@@ -46,7 +46,7 @@ function Initialize-PVEPoolsGETInner {
 
 
 		 $DisplayNameMapping =@{
-			"Members"="members"; "Poolid"="poolid"; "Comment"="comment"
+			"Poolid"="poolid"; "Members"="members"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -92,23 +92,23 @@ function ConvertFrom-PVEJsonToPoolsGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPoolsGETInner
-        $AllProperties = ("members", "poolid", "comment")
+        $AllProperties = ("poolid", "members", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "members"))) { #optional property not found
-            $Members = $null
-        } else {
-            $Members = $JsonParameters.PSobject.Properties["members"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "poolid"))) { #optional property not found
             $Poolid = $null
         } else {
             $Poolid = $JsonParameters.PSobject.Properties["poolid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "members"))) { #optional property not found
+            $Members = $null
+        } else {
+            $Members = $JsonParameters.PSobject.Properties["members"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -118,8 +118,8 @@ function ConvertFrom-PVEJsonToPoolsGETInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "members" = ${Members}
             "poolid" = ${Poolid}
+            "members" = ${Members}
             "comment" = ${Comment}
         }
 

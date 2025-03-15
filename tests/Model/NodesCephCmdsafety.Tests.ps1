@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesCephCmdsafety' {
     Context 'PVENodesCephCmdsafety' {
         It 'Initialize-PVENodesCephCmdsafety' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesCephCmdsafety -Safe "TEST_VALUE" -Status "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesCephCmdsafety -Status "TEST_VALUE" -Safe "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesCephCmdsafety
             #$NewObject.property | Should -Be 0
         }

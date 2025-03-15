@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Key** | **String** |  | [optional] 
 **Pending** | **String** |  | [optional] 
+**Key** | **String** |  | [optional] 
 **Delete** | **Int32** |  | [optional] 
 **Value** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$NodesQemuCloudinitInner = Initialize-PVENodesQemuCloudinitInner  -Key null `
- -Pending null `
+$NodesQemuCloudinitInner = Initialize-PVENodesQemuCloudinitInner  -Pending null `
+ -Key null `
  -Delete null `
  -Value null
 ```

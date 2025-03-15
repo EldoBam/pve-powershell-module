@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER RemoveVanished
-No description available.
-.PARAMETER Purge
-No description available.
 .PARAMETER DryRun
 No description available.
-.PARAMETER Realm
+.PARAMETER Scope
 No description available.
 .PARAMETER Full
 No description available.
-.PARAMETER Scope
+.PARAMETER Purge
+No description available.
+.PARAMETER Realm
+No description available.
+.PARAMETER RemoveVanished
 No description available.
 .PARAMETER EnableNew
 No description available.
@@ -38,25 +38,25 @@ function Initialize-PVEPOSTAccessDomainsSyncRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(?:(?:(?:acl|properties|entry);)*(?:acl|properties|entry))|none")]
-        [String]
-        ${RemoveVanished},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Purge},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${DryRun},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Realm},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Full},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("users", "groups", "both")]
         [String]
         ${Scope},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Full},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Purge},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Realm},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("(?:(?:(?:acl|properties|entry);)*(?:acl|properties|entry))|none")]
+        [String]
+        ${RemoveVanished},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${EnableNew}
@@ -66,14 +66,6 @@ function Initialize-PVEPOSTAccessDomainsSyncRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTAccessDomainsSyncRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Purge -and $Purge -gt 1) {
-          throw "invalid value for 'Purge', must be smaller than or equal to 1."
-        }
-
-        if ($Purge -and $Purge -lt 0) {
-          throw "invalid value for 'Purge', must be greater than or equal to 0."
-        }
-
         if ($DryRun -and $DryRun -gt 1) {
           throw "invalid value for 'DryRun', must be smaller than or equal to 1."
         }
@@ -82,16 +74,24 @@ function Initialize-PVEPOSTAccessDomainsSyncRB {
           throw "invalid value for 'DryRun', must be greater than or equal to 0."
         }
 
-        if (!$Realm -and $Realm.length -gt 32) {
-            throw "invalid value for 'Realm', the character length must be smaller than or equal to 32."
-        }
-
         if ($Full -and $Full -gt 1) {
           throw "invalid value for 'Full', must be smaller than or equal to 1."
         }
 
         if ($Full -and $Full -lt 0) {
           throw "invalid value for 'Full', must be greater than or equal to 0."
+        }
+
+        if ($Purge -and $Purge -gt 1) {
+          throw "invalid value for 'Purge', must be smaller than or equal to 1."
+        }
+
+        if ($Purge -and $Purge -lt 0) {
+          throw "invalid value for 'Purge', must be greater than or equal to 0."
+        }
+
+        if (!$Realm -and $Realm.length -gt 32) {
+            throw "invalid value for 'Realm', the character length must be smaller than or equal to 32."
         }
 
         if ($EnableNew -and $EnableNew -gt 1) {
@@ -104,7 +104,7 @@ function Initialize-PVEPOSTAccessDomainsSyncRB {
 
 
 		 $DisplayNameMapping =@{
-			"RemoveVanished"="remove-vanished"; "Purge"="purge"; "DryRun"="dry-run"; "Realm"="realm"; "Full"="full"; "Scope"="scope"; "EnableNew"="enable-new"
+			"DryRun"="dry-run"; "Scope"="scope"; "Full"="full"; "Purge"="purge"; "Realm"="realm"; "RemoveVanished"="remove-vanished"; "EnableNew"="enable-new"
         }
 		
 		 $OBJ = @{}
@@ -150,23 +150,11 @@ function ConvertFrom-PVEJsonToPOSTAccessDomainsSyncRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTAccessDomainsSyncRB
-        $AllProperties = ("remove-vanished", "purge", "dry-run", "realm", "full", "scope", "enable-new")
+        $AllProperties = ("dry-run", "scope", "full", "purge", "realm", "remove-vanished", "enable-new")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove-vanished"))) { #optional property not found
-            $RemoveVanished = $null
-        } else {
-            $RemoveVanished = $JsonParameters.PSobject.Properties["remove-vanished"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "purge"))) { #optional property not found
-            $Purge = $null
-        } else {
-            $Purge = $JsonParameters.PSobject.Properties["purge"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dry-run"))) { #optional property not found
@@ -175,10 +163,10 @@ function ConvertFrom-PVEJsonToPOSTAccessDomainsSyncRB {
             $DryRun = $JsonParameters.PSobject.Properties["dry-run"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
-            $Realm = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scope"))) { #optional property not found
+            $Scope = $null
         } else {
-            $Realm = $JsonParameters.PSobject.Properties["realm"].value
+            $Scope = $JsonParameters.PSobject.Properties["scope"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "full"))) { #optional property not found
@@ -187,10 +175,22 @@ function ConvertFrom-PVEJsonToPOSTAccessDomainsSyncRB {
             $Full = $JsonParameters.PSobject.Properties["full"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scope"))) { #optional property not found
-            $Scope = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "purge"))) { #optional property not found
+            $Purge = $null
         } else {
-            $Scope = $JsonParameters.PSobject.Properties["scope"].value
+            $Purge = $JsonParameters.PSobject.Properties["purge"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
+            $Realm = $null
+        } else {
+            $Realm = $JsonParameters.PSobject.Properties["realm"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove-vanished"))) { #optional property not found
+            $RemoveVanished = $null
+        } else {
+            $RemoveVanished = $JsonParameters.PSobject.Properties["remove-vanished"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable-new"))) { #optional property not found
@@ -200,12 +200,12 @@ function ConvertFrom-PVEJsonToPOSTAccessDomainsSyncRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "remove-vanished" = ${RemoveVanished}
-            "purge" = ${Purge}
             "dry-run" = ${DryRun}
-            "realm" = ${Realm}
-            "full" = ${Full}
             "scope" = ${Scope}
+            "full" = ${Full}
+            "purge" = ${Purge}
+            "realm" = ${Realm}
+            "remove-vanished" = ${RemoveVanished}
             "enable-new" = ${EnableNew}
         }
 

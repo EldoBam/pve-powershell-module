@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Zone
-No description available.
-.PARAMETER Ip
-No description available.
 .PARAMETER Vnet
 No description available.
 .PARAMETER Mac
+No description available.
+.PARAMETER Ip
+No description available.
+.PARAMETER Zone
 No description available.
 .OUTPUTS
 
@@ -33,16 +33,16 @@ function Initialize-PVEDELETEClusterSdnVnetsIpsRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Zone},
+        ${Vnet},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Mac},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Ip},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vnet},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Mac}
+        ${Zone}
     )
 
     Process {
@@ -51,7 +51,7 @@ function Initialize-PVEDELETEClusterSdnVnetsIpsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Zone"="zone"; "Ip"="ip"; "Vnet"="vnet"; "Mac"="mac"
+			"Vnet"="vnet"; "Mac"="mac"; "Ip"="ip"; "Zone"="zone"
         }
 		
 		 $OBJ = @{}
@@ -97,23 +97,11 @@ function ConvertFrom-PVEJsonToDELETEClusterSdnVnetsIpsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEClusterSdnVnetsIpsRB
-        $AllProperties = ("zone", "ip", "vnet", "mac")
+        $AllProperties = ("vnet", "mac", "ip", "zone")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
-            $Zone = $null
-        } else {
-            $Zone = $JsonParameters.PSobject.Properties["zone"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ip"))) { #optional property not found
-            $Ip = $null
-        } else {
-            $Ip = $JsonParameters.PSobject.Properties["ip"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
@@ -128,11 +116,23 @@ function ConvertFrom-PVEJsonToDELETEClusterSdnVnetsIpsRB {
             $Mac = $JsonParameters.PSobject.Properties["mac"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ip"))) { #optional property not found
+            $Ip = $null
+        } else {
+            $Ip = $JsonParameters.PSobject.Properties["ip"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
+            $Zone = $null
+        } else {
+            $Zone = $JsonParameters.PSobject.Properties["zone"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "zone" = ${Zone}
-            "ip" = ${Ip}
             "vnet" = ${Vnet}
             "mac" = ${Mac}
+            "ip" = ${Ip}
+            "zone" = ${Zone}
         }
 
         return $PSO

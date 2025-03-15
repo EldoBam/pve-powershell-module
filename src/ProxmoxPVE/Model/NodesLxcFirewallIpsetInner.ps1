@@ -17,53 +17,49 @@ No description available.
 
 .PARAMETER Digest
 No description available.
+.PARAMETER Name
+No description available.
 .PARAMETER Comment
-No description available.
-.PARAMETER Cidr
-No description available.
-.PARAMETER Nomatch
 No description available.
 .OUTPUTS
 
-NodesLxcFirewallIpsetGETInner<PSCustomObject>
+NodesLxcFirewallIpsetInner<PSCustomObject>
 #>
 
-function Initialize-PVENodesLxcFirewallIpsetGETInner {
+function Initialize-PVENodesLxcFirewallIpsetInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
-        ${Comment},
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Cidr},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Nomatch}
+        ${Comment}
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVENodesLxcFirewallIpsetGETInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVENodesLxcFirewallIpsetInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if (!$Digest -and $Digest.length -gt 64) {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
         }
 
-        if ($Nomatch -and $Nomatch -gt 1) {
-          throw "invalid value for 'Nomatch', must be smaller than or equal to 1."
+        if (!$Name -and $Name.length -gt 64) {
+            throw "invalid value for 'Name', the character length must be smaller than or equal to 64."
         }
 
-        if ($Nomatch -and $Nomatch -lt 0) {
-          throw "invalid value for 'Nomatch', must be greater than or equal to 0."
+        if (!$Name -and $Name.length -lt 2) {
+            throw "invalid value for 'Name', the character length must be great than or equal to 2."
         }
 
 
 		 $DisplayNameMapping =@{
-			"Digest"="digest"; "Comment"="comment"; "Cidr"="cidr"; "Nomatch"="nomatch"
+			"Digest"="digest"; "Name"="name"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -82,11 +78,11 @@ function Initialize-PVENodesLxcFirewallIpsetGETInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to NodesLxcFirewallIpsetGETInner<PSCustomObject>
+Convert from JSON to NodesLxcFirewallIpsetInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to NodesLxcFirewallIpsetGETInner<PSCustomObject>
+Convert from JSON to NodesLxcFirewallIpsetInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -94,22 +90,22 @@ Json object
 
 .OUTPUTS
 
-NodesLxcFirewallIpsetGETInner<PSCustomObject>
+NodesLxcFirewallIpsetInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToNodesLxcFirewallIpsetGETInner {
+function ConvertFrom-PVEJsonToNodesLxcFirewallIpsetInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesLxcFirewallIpsetGETInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesLxcFirewallIpsetInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVENodesLxcFirewallIpsetGETInner
-        $AllProperties = ("digest", "comment", "cidr", "nomatch")
+        # check if Json contains properties not defined in PVENodesLxcFirewallIpsetInner
+        $AllProperties = ("digest", "name", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -122,29 +118,22 @@ function ConvertFrom-PVEJsonToNodesLxcFirewallIpsetGETInner {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
             $Comment = $null
         } else {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
-            $Cidr = $null
-        } else {
-            $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nomatch"))) { #optional property not found
-            $Nomatch = $null
-        } else {
-            $Nomatch = $JsonParameters.PSobject.Properties["nomatch"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "digest" = ${Digest}
+            "name" = ${Name}
             "comment" = ${Comment}
-            "cidr" = ${Cidr}
-            "nomatch" = ${Nomatch}
         }
 
         return $PSO

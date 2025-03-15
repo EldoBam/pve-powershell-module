@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Encode
+.PARAMETER Content
 No description available.
 .PARAMETER Node
-No description available.
-.PARAMETER Content
 No description available.
 .PARAMETER Vmid
 No description available.
 .PARAMETER File
+No description available.
+.PARAMETER Encode
 No description available.
 .OUTPUTS
 
@@ -34,33 +34,25 @@ function Initialize-PVEPOSTNodesQemuAgentFilewriteRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Encode},
+        [String]
+        ${Content},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Content},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${File}
+        ${File},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Encode}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesQemuAgentFilewriteRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Encode -and $Encode -gt 1) {
-          throw "invalid value for 'Encode', must be smaller than or equal to 1."
-        }
-
-        if ($Encode -and $Encode -lt 0) {
-          throw "invalid value for 'Encode', must be greater than or equal to 0."
-        }
 
         if (!$Content -and $Content.length -gt 61440) {
             throw "invalid value for 'Content', the character length must be smaller than or equal to 61440."
@@ -74,9 +66,17 @@ function Initialize-PVEPOSTNodesQemuAgentFilewriteRB {
           throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
+        if ($Encode -and $Encode -gt 1) {
+          throw "invalid value for 'Encode', must be smaller than or equal to 1."
+        }
+
+        if ($Encode -and $Encode -lt 0) {
+          throw "invalid value for 'Encode', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Encode"="encode"; "Node"="node"; "Content"="content"; "Vmid"="vmid"; "File"="file"
+			"Content"="content"; "Node"="node"; "Vmid"="vmid"; "File"="file"; "Encode"="encode"
         }
 		
 		 $OBJ = @{}
@@ -122,29 +122,23 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuAgentFilewriteRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuAgentFilewriteRB
-        $AllProperties = ("encode", "node", "content", "vmid", "file")
+        $AllProperties = ("content", "node", "vmid", "file", "encode")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "encode"))) { #optional property not found
-            $Encode = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
+            $Content = $null
         } else {
-            $Encode = $JsonParameters.PSobject.Properties["encode"].value
+            $Content = $JsonParameters.PSobject.Properties["content"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
             $Node = $null
         } else {
             $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
-            $Content = $null
-        } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
@@ -159,12 +153,18 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuAgentFilewriteRB {
             $File = $JsonParameters.PSobject.Properties["file"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "encode"))) { #optional property not found
+            $Encode = $null
+        } else {
+            $Encode = $JsonParameters.PSobject.Properties["encode"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "encode" = ${Encode}
-            "node" = ${Node}
             "content" = ${Content}
+            "node" = ${Node}
             "vmid" = ${Vmid}
             "file" = ${File}
+            "encode" = ${Encode}
         }
 
         return $PSO

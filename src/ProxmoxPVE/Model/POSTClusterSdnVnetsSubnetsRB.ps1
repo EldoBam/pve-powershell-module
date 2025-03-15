@@ -15,19 +15,19 @@ No summary available.
 
 No description available.
 
-.PARAMETER Gateway
-No description available.
-.PARAMETER Snat
-No description available.
-.PARAMETER DhcpRange
-No description available.
 .PARAMETER Type
+No description available.
+.PARAMETER Gateway
 No description available.
 .PARAMETER Dnszoneprefix
 No description available.
-.PARAMETER Subnet
+.PARAMETER DhcpRange
+No description available.
+.PARAMETER Snat
 No description available.
 .PARAMETER Vnet
+No description available.
+.PARAMETER Subnet
 No description available.
 .PARAMETER DhcpDnsServer
 No description available.
@@ -40,27 +40,27 @@ function Initialize-PVEPOSTClusterSdnVnetsSubnetsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Gateway},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Snat},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${DhcpRange},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("subnet")]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Dnszoneprefix},
+        ${Gateway},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Subnet},
+        ${Dnszoneprefix},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${DhcpRange},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Snat},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Vnet},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Subnet},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${DhcpDnsServer}
@@ -80,7 +80,7 @@ function Initialize-PVEPOSTClusterSdnVnetsSubnetsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Gateway"="gateway"; "Snat"="snat"; "DhcpRange"="dhcp-range"; "Type"="type"; "Dnszoneprefix"="dnszoneprefix"; "Subnet"="subnet"; "Vnet"="vnet"; "DhcpDnsServer"="dhcp-dns-server"
+			"Type"="type"; "Gateway"="gateway"; "Dnszoneprefix"="dnszoneprefix"; "DhcpRange"="dhcp-range"; "Snat"="snat"; "Vnet"="vnet"; "Subnet"="subnet"; "DhcpDnsServer"="dhcp-dns-server"
         }
 		
 		 $OBJ = @{}
@@ -126,29 +126,11 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnVnetsSubnetsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterSdnVnetsSubnetsRB
-        $AllProperties = ("gateway", "snat", "dhcp-range", "type", "dnszoneprefix", "subnet", "vnet", "dhcp-dns-server")
+        $AllProperties = ("type", "gateway", "dnszoneprefix", "dhcp-range", "snat", "vnet", "subnet", "dhcp-dns-server")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "gateway"))) { #optional property not found
-            $Gateway = $null
-        } else {
-            $Gateway = $JsonParameters.PSobject.Properties["gateway"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snat"))) { #optional property not found
-            $Snat = $null
-        } else {
-            $Snat = $JsonParameters.PSobject.Properties["snat"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dhcp-range"))) { #optional property not found
-            $DhcpRange = $null
-        } else {
-            $DhcpRange = $JsonParameters.PSobject.Properties["dhcp-range"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
@@ -157,22 +139,40 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnVnetsSubnetsRB {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "gateway"))) { #optional property not found
+            $Gateway = $null
+        } else {
+            $Gateway = $JsonParameters.PSobject.Properties["gateway"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dnszoneprefix"))) { #optional property not found
             $Dnszoneprefix = $null
         } else {
             $Dnszoneprefix = $JsonParameters.PSobject.Properties["dnszoneprefix"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subnet"))) { #optional property not found
-            $Subnet = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dhcp-range"))) { #optional property not found
+            $DhcpRange = $null
         } else {
-            $Subnet = $JsonParameters.PSobject.Properties["subnet"].value
+            $DhcpRange = $JsonParameters.PSobject.Properties["dhcp-range"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snat"))) { #optional property not found
+            $Snat = $null
+        } else {
+            $Snat = $JsonParameters.PSobject.Properties["snat"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
             $Vnet = $null
         } else {
             $Vnet = $JsonParameters.PSobject.Properties["vnet"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subnet"))) { #optional property not found
+            $Subnet = $null
+        } else {
+            $Subnet = $JsonParameters.PSobject.Properties["subnet"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dhcp-dns-server"))) { #optional property not found
@@ -182,13 +182,13 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnVnetsSubnetsRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "gateway" = ${Gateway}
-            "snat" = ${Snat}
-            "dhcp-range" = ${DhcpRange}
             "type" = ${Type}
+            "gateway" = ${Gateway}
             "dnszoneprefix" = ${Dnszoneprefix}
-            "subnet" = ${Subnet}
+            "dhcp-range" = ${DhcpRange}
+            "snat" = ${Snat}
             "vnet" = ${Vnet}
+            "subnet" = ${Subnet}
             "dhcp-dns-server" = ${DhcpDnsServer}
         }
 

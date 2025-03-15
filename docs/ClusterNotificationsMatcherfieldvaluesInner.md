@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Field** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **Value** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $ClusterNotificationsMatcherfieldvaluesInner = Initialize-PVEClusterNotificationsMatcherfieldvaluesInner  -Field null `
- -Comment null `
- -Value null
+ -Value null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CmdOpts** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
 **Cmd** | **String** |  | [optional] 
 **Proxy** | **String** |  | [optional] 
-**CmdOpts** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesSpiceshellRB = Initialize-PVEPOSTNodesSpiceshellRB  -Node null `
+$POSTNodesSpiceshellRB = Initialize-PVEPOSTNodesSpiceshellRB  -CmdOpts null `
+ -Node null `
  -Cmd null `
- -Proxy null `
- -CmdOpts null
+ -Proxy null
 ```
 
 - Convert the resource to JSON

@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER AddStorage
 No description available.
-.PARAMETER Node
-No description available.
 .PARAMETER Name
+No description available.
+.PARAMETER Node
 No description available.
 .PARAMETER PgNum
 No description available.
@@ -36,10 +36,10 @@ function Initialize-PVEPOSTNodesCephFsRB {
         ${AddStorage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${PgNum}
@@ -67,7 +67,7 @@ function Initialize-PVEPOSTNodesCephFsRB {
 
 
 		 $DisplayNameMapping =@{
-			"AddStorage"="add-storage"; "Node"="node"; "Name"="name"; "PgNum"="pg_num"
+			"AddStorage"="add-storage"; "Name"="name"; "Node"="node"; "PgNum"="pg_num"
         }
 		
 		 $OBJ = @{}
@@ -113,7 +113,7 @@ function ConvertFrom-PVEJsonToPOSTNodesCephFsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCephFsRB
-        $AllProperties = ("add-storage", "node", "name", "pg_num")
+        $AllProperties = ("add-storage", "name", "node", "pg_num")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -126,16 +126,16 @@ function ConvertFrom-PVEJsonToPOSTNodesCephFsRB {
             $AddStorage = $JsonParameters.PSobject.Properties["add-storage"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
             $Name = $null
         } else {
             $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num"))) { #optional property not found
@@ -146,8 +146,8 @@ function ConvertFrom-PVEJsonToPOSTNodesCephFsRB {
 
         $PSO = [PSCustomObject]@{
             "add-storage" = ${AddStorage}
-            "node" = ${Node}
             "name" = ${Name}
+            "node" = ${Node}
             "pg_num" = ${PgNum}
         }
 

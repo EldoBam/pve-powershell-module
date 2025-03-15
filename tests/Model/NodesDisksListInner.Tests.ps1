@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesDisksListInner' {
     Context 'PVENodesDisksListInner' {
         It 'Initialize-PVENodesDisksListInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesDisksListInner -OsdidList "TEST_VALUE" -Gpt "TEST_VALUE" -Wwn "TEST_VALUE" -Parent "TEST_VALUE" -Size "TEST_VALUE" -Osdid "TEST_VALUE" -Health "TEST_VALUE" -Serial "TEST_VALUE" -Mounted "TEST_VALUE" -Vendor "TEST_VALUE" -Used "TEST_VALUE" -Devpath "TEST_VALUE" -Model "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesDisksListInner -Wwn "TEST_VALUE" -Osdid "TEST_VALUE" -Used "TEST_VALUE" -Devpath "TEST_VALUE" -OsdidList "TEST_VALUE" -Parent "TEST_VALUE" -Gpt "TEST_VALUE" -Size "TEST_VALUE" -Model "TEST_VALUE" -Serial "TEST_VALUE" -Health "TEST_VALUE" -Vendor "TEST_VALUE" -Mounted "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesDisksListInner
             #$NewObject.property | Should -Be 0
         }

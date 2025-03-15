@@ -3,47 +3,47 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Digest** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
+**Sport** | **String** |  | [optional] 
 **Vnet** | **String** |  | [optional] 
-**Log** | **String** |  | [optional] 
 **Action** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
 **IcmpType** | **String** |  | [optional] 
 **Macro** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Dport** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Sport** | **String** |  | [optional] 
-**Moveto** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Pos** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Iface** | **String** |  | [optional] 
+**Moveto** | **Int32** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnVnetsFirewallRulesRB = Initialize-PVEPUTClusterSdnVnetsFirewallRulesRB  -Vnet null `
- -Log null `
+$PUTClusterSdnVnetsFirewallRulesRB = Initialize-PVEPUTClusterSdnVnetsFirewallRulesRB  -Digest null `
+ -Source null `
+ -Sport null `
+ -Vnet null `
  -Action null `
+ -Log null `
+ -Comment null `
+ -Dest null `
+ -Proto null `
+ -Enable null `
  -IcmpType null `
  -Macro null `
- -Comment null `
- -Source null `
- -Dport null `
- -Proto null `
- -Dest null `
- -Delete null `
- -Sport null `
- -Moveto null `
- -Type null `
- -Enable null `
- -Digest null `
  -Pos null `
- -Iface null
+ -Type null `
+ -Iface null `
+ -Moveto null `
+ -Delete null `
+ -Dport null
 ```
 
 - Convert the resource to JSON

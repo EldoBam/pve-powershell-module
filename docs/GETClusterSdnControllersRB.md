@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Pending** | **Int32** |  | [optional] 
-**Running** | **Int32** |  | [optional] 
 **Controller** | **String** |  | [optional] 
+**Running** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETClusterSdnControllersRB = Initialize-PVEGETClusterSdnControllersRB  -Pending null `
- -Running null `
- -Controller null
+ -Controller null `
+ -Running null
 ```
 
 - Convert the resource to JSON

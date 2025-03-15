@@ -15,23 +15,23 @@ No summary available.
 
 No description available.
 
-.PARAMETER Vmid
+.PARAMETER TargetEndpoint
 No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER Delete
-No description available.
-.PARAMETER TargetBridge
-No description available.
 .PARAMETER Bwlimit
 No description available.
-.PARAMETER TargetVmid
+.PARAMETER Delete
+No description available.
+.PARAMETER Vmid
 No description available.
 .PARAMETER TargetStorage
 No description available.
-.PARAMETER Online
+.PARAMETER TargetVmid
 No description available.
-.PARAMETER TargetEndpoint
+.PARAMETER TargetBridge
+No description available.
+.PARAMETER Online
 No description available.
 .OUTPUTS
 
@@ -42,45 +42,37 @@ function Initialize-PVEPOSTNodesQemuRemotemigrateRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
+        [String]
+        ${TargetEndpoint},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${TargetBridge},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${Bwlimit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${TargetVmid},
+        ${Delete},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${TargetStorage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Online},
+        ${TargetVmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${TargetEndpoint}
+        ${TargetBridge},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Online}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesQemuRemotemigrateRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
 
         if ($Delete -and $Delete -gt 1) {
           throw "invalid value for 'Delete', must be smaller than or equal to 1."
@@ -88,6 +80,14 @@ function Initialize-PVEPOSTNodesQemuRemotemigrateRB {
 
         if ($Delete -and $Delete -lt 0) {
           throw "invalid value for 'Delete', must be greater than or equal to 0."
+        }
+
+        if ($Vmid -and $Vmid -gt 999999999) {
+          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
+        }
+
+        if ($Vmid -and $Vmid -lt 100) {
+          throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
         if ($TargetVmid -and $TargetVmid -gt 999999999) {
@@ -108,7 +108,7 @@ function Initialize-PVEPOSTNodesQemuRemotemigrateRB {
 
 
 		 $DisplayNameMapping =@{
-			"Vmid"="vmid"; "Node"="node"; "Delete"="delete"; "TargetBridge"="target-bridge"; "Bwlimit"="bwlimit"; "TargetVmid"="target-vmid"; "TargetStorage"="target-storage"; "Online"="online"; "TargetEndpoint"="target-endpoint"
+			"TargetEndpoint"="target-endpoint"; "Node"="node"; "Bwlimit"="bwlimit"; "Delete"="delete"; "Vmid"="vmid"; "TargetStorage"="target-storage"; "TargetVmid"="target-vmid"; "TargetBridge"="target-bridge"; "Online"="online"
         }
 		
 		 $OBJ = @{}
@@ -154,59 +154,11 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuRemotemigrateRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuRemotemigrateRB
-        $AllProperties = ("vmid", "node", "delete", "target-bridge", "bwlimit", "target-vmid", "target-storage", "online", "target-endpoint")
+        $AllProperties = ("target-endpoint", "node", "bwlimit", "delete", "vmid", "target-storage", "target-vmid", "target-bridge", "online")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-bridge"))) { #optional property not found
-            $TargetBridge = $null
-        } else {
-            $TargetBridge = $JsonParameters.PSobject.Properties["target-bridge"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
-            $Bwlimit = $null
-        } else {
-            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-vmid"))) { #optional property not found
-            $TargetVmid = $null
-        } else {
-            $TargetVmid = $JsonParameters.PSobject.Properties["target-vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-storage"))) { #optional property not found
-            $TargetStorage = $null
-        } else {
-            $TargetStorage = $JsonParameters.PSobject.Properties["target-storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "online"))) { #optional property not found
-            $Online = $null
-        } else {
-            $Online = $JsonParameters.PSobject.Properties["online"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-endpoint"))) { #optional property not found
@@ -215,16 +167,64 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuRemotemigrateRB {
             $TargetEndpoint = $JsonParameters.PSobject.Properties["target-endpoint"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
+            $Bwlimit = $null
+        } else {
+            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
+        } else {
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-storage"))) { #optional property not found
+            $TargetStorage = $null
+        } else {
+            $TargetStorage = $JsonParameters.PSobject.Properties["target-storage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-vmid"))) { #optional property not found
+            $TargetVmid = $null
+        } else {
+            $TargetVmid = $JsonParameters.PSobject.Properties["target-vmid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-bridge"))) { #optional property not found
+            $TargetBridge = $null
+        } else {
+            $TargetBridge = $JsonParameters.PSobject.Properties["target-bridge"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "online"))) { #optional property not found
+            $Online = $null
+        } else {
+            $Online = $JsonParameters.PSobject.Properties["online"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "vmid" = ${Vmid}
-            "node" = ${Node}
-            "delete" = ${Delete}
-            "target-bridge" = ${TargetBridge}
-            "bwlimit" = ${Bwlimit}
-            "target-vmid" = ${TargetVmid}
-            "target-storage" = ${TargetStorage}
-            "online" = ${Online}
             "target-endpoint" = ${TargetEndpoint}
+            "node" = ${Node}
+            "bwlimit" = ${Bwlimit}
+            "delete" = ${Delete}
+            "vmid" = ${Vmid}
+            "target-storage" = ${TargetStorage}
+            "target-vmid" = ${TargetVmid}
+            "target-bridge" = ${TargetBridge}
+            "online" = ${Online}
         }
 
         return $PSO

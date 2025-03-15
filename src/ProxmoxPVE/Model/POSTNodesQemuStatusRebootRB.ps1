@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Node
 No description available.
-.PARAMETER Timeout
-No description available.
 .PARAMETER Vmid
+No description available.
+.PARAMETER Timeout
 No description available.
 .OUTPUTS
 
@@ -34,10 +34,10 @@ function Initialize-PVEPOSTNodesQemuStatusRebootRB {
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Timeout},
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid}
+        ${Timeout}
     )
 
     Process {
@@ -54,7 +54,7 @@ function Initialize-PVEPOSTNodesQemuStatusRebootRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Timeout"="timeout"; "Vmid"="vmid"
+			"Node"="node"; "Vmid"="vmid"; "Timeout"="timeout"
         }
 		
 		 $OBJ = @{}
@@ -100,7 +100,7 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusRebootRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuStatusRebootRB
-        $AllProperties = ("node", "timeout", "vmid")
+        $AllProperties = ("node", "vmid", "timeout")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -113,22 +113,22 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusRebootRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
-            $Timeout = $null
-        } else {
-            $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
+            $Timeout = $null
+        } else {
+            $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "node" = ${Node}
-            "timeout" = ${Timeout}
             "vmid" = ${Vmid}
+            "timeout" = ${Timeout}
         }
 
         return $PSO

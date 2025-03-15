@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Force** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Snapname** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$DELETENodesLxcSnapshotRB = Initialize-PVEDELETENodesLxcSnapshotRB  -Node null `
- -Force null `
+$DELETENodesLxcSnapshotRB = Initialize-PVEDELETENodesLxcSnapshotRB  -Force null `
+ -Node null `
  -Snapname null `
  -Vmid null
 ```

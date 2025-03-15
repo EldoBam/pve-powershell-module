@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Cidr** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterFirewallAliasesInner = Initialize-PVEClusterFirewallAliasesInner  -Name null `
- -Digest null `
- -Comment null `
- -Cidr null
+$ClusterFirewallAliasesInner = Initialize-PVEClusterFirewallAliasesInner  -Digest null `
+ -Name null `
+ -Cidr null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

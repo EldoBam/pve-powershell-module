@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Key** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Skiplock** | **Int32** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuSendkeyRB = Initialize-PVEPUTNodesQemuSendkeyRB  -Node null `
- -Key null `
+$PUTNodesQemuSendkeyRB = Initialize-PVEPUTNodesQemuSendkeyRB  -Key null `
+ -Node null `
  -Vmid null `
  -Skiplock null
 ```

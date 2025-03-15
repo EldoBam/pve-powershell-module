@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesMigrateallRB' {
     Context 'PVEPOSTNodesMigrateallRB' {
         It 'Initialize-PVEPOSTNodesMigrateallRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesMigrateallRB -Node "TEST_VALUE" -Maxworkers "TEST_VALUE" -WithLocalDisks "TEST_VALUE" -Target "TEST_VALUE" -Vms "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesMigrateallRB -Vms "TEST_VALUE" -Node "TEST_VALUE" -Target "TEST_VALUE" -WithLocalDisks "TEST_VALUE" -Maxworkers "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesMigrateallRB
             #$NewObject.property | Should -Be 0
         }

@@ -15,23 +15,23 @@ No summary available.
 
 No description available.
 
-.PARAMETER Groups
-No description available.
-.PARAMETER Tokens
+.PARAMETER Email
 No description available.
 .PARAMETER Comment
 No description available.
-.PARAMETER Email
+.PARAMETER Expire
 No description available.
 .PARAMETER Lastname
 No description available.
-.PARAMETER Expire
+.PARAMETER Firstname
 No description available.
 .PARAMETER Keys
 No description available.
-.PARAMETER Enable
+.PARAMETER Tokens
 No description available.
-.PARAMETER Firstname
+.PARAMETER Groups
+No description available.
+.PARAMETER Enable
 No description available.
 .OUTPUTS
 
@@ -42,49 +42,53 @@ function Initialize-PVEAccessUsers {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Groups},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Tokens},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Email},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Lastname},
+        ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Expire},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Lastname},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Firstname},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[0-9a-zA-Z!=]{0,4096}")]
         [String]
         ${Keys},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enable},
+        [PSCustomObject]
+        ${Tokens},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Firstname}
+        [String[]]
+        ${Groups},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Enable}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEAccessUsers' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if (!$Comment -and $Comment.length -gt 2048) {
-            throw "invalid value for 'Comment', the character length must be smaller than or equal to 2048."
-        }
-
         if (!$Email -and $Email.length -gt 254) {
             throw "invalid value for 'Email', the character length must be smaller than or equal to 254."
         }
 
+        if (!$Comment -and $Comment.length -gt 2048) {
+            throw "invalid value for 'Comment', the character length must be smaller than or equal to 2048."
+        }
+
         if (!$Lastname -and $Lastname.length -gt 1024) {
             throw "invalid value for 'Lastname', the character length must be smaller than or equal to 1024."
+        }
+
+        if (!$Firstname -and $Firstname.length -gt 1024) {
+            throw "invalid value for 'Firstname', the character length must be smaller than or equal to 1024."
         }
 
         if ($Enable -and $Enable -gt 1) {
@@ -95,13 +99,9 @@ function Initialize-PVEAccessUsers {
           throw "invalid value for 'Enable', must be greater than or equal to 0."
         }
 
-        if (!$Firstname -and $Firstname.length -gt 1024) {
-            throw "invalid value for 'Firstname', the character length must be smaller than or equal to 1024."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Groups"="groups"; "Tokens"="tokens"; "Comment"="comment"; "Email"="email"; "Lastname"="lastname"; "Expire"="expire"; "Keys"="keys"; "Enable"="enable"; "Firstname"="firstname"
+			"Email"="email"; "Comment"="comment"; "Expire"="expire"; "Lastname"="lastname"; "Firstname"="firstname"; "Keys"="keys"; "Tokens"="tokens"; "Groups"="groups"; "Enable"="enable"
         }
 		
 		 $OBJ = @{}
@@ -147,29 +147,11 @@ function ConvertFrom-PVEJsonToAccessUsers {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessUsers
-        $AllProperties = ("groups", "tokens", "comment", "email", "lastname", "expire", "keys", "enable", "firstname")
+        $AllProperties = ("email", "comment", "expire", "lastname", "firstname", "keys", "tokens", "groups", "enable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "groups"))) { #optional property not found
-            $Groups = $null
-        } else {
-            $Groups = $JsonParameters.PSobject.Properties["groups"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tokens"))) { #optional property not found
-            $Tokens = $null
-        } else {
-            $Tokens = $JsonParameters.PSobject.Properties["tokens"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "email"))) { #optional property not found
@@ -178,10 +160,10 @@ function ConvertFrom-PVEJsonToAccessUsers {
             $Email = $JsonParameters.PSobject.Properties["email"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lastname"))) { #optional property not found
-            $Lastname = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
         } else {
-            $Lastname = $JsonParameters.PSobject.Properties["lastname"].value
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "expire"))) { #optional property not found
@@ -190,16 +172,10 @@ function ConvertFrom-PVEJsonToAccessUsers {
             $Expire = $JsonParameters.PSobject.Properties["expire"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keys"))) { #optional property not found
-            $Keys = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lastname"))) { #optional property not found
+            $Lastname = $null
         } else {
-            $Keys = $JsonParameters.PSobject.Properties["keys"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
-            $Enable = $null
-        } else {
-            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+            $Lastname = $JsonParameters.PSobject.Properties["lastname"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "firstname"))) { #optional property not found
@@ -208,16 +184,40 @@ function ConvertFrom-PVEJsonToAccessUsers {
             $Firstname = $JsonParameters.PSobject.Properties["firstname"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keys"))) { #optional property not found
+            $Keys = $null
+        } else {
+            $Keys = $JsonParameters.PSobject.Properties["keys"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tokens"))) { #optional property not found
+            $Tokens = $null
+        } else {
+            $Tokens = $JsonParameters.PSobject.Properties["tokens"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "groups"))) { #optional property not found
+            $Groups = $null
+        } else {
+            $Groups = $JsonParameters.PSobject.Properties["groups"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
+            $Enable = $null
+        } else {
+            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "groups" = ${Groups}
-            "tokens" = ${Tokens}
-            "comment" = ${Comment}
             "email" = ${Email}
-            "lastname" = ${Lastname}
+            "comment" = ${Comment}
             "expire" = ${Expire}
-            "keys" = ${Keys}
-            "enable" = ${Enable}
+            "lastname" = ${Lastname}
             "firstname" = ${Firstname}
+            "keys" = ${Keys}
+            "tokens" = ${Tokens}
+            "groups" = ${Groups}
+            "enable" = ${Enable}
         }
 
         return $PSO

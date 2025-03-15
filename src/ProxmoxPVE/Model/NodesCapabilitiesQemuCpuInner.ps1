@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Vendor
+No description available.
 .PARAMETER Name
 No description available.
 .PARAMETER Custom
-No description available.
-.PARAMETER Vendor
 No description available.
 .OUTPUTS
 
@@ -31,13 +31,13 @@ function Initialize-PVENodesCapabilitiesQemuCpuInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Vendor},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Custom},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Vendor}
+        ${Custom}
     )
 
     Process {
@@ -54,7 +54,7 @@ function Initialize-PVENodesCapabilitiesQemuCpuInner {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Custom"="custom"; "Vendor"="vendor"
+			"Vendor"="vendor"; "Name"="name"; "Custom"="custom"
         }
 		
 		 $OBJ = @{}
@@ -100,11 +100,17 @@ function ConvertFrom-PVEJsonToNodesCapabilitiesQemuCpuInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCapabilitiesQemuCpuInner
-        $AllProperties = ("name", "custom", "vendor")
+        $AllProperties = ("vendor", "name", "custom")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vendor"))) { #optional property not found
+            $Vendor = $null
+        } else {
+            $Vendor = $JsonParameters.PSobject.Properties["vendor"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -119,16 +125,10 @@ function ConvertFrom-PVEJsonToNodesCapabilitiesQemuCpuInner {
             $Custom = $JsonParameters.PSobject.Properties["custom"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vendor"))) { #optional property not found
-            $Vendor = $null
-        } else {
-            $Vendor = $JsonParameters.PSobject.Properties["vendor"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "vendor" = ${Vendor}
             "name" = ${Name}
             "custom" = ${Custom}
-            "vendor" = ${Vendor}
         }
 
         return $PSO

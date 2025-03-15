@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Users
+No description available.
 .PARAMETER Groupid
 No description available.
 .PARAMETER Comment
-No description available.
-.PARAMETER Users
 No description available.
 .OUTPUTS
 
@@ -31,13 +31,13 @@ function Initialize-PVEAccessGroupsGETInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Users},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Groupid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Users}
+        ${Comment}
     )
 
     Process {
@@ -46,7 +46,7 @@ function Initialize-PVEAccessGroupsGETInner {
 
 
 		 $DisplayNameMapping =@{
-			"Groupid"="groupid"; "Comment"="comment"; "Users"="users"
+			"Users"="users"; "Groupid"="groupid"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -92,11 +92,17 @@ function ConvertFrom-PVEJsonToAccessGroupsGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessGroupsGETInner
-        $AllProperties = ("groupid", "comment", "users")
+        $AllProperties = ("users", "groupid", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "users"))) { #optional property not found
+            $Users = $null
+        } else {
+            $Users = $JsonParameters.PSobject.Properties["users"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "groupid"))) { #optional property not found
@@ -111,16 +117,10 @@ function ConvertFrom-PVEJsonToAccessGroupsGETInner {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "users"))) { #optional property not found
-            $Users = $null
-        } else {
-            $Users = $JsonParameters.PSobject.Properties["users"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "users" = ${Users}
             "groupid" = ${Groupid}
             "comment" = ${Comment}
-            "users" = ${Users}
         }
 
         return $PSO

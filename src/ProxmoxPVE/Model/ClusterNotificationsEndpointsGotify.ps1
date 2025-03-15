@@ -17,13 +17,13 @@ No description available.
 
 .PARAMETER Name
 No description available.
-.PARAMETER Server
-No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Comment
-No description available.
 .PARAMETER Disable
+No description available.
+.PARAMETER Server
+No description available.
+.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -38,16 +38,16 @@ function Initialize-PVEClusterNotificationsEndpointsGotify {
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Disable},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Server},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable}
+        ${Comment}
     )
 
     Process {
@@ -68,7 +68,7 @@ function Initialize-PVEClusterNotificationsEndpointsGotify {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Server"="server"; "Digest"="digest"; "Comment"="comment"; "Disable"="disable"
+			"Name"="name"; "Digest"="digest"; "Disable"="disable"; "Server"="server"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -114,7 +114,7 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsGotify {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterNotificationsEndpointsGotify
-        $AllProperties = ("name", "server", "digest", "comment", "disable")
+        $AllProperties = ("name", "digest", "disable", "server", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -127,22 +127,10 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsGotify {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
-            $Server = $null
-        } else {
-            $Server = $JsonParameters.PSobject.Properties["server"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
@@ -151,12 +139,24 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsGotify {
             $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
+            $Server = $null
+        } else {
+            $Server = $JsonParameters.PSobject.Properties["server"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "name" = ${Name}
-            "server" = ${Server}
             "digest" = ${Digest}
-            "comment" = ${Comment}
             "disable" = ${Disable}
+            "server" = ${Server}
+            "comment" = ${Comment}
         }
 
         return $PSO

@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Key
-No description available.
 .PARAMETER Pending
+No description available.
+.PARAMETER Key
 No description available.
 .PARAMETER Delete
 No description available.
@@ -33,10 +33,10 @@ function Initialize-PVENodesQemuCloudinitInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Key},
+        ${Pending},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Pending},
+        ${Key},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Delete},
@@ -55,7 +55,7 @@ function Initialize-PVENodesQemuCloudinitInner {
 
 
 		 $DisplayNameMapping =@{
-			"Key"="key"; "Pending"="pending"; "Delete"="delete"; "Value"="value"
+			"Pending"="pending"; "Key"="key"; "Delete"="delete"; "Value"="value"
         }
 		
 		 $OBJ = @{}
@@ -101,23 +101,23 @@ function ConvertFrom-PVEJsonToNodesQemuCloudinitInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesQemuCloudinitInner
-        $AllProperties = ("key", "pending", "delete", "value")
+        $AllProperties = ("pending", "key", "delete", "value")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
-            $Key = $null
-        } else {
-            $Key = $JsonParameters.PSobject.Properties["key"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pending"))) { #optional property not found
             $Pending = $null
         } else {
             $Pending = $JsonParameters.PSobject.Properties["pending"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
+            $Key = $null
+        } else {
+            $Key = $JsonParameters.PSobject.Properties["key"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
@@ -133,8 +133,8 @@ function ConvertFrom-PVEJsonToNodesQemuCloudinitInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "key" = ${Key}
             "pending" = ${Pending}
+            "key" = ${Key}
             "delete" = ${Delete}
             "value" = ${Value}
         }

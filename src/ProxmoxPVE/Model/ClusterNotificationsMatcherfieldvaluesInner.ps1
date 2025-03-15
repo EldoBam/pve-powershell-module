@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Field
 No description available.
-.PARAMETER Comment
-No description available.
 .PARAMETER Value
+No description available.
+.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -34,10 +34,10 @@ function Initialize-PVEClusterNotificationsMatcherfieldvaluesInner {
         ${Field},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comment},
+        ${Value},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Value}
+        ${Comment}
     )
 
     Process {
@@ -46,7 +46,7 @@ function Initialize-PVEClusterNotificationsMatcherfieldvaluesInner {
 
 
 		 $DisplayNameMapping =@{
-			"Field"="field"; "Comment"="comment"; "Value"="value"
+			"Field"="field"; "Value"="value"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -92,7 +92,7 @@ function ConvertFrom-PVEJsonToClusterNotificationsMatcherfieldvaluesInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterNotificationsMatcherfieldvaluesInner
-        $AllProperties = ("field", "comment", "value")
+        $AllProperties = ("field", "value", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -105,22 +105,22 @@ function ConvertFrom-PVEJsonToClusterNotificationsMatcherfieldvaluesInner {
             $Field = $JsonParameters.PSobject.Properties["field"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
             $Value = $null
         } else {
             $Value = $JsonParameters.PSobject.Properties["value"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "field" = ${Field}
-            "comment" = ${Comment}
             "value" = ${Value}
+            "comment" = ${Comment}
         }
 
         return $PSO

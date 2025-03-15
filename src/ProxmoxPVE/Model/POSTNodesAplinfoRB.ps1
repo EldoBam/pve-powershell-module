@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
 .PARAMETER Storage
+No description available.
+.PARAMETER Node
 No description available.
 .PARAMETER Template
 No description available.
@@ -31,10 +31,10 @@ function Initialize-PVEPOSTNodesAplinfoRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
+        ${Storage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Storage},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Template}
@@ -50,7 +50,7 @@ function Initialize-PVEPOSTNodesAplinfoRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Storage"="storage"; "Template"="template"
+			"Storage"="storage"; "Node"="node"; "Template"="template"
         }
 		
 		 $OBJ = @{}
@@ -96,23 +96,23 @@ function ConvertFrom-PVEJsonToPOSTNodesAplinfoRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesAplinfoRB
-        $AllProperties = ("node", "storage", "template")
+        $AllProperties = ("storage", "node", "template")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
             $Storage = $null
         } else {
             $Storage = $JsonParameters.PSobject.Properties["storage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "template"))) { #optional property not found
@@ -122,8 +122,8 @@ function ConvertFrom-PVEJsonToPOSTNodesAplinfoRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
             "storage" = ${Storage}
+            "node" = ${Node}
             "template" = ${Template}
         }
 

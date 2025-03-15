@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Password
+.PARAMETER Enable
 No description available.
-.PARAMETER Description
+.PARAMETER Password
 No description available.
 .PARAMETER Id
 No description available.
 .PARAMETER Userid
 No description available.
-.PARAMETER Enable
+.PARAMETER Description
 No description available.
 .OUTPUTS
 
@@ -34,11 +34,11 @@ function Initialize-PVEPUTAccessTfaRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Password},
+        [System.Nullable[Int32]]
+        ${Enable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description},
+        ${Password},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Id},
@@ -46,29 +46,13 @@ function Initialize-PVEPUTAccessTfaRB {
         [String]
         ${Userid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enable}
+        [String]
+        ${Description}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTAccessTfaRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if (!$Password -and $Password.length -gt 64) {
-            throw "invalid value for 'Password', the character length must be smaller than or equal to 64."
-        }
-
-        if (!$Password -and $Password.length -lt 5) {
-            throw "invalid value for 'Password', the character length must be great than or equal to 5."
-        }
-
-        if (!$Description -and $Description.length -gt 255) {
-            throw "invalid value for 'Description', the character length must be smaller than or equal to 255."
-        }
-
-        if (!$Userid -and $Userid.length -gt 64) {
-            throw "invalid value for 'Userid', the character length must be smaller than or equal to 64."
-        }
 
         if ($Enable -and $Enable -gt 1) {
           throw "invalid value for 'Enable', must be smaller than or equal to 1."
@@ -78,9 +62,25 @@ function Initialize-PVEPUTAccessTfaRB {
           throw "invalid value for 'Enable', must be greater than or equal to 0."
         }
 
+        if (!$Password -and $Password.length -gt 64) {
+            throw "invalid value for 'Password', the character length must be smaller than or equal to 64."
+        }
+
+        if (!$Password -and $Password.length -lt 5) {
+            throw "invalid value for 'Password', the character length must be great than or equal to 5."
+        }
+
+        if (!$Userid -and $Userid.length -gt 64) {
+            throw "invalid value for 'Userid', the character length must be smaller than or equal to 64."
+        }
+
+        if (!$Description -and $Description.length -gt 255) {
+            throw "invalid value for 'Description', the character length must be smaller than or equal to 255."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Password"="password"; "Description"="description"; "Id"="id"; "Userid"="userid"; "Enable"="enable"
+			"Enable"="enable"; "Password"="password"; "Id"="id"; "Userid"="userid"; "Description"="description"
         }
 		
 		 $OBJ = @{}
@@ -126,23 +126,23 @@ function ConvertFrom-PVEJsonToPUTAccessTfaRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTAccessTfaRB
-        $AllProperties = ("password", "description", "id", "userid", "enable")
+        $AllProperties = ("enable", "password", "id", "userid", "description")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
+            $Enable = $null
+        } else {
+            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
             $Password = $null
         } else {
             $Password = $JsonParameters.PSobject.Properties["password"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -157,18 +157,18 @@ function ConvertFrom-PVEJsonToPUTAccessTfaRB {
             $Userid = $JsonParameters.PSobject.Properties["userid"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
-            $Enable = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
         } else {
-            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+            $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
         $PSO = [PSCustomObject]@{
+            "enable" = ${Enable}
             "password" = ${Password}
-            "description" = ${Description}
             "id" = ${Id}
             "userid" = ${Userid}
-            "enable" = ${Enable}
+            "description" = ${Description}
         }
 
         return $PSO

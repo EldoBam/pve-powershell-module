@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Ds
+.PARAMETER Storage
+No description available.
+.PARAMETER Cf
 No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Timeframe
 No description available.
-.PARAMETER Storage
-No description available.
-.PARAMETER Cf
+.PARAMETER Ds
 No description available.
 .OUTPUTS
 
@@ -35,7 +35,11 @@ function Initialize-PVEGETNodesStorageRrdRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Ds},
+        ${Storage},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("AVERAGE", "MAX")]
+        [String]
+        ${Cf},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
@@ -45,11 +49,7 @@ function Initialize-PVEGETNodesStorageRrdRB {
         ${Timeframe},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Storage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("AVERAGE", "MAX")]
-        [String]
-        ${Cf}
+        ${Ds}
     )
 
     Process {
@@ -58,7 +58,7 @@ function Initialize-PVEGETNodesStorageRrdRB {
 
 
 		 $DisplayNameMapping =@{
-			"Ds"="ds"; "Node"="node"; "Timeframe"="timeframe"; "Storage"="storage"; "Cf"="cf"
+			"Storage"="storage"; "Cf"="cf"; "Node"="node"; "Timeframe"="timeframe"; "Ds"="ds"
         }
 		
 		 $OBJ = @{}
@@ -104,29 +104,11 @@ function ConvertFrom-PVEJsonToGETNodesStorageRrdRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesStorageRrdRB
-        $AllProperties = ("ds", "node", "timeframe", "storage", "cf")
+        $AllProperties = ("storage", "cf", "node", "timeframe", "ds")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ds"))) { #optional property not found
-            $Ds = $null
-        } else {
-            $Ds = $JsonParameters.PSobject.Properties["ds"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeframe"))) { #optional property not found
-            $Timeframe = $null
-        } else {
-            $Timeframe = $JsonParameters.PSobject.Properties["timeframe"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
@@ -141,12 +123,30 @@ function ConvertFrom-PVEJsonToGETNodesStorageRrdRB {
             $Cf = $JsonParameters.PSobject.Properties["cf"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeframe"))) { #optional property not found
+            $Timeframe = $null
+        } else {
+            $Timeframe = $JsonParameters.PSobject.Properties["timeframe"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ds"))) { #optional property not found
+            $Ds = $null
+        } else {
+            $Ds = $JsonParameters.PSobject.Properties["ds"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "ds" = ${Ds}
-            "node" = ${Node}
-            "timeframe" = ${Timeframe}
             "storage" = ${Storage}
             "cf" = ${Cf}
+            "node" = ${Node}
+            "timeframe" = ${Timeframe}
+            "ds" = ${Ds}
         }
 
         return $PSO

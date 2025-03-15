@@ -5,9 +5,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **String** |  | [optional] 
 **Origin** | **String** |  | [optional] 
+**Disable** | **Int32** |  | [optional] 
 **Type** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Disable** | **Int32** |  | [optional] 
 
 ## Examples
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 ```powershell
 $ClusterNotificationsTargetsInner = Initialize-PVEClusterNotificationsTargetsInner  -Name null `
  -Origin null `
+ -Disable null `
  -Type null `
- -Comment null `
- -Disable null
+ -Comment null
 ```
 
 - Convert the resource to JSON

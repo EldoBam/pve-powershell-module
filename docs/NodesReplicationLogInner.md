@@ -1,20 +1,22 @@
-# NodesFirewallRulesGETInner
+# NodesReplicationLogInner
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pos** | **Int32** |  | [optional] 
+**N** | **Int32** |  | [optional] 
+**T** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesFirewallRulesGETInner = Initialize-PVENodesFirewallRulesGETInner  -Pos null
+$NodesReplicationLogInner = Initialize-PVENodesReplicationLogInner  -N null `
+ -T null
 ```
 
 - Convert the resource to JSON
 ```powershell
-$NodesFirewallRulesGETInner | ConvertTo-JSON
+$NodesReplicationLogInner | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

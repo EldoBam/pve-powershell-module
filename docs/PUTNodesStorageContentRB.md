@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
-**Volume** | **String** |  | [optional] 
 **Protected** | **Int32** |  | [optional] 
-**Notes** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Storage** | **String** |  | [optional] 
+**Volume** | **String** |  | [optional] 
+**Notes** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesStorageContentRB = Initialize-PVEPUTNodesStorageContentRB  -Node null `
+$PUTNodesStorageContentRB = Initialize-PVEPUTNodesStorageContentRB  -Protected null `
+ -Node null `
+ -Storage null `
  -Volume null `
- -Protected null `
- -Notes null `
- -Storage null
+ -Notes null
 ```
 
 - Convert the resource to JSON

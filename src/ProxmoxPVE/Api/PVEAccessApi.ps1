@@ -201,6 +201,9 @@ Get auth server configuration.
 
 No description available.
 
+.PARAMETER Realm
+Authentication domain ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -212,6 +215,9 @@ None
 function Get-PVEAccessDomainsByRealm {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Realm},
         [Switch]
         $WithHttpInfo
     )
@@ -231,6 +237,10 @@ function Get-PVEAccessDomainsByRealm {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/access/domains/{realm}'
+        if (!$Realm) {
+            throw "Error! The required parameter `Realm` missing when calling getAccessDomainsByRealm."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{realm}', [System.Web.HTTPUtility]::UrlEncode($Realm))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -324,6 +334,9 @@ Get group configuration.
 
 No description available.
 
+.PARAMETER Groupid
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -335,6 +348,9 @@ AccessGroups
 function Get-PVEAccessGroupsByGroupid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Groupid},
         [Switch]
         $WithHttpInfo
     )
@@ -357,6 +373,10 @@ function Get-PVEAccessGroupsByGroupid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/access/groups/{groupid}'
+        if (!$Groupid) {
+            throw "Error! The required parameter `Groupid` missing when calling getAccessGroupsByGroupid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{groupid}', [System.Web.HTTPUtility]::UrlEncode($Groupid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -581,6 +601,9 @@ Get role configuration.
 
 No description available.
 
+.PARAMETER Roleid
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -592,6 +615,9 @@ AccessRoles
 function Get-PVEAccessRolesByRoleid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Roleid},
         [Switch]
         $WithHttpInfo
     )
@@ -614,6 +640,10 @@ function Get-PVEAccessRolesByRoleid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/access/roles/{roleid}'
+        if (!$Roleid) {
+            throw "Error! The required parameter `Roleid` missing when calling getAccessRolesByRoleid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{roleid}', [System.Web.HTTPUtility]::UrlEncode($Roleid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -707,6 +737,9 @@ List TFA configurations of users.
 
 No description available.
 
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -718,6 +751,9 @@ AccessTfaGETAVInner[]
 function Get-PVEAccessTfaByUserid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
         [Switch]
         $WithHttpInfo
     )
@@ -740,6 +776,10 @@ function Get-PVEAccessTfaByUserid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/access/tfa/{userid}'
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling getAccessTfaByUserid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -770,6 +810,12 @@ Fetch a requested TFA entry if present.
 
 No description available.
 
+.PARAMETER Id
+A TFA entry id.
+
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -781,6 +827,12 @@ AccessTfaGET
 function Get-PVEAccessTfaByUseridAndId {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
         [Switch]
         $WithHttpInfo
     )
@@ -803,6 +855,14 @@ function Get-PVEAccessTfaByUseridAndId {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/access/tfa/{userid}/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getAccessTfaByUseridAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling getAccessTfaByUseridAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -967,6 +1027,9 @@ Get user configuration.
 
 No description available.
 
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -978,6 +1041,9 @@ AccessUsers
 function Get-PVEAccessUsersByUserid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
         [Switch]
         $WithHttpInfo
     )
@@ -1000,6 +1066,10 @@ function Get-PVEAccessUsersByUserid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/access/users/{userid}'
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling getAccessUsersByUserid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1030,6 +1100,9 @@ Get user TFA types (Personal and Realm).
 
 No description available.
 
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER GETAccessUsersTfaRB
 Get user TFA types (Personal and Realm).
 
@@ -1045,6 +1118,9 @@ function Get-PVEAccessUsersTfaByUserid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETAccessUsersTfaRB},
         [Switch]
@@ -1072,6 +1148,10 @@ function Get-PVEAccessUsersTfaByUserid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/access/users/{userid}/tfa'
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling getAccessUsersTfaByUserid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarBodyParameter = $GETAccessUsersTfaRB | ConvertTo-Json -Depth 100
 
@@ -1104,6 +1184,9 @@ Get user API tokens.
 
 No description available.
 
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1115,6 +1198,9 @@ AccessUsersTokenGETInner[]
 function Get-PVEAccessUsersTokenByUserid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
         [Switch]
         $WithHttpInfo
     )
@@ -1137,6 +1223,10 @@ function Get-PVEAccessUsersTokenByUserid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/access/users/{userid}/token'
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling getAccessUsersTokenByUserid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1167,6 +1257,12 @@ Get specific API token information.
 
 No description available.
 
+.PARAMETER Tokenid
+User-specific token identifier.
+
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1178,6 +1274,12 @@ AccessUsersToken
 function Get-PVEAccessUsersTokenByUseridAndTokenid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Tokenid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
         [Switch]
         $WithHttpInfo
     )
@@ -1200,6 +1302,14 @@ function Get-PVEAccessUsersTokenByUseridAndTokenid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/access/users/{userid}/token/{tokenid}'
+        if (!$Tokenid) {
+            throw "Error! The required parameter `Tokenid` missing when calling getAccessUsersTokenByUseridAndTokenid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{tokenid}', [System.Web.HTTPUtility]::UrlEncode($Tokenid))
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling getAccessUsersTokenByUseridAndTokenid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1301,6 +1411,9 @@ Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced gro
 
 No description available.
 
+.PARAMETER Realm
+Authentication domain ID
+
 .PARAMETER POSTAccessDomainsSyncRB
 Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting.
 
@@ -1316,6 +1429,9 @@ function New-PVEAccessDomainsSyncByRealm {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Realm},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTAccessDomainsSyncRB},
         [Switch]
@@ -1340,6 +1456,10 @@ function New-PVEAccessDomainsSyncByRealm {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/access/domains/{realm}/sync'
+        if (!$Realm) {
+            throw "Error! The required parameter `Realm` missing when calling newAccessDomainsSyncByRealm."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{realm}', [System.Web.HTTPUtility]::UrlEncode($Realm))
 
         $LocalVarBodyParameter = $POSTAccessDomainsSyncRB | ConvertTo-Json -Depth 100
 
@@ -1656,6 +1776,9 @@ Add a TFA entry for a user.
 
 No description available.
 
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER POSTAccessTfaRB
 Add a TFA entry for a user.
 
@@ -1671,6 +1794,9 @@ function New-PVEAccessTfaByUserid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTAccessTfaRB},
         [Switch]
@@ -1698,6 +1824,10 @@ function New-PVEAccessTfaByUserid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/access/tfa/{userid}'
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling newAccessTfaByUserid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarBodyParameter = $POSTAccessTfaRB | ConvertTo-Json -Depth 100
 
@@ -1875,6 +2005,12 @@ Generate a new API token for a specific user. NOTE: returns API token value, whi
 
 No description available.
 
+.PARAMETER Tokenid
+User-specific token identifier.
+
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER POSTAccessUsersTokenRB
 Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards!
 
@@ -1890,6 +2026,12 @@ function New-PVEAccessUsersTokenByUseridAndTokenid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Tokenid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTAccessUsersTokenRB},
         [Switch]
@@ -1917,6 +2059,14 @@ function New-PVEAccessUsersTokenByUseridAndTokenid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/access/users/{userid}/token/{tokenid}'
+        if (!$Tokenid) {
+            throw "Error! The required parameter `Tokenid` missing when calling newAccessUsersTokenByUseridAndTokenid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{tokenid}', [System.Web.HTTPUtility]::UrlEncode($Tokenid))
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling newAccessUsersTokenByUseridAndTokenid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarBodyParameter = $POSTAccessUsersTokenRB | ConvertTo-Json -Depth 100
 
@@ -1949,6 +2099,9 @@ Delete an authentication server.
 
 No description available.
 
+.PARAMETER Realm
+Authentication domain ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1960,6 +2113,9 @@ None
 function Remove-PVEAccessDomainsByRealm {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Realm},
         [Switch]
         $WithHttpInfo
     )
@@ -1979,6 +2135,10 @@ function Remove-PVEAccessDomainsByRealm {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/access/domains/{realm}'
+        if (!$Realm) {
+            throw "Error! The required parameter `Realm` missing when calling removeAccessDomainsByRealm."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{realm}', [System.Web.HTTPUtility]::UrlEncode($Realm))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -2009,6 +2169,9 @@ Delete group.
 
 No description available.
 
+.PARAMETER Groupid
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2020,6 +2183,9 @@ None
 function Remove-PVEAccessGroupsByGroupid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Groupid},
         [Switch]
         $WithHttpInfo
     )
@@ -2039,6 +2205,10 @@ function Remove-PVEAccessGroupsByGroupid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/access/groups/{groupid}'
+        if (!$Groupid) {
+            throw "Error! The required parameter `Groupid` missing when calling removeAccessGroupsByGroupid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{groupid}', [System.Web.HTTPUtility]::UrlEncode($Groupid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -2069,6 +2239,9 @@ Delete role.
 
 No description available.
 
+.PARAMETER Roleid
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2080,6 +2253,9 @@ None
 function Remove-PVEAccessRolesByRoleid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Roleid},
         [Switch]
         $WithHttpInfo
     )
@@ -2099,6 +2275,10 @@ function Remove-PVEAccessRolesByRoleid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/access/roles/{roleid}'
+        if (!$Roleid) {
+            throw "Error! The required parameter `Roleid` missing when calling removeAccessRolesByRoleid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{roleid}', [System.Web.HTTPUtility]::UrlEncode($Roleid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -2129,6 +2309,12 @@ Delete a TFA entry by ID.
 
 No description available.
 
+.PARAMETER Id
+A TFA entry id.
+
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER DELETEAccessTfaRB
 Delete a TFA entry by ID.
 
@@ -2144,6 +2330,12 @@ function Remove-PVEAccessTfaByUseridAndId {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETEAccessTfaRB},
         [Switch]
@@ -2168,6 +2360,14 @@ function Remove-PVEAccessTfaByUseridAndId {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/access/tfa/{userid}/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling removeAccessTfaByUseridAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling removeAccessTfaByUseridAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarBodyParameter = $DELETEAccessTfaRB | ConvertTo-Json -Depth 100
 
@@ -2200,6 +2400,9 @@ Delete user.
 
 No description available.
 
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2211,6 +2414,9 @@ None
 function Remove-PVEAccessUsersByUserid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
         [Switch]
         $WithHttpInfo
     )
@@ -2230,6 +2436,10 @@ function Remove-PVEAccessUsersByUserid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/access/users/{userid}'
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling removeAccessUsersByUserid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -2260,6 +2470,12 @@ Remove API token for a specific user.
 
 No description available.
 
+.PARAMETER Tokenid
+User-specific token identifier.
+
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2271,6 +2487,12 @@ None
 function Remove-PVEAccessUsersTokenByUseridAndTokenid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Tokenid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
         [Switch]
         $WithHttpInfo
     )
@@ -2290,6 +2512,14 @@ function Remove-PVEAccessUsersTokenByUseridAndTokenid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/access/users/{userid}/token/{tokenid}'
+        if (!$Tokenid) {
+            throw "Error! The required parameter `Tokenid` missing when calling removeAccessUsersTokenByUseridAndTokenid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{tokenid}', [System.Web.HTTPUtility]::UrlEncode($Tokenid))
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling removeAccessUsersTokenByUseridAndTokenid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -2391,6 +2621,9 @@ Update authentication server settings.
 
 No description available.
 
+.PARAMETER Realm
+Authentication domain ID
+
 .PARAMETER PUTAccessDomainsRB
 Update authentication server settings.
 
@@ -2406,6 +2639,9 @@ function Set-PVEAccessDomainsByRealm {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Realm},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTAccessDomainsRB},
         [Switch]
@@ -2430,6 +2666,10 @@ function Set-PVEAccessDomainsByRealm {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/access/domains/{realm}'
+        if (!$Realm) {
+            throw "Error! The required parameter `Realm` missing when calling setAccessDomainsByRealm."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{realm}', [System.Web.HTTPUtility]::UrlEncode($Realm))
 
         $LocalVarBodyParameter = $PUTAccessDomainsRB | ConvertTo-Json -Depth 100
 
@@ -2462,6 +2702,9 @@ Update group data.
 
 No description available.
 
+.PARAMETER Groupid
+No description available.
+
 .PARAMETER PUTAccessGroupsRB
 Update group data.
 
@@ -2477,6 +2720,9 @@ function Set-PVEAccessGroupsByGroupid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Groupid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTAccessGroupsRB},
         [Switch]
@@ -2501,6 +2747,10 @@ function Set-PVEAccessGroupsByGroupid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/access/groups/{groupid}'
+        if (!$Groupid) {
+            throw "Error! The required parameter `Groupid` missing when calling setAccessGroupsByGroupid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{groupid}', [System.Web.HTTPUtility]::UrlEncode($Groupid))
 
         $LocalVarBodyParameter = $PUTAccessGroupsRB | ConvertTo-Json -Depth 100
 
@@ -2604,6 +2854,9 @@ Update an existing role.
 
 No description available.
 
+.PARAMETER Roleid
+No description available.
+
 .PARAMETER PUTAccessRolesRB
 Update an existing role.
 
@@ -2619,6 +2872,9 @@ function Set-PVEAccessRolesByRoleid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Roleid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTAccessRolesRB},
         [Switch]
@@ -2643,6 +2899,10 @@ function Set-PVEAccessRolesByRoleid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/access/roles/{roleid}'
+        if (!$Roleid) {
+            throw "Error! The required parameter `Roleid` missing when calling setAccessRolesByRoleid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{roleid}', [System.Web.HTTPUtility]::UrlEncode($Roleid))
 
         $LocalVarBodyParameter = $PUTAccessRolesRB | ConvertTo-Json -Depth 100
 
@@ -2675,6 +2935,12 @@ Add a TFA entry for a user.
 
 No description available.
 
+.PARAMETER Id
+A TFA entry id.
+
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER PUTAccessTfaRB
 Add a TFA entry for a user.
 
@@ -2690,6 +2956,12 @@ function Set-PVEAccessTfaByUseridAndId {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTAccessTfaRB},
         [Switch]
@@ -2714,6 +2986,14 @@ function Set-PVEAccessTfaByUseridAndId {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/access/tfa/{userid}/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling setAccessTfaByUseridAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling setAccessTfaByUseridAndId."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarBodyParameter = $PUTAccessTfaRB | ConvertTo-Json -Depth 100
 
@@ -2746,6 +3026,9 @@ Update user configuration.
 
 No description available.
 
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER PUTAccessUsersRB
 Update user configuration.
 
@@ -2761,6 +3044,9 @@ function Set-PVEAccessUsersByUserid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTAccessUsersRB},
         [Switch]
@@ -2785,6 +3071,10 @@ function Set-PVEAccessUsersByUserid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/access/users/{userid}'
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling setAccessUsersByUserid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarBodyParameter = $PUTAccessUsersRB | ConvertTo-Json -Depth 100
 
@@ -2817,6 +3107,12 @@ Update API token for a specific user.
 
 No description available.
 
+.PARAMETER Tokenid
+User-specific token identifier.
+
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER PUTAccessUsersTokenRB
 Update API token for a specific user.
 
@@ -2832,6 +3128,12 @@ function Set-PVEAccessUsersTokenByUseridAndTokenid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Tokenid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTAccessUsersTokenRB},
         [Switch]
@@ -2859,6 +3161,14 @@ function Set-PVEAccessUsersTokenByUseridAndTokenid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/access/users/{userid}/token/{tokenid}'
+        if (!$Tokenid) {
+            throw "Error! The required parameter `Tokenid` missing when calling setAccessUsersTokenByUseridAndTokenid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{tokenid}', [System.Web.HTTPUtility]::UrlEncode($Tokenid))
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling setAccessUsersTokenByUseridAndTokenid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarBodyParameter = $PUTAccessUsersTokenRB | ConvertTo-Json -Depth 100
 
@@ -2891,6 +3201,9 @@ Unlock a user's TFA authentication.
 
 No description available.
 
+.PARAMETER Userid
+Full User ID, in the `name@realm` format.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2902,6 +3215,9 @@ Int32
 function Set-PVEAccessUsersUnlocktfaByUserid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Userid},
         [Switch]
         $WithHttpInfo
     )
@@ -2924,6 +3240,10 @@ function Set-PVEAccessUsersUnlocktfaByUserid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/access/users/{userid}/unlock-tfa'
+        if (!$Userid) {
+            throw "Error! The required parameter `Userid` missing when calling setAccessUsersUnlocktfaByUserid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{userid}', [System.Web.HTTPUtility]::UrlEncode($Userid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'PUT' `
                                 -Uri $LocalVarUri `

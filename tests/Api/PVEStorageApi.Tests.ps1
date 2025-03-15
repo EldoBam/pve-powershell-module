@@ -17,7 +17,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEStorageApi' {
 
     Context 'Get-PVEStorageByStorage' {
         It 'Test Get-PVEStorageByStorage' {
-            #$TestResult = Get-PVEStorageByStorage
+            #$TestResult = Get-PVEStorageByStorage -Storage "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -33,7 +33,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEStorageApi' {
 
     Context 'Remove-PVEStorageByStorage' {
         It 'Test Remove-PVEStorageByStorage' {
-            #$TestResult = Remove-PVEStorageByStorage
+            #$TestResult = Remove-PVEStorageByStorage -Storage "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -41,7 +41,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEStorageApi' {
 
     Context 'Set-PVEStorageByStorage' {
         It 'Test Set-PVEStorageByStorage' {
-            #$TestResult = Set-PVEStorageByStorage -PUTStorageRB "TEST_VALUE"
+            #$TestResult = Set-PVEStorageByStorage -Storage "TEST_VALUE" -PUTStorageRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }

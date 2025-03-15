@@ -15,23 +15,23 @@ No summary available.
 
 No description available.
 
-.PARAMETER Source
+.PARAMETER Comment
 No description available.
 .PARAMETER Id
 No description available.
-.PARAMETER Delete
-No description available.
-.PARAMETER Disable
-No description available.
-.PARAMETER Comment
+.PARAMETER Rate
 No description available.
 .PARAMETER RemoveJob
 No description available.
-.PARAMETER Digest
+.PARAMETER Delete
 No description available.
-.PARAMETER Rate
+.PARAMETER Source
 No description available.
 .PARAMETER Schedule
+No description available.
+.PARAMETER Digest
+No description available.
+.PARAMETER Disable
 No description available.
 .OUTPUTS
 
@@ -43,41 +43,57 @@ function Initialize-PVEPUTClusterReplicationRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Source},
+        ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[1-9][0-9]{2,8}-\d{1,9}")]
         [String]
         ${Id},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
+        [System.Nullable[Decimal]]
+        ${Rate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("local", "full")]
         [String]
         ${RemoveJob},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${Rate},
+        ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Schedule}
+        ${Source},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Schedule},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Disable}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterReplicationRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
+        if (!$Comment -and $Comment.length -gt 4096) {
+            throw "invalid value for 'Comment', the character length must be smaller than or equal to 4096."
+        }
+
+        if ($Rate -and $Rate -lt 1) {
+          throw "invalid value for 'Rate', must be greater than or equal to 1."
+        }
+
         if (!$Delete -and $Delete.length -gt 4096) {
             throw "invalid value for 'Delete', the character length must be smaller than or equal to 4096."
+        }
+
+        if (!$Schedule -and $Schedule.length -gt 128) {
+            throw "invalid value for 'Schedule', the character length must be smaller than or equal to 128."
+        }
+
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
         }
 
         if ($Disable -and $Disable -gt 1) {
@@ -88,25 +104,9 @@ function Initialize-PVEPUTClusterReplicationRB {
           throw "invalid value for 'Disable', must be greater than or equal to 0."
         }
 
-        if (!$Comment -and $Comment.length -gt 4096) {
-            throw "invalid value for 'Comment', the character length must be smaller than or equal to 4096."
-        }
-
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
-        }
-
-        if ($Rate -and $Rate -lt 1) {
-          throw "invalid value for 'Rate', must be greater than or equal to 1."
-        }
-
-        if (!$Schedule -and $Schedule.length -gt 128) {
-            throw "invalid value for 'Schedule', the character length must be smaller than or equal to 128."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Source"="source"; "Id"="id"; "Delete"="delete"; "Disable"="disable"; "Comment"="comment"; "RemoveJob"="remove_job"; "Digest"="digest"; "Rate"="rate"; "Schedule"="schedule"
+			"Comment"="comment"; "Id"="id"; "Rate"="rate"; "RemoveJob"="remove_job"; "Delete"="delete"; "Source"="source"; "Schedule"="schedule"; "Digest"="digest"; "Disable"="disable"
         }
 		
 		 $OBJ = @{}
@@ -152,35 +152,11 @@ function ConvertFrom-PVEJsonToPUTClusterReplicationRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterReplicationRB
-        $AllProperties = ("source", "id", "delete", "disable", "comment", "remove_job", "digest", "rate", "schedule")
+        $AllProperties = ("comment", "id", "rate", "remove_job", "delete", "source", "schedule", "digest", "disable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
-            $Source = $null
-        } else {
-            $Source = $JsonParameters.PSobject.Properties["source"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
-        } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -189,16 +165,10 @@ function ConvertFrom-PVEJsonToPUTClusterReplicationRB {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove_job"))) { #optional property not found
-            $RemoveJob = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
         } else {
-            $RemoveJob = $JsonParameters.PSobject.Properties["remove_job"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+            $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "rate"))) { #optional property not found
@@ -207,22 +177,52 @@ function ConvertFrom-PVEJsonToPUTClusterReplicationRB {
             $Rate = $JsonParameters.PSobject.Properties["rate"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove_job"))) { #optional property not found
+            $RemoveJob = $null
+        } else {
+            $RemoveJob = $JsonParameters.PSobject.Properties["remove_job"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
+            $Source = $null
+        } else {
+            $Source = $JsonParameters.PSobject.Properties["source"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "schedule"))) { #optional property not found
             $Schedule = $null
         } else {
             $Schedule = $JsonParameters.PSobject.Properties["schedule"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
+        } else {
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "source" = ${Source}
-            "id" = ${Id}
-            "delete" = ${Delete}
-            "disable" = ${Disable}
             "comment" = ${Comment}
-            "remove_job" = ${RemoveJob}
-            "digest" = ${Digest}
+            "id" = ${Id}
             "rate" = ${Rate}
+            "remove_job" = ${RemoveJob}
+            "delete" = ${Delete}
+            "source" = ${Source}
             "schedule" = ${Schedule}
+            "digest" = ${Digest}
+            "disable" = ${Disable}
         }
 
         return $PSO

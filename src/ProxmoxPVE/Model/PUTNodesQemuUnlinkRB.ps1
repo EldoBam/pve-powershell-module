@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
 .PARAMETER Force
 No description available.
 .PARAMETER Idlist
+No description available.
+.PARAMETER Node
 No description available.
 .PARAMETER Vmid
 No description available.
@@ -32,14 +32,14 @@ function Initialize-PVEPUTNodesQemuUnlinkRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Force},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Idlist},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid}
@@ -67,7 +67,7 @@ function Initialize-PVEPUTNodesQemuUnlinkRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Force"="force"; "Idlist"="idlist"; "Vmid"="vmid"
+			"Force"="force"; "Idlist"="idlist"; "Node"="node"; "Vmid"="vmid"
         }
 		
 		 $OBJ = @{}
@@ -113,17 +113,11 @@ function ConvertFrom-PVEJsonToPUTNodesQemuUnlinkRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTNodesQemuUnlinkRB
-        $AllProperties = ("node", "force", "idlist", "vmid")
+        $AllProperties = ("force", "idlist", "node", "vmid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
@@ -138,6 +132,12 @@ function ConvertFrom-PVEJsonToPUTNodesQemuUnlinkRB {
             $Idlist = $JsonParameters.PSobject.Properties["idlist"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
@@ -145,9 +145,9 @@ function ConvertFrom-PVEJsonToPUTNodesQemuUnlinkRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
             "force" = ${Force}
             "idlist" = ${Idlist}
+            "node" = ${Node}
             "vmid" = ${Vmid}
         }
 

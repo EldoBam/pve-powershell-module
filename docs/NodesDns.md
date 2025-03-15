@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Dns1** | **String** |  | [optional] 
-**Dns3** | **String** |  | [optional] 
 **Search** | **String** |  | [optional] 
+**Dns1** | **String** |  | [optional] 
 **Dns2** | **String** |  | [optional] 
+**Dns3** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesDns = Initialize-PVENodesDns  -Dns1 null `
- -Dns3 null `
- -Search null `
- -Dns2 null
+$NodesDns = Initialize-PVENodesDns  -Search null `
+ -Dns1 null `
+ -Dns2 null `
+ -Dns3 null
 ```
 
 - Convert the resource to JSON

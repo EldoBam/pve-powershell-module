@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Storage** | **String** |  | [optional] 
+**TargetNode** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
 **Volume** | **String** |  | [optional] 
-**TargetNode** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
 **Target** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesStorageContentRB = Initialize-PVEPOSTNodesStorageContentRB  -Node null `
- -Volume null `
+$POSTNodesStorageContentRB = Initialize-PVEPOSTNodesStorageContentRB  -Storage null `
  -TargetNode null `
- -Storage null `
+ -Node null `
+ -Volume null `
  -Target null
 ```
 

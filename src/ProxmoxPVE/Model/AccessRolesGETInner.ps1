@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Privs
 No description available.
-.PARAMETER Special
-No description available.
 .PARAMETER Roleid
+No description available.
+.PARAMETER Special
 No description available.
 .OUTPUTS
 
@@ -33,11 +33,11 @@ function Initialize-PVEAccessRolesGETInner {
         [String]
         ${Privs},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Special},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Roleid}
+        ${Roleid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Special}
     )
 
     Process {
@@ -54,7 +54,7 @@ function Initialize-PVEAccessRolesGETInner {
 
 
 		 $DisplayNameMapping =@{
-			"Privs"="privs"; "Special"="special"; "Roleid"="roleid"
+			"Privs"="privs"; "Roleid"="roleid"; "Special"="special"
         }
 		
 		 $OBJ = @{}
@@ -100,7 +100,7 @@ function ConvertFrom-PVEJsonToAccessRolesGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessRolesGETInner
-        $AllProperties = ("privs", "special", "roleid")
+        $AllProperties = ("privs", "roleid", "special")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -113,22 +113,22 @@ function ConvertFrom-PVEJsonToAccessRolesGETInner {
             $Privs = $JsonParameters.PSobject.Properties["privs"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "special"))) { #optional property not found
-            $Special = $null
-        } else {
-            $Special = $JsonParameters.PSobject.Properties["special"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "roleid"))) { #optional property not found
             $Roleid = $null
         } else {
             $Roleid = $JsonParameters.PSobject.Properties["roleid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "special"))) { #optional property not found
+            $Special = $null
+        } else {
+            $Special = $JsonParameters.PSobject.Properties["special"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "privs" = ${Privs}
-            "special" = ${Special}
             "roleid" = ${Roleid}
+            "special" = ${Special}
         }
 
         return $PSO

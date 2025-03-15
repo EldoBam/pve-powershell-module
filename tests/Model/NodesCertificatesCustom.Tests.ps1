@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesCertificatesCustom' {
     Context 'PVENodesCertificatesCustom' {
         It 'Initialize-PVENodesCertificatesCustom' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesCertificatesCustom -PublicKeyBits "TEST_VALUE" -Notafter "TEST_VALUE" -PublicKeyType "TEST_VALUE" -Pem "TEST_VALUE" -Notbefore "TEST_VALUE" -Subject "TEST_VALUE" -Fingerprint "TEST_VALUE" -San "TEST_VALUE" -Filename "TEST_VALUE" -Issuer "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesCertificatesCustom -PublicKeyType "TEST_VALUE" -Subject "TEST_VALUE" -Fingerprint "TEST_VALUE" -Notafter "TEST_VALUE" -PublicKeyBits "TEST_VALUE" -Notbefore "TEST_VALUE" -San "TEST_VALUE" -Filename "TEST_VALUE" -Pem "TEST_VALUE" -Issuer "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesCertificatesCustom
             #$NewObject.property | Should -Be 0
         }

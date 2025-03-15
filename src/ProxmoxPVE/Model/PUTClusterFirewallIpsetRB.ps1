@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
-No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Comment
+.PARAMETER Name
+No description available.
+.PARAMETER Nomatch
 No description available.
 .PARAMETER Cidr
 No description available.
-.PARAMETER Nomatch
+.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -34,26 +34,30 @@ function Initialize-PVEPUTClusterFirewallIpsetRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
+        [System.Nullable[Int32]]
+        ${Nomatch},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Cidr},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Nomatch}
+        [String]
+        ${Comment}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterFirewallIpsetRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        }
 
         if (!$Name -and $Name.length -gt 64) {
             throw "invalid value for 'Name', the character length must be smaller than or equal to 64."
@@ -61,10 +65,6 @@ function Initialize-PVEPUTClusterFirewallIpsetRB {
 
         if (!$Name -and $Name.length -lt 2) {
             throw "invalid value for 'Name', the character length must be great than or equal to 2."
-        }
-
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
         }
 
         if ($Nomatch -and $Nomatch -gt 1) {
@@ -77,7 +77,7 @@ function Initialize-PVEPUTClusterFirewallIpsetRB {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Digest"="digest"; "Comment"="comment"; "Cidr"="cidr"; "Nomatch"="nomatch"
+			"Digest"="digest"; "Name"="name"; "Nomatch"="nomatch"; "Cidr"="cidr"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -123,17 +123,11 @@ function ConvertFrom-PVEJsonToPUTClusterFirewallIpsetRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterFirewallIpsetRB
-        $AllProperties = ("name", "digest", "comment", "cidr", "nomatch")
+        $AllProperties = ("digest", "name", "nomatch", "cidr", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -142,16 +136,10 @@ function ConvertFrom-PVEJsonToPUTClusterFirewallIpsetRB {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
         } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
-            $Cidr = $null
-        } else {
-            $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "nomatch"))) { #optional property not found
@@ -160,12 +148,24 @@ function ConvertFrom-PVEJsonToPUTClusterFirewallIpsetRB {
             $Nomatch = $JsonParameters.PSobject.Properties["nomatch"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
+            $Cidr = $null
+        } else {
+            $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
             "digest" = ${Digest}
-            "comment" = ${Comment}
-            "cidr" = ${Cidr}
+            "name" = ${Name}
             "nomatch" = ${Nomatch}
+            "cidr" = ${Cidr}
+            "comment" = ${Comment}
         }
 
         return $PSO

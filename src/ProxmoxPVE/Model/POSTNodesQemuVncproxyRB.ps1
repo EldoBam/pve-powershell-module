@@ -19,9 +19,9 @@ No description available.
 No description available.
 .PARAMETER Websocket
 No description available.
-.PARAMETER GeneratePassword
-No description available.
 .PARAMETER Vmid
+No description available.
+.PARAMETER GeneratePassword
 No description available.
 .OUTPUTS
 
@@ -39,10 +39,10 @@ function Initialize-PVEPOSTNodesQemuVncproxyRB {
         ${Websocket},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${GeneratePassword},
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid}
+        ${GeneratePassword}
     )
 
     Process {
@@ -57,14 +57,6 @@ function Initialize-PVEPOSTNodesQemuVncproxyRB {
           throw "invalid value for 'Websocket', must be greater than or equal to 0."
         }
 
-        if ($GeneratePassword -and $GeneratePassword -gt 1) {
-          throw "invalid value for 'GeneratePassword', must be smaller than or equal to 1."
-        }
-
-        if ($GeneratePassword -and $GeneratePassword -lt 0) {
-          throw "invalid value for 'GeneratePassword', must be greater than or equal to 0."
-        }
-
         if ($Vmid -and $Vmid -gt 999999999) {
           throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
         }
@@ -73,9 +65,17 @@ function Initialize-PVEPOSTNodesQemuVncproxyRB {
           throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
+        if ($GeneratePassword -and $GeneratePassword -gt 1) {
+          throw "invalid value for 'GeneratePassword', must be smaller than or equal to 1."
+        }
+
+        if ($GeneratePassword -and $GeneratePassword -lt 0) {
+          throw "invalid value for 'GeneratePassword', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Websocket"="websocket"; "GeneratePassword"="generate-password"; "Vmid"="vmid"
+			"Node"="node"; "Websocket"="websocket"; "Vmid"="vmid"; "GeneratePassword"="generate-password"
         }
 		
 		 $OBJ = @{}
@@ -121,7 +121,7 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuVncproxyRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuVncproxyRB
-        $AllProperties = ("node", "websocket", "generate-password", "vmid")
+        $AllProperties = ("node", "websocket", "vmid", "generate-password")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -140,23 +140,23 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuVncproxyRB {
             $Websocket = $JsonParameters.PSobject.Properties["websocket"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "generate-password"))) { #optional property not found
-            $GeneratePassword = $null
-        } else {
-            $GeneratePassword = $JsonParameters.PSobject.Properties["generate-password"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "generate-password"))) { #optional property not found
+            $GeneratePassword = $null
+        } else {
+            $GeneratePassword = $JsonParameters.PSobject.Properties["generate-password"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "node" = ${Node}
             "websocket" = ${Websocket}
-            "generate-password" = ${GeneratePassword}
             "vmid" = ${Vmid}
+            "generate-password" = ${GeneratePassword}
         }
 
         return $PSO

@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LogLevelForward** | **String** |  | [optional] 
-**PolicyForward** | **String** |  | [optional] 
 **Enable** | **Int32** |  | [optional] 
+**PolicyForward** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $ClusterSdnVnetsFirewallOptions = Initialize-PVEClusterSdnVnetsFirewallOptions  -LogLevelForward null `
- -PolicyForward null `
- -Enable null
+ -Enable null `
+ -PolicyForward null
 ```
 
 - Convert the resource to JSON

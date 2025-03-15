@@ -15,89 +15,89 @@ No summary available.
 
 No description available.
 
+.PARAMETER RealmAllocate
+No description available.
+.PARAMETER SDNAudit
+No description available.
 .PARAMETER VMConfigNetwork
 No description available.
-.PARAMETER SDNUse
+.PARAMETER PoolAllocate
 No description available.
-.PARAMETER DatastoreAllocateTemplate
-No description available.
-.PARAMETER VMAllocate
-No description available.
-.PARAMETER SysConsole
-No description available.
-.PARAMETER DatastoreAudit
-No description available.
-.PARAMETER VMConfigOptions
-No description available.
-.PARAMETER PoolAudit
-No description available.
-.PARAMETER SysPowerMgmt
-No description available.
-.PARAMETER SDNAllocate
+.PARAMETER UserModify
 No description available.
 .PARAMETER SysModify
 No description available.
-.PARAMETER SysAudit
+.PARAMETER VMConfigOptions
 No description available.
-.PARAMETER VMPowerMgmt
+.PARAMETER VMConfigCPU
+No description available.
+.PARAMETER SDNUse
+No description available.
+.PARAMETER MappingUse
+No description available.
+.PARAMETER RealmAllocateUser
 No description available.
 .PARAMETER VMSnapshot
 No description available.
-.PARAMETER RealmAllocate
+.PARAMETER PoolAudit
 No description available.
-.PARAMETER VMMonitor
+.PARAMETER DatastoreAllocateTemplate
 No description available.
-.PARAMETER VMConsole
-No description available.
-.PARAMETER VMConfigMemory
-No description available.
-.PARAMETER VMConfigHWType
-No description available.
-.PARAMETER DatastoreAllocate
-No description available.
-.PARAMETER PermissionsModify
+.PARAMETER MappingModify
 No description available.
 .PARAMETER SysSyslog
 No description available.
 .PARAMETER VMConfigCDROM
 No description available.
-.PARAMETER MappingModify
+.PARAMETER VMSnapshotRollback
 No description available.
-.PARAMETER MappingAudit
-No description available.
-.PARAMETER SysAccessNetwork
+.PARAMETER VMConfigHWType
 No description available.
 .PARAMETER DatastoreAllocateSpace
 No description available.
-.PARAMETER UserModify
+.PARAMETER PermissionsModify
 No description available.
-.PARAMETER MappingUse
+.PARAMETER SysConsole
 No description available.
-.PARAMETER VMClone
-No description available.
-.PARAMETER RealmAllocateUser
+.PARAMETER VMAllocate
 No description available.
 .PARAMETER GroupAllocate
 No description available.
-.PARAMETER VMBackup
+.PARAMETER SDNAllocate
 No description available.
-.PARAMETER VMConfigDisk
-No description available.
-.PARAMETER PoolAllocate
-No description available.
-.PARAMETER VMAudit
-No description available.
-.PARAMETER VMConfigCloudinit
+.PARAMETER SysIncoming
 No description available.
 .PARAMETER VMMigrate
 No description available.
-.PARAMETER SDNAudit
+.PARAMETER VMMonitor
 No description available.
-.PARAMETER VMSnapshotRollback
+.PARAMETER SysAccessNetwork
 No description available.
-.PARAMETER VMConfigCPU
+.PARAMETER VMConfigMemory
 No description available.
-.PARAMETER SysIncoming
+.PARAMETER SysPowerMgmt
+No description available.
+.PARAMETER VMConfigCloudinit
+No description available.
+.PARAMETER DatastoreAllocate
+No description available.
+.PARAMETER MappingAudit
+No description available.
+.PARAMETER DatastoreAudit
+No description available.
+.PARAMETER SysAudit
+No description available.
+.PARAMETER VMBackup
+No description available.
+.PARAMETER VMClone
+No description available.
+.PARAMETER VMPowerMgmt
+No description available.
+.PARAMETER VMConsole
+No description available.
+.PARAMETER VMAudit
+No description available.
+.PARAMETER VMConfigDisk
 No description available.
 .OUTPUTS
 
@@ -109,67 +109,49 @@ function Initialize-PVEAccessRoles {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
+        ${RealmAllocate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${SDNAudit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
         ${VMConfigNetwork},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${SDNUse},
+        ${PoolAllocate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${DatastoreAllocateTemplate},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VMAllocate},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${SysConsole},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${DatastoreAudit},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VMConfigOptions},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${PoolAudit},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${SysPowerMgmt},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${SDNAllocate},
+        ${UserModify},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${SysModify},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${SysAudit},
+        ${VMConfigOptions},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VMPowerMgmt},
+        ${VMConfigCPU},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${SDNUse},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${MappingUse},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${RealmAllocateUser},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${VMSnapshot},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${RealmAllocate},
+        ${PoolAudit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VMMonitor},
+        ${DatastoreAllocateTemplate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VMConsole},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VMConfigMemory},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VMConfigHWType},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${DatastoreAllocate},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${PermissionsModify},
+        ${MappingModify},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${SysSyslog},
@@ -178,66 +160,100 @@ function Initialize-PVEAccessRoles {
         ${VMConfigCDROM},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${MappingModify},
+        ${VMSnapshotRollback},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${MappingAudit},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${SysAccessNetwork},
+        ${VMConfigHWType},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${DatastoreAllocateSpace},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${UserModify},
+        ${PermissionsModify},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${MappingUse},
+        ${SysConsole},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VMClone},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${RealmAllocateUser},
+        ${VMAllocate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${GroupAllocate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VMBackup},
+        ${SDNAllocate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VMConfigDisk},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${PoolAllocate},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VMAudit},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VMConfigCloudinit},
+        ${SysIncoming},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${VMMigrate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${SDNAudit},
+        ${VMMonitor},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VMSnapshotRollback},
+        ${SysAccessNetwork},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VMConfigCPU},
+        ${VMConfigMemory},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${SysIncoming}
+        ${SysPowerMgmt},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${VMConfigCloudinit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${DatastoreAllocate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${MappingAudit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${DatastoreAudit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${SysAudit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${VMBackup},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${VMClone},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${VMPowerMgmt},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${VMConsole},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${VMAudit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${VMConfigDisk}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEAccessRoles' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if ($RealmAllocate -and $RealmAllocate -gt 1) {
+          throw "invalid value for 'RealmAllocate', must be smaller than or equal to 1."
+        }
+
+        if ($RealmAllocate -and $RealmAllocate -lt 0) {
+          throw "invalid value for 'RealmAllocate', must be greater than or equal to 0."
+        }
+
+        if ($SDNAudit -and $SDNAudit -gt 1) {
+          throw "invalid value for 'SDNAudit', must be smaller than or equal to 1."
+        }
+
+        if ($SDNAudit -and $SDNAudit -lt 0) {
+          throw "invalid value for 'SDNAudit', must be greater than or equal to 0."
+        }
 
         if ($VMConfigNetwork -and $VMConfigNetwork -gt 1) {
           throw "invalid value for 'VMConfigNetwork', must be smaller than or equal to 1."
@@ -247,76 +263,20 @@ function Initialize-PVEAccessRoles {
           throw "invalid value for 'VMConfigNetwork', must be greater than or equal to 0."
         }
 
-        if ($SDNUse -and $SDNUse -gt 1) {
-          throw "invalid value for 'SDNUse', must be smaller than or equal to 1."
+        if ($PoolAllocate -and $PoolAllocate -gt 1) {
+          throw "invalid value for 'PoolAllocate', must be smaller than or equal to 1."
         }
 
-        if ($SDNUse -and $SDNUse -lt 0) {
-          throw "invalid value for 'SDNUse', must be greater than or equal to 0."
+        if ($PoolAllocate -and $PoolAllocate -lt 0) {
+          throw "invalid value for 'PoolAllocate', must be greater than or equal to 0."
         }
 
-        if ($DatastoreAllocateTemplate -and $DatastoreAllocateTemplate -gt 1) {
-          throw "invalid value for 'DatastoreAllocateTemplate', must be smaller than or equal to 1."
+        if ($UserModify -and $UserModify -gt 1) {
+          throw "invalid value for 'UserModify', must be smaller than or equal to 1."
         }
 
-        if ($DatastoreAllocateTemplate -and $DatastoreAllocateTemplate -lt 0) {
-          throw "invalid value for 'DatastoreAllocateTemplate', must be greater than or equal to 0."
-        }
-
-        if ($VMAllocate -and $VMAllocate -gt 1) {
-          throw "invalid value for 'VMAllocate', must be smaller than or equal to 1."
-        }
-
-        if ($VMAllocate -and $VMAllocate -lt 0) {
-          throw "invalid value for 'VMAllocate', must be greater than or equal to 0."
-        }
-
-        if ($SysConsole -and $SysConsole -gt 1) {
-          throw "invalid value for 'SysConsole', must be smaller than or equal to 1."
-        }
-
-        if ($SysConsole -and $SysConsole -lt 0) {
-          throw "invalid value for 'SysConsole', must be greater than or equal to 0."
-        }
-
-        if ($DatastoreAudit -and $DatastoreAudit -gt 1) {
-          throw "invalid value for 'DatastoreAudit', must be smaller than or equal to 1."
-        }
-
-        if ($DatastoreAudit -and $DatastoreAudit -lt 0) {
-          throw "invalid value for 'DatastoreAudit', must be greater than or equal to 0."
-        }
-
-        if ($VMConfigOptions -and $VMConfigOptions -gt 1) {
-          throw "invalid value for 'VMConfigOptions', must be smaller than or equal to 1."
-        }
-
-        if ($VMConfigOptions -and $VMConfigOptions -lt 0) {
-          throw "invalid value for 'VMConfigOptions', must be greater than or equal to 0."
-        }
-
-        if ($PoolAudit -and $PoolAudit -gt 1) {
-          throw "invalid value for 'PoolAudit', must be smaller than or equal to 1."
-        }
-
-        if ($PoolAudit -and $PoolAudit -lt 0) {
-          throw "invalid value for 'PoolAudit', must be greater than or equal to 0."
-        }
-
-        if ($SysPowerMgmt -and $SysPowerMgmt -gt 1) {
-          throw "invalid value for 'SysPowerMgmt', must be smaller than or equal to 1."
-        }
-
-        if ($SysPowerMgmt -and $SysPowerMgmt -lt 0) {
-          throw "invalid value for 'SysPowerMgmt', must be greater than or equal to 0."
-        }
-
-        if ($SDNAllocate -and $SDNAllocate -gt 1) {
-          throw "invalid value for 'SDNAllocate', must be smaller than or equal to 1."
-        }
-
-        if ($SDNAllocate -and $SDNAllocate -lt 0) {
-          throw "invalid value for 'SDNAllocate', must be greater than or equal to 0."
+        if ($UserModify -and $UserModify -lt 0) {
+          throw "invalid value for 'UserModify', must be greater than or equal to 0."
         }
 
         if ($SysModify -and $SysModify -gt 1) {
@@ -327,20 +287,44 @@ function Initialize-PVEAccessRoles {
           throw "invalid value for 'SysModify', must be greater than or equal to 0."
         }
 
-        if ($SysAudit -and $SysAudit -gt 1) {
-          throw "invalid value for 'SysAudit', must be smaller than or equal to 1."
+        if ($VMConfigOptions -and $VMConfigOptions -gt 1) {
+          throw "invalid value for 'VMConfigOptions', must be smaller than or equal to 1."
         }
 
-        if ($SysAudit -and $SysAudit -lt 0) {
-          throw "invalid value for 'SysAudit', must be greater than or equal to 0."
+        if ($VMConfigOptions -and $VMConfigOptions -lt 0) {
+          throw "invalid value for 'VMConfigOptions', must be greater than or equal to 0."
         }
 
-        if ($VMPowerMgmt -and $VMPowerMgmt -gt 1) {
-          throw "invalid value for 'VMPowerMgmt', must be smaller than or equal to 1."
+        if ($VMConfigCPU -and $VMConfigCPU -gt 1) {
+          throw "invalid value for 'VMConfigCPU', must be smaller than or equal to 1."
         }
 
-        if ($VMPowerMgmt -and $VMPowerMgmt -lt 0) {
-          throw "invalid value for 'VMPowerMgmt', must be greater than or equal to 0."
+        if ($VMConfigCPU -and $VMConfigCPU -lt 0) {
+          throw "invalid value for 'VMConfigCPU', must be greater than or equal to 0."
+        }
+
+        if ($SDNUse -and $SDNUse -gt 1) {
+          throw "invalid value for 'SDNUse', must be smaller than or equal to 1."
+        }
+
+        if ($SDNUse -and $SDNUse -lt 0) {
+          throw "invalid value for 'SDNUse', must be greater than or equal to 0."
+        }
+
+        if ($MappingUse -and $MappingUse -gt 1) {
+          throw "invalid value for 'MappingUse', must be smaller than or equal to 1."
+        }
+
+        if ($MappingUse -and $MappingUse -lt 0) {
+          throw "invalid value for 'MappingUse', must be greater than or equal to 0."
+        }
+
+        if ($RealmAllocateUser -and $RealmAllocateUser -gt 1) {
+          throw "invalid value for 'RealmAllocateUser', must be smaller than or equal to 1."
+        }
+
+        if ($RealmAllocateUser -and $RealmAllocateUser -lt 0) {
+          throw "invalid value for 'RealmAllocateUser', must be greater than or equal to 0."
         }
 
         if ($VMSnapshot -and $VMSnapshot -gt 1) {
@@ -351,60 +335,28 @@ function Initialize-PVEAccessRoles {
           throw "invalid value for 'VMSnapshot', must be greater than or equal to 0."
         }
 
-        if ($RealmAllocate -and $RealmAllocate -gt 1) {
-          throw "invalid value for 'RealmAllocate', must be smaller than or equal to 1."
+        if ($PoolAudit -and $PoolAudit -gt 1) {
+          throw "invalid value for 'PoolAudit', must be smaller than or equal to 1."
         }
 
-        if ($RealmAllocate -and $RealmAllocate -lt 0) {
-          throw "invalid value for 'RealmAllocate', must be greater than or equal to 0."
+        if ($PoolAudit -and $PoolAudit -lt 0) {
+          throw "invalid value for 'PoolAudit', must be greater than or equal to 0."
         }
 
-        if ($VMMonitor -and $VMMonitor -gt 1) {
-          throw "invalid value for 'VMMonitor', must be smaller than or equal to 1."
+        if ($DatastoreAllocateTemplate -and $DatastoreAllocateTemplate -gt 1) {
+          throw "invalid value for 'DatastoreAllocateTemplate', must be smaller than or equal to 1."
         }
 
-        if ($VMMonitor -and $VMMonitor -lt 0) {
-          throw "invalid value for 'VMMonitor', must be greater than or equal to 0."
+        if ($DatastoreAllocateTemplate -and $DatastoreAllocateTemplate -lt 0) {
+          throw "invalid value for 'DatastoreAllocateTemplate', must be greater than or equal to 0."
         }
 
-        if ($VMConsole -and $VMConsole -gt 1) {
-          throw "invalid value for 'VMConsole', must be smaller than or equal to 1."
+        if ($MappingModify -and $MappingModify -gt 1) {
+          throw "invalid value for 'MappingModify', must be smaller than or equal to 1."
         }
 
-        if ($VMConsole -and $VMConsole -lt 0) {
-          throw "invalid value for 'VMConsole', must be greater than or equal to 0."
-        }
-
-        if ($VMConfigMemory -and $VMConfigMemory -gt 1) {
-          throw "invalid value for 'VMConfigMemory', must be smaller than or equal to 1."
-        }
-
-        if ($VMConfigMemory -and $VMConfigMemory -lt 0) {
-          throw "invalid value for 'VMConfigMemory', must be greater than or equal to 0."
-        }
-
-        if ($VMConfigHWType -and $VMConfigHWType -gt 1) {
-          throw "invalid value for 'VMConfigHWType', must be smaller than or equal to 1."
-        }
-
-        if ($VMConfigHWType -and $VMConfigHWType -lt 0) {
-          throw "invalid value for 'VMConfigHWType', must be greater than or equal to 0."
-        }
-
-        if ($DatastoreAllocate -and $DatastoreAllocate -gt 1) {
-          throw "invalid value for 'DatastoreAllocate', must be smaller than or equal to 1."
-        }
-
-        if ($DatastoreAllocate -and $DatastoreAllocate -lt 0) {
-          throw "invalid value for 'DatastoreAllocate', must be greater than or equal to 0."
-        }
-
-        if ($PermissionsModify -and $PermissionsModify -gt 1) {
-          throw "invalid value for 'PermissionsModify', must be smaller than or equal to 1."
-        }
-
-        if ($PermissionsModify -and $PermissionsModify -lt 0) {
-          throw "invalid value for 'PermissionsModify', must be greater than or equal to 0."
+        if ($MappingModify -and $MappingModify -lt 0) {
+          throw "invalid value for 'MappingModify', must be greater than or equal to 0."
         }
 
         if ($SysSyslog -and $SysSyslog -gt 1) {
@@ -423,28 +375,20 @@ function Initialize-PVEAccessRoles {
           throw "invalid value for 'VMConfigCDROM', must be greater than or equal to 0."
         }
 
-        if ($MappingModify -and $MappingModify -gt 1) {
-          throw "invalid value for 'MappingModify', must be smaller than or equal to 1."
+        if ($VMSnapshotRollback -and $VMSnapshotRollback -gt 1) {
+          throw "invalid value for 'VMSnapshotRollback', must be smaller than or equal to 1."
         }
 
-        if ($MappingModify -and $MappingModify -lt 0) {
-          throw "invalid value for 'MappingModify', must be greater than or equal to 0."
+        if ($VMSnapshotRollback -and $VMSnapshotRollback -lt 0) {
+          throw "invalid value for 'VMSnapshotRollback', must be greater than or equal to 0."
         }
 
-        if ($MappingAudit -and $MappingAudit -gt 1) {
-          throw "invalid value for 'MappingAudit', must be smaller than or equal to 1."
+        if ($VMConfigHWType -and $VMConfigHWType -gt 1) {
+          throw "invalid value for 'VMConfigHWType', must be smaller than or equal to 1."
         }
 
-        if ($MappingAudit -and $MappingAudit -lt 0) {
-          throw "invalid value for 'MappingAudit', must be greater than or equal to 0."
-        }
-
-        if ($SysAccessNetwork -and $SysAccessNetwork -gt 1) {
-          throw "invalid value for 'SysAccessNetwork', must be smaller than or equal to 1."
-        }
-
-        if ($SysAccessNetwork -and $SysAccessNetwork -lt 0) {
-          throw "invalid value for 'SysAccessNetwork', must be greater than or equal to 0."
+        if ($VMConfigHWType -and $VMConfigHWType -lt 0) {
+          throw "invalid value for 'VMConfigHWType', must be greater than or equal to 0."
         }
 
         if ($DatastoreAllocateSpace -and $DatastoreAllocateSpace -gt 1) {
@@ -455,36 +399,28 @@ function Initialize-PVEAccessRoles {
           throw "invalid value for 'DatastoreAllocateSpace', must be greater than or equal to 0."
         }
 
-        if ($UserModify -and $UserModify -gt 1) {
-          throw "invalid value for 'UserModify', must be smaller than or equal to 1."
+        if ($PermissionsModify -and $PermissionsModify -gt 1) {
+          throw "invalid value for 'PermissionsModify', must be smaller than or equal to 1."
         }
 
-        if ($UserModify -and $UserModify -lt 0) {
-          throw "invalid value for 'UserModify', must be greater than or equal to 0."
+        if ($PermissionsModify -and $PermissionsModify -lt 0) {
+          throw "invalid value for 'PermissionsModify', must be greater than or equal to 0."
         }
 
-        if ($MappingUse -and $MappingUse -gt 1) {
-          throw "invalid value for 'MappingUse', must be smaller than or equal to 1."
+        if ($SysConsole -and $SysConsole -gt 1) {
+          throw "invalid value for 'SysConsole', must be smaller than or equal to 1."
         }
 
-        if ($MappingUse -and $MappingUse -lt 0) {
-          throw "invalid value for 'MappingUse', must be greater than or equal to 0."
+        if ($SysConsole -and $SysConsole -lt 0) {
+          throw "invalid value for 'SysConsole', must be greater than or equal to 0."
         }
 
-        if ($VMClone -and $VMClone -gt 1) {
-          throw "invalid value for 'VMClone', must be smaller than or equal to 1."
+        if ($VMAllocate -and $VMAllocate -gt 1) {
+          throw "invalid value for 'VMAllocate', must be smaller than or equal to 1."
         }
 
-        if ($VMClone -and $VMClone -lt 0) {
-          throw "invalid value for 'VMClone', must be greater than or equal to 0."
-        }
-
-        if ($RealmAllocateUser -and $RealmAllocateUser -gt 1) {
-          throw "invalid value for 'RealmAllocateUser', must be smaller than or equal to 1."
-        }
-
-        if ($RealmAllocateUser -and $RealmAllocateUser -lt 0) {
-          throw "invalid value for 'RealmAllocateUser', must be greater than or equal to 0."
+        if ($VMAllocate -and $VMAllocate -lt 0) {
+          throw "invalid value for 'VMAllocate', must be greater than or equal to 0."
         }
 
         if ($GroupAllocate -and $GroupAllocate -gt 1) {
@@ -495,76 +431,12 @@ function Initialize-PVEAccessRoles {
           throw "invalid value for 'GroupAllocate', must be greater than or equal to 0."
         }
 
-        if ($VMBackup -and $VMBackup -gt 1) {
-          throw "invalid value for 'VMBackup', must be smaller than or equal to 1."
+        if ($SDNAllocate -and $SDNAllocate -gt 1) {
+          throw "invalid value for 'SDNAllocate', must be smaller than or equal to 1."
         }
 
-        if ($VMBackup -and $VMBackup -lt 0) {
-          throw "invalid value for 'VMBackup', must be greater than or equal to 0."
-        }
-
-        if ($VMConfigDisk -and $VMConfigDisk -gt 1) {
-          throw "invalid value for 'VMConfigDisk', must be smaller than or equal to 1."
-        }
-
-        if ($VMConfigDisk -and $VMConfigDisk -lt 0) {
-          throw "invalid value for 'VMConfigDisk', must be greater than or equal to 0."
-        }
-
-        if ($PoolAllocate -and $PoolAllocate -gt 1) {
-          throw "invalid value for 'PoolAllocate', must be smaller than or equal to 1."
-        }
-
-        if ($PoolAllocate -and $PoolAllocate -lt 0) {
-          throw "invalid value for 'PoolAllocate', must be greater than or equal to 0."
-        }
-
-        if ($VMAudit -and $VMAudit -gt 1) {
-          throw "invalid value for 'VMAudit', must be smaller than or equal to 1."
-        }
-
-        if ($VMAudit -and $VMAudit -lt 0) {
-          throw "invalid value for 'VMAudit', must be greater than or equal to 0."
-        }
-
-        if ($VMConfigCloudinit -and $VMConfigCloudinit -gt 1) {
-          throw "invalid value for 'VMConfigCloudinit', must be smaller than or equal to 1."
-        }
-
-        if ($VMConfigCloudinit -and $VMConfigCloudinit -lt 0) {
-          throw "invalid value for 'VMConfigCloudinit', must be greater than or equal to 0."
-        }
-
-        if ($VMMigrate -and $VMMigrate -gt 1) {
-          throw "invalid value for 'VMMigrate', must be smaller than or equal to 1."
-        }
-
-        if ($VMMigrate -and $VMMigrate -lt 0) {
-          throw "invalid value for 'VMMigrate', must be greater than or equal to 0."
-        }
-
-        if ($SDNAudit -and $SDNAudit -gt 1) {
-          throw "invalid value for 'SDNAudit', must be smaller than or equal to 1."
-        }
-
-        if ($SDNAudit -and $SDNAudit -lt 0) {
-          throw "invalid value for 'SDNAudit', must be greater than or equal to 0."
-        }
-
-        if ($VMSnapshotRollback -and $VMSnapshotRollback -gt 1) {
-          throw "invalid value for 'VMSnapshotRollback', must be smaller than or equal to 1."
-        }
-
-        if ($VMSnapshotRollback -and $VMSnapshotRollback -lt 0) {
-          throw "invalid value for 'VMSnapshotRollback', must be greater than or equal to 0."
-        }
-
-        if ($VMConfigCPU -and $VMConfigCPU -gt 1) {
-          throw "invalid value for 'VMConfigCPU', must be smaller than or equal to 1."
-        }
-
-        if ($VMConfigCPU -and $VMConfigCPU -lt 0) {
-          throw "invalid value for 'VMConfigCPU', must be greater than or equal to 0."
+        if ($SDNAllocate -and $SDNAllocate -lt 0) {
+          throw "invalid value for 'SDNAllocate', must be greater than or equal to 0."
         }
 
         if ($SysIncoming -and $SysIncoming -gt 1) {
@@ -575,9 +447,137 @@ function Initialize-PVEAccessRoles {
           throw "invalid value for 'SysIncoming', must be greater than or equal to 0."
         }
 
+        if ($VMMigrate -and $VMMigrate -gt 1) {
+          throw "invalid value for 'VMMigrate', must be smaller than or equal to 1."
+        }
+
+        if ($VMMigrate -and $VMMigrate -lt 0) {
+          throw "invalid value for 'VMMigrate', must be greater than or equal to 0."
+        }
+
+        if ($VMMonitor -and $VMMonitor -gt 1) {
+          throw "invalid value for 'VMMonitor', must be smaller than or equal to 1."
+        }
+
+        if ($VMMonitor -and $VMMonitor -lt 0) {
+          throw "invalid value for 'VMMonitor', must be greater than or equal to 0."
+        }
+
+        if ($SysAccessNetwork -and $SysAccessNetwork -gt 1) {
+          throw "invalid value for 'SysAccessNetwork', must be smaller than or equal to 1."
+        }
+
+        if ($SysAccessNetwork -and $SysAccessNetwork -lt 0) {
+          throw "invalid value for 'SysAccessNetwork', must be greater than or equal to 0."
+        }
+
+        if ($VMConfigMemory -and $VMConfigMemory -gt 1) {
+          throw "invalid value for 'VMConfigMemory', must be smaller than or equal to 1."
+        }
+
+        if ($VMConfigMemory -and $VMConfigMemory -lt 0) {
+          throw "invalid value for 'VMConfigMemory', must be greater than or equal to 0."
+        }
+
+        if ($SysPowerMgmt -and $SysPowerMgmt -gt 1) {
+          throw "invalid value for 'SysPowerMgmt', must be smaller than or equal to 1."
+        }
+
+        if ($SysPowerMgmt -and $SysPowerMgmt -lt 0) {
+          throw "invalid value for 'SysPowerMgmt', must be greater than or equal to 0."
+        }
+
+        if ($VMConfigCloudinit -and $VMConfigCloudinit -gt 1) {
+          throw "invalid value for 'VMConfigCloudinit', must be smaller than or equal to 1."
+        }
+
+        if ($VMConfigCloudinit -and $VMConfigCloudinit -lt 0) {
+          throw "invalid value for 'VMConfigCloudinit', must be greater than or equal to 0."
+        }
+
+        if ($DatastoreAllocate -and $DatastoreAllocate -gt 1) {
+          throw "invalid value for 'DatastoreAllocate', must be smaller than or equal to 1."
+        }
+
+        if ($DatastoreAllocate -and $DatastoreAllocate -lt 0) {
+          throw "invalid value for 'DatastoreAllocate', must be greater than or equal to 0."
+        }
+
+        if ($MappingAudit -and $MappingAudit -gt 1) {
+          throw "invalid value for 'MappingAudit', must be smaller than or equal to 1."
+        }
+
+        if ($MappingAudit -and $MappingAudit -lt 0) {
+          throw "invalid value for 'MappingAudit', must be greater than or equal to 0."
+        }
+
+        if ($DatastoreAudit -and $DatastoreAudit -gt 1) {
+          throw "invalid value for 'DatastoreAudit', must be smaller than or equal to 1."
+        }
+
+        if ($DatastoreAudit -and $DatastoreAudit -lt 0) {
+          throw "invalid value for 'DatastoreAudit', must be greater than or equal to 0."
+        }
+
+        if ($SysAudit -and $SysAudit -gt 1) {
+          throw "invalid value for 'SysAudit', must be smaller than or equal to 1."
+        }
+
+        if ($SysAudit -and $SysAudit -lt 0) {
+          throw "invalid value for 'SysAudit', must be greater than or equal to 0."
+        }
+
+        if ($VMBackup -and $VMBackup -gt 1) {
+          throw "invalid value for 'VMBackup', must be smaller than or equal to 1."
+        }
+
+        if ($VMBackup -and $VMBackup -lt 0) {
+          throw "invalid value for 'VMBackup', must be greater than or equal to 0."
+        }
+
+        if ($VMClone -and $VMClone -gt 1) {
+          throw "invalid value for 'VMClone', must be smaller than or equal to 1."
+        }
+
+        if ($VMClone -and $VMClone -lt 0) {
+          throw "invalid value for 'VMClone', must be greater than or equal to 0."
+        }
+
+        if ($VMPowerMgmt -and $VMPowerMgmt -gt 1) {
+          throw "invalid value for 'VMPowerMgmt', must be smaller than or equal to 1."
+        }
+
+        if ($VMPowerMgmt -and $VMPowerMgmt -lt 0) {
+          throw "invalid value for 'VMPowerMgmt', must be greater than or equal to 0."
+        }
+
+        if ($VMConsole -and $VMConsole -gt 1) {
+          throw "invalid value for 'VMConsole', must be smaller than or equal to 1."
+        }
+
+        if ($VMConsole -and $VMConsole -lt 0) {
+          throw "invalid value for 'VMConsole', must be greater than or equal to 0."
+        }
+
+        if ($VMAudit -and $VMAudit -gt 1) {
+          throw "invalid value for 'VMAudit', must be smaller than or equal to 1."
+        }
+
+        if ($VMAudit -and $VMAudit -lt 0) {
+          throw "invalid value for 'VMAudit', must be greater than or equal to 0."
+        }
+
+        if ($VMConfigDisk -and $VMConfigDisk -gt 1) {
+          throw "invalid value for 'VMConfigDisk', must be smaller than or equal to 1."
+        }
+
+        if ($VMConfigDisk -and $VMConfigDisk -lt 0) {
+          throw "invalid value for 'VMConfigDisk', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"VMConfigNetwork"="VM.Config.Network"; "SDNUse"="SDN.Use"; "DatastoreAllocateTemplate"="Datastore.AllocateTemplate"; "VMAllocate"="VM.Allocate"; "SysConsole"="Sys.Console"; "DatastoreAudit"="Datastore.Audit"; "VMConfigOptions"="VM.Config.Options"; "PoolAudit"="Pool.Audit"; "SysPowerMgmt"="Sys.PowerMgmt"; "SDNAllocate"="SDN.Allocate"; "SysModify"="Sys.Modify"; "SysAudit"="Sys.Audit"; "VMPowerMgmt"="VM.PowerMgmt"; "VMSnapshot"="VM.Snapshot"; "RealmAllocate"="Realm.Allocate"; "VMMonitor"="VM.Monitor"; "VMConsole"="VM.Console"; "VMConfigMemory"="VM.Config.Memory"; "VMConfigHWType"="VM.Config.HWType"; "DatastoreAllocate"="Datastore.Allocate"; "PermissionsModify"="Permissions.Modify"; "SysSyslog"="Sys.Syslog"; "VMConfigCDROM"="VM.Config.CDROM"; "MappingModify"="Mapping.Modify"; "MappingAudit"="Mapping.Audit"; "SysAccessNetwork"="Sys.AccessNetwork"; "DatastoreAllocateSpace"="Datastore.AllocateSpace"; "UserModify"="User.Modify"; "MappingUse"="Mapping.Use"; "VMClone"="VM.Clone"; "RealmAllocateUser"="Realm.AllocateUser"; "GroupAllocate"="Group.Allocate"; "VMBackup"="VM.Backup"; "VMConfigDisk"="VM.Config.Disk"; "PoolAllocate"="Pool.Allocate"; "VMAudit"="VM.Audit"; "VMConfigCloudinit"="VM.Config.Cloudinit"; "VMMigrate"="VM.Migrate"; "SDNAudit"="SDN.Audit"; "VMSnapshotRollback"="VM.Snapshot.Rollback"; "VMConfigCPU"="VM.Config.CPU"; "SysIncoming"="Sys.Incoming"
+			"RealmAllocate"="Realm.Allocate"; "SDNAudit"="SDN.Audit"; "VMConfigNetwork"="VM.Config.Network"; "PoolAllocate"="Pool.Allocate"; "UserModify"="User.Modify"; "SysModify"="Sys.Modify"; "VMConfigOptions"="VM.Config.Options"; "VMConfigCPU"="VM.Config.CPU"; "SDNUse"="SDN.Use"; "MappingUse"="Mapping.Use"; "RealmAllocateUser"="Realm.AllocateUser"; "VMSnapshot"="VM.Snapshot"; "PoolAudit"="Pool.Audit"; "DatastoreAllocateTemplate"="Datastore.AllocateTemplate"; "MappingModify"="Mapping.Modify"; "SysSyslog"="Sys.Syslog"; "VMConfigCDROM"="VM.Config.CDROM"; "VMSnapshotRollback"="VM.Snapshot.Rollback"; "VMConfigHWType"="VM.Config.HWType"; "DatastoreAllocateSpace"="Datastore.AllocateSpace"; "PermissionsModify"="Permissions.Modify"; "SysConsole"="Sys.Console"; "VMAllocate"="VM.Allocate"; "GroupAllocate"="Group.Allocate"; "SDNAllocate"="SDN.Allocate"; "SysIncoming"="Sys.Incoming"; "VMMigrate"="VM.Migrate"; "VMMonitor"="VM.Monitor"; "SysAccessNetwork"="Sys.AccessNetwork"; "VMConfigMemory"="VM.Config.Memory"; "SysPowerMgmt"="Sys.PowerMgmt"; "VMConfigCloudinit"="VM.Config.Cloudinit"; "DatastoreAllocate"="Datastore.Allocate"; "MappingAudit"="Mapping.Audit"; "DatastoreAudit"="Datastore.Audit"; "SysAudit"="Sys.Audit"; "VMBackup"="VM.Backup"; "VMClone"="VM.Clone"; "VMPowerMgmt"="VM.PowerMgmt"; "VMConsole"="VM.Console"; "VMAudit"="VM.Audit"; "VMConfigDisk"="VM.Config.Disk"
         }
 		
 		 $OBJ = @{}
@@ -623,95 +623,11 @@ function ConvertFrom-PVEJsonToAccessRoles {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessRoles
-        $AllProperties = ("VM.Config.Network", "SDN.Use", "Datastore.AllocateTemplate", "VM.Allocate", "Sys.Console", "Datastore.Audit", "VM.Config.Options", "Pool.Audit", "Sys.PowerMgmt", "SDN.Allocate", "Sys.Modify", "Sys.Audit", "VM.PowerMgmt", "VM.Snapshot", "Realm.Allocate", "VM.Monitor", "VM.Console", "VM.Config.Memory", "VM.Config.HWType", "Datastore.Allocate", "Permissions.Modify", "Sys.Syslog", "VM.Config.CDROM", "Mapping.Modify", "Mapping.Audit", "Sys.AccessNetwork", "Datastore.AllocateSpace", "User.Modify", "Mapping.Use", "VM.Clone", "Realm.AllocateUser", "Group.Allocate", "VM.Backup", "VM.Config.Disk", "Pool.Allocate", "VM.Audit", "VM.Config.Cloudinit", "VM.Migrate", "SDN.Audit", "VM.Snapshot.Rollback", "VM.Config.CPU", "Sys.Incoming")
+        $AllProperties = ("Realm.Allocate", "SDN.Audit", "VM.Config.Network", "Pool.Allocate", "User.Modify", "Sys.Modify", "VM.Config.Options", "VM.Config.CPU", "SDN.Use", "Mapping.Use", "Realm.AllocateUser", "VM.Snapshot", "Pool.Audit", "Datastore.AllocateTemplate", "Mapping.Modify", "Sys.Syslog", "VM.Config.CDROM", "VM.Snapshot.Rollback", "VM.Config.HWType", "Datastore.AllocateSpace", "Permissions.Modify", "Sys.Console", "VM.Allocate", "Group.Allocate", "SDN.Allocate", "Sys.Incoming", "VM.Migrate", "VM.Monitor", "Sys.AccessNetwork", "VM.Config.Memory", "Sys.PowerMgmt", "VM.Config.Cloudinit", "Datastore.Allocate", "Mapping.Audit", "Datastore.Audit", "Sys.Audit", "VM.Backup", "VM.Clone", "VM.PowerMgmt", "VM.Console", "VM.Audit", "VM.Config.Disk")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.Network"))) { #optional property not found
-            $VMConfigNetwork = $null
-        } else {
-            $VMConfigNetwork = $JsonParameters.PSobject.Properties["VM.Config.Network"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "SDN.Use"))) { #optional property not found
-            $SDNUse = $null
-        } else {
-            $SDNUse = $JsonParameters.PSobject.Properties["SDN.Use"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Datastore.AllocateTemplate"))) { #optional property not found
-            $DatastoreAllocateTemplate = $null
-        } else {
-            $DatastoreAllocateTemplate = $JsonParameters.PSobject.Properties["Datastore.AllocateTemplate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Allocate"))) { #optional property not found
-            $VMAllocate = $null
-        } else {
-            $VMAllocate = $JsonParameters.PSobject.Properties["VM.Allocate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Sys.Console"))) { #optional property not found
-            $SysConsole = $null
-        } else {
-            $SysConsole = $JsonParameters.PSobject.Properties["Sys.Console"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Datastore.Audit"))) { #optional property not found
-            $DatastoreAudit = $null
-        } else {
-            $DatastoreAudit = $JsonParameters.PSobject.Properties["Datastore.Audit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.Options"))) { #optional property not found
-            $VMConfigOptions = $null
-        } else {
-            $VMConfigOptions = $JsonParameters.PSobject.Properties["VM.Config.Options"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Pool.Audit"))) { #optional property not found
-            $PoolAudit = $null
-        } else {
-            $PoolAudit = $JsonParameters.PSobject.Properties["Pool.Audit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Sys.PowerMgmt"))) { #optional property not found
-            $SysPowerMgmt = $null
-        } else {
-            $SysPowerMgmt = $JsonParameters.PSobject.Properties["Sys.PowerMgmt"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "SDN.Allocate"))) { #optional property not found
-            $SDNAllocate = $null
-        } else {
-            $SDNAllocate = $JsonParameters.PSobject.Properties["SDN.Allocate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Sys.Modify"))) { #optional property not found
-            $SysModify = $null
-        } else {
-            $SysModify = $JsonParameters.PSobject.Properties["Sys.Modify"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Sys.Audit"))) { #optional property not found
-            $SysAudit = $null
-        } else {
-            $SysAudit = $JsonParameters.PSobject.Properties["Sys.Audit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.PowerMgmt"))) { #optional property not found
-            $VMPowerMgmt = $null
-        } else {
-            $VMPowerMgmt = $JsonParameters.PSobject.Properties["VM.PowerMgmt"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Snapshot"))) { #optional property not found
-            $VMSnapshot = $null
-        } else {
-            $VMSnapshot = $JsonParameters.PSobject.Properties["VM.Snapshot"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "Realm.Allocate"))) { #optional property not found
@@ -720,40 +636,88 @@ function ConvertFrom-PVEJsonToAccessRoles {
             $RealmAllocate = $JsonParameters.PSobject.Properties["Realm.Allocate"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Monitor"))) { #optional property not found
-            $VMMonitor = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "SDN.Audit"))) { #optional property not found
+            $SDNAudit = $null
         } else {
-            $VMMonitor = $JsonParameters.PSobject.Properties["VM.Monitor"].value
+            $SDNAudit = $JsonParameters.PSobject.Properties["SDN.Audit"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Console"))) { #optional property not found
-            $VMConsole = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.Network"))) { #optional property not found
+            $VMConfigNetwork = $null
         } else {
-            $VMConsole = $JsonParameters.PSobject.Properties["VM.Console"].value
+            $VMConfigNetwork = $JsonParameters.PSobject.Properties["VM.Config.Network"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.Memory"))) { #optional property not found
-            $VMConfigMemory = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Pool.Allocate"))) { #optional property not found
+            $PoolAllocate = $null
         } else {
-            $VMConfigMemory = $JsonParameters.PSobject.Properties["VM.Config.Memory"].value
+            $PoolAllocate = $JsonParameters.PSobject.Properties["Pool.Allocate"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.HWType"))) { #optional property not found
-            $VMConfigHWType = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "User.Modify"))) { #optional property not found
+            $UserModify = $null
         } else {
-            $VMConfigHWType = $JsonParameters.PSobject.Properties["VM.Config.HWType"].value
+            $UserModify = $JsonParameters.PSobject.Properties["User.Modify"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Datastore.Allocate"))) { #optional property not found
-            $DatastoreAllocate = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Sys.Modify"))) { #optional property not found
+            $SysModify = $null
         } else {
-            $DatastoreAllocate = $JsonParameters.PSobject.Properties["Datastore.Allocate"].value
+            $SysModify = $JsonParameters.PSobject.Properties["Sys.Modify"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Permissions.Modify"))) { #optional property not found
-            $PermissionsModify = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.Options"))) { #optional property not found
+            $VMConfigOptions = $null
         } else {
-            $PermissionsModify = $JsonParameters.PSobject.Properties["Permissions.Modify"].value
+            $VMConfigOptions = $JsonParameters.PSobject.Properties["VM.Config.Options"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.CPU"))) { #optional property not found
+            $VMConfigCPU = $null
+        } else {
+            $VMConfigCPU = $JsonParameters.PSobject.Properties["VM.Config.CPU"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "SDN.Use"))) { #optional property not found
+            $SDNUse = $null
+        } else {
+            $SDNUse = $JsonParameters.PSobject.Properties["SDN.Use"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Mapping.Use"))) { #optional property not found
+            $MappingUse = $null
+        } else {
+            $MappingUse = $JsonParameters.PSobject.Properties["Mapping.Use"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Realm.AllocateUser"))) { #optional property not found
+            $RealmAllocateUser = $null
+        } else {
+            $RealmAllocateUser = $JsonParameters.PSobject.Properties["Realm.AllocateUser"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Snapshot"))) { #optional property not found
+            $VMSnapshot = $null
+        } else {
+            $VMSnapshot = $JsonParameters.PSobject.Properties["VM.Snapshot"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Pool.Audit"))) { #optional property not found
+            $PoolAudit = $null
+        } else {
+            $PoolAudit = $JsonParameters.PSobject.Properties["Pool.Audit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Datastore.AllocateTemplate"))) { #optional property not found
+            $DatastoreAllocateTemplate = $null
+        } else {
+            $DatastoreAllocateTemplate = $JsonParameters.PSobject.Properties["Datastore.AllocateTemplate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Mapping.Modify"))) { #optional property not found
+            $MappingModify = $null
+        } else {
+            $MappingModify = $JsonParameters.PSobject.Properties["Mapping.Modify"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "Sys.Syslog"))) { #optional property not found
@@ -768,22 +732,16 @@ function ConvertFrom-PVEJsonToAccessRoles {
             $VMConfigCDROM = $JsonParameters.PSobject.Properties["VM.Config.CDROM"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Mapping.Modify"))) { #optional property not found
-            $MappingModify = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Snapshot.Rollback"))) { #optional property not found
+            $VMSnapshotRollback = $null
         } else {
-            $MappingModify = $JsonParameters.PSobject.Properties["Mapping.Modify"].value
+            $VMSnapshotRollback = $JsonParameters.PSobject.Properties["VM.Snapshot.Rollback"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Mapping.Audit"))) { #optional property not found
-            $MappingAudit = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.HWType"))) { #optional property not found
+            $VMConfigHWType = $null
         } else {
-            $MappingAudit = $JsonParameters.PSobject.Properties["Mapping.Audit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Sys.AccessNetwork"))) { #optional property not found
-            $SysAccessNetwork = $null
-        } else {
-            $SysAccessNetwork = $JsonParameters.PSobject.Properties["Sys.AccessNetwork"].value
+            $VMConfigHWType = $JsonParameters.PSobject.Properties["VM.Config.HWType"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "Datastore.AllocateSpace"))) { #optional property not found
@@ -792,28 +750,22 @@ function ConvertFrom-PVEJsonToAccessRoles {
             $DatastoreAllocateSpace = $JsonParameters.PSobject.Properties["Datastore.AllocateSpace"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "User.Modify"))) { #optional property not found
-            $UserModify = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Permissions.Modify"))) { #optional property not found
+            $PermissionsModify = $null
         } else {
-            $UserModify = $JsonParameters.PSobject.Properties["User.Modify"].value
+            $PermissionsModify = $JsonParameters.PSobject.Properties["Permissions.Modify"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Mapping.Use"))) { #optional property not found
-            $MappingUse = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Sys.Console"))) { #optional property not found
+            $SysConsole = $null
         } else {
-            $MappingUse = $JsonParameters.PSobject.Properties["Mapping.Use"].value
+            $SysConsole = $JsonParameters.PSobject.Properties["Sys.Console"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Clone"))) { #optional property not found
-            $VMClone = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Allocate"))) { #optional property not found
+            $VMAllocate = $null
         } else {
-            $VMClone = $JsonParameters.PSobject.Properties["VM.Clone"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Realm.AllocateUser"))) { #optional property not found
-            $RealmAllocateUser = $null
-        } else {
-            $RealmAllocateUser = $JsonParameters.PSobject.Properties["Realm.AllocateUser"].value
+            $VMAllocate = $JsonParameters.PSobject.Properties["VM.Allocate"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "Group.Allocate"))) { #optional property not found
@@ -822,58 +774,10 @@ function ConvertFrom-PVEJsonToAccessRoles {
             $GroupAllocate = $JsonParameters.PSobject.Properties["Group.Allocate"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Backup"))) { #optional property not found
-            $VMBackup = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "SDN.Allocate"))) { #optional property not found
+            $SDNAllocate = $null
         } else {
-            $VMBackup = $JsonParameters.PSobject.Properties["VM.Backup"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.Disk"))) { #optional property not found
-            $VMConfigDisk = $null
-        } else {
-            $VMConfigDisk = $JsonParameters.PSobject.Properties["VM.Config.Disk"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Pool.Allocate"))) { #optional property not found
-            $PoolAllocate = $null
-        } else {
-            $PoolAllocate = $JsonParameters.PSobject.Properties["Pool.Allocate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Audit"))) { #optional property not found
-            $VMAudit = $null
-        } else {
-            $VMAudit = $JsonParameters.PSobject.Properties["VM.Audit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.Cloudinit"))) { #optional property not found
-            $VMConfigCloudinit = $null
-        } else {
-            $VMConfigCloudinit = $JsonParameters.PSobject.Properties["VM.Config.Cloudinit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Migrate"))) { #optional property not found
-            $VMMigrate = $null
-        } else {
-            $VMMigrate = $JsonParameters.PSobject.Properties["VM.Migrate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "SDN.Audit"))) { #optional property not found
-            $SDNAudit = $null
-        } else {
-            $SDNAudit = $JsonParameters.PSobject.Properties["SDN.Audit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Snapshot.Rollback"))) { #optional property not found
-            $VMSnapshotRollback = $null
-        } else {
-            $VMSnapshotRollback = $JsonParameters.PSobject.Properties["VM.Snapshot.Rollback"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.CPU"))) { #optional property not found
-            $VMConfigCPU = $null
-        } else {
-            $VMConfigCPU = $JsonParameters.PSobject.Properties["VM.Config.CPU"].value
+            $SDNAllocate = $JsonParameters.PSobject.Properties["SDN.Allocate"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "Sys.Incoming"))) { #optional property not found
@@ -882,49 +786,145 @@ function ConvertFrom-PVEJsonToAccessRoles {
             $SysIncoming = $JsonParameters.PSobject.Properties["Sys.Incoming"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Migrate"))) { #optional property not found
+            $VMMigrate = $null
+        } else {
+            $VMMigrate = $JsonParameters.PSobject.Properties["VM.Migrate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Monitor"))) { #optional property not found
+            $VMMonitor = $null
+        } else {
+            $VMMonitor = $JsonParameters.PSobject.Properties["VM.Monitor"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Sys.AccessNetwork"))) { #optional property not found
+            $SysAccessNetwork = $null
+        } else {
+            $SysAccessNetwork = $JsonParameters.PSobject.Properties["Sys.AccessNetwork"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.Memory"))) { #optional property not found
+            $VMConfigMemory = $null
+        } else {
+            $VMConfigMemory = $JsonParameters.PSobject.Properties["VM.Config.Memory"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Sys.PowerMgmt"))) { #optional property not found
+            $SysPowerMgmt = $null
+        } else {
+            $SysPowerMgmt = $JsonParameters.PSobject.Properties["Sys.PowerMgmt"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.Cloudinit"))) { #optional property not found
+            $VMConfigCloudinit = $null
+        } else {
+            $VMConfigCloudinit = $JsonParameters.PSobject.Properties["VM.Config.Cloudinit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Datastore.Allocate"))) { #optional property not found
+            $DatastoreAllocate = $null
+        } else {
+            $DatastoreAllocate = $JsonParameters.PSobject.Properties["Datastore.Allocate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Mapping.Audit"))) { #optional property not found
+            $MappingAudit = $null
+        } else {
+            $MappingAudit = $JsonParameters.PSobject.Properties["Mapping.Audit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Datastore.Audit"))) { #optional property not found
+            $DatastoreAudit = $null
+        } else {
+            $DatastoreAudit = $JsonParameters.PSobject.Properties["Datastore.Audit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "Sys.Audit"))) { #optional property not found
+            $SysAudit = $null
+        } else {
+            $SysAudit = $JsonParameters.PSobject.Properties["Sys.Audit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Backup"))) { #optional property not found
+            $VMBackup = $null
+        } else {
+            $VMBackup = $JsonParameters.PSobject.Properties["VM.Backup"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Clone"))) { #optional property not found
+            $VMClone = $null
+        } else {
+            $VMClone = $JsonParameters.PSobject.Properties["VM.Clone"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.PowerMgmt"))) { #optional property not found
+            $VMPowerMgmt = $null
+        } else {
+            $VMPowerMgmt = $JsonParameters.PSobject.Properties["VM.PowerMgmt"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Console"))) { #optional property not found
+            $VMConsole = $null
+        } else {
+            $VMConsole = $JsonParameters.PSobject.Properties["VM.Console"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Audit"))) { #optional property not found
+            $VMAudit = $null
+        } else {
+            $VMAudit = $JsonParameters.PSobject.Properties["VM.Audit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "VM.Config.Disk"))) { #optional property not found
+            $VMConfigDisk = $null
+        } else {
+            $VMConfigDisk = $JsonParameters.PSobject.Properties["VM.Config.Disk"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "VM.Config.Network" = ${VMConfigNetwork}
-            "SDN.Use" = ${SDNUse}
-            "Datastore.AllocateTemplate" = ${DatastoreAllocateTemplate}
-            "VM.Allocate" = ${VMAllocate}
-            "Sys.Console" = ${SysConsole}
-            "Datastore.Audit" = ${DatastoreAudit}
-            "VM.Config.Options" = ${VMConfigOptions}
-            "Pool.Audit" = ${PoolAudit}
-            "Sys.PowerMgmt" = ${SysPowerMgmt}
-            "SDN.Allocate" = ${SDNAllocate}
-            "Sys.Modify" = ${SysModify}
-            "Sys.Audit" = ${SysAudit}
-            "VM.PowerMgmt" = ${VMPowerMgmt}
-            "VM.Snapshot" = ${VMSnapshot}
             "Realm.Allocate" = ${RealmAllocate}
-            "VM.Monitor" = ${VMMonitor}
-            "VM.Console" = ${VMConsole}
-            "VM.Config.Memory" = ${VMConfigMemory}
-            "VM.Config.HWType" = ${VMConfigHWType}
-            "Datastore.Allocate" = ${DatastoreAllocate}
-            "Permissions.Modify" = ${PermissionsModify}
+            "SDN.Audit" = ${SDNAudit}
+            "VM.Config.Network" = ${VMConfigNetwork}
+            "Pool.Allocate" = ${PoolAllocate}
+            "User.Modify" = ${UserModify}
+            "Sys.Modify" = ${SysModify}
+            "VM.Config.Options" = ${VMConfigOptions}
+            "VM.Config.CPU" = ${VMConfigCPU}
+            "SDN.Use" = ${SDNUse}
+            "Mapping.Use" = ${MappingUse}
+            "Realm.AllocateUser" = ${RealmAllocateUser}
+            "VM.Snapshot" = ${VMSnapshot}
+            "Pool.Audit" = ${PoolAudit}
+            "Datastore.AllocateTemplate" = ${DatastoreAllocateTemplate}
+            "Mapping.Modify" = ${MappingModify}
             "Sys.Syslog" = ${SysSyslog}
             "VM.Config.CDROM" = ${VMConfigCDROM}
-            "Mapping.Modify" = ${MappingModify}
-            "Mapping.Audit" = ${MappingAudit}
-            "Sys.AccessNetwork" = ${SysAccessNetwork}
-            "Datastore.AllocateSpace" = ${DatastoreAllocateSpace}
-            "User.Modify" = ${UserModify}
-            "Mapping.Use" = ${MappingUse}
-            "VM.Clone" = ${VMClone}
-            "Realm.AllocateUser" = ${RealmAllocateUser}
-            "Group.Allocate" = ${GroupAllocate}
-            "VM.Backup" = ${VMBackup}
-            "VM.Config.Disk" = ${VMConfigDisk}
-            "Pool.Allocate" = ${PoolAllocate}
-            "VM.Audit" = ${VMAudit}
-            "VM.Config.Cloudinit" = ${VMConfigCloudinit}
-            "VM.Migrate" = ${VMMigrate}
-            "SDN.Audit" = ${SDNAudit}
             "VM.Snapshot.Rollback" = ${VMSnapshotRollback}
-            "VM.Config.CPU" = ${VMConfigCPU}
+            "VM.Config.HWType" = ${VMConfigHWType}
+            "Datastore.AllocateSpace" = ${DatastoreAllocateSpace}
+            "Permissions.Modify" = ${PermissionsModify}
+            "Sys.Console" = ${SysConsole}
+            "VM.Allocate" = ${VMAllocate}
+            "Group.Allocate" = ${GroupAllocate}
+            "SDN.Allocate" = ${SDNAllocate}
             "Sys.Incoming" = ${SysIncoming}
+            "VM.Migrate" = ${VMMigrate}
+            "VM.Monitor" = ${VMMonitor}
+            "Sys.AccessNetwork" = ${SysAccessNetwork}
+            "VM.Config.Memory" = ${VMConfigMemory}
+            "Sys.PowerMgmt" = ${SysPowerMgmt}
+            "VM.Config.Cloudinit" = ${VMConfigCloudinit}
+            "Datastore.Allocate" = ${DatastoreAllocate}
+            "Mapping.Audit" = ${MappingAudit}
+            "Datastore.Audit" = ${DatastoreAudit}
+            "Sys.Audit" = ${SysAudit}
+            "VM.Backup" = ${VMBackup}
+            "VM.Clone" = ${VMClone}
+            "VM.PowerMgmt" = ${VMPowerMgmt}
+            "VM.Console" = ${VMConsole}
+            "VM.Audit" = ${VMAudit}
+            "VM.Config.Disk" = ${VMConfigDisk}
         }
 
         return $PSO

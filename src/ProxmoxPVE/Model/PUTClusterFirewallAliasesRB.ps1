@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
+.PARAMETER Rename
 No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Comment
-No description available.
-.PARAMETER Rename
+.PARAMETER Name
 No description available.
 .PARAMETER Cidr
+No description available.
+.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -36,37 +36,25 @@ function Initialize-PVEPUTClusterFirewallAliasesRB {
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
-        ${Name},
+        ${Rename},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
-        ${Rename},
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Cidr}
+        ${Cidr},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Comment}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterFirewallAliasesRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if (!$Name -and $Name.length -gt 64) {
-            throw "invalid value for 'Name', the character length must be smaller than or equal to 64."
-        }
-
-        if (!$Name -and $Name.length -lt 2) {
-            throw "invalid value for 'Name', the character length must be great than or equal to 2."
-        }
-
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
-        }
 
         if (!$Rename -and $Rename.length -gt 64) {
             throw "invalid value for 'Rename', the character length must be smaller than or equal to 64."
@@ -76,9 +64,21 @@ function Initialize-PVEPUTClusterFirewallAliasesRB {
             throw "invalid value for 'Rename', the character length must be great than or equal to 2."
         }
 
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        }
+
+        if (!$Name -and $Name.length -gt 64) {
+            throw "invalid value for 'Name', the character length must be smaller than or equal to 64."
+        }
+
+        if (!$Name -and $Name.length -lt 2) {
+            throw "invalid value for 'Name', the character length must be great than or equal to 2."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Digest"="digest"; "Comment"="comment"; "Rename"="rename"; "Cidr"="cidr"
+			"Rename"="rename"; "Digest"="digest"; "Name"="name"; "Cidr"="cidr"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -124,29 +124,11 @@ function ConvertFrom-PVEJsonToPUTClusterFirewallAliasesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterFirewallAliasesRB
-        $AllProperties = ("name", "digest", "comment", "rename", "cidr")
+        $AllProperties = ("rename", "digest", "name", "cidr", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "rename"))) { #optional property not found
@@ -155,18 +137,36 @@ function ConvertFrom-PVEJsonToPUTClusterFirewallAliasesRB {
             $Rename = $JsonParameters.PSobject.Properties["rename"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
             $Cidr = $null
         } else {
             $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "digest" = ${Digest}
-            "comment" = ${Comment}
             "rename" = ${Rename}
+            "digest" = ${Digest}
+            "name" = ${Name}
             "cidr" = ${Cidr}
+            "comment" = ${Comment}
         }
 
         return $PSO

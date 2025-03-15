@@ -3,22 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vmid** | **Int32** |  | [optional] 
-**Size** | **String** |  | [optional] 
-**Skiplock** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Skiplock** | **Int32** |  | [optional] 
+**Size** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 **Disk** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuResizeRB = Initialize-PVEPUTNodesQemuResizeRB  -Vmid null `
- -Size null `
+$PUTNodesQemuResizeRB = Initialize-PVEPUTNodesQemuResizeRB  -Node null `
  -Skiplock null `
+ -Size null `
+ -Vmid null `
  -Digest null `
- -Node null `
  -Disk null
 ```
 

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTNodesQemuUnlinkRB' {
     Context 'PVEPUTNodesQemuUnlinkRB' {
         It 'Initialize-PVEPUTNodesQemuUnlinkRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTNodesQemuUnlinkRB -Node "TEST_VALUE" -Force "TEST_VALUE" -Idlist "TEST_VALUE" -Vmid "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTNodesQemuUnlinkRB -Force "TEST_VALUE" -Idlist "TEST_VALUE" -Node "TEST_VALUE" -Vmid "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTNodesQemuUnlinkRB
             #$NewObject.property | Should -Be 0
         }

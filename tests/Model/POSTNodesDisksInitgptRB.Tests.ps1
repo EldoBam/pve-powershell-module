@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesDisksInitgptRB' {
     Context 'PVEPOSTNodesDisksInitgptRB' {
         It 'Initialize-PVEPOSTNodesDisksInitgptRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesDisksInitgptRB -Node "TEST_VALUE" -Disk "TEST_VALUE" -Uuid "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesDisksInitgptRB -Disk "TEST_VALUE" -Node "TEST_VALUE" -Uuid "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesDisksInitgptRB
             #$NewObject.property | Should -Be 0
         }

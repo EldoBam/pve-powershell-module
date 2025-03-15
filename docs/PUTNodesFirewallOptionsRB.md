@@ -3,55 +3,55 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NfConntrackMax** | **Int32** |  | [optional] 
+**LogNfConntrack** | **Int32** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 **NfConntrackTcpTimeoutEstablished** | **Int32** |  | [optional] 
 **LogLevelForward** | **String** |  | [optional] 
-**NfConntrackTcpTimeoutSynRecv** | **Int32** |  | [optional] 
-**ProtectionSynfloodRate** | **Int32** |  | [optional] 
-**Tcpflags** | **Int32** |  | [optional] 
-**ProtectionSynflood** | **Int32** |  | [optional] 
 **Nosmurfs** | **Int32** |  | [optional] 
+**ProtectionSynfloodBurst** | **Int32** |  | [optional] 
+**Ndp** | **Int32** |  | [optional] 
+**SmurfLogLevel** | **String** |  | [optional] 
+**Tcpflags** | **Int32** |  | [optional] 
+**Nftables** | **Int32** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
 **NfConntrackHelpers** | **String** |  | [optional] 
-**LogNfConntrack** | **Int32** |  | [optional] 
-**NfConntrackAllowInvalid** | **Int32** |  | [optional] 
+**TcpFlagsLogLevel** | **String** |  | [optional] 
+**NfConntrackTcpTimeoutSynRecv** | **Int32** |  | [optional] 
 **LogLevelOut** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
+**ProtectionSynfloodRate** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
 **LogLevelIn** | **String** |  | [optional] 
-**Nftables** | **Int32** |  | [optional] 
-**ProtectionSynfloodBurst** | **Int32** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Ndp** | **Int32** |  | [optional] 
-**TcpFlagsLogLevel** | **String** |  | [optional] 
-**SmurfLogLevel** | **String** |  | [optional] 
+**NfConntrackMax** | **Int32** |  | [optional] 
+**NfConntrackAllowInvalid** | **Int32** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**ProtectionSynflood** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesFirewallOptionsRB = Initialize-PVEPUTNodesFirewallOptionsRB  -NfConntrackMax null `
+$PUTNodesFirewallOptionsRB = Initialize-PVEPUTNodesFirewallOptionsRB  -LogNfConntrack null `
+ -Digest null `
  -NfConntrackTcpTimeoutEstablished null `
  -LogLevelForward null `
- -NfConntrackTcpTimeoutSynRecv null `
- -ProtectionSynfloodRate null `
- -Tcpflags null `
- -ProtectionSynflood null `
  -Nosmurfs null `
+ -ProtectionSynfloodBurst null `
+ -Ndp null `
+ -SmurfLogLevel null `
+ -Tcpflags null `
+ -Nftables null `
+ -Enable null `
  -NfConntrackHelpers null `
- -LogNfConntrack null `
- -NfConntrackAllowInvalid null `
+ -TcpFlagsLogLevel null `
+ -NfConntrackTcpTimeoutSynRecv null `
  -LogLevelOut null `
- -Delete null `
+ -ProtectionSynfloodRate null `
  -Node null `
  -LogLevelIn null `
- -Nftables null `
- -ProtectionSynfloodBurst null `
- -Enable null `
- -Digest null `
- -Ndp null `
- -TcpFlagsLogLevel null `
- -SmurfLogLevel null
+ -NfConntrackMax null `
+ -NfConntrackAllowInvalid null `
+ -Delete null `
+ -ProtectionSynflood null
 ```
 
 - Convert the resource to JSON

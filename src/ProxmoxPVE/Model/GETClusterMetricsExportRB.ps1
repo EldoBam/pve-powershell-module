@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER History
+.PARAMETER StartTime
 No description available.
 .PARAMETER LocalOnly
 No description available.
-.PARAMETER StartTime
+.PARAMETER History
 No description available.
 .OUTPUTS
 
@@ -31,26 +31,18 @@ function Initialize-PVEGETClusterMetricsExportRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${History},
+        ${StartTime},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${LocalOnly},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${StartTime}
+        ${History}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETClusterMetricsExportRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($History -and $History -gt 1) {
-          throw "invalid value for 'History', must be smaller than or equal to 1."
-        }
-
-        if ($History -and $History -lt 0) {
-          throw "invalid value for 'History', must be greater than or equal to 0."
-        }
 
         if ($LocalOnly -and $LocalOnly -gt 1) {
           throw "invalid value for 'LocalOnly', must be smaller than or equal to 1."
@@ -60,9 +52,17 @@ function Initialize-PVEGETClusterMetricsExportRB {
           throw "invalid value for 'LocalOnly', must be greater than or equal to 0."
         }
 
+        if ($History -and $History -gt 1) {
+          throw "invalid value for 'History', must be smaller than or equal to 1."
+        }
+
+        if ($History -and $History -lt 0) {
+          throw "invalid value for 'History', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"History"="history"; "LocalOnly"="local-only"; "StartTime"="start-time"
+			"StartTime"="start-time"; "LocalOnly"="local-only"; "History"="history"
         }
 		
 		 $OBJ = @{}
@@ -108,23 +108,11 @@ function ConvertFrom-PVEJsonToGETClusterMetricsExportRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETClusterMetricsExportRB
-        $AllProperties = ("history", "local-only", "start-time")
+        $AllProperties = ("start-time", "local-only", "history")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "history"))) { #optional property not found
-            $History = $null
-        } else {
-            $History = $JsonParameters.PSobject.Properties["history"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "local-only"))) { #optional property not found
-            $LocalOnly = $null
-        } else {
-            $LocalOnly = $JsonParameters.PSobject.Properties["local-only"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "start-time"))) { #optional property not found
@@ -133,10 +121,22 @@ function ConvertFrom-PVEJsonToGETClusterMetricsExportRB {
             $StartTime = $JsonParameters.PSobject.Properties["start-time"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "local-only"))) { #optional property not found
+            $LocalOnly = $null
+        } else {
+            $LocalOnly = $JsonParameters.PSobject.Properties["local-only"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "history"))) { #optional property not found
+            $History = $null
+        } else {
+            $History = $JsonParameters.PSobject.Properties["history"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "history" = ${History}
-            "local-only" = ${LocalOnly}
             "start-time" = ${StartTime}
+            "local-only" = ${LocalOnly}
+            "history" = ${History}
         }
 
         return $PSO

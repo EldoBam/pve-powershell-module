@@ -15,19 +15,19 @@ No summary available.
 
 No description available.
 
-.PARAMETER Timeout
-No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Migratedfrom
+.PARAMETER Node
 No description available.
 .PARAMETER Skiplock
 No description available.
-.PARAMETER Node
+.PARAMETER Vmid
+No description available.
+.PARAMETER KeepActive
 No description available.
 .PARAMETER OverruleShutdown
 No description available.
-.PARAMETER KeepActive
+.PARAMETER Timeout
+No description available.
+.PARAMETER Migratedfrom
 No description available.
 .OUTPUTS
 
@@ -38,39 +38,31 @@ function Initialize-PVEPOSTNodesQemuStatusStopRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Timeout},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Migratedfrom},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Skiplock},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
+        [System.Nullable[Int32]]
+        ${Vmid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${KeepActive},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${OverruleShutdown},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${KeepActive}
+        ${Timeout},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Migratedfrom}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesQemuStatusStopRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
 
         if ($Skiplock -and $Skiplock -gt 1) {
           throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
@@ -80,12 +72,12 @@ function Initialize-PVEPOSTNodesQemuStatusStopRB {
           throw "invalid value for 'Skiplock', must be greater than or equal to 0."
         }
 
-        if ($OverruleShutdown -and $OverruleShutdown -gt 1) {
-          throw "invalid value for 'OverruleShutdown', must be smaller than or equal to 1."
+        if ($Vmid -and $Vmid -gt 999999999) {
+          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
         }
 
-        if ($OverruleShutdown -and $OverruleShutdown -lt 0) {
-          throw "invalid value for 'OverruleShutdown', must be greater than or equal to 0."
+        if ($Vmid -and $Vmid -lt 100) {
+          throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
         if ($KeepActive -and $KeepActive -gt 1) {
@@ -96,9 +88,17 @@ function Initialize-PVEPOSTNodesQemuStatusStopRB {
           throw "invalid value for 'KeepActive', must be greater than or equal to 0."
         }
 
+        if ($OverruleShutdown -and $OverruleShutdown -gt 1) {
+          throw "invalid value for 'OverruleShutdown', must be smaller than or equal to 1."
+        }
+
+        if ($OverruleShutdown -and $OverruleShutdown -lt 0) {
+          throw "invalid value for 'OverruleShutdown', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Timeout"="timeout"; "Vmid"="vmid"; "Migratedfrom"="migratedfrom"; "Skiplock"="skiplock"; "Node"="node"; "OverruleShutdown"="overrule-shutdown"; "KeepActive"="keepActive"
+			"Node"="node"; "Skiplock"="skiplock"; "Vmid"="vmid"; "KeepActive"="keepActive"; "OverruleShutdown"="overrule-shutdown"; "Timeout"="timeout"; "Migratedfrom"="migratedfrom"
         }
 		
 		 $OBJ = @{}
@@ -144,35 +144,11 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusStopRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuStatusStopRB
-        $AllProperties = ("timeout", "vmid", "migratedfrom", "skiplock", "node", "overrule-shutdown", "keepActive")
+        $AllProperties = ("node", "skiplock", "vmid", "keepActive", "overrule-shutdown", "timeout", "migratedfrom")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
-            $Timeout = $null
-        } else {
-            $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "migratedfrom"))) { #optional property not found
-            $Migratedfrom = $null
-        } else {
-            $Migratedfrom = $JsonParameters.PSobject.Properties["migratedfrom"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
-            $Skiplock = $null
-        } else {
-            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -181,10 +157,16 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusStopRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "overrule-shutdown"))) { #optional property not found
-            $OverruleShutdown = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
+            $Skiplock = $null
         } else {
-            $OverruleShutdown = $JsonParameters.PSobject.Properties["overrule-shutdown"].value
+            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
+        } else {
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "keepActive"))) { #optional property not found
@@ -193,14 +175,32 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusStopRB {
             $KeepActive = $JsonParameters.PSobject.Properties["keepActive"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "overrule-shutdown"))) { #optional property not found
+            $OverruleShutdown = $null
+        } else {
+            $OverruleShutdown = $JsonParameters.PSobject.Properties["overrule-shutdown"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
+            $Timeout = $null
+        } else {
+            $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "migratedfrom"))) { #optional property not found
+            $Migratedfrom = $null
+        } else {
+            $Migratedfrom = $JsonParameters.PSobject.Properties["migratedfrom"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "timeout" = ${Timeout}
-            "vmid" = ${Vmid}
-            "migratedfrom" = ${Migratedfrom}
-            "skiplock" = ${Skiplock}
             "node" = ${Node}
-            "overrule-shutdown" = ${OverruleShutdown}
+            "skiplock" = ${Skiplock}
+            "vmid" = ${Vmid}
             "keepActive" = ${KeepActive}
+            "overrule-shutdown" = ${OverruleShutdown}
+            "timeout" = ${Timeout}
+            "migratedfrom" = ${Migratedfrom}
         }
 
         return $PSO

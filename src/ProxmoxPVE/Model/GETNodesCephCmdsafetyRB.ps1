@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
-.PARAMETER Action
+.PARAMETER Service
 No description available.
 .PARAMETER Id
 No description available.
-.PARAMETER Service
+.PARAMETER Node
+No description available.
+.PARAMETER Action
 No description available.
 .OUTPUTS
 
@@ -32,19 +32,19 @@ function Initialize-PVEGETNodesCephCmdsafetyRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("osd", "mon", "mds")]
+        [String]
+        ${Service},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Id},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("stop", "destroy")]
         [String]
-        ${Action},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("osd", "mon", "mds")]
-        [String]
-        ${Service}
+        ${Action}
     )
 
     Process {
@@ -53,7 +53,7 @@ function Initialize-PVEGETNodesCephCmdsafetyRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Action"="action"; "Id"="id"; "Service"="service"
+			"Service"="service"; "Id"="id"; "Node"="node"; "Action"="action"
         }
 		
 		 $OBJ = @{}
@@ -99,11 +99,23 @@ function ConvertFrom-PVEJsonToGETNodesCephCmdsafetyRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesCephCmdsafetyRB
-        $AllProperties = ("node", "action", "id", "service")
+        $AllProperties = ("service", "id", "node", "action")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "service"))) { #optional property not found
+            $Service = $null
+        } else {
+            $Service = $JsonParameters.PSobject.Properties["service"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -118,23 +130,11 @@ function ConvertFrom-PVEJsonToGETNodesCephCmdsafetyRB {
             $Action = $JsonParameters.PSobject.Properties["action"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "service"))) { #optional property not found
-            $Service = $null
-        } else {
-            $Service = $JsonParameters.PSobject.Properties["service"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "service" = ${Service}
+            "id" = ${Id}
             "node" = ${Node}
             "action" = ${Action}
-            "id" = ${Id}
-            "service" = ${Service}
         }
 
         return $PSO

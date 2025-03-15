@@ -19,11 +19,11 @@ No description available.
 No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER Since
+.PARAMETER Start
 No description available.
 .PARAMETER VarUntil
 No description available.
-.PARAMETER Start
+.PARAMETER Since
 No description available.
 .OUTPUTS
 
@@ -41,13 +41,13 @@ function Initialize-PVEGETNodesFirewallLogRB {
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Since},
+        ${Start},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${VarUntil},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Start}
+        ${Since}
     )
 
     Process {
@@ -56,7 +56,7 @@ function Initialize-PVEGETNodesFirewallLogRB {
 
 
 		 $DisplayNameMapping =@{
-			"Limit"="limit"; "Node"="node"; "Since"="since"; "VarUntil"="until"; "Start"="start"
+			"Limit"="limit"; "Node"="node"; "Start"="start"; "VarUntil"="until"; "Since"="since"
         }
 		
 		 $OBJ = @{}
@@ -102,7 +102,7 @@ function ConvertFrom-PVEJsonToGETNodesFirewallLogRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesFirewallLogRB
-        $AllProperties = ("limit", "node", "since", "until", "start")
+        $AllProperties = ("limit", "node", "start", "until", "since")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -121,10 +121,10 @@ function ConvertFrom-PVEJsonToGETNodesFirewallLogRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "since"))) { #optional property not found
-            $Since = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) { #optional property not found
+            $Start = $null
         } else {
-            $Since = $JsonParameters.PSobject.Properties["since"].value
+            $Start = $JsonParameters.PSobject.Properties["start"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
@@ -133,18 +133,18 @@ function ConvertFrom-PVEJsonToGETNodesFirewallLogRB {
             $VarUntil = $JsonParameters.PSobject.Properties["until"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) { #optional property not found
-            $Start = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "since"))) { #optional property not found
+            $Since = $null
         } else {
-            $Start = $JsonParameters.PSobject.Properties["start"].value
+            $Since = $JsonParameters.PSobject.Properties["since"].value
         }
 
         $PSO = [PSCustomObject]@{
             "limit" = ${Limit}
             "node" = ${Node}
-            "since" = ${Since}
-            "until" = ${VarUntil}
             "start" = ${Start}
+            "until" = ${VarUntil}
+            "since" = ${Since}
         }
 
         return $PSO

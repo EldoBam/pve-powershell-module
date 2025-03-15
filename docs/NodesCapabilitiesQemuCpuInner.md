@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Vendor** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 **Custom** | **Int32** |  | [optional] 
-**Vendor** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCapabilitiesQemuCpuInner = Initialize-PVENodesCapabilitiesQemuCpuInner  -Name null `
- -Custom null `
- -Vendor null
+$NodesCapabilitiesQemuCpuInner = Initialize-PVENodesCapabilitiesQemuCpuInner  -Vendor null `
+ -Name null `
+ -Custom null
 ```
 
 - Convert the resource to JSON

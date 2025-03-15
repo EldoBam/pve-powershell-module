@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Digest** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesQemuFirewallAliasesRB = Initialize-PVEDELETENodesQemuFirewallAliasesRB  -Name null `
+$DELETENodesQemuFirewallAliasesRB = Initialize-PVEDELETENodesQemuFirewallAliasesRB  -Digest null `
+ -Name null `
  -Node null `
- -Digest null `
  -Vmid null
 ```
 

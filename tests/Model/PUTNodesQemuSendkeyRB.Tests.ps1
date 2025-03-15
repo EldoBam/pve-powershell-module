@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTNodesQemuSendkeyRB' {
     Context 'PVEPUTNodesQemuSendkeyRB' {
         It 'Initialize-PVEPUTNodesQemuSendkeyRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTNodesQemuSendkeyRB -Node "TEST_VALUE" -Key "TEST_VALUE" -Vmid "TEST_VALUE" -Skiplock "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTNodesQemuSendkeyRB -Key "TEST_VALUE" -Node "TEST_VALUE" -Vmid "TEST_VALUE" -Skiplock "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTNodesQemuSendkeyRB
             #$NewObject.property | Should -Be 0
         }

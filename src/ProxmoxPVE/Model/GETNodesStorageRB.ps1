@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Enabled
-No description available.
-.PARAMETER Target
+.PARAMETER Format
 No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER Content
+.PARAMETER Target
 No description available.
 .PARAMETER Storage
 No description available.
-.PARAMETER Format
+.PARAMETER Content
+No description available.
+.PARAMETER Enabled
 No description available.
 .OUTPUTS
 
@@ -37,35 +37,27 @@ function Initialize-PVEGETNodesStorageRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Enabled},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Target},
+        ${Format},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Content},
+        ${Target},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Storage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Content},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Format}
+        ${Enabled}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETNodesStorageRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Enabled -and $Enabled -gt 1) {
-          throw "invalid value for 'Enabled', must be smaller than or equal to 1."
-        }
-
-        if ($Enabled -and $Enabled -lt 0) {
-          throw "invalid value for 'Enabled', must be greater than or equal to 0."
-        }
 
         if ($Format -and $Format -gt 1) {
           throw "invalid value for 'Format', must be smaller than or equal to 1."
@@ -75,9 +67,17 @@ function Initialize-PVEGETNodesStorageRB {
           throw "invalid value for 'Format', must be greater than or equal to 0."
         }
 
+        if ($Enabled -and $Enabled -gt 1) {
+          throw "invalid value for 'Enabled', must be smaller than or equal to 1."
+        }
+
+        if ($Enabled -and $Enabled -lt 0) {
+          throw "invalid value for 'Enabled', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Enabled"="enabled"; "Target"="target"; "Node"="node"; "Content"="content"; "Storage"="storage"; "Format"="format"
+			"Format"="format"; "Node"="node"; "Target"="target"; "Storage"="storage"; "Content"="content"; "Enabled"="enabled"
         }
 		
 		 $OBJ = @{}
@@ -123,41 +123,11 @@ function ConvertFrom-PVEJsonToGETNodesStorageRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesStorageRB
-        $AllProperties = ("enabled", "target", "node", "content", "storage", "format")
+        $AllProperties = ("format", "node", "target", "storage", "content", "enabled")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
-            $Enabled = $null
-        } else {
-            $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
-            $Target = $null
-        } else {
-            $Target = $JsonParameters.PSobject.Properties["target"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
-            $Content = $null
-        } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "format"))) { #optional property not found
@@ -166,13 +136,43 @@ function ConvertFrom-PVEJsonToGETNodesStorageRB {
             $Format = $JsonParameters.PSobject.Properties["format"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
+            $Target = $null
+        } else {
+            $Target = $JsonParameters.PSobject.Properties["target"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
+            $Storage = $null
+        } else {
+            $Storage = $JsonParameters.PSobject.Properties["storage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
+            $Content = $null
+        } else {
+            $Content = $JsonParameters.PSobject.Properties["content"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
+            $Enabled = $null
+        } else {
+            $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "enabled" = ${Enabled}
-            "target" = ${Target}
-            "node" = ${Node}
-            "content" = ${Content}
-            "storage" = ${Storage}
             "format" = ${Format}
+            "node" = ${Node}
+            "target" = ${Target}
+            "storage" = ${Storage}
+            "content" = ${Content}
+            "enabled" = ${Enabled}
         }
 
         return $PSO

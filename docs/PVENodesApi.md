@@ -390,6 +390,7 @@ No authorization required
 <a name="Get-PVENodesAplinfoByNode"></a>
 # **Get-PVENodesAplinfoByNode**
 > SystemCollectionsHashtable[] Get-PVENodesAplinfoByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get list of appliances.
 
@@ -397,10 +398,11 @@ Get list of appliances.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get list of appliances.
 try {
-    $Result = Get-PVENodesAplinfoByNode
+    $Result = Get-PVENodesAplinfoByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesAplinfoByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -408,7 +410,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -428,6 +433,7 @@ No authorization required
 <a name="Get-PVENodesAptByNode"></a>
 # **Get-PVENodesAptByNode**
 > NodesAptInner[] Get-PVENodesAptByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Directory index for apt (Advanced Package Tool).
 
@@ -435,10 +441,11 @@ Directory index for apt (Advanced Package Tool).
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Directory index for apt (Advanced Package Tool).
 try {
-    $Result = Get-PVENodesAptByNode
+    $Result = Get-PVENodesAptByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesAptByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -446,7 +453,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -466,6 +476,7 @@ No authorization required
 <a name="Get-PVENodesAptChangelogByNode"></a>
 # **Get-PVENodesAptChangelogByNode**
 > void Get-PVENodesAptChangelogByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesAptChangelogRB] <PSCustomObject><br>
 
 Get package changelogs.
@@ -474,11 +485,12 @@ Get package changelogs.
 
 ### Example
 ```powershell
-$GETNodesAptChangelogRB = Initialize-GETNodesAptChangelogRB -Node "MyNode" -Name "MyName" -Version "MyVersion" # GETNodesAptChangelogRB | Get package changelogs. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesAptChangelogRB = Initialize-GETNodesAptChangelogRB -Name "MyName" -Version "MyVersion" -Node "MyNode" # GETNodesAptChangelogRB | Get package changelogs. (optional)
 
 # Get package changelogs.
 try {
-    $Result = Get-PVENodesAptChangelogByNode -GETNodesAptChangelogRB $GETNodesAptChangelogRB
+    $Result = Get-PVENodesAptChangelogByNode -Node $Node -GETNodesAptChangelogRB $GETNodesAptChangelogRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesAptChangelogByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -489,6 +501,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesAptChangelogRB** | [**GETNodesAptChangelogRB**](GETNodesAptChangelogRB.md)| Get package changelogs. | [optional] 
 
 ### Return type
@@ -509,6 +522,7 @@ No authorization required
 <a name="Get-PVENodesAptRepositoriesByNode"></a>
 # **Get-PVENodesAptRepositoriesByNode**
 > NodesAptRepositories Get-PVENodesAptRepositoriesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get APT repository information.
 
@@ -516,10 +530,11 @@ Get APT repository information.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get APT repository information.
 try {
-    $Result = Get-PVENodesAptRepositoriesByNode
+    $Result = Get-PVENodesAptRepositoriesByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesAptRepositoriesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -527,7 +542,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -547,6 +565,7 @@ No authorization required
 <a name="Get-PVENodesAptUpdateByNode"></a>
 # **Get-PVENodesAptUpdateByNode**
 > SystemCollectionsHashtable[] Get-PVENodesAptUpdateByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 List available updates.
 
@@ -554,10 +573,11 @@ List available updates.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # List available updates.
 try {
-    $Result = Get-PVENodesAptUpdateByNode
+    $Result = Get-PVENodesAptUpdateByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesAptUpdateByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -565,7 +585,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -585,6 +608,7 @@ No authorization required
 <a name="Get-PVENodesAptVersionsByNode"></a>
 # **Get-PVENodesAptVersionsByNode**
 > SystemCollectionsHashtable[] Get-PVENodesAptVersionsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get package information for important Proxmox packages.
 
@@ -592,10 +616,11 @@ Get package information for important Proxmox packages.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get package information for important Proxmox packages.
 try {
-    $Result = Get-PVENodesAptVersionsByNode
+    $Result = Get-PVENodesAptVersionsByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesAptVersionsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -603,7 +628,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -623,6 +651,7 @@ No authorization required
 <a name="Get-PVENodesByNode"></a>
 # **Get-PVENodesByNode**
 > SystemCollectionsHashtable[] Get-PVENodesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Node index.
 
@@ -630,10 +659,11 @@ Node index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Node index.
 try {
-    $Result = Get-PVENodesByNode
+    $Result = Get-PVENodesByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -641,7 +671,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -661,6 +694,7 @@ No authorization required
 <a name="Get-PVENodesCapabilitiesByNode"></a>
 # **Get-PVENodesCapabilitiesByNode**
 > SystemCollectionsHashtable[] Get-PVENodesCapabilitiesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Node capabilities index.
 
@@ -668,10 +702,11 @@ Node capabilities index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Node capabilities index.
 try {
-    $Result = Get-PVENodesCapabilitiesByNode
+    $Result = Get-PVENodesCapabilitiesByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCapabilitiesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -679,7 +714,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -699,6 +737,7 @@ No authorization required
 <a name="Get-PVENodesCapabilitiesQemuByNode"></a>
 # **Get-PVENodesCapabilitiesQemuByNode**
 > SystemCollectionsHashtable[] Get-PVENodesCapabilitiesQemuByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 QEMU capabilities index.
 
@@ -706,10 +745,11 @@ QEMU capabilities index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # QEMU capabilities index.
 try {
-    $Result = Get-PVENodesCapabilitiesQemuByNode
+    $Result = Get-PVENodesCapabilitiesQemuByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCapabilitiesQemuByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -717,7 +757,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -737,6 +780,7 @@ No authorization required
 <a name="Get-PVENodesCapabilitiesQemuCpuByNode"></a>
 # **Get-PVENodesCapabilitiesQemuCpuByNode**
 > NodesCapabilitiesQemuCpuInner[] Get-PVENodesCapabilitiesQemuCpuByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 List all custom and default CPU models.
 
@@ -744,10 +788,11 @@ List all custom and default CPU models.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # List all custom and default CPU models.
 try {
-    $Result = Get-PVENodesCapabilitiesQemuCpuByNode
+    $Result = Get-PVENodesCapabilitiesQemuCpuByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCapabilitiesQemuCpuByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -755,7 +800,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -775,6 +823,7 @@ No authorization required
 <a name="Get-PVENodesCapabilitiesQemuMachinesByNode"></a>
 # **Get-PVENodesCapabilitiesQemuMachinesByNode**
 > NodesCapabilitiesQemuMachinesInner[] Get-PVENodesCapabilitiesQemuMachinesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get available QEMU/KVM machine types.
 
@@ -782,10 +831,11 @@ Get available QEMU/KVM machine types.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get available QEMU/KVM machine types.
 try {
-    $Result = Get-PVENodesCapabilitiesQemuMachinesByNode
+    $Result = Get-PVENodesCapabilitiesQemuMachinesByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCapabilitiesQemuMachinesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -793,7 +843,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -813,6 +866,7 @@ No authorization required
 <a name="Get-PVENodesCephByNode"></a>
 # **Get-PVENodesCephByNode**
 > SystemCollectionsHashtable[] Get-PVENodesCephByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Directory index.
 
@@ -820,10 +874,11 @@ Directory index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Directory index.
 try {
-    $Result = Get-PVENodesCephByNode
+    $Result = Get-PVENodesCephByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -831,7 +886,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -851,6 +909,7 @@ No authorization required
 <a name="Get-PVENodesCephCfgByNode"></a>
 # **Get-PVENodesCephCfgByNode**
 > SystemCollectionsHashtable[] Get-PVENodesCephCfgByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Directory index.
 
@@ -858,10 +917,11 @@ Directory index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Directory index.
 try {
-    $Result = Get-PVENodesCephCfgByNode
+    $Result = Get-PVENodesCephCfgByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephCfgByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -869,7 +929,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -889,6 +952,7 @@ No authorization required
 <a name="Get-PVENodesCephCfgDbByNode"></a>
 # **Get-PVENodesCephCfgDbByNode**
 > NodesCephCfgDbInner[] Get-PVENodesCephCfgDbByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get the Ceph configuration database.
 
@@ -896,10 +960,11 @@ Get the Ceph configuration database.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get the Ceph configuration database.
 try {
-    $Result = Get-PVENodesCephCfgDbByNode
+    $Result = Get-PVENodesCephCfgDbByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephCfgDbByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -907,7 +972,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -927,6 +995,7 @@ No authorization required
 <a name="Get-PVENodesCephCfgRawByNode"></a>
 # **Get-PVENodesCephCfgRawByNode**
 > void Get-PVENodesCephCfgRawByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get the Ceph configuration file.
 
@@ -934,10 +1003,11 @@ Get the Ceph configuration file.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get the Ceph configuration file.
 try {
-    $Result = Get-PVENodesCephCfgRawByNode
+    $Result = Get-PVENodesCephCfgRawByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephCfgRawByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -945,7 +1015,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -965,6 +1038,7 @@ No authorization required
 <a name="Get-PVENodesCephCfgValueByNode"></a>
 # **Get-PVENodesCephCfgValueByNode**
 > void Get-PVENodesCephCfgValueByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesCephCfgValueRB] <PSCustomObject><br>
 
 Get configured values from either the config file or config DB.
@@ -973,11 +1047,12 @@ Get configured values from either the config file or config DB.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $GETNodesCephCfgValueRB = Initialize-GETNodesCephCfgValueRB -ConfigKeys "MyConfigKeys" -Node "MyNode" # GETNodesCephCfgValueRB | Get configured values from either the config file or config DB. (optional)
 
 # Get configured values from either the config file or config DB.
 try {
-    $Result = Get-PVENodesCephCfgValueByNode -GETNodesCephCfgValueRB $GETNodesCephCfgValueRB
+    $Result = Get-PVENodesCephCfgValueByNode -Node $Node -GETNodesCephCfgValueRB $GETNodesCephCfgValueRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephCfgValueByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -988,6 +1063,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesCephCfgValueRB** | [**GETNodesCephCfgValueRB**](GETNodesCephCfgValueRB.md)| Get configured values from either the config file or config DB. | [optional] 
 
 ### Return type
@@ -1008,6 +1084,7 @@ No authorization required
 <a name="Get-PVENodesCephCmdsafetyByNode"></a>
 # **Get-PVENodesCephCmdsafetyByNode**
 > NodesCephCmdsafety Get-PVENodesCephCmdsafetyByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesCephCmdsafetyRB] <PSCustomObject><br>
 
 Heuristical check if it is safe to perform an action.
@@ -1016,11 +1093,12 @@ Heuristical check if it is safe to perform an action.
 
 ### Example
 ```powershell
-$GETNodesCephCmdsafetyRB = Initialize-GETNodesCephCmdsafetyRB -Node "MyNode" -Action "stop" -Id "MyId" -Service "osd" # GETNodesCephCmdsafetyRB | Heuristical check if it is safe to perform an action. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesCephCmdsafetyRB = Initialize-GETNodesCephCmdsafetyRB -Service "osd" -Id "MyId" -Node "MyNode" -Action "stop" # GETNodesCephCmdsafetyRB | Heuristical check if it is safe to perform an action. (optional)
 
 # Heuristical check if it is safe to perform an action.
 try {
-    $Result = Get-PVENodesCephCmdsafetyByNode -GETNodesCephCmdsafetyRB $GETNodesCephCmdsafetyRB
+    $Result = Get-PVENodesCephCmdsafetyByNode -Node $Node -GETNodesCephCmdsafetyRB $GETNodesCephCmdsafetyRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephCmdsafetyByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1031,6 +1109,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesCephCmdsafetyRB** | [**GETNodesCephCmdsafetyRB**](GETNodesCephCmdsafetyRB.md)| Heuristical check if it is safe to perform an action. | [optional] 
 
 ### Return type
@@ -1051,6 +1130,7 @@ No authorization required
 <a name="Get-PVENodesCephCrushByNode"></a>
 # **Get-PVENodesCephCrushByNode**
 > void Get-PVENodesCephCrushByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get OSD crush map
 
@@ -1058,10 +1138,11 @@ Get OSD crush map
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get OSD crush map
 try {
-    $Result = Get-PVENodesCephCrushByNode
+    $Result = Get-PVENodesCephCrushByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephCrushByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1069,7 +1150,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1089,6 +1173,7 @@ No authorization required
 <a name="Get-PVENodesCephFsByNode"></a>
 # **Get-PVENodesCephFsByNode**
 > NodesCephFsInner[] Get-PVENodesCephFsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Directory index.
 
@@ -1096,10 +1181,11 @@ Directory index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Directory index.
 try {
-    $Result = Get-PVENodesCephFsByNode
+    $Result = Get-PVENodesCephFsByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephFsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1107,7 +1193,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1126,7 +1215,8 @@ No authorization required
 
 <a name="Get-PVENodesCephLogByNode"></a>
 # **Get-PVENodesCephLogByNode**
-> NodesFirewallLogInner[] Get-PVENodesCephLogByNode<br>
+> NodesReplicationLogInner[] Get-PVENodesCephLogByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesCephLogRB] <PSCustomObject><br>
 
 Read ceph log
@@ -1135,11 +1225,12 @@ Read ceph log
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $GETNodesCephLogRB = Initialize-GETNodesCephLogRB -Limit 0 -Node "MyNode" -Start 0 # GETNodesCephLogRB | Read ceph log (optional)
 
 # Read ceph log
 try {
-    $Result = Get-PVENodesCephLogByNode -GETNodesCephLogRB $GETNodesCephLogRB
+    $Result = Get-PVENodesCephLogByNode -Node $Node -GETNodesCephLogRB $GETNodesCephLogRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephLogByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1150,11 +1241,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesCephLogRB** | [**GETNodesCephLogRB**](GETNodesCephLogRB.md)| Read ceph log | [optional] 
 
 ### Return type
 
-[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
+[**NodesReplicationLogInner[]**](NodesReplicationLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1170,6 +1262,7 @@ No authorization required
 <a name="Get-PVENodesCephMdsByNode"></a>
 # **Get-PVENodesCephMdsByNode**
 > NodesCephMdsInner[] Get-PVENodesCephMdsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 MDS directory index.
 
@@ -1177,10 +1270,11 @@ MDS directory index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # MDS directory index.
 try {
-    $Result = Get-PVENodesCephMdsByNode
+    $Result = Get-PVENodesCephMdsByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephMdsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1188,7 +1282,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1208,6 +1305,7 @@ No authorization required
 <a name="Get-PVENodesCephMgrByNode"></a>
 # **Get-PVENodesCephMgrByNode**
 > NodesCephMgrInner[] Get-PVENodesCephMgrByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 MGR directory index.
 
@@ -1215,10 +1313,11 @@ MGR directory index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # MGR directory index.
 try {
-    $Result = Get-PVENodesCephMgrByNode
+    $Result = Get-PVENodesCephMgrByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephMgrByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1226,7 +1325,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1246,6 +1348,7 @@ No authorization required
 <a name="Get-PVENodesCephMonByNode"></a>
 # **Get-PVENodesCephMonByNode**
 > NodesCephMonInner[] Get-PVENodesCephMonByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get Ceph monitor list.
 
@@ -1253,10 +1356,11 @@ Get Ceph monitor list.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get Ceph monitor list.
 try {
-    $Result = Get-PVENodesCephMonByNode
+    $Result = Get-PVENodesCephMonByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephMonByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1264,7 +1368,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1284,6 +1391,7 @@ No authorization required
 <a name="Get-PVENodesCephOsdByNode"></a>
 # **Get-PVENodesCephOsdByNode**
 > void Get-PVENodesCephOsdByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get Ceph osd list/tree.
 
@@ -1291,10 +1399,11 @@ Get Ceph osd list/tree.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get Ceph osd list/tree.
 try {
-    $Result = Get-PVENodesCephOsdByNode
+    $Result = Get-PVENodesCephOsdByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephOsdByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1302,7 +1411,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1322,6 +1434,8 @@ No authorization required
 <a name="Get-PVENodesCephOsdByNodeAndOsdid"></a>
 # **Get-PVENodesCephOsdByNodeAndOsdid**
 > SystemCollectionsHashtable[] Get-PVENodesCephOsdByNodeAndOsdid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Osdid] <Int32><br>
 
 OSD index.
 
@@ -1329,10 +1443,12 @@ OSD index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Osdid = 56 # Int32 | OSD ID
 
 # OSD index.
 try {
-    $Result = Get-PVENodesCephOsdByNodeAndOsdid
+    $Result = Get-PVENodesCephOsdByNodeAndOsdid -Node $Node -Osdid $Osdid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephOsdByNodeAndOsdid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1340,7 +1456,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Osdid** | **Int32**| OSD ID | 
 
 ### Return type
 
@@ -1360,6 +1480,8 @@ No authorization required
 <a name="Get-PVENodesCephOsdLvinfoByNodeAndOsdid"></a>
 # **Get-PVENodesCephOsdLvinfoByNodeAndOsdid**
 > NodesCephOsdLvinfo Get-PVENodesCephOsdLvinfoByNodeAndOsdid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Osdid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesCephOsdLvinfoRB] <PSCustomObject><br>
 
 Get OSD volume details
@@ -1368,11 +1490,13 @@ Get OSD volume details
 
 ### Example
 ```powershell
-$GETNodesCephOsdLvinfoRB = Initialize-GETNodesCephOsdLvinfoRB -Node "MyNode" -Type "block" -Osdid 0 # GETNodesCephOsdLvinfoRB | Get OSD volume details (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Osdid = 56 # Int32 | OSD ID
+$GETNodesCephOsdLvinfoRB = Initialize-GETNodesCephOsdLvinfoRB -Osdid 0 -Node "MyNode" -Type "block" # GETNodesCephOsdLvinfoRB | Get OSD volume details (optional)
 
 # Get OSD volume details
 try {
-    $Result = Get-PVENodesCephOsdLvinfoByNodeAndOsdid -GETNodesCephOsdLvinfoRB $GETNodesCephOsdLvinfoRB
+    $Result = Get-PVENodesCephOsdLvinfoByNodeAndOsdid -Node $Node -Osdid $Osdid -GETNodesCephOsdLvinfoRB $GETNodesCephOsdLvinfoRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephOsdLvinfoByNodeAndOsdid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1383,6 +1507,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Osdid** | **Int32**| OSD ID | 
  **GETNodesCephOsdLvinfoRB** | [**GETNodesCephOsdLvinfoRB**](GETNodesCephOsdLvinfoRB.md)| Get OSD volume details | [optional] 
 
 ### Return type
@@ -1403,6 +1529,8 @@ No authorization required
 <a name="Get-PVENodesCephOsdMetadataByNodeAndOsdid"></a>
 # **Get-PVENodesCephOsdMetadataByNodeAndOsdid**
 > NodesCephOsdMetadata Get-PVENodesCephOsdMetadataByNodeAndOsdid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Osdid] <Int32><br>
 
 Get OSD details
 
@@ -1410,10 +1538,12 @@ Get OSD details
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Osdid = 56 # Int32 | OSD ID
 
 # Get OSD details
 try {
-    $Result = Get-PVENodesCephOsdMetadataByNodeAndOsdid
+    $Result = Get-PVENodesCephOsdMetadataByNodeAndOsdid -Node $Node -Osdid $Osdid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephOsdMetadataByNodeAndOsdid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1421,7 +1551,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Osdid** | **Int32**| OSD ID | 
 
 ### Return type
 
@@ -1441,6 +1575,7 @@ No authorization required
 <a name="Get-PVENodesCephPoolByNode"></a>
 # **Get-PVENodesCephPoolByNode**
 > NodesCephPoolInner[] Get-PVENodesCephPoolByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 List all pools and their settings (which are settable by the POST/PUT endpoints).
 
@@ -1448,10 +1583,11 @@ List all pools and their settings (which are settable by the POST/PUT endpoints)
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # List all pools and their settings (which are settable by the POST/PUT endpoints).
 try {
-    $Result = Get-PVENodesCephPoolByNode
+    $Result = Get-PVENodesCephPoolByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephPoolByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1459,7 +1595,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1479,6 +1618,8 @@ No authorization required
 <a name="Get-PVENodesCephPoolByNodeAndName"></a>
 # **Get-PVENodesCephPoolByNodeAndName**
 > SystemCollectionsHashtable[] Get-PVENodesCephPoolByNodeAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Pool index.
 
@@ -1486,10 +1627,12 @@ Pool index.
 
 ### Example
 ```powershell
+$Name = "MyName" # String | The name of the pool.
+$Node = "MyNode" # String | The cluster node name.
 
 # Pool index.
 try {
-    $Result = Get-PVENodesCephPoolByNodeAndName
+    $Result = Get-PVENodesCephPoolByNodeAndName -Name $Name -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephPoolByNodeAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1497,7 +1640,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Name** | **String**| The name of the pool. | 
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1517,6 +1664,8 @@ No authorization required
 <a name="Get-PVENodesCephPoolStatusByNodeAndName"></a>
 # **Get-PVENodesCephPoolStatusByNodeAndName**
 > NodesCephPoolStatus Get-PVENodesCephPoolStatusByNodeAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesCephPoolStatusRB] <PSCustomObject><br>
 
 Show the current pool status.
@@ -1525,11 +1674,13 @@ Show the current pool status.
 
 ### Example
 ```powershell
-$GETNodesCephPoolStatusRB = Initialize-GETNodesCephPoolStatusRB -Node "MyNode" -Name "MyName" -Verbose 0 # GETNodesCephPoolStatusRB | Show the current pool status. (optional)
+$Name = "MyName" # String | The name of the pool. It must be unique.
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesCephPoolStatusRB = Initialize-GETNodesCephPoolStatusRB -Name "MyName" -Node "MyNode" -Verbose 0 # GETNodesCephPoolStatusRB | Show the current pool status. (optional)
 
 # Show the current pool status.
 try {
-    $Result = Get-PVENodesCephPoolStatusByNodeAndName -GETNodesCephPoolStatusRB $GETNodesCephPoolStatusRB
+    $Result = Get-PVENodesCephPoolStatusByNodeAndName -Name $Name -Node $Node -GETNodesCephPoolStatusRB $GETNodesCephPoolStatusRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephPoolStatusByNodeAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1540,6 +1691,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| The name of the pool. It must be unique. | 
+ **Node** | **String**| The cluster node name. | 
  **GETNodesCephPoolStatusRB** | [**GETNodesCephPoolStatusRB**](GETNodesCephPoolStatusRB.md)| Show the current pool status. | [optional] 
 
 ### Return type
@@ -1560,6 +1713,7 @@ No authorization required
 <a name="Get-PVENodesCephRulesByNode"></a>
 # **Get-PVENodesCephRulesByNode**
 > ClusterNotificationsMatcherfieldsInner[] Get-PVENodesCephRulesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 List ceph rules.
 
@@ -1567,10 +1721,11 @@ List ceph rules.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # List ceph rules.
 try {
-    $Result = Get-PVENodesCephRulesByNode
+    $Result = Get-PVENodesCephRulesByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephRulesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1578,7 +1733,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1598,6 +1756,7 @@ No authorization required
 <a name="Get-PVENodesCephStatusByNode"></a>
 # **Get-PVENodesCephStatusByNode**
 > void Get-PVENodesCephStatusByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get ceph status.
 
@@ -1605,10 +1764,11 @@ Get ceph status.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get ceph status.
 try {
-    $Result = Get-PVENodesCephStatusByNode
+    $Result = Get-PVENodesCephStatusByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCephStatusByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1616,7 +1776,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1636,6 +1799,7 @@ No authorization required
 <a name="Get-PVENodesCertificatesAcmeByNode"></a>
 # **Get-PVENodesCertificatesAcmeByNode**
 > SystemCollectionsHashtable[] Get-PVENodesCertificatesAcmeByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 ACME index.
 
@@ -1643,10 +1807,11 @@ ACME index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # ACME index.
 try {
-    $Result = Get-PVENodesCertificatesAcmeByNode
+    $Result = Get-PVENodesCertificatesAcmeByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCertificatesAcmeByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1654,7 +1819,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1674,6 +1842,7 @@ No authorization required
 <a name="Get-PVENodesCertificatesByNode"></a>
 # **Get-PVENodesCertificatesByNode**
 > SystemCollectionsHashtable[] Get-PVENodesCertificatesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Node index.
 
@@ -1681,10 +1850,11 @@ Node index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Node index.
 try {
-    $Result = Get-PVENodesCertificatesByNode
+    $Result = Get-PVENodesCertificatesByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCertificatesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1692,7 +1862,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1712,6 +1885,7 @@ No authorization required
 <a name="Get-PVENodesCertificatesInfoByNode"></a>
 # **Get-PVENodesCertificatesInfoByNode**
 > NodesCertificatesInfoInner[] Get-PVENodesCertificatesInfoByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get information about node's certificates.
 
@@ -1719,10 +1893,11 @@ Get information about node's certificates.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get information about node's certificates.
 try {
-    $Result = Get-PVENodesCertificatesInfoByNode
+    $Result = Get-PVENodesCertificatesInfoByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesCertificatesInfoByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1730,7 +1905,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1750,6 +1928,7 @@ No authorization required
 <a name="Get-PVENodesConfigByNode"></a>
 # **Get-PVENodesConfigByNode**
 > NodesConfig Get-PVENodesConfigByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesConfigRB] <PSCustomObject><br>
 
 Get node configuration options.
@@ -1758,11 +1937,12 @@ Get node configuration options.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $GETNodesConfigRB = Initialize-GETNodesConfigRB -Property "acme" -Node "MyNode" # GETNodesConfigRB | Get node configuration options. (optional)
 
 # Get node configuration options.
 try {
-    $Result = Get-PVENodesConfigByNode -GETNodesConfigRB $GETNodesConfigRB
+    $Result = Get-PVENodesConfigByNode -Node $Node -GETNodesConfigRB $GETNodesConfigRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesConfigByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1773,6 +1953,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesConfigRB** | [**GETNodesConfigRB**](GETNodesConfigRB.md)| Get node configuration options. | [optional] 
 
 ### Return type
@@ -1793,6 +1974,7 @@ No authorization required
 <a name="Get-PVENodesDisksByNode"></a>
 # **Get-PVENodesDisksByNode**
 > SystemCollectionsHashtable[] Get-PVENodesDisksByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Node index.
 
@@ -1800,10 +1982,11 @@ Node index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Node index.
 try {
-    $Result = Get-PVENodesDisksByNode
+    $Result = Get-PVENodesDisksByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesDisksByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1811,7 +1994,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1831,6 +2017,7 @@ No authorization required
 <a name="Get-PVENodesDisksDirectoryByNode"></a>
 # **Get-PVENodesDisksDirectoryByNode**
 > NodesDisksDirectoryInner[] Get-PVENodesDisksDirectoryByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 PVE Managed Directory storages.
 
@@ -1838,10 +2025,11 @@ PVE Managed Directory storages.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # PVE Managed Directory storages.
 try {
-    $Result = Get-PVENodesDisksDirectoryByNode
+    $Result = Get-PVENodesDisksDirectoryByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesDisksDirectoryByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1849,7 +2037,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1869,6 +2060,7 @@ No authorization required
 <a name="Get-PVENodesDisksListByNode"></a>
 # **Get-PVENodesDisksListByNode**
 > NodesDisksListInner[] Get-PVENodesDisksListByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesDisksListRB] <PSCustomObject><br>
 
 List local disks.
@@ -1877,11 +2069,12 @@ List local disks.
 
 ### Example
 ```powershell
-$GETNodesDisksListRB = Initialize-GETNodesDisksListRB -Node "MyNode" -Skipsmart 0 -Type "unused" -IncludePartitions 0 # GETNodesDisksListRB | List local disks. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesDisksListRB = Initialize-GETNodesDisksListRB -Skipsmart 0 -Node "MyNode" -IncludePartitions 0 -Type "unused" # GETNodesDisksListRB | List local disks. (optional)
 
 # List local disks.
 try {
-    $Result = Get-PVENodesDisksListByNode -GETNodesDisksListRB $GETNodesDisksListRB
+    $Result = Get-PVENodesDisksListByNode -Node $Node -GETNodesDisksListRB $GETNodesDisksListRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesDisksListByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1892,6 +2085,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesDisksListRB** | [**GETNodesDisksListRB**](GETNodesDisksListRB.md)| List local disks. | [optional] 
 
 ### Return type
@@ -1912,6 +2106,7 @@ No authorization required
 <a name="Get-PVENodesDisksLvmByNode"></a>
 # **Get-PVENodesDisksLvmByNode**
 > NodesDisksLvm Get-PVENodesDisksLvmByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 List LVM Volume Groups
 
@@ -1919,10 +2114,11 @@ List LVM Volume Groups
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # List LVM Volume Groups
 try {
-    $Result = Get-PVENodesDisksLvmByNode
+    $Result = Get-PVENodesDisksLvmByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesDisksLvmByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1930,7 +2126,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1950,6 +2149,7 @@ No authorization required
 <a name="Get-PVENodesDisksLvmthinByNode"></a>
 # **Get-PVENodesDisksLvmthinByNode**
 > NodesDisksLvmthinInner[] Get-PVENodesDisksLvmthinByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 List LVM thinpools
 
@@ -1957,10 +2157,11 @@ List LVM thinpools
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # List LVM thinpools
 try {
-    $Result = Get-PVENodesDisksLvmthinByNode
+    $Result = Get-PVENodesDisksLvmthinByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesDisksLvmthinByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1968,7 +2169,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -1988,6 +2192,7 @@ No authorization required
 <a name="Get-PVENodesDisksSmartByNode"></a>
 # **Get-PVENodesDisksSmartByNode**
 > NodesDisksSmart Get-PVENodesDisksSmartByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesDisksSmartRB] <PSCustomObject><br>
 
 Get SMART Health of a disk.
@@ -1996,11 +2201,12 @@ Get SMART Health of a disk.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $GETNodesDisksSmartRB = Initialize-GETNodesDisksSmartRB -Disk "MyDisk" -Node "MyNode" -Healthonly 0 # GETNodesDisksSmartRB | Get SMART Health of a disk. (optional)
 
 # Get SMART Health of a disk.
 try {
-    $Result = Get-PVENodesDisksSmartByNode -GETNodesDisksSmartRB $GETNodesDisksSmartRB
+    $Result = Get-PVENodesDisksSmartByNode -Node $Node -GETNodesDisksSmartRB $GETNodesDisksSmartRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesDisksSmartByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2011,6 +2217,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesDisksSmartRB** | [**GETNodesDisksSmartRB**](GETNodesDisksSmartRB.md)| Get SMART Health of a disk. | [optional] 
 
 ### Return type
@@ -2031,6 +2238,7 @@ No authorization required
 <a name="Get-PVENodesDisksZfsByNode"></a>
 # **Get-PVENodesDisksZfsByNode**
 > NodesDisksZfsGETInner[] Get-PVENodesDisksZfsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 List Zpools.
 
@@ -2038,10 +2246,11 @@ List Zpools.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # List Zpools.
 try {
-    $Result = Get-PVENodesDisksZfsByNode
+    $Result = Get-PVENodesDisksZfsByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesDisksZfsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2049,7 +2258,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -2069,6 +2281,8 @@ No authorization required
 <a name="Get-PVENodesDisksZfsByNodeAndName"></a>
 # **Get-PVENodesDisksZfsByNodeAndName**
 > NodesDisksZfs Get-PVENodesDisksZfsByNodeAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get details about a zpool.
 
@@ -2076,10 +2290,12 @@ Get details about a zpool.
 
 ### Example
 ```powershell
+$Name = "MyName" # String | The storage identifier.
+$Node = "MyNode" # String | The cluster node name.
 
 # Get details about a zpool.
 try {
-    $Result = Get-PVENodesDisksZfsByNodeAndName
+    $Result = Get-PVENodesDisksZfsByNodeAndName -Name $Name -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesDisksZfsByNodeAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2087,7 +2303,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Name** | **String**| The storage identifier. | 
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -2107,6 +2327,7 @@ No authorization required
 <a name="Get-PVENodesDnsByNode"></a>
 # **Get-PVENodesDnsByNode**
 > NodesDns Get-PVENodesDnsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Read DNS settings.
 
@@ -2114,10 +2335,11 @@ Read DNS settings.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Read DNS settings.
 try {
-    $Result = Get-PVENodesDnsByNode
+    $Result = Get-PVENodesDnsByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesDnsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2125,7 +2347,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -2145,6 +2370,7 @@ No authorization required
 <a name="Get-PVENodesFirewallByNode"></a>
 # **Get-PVENodesFirewallByNode**
 > SystemCollectionsHashtable[] Get-PVENodesFirewallByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Directory index.
 
@@ -2152,10 +2378,11 @@ Directory index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Directory index.
 try {
-    $Result = Get-PVENodesFirewallByNode
+    $Result = Get-PVENodesFirewallByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesFirewallByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2163,7 +2390,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -2182,7 +2412,8 @@ No authorization required
 
 <a name="Get-PVENodesFirewallLogByNode"></a>
 # **Get-PVENodesFirewallLogByNode**
-> NodesFirewallLogInner[] Get-PVENodesFirewallLogByNode<br>
+> NodesReplicationLogInner[] Get-PVENodesFirewallLogByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesFirewallLogRB] <PSCustomObject><br>
 
 Read firewall log
@@ -2191,11 +2422,12 @@ Read firewall log
 
 ### Example
 ```powershell
-$GETNodesFirewallLogRB = Initialize-GETNodesFirewallLogRB -Limit 0 -Node "MyNode" -Since 0 -VarUntil 0 -Start 0 # GETNodesFirewallLogRB | Read firewall log (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesFirewallLogRB = Initialize-GETNodesFirewallLogRB -Limit 0 -Node "MyNode" -Start 0 -VarUntil 0 -Since 0 # GETNodesFirewallLogRB | Read firewall log (optional)
 
 # Read firewall log
 try {
-    $Result = Get-PVENodesFirewallLogByNode -GETNodesFirewallLogRB $GETNodesFirewallLogRB
+    $Result = Get-PVENodesFirewallLogByNode -Node $Node -GETNodesFirewallLogRB $GETNodesFirewallLogRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesFirewallLogByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2206,11 +2438,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesFirewallLogRB** | [**GETNodesFirewallLogRB**](GETNodesFirewallLogRB.md)| Read firewall log | [optional] 
 
 ### Return type
 
-[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
+[**NodesReplicationLogInner[]**](NodesReplicationLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2226,6 +2459,7 @@ No authorization required
 <a name="Get-PVENodesFirewallOptionsByNode"></a>
 # **Get-PVENodesFirewallOptionsByNode**
 > NodesFirewallOptions Get-PVENodesFirewallOptionsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get host firewall options.
 
@@ -2233,10 +2467,11 @@ Get host firewall options.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get host firewall options.
 try {
-    $Result = Get-PVENodesFirewallOptionsByNode
+    $Result = Get-PVENodesFirewallOptionsByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesFirewallOptionsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2244,7 +2479,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -2263,7 +2501,8 @@ No authorization required
 
 <a name="Get-PVENodesFirewallRulesByNode"></a>
 # **Get-PVENodesFirewallRulesByNode**
-> NodesFirewallRulesGETInner[] Get-PVENodesFirewallRulesByNode<br>
+> ClusterFirewallGroupsGETAVInner[] Get-PVENodesFirewallRulesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 List rules.
 
@@ -2271,10 +2510,11 @@ List rules.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # List rules.
 try {
-    $Result = Get-PVENodesFirewallRulesByNode
+    $Result = Get-PVENodesFirewallRulesByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesFirewallRulesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2282,11 +2522,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
-[**NodesFirewallRulesGETInner[]**](NodesFirewallRulesGETInner.md) (PSCustomObject)
+[**ClusterFirewallGroupsGETAVInner[]**](ClusterFirewallGroupsGETAVInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2302,6 +2545,8 @@ No authorization required
 <a name="Get-PVENodesFirewallRulesByNodeAndPos"></a>
 # **Get-PVENodesFirewallRulesByNodeAndPos**
 > NodesFirewallRules Get-PVENodesFirewallRulesByNodeAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Pos] <Int32><br>
 
 Get single rule data.
 
@@ -2309,10 +2554,12 @@ Get single rule data.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Pos = 56 # Int32 | Update rule at position <pos>.
 
 # Get single rule data.
 try {
-    $Result = Get-PVENodesFirewallRulesByNodeAndPos
+    $Result = Get-PVENodesFirewallRulesByNodeAndPos -Node $Node -Pos $Pos
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesFirewallRulesByNodeAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2320,7 +2567,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Pos** | **Int32**| Update rule at position &lt;pos&gt;. | 
 
 ### Return type
 
@@ -2340,6 +2591,7 @@ No authorization required
 <a name="Get-PVENodesHardwareByNode"></a>
 # **Get-PVENodesHardwareByNode**
 > NodesHardwareInner[] Get-PVENodesHardwareByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Index of hardware types
 
@@ -2347,10 +2599,11 @@ Index of hardware types
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Index of hardware types
 try {
-    $Result = Get-PVENodesHardwareByNode
+    $Result = Get-PVENodesHardwareByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesHardwareByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2358,7 +2611,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -2378,6 +2634,7 @@ No authorization required
 <a name="Get-PVENodesHardwarePciByNode"></a>
 # **Get-PVENodesHardwarePciByNode**
 > NodesHardwarePciInner[] Get-PVENodesHardwarePciByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesHardwarePciRB] <PSCustomObject><br>
 
 List local PCI devices.
@@ -2386,11 +2643,12 @@ List local PCI devices.
 
 ### Example
 ```powershell
-$GETNodesHardwarePciRB = Initialize-GETNodesHardwarePciRB -Node "MyNode" -PciClassBlacklist "MyPciClassBlacklist" -Verbose 0 # GETNodesHardwarePciRB | List local PCI devices. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesHardwarePciRB = Initialize-GETNodesHardwarePciRB -PciClassBlacklist "MyPciClassBlacklist" -Node "MyNode" -Verbose 0 # GETNodesHardwarePciRB | List local PCI devices. (optional)
 
 # List local PCI devices.
 try {
-    $Result = Get-PVENodesHardwarePciByNode -GETNodesHardwarePciRB $GETNodesHardwarePciRB
+    $Result = Get-PVENodesHardwarePciByNode -Node $Node -GETNodesHardwarePciRB $GETNodesHardwarePciRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesHardwarePciByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2401,6 +2659,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesHardwarePciRB** | [**GETNodesHardwarePciRB**](GETNodesHardwarePciRB.md)| List local PCI devices. | [optional] 
 
 ### Return type
@@ -2420,7 +2679,9 @@ No authorization required
 
 <a name="Get-PVENodesHardwarePciByNodeAndPciidormapping"></a>
 # **Get-PVENodesHardwarePciByNodeAndPciidormapping**
-> NodesScanInner[] Get-PVENodesHardwarePciByNodeAndPciidormapping<br>
+> NodesHardwarePciGETInner[] Get-PVENodesHardwarePciByNodeAndPciidormapping<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PciIdOrMapping] <String><br>
 
 Index of available pci methods
 
@@ -2428,10 +2689,12 @@ Index of available pci methods
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$PciIdOrMapping = "MyPciIdOrMapping" # String | 
 
 # Index of available pci methods
 try {
-    $Result = Get-PVENodesHardwarePciByNodeAndPciidormapping
+    $Result = Get-PVENodesHardwarePciByNodeAndPciidormapping -Node $Node -PciIdOrMapping $PciIdOrMapping
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesHardwarePciByNodeAndPciidormapping: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2439,11 +2702,15 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **PciIdOrMapping** | **String**|  | 
 
 ### Return type
 
-[**NodesScanInner[]**](NodesScanInner.md) (PSCustomObject)
+[**NodesHardwarePciGETInner[]**](NodesHardwarePciGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2459,6 +2726,8 @@ No authorization required
 <a name="Get-PVENodesHardwarePciMdevByNodeAndPciidormapping"></a>
 # **Get-PVENodesHardwarePciMdevByNodeAndPciidormapping**
 > NodesHardwarePciMdevInner[] Get-PVENodesHardwarePciMdevByNodeAndPciidormapping<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PciIdOrMapping] <String><br>
 
 List mediated device types for given PCI device.
 
@@ -2466,10 +2735,12 @@ List mediated device types for given PCI device.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$PciIdOrMapping = "MyPciIdOrMapping" # String | The PCI ID or mapping to list the mdev types for.
 
 # List mediated device types for given PCI device.
 try {
-    $Result = Get-PVENodesHardwarePciMdevByNodeAndPciidormapping
+    $Result = Get-PVENodesHardwarePciMdevByNodeAndPciidormapping -Node $Node -PciIdOrMapping $PciIdOrMapping
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesHardwarePciMdevByNodeAndPciidormapping: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2477,7 +2748,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **PciIdOrMapping** | **String**| The PCI ID or mapping to list the mdev types for. | 
 
 ### Return type
 
@@ -2497,6 +2772,7 @@ No authorization required
 <a name="Get-PVENodesHardwareUsbByNode"></a>
 # **Get-PVENodesHardwareUsbByNode**
 > NodesHardwareUsbInner[] Get-PVENodesHardwareUsbByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 List local USB devices.
 
@@ -2504,10 +2780,11 @@ List local USB devices.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # List local USB devices.
 try {
-    $Result = Get-PVENodesHardwareUsbByNode
+    $Result = Get-PVENodesHardwareUsbByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesHardwareUsbByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2515,7 +2792,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -2535,6 +2815,7 @@ No authorization required
 <a name="Get-PVENodesHostsByNode"></a>
 # **Get-PVENodesHostsByNode**
 > NodesHosts Get-PVENodesHostsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get the content of /etc/hosts.
 
@@ -2542,10 +2823,11 @@ Get the content of /etc/hosts.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get the content of /etc/hosts.
 try {
-    $Result = Get-PVENodesHostsByNode
+    $Result = Get-PVENodesHostsByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesHostsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2553,7 +2835,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -2573,6 +2858,7 @@ No authorization required
 <a name="Get-PVENodesJournalByNode"></a>
 # **Get-PVENodesJournalByNode**
 > void Get-PVENodesJournalByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesJournalRB] <PSCustomObject><br>
 
 Read Journal
@@ -2581,11 +2867,12 @@ Read Journal
 
 ### Example
 ```powershell
-$GETNodesJournalRB = Initialize-GETNodesJournalRB -VarUntil 0 -Startcursor "MyStartcursor" -Node "MyNode" -Endcursor "MyEndcursor" -Since 0 -Lastentries 0 # GETNodesJournalRB | Read Journal (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesJournalRB = Initialize-GETNodesJournalRB -Lastentries 0 -Since 0 -Node "MyNode" -Endcursor "MyEndcursor" -VarUntil 0 -Startcursor "MyStartcursor" # GETNodesJournalRB | Read Journal (optional)
 
 # Read Journal
 try {
-    $Result = Get-PVENodesJournalByNode -GETNodesJournalRB $GETNodesJournalRB
+    $Result = Get-PVENodesJournalByNode -Node $Node -GETNodesJournalRB $GETNodesJournalRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesJournalByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2596,6 +2883,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesJournalRB** | [**GETNodesJournalRB**](GETNodesJournalRB.md)| Read Journal | [optional] 
 
 ### Return type
@@ -2616,6 +2904,7 @@ No authorization required
 <a name="Get-PVENodesLxcByNode"></a>
 # **Get-PVENodesLxcByNode**
 > NodesLxcInner[] Get-PVENodesLxcByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 LXC container index (per node).
 
@@ -2623,10 +2912,11 @@ LXC container index (per node).
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # LXC container index (per node).
 try {
-    $Result = Get-PVENodesLxcByNode
+    $Result = Get-PVENodesLxcByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2634,7 +2924,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -2654,6 +2947,8 @@ No authorization required
 <a name="Get-PVENodesLxcByNodeAndVmid"></a>
 # **Get-PVENodesLxcByNodeAndVmid**
 > void Get-PVENodesLxcByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Directory index
 
@@ -2661,10 +2956,12 @@ Directory index
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Directory index
 try {
-    $Result = Get-PVENodesLxcByNodeAndVmid
+    $Result = Get-PVENodesLxcByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2672,7 +2969,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -2692,6 +2993,8 @@ No authorization required
 <a name="Get-PVENodesLxcConfigByNodeAndVmid"></a>
 # **Get-PVENodesLxcConfigByNodeAndVmid**
 > NodesLxcConfig Get-PVENodesLxcConfigByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesLxcConfigRB] <PSCustomObject><br>
 
 Get container configuration.
@@ -2700,11 +3003,13 @@ Get container configuration.
 
 ### Example
 ```powershell
-$GETNodesLxcConfigRB = Initialize-GETNodesLxcConfigRB -Node "MyNode" -Snapshot "MySnapshot" -Current 0 -Vmid 0 # GETNodesLxcConfigRB | Get container configuration. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesLxcConfigRB = Initialize-GETNodesLxcConfigRB -Node "MyNode" -Vmid 0 -Current 0 -Snapshot "MySnapshot" # GETNodesLxcConfigRB | Get container configuration. (optional)
 
 # Get container configuration.
 try {
-    $Result = Get-PVENodesLxcConfigByNodeAndVmid -GETNodesLxcConfigRB $GETNodesLxcConfigRB
+    $Result = Get-PVENodesLxcConfigByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesLxcConfigRB $GETNodesLxcConfigRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcConfigByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2715,6 +3020,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesLxcConfigRB** | [**GETNodesLxcConfigRB**](GETNodesLxcConfigRB.md)| Get container configuration. | [optional] 
 
 ### Return type
@@ -2735,6 +3042,8 @@ No authorization required
 <a name="Get-PVENodesLxcFeatureByNodeAndVmid"></a>
 # **Get-PVENodesLxcFeatureByNodeAndVmid**
 > NodesLxcFeature Get-PVENodesLxcFeatureByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesLxcFeatureRB] <PSCustomObject><br>
 
 Check if feature for virtual machine is available.
@@ -2743,11 +3052,13 @@ Check if feature for virtual machine is available.
 
 ### Example
 ```powershell
-$GETNodesLxcFeatureRB = Initialize-GETNodesLxcFeatureRB -Node "MyNode" -Feature "snapshot" -Snapname "MySnapname" -Vmid 0 # GETNodesLxcFeatureRB | Check if feature for virtual machine is available. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesLxcFeatureRB = Initialize-GETNodesLxcFeatureRB -Snapname "MySnapname" -Feature "snapshot" -Node "MyNode" -Vmid 0 # GETNodesLxcFeatureRB | Check if feature for virtual machine is available. (optional)
 
 # Check if feature for virtual machine is available.
 try {
-    $Result = Get-PVENodesLxcFeatureByNodeAndVmid -GETNodesLxcFeatureRB $GETNodesLxcFeatureRB
+    $Result = Get-PVENodesLxcFeatureByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesLxcFeatureRB $GETNodesLxcFeatureRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcFeatureByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2758,6 +3069,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesLxcFeatureRB** | [**GETNodesLxcFeatureRB**](GETNodesLxcFeatureRB.md)| Check if feature for virtual machine is available. | [optional] 
 
 ### Return type
@@ -2778,6 +3091,8 @@ No authorization required
 <a name="Get-PVENodesLxcFirewallAliasesByNodeAndVmid"></a>
 # **Get-PVENodesLxcFirewallAliasesByNodeAndVmid**
 > ClusterFirewallAliasesInner[] Get-PVENodesLxcFirewallAliasesByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 List aliases
 
@@ -2785,10 +3100,12 @@ List aliases
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # List aliases
 try {
-    $Result = Get-PVENodesLxcFirewallAliasesByNodeAndVmid
+    $Result = Get-PVENodesLxcFirewallAliasesByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcFirewallAliasesByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2796,7 +3113,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -2816,6 +3137,9 @@ No authorization required
 <a name="Get-PVENodesLxcFirewallAliasesByNodeAndVmidAndName"></a>
 # **Get-PVENodesLxcFirewallAliasesByNodeAndVmidAndName**
 > void Get-PVENodesLxcFirewallAliasesByNodeAndVmidAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Read alias.
 
@@ -2823,10 +3147,13 @@ Read alias.
 
 ### Example
 ```powershell
+$Name = "MyName" # String | Alias name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Read alias.
 try {
-    $Result = Get-PVENodesLxcFirewallAliasesByNodeAndVmidAndName
+    $Result = Get-PVENodesLxcFirewallAliasesByNodeAndVmidAndName -Name $Name -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcFirewallAliasesByNodeAndVmidAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2834,7 +3161,12 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Name** | **String**| Alias name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -2854,6 +3186,8 @@ No authorization required
 <a name="Get-PVENodesLxcFirewallByNodeAndVmid"></a>
 # **Get-PVENodesLxcFirewallByNodeAndVmid**
 > SystemCollectionsHashtable[] Get-PVENodesLxcFirewallByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Directory index.
 
@@ -2861,10 +3195,12 @@ Directory index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Directory index.
 try {
-    $Result = Get-PVENodesLxcFirewallByNodeAndVmid
+    $Result = Get-PVENodesLxcFirewallByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcFirewallByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2872,7 +3208,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -2891,7 +3231,9 @@ No authorization required
 
 <a name="Get-PVENodesLxcFirewallIpsetByNodeAndVmid"></a>
 # **Get-PVENodesLxcFirewallIpsetByNodeAndVmid**
-> NodesQemuFirewallIpsetInner[] Get-PVENodesLxcFirewallIpsetByNodeAndVmid<br>
+> NodesLxcFirewallIpsetInner[] Get-PVENodesLxcFirewallIpsetByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 List IPSets
 
@@ -2899,10 +3241,12 @@ List IPSets
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # List IPSets
 try {
-    $Result = Get-PVENodesLxcFirewallIpsetByNodeAndVmid
+    $Result = Get-PVENodesLxcFirewallIpsetByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcFirewallIpsetByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2910,11 +3254,15 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
-[**NodesQemuFirewallIpsetInner[]**](NodesQemuFirewallIpsetInner.md) (PSCustomObject)
+[**NodesLxcFirewallIpsetInner[]**](NodesLxcFirewallIpsetInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2929,7 +3277,10 @@ No authorization required
 
 <a name="Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName"></a>
 # **Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName**
-> NodesLxcFirewallIpsetGETInner[] Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName<br>
+> ClusterFirewallIpsetGETInner[] Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 List IPSet content
 
@@ -2937,10 +3288,13 @@ List IPSet content
 
 ### Example
 ```powershell
+$Name = "MyName" # String | IP set name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # List IPSet content
 try {
-    $Result = Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName
+    $Result = Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName -Name $Name -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2948,11 +3302,16 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Name** | **String**| IP set name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
-[**NodesLxcFirewallIpsetGETInner[]**](NodesLxcFirewallIpsetGETInner.md) (PSCustomObject)
+[**ClusterFirewallIpsetGETInner[]**](ClusterFirewallIpsetGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2968,6 +3327,10 @@ No authorization required
 <a name="Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr"></a>
 # **Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr**
 > void Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Cidr] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Read IP or Network settings from IPSet.
 
@@ -2975,10 +3338,14 @@ Read IP or Network settings from IPSet.
 
 ### Example
 ```powershell
+$Cidr = "MyCidr" # String | Network/IP specification in CIDR format.
+$Name = "MyName" # String | IP set name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Read IP or Network settings from IPSet.
 try {
-    $Result = Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr
+    $Result = Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr -Cidr $Cidr -Name $Name -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -2986,7 +3353,13 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Cidr** | **String**| Network/IP specification in CIDR format. | 
+ **Name** | **String**| IP set name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -3005,7 +3378,9 @@ No authorization required
 
 <a name="Get-PVENodesLxcFirewallLogByNodeAndVmid"></a>
 # **Get-PVENodesLxcFirewallLogByNodeAndVmid**
-> NodesFirewallLogInner[] Get-PVENodesLxcFirewallLogByNodeAndVmid<br>
+> NodesReplicationLogInner[] Get-PVENodesLxcFirewallLogByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesLxcFirewallLogRB] <PSCustomObject><br>
 
 Read firewall log
@@ -3014,11 +3389,13 @@ Read firewall log
 
 ### Example
 ```powershell
-$GETNodesLxcFirewallLogRB = Initialize-GETNodesLxcFirewallLogRB -Start 0 -Vmid 0 -VarUntil 0 -Node "MyNode" -Limit 0 -Since 0 # GETNodesLxcFirewallLogRB | Read firewall log (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesLxcFirewallLogRB = Initialize-GETNodesLxcFirewallLogRB -Since 0 -Node "MyNode" -Limit 0 -Vmid 0 -VarUntil 0 -Start 0 # GETNodesLxcFirewallLogRB | Read firewall log (optional)
 
 # Read firewall log
 try {
-    $Result = Get-PVENodesLxcFirewallLogByNodeAndVmid -GETNodesLxcFirewallLogRB $GETNodesLxcFirewallLogRB
+    $Result = Get-PVENodesLxcFirewallLogByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesLxcFirewallLogRB $GETNodesLxcFirewallLogRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcFirewallLogByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3029,11 +3406,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesLxcFirewallLogRB** | [**GETNodesLxcFirewallLogRB**](GETNodesLxcFirewallLogRB.md)| Read firewall log | [optional] 
 
 ### Return type
 
-[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
+[**NodesReplicationLogInner[]**](NodesReplicationLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3049,6 +3428,8 @@ No authorization required
 <a name="Get-PVENodesLxcFirewallOptionsByNodeAndVmid"></a>
 # **Get-PVENodesLxcFirewallOptionsByNodeAndVmid**
 > NodesLxcFirewallOptions Get-PVENodesLxcFirewallOptionsByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Get VM firewall options.
 
@@ -3056,10 +3437,12 @@ Get VM firewall options.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Get VM firewall options.
 try {
-    $Result = Get-PVENodesLxcFirewallOptionsByNodeAndVmid
+    $Result = Get-PVENodesLxcFirewallOptionsByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcFirewallOptionsByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3067,7 +3450,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -3086,7 +3473,9 @@ No authorization required
 
 <a name="Get-PVENodesLxcFirewallRefsByNodeAndVmid"></a>
 # **Get-PVENodesLxcFirewallRefsByNodeAndVmid**
-> NodesLxcFirewallRefsInner[] Get-PVENodesLxcFirewallRefsByNodeAndVmid<br>
+> NodesQemuFirewallRefsInner[] Get-PVENodesLxcFirewallRefsByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesLxcFirewallRefsRB] <PSCustomObject><br>
 
 Lists possible IPSet/Alias reference which are allowed in source/dest properties.
@@ -3095,11 +3484,13 @@ Lists possible IPSet/Alias reference which are allowed in source/dest properties
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 $GETNodesLxcFirewallRefsRB = Initialize-GETNodesLxcFirewallRefsRB -Node "MyNode" -Type "alias" -Vmid 0 # GETNodesLxcFirewallRefsRB | Lists possible IPSet/Alias reference which are allowed in source/dest properties. (optional)
 
 # Lists possible IPSet/Alias reference which are allowed in source/dest properties.
 try {
-    $Result = Get-PVENodesLxcFirewallRefsByNodeAndVmid -GETNodesLxcFirewallRefsRB $GETNodesLxcFirewallRefsRB
+    $Result = Get-PVENodesLxcFirewallRefsByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesLxcFirewallRefsRB $GETNodesLxcFirewallRefsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcFirewallRefsByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3110,11 +3501,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesLxcFirewallRefsRB** | [**GETNodesLxcFirewallRefsRB**](GETNodesLxcFirewallRefsRB.md)| Lists possible IPSet/Alias reference which are allowed in source/dest properties. | [optional] 
 
 ### Return type
 
-[**NodesLxcFirewallRefsInner[]**](NodesLxcFirewallRefsInner.md) (PSCustomObject)
+[**NodesQemuFirewallRefsInner[]**](NodesQemuFirewallRefsInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3129,7 +3522,9 @@ No authorization required
 
 <a name="Get-PVENodesLxcFirewallRulesByNodeAndVmid"></a>
 # **Get-PVENodesLxcFirewallRulesByNodeAndVmid**
-> NodesFirewallRulesGETInner[] Get-PVENodesLxcFirewallRulesByNodeAndVmid<br>
+> ClusterFirewallGroupsGETAVInner[] Get-PVENodesLxcFirewallRulesByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 List rules.
 
@@ -3137,10 +3532,12 @@ List rules.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # List rules.
 try {
-    $Result = Get-PVENodesLxcFirewallRulesByNodeAndVmid
+    $Result = Get-PVENodesLxcFirewallRulesByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcFirewallRulesByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3148,11 +3545,15 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
-[**NodesFirewallRulesGETInner[]**](NodesFirewallRulesGETInner.md) (PSCustomObject)
+[**ClusterFirewallGroupsGETAVInner[]**](ClusterFirewallGroupsGETAVInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3168,6 +3569,9 @@ No authorization required
 <a name="Get-PVENodesLxcFirewallRulesByNodeAndVmidAndPos"></a>
 # **Get-PVENodesLxcFirewallRulesByNodeAndVmidAndPos**
 > NodesLxcFirewallRules Get-PVENodesLxcFirewallRulesByNodeAndVmidAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Pos] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Get single rule data.
 
@@ -3175,10 +3579,13 @@ Get single rule data.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Pos = 56 # Int32 | Update rule at position <pos>.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Get single rule data.
 try {
-    $Result = Get-PVENodesLxcFirewallRulesByNodeAndVmidAndPos
+    $Result = Get-PVENodesLxcFirewallRulesByNodeAndVmidAndPos -Node $Node -Pos $Pos -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcFirewallRulesByNodeAndVmidAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3186,7 +3593,12 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Pos** | **Int32**| Update rule at position &lt;pos&gt;. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -3206,6 +3618,8 @@ No authorization required
 <a name="Get-PVENodesLxcInterfacesByNodeAndVmid"></a>
 # **Get-PVENodesLxcInterfacesByNodeAndVmid**
 > NodesLxcInterfacesInner[] Get-PVENodesLxcInterfacesByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Get IP addresses of the specified container interface.
 
@@ -3213,10 +3627,12 @@ Get IP addresses of the specified container interface.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Get IP addresses of the specified container interface.
 try {
-    $Result = Get-PVENodesLxcInterfacesByNodeAndVmid
+    $Result = Get-PVENodesLxcInterfacesByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcInterfacesByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3224,7 +3640,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -3244,6 +3664,8 @@ No authorization required
 <a name="Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid"></a>
 # **Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid**
 > NodesLxcMtunnelwebsocket Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesLxcMtunnelwebsocketRB] <PSCustomObject><br>
 
 Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration.
@@ -3252,11 +3674,13 @@ Migration tunnel endpoint for websocket upgrade - only for internal use by VM mi
 
 ### Example
 ```powershell
-$GETNodesLxcMtunnelwebsocketRB = Initialize-GETNodesLxcMtunnelwebsocketRB -Node "MyNode" -Ticket "MyTicket" -Vmid 0 -Socket "MySocket" # GETNodesLxcMtunnelwebsocketRB | Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesLxcMtunnelwebsocketRB = Initialize-GETNodesLxcMtunnelwebsocketRB -Ticket "MyTicket" -Node "MyNode" -Vmid 0 -Socket "MySocket" # GETNodesLxcMtunnelwebsocketRB | Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration. (optional)
 
 # Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration.
 try {
-    $Result = Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid -GETNodesLxcMtunnelwebsocketRB $GETNodesLxcMtunnelwebsocketRB
+    $Result = Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesLxcMtunnelwebsocketRB $GETNodesLxcMtunnelwebsocketRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcMtunnelwebsocketByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3267,6 +3691,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesLxcMtunnelwebsocketRB** | [**GETNodesLxcMtunnelwebsocketRB**](GETNodesLxcMtunnelwebsocketRB.md)| Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration. | [optional] 
 
 ### Return type
@@ -3286,7 +3712,9 @@ No authorization required
 
 <a name="Get-PVENodesLxcPendingByNodeAndVmid"></a>
 # **Get-PVENodesLxcPendingByNodeAndVmid**
-> NodesQemuPendingInner[] Get-PVENodesLxcPendingByNodeAndVmid<br>
+> NodesLxcPendingInner[] Get-PVENodesLxcPendingByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Get container configuration, including pending changes.
 
@@ -3294,10 +3722,12 @@ Get container configuration, including pending changes.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Get container configuration, including pending changes.
 try {
-    $Result = Get-PVENodesLxcPendingByNodeAndVmid
+    $Result = Get-PVENodesLxcPendingByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcPendingByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3305,11 +3735,15 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
-[**NodesQemuPendingInner[]**](NodesQemuPendingInner.md) (PSCustomObject)
+[**NodesLxcPendingInner[]**](NodesLxcPendingInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3325,6 +3759,8 @@ No authorization required
 <a name="Get-PVENodesLxcRrdByNodeAndVmid"></a>
 # **Get-PVENodesLxcRrdByNodeAndVmid**
 > NodesLxcRrd Get-PVENodesLxcRrdByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesLxcRrdRB] <PSCustomObject><br>
 
 Read VM RRD statistics (returns PNG)
@@ -3333,11 +3769,13 @@ Read VM RRD statistics (returns PNG)
 
 ### Example
 ```powershell
-$GETNodesLxcRrdRB = Initialize-GETNodesLxcRrdRB -Ds "MyDs" -Node "MyNode" -Timeframe "hour" -Vmid 0 -Cf "AVERAGE" # GETNodesLxcRrdRB | Read VM RRD statistics (returns PNG) (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesLxcRrdRB = Initialize-GETNodesLxcRrdRB -Cf "AVERAGE" -Node "MyNode" -Vmid 0 -Timeframe "hour" -Ds "MyDs" # GETNodesLxcRrdRB | Read VM RRD statistics (returns PNG) (optional)
 
 # Read VM RRD statistics (returns PNG)
 try {
-    $Result = Get-PVENodesLxcRrdByNodeAndVmid -GETNodesLxcRrdRB $GETNodesLxcRrdRB
+    $Result = Get-PVENodesLxcRrdByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesLxcRrdRB $GETNodesLxcRrdRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcRrdByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3348,6 +3786,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesLxcRrdRB** | [**GETNodesLxcRrdRB**](GETNodesLxcRrdRB.md)| Read VM RRD statistics (returns PNG) | [optional] 
 
 ### Return type
@@ -3368,6 +3808,8 @@ No authorization required
 <a name="Get-PVENodesLxcRrddataByNodeAndVmid"></a>
 # **Get-PVENodesLxcRrddataByNodeAndVmid**
 > SystemCollectionsHashtable[] Get-PVENodesLxcRrddataByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesLxcRrddataRB] <PSCustomObject><br>
 
 Read VM RRD statistics
@@ -3376,11 +3818,13 @@ Read VM RRD statistics
 
 ### Example
 ```powershell
-$GETNodesLxcRrddataRB = Initialize-GETNodesLxcRrddataRB -Node "MyNode" -Timeframe "hour" -Vmid 0 -Cf "AVERAGE" # GETNodesLxcRrddataRB | Read VM RRD statistics (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesLxcRrddataRB = Initialize-GETNodesLxcRrddataRB -Cf "AVERAGE" -Node "MyNode" -Vmid 0 -Timeframe "hour" # GETNodesLxcRrddataRB | Read VM RRD statistics (optional)
 
 # Read VM RRD statistics
 try {
-    $Result = Get-PVENodesLxcRrddataByNodeAndVmid -GETNodesLxcRrddataRB $GETNodesLxcRrddataRB
+    $Result = Get-PVENodesLxcRrddataByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesLxcRrddataRB $GETNodesLxcRrddataRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcRrddataByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3391,6 +3835,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesLxcRrddataRB** | [**GETNodesLxcRrddataRB**](GETNodesLxcRrddataRB.md)| Read VM RRD statistics | [optional] 
 
 ### Return type
@@ -3411,6 +3857,8 @@ No authorization required
 <a name="Get-PVENodesLxcSnapshotByNodeAndVmid"></a>
 # **Get-PVENodesLxcSnapshotByNodeAndVmid**
 > NodesLxcSnapshotInner[] Get-PVENodesLxcSnapshotByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 List all snapshots.
 
@@ -3418,10 +3866,12 @@ List all snapshots.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # List all snapshots.
 try {
-    $Result = Get-PVENodesLxcSnapshotByNodeAndVmid
+    $Result = Get-PVENodesLxcSnapshotByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcSnapshotByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3429,7 +3879,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -3449,6 +3903,9 @@ No authorization required
 <a name="Get-PVENodesLxcSnapshotByNodeAndVmidAndSnapname"></a>
 # **Get-PVENodesLxcSnapshotByNodeAndVmidAndSnapname**
 > SystemCollectionsHashtable[] Get-PVENodesLxcSnapshotByNodeAndVmidAndSnapname<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Snapname] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 
 
@@ -3456,10 +3913,13 @@ No authorization required
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Snapname = "MySnapname" # String | The name of the snapshot.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # 
 try {
-    $Result = Get-PVENodesLxcSnapshotByNodeAndVmidAndSnapname
+    $Result = Get-PVENodesLxcSnapshotByNodeAndVmidAndSnapname -Node $Node -Snapname $Snapname -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcSnapshotByNodeAndVmidAndSnapname: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3467,7 +3927,12 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Snapname** | **String**| The name of the snapshot. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -3487,6 +3952,9 @@ No authorization required
 <a name="Get-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname"></a>
 # **Get-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname**
 > void Get-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Snapname] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Get snapshot configuration
 
@@ -3494,10 +3962,13 @@ Get snapshot configuration
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Snapname = "MySnapname" # String | The name of the snapshot.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Get snapshot configuration
 try {
-    $Result = Get-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname
+    $Result = Get-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname -Node $Node -Snapname $Snapname -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3505,7 +3976,12 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Snapname** | **String**| The name of the snapshot. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -3525,6 +4001,8 @@ No authorization required
 <a name="Get-PVENodesLxcStatusByNodeAndVmid"></a>
 # **Get-PVENodesLxcStatusByNodeAndVmid**
 > void Get-PVENodesLxcStatusByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Directory index
 
@@ -3532,10 +4010,12 @@ Directory index
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Directory index
 try {
-    $Result = Get-PVENodesLxcStatusByNodeAndVmid
+    $Result = Get-PVENodesLxcStatusByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcStatusByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3543,7 +4023,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -3563,6 +4047,8 @@ No authorization required
 <a name="Get-PVENodesLxcStatusCurrentByNodeAndVmid"></a>
 # **Get-PVENodesLxcStatusCurrentByNodeAndVmid**
 > NodesLxcStatusCurrent Get-PVENodesLxcStatusCurrentByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Get virtual machine status.
 
@@ -3570,10 +4056,12 @@ Get virtual machine status.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Get virtual machine status.
 try {
-    $Result = Get-PVENodesLxcStatusCurrentByNodeAndVmid
+    $Result = Get-PVENodesLxcStatusCurrentByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcStatusCurrentByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3581,7 +4069,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -3601,6 +4093,8 @@ No authorization required
 <a name="Get-PVENodesLxcVncwebsocketByNodeAndVmid"></a>
 # **Get-PVENodesLxcVncwebsocketByNodeAndVmid**
 > NodesLxcVncwebsocket Get-PVENodesLxcVncwebsocketByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesLxcVncwebsocketRB] <PSCustomObject><br>
 
 Opens a weksocket for VNC traffic.
@@ -3609,11 +4103,13 @@ Opens a weksocket for VNC traffic.
 
 ### Example
 ```powershell
-$GETNodesLxcVncwebsocketRB = Initialize-GETNodesLxcVncwebsocketRB -Node "MyNode" -Vncticket "MyVncticket" -Port 0 -Vmid 0 # GETNodesLxcVncwebsocketRB | Opens a weksocket for VNC traffic. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesLxcVncwebsocketRB = Initialize-GETNodesLxcVncwebsocketRB -Vncticket "MyVncticket" -Node "MyNode" -Vmid 0 -Port 0 # GETNodesLxcVncwebsocketRB | Opens a weksocket for VNC traffic. (optional)
 
 # Opens a weksocket for VNC traffic.
 try {
-    $Result = Get-PVENodesLxcVncwebsocketByNodeAndVmid -GETNodesLxcVncwebsocketRB $GETNodesLxcVncwebsocketRB
+    $Result = Get-PVENodesLxcVncwebsocketByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesLxcVncwebsocketRB $GETNodesLxcVncwebsocketRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesLxcVncwebsocketByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3624,6 +4120,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesLxcVncwebsocketRB** | [**GETNodesLxcVncwebsocketRB**](GETNodesLxcVncwebsocketRB.md)| Opens a weksocket for VNC traffic. | [optional] 
 
 ### Return type
@@ -3644,6 +4142,7 @@ No authorization required
 <a name="Get-PVENodesNetstatByNode"></a>
 # **Get-PVENodesNetstatByNode**
 > SystemCollectionsHashtable[] Get-PVENodesNetstatByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Read tap/vm network device interface counters
 
@@ -3651,10 +4150,11 @@ Read tap/vm network device interface counters
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Read tap/vm network device interface counters
 try {
-    $Result = Get-PVENodesNetstatByNode
+    $Result = Get-PVENodesNetstatByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesNetstatByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3662,7 +4162,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -3682,6 +4185,7 @@ No authorization required
 <a name="Get-PVENodesNetworkByNode"></a>
 # **Get-PVENodesNetworkByNode**
 > SystemCollectionsHashtable[] Get-PVENodesNetworkByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesNetworkRB] <PSCustomObject><br>
 
 List available networks
@@ -3690,11 +4194,12 @@ List available networks
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $GETNodesNetworkRB = Initialize-GETNodesNetworkRB -Type "bridge" -Node "MyNode" # GETNodesNetworkRB | List available networks (optional)
 
 # List available networks
 try {
-    $Result = Get-PVENodesNetworkByNode -GETNodesNetworkRB $GETNodesNetworkRB
+    $Result = Get-PVENodesNetworkByNode -Node $Node -GETNodesNetworkRB $GETNodesNetworkRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesNetworkByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3705,6 +4210,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesNetworkRB** | [**GETNodesNetworkRB**](GETNodesNetworkRB.md)| List available networks | [optional] 
 
 ### Return type
@@ -3725,6 +4231,8 @@ No authorization required
 <a name="Get-PVENodesNetworkByNodeAndIface"></a>
 # **Get-PVENodesNetworkByNodeAndIface**
 > NodesNetwork Get-PVENodesNetworkByNodeAndIface<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Iface] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Read network device configuration
 
@@ -3732,10 +4240,12 @@ Read network device configuration
 
 ### Example
 ```powershell
+$Iface = "MyIface" # String | Network interface name.
+$Node = "MyNode" # String | The cluster node name.
 
 # Read network device configuration
 try {
-    $Result = Get-PVENodesNetworkByNodeAndIface
+    $Result = Get-PVENodesNetworkByNodeAndIface -Iface $Iface -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesNetworkByNodeAndIface: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3743,7 +4253,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Iface** | **String**| Network interface name. | 
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -3763,6 +4277,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentByNodeAndVmid**
 > SystemCollectionsHashtable[] Get-PVENodesQemuAgentByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 QEMU Guest Agent command index.
 
@@ -3770,10 +4286,12 @@ QEMU Guest Agent command index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # QEMU Guest Agent command index.
 try {
-    $Result = Get-PVENodesQemuAgentByNodeAndVmid
+    $Result = Get-PVENodesQemuAgentByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3781,7 +4299,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -3801,6 +4323,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentExecstatusByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentExecstatusByNodeAndVmid**
 > NodesQemuAgentExecstatus Get-PVENodesQemuAgentExecstatusByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuAgentExecstatusRB] <PSCustomObject><br>
 
 Gets the status of the given pid started by the guest-agent
@@ -3809,11 +4333,13 @@ Gets the status of the given pid started by the guest-agent
 
 ### Example
 ```powershell
-$GETNodesQemuAgentExecstatusRB = Initialize-GETNodesQemuAgentExecstatusRB -Node "MyNode" -VarPid 0 -Vmid 0 # GETNodesQemuAgentExecstatusRB | Gets the status of the given pid started by the guest-agent (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesQemuAgentExecstatusRB = Initialize-GETNodesQemuAgentExecstatusRB -Node "MyNode" -Vmid 0 -VarPid 0 # GETNodesQemuAgentExecstatusRB | Gets the status of the given pid started by the guest-agent (optional)
 
 # Gets the status of the given pid started by the guest-agent
 try {
-    $Result = Get-PVENodesQemuAgentExecstatusByNodeAndVmid -GETNodesQemuAgentExecstatusRB $GETNodesQemuAgentExecstatusRB
+    $Result = Get-PVENodesQemuAgentExecstatusByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesQemuAgentExecstatusRB $GETNodesQemuAgentExecstatusRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentExecstatusByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3824,6 +4350,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesQemuAgentExecstatusRB** | [**GETNodesQemuAgentExecstatusRB**](GETNodesQemuAgentExecstatusRB.md)| Gets the status of the given pid started by the guest-agent | [optional] 
 
 ### Return type
@@ -3844,6 +4372,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentFilereadByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentFilereadByNodeAndVmid**
 > NodesQemuAgentFileread Get-PVENodesQemuAgentFilereadByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuAgentFilereadRB] <PSCustomObject><br>
 
 Reads the given file via guest agent. Is limited to 16777216 bytes.
@@ -3852,11 +4382,13 @@ Reads the given file via guest agent. Is limited to 16777216 bytes.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 $GETNodesQemuAgentFilereadRB = Initialize-GETNodesQemuAgentFilereadRB -Node "MyNode" -Vmid 0 -File "MyFile" # GETNodesQemuAgentFilereadRB | Reads the given file via guest agent. Is limited to 16777216 bytes. (optional)
 
 # Reads the given file via guest agent. Is limited to 16777216 bytes.
 try {
-    $Result = Get-PVENodesQemuAgentFilereadByNodeAndVmid -GETNodesQemuAgentFilereadRB $GETNodesQemuAgentFilereadRB
+    $Result = Get-PVENodesQemuAgentFilereadByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesQemuAgentFilereadRB $GETNodesQemuAgentFilereadRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentFilereadByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3867,6 +4399,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesQemuAgentFilereadRB** | [**GETNodesQemuAgentFilereadRB**](GETNodesQemuAgentFilereadRB.md)| Reads the given file via guest agent. Is limited to 16777216 bytes. | [optional] 
 
 ### Return type
@@ -3887,6 +4421,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentGetfsinfoByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentGetfsinfoByNodeAndVmid**
 > void Get-PVENodesQemuAgentGetfsinfoByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute get-fsinfo.
 
@@ -3894,10 +4430,12 @@ Execute get-fsinfo.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute get-fsinfo.
 try {
-    $Result = Get-PVENodesQemuAgentGetfsinfoByNodeAndVmid
+    $Result = Get-PVENodesQemuAgentGetfsinfoByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentGetfsinfoByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3905,7 +4443,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -3925,6 +4467,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentGethostnameByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentGethostnameByNodeAndVmid**
 > void Get-PVENodesQemuAgentGethostnameByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute get-host-name.
 
@@ -3932,10 +4476,12 @@ Execute get-host-name.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute get-host-name.
 try {
-    $Result = Get-PVENodesQemuAgentGethostnameByNodeAndVmid
+    $Result = Get-PVENodesQemuAgentGethostnameByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentGethostnameByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3943,7 +4489,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -3963,6 +4513,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentGetmemoryblockinfoByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentGetmemoryblockinfoByNodeAndVmid**
 > void Get-PVENodesQemuAgentGetmemoryblockinfoByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute get-memory-block-info.
 
@@ -3970,10 +4522,12 @@ Execute get-memory-block-info.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute get-memory-block-info.
 try {
-    $Result = Get-PVENodesQemuAgentGetmemoryblockinfoByNodeAndVmid
+    $Result = Get-PVENodesQemuAgentGetmemoryblockinfoByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentGetmemoryblockinfoByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -3981,7 +4535,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4001,6 +4559,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentGetmemoryblocksByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentGetmemoryblocksByNodeAndVmid**
 > void Get-PVENodesQemuAgentGetmemoryblocksByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute get-memory-blocks.
 
@@ -4008,10 +4568,12 @@ Execute get-memory-blocks.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute get-memory-blocks.
 try {
-    $Result = Get-PVENodesQemuAgentGetmemoryblocksByNodeAndVmid
+    $Result = Get-PVENodesQemuAgentGetmemoryblocksByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentGetmemoryblocksByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4019,7 +4581,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4039,6 +4605,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentGetosinfoByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentGetosinfoByNodeAndVmid**
 > void Get-PVENodesQemuAgentGetosinfoByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute get-osinfo.
 
@@ -4046,10 +4614,12 @@ Execute get-osinfo.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute get-osinfo.
 try {
-    $Result = Get-PVENodesQemuAgentGetosinfoByNodeAndVmid
+    $Result = Get-PVENodesQemuAgentGetosinfoByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentGetosinfoByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4057,7 +4627,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4077,6 +4651,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentGettimeByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentGettimeByNodeAndVmid**
 > void Get-PVENodesQemuAgentGettimeByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute get-time.
 
@@ -4084,10 +4660,12 @@ Execute get-time.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute get-time.
 try {
-    $Result = Get-PVENodesQemuAgentGettimeByNodeAndVmid
+    $Result = Get-PVENodesQemuAgentGettimeByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentGettimeByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4095,7 +4673,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4115,6 +4697,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentGettimezoneByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentGettimezoneByNodeAndVmid**
 > void Get-PVENodesQemuAgentGettimezoneByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute get-timezone.
 
@@ -4122,10 +4706,12 @@ Execute get-timezone.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute get-timezone.
 try {
-    $Result = Get-PVENodesQemuAgentGettimezoneByNodeAndVmid
+    $Result = Get-PVENodesQemuAgentGettimezoneByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentGettimezoneByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4133,7 +4719,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4153,6 +4743,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentGetusersByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentGetusersByNodeAndVmid**
 > void Get-PVENodesQemuAgentGetusersByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute get-users.
 
@@ -4160,10 +4752,12 @@ Execute get-users.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute get-users.
 try {
-    $Result = Get-PVENodesQemuAgentGetusersByNodeAndVmid
+    $Result = Get-PVENodesQemuAgentGetusersByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentGetusersByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4171,7 +4765,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4191,6 +4789,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentGetvcpusByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentGetvcpusByNodeAndVmid**
 > void Get-PVENodesQemuAgentGetvcpusByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute get-vcpus.
 
@@ -4198,10 +4798,12 @@ Execute get-vcpus.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute get-vcpus.
 try {
-    $Result = Get-PVENodesQemuAgentGetvcpusByNodeAndVmid
+    $Result = Get-PVENodesQemuAgentGetvcpusByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentGetvcpusByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4209,7 +4811,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4229,6 +4835,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentInfoByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentInfoByNodeAndVmid**
 > void Get-PVENodesQemuAgentInfoByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute info.
 
@@ -4236,10 +4844,12 @@ Execute info.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute info.
 try {
-    $Result = Get-PVENodesQemuAgentInfoByNodeAndVmid
+    $Result = Get-PVENodesQemuAgentInfoByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentInfoByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4247,7 +4857,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4267,6 +4881,8 @@ No authorization required
 <a name="Get-PVENodesQemuAgentNetworkgetinterfacesByNodeAndVmid"></a>
 # **Get-PVENodesQemuAgentNetworkgetinterfacesByNodeAndVmid**
 > void Get-PVENodesQemuAgentNetworkgetinterfacesByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute network-get-interfaces.
 
@@ -4274,10 +4890,12 @@ Execute network-get-interfaces.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute network-get-interfaces.
 try {
-    $Result = Get-PVENodesQemuAgentNetworkgetinterfacesByNodeAndVmid
+    $Result = Get-PVENodesQemuAgentNetworkgetinterfacesByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuAgentNetworkgetinterfacesByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4285,7 +4903,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4305,6 +4927,7 @@ No authorization required
 <a name="Get-PVENodesQemuByNode"></a>
 # **Get-PVENodesQemuByNode**
 > NodesQemuInner[] Get-PVENodesQemuByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuRB] <PSCustomObject><br>
 
 Virtual machine index (per node).
@@ -4313,11 +4936,12 @@ Virtual machine index (per node).
 
 ### Example
 ```powershell
-$GETNodesQemuRB = Initialize-GETNodesQemuRB -Node "MyNode" -Full 0 # GETNodesQemuRB | Virtual machine index (per node). (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesQemuRB = Initialize-GETNodesQemuRB -Full 0 -Node "MyNode" # GETNodesQemuRB | Virtual machine index (per node). (optional)
 
 # Virtual machine index (per node).
 try {
-    $Result = Get-PVENodesQemuByNode -GETNodesQemuRB $GETNodesQemuRB
+    $Result = Get-PVENodesQemuByNode -Node $Node -GETNodesQemuRB $GETNodesQemuRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4328,6 +4952,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesQemuRB** | [**GETNodesQemuRB**](GETNodesQemuRB.md)| Virtual machine index (per node). | [optional] 
 
 ### Return type
@@ -4348,6 +4973,8 @@ No authorization required
 <a name="Get-PVENodesQemuByNodeAndVmid"></a>
 # **Get-PVENodesQemuByNodeAndVmid**
 > void Get-PVENodesQemuByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Directory index
 
@@ -4355,10 +4982,12 @@ Directory index
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Directory index
 try {
-    $Result = Get-PVENodesQemuByNodeAndVmid
+    $Result = Get-PVENodesQemuByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4366,7 +4995,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4386,6 +5019,8 @@ No authorization required
 <a name="Get-PVENodesQemuCloudinitByNodeAndVmid"></a>
 # **Get-PVENodesQemuCloudinitByNodeAndVmid**
 > NodesQemuCloudinitInner[] Get-PVENodesQemuCloudinitByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Get the cloudinit configuration with both current and pending values.
 
@@ -4393,10 +5028,12 @@ Get the cloudinit configuration with both current and pending values.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Get the cloudinit configuration with both current and pending values.
 try {
-    $Result = Get-PVENodesQemuCloudinitByNodeAndVmid
+    $Result = Get-PVENodesQemuCloudinitByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuCloudinitByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4404,7 +5041,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4424,6 +5065,8 @@ No authorization required
 <a name="Get-PVENodesQemuCloudinitDumpByNodeAndVmid"></a>
 # **Get-PVENodesQemuCloudinitDumpByNodeAndVmid**
 > void Get-PVENodesQemuCloudinitDumpByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuCloudinitDumpRB] <PSCustomObject><br>
 
 Get automatically generated cloudinit config.
@@ -4432,11 +5075,13 @@ Get automatically generated cloudinit config.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 $GETNodesQemuCloudinitDumpRB = Initialize-GETNodesQemuCloudinitDumpRB -Node "MyNode" -Type "user" -Vmid 0 # GETNodesQemuCloudinitDumpRB | Get automatically generated cloudinit config. (optional)
 
 # Get automatically generated cloudinit config.
 try {
-    $Result = Get-PVENodesQemuCloudinitDumpByNodeAndVmid -GETNodesQemuCloudinitDumpRB $GETNodesQemuCloudinitDumpRB
+    $Result = Get-PVENodesQemuCloudinitDumpByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesQemuCloudinitDumpRB $GETNodesQemuCloudinitDumpRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuCloudinitDumpByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4447,6 +5092,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesQemuCloudinitDumpRB** | [**GETNodesQemuCloudinitDumpRB**](GETNodesQemuCloudinitDumpRB.md)| Get automatically generated cloudinit config. | [optional] 
 
 ### Return type
@@ -4467,6 +5114,8 @@ No authorization required
 <a name="Get-PVENodesQemuConfigByNodeAndVmid"></a>
 # **Get-PVENodesQemuConfigByNodeAndVmid**
 > NodesQemuConfig Get-PVENodesQemuConfigByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuConfigRB] <PSCustomObject><br>
 
 Get the virtual machine configuration with pending configuration changes applied. Set the 'current' parameter to get the current configuration instead.
@@ -4475,11 +5124,13 @@ Get the virtual machine configuration with pending configuration changes applied
 
 ### Example
 ```powershell
-$GETNodesQemuConfigRB = Initialize-GETNodesQemuConfigRB -Node "MyNode" -Snapshot "MySnapshot" -Current 0 -Vmid 0 # GETNodesQemuConfigRB | Get the virtual machine configuration with pending configuration changes applied. Set the 'current' parameter to get the current configuration instead. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesQemuConfigRB = Initialize-GETNodesQemuConfigRB -Node "MyNode" -Vmid 0 -Current 0 -Snapshot "MySnapshot" # GETNodesQemuConfigRB | Get the virtual machine configuration with pending configuration changes applied. Set the 'current' parameter to get the current configuration instead. (optional)
 
 # Get the virtual machine configuration with pending configuration changes applied. Set the 'current' parameter to get the current configuration instead.
 try {
-    $Result = Get-PVENodesQemuConfigByNodeAndVmid -GETNodesQemuConfigRB $GETNodesQemuConfigRB
+    $Result = Get-PVENodesQemuConfigByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesQemuConfigRB $GETNodesQemuConfigRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuConfigByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4490,6 +5141,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesQemuConfigRB** | [**GETNodesQemuConfigRB**](GETNodesQemuConfigRB.md)| Get the virtual machine configuration with pending configuration changes applied. Set the &#39;current&#39; parameter to get the current configuration instead. | [optional] 
 
 ### Return type
@@ -4510,6 +5163,8 @@ No authorization required
 <a name="Get-PVENodesQemuFeatureByNodeAndVmid"></a>
 # **Get-PVENodesQemuFeatureByNodeAndVmid**
 > NodesQemuFeature Get-PVENodesQemuFeatureByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuFeatureRB] <PSCustomObject><br>
 
 Check if feature for virtual machine is available.
@@ -4518,11 +5173,13 @@ Check if feature for virtual machine is available.
 
 ### Example
 ```powershell
-$GETNodesQemuFeatureRB = Initialize-GETNodesQemuFeatureRB -Node "MyNode" -Feature "snapshot" -Snapname "MySnapname" -Vmid 0 # GETNodesQemuFeatureRB | Check if feature for virtual machine is available. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesQemuFeatureRB = Initialize-GETNodesQemuFeatureRB -Snapname "MySnapname" -Feature "snapshot" -Node "MyNode" -Vmid 0 # GETNodesQemuFeatureRB | Check if feature for virtual machine is available. (optional)
 
 # Check if feature for virtual machine is available.
 try {
-    $Result = Get-PVENodesQemuFeatureByNodeAndVmid -GETNodesQemuFeatureRB $GETNodesQemuFeatureRB
+    $Result = Get-PVENodesQemuFeatureByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesQemuFeatureRB $GETNodesQemuFeatureRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuFeatureByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4533,6 +5190,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesQemuFeatureRB** | [**GETNodesQemuFeatureRB**](GETNodesQemuFeatureRB.md)| Check if feature for virtual machine is available. | [optional] 
 
 ### Return type
@@ -4553,6 +5212,8 @@ No authorization required
 <a name="Get-PVENodesQemuFirewallAliasesByNodeAndVmid"></a>
 # **Get-PVENodesQemuFirewallAliasesByNodeAndVmid**
 > ClusterFirewallAliasesInner[] Get-PVENodesQemuFirewallAliasesByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 List aliases
 
@@ -4560,10 +5221,12 @@ List aliases
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # List aliases
 try {
-    $Result = Get-PVENodesQemuFirewallAliasesByNodeAndVmid
+    $Result = Get-PVENodesQemuFirewallAliasesByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuFirewallAliasesByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4571,7 +5234,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4591,6 +5258,9 @@ No authorization required
 <a name="Get-PVENodesQemuFirewallAliasesByNodeAndVmidAndName"></a>
 # **Get-PVENodesQemuFirewallAliasesByNodeAndVmidAndName**
 > void Get-PVENodesQemuFirewallAliasesByNodeAndVmidAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Read alias.
 
@@ -4598,10 +5268,13 @@ Read alias.
 
 ### Example
 ```powershell
+$Name = "MyName" # String | Alias name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Read alias.
 try {
-    $Result = Get-PVENodesQemuFirewallAliasesByNodeAndVmidAndName
+    $Result = Get-PVENodesQemuFirewallAliasesByNodeAndVmidAndName -Name $Name -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuFirewallAliasesByNodeAndVmidAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4609,7 +5282,12 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Name** | **String**| Alias name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4629,6 +5307,8 @@ No authorization required
 <a name="Get-PVENodesQemuFirewallByNodeAndVmid"></a>
 # **Get-PVENodesQemuFirewallByNodeAndVmid**
 > SystemCollectionsHashtable[] Get-PVENodesQemuFirewallByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Directory index.
 
@@ -4636,10 +5316,12 @@ Directory index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Directory index.
 try {
-    $Result = Get-PVENodesQemuFirewallByNodeAndVmid
+    $Result = Get-PVENodesQemuFirewallByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuFirewallByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4647,7 +5329,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4666,7 +5352,9 @@ No authorization required
 
 <a name="Get-PVENodesQemuFirewallIpsetByNodeAndVmid"></a>
 # **Get-PVENodesQemuFirewallIpsetByNodeAndVmid**
-> NodesQemuFirewallIpsetInner[] Get-PVENodesQemuFirewallIpsetByNodeAndVmid<br>
+> NodesLxcFirewallIpsetInner[] Get-PVENodesQemuFirewallIpsetByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 List IPSets
 
@@ -4674,10 +5362,12 @@ List IPSets
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # List IPSets
 try {
-    $Result = Get-PVENodesQemuFirewallIpsetByNodeAndVmid
+    $Result = Get-PVENodesQemuFirewallIpsetByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuFirewallIpsetByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4685,11 +5375,15 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
-[**NodesQemuFirewallIpsetInner[]**](NodesQemuFirewallIpsetInner.md) (PSCustomObject)
+[**NodesLxcFirewallIpsetInner[]**](NodesLxcFirewallIpsetInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -4704,7 +5398,10 @@ No authorization required
 
 <a name="Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName"></a>
 # **Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName**
-> NodesLxcFirewallIpsetGETInner[] Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName<br>
+> ClusterFirewallIpsetGETInner[] Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 List IPSet content
 
@@ -4712,10 +5409,13 @@ List IPSet content
 
 ### Example
 ```powershell
+$Name = "MyName" # String | IP set name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # List IPSet content
 try {
-    $Result = Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName
+    $Result = Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName -Name $Name -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4723,11 +5423,16 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Name** | **String**| IP set name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
-[**NodesLxcFirewallIpsetGETInner[]**](NodesLxcFirewallIpsetGETInner.md) (PSCustomObject)
+[**ClusterFirewallIpsetGETInner[]**](ClusterFirewallIpsetGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -4743,6 +5448,10 @@ No authorization required
 <a name="Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr"></a>
 # **Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr**
 > void Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Cidr] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Read IP or Network settings from IPSet.
 
@@ -4750,10 +5459,14 @@ Read IP or Network settings from IPSet.
 
 ### Example
 ```powershell
+$Cidr = "MyCidr" # String | Network/IP specification in CIDR format.
+$Name = "MyName" # String | IP set name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Read IP or Network settings from IPSet.
 try {
-    $Result = Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr
+    $Result = Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr -Cidr $Cidr -Name $Name -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4761,7 +5474,13 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Cidr** | **String**| Network/IP specification in CIDR format. | 
+ **Name** | **String**| IP set name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4780,7 +5499,9 @@ No authorization required
 
 <a name="Get-PVENodesQemuFirewallLogByNodeAndVmid"></a>
 # **Get-PVENodesQemuFirewallLogByNodeAndVmid**
-> NodesFirewallLogInner[] Get-PVENodesQemuFirewallLogByNodeAndVmid<br>
+> NodesReplicationLogInner[] Get-PVENodesQemuFirewallLogByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuFirewallLogRB] <PSCustomObject><br>
 
 Read firewall log
@@ -4789,11 +5510,13 @@ Read firewall log
 
 ### Example
 ```powershell
-$GETNodesQemuFirewallLogRB = Initialize-GETNodesQemuFirewallLogRB -Start 0 -Vmid 0 -VarUntil 0 -Node "MyNode" -Limit 0 -Since 0 # GETNodesQemuFirewallLogRB | Read firewall log (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesQemuFirewallLogRB = Initialize-GETNodesQemuFirewallLogRB -Since 0 -Node "MyNode" -Limit 0 -Vmid 0 -VarUntil 0 -Start 0 # GETNodesQemuFirewallLogRB | Read firewall log (optional)
 
 # Read firewall log
 try {
-    $Result = Get-PVENodesQemuFirewallLogByNodeAndVmid -GETNodesQemuFirewallLogRB $GETNodesQemuFirewallLogRB
+    $Result = Get-PVENodesQemuFirewallLogByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesQemuFirewallLogRB $GETNodesQemuFirewallLogRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuFirewallLogByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4804,11 +5527,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesQemuFirewallLogRB** | [**GETNodesQemuFirewallLogRB**](GETNodesQemuFirewallLogRB.md)| Read firewall log | [optional] 
 
 ### Return type
 
-[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
+[**NodesReplicationLogInner[]**](NodesReplicationLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -4824,6 +5549,8 @@ No authorization required
 <a name="Get-PVENodesQemuFirewallOptionsByNodeAndVmid"></a>
 # **Get-PVENodesQemuFirewallOptionsByNodeAndVmid**
 > NodesQemuFirewallOptions Get-PVENodesQemuFirewallOptionsByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Get VM firewall options.
 
@@ -4831,10 +5558,12 @@ Get VM firewall options.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Get VM firewall options.
 try {
-    $Result = Get-PVENodesQemuFirewallOptionsByNodeAndVmid
+    $Result = Get-PVENodesQemuFirewallOptionsByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuFirewallOptionsByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4842,7 +5571,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4861,7 +5594,9 @@ No authorization required
 
 <a name="Get-PVENodesQemuFirewallRefsByNodeAndVmid"></a>
 # **Get-PVENodesQemuFirewallRefsByNodeAndVmid**
-> NodesLxcFirewallRefsInner[] Get-PVENodesQemuFirewallRefsByNodeAndVmid<br>
+> NodesQemuFirewallRefsInner[] Get-PVENodesQemuFirewallRefsByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuFirewallRefsRB] <PSCustomObject><br>
 
 Lists possible IPSet/Alias reference which are allowed in source/dest properties.
@@ -4870,11 +5605,13 @@ Lists possible IPSet/Alias reference which are allowed in source/dest properties
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 $GETNodesQemuFirewallRefsRB = Initialize-GETNodesQemuFirewallRefsRB -Node "MyNode" -Type "alias" -Vmid 0 # GETNodesQemuFirewallRefsRB | Lists possible IPSet/Alias reference which are allowed in source/dest properties. (optional)
 
 # Lists possible IPSet/Alias reference which are allowed in source/dest properties.
 try {
-    $Result = Get-PVENodesQemuFirewallRefsByNodeAndVmid -GETNodesQemuFirewallRefsRB $GETNodesQemuFirewallRefsRB
+    $Result = Get-PVENodesQemuFirewallRefsByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesQemuFirewallRefsRB $GETNodesQemuFirewallRefsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuFirewallRefsByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4885,11 +5622,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesQemuFirewallRefsRB** | [**GETNodesQemuFirewallRefsRB**](GETNodesQemuFirewallRefsRB.md)| Lists possible IPSet/Alias reference which are allowed in source/dest properties. | [optional] 
 
 ### Return type
 
-[**NodesLxcFirewallRefsInner[]**](NodesLxcFirewallRefsInner.md) (PSCustomObject)
+[**NodesQemuFirewallRefsInner[]**](NodesQemuFirewallRefsInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -4904,7 +5643,9 @@ No authorization required
 
 <a name="Get-PVENodesQemuFirewallRulesByNodeAndVmid"></a>
 # **Get-PVENodesQemuFirewallRulesByNodeAndVmid**
-> NodesFirewallRulesGETInner[] Get-PVENodesQemuFirewallRulesByNodeAndVmid<br>
+> ClusterFirewallGroupsGETAVInner[] Get-PVENodesQemuFirewallRulesByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 List rules.
 
@@ -4912,10 +5653,12 @@ List rules.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # List rules.
 try {
-    $Result = Get-PVENodesQemuFirewallRulesByNodeAndVmid
+    $Result = Get-PVENodesQemuFirewallRulesByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuFirewallRulesByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4923,11 +5666,15 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
-[**NodesFirewallRulesGETInner[]**](NodesFirewallRulesGETInner.md) (PSCustomObject)
+[**ClusterFirewallGroupsGETAVInner[]**](ClusterFirewallGroupsGETAVInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -4943,6 +5690,9 @@ No authorization required
 <a name="Get-PVENodesQemuFirewallRulesByNodeAndVmidAndPos"></a>
 # **Get-PVENodesQemuFirewallRulesByNodeAndVmidAndPos**
 > NodesQemuFirewallRules Get-PVENodesQemuFirewallRulesByNodeAndVmidAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Pos] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Get single rule data.
 
@@ -4950,10 +5700,13 @@ Get single rule data.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Pos = 56 # Int32 | Update rule at position <pos>.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Get single rule data.
 try {
-    $Result = Get-PVENodesQemuFirewallRulesByNodeAndVmidAndPos
+    $Result = Get-PVENodesQemuFirewallRulesByNodeAndVmidAndPos -Node $Node -Pos $Pos -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuFirewallRulesByNodeAndVmidAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -4961,7 +5714,12 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Pos** | **Int32**| Update rule at position &lt;pos&gt;. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -4981,6 +5739,8 @@ No authorization required
 <a name="Get-PVENodesQemuMigrateByNodeAndVmid"></a>
 # **Get-PVENodesQemuMigrateByNodeAndVmid**
 > NodesQemuMigrate Get-PVENodesQemuMigrateByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuMigrateRB] <PSCustomObject><br>
 
 Get preconditions for migration.
@@ -4989,11 +5749,13 @@ Get preconditions for migration.
 
 ### Example
 ```powershell
-$GETNodesQemuMigrateRB = Initialize-GETNodesQemuMigrateRB -Node "MyNode" -Target "MyTarget" -Vmid 0 # GETNodesQemuMigrateRB | Get preconditions for migration. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesQemuMigrateRB = Initialize-GETNodesQemuMigrateRB -Node "MyNode" -Vmid 0 -Target "MyTarget" # GETNodesQemuMigrateRB | Get preconditions for migration. (optional)
 
 # Get preconditions for migration.
 try {
-    $Result = Get-PVENodesQemuMigrateByNodeAndVmid -GETNodesQemuMigrateRB $GETNodesQemuMigrateRB
+    $Result = Get-PVENodesQemuMigrateByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesQemuMigrateRB $GETNodesQemuMigrateRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuMigrateByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5004,6 +5766,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesQemuMigrateRB** | [**GETNodesQemuMigrateRB**](GETNodesQemuMigrateRB.md)| Get preconditions for migration. | [optional] 
 
 ### Return type
@@ -5024,6 +5788,8 @@ No authorization required
 <a name="Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid"></a>
 # **Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid**
 > NodesQemuMtunnelwebsocket Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuMtunnelwebsocketRB] <PSCustomObject><br>
 
 Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration.
@@ -5032,11 +5798,13 @@ Migration tunnel endpoint for websocket upgrade - only for internal use by VM mi
 
 ### Example
 ```powershell
-$GETNodesQemuMtunnelwebsocketRB = Initialize-GETNodesQemuMtunnelwebsocketRB -Node "MyNode" -Ticket "MyTicket" -Vmid 0 -Socket "MySocket" # GETNodesQemuMtunnelwebsocketRB | Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesQemuMtunnelwebsocketRB = Initialize-GETNodesQemuMtunnelwebsocketRB -Ticket "MyTicket" -Node "MyNode" -Vmid 0 -Socket "MySocket" # GETNodesQemuMtunnelwebsocketRB | Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration. (optional)
 
 # Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration.
 try {
-    $Result = Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid -GETNodesQemuMtunnelwebsocketRB $GETNodesQemuMtunnelwebsocketRB
+    $Result = Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesQemuMtunnelwebsocketRB $GETNodesQemuMtunnelwebsocketRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuMtunnelwebsocketByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5047,6 +5815,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesQemuMtunnelwebsocketRB** | [**GETNodesQemuMtunnelwebsocketRB**](GETNodesQemuMtunnelwebsocketRB.md)| Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration. | [optional] 
 
 ### Return type
@@ -5066,7 +5836,9 @@ No authorization required
 
 <a name="Get-PVENodesQemuPendingByNodeAndVmid"></a>
 # **Get-PVENodesQemuPendingByNodeAndVmid**
-> NodesQemuPendingInner[] Get-PVENodesQemuPendingByNodeAndVmid<br>
+> NodesLxcPendingInner[] Get-PVENodesQemuPendingByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Get the virtual machine configuration with both current and pending values.
 
@@ -5074,10 +5846,12 @@ Get the virtual machine configuration with both current and pending values.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Get the virtual machine configuration with both current and pending values.
 try {
-    $Result = Get-PVENodesQemuPendingByNodeAndVmid
+    $Result = Get-PVENodesQemuPendingByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuPendingByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5085,11 +5859,15 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
-[**NodesQemuPendingInner[]**](NodesQemuPendingInner.md) (PSCustomObject)
+[**NodesLxcPendingInner[]**](NodesLxcPendingInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -5105,6 +5883,8 @@ No authorization required
 <a name="Get-PVENodesQemuRrdByNodeAndVmid"></a>
 # **Get-PVENodesQemuRrdByNodeAndVmid**
 > NodesQemuRrd Get-PVENodesQemuRrdByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuRrdRB] <PSCustomObject><br>
 
 Read VM RRD statistics (returns PNG)
@@ -5113,11 +5893,13 @@ Read VM RRD statistics (returns PNG)
 
 ### Example
 ```powershell
-$GETNodesQemuRrdRB = Initialize-GETNodesQemuRrdRB -Ds "MyDs" -Node "MyNode" -Timeframe "hour" -Vmid 0 -Cf "AVERAGE" # GETNodesQemuRrdRB | Read VM RRD statistics (returns PNG) (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesQemuRrdRB = Initialize-GETNodesQemuRrdRB -Cf "AVERAGE" -Node "MyNode" -Vmid 0 -Timeframe "hour" -Ds "MyDs" # GETNodesQemuRrdRB | Read VM RRD statistics (returns PNG) (optional)
 
 # Read VM RRD statistics (returns PNG)
 try {
-    $Result = Get-PVENodesQemuRrdByNodeAndVmid -GETNodesQemuRrdRB $GETNodesQemuRrdRB
+    $Result = Get-PVENodesQemuRrdByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesQemuRrdRB $GETNodesQemuRrdRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuRrdByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5128,6 +5910,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesQemuRrdRB** | [**GETNodesQemuRrdRB**](GETNodesQemuRrdRB.md)| Read VM RRD statistics (returns PNG) | [optional] 
 
 ### Return type
@@ -5148,6 +5932,8 @@ No authorization required
 <a name="Get-PVENodesQemuRrddataByNodeAndVmid"></a>
 # **Get-PVENodesQemuRrddataByNodeAndVmid**
 > SystemCollectionsHashtable[] Get-PVENodesQemuRrddataByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuRrddataRB] <PSCustomObject><br>
 
 Read VM RRD statistics
@@ -5156,11 +5942,13 @@ Read VM RRD statistics
 
 ### Example
 ```powershell
-$GETNodesQemuRrddataRB = Initialize-GETNodesQemuRrddataRB -Node "MyNode" -Timeframe "hour" -Vmid 0 -Cf "AVERAGE" # GETNodesQemuRrddataRB | Read VM RRD statistics (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesQemuRrddataRB = Initialize-GETNodesQemuRrddataRB -Cf "AVERAGE" -Node "MyNode" -Vmid 0 -Timeframe "hour" # GETNodesQemuRrddataRB | Read VM RRD statistics (optional)
 
 # Read VM RRD statistics
 try {
-    $Result = Get-PVENodesQemuRrddataByNodeAndVmid -GETNodesQemuRrddataRB $GETNodesQemuRrddataRB
+    $Result = Get-PVENodesQemuRrddataByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesQemuRrddataRB $GETNodesQemuRrddataRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuRrddataByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5171,6 +5959,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesQemuRrddataRB** | [**GETNodesQemuRrddataRB**](GETNodesQemuRrddataRB.md)| Read VM RRD statistics | [optional] 
 
 ### Return type
@@ -5191,6 +5981,8 @@ No authorization required
 <a name="Get-PVENodesQemuSnapshotByNodeAndVmid"></a>
 # **Get-PVENodesQemuSnapshotByNodeAndVmid**
 > NodesQemuSnapshotInner[] Get-PVENodesQemuSnapshotByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 List all snapshots.
 
@@ -5198,10 +5990,12 @@ List all snapshots.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # List all snapshots.
 try {
-    $Result = Get-PVENodesQemuSnapshotByNodeAndVmid
+    $Result = Get-PVENodesQemuSnapshotByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuSnapshotByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5209,7 +6003,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -5229,6 +6027,9 @@ No authorization required
 <a name="Get-PVENodesQemuSnapshotByNodeAndVmidAndSnapname"></a>
 # **Get-PVENodesQemuSnapshotByNodeAndVmidAndSnapname**
 > SystemCollectionsHashtable[] Get-PVENodesQemuSnapshotByNodeAndVmidAndSnapname<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Snapname] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 
 
@@ -5236,10 +6037,13 @@ No authorization required
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Snapname = "MySnapname" # String | The name of the snapshot.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # 
 try {
-    $Result = Get-PVENodesQemuSnapshotByNodeAndVmidAndSnapname
+    $Result = Get-PVENodesQemuSnapshotByNodeAndVmidAndSnapname -Node $Node -Snapname $Snapname -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuSnapshotByNodeAndVmidAndSnapname: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5247,7 +6051,12 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Snapname** | **String**| The name of the snapshot. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -5267,6 +6076,9 @@ No authorization required
 <a name="Get-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname"></a>
 # **Get-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname**
 > void Get-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Snapname] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Get snapshot configuration
 
@@ -5274,10 +6086,13 @@ Get snapshot configuration
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Snapname = "MySnapname" # String | The name of the snapshot.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Get snapshot configuration
 try {
-    $Result = Get-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname
+    $Result = Get-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname -Node $Node -Snapname $Snapname -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5285,7 +6100,12 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Snapname** | **String**| The name of the snapshot. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -5305,6 +6125,8 @@ No authorization required
 <a name="Get-PVENodesQemuStatusByNodeAndVmid"></a>
 # **Get-PVENodesQemuStatusByNodeAndVmid**
 > void Get-PVENodesQemuStatusByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Directory index
 
@@ -5312,10 +6134,12 @@ Directory index
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Directory index
 try {
-    $Result = Get-PVENodesQemuStatusByNodeAndVmid
+    $Result = Get-PVENodesQemuStatusByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuStatusByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5323,7 +6147,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -5343,6 +6171,8 @@ No authorization required
 <a name="Get-PVENodesQemuStatusCurrentByNodeAndVmid"></a>
 # **Get-PVENodesQemuStatusCurrentByNodeAndVmid**
 > NodesQemuStatusCurrent Get-PVENodesQemuStatusCurrentByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Get virtual machine status.
 
@@ -5350,10 +6180,12 @@ Get virtual machine status.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Get virtual machine status.
 try {
-    $Result = Get-PVENodesQemuStatusCurrentByNodeAndVmid
+    $Result = Get-PVENodesQemuStatusCurrentByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuStatusCurrentByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5361,7 +6193,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -5381,6 +6217,8 @@ No authorization required
 <a name="Get-PVENodesQemuVncwebsocketByNodeAndVmid"></a>
 # **Get-PVENodesQemuVncwebsocketByNodeAndVmid**
 > NodesQemuVncwebsocket Get-PVENodesQemuVncwebsocketByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuVncwebsocketRB] <PSCustomObject><br>
 
 Opens a weksocket for VNC traffic.
@@ -5389,11 +6227,13 @@ Opens a weksocket for VNC traffic.
 
 ### Example
 ```powershell
-$GETNodesQemuVncwebsocketRB = Initialize-GETNodesQemuVncwebsocketRB -Node "MyNode" -Vncticket "MyVncticket" -Port 0 -Vmid 0 # GETNodesQemuVncwebsocketRB | Opens a weksocket for VNC traffic. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$GETNodesQemuVncwebsocketRB = Initialize-GETNodesQemuVncwebsocketRB -Vncticket "MyVncticket" -Node "MyNode" -Vmid 0 -Port 0 # GETNodesQemuVncwebsocketRB | Opens a weksocket for VNC traffic. (optional)
 
 # Opens a weksocket for VNC traffic.
 try {
-    $Result = Get-PVENodesQemuVncwebsocketByNodeAndVmid -GETNodesQemuVncwebsocketRB $GETNodesQemuVncwebsocketRB
+    $Result = Get-PVENodesQemuVncwebsocketByNodeAndVmid -Node $Node -Vmid $Vmid -GETNodesQemuVncwebsocketRB $GETNodesQemuVncwebsocketRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQemuVncwebsocketByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5404,6 +6244,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **GETNodesQemuVncwebsocketRB** | [**GETNodesQemuVncwebsocketRB**](GETNodesQemuVncwebsocketRB.md)| Opens a weksocket for VNC traffic. | [optional] 
 
 ### Return type
@@ -5424,6 +6266,7 @@ No authorization required
 <a name="Get-PVENodesQueryurlmetadataByNode"></a>
 # **Get-PVENodesQueryurlmetadataByNode**
 > NodesQueryurlmetadata Get-PVENodesQueryurlmetadataByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQueryurlmetadataRB] <PSCustomObject><br>
 
 Query metadata of an URL: file size, file name and mime type.
@@ -5432,11 +6275,12 @@ Query metadata of an URL: file size, file name and mime type.
 
 ### Example
 ```powershell
-$GETNodesQueryurlmetadataRB = Initialize-GETNodesQueryurlmetadataRB -Node "MyNode" -Url "MyUrl" -VerifyCertificates 0 # GETNodesQueryurlmetadataRB | Query metadata of an URL: file size, file name and mime type. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesQueryurlmetadataRB = Initialize-GETNodesQueryurlmetadataRB -Url "MyUrl" -VerifyCertificates 0 -Node "MyNode" # GETNodesQueryurlmetadataRB | Query metadata of an URL: file size, file name and mime type. (optional)
 
 # Query metadata of an URL: file size, file name and mime type.
 try {
-    $Result = Get-PVENodesQueryurlmetadataByNode -GETNodesQueryurlmetadataRB $GETNodesQueryurlmetadataRB
+    $Result = Get-PVENodesQueryurlmetadataByNode -Node $Node -GETNodesQueryurlmetadataRB $GETNodesQueryurlmetadataRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesQueryurlmetadataByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5447,6 +6291,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesQueryurlmetadataRB** | [**GETNodesQueryurlmetadataRB**](GETNodesQueryurlmetadataRB.md)| Query metadata of an URL: file size, file name and mime type. | [optional] 
 
 ### Return type
@@ -5467,6 +6312,7 @@ No authorization required
 <a name="Get-PVENodesReplicationByNode"></a>
 # **Get-PVENodesReplicationByNode**
 > NodesAptInner[] Get-PVENodesReplicationByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesReplicationRB] <PSCustomObject><br>
 
 List status of all replication jobs on this node.
@@ -5475,11 +6321,12 @@ List status of all replication jobs on this node.
 
 ### Example
 ```powershell
-$GETNodesReplicationRB = Initialize-GETNodesReplicationRB -Guest 0 -Node "MyNode" # GETNodesReplicationRB | List status of all replication jobs on this node. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesReplicationRB = Initialize-GETNodesReplicationRB -Node "MyNode" -Guest 0 # GETNodesReplicationRB | List status of all replication jobs on this node. (optional)
 
 # List status of all replication jobs on this node.
 try {
-    $Result = Get-PVENodesReplicationByNode -GETNodesReplicationRB $GETNodesReplicationRB
+    $Result = Get-PVENodesReplicationByNode -Node $Node -GETNodesReplicationRB $GETNodesReplicationRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesReplicationByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5490,6 +6337,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesReplicationRB** | [**GETNodesReplicationRB**](GETNodesReplicationRB.md)| List status of all replication jobs on this node. | [optional] 
 
 ### Return type
@@ -5510,6 +6358,8 @@ No authorization required
 <a name="Get-PVENodesReplicationByNodeAndId"></a>
 # **Get-PVENodesReplicationByNodeAndId**
 > SystemCollectionsHashtable[] Get-PVENodesReplicationByNodeAndId<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Directory index.
 
@@ -5517,10 +6367,12 @@ Directory index.
 
 ### Example
 ```powershell
+$Id = "MyId" # String | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
+$Node = "MyNode" # String | The cluster node name.
 
 # Directory index.
 try {
-    $Result = Get-PVENodesReplicationByNodeAndId
+    $Result = Get-PVENodesReplicationByNodeAndId -Id $Id -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesReplicationByNodeAndId: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5528,7 +6380,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Id** | **String**| Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. &#39;&lt;GUEST&gt;-&lt;JOBNUM&gt;&#39;. | 
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -5547,7 +6403,9 @@ No authorization required
 
 <a name="Get-PVENodesReplicationLogByNodeAndId"></a>
 # **Get-PVENodesReplicationLogByNodeAndId**
-> NodesFirewallLogInner[] Get-PVENodesReplicationLogByNodeAndId<br>
+> NodesReplicationLogInner[] Get-PVENodesReplicationLogByNodeAndId<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesReplicationLogRB] <PSCustomObject><br>
 
 Read replication job log.
@@ -5556,11 +6414,13 @@ Read replication job log.
 
 ### Example
 ```powershell
-$GETNodesReplicationLogRB = Initialize-GETNodesReplicationLogRB -Limit 0 -Node "MyNode" -Id "MyId" -Start 0 # GETNodesReplicationLogRB | Read replication job log. (optional)
+$Id = "MyId" # String | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesReplicationLogRB = Initialize-GETNodesReplicationLogRB -Limit 0 -Id "MyId" -Node "MyNode" -Start 0 # GETNodesReplicationLogRB | Read replication job log. (optional)
 
 # Read replication job log.
 try {
-    $Result = Get-PVENodesReplicationLogByNodeAndId -GETNodesReplicationLogRB $GETNodesReplicationLogRB
+    $Result = Get-PVENodesReplicationLogByNodeAndId -Id $Id -Node $Node -GETNodesReplicationLogRB $GETNodesReplicationLogRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesReplicationLogByNodeAndId: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5571,11 +6431,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Id** | **String**| Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. &#39;&lt;GUEST&gt;-&lt;JOBNUM&gt;&#39;. | 
+ **Node** | **String**| The cluster node name. | 
  **GETNodesReplicationLogRB** | [**GETNodesReplicationLogRB**](GETNodesReplicationLogRB.md)| Read replication job log. | [optional] 
 
 ### Return type
 
-[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
+[**NodesReplicationLogInner[]**](NodesReplicationLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -5591,6 +6453,8 @@ No authorization required
 <a name="Get-PVENodesReplicationStatusByNodeAndId"></a>
 # **Get-PVENodesReplicationStatusByNodeAndId**
 > void Get-PVENodesReplicationStatusByNodeAndId<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get replication job status.
 
@@ -5598,10 +6462,12 @@ Get replication job status.
 
 ### Example
 ```powershell
+$Id = "MyId" # String | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
+$Node = "MyNode" # String | The cluster node name.
 
 # Get replication job status.
 try {
-    $Result = Get-PVENodesReplicationStatusByNodeAndId
+    $Result = Get-PVENodesReplicationStatusByNodeAndId -Id $Id -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesReplicationStatusByNodeAndId: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5609,7 +6475,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Id** | **String**| Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. &#39;&lt;GUEST&gt;-&lt;JOBNUM&gt;&#39;. | 
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -5629,6 +6499,7 @@ No authorization required
 <a name="Get-PVENodesReportByNode"></a>
 # **Get-PVENodesReportByNode**
 > void Get-PVENodesReportByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Gather various systems information about a node
 
@@ -5636,10 +6507,11 @@ Gather various systems information about a node
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Gather various systems information about a node
 try {
-    $Result = Get-PVENodesReportByNode
+    $Result = Get-PVENodesReportByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesReportByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5647,7 +6519,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -5667,6 +6542,7 @@ No authorization required
 <a name="Get-PVENodesRrdByNode"></a>
 # **Get-PVENodesRrdByNode**
 > NodesRrd Get-PVENodesRrdByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesRrdRB] <PSCustomObject><br>
 
 Read node RRD statistics (returns PNG)
@@ -5675,11 +6551,12 @@ Read node RRD statistics (returns PNG)
 
 ### Example
 ```powershell
-$GETNodesRrdRB = Initialize-GETNodesRrdRB -Ds "MyDs" -Node "MyNode" -Timeframe "hour" -Cf "AVERAGE" # GETNodesRrdRB | Read node RRD statistics (returns PNG) (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesRrdRB = Initialize-GETNodesRrdRB -Cf "AVERAGE" -Node "MyNode" -Timeframe "hour" -Ds "MyDs" # GETNodesRrdRB | Read node RRD statistics (returns PNG) (optional)
 
 # Read node RRD statistics (returns PNG)
 try {
-    $Result = Get-PVENodesRrdByNode -GETNodesRrdRB $GETNodesRrdRB
+    $Result = Get-PVENodesRrdByNode -Node $Node -GETNodesRrdRB $GETNodesRrdRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesRrdByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5690,6 +6567,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesRrdRB** | [**GETNodesRrdRB**](GETNodesRrdRB.md)| Read node RRD statistics (returns PNG) | [optional] 
 
 ### Return type
@@ -5710,6 +6588,7 @@ No authorization required
 <a name="Get-PVENodesRrddataByNode"></a>
 # **Get-PVENodesRrddataByNode**
 > SystemCollectionsHashtable[] Get-PVENodesRrddataByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesRrddataRB] <PSCustomObject><br>
 
 Read node RRD statistics
@@ -5718,11 +6597,12 @@ Read node RRD statistics
 
 ### Example
 ```powershell
-$GETNodesRrddataRB = Initialize-GETNodesRrddataRB -Node "MyNode" -Timeframe "hour" -Cf "AVERAGE" # GETNodesRrddataRB | Read node RRD statistics (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesRrddataRB = Initialize-GETNodesRrddataRB -Cf "AVERAGE" -Node "MyNode" -Timeframe "hour" # GETNodesRrddataRB | Read node RRD statistics (optional)
 
 # Read node RRD statistics
 try {
-    $Result = Get-PVENodesRrddataByNode -GETNodesRrddataRB $GETNodesRrddataRB
+    $Result = Get-PVENodesRrddataByNode -Node $Node -GETNodesRrddataRB $GETNodesRrddataRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesRrddataByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5733,6 +6613,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesRrddataRB** | [**GETNodesRrddataRB**](GETNodesRrddataRB.md)| Read node RRD statistics | [optional] 
 
 ### Return type
@@ -5752,7 +6633,8 @@ No authorization required
 
 <a name="Get-PVENodesScanByNode"></a>
 # **Get-PVENodesScanByNode**
-> NodesScanInner[] Get-PVENodesScanByNode<br>
+> NodesHardwarePciGETInner[] Get-PVENodesScanByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Index of available scan methods
 
@@ -5760,10 +6642,11 @@ Index of available scan methods
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Index of available scan methods
 try {
-    $Result = Get-PVENodesScanByNode
+    $Result = Get-PVENodesScanByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesScanByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5771,11 +6654,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
-[**NodesScanInner[]**](NodesScanInner.md) (PSCustomObject)
+[**NodesHardwarePciGETInner[]**](NodesHardwarePciGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -5791,6 +6677,7 @@ No authorization required
 <a name="Get-PVENodesScanCifsByNode"></a>
 # **Get-PVENodesScanCifsByNode**
 > NodesScanCifsInner[] Get-PVENodesScanCifsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesScanCifsRB] <PSCustomObject><br>
 
 Scan remote CIFS server.
@@ -5799,11 +6686,12 @@ Scan remote CIFS server.
 
 ### Example
 ```powershell
-$GETNodesScanCifsRB = Initialize-GETNodesScanCifsRB -Node "MyNode" -Username "MyUsername" -Password "MyPassword" -Domain "MyDomain" -Server "MyServer" # GETNodesScanCifsRB | Scan remote CIFS server. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesScanCifsRB = Initialize-GETNodesScanCifsRB -Domain "MyDomain" -Node "MyNode" -Password "MyPassword" -Server "MyServer" -Username "MyUsername" # GETNodesScanCifsRB | Scan remote CIFS server. (optional)
 
 # Scan remote CIFS server.
 try {
-    $Result = Get-PVENodesScanCifsByNode -GETNodesScanCifsRB $GETNodesScanCifsRB
+    $Result = Get-PVENodesScanCifsByNode -Node $Node -GETNodesScanCifsRB $GETNodesScanCifsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesScanCifsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5814,6 +6702,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesScanCifsRB** | [**GETNodesScanCifsRB**](GETNodesScanCifsRB.md)| Scan remote CIFS server. | [optional] 
 
 ### Return type
@@ -5834,6 +6723,7 @@ No authorization required
 <a name="Get-PVENodesScanGlusterfsByNode"></a>
 # **Get-PVENodesScanGlusterfsByNode**
 > NodesScanGlusterfsInner[] Get-PVENodesScanGlusterfsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesScanGlusterfsRB] <PSCustomObject><br>
 
 Scan remote GlusterFS server.
@@ -5842,11 +6732,12 @@ Scan remote GlusterFS server.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $GETNodesScanGlusterfsRB = Initialize-GETNodesScanGlusterfsRB -Server "MyServer" -Node "MyNode" # GETNodesScanGlusterfsRB | Scan remote GlusterFS server. (optional)
 
 # Scan remote GlusterFS server.
 try {
-    $Result = Get-PVENodesScanGlusterfsByNode -GETNodesScanGlusterfsRB $GETNodesScanGlusterfsRB
+    $Result = Get-PVENodesScanGlusterfsByNode -Node $Node -GETNodesScanGlusterfsRB $GETNodesScanGlusterfsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesScanGlusterfsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5857,6 +6748,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesScanGlusterfsRB** | [**GETNodesScanGlusterfsRB**](GETNodesScanGlusterfsRB.md)| Scan remote GlusterFS server. | [optional] 
 
 ### Return type
@@ -5877,6 +6769,7 @@ No authorization required
 <a name="Get-PVENodesScanIscsiByNode"></a>
 # **Get-PVENodesScanIscsiByNode**
 > NodesScanIscsiInner[] Get-PVENodesScanIscsiByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesScanIscsiRB] <PSCustomObject><br>
 
 Scan remote iSCSI server.
@@ -5885,11 +6778,12 @@ Scan remote iSCSI server.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $GETNodesScanIscsiRB = Initialize-GETNodesScanIscsiRB -Portal "MyPortal" -Node "MyNode" # GETNodesScanIscsiRB | Scan remote iSCSI server. (optional)
 
 # Scan remote iSCSI server.
 try {
-    $Result = Get-PVENodesScanIscsiByNode -GETNodesScanIscsiRB $GETNodesScanIscsiRB
+    $Result = Get-PVENodesScanIscsiByNode -Node $Node -GETNodesScanIscsiRB $GETNodesScanIscsiRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesScanIscsiByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5900,6 +6794,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesScanIscsiRB** | [**GETNodesScanIscsiRB**](GETNodesScanIscsiRB.md)| Scan remote iSCSI server. | [optional] 
 
 ### Return type
@@ -5920,6 +6815,7 @@ No authorization required
 <a name="Get-PVENodesScanLvmByNode"></a>
 # **Get-PVENodesScanLvmByNode**
 > NodesScanLvmInner[] Get-PVENodesScanLvmByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 List local LVM volume groups.
 
@@ -5927,10 +6823,11 @@ List local LVM volume groups.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # List local LVM volume groups.
 try {
-    $Result = Get-PVENodesScanLvmByNode
+    $Result = Get-PVENodesScanLvmByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesScanLvmByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5938,7 +6835,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -5958,6 +6858,7 @@ No authorization required
 <a name="Get-PVENodesScanLvmthinByNode"></a>
 # **Get-PVENodesScanLvmthinByNode**
 > NodesScanLvmthinInner[] Get-PVENodesScanLvmthinByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesScanLvmthinRB] <PSCustomObject><br>
 
 List local LVM Thin Pools.
@@ -5966,11 +6867,12 @@ List local LVM Thin Pools.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $GETNodesScanLvmthinRB = Initialize-GETNodesScanLvmthinRB -Vg "MyVg" -Node "MyNode" # GETNodesScanLvmthinRB | List local LVM Thin Pools. (optional)
 
 # List local LVM Thin Pools.
 try {
-    $Result = Get-PVENodesScanLvmthinByNode -GETNodesScanLvmthinRB $GETNodesScanLvmthinRB
+    $Result = Get-PVENodesScanLvmthinByNode -Node $Node -GETNodesScanLvmthinRB $GETNodesScanLvmthinRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesScanLvmthinByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -5981,6 +6883,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesScanLvmthinRB** | [**GETNodesScanLvmthinRB**](GETNodesScanLvmthinRB.md)| List local LVM Thin Pools. | [optional] 
 
 ### Return type
@@ -6001,6 +6904,7 @@ No authorization required
 <a name="Get-PVENodesScanNfsByNode"></a>
 # **Get-PVENodesScanNfsByNode**
 > NodesScanNfsInner[] Get-PVENodesScanNfsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesScanNfsRB] <PSCustomObject><br>
 
 Scan remote NFS server.
@@ -6009,11 +6913,12 @@ Scan remote NFS server.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $GETNodesScanNfsRB = Initialize-GETNodesScanNfsRB -Server "MyServer" -Node "MyNode" # GETNodesScanNfsRB | Scan remote NFS server. (optional)
 
 # Scan remote NFS server.
 try {
-    $Result = Get-PVENodesScanNfsByNode -GETNodesScanNfsRB $GETNodesScanNfsRB
+    $Result = Get-PVENodesScanNfsByNode -Node $Node -GETNodesScanNfsRB $GETNodesScanNfsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesScanNfsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6024,6 +6929,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesScanNfsRB** | [**GETNodesScanNfsRB**](GETNodesScanNfsRB.md)| Scan remote NFS server. | [optional] 
 
 ### Return type
@@ -6044,6 +6950,7 @@ No authorization required
 <a name="Get-PVENodesScanPbsByNode"></a>
 # **Get-PVENodesScanPbsByNode**
 > NodesScanPbsInner[] Get-PVENodesScanPbsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesScanPbsRB] <PSCustomObject><br>
 
 Scan remote Proxmox Backup Server.
@@ -6052,11 +6959,12 @@ Scan remote Proxmox Backup Server.
 
 ### Example
 ```powershell
-$GETNodesScanPbsRB = Initialize-GETNodesScanPbsRB -Username "MyUsername" -Node "MyNode" -Port 0 -Fingerprint "MyFingerprint" -Password "MyPassword" -Server "MyServer" # GETNodesScanPbsRB | Scan remote Proxmox Backup Server. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesScanPbsRB = Initialize-GETNodesScanPbsRB -Password "MyPassword" -Node "MyNode" -Fingerprint "MyFingerprint" -Username "MyUsername" -Server "MyServer" -Port 0 # GETNodesScanPbsRB | Scan remote Proxmox Backup Server. (optional)
 
 # Scan remote Proxmox Backup Server.
 try {
-    $Result = Get-PVENodesScanPbsByNode -GETNodesScanPbsRB $GETNodesScanPbsRB
+    $Result = Get-PVENodesScanPbsByNode -Node $Node -GETNodesScanPbsRB $GETNodesScanPbsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesScanPbsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6067,6 +6975,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesScanPbsRB** | [**GETNodesScanPbsRB**](GETNodesScanPbsRB.md)| Scan remote Proxmox Backup Server. | [optional] 
 
 ### Return type
@@ -6087,6 +6996,7 @@ No authorization required
 <a name="Get-PVENodesScanZfsByNode"></a>
 # **Get-PVENodesScanZfsByNode**
 > NodesScanZfsInner[] Get-PVENodesScanZfsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Scan zfs pool list on local node.
 
@@ -6094,10 +7004,11 @@ Scan zfs pool list on local node.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Scan zfs pool list on local node.
 try {
-    $Result = Get-PVENodesScanZfsByNode
+    $Result = Get-PVENodesScanZfsByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesScanZfsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6105,7 +7016,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -6125,6 +7039,7 @@ No authorization required
 <a name="Get-PVENodesSdnByNode"></a>
 # **Get-PVENodesSdnByNode**
 > SystemCollectionsHashtable[] Get-PVENodesSdnByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 SDN index.
 
@@ -6132,10 +7047,11 @@ SDN index.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # SDN index.
 try {
-    $Result = Get-PVENodesSdnByNode
+    $Result = Get-PVENodesSdnByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesSdnByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6143,7 +7059,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -6163,6 +7082,7 @@ No authorization required
 <a name="Get-PVENodesSdnZonesByNode"></a>
 # **Get-PVENodesSdnZonesByNode**
 > NodesSdnZonesInner[] Get-PVENodesSdnZonesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Get status for all zones.
 
@@ -6170,10 +7090,11 @@ Get status for all zones.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Get status for all zones.
 try {
-    $Result = Get-PVENodesSdnZonesByNode
+    $Result = Get-PVENodesSdnZonesByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesSdnZonesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6181,7 +7102,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -6201,6 +7125,8 @@ No authorization required
 <a name="Get-PVENodesSdnZonesByNodeAndZone"></a>
 # **Get-PVENodesSdnZonesByNodeAndZone**
 > void Get-PVENodesSdnZonesByNodeAndZone<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Zone] <String><br>
 
 
 
@@ -6208,10 +7134,12 @@ No authorization required
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Zone = "MyZone" # String | The SDN zone object identifier.
 
 # 
 try {
-    $Result = Get-PVENodesSdnZonesByNodeAndZone
+    $Result = Get-PVENodesSdnZonesByNodeAndZone -Node $Node -Zone $Zone
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesSdnZonesByNodeAndZone: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6219,7 +7147,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Zone** | **String**| The SDN zone object identifier. | 
 
 ### Return type
 
@@ -6239,6 +7171,8 @@ No authorization required
 <a name="Get-PVENodesSdnZonesContentByNodeAndZone"></a>
 # **Get-PVENodesSdnZonesContentByNodeAndZone**
 > NodesSdnZonesContentInner[] Get-PVENodesSdnZonesContentByNodeAndZone<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Zone] <String><br>
 
 List zone content.
 
@@ -6246,10 +7180,12 @@ List zone content.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Zone = "MyZone" # String | The SDN zone object identifier.
 
 # List zone content.
 try {
-    $Result = Get-PVENodesSdnZonesContentByNodeAndZone
+    $Result = Get-PVENodesSdnZonesContentByNodeAndZone -Node $Node -Zone $Zone
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesSdnZonesContentByNodeAndZone: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6257,7 +7193,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Zone** | **String**| The SDN zone object identifier. | 
 
 ### Return type
 
@@ -6277,6 +7217,7 @@ No authorization required
 <a name="Get-PVENodesServicesByNode"></a>
 # **Get-PVENodesServicesByNode**
 > SystemCollectionsHashtable[] Get-PVENodesServicesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Service list.
 
@@ -6284,10 +7225,11 @@ Service list.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Service list.
 try {
-    $Result = Get-PVENodesServicesByNode
+    $Result = Get-PVENodesServicesByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesServicesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6295,7 +7237,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -6315,6 +7260,8 @@ No authorization required
 <a name="Get-PVENodesServicesByNodeAndService"></a>
 # **Get-PVENodesServicesByNodeAndService**
 > void Get-PVENodesServicesByNodeAndService<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Service] <String><br>
 
 Directory index
 
@@ -6322,10 +7269,12 @@ Directory index
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Service = "MyService" # String | Service ID
 
 # Directory index
 try {
-    $Result = Get-PVENodesServicesByNodeAndService
+    $Result = Get-PVENodesServicesByNodeAndService -Node $Node -Service $Service
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesServicesByNodeAndService: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6333,7 +7282,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Service** | **String**| Service ID | 
 
 ### Return type
 
@@ -6353,6 +7306,8 @@ No authorization required
 <a name="Get-PVENodesServicesStateByNodeAndService"></a>
 # **Get-PVENodesServicesStateByNodeAndService**
 > void Get-PVENodesServicesStateByNodeAndService<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Service] <String><br>
 
 Read service properties
 
@@ -6360,10 +7315,12 @@ Read service properties
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Service = "MyService" # String | Service ID
 
 # Read service properties
 try {
-    $Result = Get-PVENodesServicesStateByNodeAndService
+    $Result = Get-PVENodesServicesStateByNodeAndService -Node $Node -Service $Service
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesServicesStateByNodeAndService: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6371,7 +7328,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Service** | **String**| Service ID | 
 
 ### Return type
 
@@ -6391,6 +7352,7 @@ No authorization required
 <a name="Get-PVENodesStatusByNode"></a>
 # **Get-PVENodesStatusByNode**
 > NodesStatus Get-PVENodesStatusByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Read node status
 
@@ -6398,10 +7360,11 @@ Read node status
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Read node status
 try {
-    $Result = Get-PVENodesStatusByNode
+    $Result = Get-PVENodesStatusByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesStatusByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6409,7 +7372,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -6429,6 +7395,7 @@ No authorization required
 <a name="Get-PVENodesStorageByNode"></a>
 # **Get-PVENodesStorageByNode**
 > NodesStorageInner[] Get-PVENodesStorageByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesStorageRB] <PSCustomObject><br>
 
 Get status for all datastores.
@@ -6437,11 +7404,12 @@ Get status for all datastores.
 
 ### Example
 ```powershell
-$GETNodesStorageRB = Initialize-GETNodesStorageRB -Enabled 0 -Target "MyTarget" -Node "MyNode" -Content "MyContent" -Storage "MyStorage" -Format 0 # GETNodesStorageRB | Get status for all datastores. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesStorageRB = Initialize-GETNodesStorageRB -Format 0 -Node "MyNode" -Target "MyTarget" -Storage "MyStorage" -Content "MyContent" -Enabled 0 # GETNodesStorageRB | Get status for all datastores. (optional)
 
 # Get status for all datastores.
 try {
-    $Result = Get-PVENodesStorageByNode -GETNodesStorageRB $GETNodesStorageRB
+    $Result = Get-PVENodesStorageByNode -Node $Node -GETNodesStorageRB $GETNodesStorageRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesStorageByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6452,6 +7420,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesStorageRB** | [**GETNodesStorageRB**](GETNodesStorageRB.md)| Get status for all datastores. | [optional] 
 
 ### Return type
@@ -6472,6 +7441,8 @@ No authorization required
 <a name="Get-PVENodesStorageByNodeAndStorage"></a>
 # **Get-PVENodesStorageByNodeAndStorage**
 > void Get-PVENodesStorageByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 
 
 
@@ -6479,10 +7450,12 @@ No authorization required
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
 
 # 
 try {
-    $Result = Get-PVENodesStorageByNodeAndStorage
+    $Result = Get-PVENodesStorageByNodeAndStorage -Node $Node -Storage $Storage
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesStorageByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6490,7 +7463,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
 
 ### Return type
 
@@ -6510,6 +7487,8 @@ No authorization required
 <a name="Get-PVENodesStorageContentByNodeAndStorage"></a>
 # **Get-PVENodesStorageContentByNodeAndStorage**
 > NodesStorageContentGETInner[] Get-PVENodesStorageContentByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesStorageContentRB] <PSCustomObject><br>
 
 List storage content.
@@ -6518,11 +7497,13 @@ List storage content.
 
 ### Example
 ```powershell
-$GETNodesStorageContentRB = Initialize-GETNodesStorageContentRB -Node "MyNode" -Storage "MyStorage" -Content "MyContent" -Vmid 0 # GETNodesStorageContentRB | List storage content. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$GETNodesStorageContentRB = Initialize-GETNodesStorageContentRB -Storage "MyStorage" -Content "MyContent" -Node "MyNode" -Vmid 0 # GETNodesStorageContentRB | List storage content. (optional)
 
 # List storage content.
 try {
-    $Result = Get-PVENodesStorageContentByNodeAndStorage -GETNodesStorageContentRB $GETNodesStorageContentRB
+    $Result = Get-PVENodesStorageContentByNodeAndStorage -Node $Node -Storage $Storage -GETNodesStorageContentRB $GETNodesStorageContentRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesStorageContentByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6533,6 +7514,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
  **GETNodesStorageContentRB** | [**GETNodesStorageContentRB**](GETNodesStorageContentRB.md)| List storage content. | [optional] 
 
 ### Return type
@@ -6553,6 +7536,9 @@ No authorization required
 <a name="Get-PVENodesStorageContentByNodeAndStorageAndVolume"></a>
 # **Get-PVENodesStorageContentByNodeAndStorageAndVolume**
 > NodesStorageContent Get-PVENodesStorageContentByNodeAndStorageAndVolume<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Volume] <String><br>
 
 Get volume attributes
 
@@ -6560,10 +7546,13 @@ Get volume attributes
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$Volume = "MyVolume" # String | Volume identifier
 
 # Get volume attributes
 try {
-    $Result = Get-PVENodesStorageContentByNodeAndStorageAndVolume
+    $Result = Get-PVENodesStorageContentByNodeAndStorageAndVolume -Node $Node -Storage $Storage -Volume $Volume
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesStorageContentByNodeAndStorageAndVolume: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6571,7 +7560,12 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
+ **Volume** | **String**| Volume identifier | 
 
 ### Return type
 
@@ -6591,6 +7585,8 @@ No authorization required
 <a name="Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage"></a>
 # **Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage**
 > System.IO.FileInfo Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesStorageFilerestoreDownloadRB] <PSCustomObject><br>
 
 Extract a file or directory (as zip archive) from a PBS backup.
@@ -6599,11 +7595,13 @@ Extract a file or directory (as zip archive) from a PBS backup.
 
 ### Example
 ```powershell
-$GETNodesStorageFilerestoreDownloadRB = Initialize-GETNodesStorageFilerestoreDownloadRB -Node "MyNode" -Tar 0 -Volume "MyVolume" -Storage "MyStorage" -Filepath "MyFilepath" # GETNodesStorageFilerestoreDownloadRB | Extract a file or directory (as zip archive) from a PBS backup. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$GETNodesStorageFilerestoreDownloadRB = Initialize-GETNodesStorageFilerestoreDownloadRB -Storage "MyStorage" -Volume "MyVolume" -Node "MyNode" -Tar 0 -Filepath "MyFilepath" # GETNodesStorageFilerestoreDownloadRB | Extract a file or directory (as zip archive) from a PBS backup. (optional)
 
 # Extract a file or directory (as zip archive) from a PBS backup.
 try {
-    $Result = Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage -GETNodesStorageFilerestoreDownloadRB $GETNodesStorageFilerestoreDownloadRB
+    $Result = Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage -Node $Node -Storage $Storage -GETNodesStorageFilerestoreDownloadRB $GETNodesStorageFilerestoreDownloadRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesStorageFilerestoreDownloadByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6614,6 +7612,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
  **GETNodesStorageFilerestoreDownloadRB** | [**GETNodesStorageFilerestoreDownloadRB**](GETNodesStorageFilerestoreDownloadRB.md)| Extract a file or directory (as zip archive) from a PBS backup. | [optional] 
 
 ### Return type
@@ -6634,6 +7634,8 @@ No authorization required
 <a name="Get-PVENodesStorageFilerestoreListByNodeAndStorage"></a>
 # **Get-PVENodesStorageFilerestoreListByNodeAndStorage**
 > NodesStorageFilerestoreListInner[] Get-PVENodesStorageFilerestoreListByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesStorageFilerestoreListRB] <PSCustomObject><br>
 
 List files and directories for single file restore under the given path.
@@ -6642,11 +7644,13 @@ List files and directories for single file restore under the given path.
 
 ### Example
 ```powershell
-$GETNodesStorageFilerestoreListRB = Initialize-GETNodesStorageFilerestoreListRB -Node "MyNode" -Volume "MyVolume" -Storage "MyStorage" -Filepath "MyFilepath" # GETNodesStorageFilerestoreListRB | List files and directories for single file restore under the given path. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$GETNodesStorageFilerestoreListRB = Initialize-GETNodesStorageFilerestoreListRB -Storage "MyStorage" -Node "MyNode" -Volume "MyVolume" -Filepath "MyFilepath" # GETNodesStorageFilerestoreListRB | List files and directories for single file restore under the given path. (optional)
 
 # List files and directories for single file restore under the given path.
 try {
-    $Result = Get-PVENodesStorageFilerestoreListByNodeAndStorage -GETNodesStorageFilerestoreListRB $GETNodesStorageFilerestoreListRB
+    $Result = Get-PVENodesStorageFilerestoreListByNodeAndStorage -Node $Node -Storage $Storage -GETNodesStorageFilerestoreListRB $GETNodesStorageFilerestoreListRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesStorageFilerestoreListByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6657,6 +7661,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
  **GETNodesStorageFilerestoreListRB** | [**GETNodesStorageFilerestoreListRB**](GETNodesStorageFilerestoreListRB.md)| List files and directories for single file restore under the given path. | [optional] 
 
 ### Return type
@@ -6677,6 +7683,8 @@ No authorization required
 <a name="Get-PVENodesStorageImportmetadataByNodeAndStorage"></a>
 # **Get-PVENodesStorageImportmetadataByNodeAndStorage**
 > NodesStorageImportmetadata Get-PVENodesStorageImportmetadataByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesStorageImportmetadataRB] <PSCustomObject><br>
 
 Get the base parameters for creating a guest which imports data from a foreign importable guest, like an ESXi VM
@@ -6685,11 +7693,13 @@ Get the base parameters for creating a guest which imports data from a foreign i
 
 ### Example
 ```powershell
-$GETNodesStorageImportmetadataRB = Initialize-GETNodesStorageImportmetadataRB -Node "MyNode" -Volume "MyVolume" -Storage "MyStorage" # GETNodesStorageImportmetadataRB | Get the base parameters for creating a guest which imports data from a foreign importable guest, like an ESXi VM (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$GETNodesStorageImportmetadataRB = Initialize-GETNodesStorageImportmetadataRB -Storage "MyStorage" -Node "MyNode" -Volume "MyVolume" # GETNodesStorageImportmetadataRB | Get the base parameters for creating a guest which imports data from a foreign importable guest, like an ESXi VM (optional)
 
 # Get the base parameters for creating a guest which imports data from a foreign importable guest, like an ESXi VM
 try {
-    $Result = Get-PVENodesStorageImportmetadataByNodeAndStorage -GETNodesStorageImportmetadataRB $GETNodesStorageImportmetadataRB
+    $Result = Get-PVENodesStorageImportmetadataByNodeAndStorage -Node $Node -Storage $Storage -GETNodesStorageImportmetadataRB $GETNodesStorageImportmetadataRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesStorageImportmetadataByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6700,6 +7710,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
  **GETNodesStorageImportmetadataRB** | [**GETNodesStorageImportmetadataRB**](GETNodesStorageImportmetadataRB.md)| Get the base parameters for creating a guest which imports data from a foreign importable guest, like an ESXi VM | [optional] 
 
 ### Return type
@@ -6720,6 +7732,8 @@ No authorization required
 <a name="Get-PVENodesStoragePrunebackupsByNodeAndStorage"></a>
 # **Get-PVENodesStoragePrunebackupsByNodeAndStorage**
 > NodesStoragePrunebackupsInner[] Get-PVENodesStoragePrunebackupsByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesStoragePrunebackupsRB] <PSCustomObject><br>
 
 Get prune information for backups. NOTE: this is only a preview and might not be what a subsequent prune call does if backups are removed/added in the meantime.
@@ -6728,11 +7742,13 @@ Get prune information for backups. NOTE: this is only a preview and might not be
 
 ### Example
 ```powershell
-$GETNodesStoragePrunebackupsRB = Initialize-GETNodesStoragePrunebackupsRB -Node "MyNode" -Type "qemu" -Storage "MyStorage" -PruneBackups "MyPruneBackups" -Vmid 0 # GETNodesStoragePrunebackupsRB | Get prune information for backups. NOTE: this is only a preview and might not be what a subsequent prune call does if backups are removed/added in the meantime. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$GETNodesStoragePrunebackupsRB = Initialize-GETNodesStoragePrunebackupsRB -Storage "MyStorage" -Vmid 0 -Node "MyNode" -PruneBackups "MyPruneBackups" -Type "qemu" # GETNodesStoragePrunebackupsRB | Get prune information for backups. NOTE: this is only a preview and might not be what a subsequent prune call does if backups are removed/added in the meantime. (optional)
 
 # Get prune information for backups. NOTE: this is only a preview and might not be what a subsequent prune call does if backups are removed/added in the meantime.
 try {
-    $Result = Get-PVENodesStoragePrunebackupsByNodeAndStorage -GETNodesStoragePrunebackupsRB $GETNodesStoragePrunebackupsRB
+    $Result = Get-PVENodesStoragePrunebackupsByNodeAndStorage -Node $Node -Storage $Storage -GETNodesStoragePrunebackupsRB $GETNodesStoragePrunebackupsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesStoragePrunebackupsByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6743,6 +7759,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
  **GETNodesStoragePrunebackupsRB** | [**GETNodesStoragePrunebackupsRB**](GETNodesStoragePrunebackupsRB.md)| Get prune information for backups. NOTE: this is only a preview and might not be what a subsequent prune call does if backups are removed/added in the meantime. | [optional] 
 
 ### Return type
@@ -6763,6 +7781,8 @@ No authorization required
 <a name="Get-PVENodesStorageRrdByNodeAndStorage"></a>
 # **Get-PVENodesStorageRrdByNodeAndStorage**
 > NodesStorageRrd Get-PVENodesStorageRrdByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesStorageRrdRB] <PSCustomObject><br>
 
 Read storage RRD statistics (returns PNG).
@@ -6771,11 +7791,13 @@ Read storage RRD statistics (returns PNG).
 
 ### Example
 ```powershell
-$GETNodesStorageRrdRB = Initialize-GETNodesStorageRrdRB -Ds "MyDs" -Node "MyNode" -Timeframe "hour" -Storage "MyStorage" -Cf "AVERAGE" # GETNodesStorageRrdRB | Read storage RRD statistics (returns PNG). (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$GETNodesStorageRrdRB = Initialize-GETNodesStorageRrdRB -Storage "MyStorage" -Cf "AVERAGE" -Node "MyNode" -Timeframe "hour" -Ds "MyDs" # GETNodesStorageRrdRB | Read storage RRD statistics (returns PNG). (optional)
 
 # Read storage RRD statistics (returns PNG).
 try {
-    $Result = Get-PVENodesStorageRrdByNodeAndStorage -GETNodesStorageRrdRB $GETNodesStorageRrdRB
+    $Result = Get-PVENodesStorageRrdByNodeAndStorage -Node $Node -Storage $Storage -GETNodesStorageRrdRB $GETNodesStorageRrdRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesStorageRrdByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6786,6 +7808,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
  **GETNodesStorageRrdRB** | [**GETNodesStorageRrdRB**](GETNodesStorageRrdRB.md)| Read storage RRD statistics (returns PNG). | [optional] 
 
 ### Return type
@@ -6806,6 +7830,8 @@ No authorization required
 <a name="Get-PVENodesStorageRrddataByNodeAndStorage"></a>
 # **Get-PVENodesStorageRrddataByNodeAndStorage**
 > SystemCollectionsHashtable[] Get-PVENodesStorageRrddataByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesStorageRrddataRB] <PSCustomObject><br>
 
 Read storage RRD statistics.
@@ -6814,11 +7840,13 @@ Read storage RRD statistics.
 
 ### Example
 ```powershell
-$GETNodesStorageRrddataRB = Initialize-GETNodesStorageRrddataRB -Node "MyNode" -Timeframe "hour" -Storage "MyStorage" -Cf "AVERAGE" # GETNodesStorageRrddataRB | Read storage RRD statistics. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$GETNodesStorageRrddataRB = Initialize-GETNodesStorageRrddataRB -Storage "MyStorage" -Cf "AVERAGE" -Node "MyNode" -Timeframe "hour" # GETNodesStorageRrddataRB | Read storage RRD statistics. (optional)
 
 # Read storage RRD statistics.
 try {
-    $Result = Get-PVENodesStorageRrddataByNodeAndStorage -GETNodesStorageRrddataRB $GETNodesStorageRrddataRB
+    $Result = Get-PVENodesStorageRrddataByNodeAndStorage -Node $Node -Storage $Storage -GETNodesStorageRrddataRB $GETNodesStorageRrddataRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesStorageRrddataByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6829,6 +7857,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
  **GETNodesStorageRrddataRB** | [**GETNodesStorageRrddataRB**](GETNodesStorageRrddataRB.md)| Read storage RRD statistics. | [optional] 
 
 ### Return type
@@ -6849,6 +7879,8 @@ No authorization required
 <a name="Get-PVENodesStorageStatusByNodeAndStorage"></a>
 # **Get-PVENodesStorageStatusByNodeAndStorage**
 > void Get-PVENodesStorageStatusByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 
 Read storage status.
 
@@ -6856,10 +7888,12 @@ Read storage status.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
 
 # Read storage status.
 try {
-    $Result = Get-PVENodesStorageStatusByNodeAndStorage
+    $Result = Get-PVENodesStorageStatusByNodeAndStorage -Node $Node -Storage $Storage
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesStorageStatusByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6867,7 +7901,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
 
 ### Return type
 
@@ -6887,6 +7925,7 @@ No authorization required
 <a name="Get-PVENodesSubscriptionByNode"></a>
 # **Get-PVENodesSubscriptionByNode**
 > NodesSubscription Get-PVENodesSubscriptionByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Read subscription info.
 
@@ -6894,10 +7933,11 @@ Read subscription info.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Read subscription info.
 try {
-    $Result = Get-PVENodesSubscriptionByNode
+    $Result = Get-PVENodesSubscriptionByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesSubscriptionByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6905,7 +7945,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -6924,7 +7967,8 @@ No authorization required
 
 <a name="Get-PVENodesSyslogByNode"></a>
 # **Get-PVENodesSyslogByNode**
-> NodesFirewallLogInner[] Get-PVENodesSyslogByNode<br>
+> NodesReplicationLogInner[] Get-PVENodesSyslogByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesSyslogRB] <PSCustomObject><br>
 
 Read system log
@@ -6933,11 +7977,12 @@ Read system log
 
 ### Example
 ```powershell
-$GETNodesSyslogRB = Initialize-GETNodesSyslogRB -Start 0 -Limit 0 -VarUntil "MyVarUntil" -Node "MyNode" -Service "MyService" -Since "MySince" # GETNodesSyslogRB | Read system log (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesSyslogRB = Initialize-GETNodesSyslogRB -Since "MySince" -Node "MyNode" -Limit 0 -VarUntil "MyVarUntil" -Start 0 -Service "MyService" # GETNodesSyslogRB | Read system log (optional)
 
 # Read system log
 try {
-    $Result = Get-PVENodesSyslogByNode -GETNodesSyslogRB $GETNodesSyslogRB
+    $Result = Get-PVENodesSyslogByNode -Node $Node -GETNodesSyslogRB $GETNodesSyslogRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesSyslogByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6948,11 +7993,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesSyslogRB** | [**GETNodesSyslogRB**](GETNodesSyslogRB.md)| Read system log | [optional] 
 
 ### Return type
 
-[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
+[**NodesReplicationLogInner[]**](NodesReplicationLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -6968,6 +8014,7 @@ No authorization required
 <a name="Get-PVENodesTasksByNode"></a>
 # **Get-PVENodesTasksByNode**
 > NodesTasksInner[] Get-PVENodesTasksByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesTasksRB] <PSCustomObject><br>
 
 Read task list for one node (finished tasks).
@@ -6976,11 +8023,12 @@ Read task list for one node (finished tasks).
 
 ### Example
 ```powershell
-$GETNodesTasksRB = Initialize-GETNodesTasksRB -Source "archive" -Vmid 0 -Typefilter "MyTypefilter" -Userfilter "MyUserfilter" -VarUntil 0 -Start 0 -Node "MyNode" -Limit 0 -Errors 0 -Statusfilter "MyStatusfilter" -Since 0 # GETNodesTasksRB | Read task list for one node (finished tasks). (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesTasksRB = Initialize-GETNodesTasksRB -Userfilter "MyUserfilter" -VarUntil 0 -Since 0 -Node "MyNode" -Limit 0 -Vmid 0 -Statusfilter "MyStatusfilter" -Source "archive" -Errors 0 -Start 0 -Typefilter "MyTypefilter" # GETNodesTasksRB | Read task list for one node (finished tasks). (optional)
 
 # Read task list for one node (finished tasks).
 try {
-    $Result = Get-PVENodesTasksByNode -GETNodesTasksRB $GETNodesTasksRB
+    $Result = Get-PVENodesTasksByNode -Node $Node -GETNodesTasksRB $GETNodesTasksRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesTasksByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -6991,6 +8039,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesTasksRB** | [**GETNodesTasksRB**](GETNodesTasksRB.md)| Read task list for one node (finished tasks). | [optional] 
 
 ### Return type
@@ -7011,6 +8060,8 @@ No authorization required
 <a name="Get-PVENodesTasksByNodeAndUpid"></a>
 # **Get-PVENodesTasksByNodeAndUpid**
 > SystemCollectionsHashtable[] Get-PVENodesTasksByNodeAndUpid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Upid] <String><br>
 
 
 
@@ -7018,10 +8069,12 @@ No authorization required
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Upid = "MyUpid" # String | 
 
 # 
 try {
-    $Result = Get-PVENodesTasksByNodeAndUpid
+    $Result = Get-PVENodesTasksByNodeAndUpid -Node $Node -Upid $Upid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesTasksByNodeAndUpid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7029,7 +8082,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Upid** | **String**|  | 
 
 ### Return type
 
@@ -7048,7 +8105,9 @@ No authorization required
 
 <a name="Get-PVENodesTasksLogByNodeAndUpid"></a>
 # **Get-PVENodesTasksLogByNodeAndUpid**
-> NodesFirewallLogInner[] Get-PVENodesTasksLogByNodeAndUpid<br>
+> NodesReplicationLogInner[] Get-PVENodesTasksLogByNodeAndUpid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Upid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesTasksLogRB] <PSCustomObject><br>
 
 Read task log.
@@ -7057,11 +8116,13 @@ Read task log.
 
 ### Example
 ```powershell
-$GETNodesTasksLogRB = Initialize-GETNodesTasksLogRB -Limit 0 -Node "MyNode" -Download 0 -Upid "MyUpid" -Start 0 # GETNodesTasksLogRB | Read task log. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Upid = "MyUpid" # String | The task's unique ID.
+$GETNodesTasksLogRB = Initialize-GETNodesTasksLogRB -Download 0 -Limit 0 -Node "MyNode" -Upid "MyUpid" -Start 0 # GETNodesTasksLogRB | Read task log. (optional)
 
 # Read task log.
 try {
-    $Result = Get-PVENodesTasksLogByNodeAndUpid -GETNodesTasksLogRB $GETNodesTasksLogRB
+    $Result = Get-PVENodesTasksLogByNodeAndUpid -Node $Node -Upid $Upid -GETNodesTasksLogRB $GETNodesTasksLogRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesTasksLogByNodeAndUpid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7072,11 +8133,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Upid** | **String**| The task&#39;s unique ID. | 
  **GETNodesTasksLogRB** | [**GETNodesTasksLogRB**](GETNodesTasksLogRB.md)| Read task log. | [optional] 
 
 ### Return type
 
-[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
+[**NodesReplicationLogInner[]**](NodesReplicationLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -7092,6 +8155,8 @@ No authorization required
 <a name="Get-PVENodesTasksStatusByNodeAndUpid"></a>
 # **Get-PVENodesTasksStatusByNodeAndUpid**
 > NodesTasksStatus Get-PVENodesTasksStatusByNodeAndUpid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Upid] <String><br>
 
 Read task status.
 
@@ -7099,10 +8164,12 @@ Read task status.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Upid = "MyUpid" # String | The task's unique ID.
 
 # Read task status.
 try {
-    $Result = Get-PVENodesTasksStatusByNodeAndUpid
+    $Result = Get-PVENodesTasksStatusByNodeAndUpid -Node $Node -Upid $Upid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesTasksStatusByNodeAndUpid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7110,7 +8177,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Upid** | **String**| The task&#39;s unique ID. | 
 
 ### Return type
 
@@ -7130,6 +8201,7 @@ No authorization required
 <a name="Get-PVENodesTimeByNode"></a>
 # **Get-PVENodesTimeByNode**
 > NodesTime Get-PVENodesTimeByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Read server time and time zone settings.
 
@@ -7137,10 +8209,11 @@ Read server time and time zone settings.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Read server time and time zone settings.
 try {
-    $Result = Get-PVENodesTimeByNode
+    $Result = Get-PVENodesTimeByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesTimeByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7148,7 +8221,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -7168,6 +8244,7 @@ No authorization required
 <a name="Get-PVENodesVersionByNode"></a>
 # **Get-PVENodesVersionByNode**
 > NodesVersion Get-PVENodesVersionByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 API version details
 
@@ -7175,10 +8252,11 @@ API version details
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # API version details
 try {
-    $Result = Get-PVENodesVersionByNode
+    $Result = Get-PVENodesVersionByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesVersionByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7186,7 +8264,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -7206,6 +8287,7 @@ No authorization required
 <a name="Get-PVENodesVncwebsocketByNode"></a>
 # **Get-PVENodesVncwebsocketByNode**
 > NodesVncwebsocket Get-PVENodesVncwebsocketByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesVncwebsocketRB] <PSCustomObject><br>
 
 Opens a websocket for VNC traffic.
@@ -7214,11 +8296,12 @@ Opens a websocket for VNC traffic.
 
 ### Example
 ```powershell
-$GETNodesVncwebsocketRB = Initialize-GETNodesVncwebsocketRB -Node "MyNode" -Port 0 -Vncticket "MyVncticket" # GETNodesVncwebsocketRB | Opens a websocket for VNC traffic. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$GETNodesVncwebsocketRB = Initialize-GETNodesVncwebsocketRB -Vncticket "MyVncticket" -Node "MyNode" -Port 0 # GETNodesVncwebsocketRB | Opens a websocket for VNC traffic. (optional)
 
 # Opens a websocket for VNC traffic.
 try {
-    $Result = Get-PVENodesVncwebsocketByNode -GETNodesVncwebsocketRB $GETNodesVncwebsocketRB
+    $Result = Get-PVENodesVncwebsocketByNode -Node $Node -GETNodesVncwebsocketRB $GETNodesVncwebsocketRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesVncwebsocketByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7229,6 +8312,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesVncwebsocketRB** | [**GETNodesVncwebsocketRB**](GETNodesVncwebsocketRB.md)| Opens a websocket for VNC traffic. | [optional] 
 
 ### Return type
@@ -7249,6 +8333,7 @@ No authorization required
 <a name="Get-PVENodesVzdumpDefaultsByNode"></a>
 # **Get-PVENodesVzdumpDefaultsByNode**
 > NodesVzdumpDefaults Get-PVENodesVzdumpDefaultsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesVzdumpDefaultsRB] <PSCustomObject><br>
 
 Get the currently configured vzdump defaults.
@@ -7257,11 +8342,12 @@ Get the currently configured vzdump defaults.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $GETNodesVzdumpDefaultsRB = Initialize-GETNodesVzdumpDefaultsRB -Storage "MyStorage" -Node "MyNode" # GETNodesVzdumpDefaultsRB | Get the currently configured vzdump defaults. (optional)
 
 # Get the currently configured vzdump defaults.
 try {
-    $Result = Get-PVENodesVzdumpDefaultsByNode -GETNodesVzdumpDefaultsRB $GETNodesVzdumpDefaultsRB
+    $Result = Get-PVENodesVzdumpDefaultsByNode -Node $Node -GETNodesVzdumpDefaultsRB $GETNodesVzdumpDefaultsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesVzdumpDefaultsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7272,6 +8358,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesVzdumpDefaultsRB** | [**GETNodesVzdumpDefaultsRB**](GETNodesVzdumpDefaultsRB.md)| Get the currently configured vzdump defaults. | [optional] 
 
 ### Return type
@@ -7292,6 +8379,7 @@ No authorization required
 <a name="Get-PVENodesVzdumpExtractconfigByNode"></a>
 # **Get-PVENodesVzdumpExtractconfigByNode**
 > void Get-PVENodesVzdumpExtractconfigByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesVzdumpExtractconfigRB] <PSCustomObject><br>
 
 Extract configuration from vzdump backup archive.
@@ -7300,11 +8388,12 @@ Extract configuration from vzdump backup archive.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $GETNodesVzdumpExtractconfigRB = Initialize-GETNodesVzdumpExtractconfigRB -Volume "MyVolume" -Node "MyNode" # GETNodesVzdumpExtractconfigRB | Extract configuration from vzdump backup archive. (optional)
 
 # Extract configuration from vzdump backup archive.
 try {
-    $Result = Get-PVENodesVzdumpExtractconfigByNode -GETNodesVzdumpExtractconfigRB $GETNodesVzdumpExtractconfigRB
+    $Result = Get-PVENodesVzdumpExtractconfigByNode -Node $Node -GETNodesVzdumpExtractconfigRB $GETNodesVzdumpExtractconfigRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVENodesVzdumpExtractconfigByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7315,6 +8404,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **GETNodesVzdumpExtractconfigRB** | [**GETNodesVzdumpExtractconfigRB**](GETNodesVzdumpExtractconfigRB.md)| Extract configuration from vzdump backup archive. | [optional] 
 
 ### Return type
@@ -7335,6 +8425,7 @@ No authorization required
 <a name="New-PVENodesAplinfoByNode"></a>
 # **New-PVENodesAplinfoByNode**
 > void New-PVENodesAplinfoByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesAplinfoRB] <PSCustomObject><br>
 
 Download appliance templates.
@@ -7343,11 +8434,12 @@ Download appliance templates.
 
 ### Example
 ```powershell
-$POSTNodesAplinfoRB = Initialize-POSTNodesAplinfoRB -Node "MyNode" -Storage "MyStorage" -Template "MyTemplate" # POSTNodesAplinfoRB | Download appliance templates. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesAplinfoRB = Initialize-POSTNodesAplinfoRB -Storage "MyStorage" -Node "MyNode" -Template "MyTemplate" # POSTNodesAplinfoRB | Download appliance templates. (optional)
 
 # Download appliance templates.
 try {
-    $Result = New-PVENodesAplinfoByNode -POSTNodesAplinfoRB $POSTNodesAplinfoRB
+    $Result = New-PVENodesAplinfoByNode -Node $Node -POSTNodesAplinfoRB $POSTNodesAplinfoRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesAplinfoByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7358,6 +8450,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesAplinfoRB** | [**POSTNodesAplinfoRB**](POSTNodesAplinfoRB.md)| Download appliance templates. | [optional] 
 
 ### Return type
@@ -7378,6 +8471,7 @@ No authorization required
 <a name="New-PVENodesAptRepositoriesByNode"></a>
 # **New-PVENodesAptRepositoriesByNode**
 > void New-PVENodesAptRepositoriesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesAptRepositoriesRB] <PSCustomObject><br>
 
 Change the properties of a repository. Currently only allows enabling/disabling.
@@ -7386,11 +8480,12 @@ Change the properties of a repository. Currently only allows enabling/disabling.
 
 ### Example
 ```powershell
-$POSTNodesAptRepositoriesRB = Initialize-POSTNodesAptRepositoriesRB -Node "MyNode" -Index 0 -Digest "MyDigest" -Path "MyPath" -Enabled 0 # POSTNodesAptRepositoriesRB | Change the properties of a repository. Currently only allows enabling/disabling. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesAptRepositoriesRB = Initialize-POSTNodesAptRepositoriesRB -Digest "MyDigest" -Node "MyNode" -Enabled 0 -Path "MyPath" -Index 0 # POSTNodesAptRepositoriesRB | Change the properties of a repository. Currently only allows enabling/disabling. (optional)
 
 # Change the properties of a repository. Currently only allows enabling/disabling.
 try {
-    $Result = New-PVENodesAptRepositoriesByNode -POSTNodesAptRepositoriesRB $POSTNodesAptRepositoriesRB
+    $Result = New-PVENodesAptRepositoriesByNode -Node $Node -POSTNodesAptRepositoriesRB $POSTNodesAptRepositoriesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesAptRepositoriesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7401,6 +8496,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesAptRepositoriesRB** | [**POSTNodesAptRepositoriesRB**](POSTNodesAptRepositoriesRB.md)| Change the properties of a repository. Currently only allows enabling/disabling. | [optional] 
 
 ### Return type
@@ -7421,6 +8517,7 @@ No authorization required
 <a name="New-PVENodesAptUpdateByNode"></a>
 # **New-PVENodesAptUpdateByNode**
 > void New-PVENodesAptUpdateByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesAptUpdateRB] <PSCustomObject><br>
 
 This is used to resynchronize the package index files from their sources (apt-get update).
@@ -7429,11 +8526,12 @@ This is used to resynchronize the package index files from their sources (apt-ge
 
 ### Example
 ```powershell
-$POSTNodesAptUpdateRB = Initialize-POSTNodesAptUpdateRB -Node "MyNode" -Notify 0 -Quiet 0 # POSTNodesAptUpdateRB | This is used to resynchronize the package index files from their sources (apt-get update). (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesAptUpdateRB = Initialize-POSTNodesAptUpdateRB -Quiet 0 -Node "MyNode" -Notify 0 # POSTNodesAptUpdateRB | This is used to resynchronize the package index files from their sources (apt-get update). (optional)
 
 # This is used to resynchronize the package index files from their sources (apt-get update).
 try {
-    $Result = New-PVENodesAptUpdateByNode -POSTNodesAptUpdateRB $POSTNodesAptUpdateRB
+    $Result = New-PVENodesAptUpdateByNode -Node $Node -POSTNodesAptUpdateRB $POSTNodesAptUpdateRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesAptUpdateByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7444,6 +8542,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesAptUpdateRB** | [**POSTNodesAptUpdateRB**](POSTNodesAptUpdateRB.md)| This is used to resynchronize the package index files from their sources (apt-get update). | [optional] 
 
 ### Return type
@@ -7464,6 +8563,8 @@ No authorization required
 <a name="New-PVENodesCephFsByNodeAndName"></a>
 # **New-PVENodesCephFsByNodeAndName**
 > void New-PVENodesCephFsByNodeAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesCephFsRB] <PSCustomObject><br>
 
 Create a Ceph filesystem
@@ -7472,11 +8573,13 @@ Create a Ceph filesystem
 
 ### Example
 ```powershell
-$POSTNodesCephFsRB = Initialize-POSTNodesCephFsRB -AddStorage 0 -Node "MyNode" -Name "MyName" -PgNum 0 # POSTNodesCephFsRB | Create a Ceph filesystem (optional)
+$Name = "MyName" # String | The ceph filesystem name.
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesCephFsRB = Initialize-POSTNodesCephFsRB -AddStorage 0 -Name "MyName" -Node "MyNode" -PgNum 0 # POSTNodesCephFsRB | Create a Ceph filesystem (optional)
 
 # Create a Ceph filesystem
 try {
-    $Result = New-PVENodesCephFsByNodeAndName -POSTNodesCephFsRB $POSTNodesCephFsRB
+    $Result = New-PVENodesCephFsByNodeAndName -Name $Name -Node $Node -POSTNodesCephFsRB $POSTNodesCephFsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephFsByNodeAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7487,6 +8590,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| The ceph filesystem name. | 
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesCephFsRB** | [**POSTNodesCephFsRB**](POSTNodesCephFsRB.md)| Create a Ceph filesystem | [optional] 
 
 ### Return type
@@ -7507,6 +8612,7 @@ No authorization required
 <a name="New-PVENodesCephInitByNode"></a>
 # **New-PVENodesCephInitByNode**
 > void New-PVENodesCephInitByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesCephInitRB] <PSCustomObject><br>
 
 Create initial ceph default configuration and setup symlinks.
@@ -7515,11 +8621,12 @@ Create initial ceph default configuration and setup symlinks.
 
 ### Example
 ```powershell
-$POSTNodesCephInitRB = Initialize-POSTNodesCephInitRB -MinSize 0 -Network "MyNetwork" -DisableCephx 0 -ClusterNetwork "MyClusterNetwork" -Node "MyNode" -PgBits 0 -Size 0 # POSTNodesCephInitRB | Create initial ceph default configuration and setup symlinks. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesCephInitRB = Initialize-POSTNodesCephInitRB -Network "MyNetwork" -DisableCephx 0 -ClusterNetwork "MyClusterNetwork" -Size 0 -Node "MyNode" -MinSize 0 -PgBits 0 # POSTNodesCephInitRB | Create initial ceph default configuration and setup symlinks. (optional)
 
 # Create initial ceph default configuration and setup symlinks.
 try {
-    $Result = New-PVENodesCephInitByNode -POSTNodesCephInitRB $POSTNodesCephInitRB
+    $Result = New-PVENodesCephInitByNode -Node $Node -POSTNodesCephInitRB $POSTNodesCephInitRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephInitByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7530,6 +8637,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesCephInitRB** | [**POSTNodesCephInitRB**](POSTNodesCephInitRB.md)| Create initial ceph default configuration and setup symlinks. | [optional] 
 
 ### Return type
@@ -7550,6 +8658,8 @@ No authorization required
 <a name="New-PVENodesCephMdsByNodeAndName"></a>
 # **New-PVENodesCephMdsByNodeAndName**
 > void New-PVENodesCephMdsByNodeAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesCephMdsRB] <PSCustomObject><br>
 
 Create Ceph Metadata Server (MDS)
@@ -7558,11 +8668,13 @@ Create Ceph Metadata Server (MDS)
 
 ### Example
 ```powershell
-$POSTNodesCephMdsRB = Initialize-POSTNodesCephMdsRB -Name "MyName" -Node "MyNode" -Hotstandby 0 # POSTNodesCephMdsRB | Create Ceph Metadata Server (MDS) (optional)
+$Name = "MyName" # String | The ID for the mds, when omitted the same as the nodename
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesCephMdsRB = Initialize-POSTNodesCephMdsRB -Name "MyName" -Hotstandby 0 -Node "MyNode" # POSTNodesCephMdsRB | Create Ceph Metadata Server (MDS) (optional)
 
 # Create Ceph Metadata Server (MDS)
 try {
-    $Result = New-PVENodesCephMdsByNodeAndName -POSTNodesCephMdsRB $POSTNodesCephMdsRB
+    $Result = New-PVENodesCephMdsByNodeAndName -Name $Name -Node $Node -POSTNodesCephMdsRB $POSTNodesCephMdsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephMdsByNodeAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7573,6 +8685,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| The ID for the mds, when omitted the same as the nodename | 
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesCephMdsRB** | [**POSTNodesCephMdsRB**](POSTNodesCephMdsRB.md)| Create Ceph Metadata Server (MDS) | [optional] 
 
 ### Return type
@@ -7593,6 +8707,8 @@ No authorization required
 <a name="New-PVENodesCephMgrByNodeAndId"></a>
 # **New-PVENodesCephMgrByNodeAndId**
 > void New-PVENodesCephMgrByNodeAndId<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Create Ceph Manager
 
@@ -7600,10 +8716,12 @@ Create Ceph Manager
 
 ### Example
 ```powershell
+$Id = "MyId" # String | The ID for the manager, when omitted the same as the nodename
+$Node = "MyNode" # String | The cluster node name.
 
 # Create Ceph Manager
 try {
-    $Result = New-PVENodesCephMgrByNodeAndId
+    $Result = New-PVENodesCephMgrByNodeAndId -Id $Id -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephMgrByNodeAndId: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7611,7 +8729,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Id** | **String**| The ID for the manager, when omitted the same as the nodename | 
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -7631,6 +8753,8 @@ No authorization required
 <a name="New-PVENodesCephMonByNodeAndMonid"></a>
 # **New-PVENodesCephMonByNodeAndMonid**
 > void New-PVENodesCephMonByNodeAndMonid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Monid] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesCephMonRB] <PSCustomObject><br>
 
 Create Ceph Monitor and Manager
@@ -7639,11 +8763,13 @@ Create Ceph Monitor and Manager
 
 ### Example
 ```powershell
-$POSTNodesCephMonRB = Initialize-POSTNodesCephMonRB -Node "MyNode" -Monid "MyMonid" -MonAddress "MyMonAddress" # POSTNodesCephMonRB | Create Ceph Monitor and Manager (optional)
+$Monid = "MyMonid" # String | The ID for the monitor, when omitted the same as the nodename
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesCephMonRB = Initialize-POSTNodesCephMonRB -Node "MyNode" -MonAddress "MyMonAddress" -Monid "MyMonid" # POSTNodesCephMonRB | Create Ceph Monitor and Manager (optional)
 
 # Create Ceph Monitor and Manager
 try {
-    $Result = New-PVENodesCephMonByNodeAndMonid -POSTNodesCephMonRB $POSTNodesCephMonRB
+    $Result = New-PVENodesCephMonByNodeAndMonid -Monid $Monid -Node $Node -POSTNodesCephMonRB $POSTNodesCephMonRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephMonByNodeAndMonid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7654,6 +8780,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Monid** | **String**| The ID for the monitor, when omitted the same as the nodename | 
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesCephMonRB** | [**POSTNodesCephMonRB**](POSTNodesCephMonRB.md)| Create Ceph Monitor and Manager | [optional] 
 
 ### Return type
@@ -7674,6 +8802,7 @@ No authorization required
 <a name="New-PVENodesCephOsdByNode"></a>
 # **New-PVENodesCephOsdByNode**
 > void New-PVENodesCephOsdByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesCephOsdRB] <PSCustomObject><br>
 
 Create OSD
@@ -7682,11 +8811,12 @@ Create OSD
 
 ### Example
 ```powershell
-$POSTNodesCephOsdRB = Initialize-POSTNodesCephOsdRB -DbDevSize 0 -Encrypted 0 -WalDevSize 0 -WalDev "MyWalDev" -OsdsPerDevice 0 -Node "MyNode" -DbDev "MyDbDev" -CrushDeviceClass "MyCrushDeviceClass" -Dev "MyDev" # POSTNodesCephOsdRB | Create OSD (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesCephOsdRB = Initialize-POSTNodesCephOsdRB -DbDev "MyDbDev" -CrushDeviceClass "MyCrushDeviceClass" -WalDev "MyWalDev" -Encrypted 0 -Node "MyNode" -Dev "MyDev" -OsdsPerDevice 0 -WalDevSize 0 -DbDevSize 0 # POSTNodesCephOsdRB | Create OSD (optional)
 
 # Create OSD
 try {
-    $Result = New-PVENodesCephOsdByNode -POSTNodesCephOsdRB $POSTNodesCephOsdRB
+    $Result = New-PVENodesCephOsdByNode -Node $Node -POSTNodesCephOsdRB $POSTNodesCephOsdRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephOsdByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7697,6 +8827,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesCephOsdRB** | [**POSTNodesCephOsdRB**](POSTNodesCephOsdRB.md)| Create OSD | [optional] 
 
 ### Return type
@@ -7717,6 +8848,8 @@ No authorization required
 <a name="New-PVENodesCephOsdInByNodeAndOsdid"></a>
 # **New-PVENodesCephOsdInByNodeAndOsdid**
 > void New-PVENodesCephOsdInByNodeAndOsdid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Osdid] <Int32><br>
 
 ceph osd in
 
@@ -7724,10 +8857,12 @@ ceph osd in
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Osdid = 56 # Int32 | OSD ID
 
 # ceph osd in
 try {
-    $Result = New-PVENodesCephOsdInByNodeAndOsdid
+    $Result = New-PVENodesCephOsdInByNodeAndOsdid -Node $Node -Osdid $Osdid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephOsdInByNodeAndOsdid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7735,7 +8870,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Osdid** | **Int32**| OSD ID | 
 
 ### Return type
 
@@ -7755,6 +8894,8 @@ No authorization required
 <a name="New-PVENodesCephOsdOutByNodeAndOsdid"></a>
 # **New-PVENodesCephOsdOutByNodeAndOsdid**
 > void New-PVENodesCephOsdOutByNodeAndOsdid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Osdid] <Int32><br>
 
 ceph osd out
 
@@ -7762,10 +8903,12 @@ ceph osd out
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Osdid = 56 # Int32 | OSD ID
 
 # ceph osd out
 try {
-    $Result = New-PVENodesCephOsdOutByNodeAndOsdid
+    $Result = New-PVENodesCephOsdOutByNodeAndOsdid -Node $Node -Osdid $Osdid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephOsdOutByNodeAndOsdid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7773,7 +8916,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Osdid** | **Int32**| OSD ID | 
 
 ### Return type
 
@@ -7793,6 +8940,8 @@ No authorization required
 <a name="New-PVENodesCephOsdScrubByNodeAndOsdid"></a>
 # **New-PVENodesCephOsdScrubByNodeAndOsdid**
 > void New-PVENodesCephOsdScrubByNodeAndOsdid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Osdid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesCephOsdScrubRB] <PSCustomObject><br>
 
 Instruct the OSD to scrub.
@@ -7801,11 +8950,13 @@ Instruct the OSD to scrub.
 
 ### Example
 ```powershell
-$POSTNodesCephOsdScrubRB = Initialize-POSTNodesCephOsdScrubRB -Node "MyNode" -Deep 0 -Osdid 0 # POSTNodesCephOsdScrubRB | Instruct the OSD to scrub. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Osdid = 56 # Int32 | OSD ID
+$POSTNodesCephOsdScrubRB = Initialize-POSTNodesCephOsdScrubRB -Osdid 0 -Node "MyNode" -Deep 0 # POSTNodesCephOsdScrubRB | Instruct the OSD to scrub. (optional)
 
 # Instruct the OSD to scrub.
 try {
-    $Result = New-PVENodesCephOsdScrubByNodeAndOsdid -POSTNodesCephOsdScrubRB $POSTNodesCephOsdScrubRB
+    $Result = New-PVENodesCephOsdScrubByNodeAndOsdid -Node $Node -Osdid $Osdid -POSTNodesCephOsdScrubRB $POSTNodesCephOsdScrubRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephOsdScrubByNodeAndOsdid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7816,6 +8967,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Osdid** | **Int32**| OSD ID | 
  **POSTNodesCephOsdScrubRB** | [**POSTNodesCephOsdScrubRB**](POSTNodesCephOsdScrubRB.md)| Instruct the OSD to scrub. | [optional] 
 
 ### Return type
@@ -7836,6 +8989,7 @@ No authorization required
 <a name="New-PVENodesCephPoolByNode"></a>
 # **New-PVENodesCephPoolByNode**
 > void New-PVENodesCephPoolByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesCephPoolRB] <PSCustomObject><br>
 
 Create Ceph pool
@@ -7844,11 +8998,12 @@ Create Ceph pool
 
 ### Example
 ```powershell
-$POSTNodesCephPoolRB = Initialize-POSTNodesCephPoolRB -PgAutoscaleMode "on" -Application "rbd" -TargetSizeRatio 0 -MinSize 0 -PgNum 0 -CrushRule "MyCrushRule" -AddStorages 0 -PgNumMin 0 -TargetSize "MyTargetSize" -Node "MyNode" -Size 0 -ErasureCoding "MyErasureCoding" -Name "MyName" # POSTNodesCephPoolRB | Create Ceph pool (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesCephPoolRB = Initialize-POSTNodesCephPoolRB -AddStorages 0 -PgNumMin 0 -PgNum 0 -TargetSize "MyTargetSize" -MinSize 0 -Node "MyNode" -CrushRule "MyCrushRule" -Size 0 -TargetSizeRatio 0 -Name "MyName" -Application "rbd" -ErasureCoding "MyErasureCoding" -PgAutoscaleMode "on" # POSTNodesCephPoolRB | Create Ceph pool (optional)
 
 # Create Ceph pool
 try {
-    $Result = New-PVENodesCephPoolByNode -POSTNodesCephPoolRB $POSTNodesCephPoolRB
+    $Result = New-PVENodesCephPoolByNode -Node $Node -POSTNodesCephPoolRB $POSTNodesCephPoolRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephPoolByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7859,6 +9014,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesCephPoolRB** | [**POSTNodesCephPoolRB**](POSTNodesCephPoolRB.md)| Create Ceph pool | [optional] 
 
 ### Return type
@@ -7879,6 +9035,7 @@ No authorization required
 <a name="New-PVENodesCephRestartByNode"></a>
 # **New-PVENodesCephRestartByNode**
 > void New-PVENodesCephRestartByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesCephRestartRB] <PSCustomObject><br>
 
 Restart ceph services.
@@ -7887,11 +9044,12 @@ Restart ceph services.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $POSTNodesCephRestartRB = Initialize-POSTNodesCephRestartRB -Service "MyService" -Node "MyNode" # POSTNodesCephRestartRB | Restart ceph services. (optional)
 
 # Restart ceph services.
 try {
-    $Result = New-PVENodesCephRestartByNode -POSTNodesCephRestartRB $POSTNodesCephRestartRB
+    $Result = New-PVENodesCephRestartByNode -Node $Node -POSTNodesCephRestartRB $POSTNodesCephRestartRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephRestartByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7902,6 +9060,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesCephRestartRB** | [**POSTNodesCephRestartRB**](POSTNodesCephRestartRB.md)| Restart ceph services. | [optional] 
 
 ### Return type
@@ -7922,6 +9081,7 @@ No authorization required
 <a name="New-PVENodesCephStartByNode"></a>
 # **New-PVENodesCephStartByNode**
 > void New-PVENodesCephStartByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesCephStartRB] <PSCustomObject><br>
 
 Start ceph services.
@@ -7930,11 +9090,12 @@ Start ceph services.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $POSTNodesCephStartRB = Initialize-POSTNodesCephStartRB -Service "MyService" -Node "MyNode" # POSTNodesCephStartRB | Start ceph services. (optional)
 
 # Start ceph services.
 try {
-    $Result = New-PVENodesCephStartByNode -POSTNodesCephStartRB $POSTNodesCephStartRB
+    $Result = New-PVENodesCephStartByNode -Node $Node -POSTNodesCephStartRB $POSTNodesCephStartRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephStartByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7945,6 +9106,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesCephStartRB** | [**POSTNodesCephStartRB**](POSTNodesCephStartRB.md)| Start ceph services. | [optional] 
 
 ### Return type
@@ -7965,6 +9127,7 @@ No authorization required
 <a name="New-PVENodesCephStopByNode"></a>
 # **New-PVENodesCephStopByNode**
 > void New-PVENodesCephStopByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesCephStopRB] <PSCustomObject><br>
 
 Stop ceph services.
@@ -7973,11 +9136,12 @@ Stop ceph services.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $POSTNodesCephStopRB = Initialize-POSTNodesCephStopRB -Service "MyService" -Node "MyNode" # POSTNodesCephStopRB | Stop ceph services. (optional)
 
 # Stop ceph services.
 try {
-    $Result = New-PVENodesCephStopByNode -POSTNodesCephStopRB $POSTNodesCephStopRB
+    $Result = New-PVENodesCephStopByNode -Node $Node -POSTNodesCephStopRB $POSTNodesCephStopRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCephStopByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7988,6 +9152,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesCephStopRB** | [**POSTNodesCephStopRB**](POSTNodesCephStopRB.md)| Stop ceph services. | [optional] 
 
 ### Return type
@@ -8008,6 +9173,7 @@ No authorization required
 <a name="New-PVENodesCertificatesAcmeCertificateByNode"></a>
 # **New-PVENodesCertificatesAcmeCertificateByNode**
 > void New-PVENodesCertificatesAcmeCertificateByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesCertificatesAcmeCertificateRB] <PSCustomObject><br>
 
 Order a new certificate from ACME-compatible CA.
@@ -8016,11 +9182,12 @@ Order a new certificate from ACME-compatible CA.
 
 ### Example
 ```powershell
-$POSTNodesCertificatesAcmeCertificateRB = Initialize-POSTNodesCertificatesAcmeCertificateRB -Force 0 -Node "MyNode" # POSTNodesCertificatesAcmeCertificateRB | Order a new certificate from ACME-compatible CA. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesCertificatesAcmeCertificateRB = Initialize-POSTNodesCertificatesAcmeCertificateRB -Node "MyNode" -Force 0 # POSTNodesCertificatesAcmeCertificateRB | Order a new certificate from ACME-compatible CA. (optional)
 
 # Order a new certificate from ACME-compatible CA.
 try {
-    $Result = New-PVENodesCertificatesAcmeCertificateByNode -POSTNodesCertificatesAcmeCertificateRB $POSTNodesCertificatesAcmeCertificateRB
+    $Result = New-PVENodesCertificatesAcmeCertificateByNode -Node $Node -POSTNodesCertificatesAcmeCertificateRB $POSTNodesCertificatesAcmeCertificateRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCertificatesAcmeCertificateByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8031,6 +9198,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesCertificatesAcmeCertificateRB** | [**POSTNodesCertificatesAcmeCertificateRB**](POSTNodesCertificatesAcmeCertificateRB.md)| Order a new certificate from ACME-compatible CA. | [optional] 
 
 ### Return type
@@ -8051,6 +9219,7 @@ No authorization required
 <a name="New-PVENodesCertificatesCustomByNode"></a>
 # **New-PVENodesCertificatesCustomByNode**
 > NodesCertificatesCustom New-PVENodesCertificatesCustomByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesCertificatesCustomRB] <PSCustomObject><br>
 
 Upload or update custom certificate chain and key.
@@ -8059,11 +9228,12 @@ Upload or update custom certificate chain and key.
 
 ### Example
 ```powershell
-$POSTNodesCertificatesCustomRB = Initialize-POSTNodesCertificatesCustomRB -Key "MyKey" -Certificates "MyCertificates" -Node "MyNode" -Force 0 -Restart 0 # POSTNodesCertificatesCustomRB | Upload or update custom certificate chain and key. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesCertificatesCustomRB = Initialize-POSTNodesCertificatesCustomRB -Force 0 -Key "MyKey" -Node "MyNode" -Restart 0 -Certificates "MyCertificates" # POSTNodesCertificatesCustomRB | Upload or update custom certificate chain and key. (optional)
 
 # Upload or update custom certificate chain and key.
 try {
-    $Result = New-PVENodesCertificatesCustomByNode -POSTNodesCertificatesCustomRB $POSTNodesCertificatesCustomRB
+    $Result = New-PVENodesCertificatesCustomByNode -Node $Node -POSTNodesCertificatesCustomRB $POSTNodesCertificatesCustomRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesCertificatesCustomByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8074,6 +9244,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesCertificatesCustomRB** | [**POSTNodesCertificatesCustomRB**](POSTNodesCertificatesCustomRB.md)| Upload or update custom certificate chain and key. | [optional] 
 
 ### Return type
@@ -8094,6 +9265,7 @@ No authorization required
 <a name="New-PVENodesDisksDirectoryByNode"></a>
 # **New-PVENodesDisksDirectoryByNode**
 > void New-PVENodesDisksDirectoryByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesDisksDirectoryRB] <PSCustomObject><br>
 
 Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'.
@@ -8102,11 +9274,12 @@ Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'.
 
 ### Example
 ```powershell
-$POSTNodesDisksDirectoryRB = Initialize-POSTNodesDisksDirectoryRB -Name "MyName" -AddStorage 0 -Node "MyNode" -Filesystem "ext4" -Device "MyDevice" # POSTNodesDisksDirectoryRB | Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesDisksDirectoryRB = Initialize-POSTNodesDisksDirectoryRB -Name "MyName" -Device "MyDevice" -Filesystem "ext4" -Node "MyNode" -AddStorage 0 # POSTNodesDisksDirectoryRB | Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'. (optional)
 
 # Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'.
 try {
-    $Result = New-PVENodesDisksDirectoryByNode -POSTNodesDisksDirectoryRB $POSTNodesDisksDirectoryRB
+    $Result = New-PVENodesDisksDirectoryByNode -Node $Node -POSTNodesDisksDirectoryRB $POSTNodesDisksDirectoryRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesDisksDirectoryByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8117,6 +9290,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesDisksDirectoryRB** | [**POSTNodesDisksDirectoryRB**](POSTNodesDisksDirectoryRB.md)| Create a Filesystem on an unused disk. Will be mounted under &#39;/mnt/pve/NAME&#39;. | [optional] 
 
 ### Return type
@@ -8137,6 +9311,7 @@ No authorization required
 <a name="New-PVENodesDisksInitgptByNode"></a>
 # **New-PVENodesDisksInitgptByNode**
 > void New-PVENodesDisksInitgptByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesDisksInitgptRB] <PSCustomObject><br>
 
 Initialize Disk with GPT
@@ -8145,11 +9320,12 @@ Initialize Disk with GPT
 
 ### Example
 ```powershell
-$POSTNodesDisksInitgptRB = Initialize-POSTNodesDisksInitgptRB -Node "MyNode" -Disk "MyDisk" -Uuid "MyUuid" # POSTNodesDisksInitgptRB | Initialize Disk with GPT (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesDisksInitgptRB = Initialize-POSTNodesDisksInitgptRB -Disk "MyDisk" -Node "MyNode" -Uuid "MyUuid" # POSTNodesDisksInitgptRB | Initialize Disk with GPT (optional)
 
 # Initialize Disk with GPT
 try {
-    $Result = New-PVENodesDisksInitgptByNode -POSTNodesDisksInitgptRB $POSTNodesDisksInitgptRB
+    $Result = New-PVENodesDisksInitgptByNode -Node $Node -POSTNodesDisksInitgptRB $POSTNodesDisksInitgptRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesDisksInitgptByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8160,6 +9336,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesDisksInitgptRB** | [**POSTNodesDisksInitgptRB**](POSTNodesDisksInitgptRB.md)| Initialize Disk with GPT | [optional] 
 
 ### Return type
@@ -8180,6 +9357,7 @@ No authorization required
 <a name="New-PVENodesDisksLvmByNode"></a>
 # **New-PVENodesDisksLvmByNode**
 > void New-PVENodesDisksLvmByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesDisksLvmRB] <PSCustomObject><br>
 
 Create an LVM Volume Group
@@ -8188,11 +9366,12 @@ Create an LVM Volume Group
 
 ### Example
 ```powershell
-$POSTNodesDisksLvmRB = Initialize-POSTNodesDisksLvmRB -Name "MyName" -AddStorage 0 -Node "MyNode" -Device "MyDevice" # POSTNodesDisksLvmRB | Create an LVM Volume Group (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesDisksLvmRB = Initialize-POSTNodesDisksLvmRB -Device "MyDevice" -Name "MyName" -Node "MyNode" -AddStorage 0 # POSTNodesDisksLvmRB | Create an LVM Volume Group (optional)
 
 # Create an LVM Volume Group
 try {
-    $Result = New-PVENodesDisksLvmByNode -POSTNodesDisksLvmRB $POSTNodesDisksLvmRB
+    $Result = New-PVENodesDisksLvmByNode -Node $Node -POSTNodesDisksLvmRB $POSTNodesDisksLvmRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesDisksLvmByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8203,6 +9382,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesDisksLvmRB** | [**POSTNodesDisksLvmRB**](POSTNodesDisksLvmRB.md)| Create an LVM Volume Group | [optional] 
 
 ### Return type
@@ -8223,6 +9403,7 @@ No authorization required
 <a name="New-PVENodesDisksLvmthinByNode"></a>
 # **New-PVENodesDisksLvmthinByNode**
 > void New-PVENodesDisksLvmthinByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesDisksLvmthinRB] <PSCustomObject><br>
 
 Create an LVM thinpool
@@ -8231,11 +9412,12 @@ Create an LVM thinpool
 
 ### Example
 ```powershell
-$POSTNodesDisksLvmthinRB = Initialize-POSTNodesDisksLvmthinRB -Name "MyName" -AddStorage 0 -Node "MyNode" -Device "MyDevice" # POSTNodesDisksLvmthinRB | Create an LVM thinpool (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesDisksLvmthinRB = Initialize-POSTNodesDisksLvmthinRB -Device "MyDevice" -Name "MyName" -Node "MyNode" -AddStorage 0 # POSTNodesDisksLvmthinRB | Create an LVM thinpool (optional)
 
 # Create an LVM thinpool
 try {
-    $Result = New-PVENodesDisksLvmthinByNode -POSTNodesDisksLvmthinRB $POSTNodesDisksLvmthinRB
+    $Result = New-PVENodesDisksLvmthinByNode -Node $Node -POSTNodesDisksLvmthinRB $POSTNodesDisksLvmthinRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesDisksLvmthinByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8246,6 +9428,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesDisksLvmthinRB** | [**POSTNodesDisksLvmthinRB**](POSTNodesDisksLvmthinRB.md)| Create an LVM thinpool | [optional] 
 
 ### Return type
@@ -8266,6 +9449,7 @@ No authorization required
 <a name="New-PVENodesDisksZfsByNode"></a>
 # **New-PVENodesDisksZfsByNode**
 > void New-PVENodesDisksZfsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesDisksZfsRB] <PSCustomObject><br>
 
 Create a ZFS pool.
@@ -8274,11 +9458,12 @@ Create a ZFS pool.
 
 ### Example
 ```powershell
-$POSTNodesDisksZfsRB = Initialize-POSTNodesDisksZfsRB -Name "MyName" -Devices "MyDevices" -DraidConfig "MyDraidConfig" -Raidlevel "single" -Ashift 0 -Compression "on" -Node "MyNode" -AddStorage 0 # POSTNodesDisksZfsRB | Create a ZFS pool. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesDisksZfsRB = Initialize-POSTNodesDisksZfsRB -Devices "MyDevices" -Node "MyNode" -Name "MyName" -Raidlevel "single" -DraidConfig "MyDraidConfig" -Compression "on" -AddStorage 0 -Ashift 0 # POSTNodesDisksZfsRB | Create a ZFS pool. (optional)
 
 # Create a ZFS pool.
 try {
-    $Result = New-PVENodesDisksZfsByNode -POSTNodesDisksZfsRB $POSTNodesDisksZfsRB
+    $Result = New-PVENodesDisksZfsByNode -Node $Node -POSTNodesDisksZfsRB $POSTNodesDisksZfsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesDisksZfsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8289,6 +9474,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesDisksZfsRB** | [**POSTNodesDisksZfsRB**](POSTNodesDisksZfsRB.md)| Create a ZFS pool. | [optional] 
 
 ### Return type
@@ -8309,6 +9495,7 @@ No authorization required
 <a name="New-PVENodesExecuteByNode"></a>
 # **New-PVENodesExecuteByNode**
 > SystemCollectionsHashtable[] New-PVENodesExecuteByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesExecuteRB] <PSCustomObject><br>
 
 Execute multiple commands in order, root only.
@@ -8317,11 +9504,12 @@ Execute multiple commands in order, root only.
 
 ### Example
 ```powershell
-$POSTNodesExecuteRB = Initialize-POSTNodesExecuteRB -Commands "MyCommands" -Node "MyNode" # POSTNodesExecuteRB | Execute multiple commands in order, root only. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesExecuteRB = Initialize-POSTNodesExecuteRB -Node "MyNode" -Commands "MyCommands" # POSTNodesExecuteRB | Execute multiple commands in order, root only. (optional)
 
 # Execute multiple commands in order, root only.
 try {
-    $Result = New-PVENodesExecuteByNode -POSTNodesExecuteRB $POSTNodesExecuteRB
+    $Result = New-PVENodesExecuteByNode -Node $Node -POSTNodesExecuteRB $POSTNodesExecuteRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesExecuteByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8332,6 +9520,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesExecuteRB** | [**POSTNodesExecuteRB**](POSTNodesExecuteRB.md)| Execute multiple commands in order, root only. | [optional] 
 
 ### Return type
@@ -8352,6 +9541,7 @@ No authorization required
 <a name="New-PVENodesFirewallRulesByNode"></a>
 # **New-PVENodesFirewallRulesByNode**
 > void New-PVENodesFirewallRulesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesFirewallRulesRB] <PSCustomObject><br>
 
 Create new rule.
@@ -8360,11 +9550,12 @@ Create new rule.
 
 ### Example
 ```powershell
-$POSTNodesFirewallRulesRB = Initialize-POSTNodesFirewallRulesRB -Log "emerg" -Action "MyAction" -IcmpType "MyIcmpType" -Macro "MyMacro" -Comment "MyComment" -Source "MySource" -Dport "MyDport" -Proto "MyProto" -Dest "MyDest" -Node "MyNode" -Sport "MySport" -Type "in" -Enable 0 -Digest "MyDigest" -Pos 0 -Iface "MyIface" # POSTNodesFirewallRulesRB | Create new rule. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesFirewallRulesRB = Initialize-POSTNodesFirewallRulesRB -Digest "MyDigest" -Source "MySource" -Sport "MySport" -Action "MyAction" -Comment "MyComment" -Proto "MyProto" -Enable 0 -IcmpType "MyIcmpType" -Macro "MyMacro" -Pos 0 -Type "in" -Node "MyNode" -Iface "MyIface" -Log "emerg" -Dest "MyDest" -Dport "MyDport" # POSTNodesFirewallRulesRB | Create new rule. (optional)
 
 # Create new rule.
 try {
-    $Result = New-PVENodesFirewallRulesByNode -POSTNodesFirewallRulesRB $POSTNodesFirewallRulesRB
+    $Result = New-PVENodesFirewallRulesByNode -Node $Node -POSTNodesFirewallRulesRB $POSTNodesFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesFirewallRulesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8375,6 +9566,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesFirewallRulesRB** | [**POSTNodesFirewallRulesRB**](POSTNodesFirewallRulesRB.md)| Create new rule. | [optional] 
 
 ### Return type
@@ -8395,6 +9587,7 @@ No authorization required
 <a name="New-PVENodesHostsByNode"></a>
 # **New-PVENodesHostsByNode**
 > void New-PVENodesHostsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesHostsRB] <PSCustomObject><br>
 
 Write /etc/hosts.
@@ -8403,11 +9596,12 @@ Write /etc/hosts.
 
 ### Example
 ```powershell
-$POSTNodesHostsRB = Initialize-POSTNodesHostsRB -Node "MyNode" -Digest "MyDigest" -VarData "MyVarData" # POSTNodesHostsRB | Write /etc/hosts. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesHostsRB = Initialize-POSTNodesHostsRB -Digest "MyDigest" -Node "MyNode" -VarData "MyVarData" # POSTNodesHostsRB | Write /etc/hosts. (optional)
 
 # Write /etc/hosts.
 try {
-    $Result = New-PVENodesHostsByNode -POSTNodesHostsRB $POSTNodesHostsRB
+    $Result = New-PVENodesHostsByNode -Node $Node -POSTNodesHostsRB $POSTNodesHostsRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesHostsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8418,6 +9612,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesHostsRB** | [**POSTNodesHostsRB**](POSTNodesHostsRB.md)| Write /etc/hosts. | [optional] 
 
 ### Return type
@@ -8438,6 +9633,7 @@ No authorization required
 <a name="New-PVENodesLxcByNode"></a>
 # **New-PVENodesLxcByNode**
 > void New-PVENodesLxcByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcRB] <PSCustomObject><br>
 
 Create or restore a container.
@@ -8446,11 +9642,12 @@ Create or restore a container.
 
 ### Example
 ```powershell
-$POSTNodesLxcRB = Initialize-POSTNodesLxcRB -MpN "MyMpN" -Unique 0 -Nameserver "MyNameserver" -NetN "MyNetN" -Hookscript "MyHookscript" -Restore 0 -Ostype "debian" -Start 0 -Cpuunits 0 -Cpulimit 0 -Console 0 -SshPublicKeys "MySshPublicKeys" -Rootfs "MyRootfs" -Node "MyNode" -Protection 0 -Tty 0 -Pool "MyPool" -UnusedN "MyUnusedN" -Force 0 -Ostemplate "MyOstemplate" -Template 0 -Swap 0 -Features "MyFeatures" -Bwlimit 0 -Vmid 0 -Lock "backup" -Debug 0 -Unprivileged 0 -Searchdomain "MySearchdomain" -Hostname "MyHostname" -Startup "MyStartup" -Cores 0 -DevN "MyDevN" -Storage "MyStorage" -Memory 0 -Description "MyDescription" -Onboot 0 -Tags "MyTags" -Timezone "MyTimezone" -Arch "amd64" -Password "MyPassword" -Cmode "shell" -IgnoreUnpackErrors 0 # POSTNodesLxcRB | Create or restore a container. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesLxcRB = Initialize-POSTNodesLxcRB -Password "MyPassword" -Ostype "debian" -Cores 0 -Protection 0 -IgnoreUnpackErrors 0 -Onboot 0 -Memory 0 -Nameserver "MyNameserver" -Storage "MyStorage" -Node "MyNode" -Console 0 -Cpulimit 0 -DevN "MyDevN" -MpN "MyMpN" -Tty 0 -Rootfs "MyRootfs" -Cmode "shell" -Cpuunits 0 -Lock "backup" -Swap 0 -NetN "MyNetN" -Tags "MyTags" -Pool "MyPool" -Ostemplate "MyOstemplate" -Arch "amd64" -Unique 0 -Restore 0 -Bwlimit 0 -Startup "MyStartup" -Hostname "MyHostname" -Searchdomain "MySearchdomain" -Description "MyDescription" -Start 0 -Unprivileged 0 -SshPublicKeys "MySshPublicKeys" -UnusedN "MyUnusedN" -Timezone "MyTimezone" -Debug 0 -Features "MyFeatures" -Vmid 0 -Force 0 -Hookscript "MyHookscript" -Template 0 # POSTNodesLxcRB | Create or restore a container. (optional)
 
 # Create or restore a container.
 try {
-    $Result = New-PVENodesLxcByNode -POSTNodesLxcRB $POSTNodesLxcRB
+    $Result = New-PVENodesLxcByNode -Node $Node -POSTNodesLxcRB $POSTNodesLxcRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8461,6 +9658,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesLxcRB** | [**POSTNodesLxcRB**](POSTNodesLxcRB.md)| Create or restore a container. | [optional] 
 
 ### Return type
@@ -8481,6 +9679,8 @@ No authorization required
 <a name="New-PVENodesLxcCloneByNodeAndVmid"></a>
 # **New-PVENodesLxcCloneByNodeAndVmid**
 > void New-PVENodesLxcCloneByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcCloneRB] <PSCustomObject><br>
 
 Create a container clone/copy
@@ -8489,11 +9689,13 @@ Create a container clone/copy
 
 ### Example
 ```powershell
-$POSTNodesLxcCloneRB = Initialize-POSTNodesLxcCloneRB -Description "MyDescription" -Vmid 0 -Target "MyTarget" -Snapname "MySnapname" -Storage "MyStorage" -Node "MyNode" -Hostname "MyHostname" -Bwlimit 0 -Newid 0 -Full 0 -Pool "MyPool" # POSTNodesLxcCloneRB | Create a container clone/copy (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcCloneRB = Initialize-POSTNodesLxcCloneRB -Newid 0 -Node "MyNode" -Vmid 0 -Bwlimit 0 -Hostname "MyHostname" -Full 0 -Description "MyDescription" -Snapname "MySnapname" -Target "MyTarget" -Pool "MyPool" -Storage "MyStorage" # POSTNodesLxcCloneRB | Create a container clone/copy (optional)
 
 # Create a container clone/copy
 try {
-    $Result = New-PVENodesLxcCloneByNodeAndVmid -POSTNodesLxcCloneRB $POSTNodesLxcCloneRB
+    $Result = New-PVENodesLxcCloneByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcCloneRB $POSTNodesLxcCloneRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcCloneByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8504,6 +9706,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcCloneRB** | [**POSTNodesLxcCloneRB**](POSTNodesLxcCloneRB.md)| Create a container clone/copy | [optional] 
 
 ### Return type
@@ -8524,6 +9728,8 @@ No authorization required
 <a name="New-PVENodesLxcFirewallAliasesByNodeAndVmid"></a>
 # **New-PVENodesLxcFirewallAliasesByNodeAndVmid**
 > void New-PVENodesLxcFirewallAliasesByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcFirewallAliasesRB] <PSCustomObject><br>
 
 Create IP or Network Alias.
@@ -8532,11 +9738,13 @@ Create IP or Network Alias.
 
 ### Example
 ```powershell
-$POSTNodesLxcFirewallAliasesRB = Initialize-POSTNodesLxcFirewallAliasesRB -Name "MyName" -Node "MyNode" -Comment "MyComment" -Cidr "MyCidr" -Vmid 0 # POSTNodesLxcFirewallAliasesRB | Create IP or Network Alias. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcFirewallAliasesRB = Initialize-POSTNodesLxcFirewallAliasesRB -Name "MyName" -Node "MyNode" -Vmid 0 -Cidr "MyCidr" -Comment "MyComment" # POSTNodesLxcFirewallAliasesRB | Create IP or Network Alias. (optional)
 
 # Create IP or Network Alias.
 try {
-    $Result = New-PVENodesLxcFirewallAliasesByNodeAndVmid -POSTNodesLxcFirewallAliasesRB $POSTNodesLxcFirewallAliasesRB
+    $Result = New-PVENodesLxcFirewallAliasesByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcFirewallAliasesRB $POSTNodesLxcFirewallAliasesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcFirewallAliasesByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8547,6 +9755,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcFirewallAliasesRB** | [**POSTNodesLxcFirewallAliasesRB**](POSTNodesLxcFirewallAliasesRB.md)| Create IP or Network Alias. | [optional] 
 
 ### Return type
@@ -8567,6 +9777,8 @@ No authorization required
 <a name="New-PVENodesLxcFirewallIpsetByNodeAndVmid"></a>
 # **New-PVENodesLxcFirewallIpsetByNodeAndVmid**
 > void New-PVENodesLxcFirewallIpsetByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcFirewallIpsetRB] <PSCustomObject><br>
 
 Create new IPSet
@@ -8575,11 +9787,13 @@ Create new IPSet
 
 ### Example
 ```powershell
-$POSTNodesLxcFirewallIpsetRB = Initialize-POSTNodesLxcFirewallIpsetRB -Name "MyName" -Nomatch 0 -Comment "MyComment" -Vmid 0 -Node "MyNode" -Cidr "MyCidr" # POSTNodesLxcFirewallIpsetRB | Create new IPSet (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcFirewallIpsetRB = Initialize-POSTNodesLxcFirewallIpsetRB -Cidr "MyCidr" -Comment "MyComment" -Node "MyNode" -Name "MyName" -Vmid 0 -Nomatch 0 # POSTNodesLxcFirewallIpsetRB | Create new IPSet (optional)
 
 # Create new IPSet
 try {
-    $Result = New-PVENodesLxcFirewallIpsetByNodeAndVmid -POSTNodesLxcFirewallIpsetRB $POSTNodesLxcFirewallIpsetRB
+    $Result = New-PVENodesLxcFirewallIpsetByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcFirewallIpsetRB $POSTNodesLxcFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcFirewallIpsetByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8590,6 +9804,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcFirewallIpsetRB** | [**POSTNodesLxcFirewallIpsetRB**](POSTNodesLxcFirewallIpsetRB.md)| Create new IPSet | [optional] 
 
 ### Return type
@@ -8610,6 +9826,9 @@ No authorization required
 <a name="New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName"></a>
 # **New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName**
 > void New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcFirewallIpsetRB] <PSCustomObject><br>
 
 Add IP or Network to IPSet.
@@ -8618,11 +9837,14 @@ Add IP or Network to IPSet.
 
 ### Example
 ```powershell
-$POSTNodesLxcFirewallIpsetRB = Initialize-POSTNodesLxcFirewallIpsetRB -Name "MyName" -Nomatch 0 -Comment "MyComment" -Vmid 0 -Node "MyNode" -Cidr "MyCidr" # POSTNodesLxcFirewallIpsetRB | Add IP or Network to IPSet. (optional)
+$Name = "MyName" # String | IP set name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcFirewallIpsetRB = Initialize-POSTNodesLxcFirewallIpsetRB -Cidr "MyCidr" -Comment "MyComment" -Node "MyNode" -Name "MyName" -Vmid 0 -Nomatch 0 # POSTNodesLxcFirewallIpsetRB | Add IP or Network to IPSet. (optional)
 
 # Add IP or Network to IPSet.
 try {
-    $Result = New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName -POSTNodesLxcFirewallIpsetRB $POSTNodesLxcFirewallIpsetRB
+    $Result = New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName -Name $Name -Node $Node -Vmid $Vmid -POSTNodesLxcFirewallIpsetRB $POSTNodesLxcFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcFirewallIpsetByNodeAndVmidAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8633,6 +9855,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| IP set name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcFirewallIpsetRB** | [**POSTNodesLxcFirewallIpsetRB**](POSTNodesLxcFirewallIpsetRB.md)| Add IP or Network to IPSet. | [optional] 
 
 ### Return type
@@ -8653,6 +9878,8 @@ No authorization required
 <a name="New-PVENodesLxcFirewallRulesByNodeAndVmid"></a>
 # **New-PVENodesLxcFirewallRulesByNodeAndVmid**
 > void New-PVENodesLxcFirewallRulesByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcFirewallRulesRB] <PSCustomObject><br>
 
 Create new rule.
@@ -8661,11 +9888,13 @@ Create new rule.
 
 ### Example
 ```powershell
-$POSTNodesLxcFirewallRulesRB = Initialize-POSTNodesLxcFirewallRulesRB -Log "emerg" -Action "MyAction" -IcmpType "MyIcmpType" -Macro "MyMacro" -Comment "MyComment" -Source "MySource" -Dport "MyDport" -Vmid 0 -Proto "MyProto" -Dest "MyDest" -Node "MyNode" -Sport "MySport" -Type "in" -Enable 0 -Digest "MyDigest" -Pos 0 -Iface "MyIface" # POSTNodesLxcFirewallRulesRB | Create new rule. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcFirewallRulesRB = Initialize-POSTNodesLxcFirewallRulesRB -Digest "MyDigest" -Source "MySource" -Sport "MySport" -Action "MyAction" -Comment "MyComment" -Proto "MyProto" -Enable 0 -IcmpType "MyIcmpType" -Macro "MyMacro" -Vmid 0 -Pos 0 -Type "in" -Node "MyNode" -Iface "MyIface" -Log "emerg" -Dest "MyDest" -Dport "MyDport" # POSTNodesLxcFirewallRulesRB | Create new rule. (optional)
 
 # Create new rule.
 try {
-    $Result = New-PVENodesLxcFirewallRulesByNodeAndVmid -POSTNodesLxcFirewallRulesRB $POSTNodesLxcFirewallRulesRB
+    $Result = New-PVENodesLxcFirewallRulesByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcFirewallRulesRB $POSTNodesLxcFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcFirewallRulesByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8676,6 +9905,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcFirewallRulesRB** | [**POSTNodesLxcFirewallRulesRB**](POSTNodesLxcFirewallRulesRB.md)| Create new rule. | [optional] 
 
 ### Return type
@@ -8696,6 +9927,8 @@ No authorization required
 <a name="New-PVENodesLxcMigrateByNodeAndVmid"></a>
 # **New-PVENodesLxcMigrateByNodeAndVmid**
 > void New-PVENodesLxcMigrateByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcMigrateRB] <PSCustomObject><br>
 
 Migrate the container to another node. Creates a new migration task.
@@ -8704,11 +9937,13 @@ Migrate the container to another node. Creates a new migration task.
 
 ### Example
 ```powershell
-$POSTNodesLxcMigrateRB = Initialize-POSTNodesLxcMigrateRB -Vmid 0 -Node "MyNode" -Restart 0 -Bwlimit 0 -Target "MyTarget" -TargetStorage "MyTargetStorage" -Online 0 -Timeout 0 # POSTNodesLxcMigrateRB | Migrate the container to another node. Creates a new migration task. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcMigrateRB = Initialize-POSTNodesLxcMigrateRB -Timeout 0 -Target "MyTarget" -Bwlimit 0 -Vmid 0 -Node "MyNode" -TargetStorage "MyTargetStorage" -Restart 0 -Online 0 # POSTNodesLxcMigrateRB | Migrate the container to another node. Creates a new migration task. (optional)
 
 # Migrate the container to another node. Creates a new migration task.
 try {
-    $Result = New-PVENodesLxcMigrateByNodeAndVmid -POSTNodesLxcMigrateRB $POSTNodesLxcMigrateRB
+    $Result = New-PVENodesLxcMigrateByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcMigrateRB $POSTNodesLxcMigrateRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcMigrateByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8719,6 +9954,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcMigrateRB** | [**POSTNodesLxcMigrateRB**](POSTNodesLxcMigrateRB.md)| Migrate the container to another node. Creates a new migration task. | [optional] 
 
 ### Return type
@@ -8739,6 +9976,8 @@ No authorization required
 <a name="New-PVENodesLxcMovevolumeByNodeAndVmid"></a>
 # **New-PVENodesLxcMovevolumeByNodeAndVmid**
 > void New-PVENodesLxcMovevolumeByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcMovevolumeRB] <PSCustomObject><br>
 
 Move a rootfs-/mp-volume to a different storage or to a different container.
@@ -8747,11 +9986,13 @@ Move a rootfs-/mp-volume to a different storage or to a different container.
 
 ### Example
 ```powershell
-$POSTNodesLxcMovevolumeRB = Initialize-POSTNodesLxcMovevolumeRB -Vmid 0 -Delete 0 -Digest "MyDigest" -Node "MyNode" -TargetDigest "MyTargetDigest" -Bwlimit 0 -Volume "rootfs" -TargetVmid 0 -Storage "MyStorage" -TargetVolume "rootfs" # POSTNodesLxcMovevolumeRB | Move a rootfs-/mp-volume to a different storage or to a different container. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcMovevolumeRB = Initialize-POSTNodesLxcMovevolumeRB -Volume "rootfs" -Node "MyNode" -Bwlimit 0 -Delete 0 -Vmid 0 -TargetVmid 0 -Digest "MyDigest" -Storage "MyStorage" -TargetVolume "rootfs" -TargetDigest "MyTargetDigest" # POSTNodesLxcMovevolumeRB | Move a rootfs-/mp-volume to a different storage or to a different container. (optional)
 
 # Move a rootfs-/mp-volume to a different storage or to a different container.
 try {
-    $Result = New-PVENodesLxcMovevolumeByNodeAndVmid -POSTNodesLxcMovevolumeRB $POSTNodesLxcMovevolumeRB
+    $Result = New-PVENodesLxcMovevolumeByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcMovevolumeRB $POSTNodesLxcMovevolumeRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcMovevolumeByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8762,6 +10003,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcMovevolumeRB** | [**POSTNodesLxcMovevolumeRB**](POSTNodesLxcMovevolumeRB.md)| Move a rootfs-/mp-volume to a different storage or to a different container. | [optional] 
 
 ### Return type
@@ -8782,6 +10025,8 @@ No authorization required
 <a name="New-PVENodesLxcMtunnelByNodeAndVmid"></a>
 # **New-PVENodesLxcMtunnelByNodeAndVmid**
 > void New-PVENodesLxcMtunnelByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcMtunnelRB] <PSCustomObject><br>
 
 Migration tunnel endpoint - only for internal use by CT migration.
@@ -8790,11 +10035,13 @@ Migration tunnel endpoint - only for internal use by CT migration.
 
 ### Example
 ```powershell
-$POSTNodesLxcMtunnelRB = Initialize-POSTNodesLxcMtunnelRB -Node "MyNode" -Bridges "MyBridges" -Vmid 0 -Storages "MyStorages" # POSTNodesLxcMtunnelRB | Migration tunnel endpoint - only for internal use by CT migration. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcMtunnelRB = Initialize-POSTNodesLxcMtunnelRB -Storages "MyStorages" -Node "MyNode" -Bridges "MyBridges" -Vmid 0 # POSTNodesLxcMtunnelRB | Migration tunnel endpoint - only for internal use by CT migration. (optional)
 
 # Migration tunnel endpoint - only for internal use by CT migration.
 try {
-    $Result = New-PVENodesLxcMtunnelByNodeAndVmid -POSTNodesLxcMtunnelRB $POSTNodesLxcMtunnelRB
+    $Result = New-PVENodesLxcMtunnelByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcMtunnelRB $POSTNodesLxcMtunnelRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcMtunnelByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8805,6 +10052,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcMtunnelRB** | [**POSTNodesLxcMtunnelRB**](POSTNodesLxcMtunnelRB.md)| Migration tunnel endpoint - only for internal use by CT migration. | [optional] 
 
 ### Return type
@@ -8825,6 +10074,8 @@ No authorization required
 <a name="New-PVENodesLxcRemotemigrateByNodeAndVmid"></a>
 # **New-PVENodesLxcRemotemigrateByNodeAndVmid**
 > void New-PVENodesLxcRemotemigrateByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcRemotemigrateRB] <PSCustomObject><br>
 
 Migrate the container to another cluster. Creates a new migration task. EXPERIMENTAL feature!
@@ -8833,11 +10084,13 @@ Migrate the container to another cluster. Creates a new migration task. EXPERIME
 
 ### Example
 ```powershell
-$POSTNodesLxcRemotemigrateRB = Initialize-POSTNodesLxcRemotemigrateRB -Vmid 0 -Node "MyNode" -Delete 0 -TargetBridge "MyTargetBridge" -Restart 0 -Bwlimit 0 -TargetVmid 0 -TargetStorage "MyTargetStorage" -Online 0 -Timeout 0 -TargetEndpoint "MyTargetEndpoint" # POSTNodesLxcRemotemigrateRB | Migrate the container to another cluster. Creates a new migration task. EXPERIMENTAL feature! (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcRemotemigrateRB = Initialize-POSTNodesLxcRemotemigrateRB -Timeout 0 -TargetEndpoint "MyTargetEndpoint" -Node "MyNode" -Bwlimit 0 -Delete 0 -Vmid 0 -TargetStorage "MyTargetStorage" -TargetVmid 0 -TargetBridge "MyTargetBridge" -Restart 0 -Online 0 # POSTNodesLxcRemotemigrateRB | Migrate the container to another cluster. Creates a new migration task. EXPERIMENTAL feature! (optional)
 
 # Migrate the container to another cluster. Creates a new migration task. EXPERIMENTAL feature!
 try {
-    $Result = New-PVENodesLxcRemotemigrateByNodeAndVmid -POSTNodesLxcRemotemigrateRB $POSTNodesLxcRemotemigrateRB
+    $Result = New-PVENodesLxcRemotemigrateByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcRemotemigrateRB $POSTNodesLxcRemotemigrateRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcRemotemigrateByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8848,6 +10101,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcRemotemigrateRB** | [**POSTNodesLxcRemotemigrateRB**](POSTNodesLxcRemotemigrateRB.md)| Migrate the container to another cluster. Creates a new migration task. EXPERIMENTAL feature! | [optional] 
 
 ### Return type
@@ -8868,6 +10123,8 @@ No authorization required
 <a name="New-PVENodesLxcSnapshotByNodeAndVmid"></a>
 # **New-PVENodesLxcSnapshotByNodeAndVmid**
 > void New-PVENodesLxcSnapshotByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcSnapshotRB] <PSCustomObject><br>
 
 Snapshot a container.
@@ -8876,11 +10133,13 @@ Snapshot a container.
 
 ### Example
 ```powershell
-$POSTNodesLxcSnapshotRB = Initialize-POSTNodesLxcSnapshotRB -Node "MyNode" -Description "MyDescription" -Snapname "MySnapname" -Vmid 0 # POSTNodesLxcSnapshotRB | Snapshot a container. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcSnapshotRB = Initialize-POSTNodesLxcSnapshotRB -Snapname "MySnapname" -Node "MyNode" -Vmid 0 -Description "MyDescription" # POSTNodesLxcSnapshotRB | Snapshot a container. (optional)
 
 # Snapshot a container.
 try {
-    $Result = New-PVENodesLxcSnapshotByNodeAndVmid -POSTNodesLxcSnapshotRB $POSTNodesLxcSnapshotRB
+    $Result = New-PVENodesLxcSnapshotByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcSnapshotRB $POSTNodesLxcSnapshotRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcSnapshotByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8891,6 +10150,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcSnapshotRB** | [**POSTNodesLxcSnapshotRB**](POSTNodesLxcSnapshotRB.md)| Snapshot a container. | [optional] 
 
 ### Return type
@@ -8911,6 +10172,9 @@ No authorization required
 <a name="New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname"></a>
 # **New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname**
 > void New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Snapname] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcSnapshotRollbackRB] <PSCustomObject><br>
 
 Rollback LXC state to specified snapshot.
@@ -8919,11 +10183,14 @@ Rollback LXC state to specified snapshot.
 
 ### Example
 ```powershell
-$POSTNodesLxcSnapshotRollbackRB = Initialize-POSTNodesLxcSnapshotRollbackRB -Node "MyNode" -Vmid 0 -Snapname "MySnapname" -Start 0 # POSTNodesLxcSnapshotRollbackRB | Rollback LXC state to specified snapshot. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Snapname = "MySnapname" # String | The name of the snapshot.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcSnapshotRollbackRB = Initialize-POSTNodesLxcSnapshotRollbackRB -Snapname "MySnapname" -Start 0 -Node "MyNode" -Vmid 0 # POSTNodesLxcSnapshotRollbackRB | Rollback LXC state to specified snapshot. (optional)
 
 # Rollback LXC state to specified snapshot.
 try {
-    $Result = New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname -POSTNodesLxcSnapshotRollbackRB $POSTNodesLxcSnapshotRollbackRB
+    $Result = New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname -Node $Node -Snapname $Snapname -Vmid $Vmid -POSTNodesLxcSnapshotRollbackRB $POSTNodesLxcSnapshotRollbackRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcSnapshotRollbackByNodeAndVmidAndSnapname: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8934,6 +10201,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Snapname** | **String**| The name of the snapshot. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcSnapshotRollbackRB** | [**POSTNodesLxcSnapshotRollbackRB**](POSTNodesLxcSnapshotRollbackRB.md)| Rollback LXC state to specified snapshot. | [optional] 
 
 ### Return type
@@ -8954,6 +10224,8 @@ No authorization required
 <a name="New-PVENodesLxcSpiceproxyByNodeAndVmid"></a>
 # **New-PVENodesLxcSpiceproxyByNodeAndVmid**
 > void New-PVENodesLxcSpiceproxyByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcSpiceproxyRB] <PSCustomObject><br>
 
 Returns a SPICE configuration to connect to the CT.
@@ -8962,11 +10234,13 @@ Returns a SPICE configuration to connect to the CT.
 
 ### Example
 ```powershell
-$POSTNodesLxcSpiceproxyRB = Initialize-POSTNodesLxcSpiceproxyRB -Node "MyNode" -Proxy "MyProxy" -Vmid 0 # POSTNodesLxcSpiceproxyRB | Returns a SPICE configuration to connect to the CT. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcSpiceproxyRB = Initialize-POSTNodesLxcSpiceproxyRB -Node "MyNode" -Vmid 0 -Proxy "MyProxy" # POSTNodesLxcSpiceproxyRB | Returns a SPICE configuration to connect to the CT. (optional)
 
 # Returns a SPICE configuration to connect to the CT.
 try {
-    $Result = New-PVENodesLxcSpiceproxyByNodeAndVmid -POSTNodesLxcSpiceproxyRB $POSTNodesLxcSpiceproxyRB
+    $Result = New-PVENodesLxcSpiceproxyByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcSpiceproxyRB $POSTNodesLxcSpiceproxyRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcSpiceproxyByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -8977,6 +10251,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcSpiceproxyRB** | [**POSTNodesLxcSpiceproxyRB**](POSTNodesLxcSpiceproxyRB.md)| Returns a SPICE configuration to connect to the CT. | [optional] 
 
 ### Return type
@@ -8997,6 +10273,8 @@ No authorization required
 <a name="New-PVENodesLxcStatusRebootByNodeAndVmid"></a>
 # **New-PVENodesLxcStatusRebootByNodeAndVmid**
 > void New-PVENodesLxcStatusRebootByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcStatusRebootRB] <PSCustomObject><br>
 
 Reboot the container by shutting it down, and starting it again. Applies pending changes.
@@ -9005,11 +10283,13 @@ Reboot the container by shutting it down, and starting it again. Applies pending
 
 ### Example
 ```powershell
-$POSTNodesLxcStatusRebootRB = Initialize-POSTNodesLxcStatusRebootRB -Node "MyNode" -Timeout 0 -Vmid 0 # POSTNodesLxcStatusRebootRB | Reboot the container by shutting it down, and starting it again. Applies pending changes. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcStatusRebootRB = Initialize-POSTNodesLxcStatusRebootRB -Node "MyNode" -Vmid 0 -Timeout 0 # POSTNodesLxcStatusRebootRB | Reboot the container by shutting it down, and starting it again. Applies pending changes. (optional)
 
 # Reboot the container by shutting it down, and starting it again. Applies pending changes.
 try {
-    $Result = New-PVENodesLxcStatusRebootByNodeAndVmid -POSTNodesLxcStatusRebootRB $POSTNodesLxcStatusRebootRB
+    $Result = New-PVENodesLxcStatusRebootByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcStatusRebootRB $POSTNodesLxcStatusRebootRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcStatusRebootByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9020,6 +10300,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcStatusRebootRB** | [**POSTNodesLxcStatusRebootRB**](POSTNodesLxcStatusRebootRB.md)| Reboot the container by shutting it down, and starting it again. Applies pending changes. | [optional] 
 
 ### Return type
@@ -9040,6 +10322,8 @@ No authorization required
 <a name="New-PVENodesLxcStatusResumeByNodeAndVmid"></a>
 # **New-PVENodesLxcStatusResumeByNodeAndVmid**
 > void New-PVENodesLxcStatusResumeByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Resume the container.
 
@@ -9047,10 +10331,12 @@ Resume the container.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Resume the container.
 try {
-    $Result = New-PVENodesLxcStatusResumeByNodeAndVmid
+    $Result = New-PVENodesLxcStatusResumeByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcStatusResumeByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9058,7 +10344,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9078,6 +10368,8 @@ No authorization required
 <a name="New-PVENodesLxcStatusShutdownByNodeAndVmid"></a>
 # **New-PVENodesLxcStatusShutdownByNodeAndVmid**
 > void New-PVENodesLxcStatusShutdownByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcStatusShutdownRB] <PSCustomObject><br>
 
 Shutdown the container. This will trigger a clean shutdown of the container, see lxc-stop(1) for details.
@@ -9086,11 +10378,13 @@ Shutdown the container. This will trigger a clean shutdown of the container, see
 
 ### Example
 ```powershell
-$POSTNodesLxcStatusShutdownRB = Initialize-POSTNodesLxcStatusShutdownRB -Node "MyNode" -Timeout 0 -Vmid 0 -ForceStop 0 # POSTNodesLxcStatusShutdownRB | Shutdown the container. This will trigger a clean shutdown of the container, see lxc-stop(1) for details. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcStatusShutdownRB = Initialize-POSTNodesLxcStatusShutdownRB -Vmid 0 -Node "MyNode" -ForceStop 0 -Timeout 0 # POSTNodesLxcStatusShutdownRB | Shutdown the container. This will trigger a clean shutdown of the container, see lxc-stop(1) for details. (optional)
 
 # Shutdown the container. This will trigger a clean shutdown of the container, see lxc-stop(1) for details.
 try {
-    $Result = New-PVENodesLxcStatusShutdownByNodeAndVmid -POSTNodesLxcStatusShutdownRB $POSTNodesLxcStatusShutdownRB
+    $Result = New-PVENodesLxcStatusShutdownByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcStatusShutdownRB $POSTNodesLxcStatusShutdownRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcStatusShutdownByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9101,6 +10395,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcStatusShutdownRB** | [**POSTNodesLxcStatusShutdownRB**](POSTNodesLxcStatusShutdownRB.md)| Shutdown the container. This will trigger a clean shutdown of the container, see lxc-stop(1) for details. | [optional] 
 
 ### Return type
@@ -9121,6 +10417,8 @@ No authorization required
 <a name="New-PVENodesLxcStatusStartByNodeAndVmid"></a>
 # **New-PVENodesLxcStatusStartByNodeAndVmid**
 > void New-PVENodesLxcStatusStartByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcStatusStartRB] <PSCustomObject><br>
 
 Start the container.
@@ -9129,11 +10427,13 @@ Start the container.
 
 ### Example
 ```powershell
-$POSTNodesLxcStatusStartRB = Initialize-POSTNodesLxcStatusStartRB -Node "MyNode" -Skiplock 0 -Debug 0 -Vmid 0 # POSTNodesLxcStatusStartRB | Start the container. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcStatusStartRB = Initialize-POSTNodesLxcStatusStartRB -Debug 0 -Node "MyNode" -Vmid 0 -Skiplock 0 # POSTNodesLxcStatusStartRB | Start the container. (optional)
 
 # Start the container.
 try {
-    $Result = New-PVENodesLxcStatusStartByNodeAndVmid -POSTNodesLxcStatusStartRB $POSTNodesLxcStatusStartRB
+    $Result = New-PVENodesLxcStatusStartByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcStatusStartRB $POSTNodesLxcStatusStartRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcStatusStartByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9144,6 +10444,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcStatusStartRB** | [**POSTNodesLxcStatusStartRB**](POSTNodesLxcStatusStartRB.md)| Start the container. | [optional] 
 
 ### Return type
@@ -9164,6 +10466,8 @@ No authorization required
 <a name="New-PVENodesLxcStatusStopByNodeAndVmid"></a>
 # **New-PVENodesLxcStatusStopByNodeAndVmid**
 > void New-PVENodesLxcStatusStopByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcStatusStopRB] <PSCustomObject><br>
 
 Stop the container. This will abruptly stop all processes running in the container.
@@ -9172,11 +10476,13 @@ Stop the container. This will abruptly stop all processes running in the contain
 
 ### Example
 ```powershell
-$POSTNodesLxcStatusStopRB = Initialize-POSTNodesLxcStatusStopRB -Node "MyNode" -Skiplock 0 -OverruleShutdown 0 -Vmid 0 # POSTNodesLxcStatusStopRB | Stop the container. This will abruptly stop all processes running in the container. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcStatusStopRB = Initialize-POSTNodesLxcStatusStopRB -Node "MyNode" -OverruleShutdown 0 -Skiplock 0 -Vmid 0 # POSTNodesLxcStatusStopRB | Stop the container. This will abruptly stop all processes running in the container. (optional)
 
 # Stop the container. This will abruptly stop all processes running in the container.
 try {
-    $Result = New-PVENodesLxcStatusStopByNodeAndVmid -POSTNodesLxcStatusStopRB $POSTNodesLxcStatusStopRB
+    $Result = New-PVENodesLxcStatusStopByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcStatusStopRB $POSTNodesLxcStatusStopRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcStatusStopByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9187,6 +10493,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcStatusStopRB** | [**POSTNodesLxcStatusStopRB**](POSTNodesLxcStatusStopRB.md)| Stop the container. This will abruptly stop all processes running in the container. | [optional] 
 
 ### Return type
@@ -9207,6 +10515,8 @@ No authorization required
 <a name="New-PVENodesLxcStatusSuspendByNodeAndVmid"></a>
 # **New-PVENodesLxcStatusSuspendByNodeAndVmid**
 > void New-PVENodesLxcStatusSuspendByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Suspend the container. This is experimental.
 
@@ -9214,10 +10524,12 @@ Suspend the container. This is experimental.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Suspend the container. This is experimental.
 try {
-    $Result = New-PVENodesLxcStatusSuspendByNodeAndVmid
+    $Result = New-PVENodesLxcStatusSuspendByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcStatusSuspendByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9225,7 +10537,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9245,6 +10561,8 @@ No authorization required
 <a name="New-PVENodesLxcTemplateByNodeAndVmid"></a>
 # **New-PVENodesLxcTemplateByNodeAndVmid**
 > void New-PVENodesLxcTemplateByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Create a Template.
 
@@ -9252,10 +10570,12 @@ Create a Template.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Create a Template.
 try {
-    $Result = New-PVENodesLxcTemplateByNodeAndVmid
+    $Result = New-PVENodesLxcTemplateByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcTemplateByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9263,7 +10583,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9283,6 +10607,8 @@ No authorization required
 <a name="New-PVENodesLxcTermproxyByNodeAndVmid"></a>
 # **New-PVENodesLxcTermproxyByNodeAndVmid**
 > void New-PVENodesLxcTermproxyByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Creates a TCP proxy connection.
 
@@ -9290,10 +10616,12 @@ Creates a TCP proxy connection.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Creates a TCP proxy connection.
 try {
-    $Result = New-PVENodesLxcTermproxyByNodeAndVmid
+    $Result = New-PVENodesLxcTermproxyByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcTermproxyByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9301,7 +10629,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9321,6 +10653,8 @@ No authorization required
 <a name="New-PVENodesLxcVncproxyByNodeAndVmid"></a>
 # **New-PVENodesLxcVncproxyByNodeAndVmid**
 > void New-PVENodesLxcVncproxyByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesLxcVncproxyRB] <PSCustomObject><br>
 
 Creates a TCP VNC proxy connections.
@@ -9329,11 +10663,13 @@ Creates a TCP VNC proxy connections.
 
 ### Example
 ```powershell
-$POSTNodesLxcVncproxyRB = Initialize-POSTNodesLxcVncproxyRB -Node "MyNode" -Websocket 0 -Height 0 -Vmid 0 -Width 0 # POSTNodesLxcVncproxyRB | Creates a TCP VNC proxy connections. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesLxcVncproxyRB = Initialize-POSTNodesLxcVncproxyRB -Height 0 -Width 0 -Node "MyNode" -Websocket 0 -Vmid 0 # POSTNodesLxcVncproxyRB | Creates a TCP VNC proxy connections. (optional)
 
 # Creates a TCP VNC proxy connections.
 try {
-    $Result = New-PVENodesLxcVncproxyByNodeAndVmid -POSTNodesLxcVncproxyRB $POSTNodesLxcVncproxyRB
+    $Result = New-PVENodesLxcVncproxyByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesLxcVncproxyRB $POSTNodesLxcVncproxyRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesLxcVncproxyByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9344,6 +10680,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesLxcVncproxyRB** | [**POSTNodesLxcVncproxyRB**](POSTNodesLxcVncproxyRB.md)| Creates a TCP VNC proxy connections. | [optional] 
 
 ### Return type
@@ -9364,6 +10702,7 @@ No authorization required
 <a name="New-PVENodesMigrateallByNode"></a>
 # **New-PVENodesMigrateallByNode**
 > void New-PVENodesMigrateallByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesMigrateallRB] <PSCustomObject><br>
 
 Migrate all VMs and Containers.
@@ -9372,11 +10711,12 @@ Migrate all VMs and Containers.
 
 ### Example
 ```powershell
-$POSTNodesMigrateallRB = Initialize-POSTNodesMigrateallRB -Node "MyNode" -Maxworkers 0 -WithLocalDisks 0 -Target "MyTarget" -Vms "MyVms" # POSTNodesMigrateallRB | Migrate all VMs and Containers. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesMigrateallRB = Initialize-POSTNodesMigrateallRB -Vms "MyVms" -Node "MyNode" -Target "MyTarget" -WithLocalDisks 0 -Maxworkers 0 # POSTNodesMigrateallRB | Migrate all VMs and Containers. (optional)
 
 # Migrate all VMs and Containers.
 try {
-    $Result = New-PVENodesMigrateallByNode -POSTNodesMigrateallRB $POSTNodesMigrateallRB
+    $Result = New-PVENodesMigrateallByNode -Node $Node -POSTNodesMigrateallRB $POSTNodesMigrateallRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesMigrateallByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9387,6 +10727,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesMigrateallRB** | [**POSTNodesMigrateallRB**](POSTNodesMigrateallRB.md)| Migrate all VMs and Containers. | [optional] 
 
 ### Return type
@@ -9407,6 +10748,7 @@ No authorization required
 <a name="New-PVENodesNetworkByNode"></a>
 # **New-PVENodesNetworkByNode**
 > void New-PVENodesNetworkByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesNetworkRB] <PSCustomObject><br>
 
 Create network device configuration
@@ -9415,11 +10757,12 @@ Create network device configuration
 
 ### Example
 ```powershell
-$POSTNodesNetworkRB = Initialize-POSTNodesNetworkRB -Mtu 0 -Address6 "MyAddress6" -BondPrimary "MyBondPrimary" -OvsBridge "MyOvsBridge" -Node "MyNode" -BondMode "balance-rr" -Comments6 "MyComments6" -Iface "MyIface" -BridgeVids "MyBridgeVids" -Slaves "MySlaves" -Netmask "MyNetmask" -Type "bridge" -OvsPorts "MyOvsPorts" -Address "MyAddress" -Cidr "MyCidr" -Comments "MyComments" -Cidr6 "MyCidr6" -VlanRawDevice "MyVlanRawDevice" -Netmask6 0 -Gateway "MyGateway" -BridgeVlanAware 0 -OvsTag 0 -OvsBonds "MyOvsBonds" -BondXmitHashPolicy "layer2" -OvsOptions "MyOvsOptions" -BridgePorts "MyBridgePorts" -VlanId 0 -Gateway6 "MyGateway6" -Autostart 0 # POSTNodesNetworkRB | Create network device configuration (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesNetworkRB = Initialize-POSTNodesNetworkRB -Iface "MyIface" -OvsTag 0 -BridgePorts "MyBridgePorts" -Netmask6 0 -Gateway6 "MyGateway6" -OvsPorts "MyOvsPorts" -VlanRawDevice "MyVlanRawDevice" -Slaves "MySlaves" -BridgeVlanAware 0 -Comments6 "MyComments6" -Mtu 0 -BondXmitHashPolicy "layer2" -Node "MyNode" -Gateway "MyGateway" -Comments "MyComments" -Cidr6 "MyCidr6" -BondMode "balance-rr" -VlanId 0 -OvsBridge "MyOvsBridge" -BridgeVids "MyBridgeVids" -Netmask "MyNetmask" -Address "MyAddress" -BondPrimary "MyBondPrimary" -OvsOptions "MyOvsOptions" -Autostart 0 -OvsBonds "MyOvsBonds" -Cidr "MyCidr" -Type "bridge" -Address6 "MyAddress6" # POSTNodesNetworkRB | Create network device configuration (optional)
 
 # Create network device configuration
 try {
-    $Result = New-PVENodesNetworkByNode -POSTNodesNetworkRB $POSTNodesNetworkRB
+    $Result = New-PVENodesNetworkByNode -Node $Node -POSTNodesNetworkRB $POSTNodesNetworkRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesNetworkByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9430,6 +10773,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesNetworkRB** | [**POSTNodesNetworkRB**](POSTNodesNetworkRB.md)| Create network device configuration | [optional] 
 
 ### Return type
@@ -9450,6 +10794,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentByNodeAndVmid**
 > void New-PVENodesQemuAgentByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuAgentRB] <PSCustomObject><br>
 
 Execute QEMU Guest Agent commands.
@@ -9458,11 +10804,13 @@ Execute QEMU Guest Agent commands.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 $POSTNodesQemuAgentRB = Initialize-POSTNodesQemuAgentRB -Node "MyNode" -Command "fsfreeze-freeze" -Vmid 0 # POSTNodesQemuAgentRB | Execute QEMU Guest Agent commands. (optional)
 
 # Execute QEMU Guest Agent commands.
 try {
-    $Result = New-PVENodesQemuAgentByNodeAndVmid -POSTNodesQemuAgentRB $POSTNodesQemuAgentRB
+    $Result = New-PVENodesQemuAgentByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuAgentRB $POSTNodesQemuAgentRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9473,6 +10821,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuAgentRB** | [**POSTNodesQemuAgentRB**](POSTNodesQemuAgentRB.md)| Execute QEMU Guest Agent commands. | [optional] 
 
 ### Return type
@@ -9493,6 +10843,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentExecByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentExecByNodeAndVmid**
 > NodesQemuAgentExec New-PVENodesQemuAgentExecByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuAgentExecRB] <PSCustomObject><br>
 
 Executes the given command in the vm via the guest-agent and returns an object with the pid.
@@ -9501,11 +10853,13 @@ Executes the given command in the vm via the guest-agent and returns an object w
 
 ### Example
 ```powershell
-$POSTNodesQemuAgentExecRB = Initialize-POSTNodesQemuAgentExecRB -Node "MyNode" -Command  -InputData "MyInputData" -Vmid 0 # POSTNodesQemuAgentExecRB | Executes the given command in the vm via the guest-agent and returns an object with the pid. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuAgentExecRB = Initialize-POSTNodesQemuAgentExecRB -InputData "MyInputData" -Node "MyNode" -Command  -Vmid 0 # POSTNodesQemuAgentExecRB | Executes the given command in the vm via the guest-agent and returns an object with the pid. (optional)
 
 # Executes the given command in the vm via the guest-agent and returns an object with the pid.
 try {
-    $Result = New-PVENodesQemuAgentExecByNodeAndVmid -POSTNodesQemuAgentExecRB $POSTNodesQemuAgentExecRB
+    $Result = New-PVENodesQemuAgentExecByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuAgentExecRB $POSTNodesQemuAgentExecRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentExecByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9516,6 +10870,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuAgentExecRB** | [**POSTNodesQemuAgentExecRB**](POSTNodesQemuAgentExecRB.md)| Executes the given command in the vm via the guest-agent and returns an object with the pid. | [optional] 
 
 ### Return type
@@ -9536,6 +10892,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentFilewriteByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentFilewriteByNodeAndVmid**
 > void New-PVENodesQemuAgentFilewriteByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuAgentFilewriteRB] <PSCustomObject><br>
 
 Writes the given file via guest agent.
@@ -9544,11 +10902,13 @@ Writes the given file via guest agent.
 
 ### Example
 ```powershell
-$POSTNodesQemuAgentFilewriteRB = Initialize-POSTNodesQemuAgentFilewriteRB -Encode 0 -Node "MyNode" -Content "MyContent" -Vmid 0 -File "MyFile" # POSTNodesQemuAgentFilewriteRB | Writes the given file via guest agent. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuAgentFilewriteRB = Initialize-POSTNodesQemuAgentFilewriteRB -Content "MyContent" -Node "MyNode" -Vmid 0 -File "MyFile" -Encode 0 # POSTNodesQemuAgentFilewriteRB | Writes the given file via guest agent. (optional)
 
 # Writes the given file via guest agent.
 try {
-    $Result = New-PVENodesQemuAgentFilewriteByNodeAndVmid -POSTNodesQemuAgentFilewriteRB $POSTNodesQemuAgentFilewriteRB
+    $Result = New-PVENodesQemuAgentFilewriteByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuAgentFilewriteRB $POSTNodesQemuAgentFilewriteRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentFilewriteByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9559,6 +10919,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuAgentFilewriteRB** | [**POSTNodesQemuAgentFilewriteRB**](POSTNodesQemuAgentFilewriteRB.md)| Writes the given file via guest agent. | [optional] 
 
 ### Return type
@@ -9579,6 +10941,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentFsfreezefreezeByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentFsfreezefreezeByNodeAndVmid**
 > void New-PVENodesQemuAgentFsfreezefreezeByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute fsfreeze-freeze.
 
@@ -9586,10 +10950,12 @@ Execute fsfreeze-freeze.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute fsfreeze-freeze.
 try {
-    $Result = New-PVENodesQemuAgentFsfreezefreezeByNodeAndVmid
+    $Result = New-PVENodesQemuAgentFsfreezefreezeByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentFsfreezefreezeByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9597,7 +10963,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9617,6 +10987,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentFsfreezestatusByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentFsfreezestatusByNodeAndVmid**
 > void New-PVENodesQemuAgentFsfreezestatusByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute fsfreeze-status.
 
@@ -9624,10 +10996,12 @@ Execute fsfreeze-status.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute fsfreeze-status.
 try {
-    $Result = New-PVENodesQemuAgentFsfreezestatusByNodeAndVmid
+    $Result = New-PVENodesQemuAgentFsfreezestatusByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentFsfreezestatusByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9635,7 +11009,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9655,6 +11033,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentFsfreezethawByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentFsfreezethawByNodeAndVmid**
 > void New-PVENodesQemuAgentFsfreezethawByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute fsfreeze-thaw.
 
@@ -9662,10 +11042,12 @@ Execute fsfreeze-thaw.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute fsfreeze-thaw.
 try {
-    $Result = New-PVENodesQemuAgentFsfreezethawByNodeAndVmid
+    $Result = New-PVENodesQemuAgentFsfreezethawByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentFsfreezethawByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9673,7 +11055,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9693,6 +11079,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentFstrimByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentFstrimByNodeAndVmid**
 > void New-PVENodesQemuAgentFstrimByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute fstrim.
 
@@ -9700,10 +11088,12 @@ Execute fstrim.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute fstrim.
 try {
-    $Result = New-PVENodesQemuAgentFstrimByNodeAndVmid
+    $Result = New-PVENodesQemuAgentFstrimByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentFstrimByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9711,7 +11101,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9731,6 +11125,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentPingByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentPingByNodeAndVmid**
 > void New-PVENodesQemuAgentPingByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute ping.
 
@@ -9738,10 +11134,12 @@ Execute ping.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute ping.
 try {
-    $Result = New-PVENodesQemuAgentPingByNodeAndVmid
+    $Result = New-PVENodesQemuAgentPingByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentPingByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9749,7 +11147,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9769,6 +11171,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid**
 > void New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuAgentSetuserpasswordRB] <PSCustomObject><br>
 
 Sets the password for the given user to the given password
@@ -9777,11 +11181,13 @@ Sets the password for the given user to the given password
 
 ### Example
 ```powershell
-$POSTNodesQemuAgentSetuserpasswordRB = Initialize-POSTNodesQemuAgentSetuserpasswordRB -Node "MyNode" -Username "MyUsername" -Password "MyPassword" -Crypted 0 -Vmid 0 # POSTNodesQemuAgentSetuserpasswordRB | Sets the password for the given user to the given password (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuAgentSetuserpasswordRB = Initialize-POSTNodesQemuAgentSetuserpasswordRB -Vmid 0 -Node "MyNode" -Crypted 0 -Password "MyPassword" -Username "MyUsername" # POSTNodesQemuAgentSetuserpasswordRB | Sets the password for the given user to the given password (optional)
 
 # Sets the password for the given user to the given password
 try {
-    $Result = New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid -POSTNodesQemuAgentSetuserpasswordRB $POSTNodesQemuAgentSetuserpasswordRB
+    $Result = New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuAgentSetuserpasswordRB $POSTNodesQemuAgentSetuserpasswordRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentSetuserpasswordByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9792,6 +11198,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuAgentSetuserpasswordRB** | [**POSTNodesQemuAgentSetuserpasswordRB**](POSTNodesQemuAgentSetuserpasswordRB.md)| Sets the password for the given user to the given password | [optional] 
 
 ### Return type
@@ -9812,6 +11220,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentShutdownByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentShutdownByNodeAndVmid**
 > void New-PVENodesQemuAgentShutdownByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute shutdown.
 
@@ -9819,10 +11229,12 @@ Execute shutdown.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute shutdown.
 try {
-    $Result = New-PVENodesQemuAgentShutdownByNodeAndVmid
+    $Result = New-PVENodesQemuAgentShutdownByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentShutdownByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9830,7 +11242,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9850,6 +11266,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentSuspenddiskByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentSuspenddiskByNodeAndVmid**
 > void New-PVENodesQemuAgentSuspenddiskByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute suspend-disk.
 
@@ -9857,10 +11275,12 @@ Execute suspend-disk.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute suspend-disk.
 try {
-    $Result = New-PVENodesQemuAgentSuspenddiskByNodeAndVmid
+    $Result = New-PVENodesQemuAgentSuspenddiskByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentSuspenddiskByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9868,7 +11288,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9888,6 +11312,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentSuspendhybridByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentSuspendhybridByNodeAndVmid**
 > void New-PVENodesQemuAgentSuspendhybridByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute suspend-hybrid.
 
@@ -9895,10 +11321,12 @@ Execute suspend-hybrid.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute suspend-hybrid.
 try {
-    $Result = New-PVENodesQemuAgentSuspendhybridByNodeAndVmid
+    $Result = New-PVENodesQemuAgentSuspendhybridByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentSuspendhybridByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9906,7 +11334,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9926,6 +11358,8 @@ No authorization required
 <a name="New-PVENodesQemuAgentSuspendramByNodeAndVmid"></a>
 # **New-PVENodesQemuAgentSuspendramByNodeAndVmid**
 > void New-PVENodesQemuAgentSuspendramByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Execute suspend-ram.
 
@@ -9933,10 +11367,12 @@ Execute suspend-ram.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Execute suspend-ram.
 try {
-    $Result = New-PVENodesQemuAgentSuspendramByNodeAndVmid
+    $Result = New-PVENodesQemuAgentSuspendramByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuAgentSuspendramByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9944,7 +11380,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -9964,6 +11404,7 @@ No authorization required
 <a name="New-PVENodesQemuByNode"></a>
 # **New-PVENodesQemuByNode**
 > void New-PVENodesQemuByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuRB] <PSCustomObject><br>
 
 Create or restore a virtual machine.
@@ -9972,11 +11413,12 @@ Create or restore a virtual machine.
 
 ### Example
 ```powershell
-$POSTNodesQemuRB = Initialize-POSTNodesQemuRB -Protection 0 -Watchdog "MyWatchdog" -VarArgs "MyVarArgs" -Cdrom "MyCdrom" -Bwlimit 0 -Machine "MyMachine" -IpconfigN "MyIpconfigN" -Cpuunits 0 -Force 0 -ScsiN "MyScsiN" -Cores 0 -Citype "configdrive2" -ImportWorkingStorage "MyImportWorkingStorage" -Vga "MyVga" -ParallelN "MyParallelN" -UsbN "MyUsbN" -Bootdisk "MyBootdisk" -Sshkeys "MySshkeys" -Ciupgrade 0 -Vcpus 0 -Scsihw "lsi" -SpiceEnhancements "MySpiceEnhancements" -MigrateSpeed 0 -Hotplug "MyHotplug" -Freeze 0 -Pool "MyPool" -SerialN "MySerialN" -Startup "MyStartup" -Efidisk0 "MyEfidisk0" -Startdate "MyStartdate" -Nameserver "MyNameserver" -AmdSev "MyAmdSev" -LiveRestore 0 -Hookscript "MyHookscript" -SataN "MySataN" -Unique 0 -Storage "MyStorage" -Onboot 0 -Vmgenid "MyVmgenid" -Cicustom "MyCicustom" -NumaN "MyNumaN" -Lock "backup" -IdeN "MyIdeN" -NetN "MyNetN" -Vmid 0 -Acpi 0 -Arch "x86_64" -Audio0 "MyAudio0" -Localtime 0 -Sockets 0 -Tags "MyTags" -Searchdomain "MySearchdomain" -HostpciN "MyHostpciN" -Bios "seabios" -Template 0 -MigrateDowntime 0 -Vmstatestorage "MyVmstatestorage" -Tablet 0 -Cpulimit 0 -Ivshmem "MyIvshmem" -Start 0 -Memory "MyMemory" -Tdf 0 -Rng0 "MyRng0" -Node "MyNode" -Shares 0 -Cipassword "MyCipassword" -Reboot 0 -Archive "MyArchive" -Name "MyName" -Hugepages "any" -Boot "MyBoot" -Numa 0 -Affinity "MyAffinity" -Keephugepages 0 -Ostype "other" -Description "MyDescription" -Tpmstate0 "MyTpmstate0" -VirtioN "MyVirtioN" -Ciuser "MyCiuser" -Smbios1 "MySmbios1" -Agent "MyAgent" -Balloon 0 -Smp 0 -Keyboard "de" -Autostart 0 -UnusedN "MyUnusedN" -Kvm 0 -Cpu "MyCpu" # POSTNodesQemuRB | Create or restore a virtual machine. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesQemuRB = Initialize-POSTNodesQemuRB -Ivshmem "MyIvshmem" -NetN "MyNetN" -Archive "MyArchive" -Vcpus 0 -Ostype "other" -Rng0 "MyRng0" -Autostart 0 -Acpi 0 -AmdSev "MyAmdSev" -LiveRestore 0 -Boot "MyBoot" -ScsiN "MyScsiN" -Agent "MyAgent" -Unique 0 -IpconfigN "MyIpconfigN" -VarArgs "MyVarArgs" -MigrateSpeed 0 -Name "MyName" -Startup "MyStartup" -Vmstatestorage "MyVmstatestorage" -Keyboard "de" -Memory "MyMemory" -Tpmstate0 "MyTpmstate0" -Description "MyDescription" -SpiceEnhancements "MySpiceEnhancements" -Freeze 0 -Reboot 0 -Smbios1 "MySmbios1" -Affinity "MyAffinity" -Cipassword "MyCipassword" -Bootdisk "MyBootdisk" -Citype "configdrive2" -Smp 0 -Hookscript "MyHookscript" -Hotplug "MyHotplug" -Balloon 0 -Pool "MyPool" -ParallelN "MyParallelN" -Sshkeys "MySshkeys" -Efidisk0 "MyEfidisk0" -Arch "x86_64" -UnusedN "MyUnusedN" -IdeN "MyIdeN" -VirtioN "MyVirtioN" -Vga "MyVga" -Tdf 0 -ImportWorkingStorage "MyImportWorkingStorage" -Watchdog "MyWatchdog" -MigrateDowntime 0 -Storage "MyStorage" -Vmgenid "MyVmgenid" -Hugepages "any" -SerialN "MySerialN" -Cpuunits 0 -Shares 0 -Cpulimit 0 -Cpu "MyCpu" -Bwlimit 0 -Onboot 0 -Cicustom "MyCicustom" -Sockets 0 -Node "MyNode" -Start 0 -Ciuser "MyCiuser" -Protection 0 -Lock "backup" -Numa 0 -Cores 0 -HostpciN "MyHostpciN" -Cdrom "MyCdrom" -SataN "MySataN" -Vmid 0 -Tablet 0 -Bios "seabios" -Localtime 0 -Template 0 -Nameserver "MyNameserver" -Kvm 0 -Force 0 -UsbN "MyUsbN" -Startdate "MyStartdate" -Scsihw "lsi" -Tags "MyTags" -Ciupgrade 0 -Keephugepages 0 -Audio0 "MyAudio0" -NumaN "MyNumaN" -Searchdomain "MySearchdomain" -Machine "MyMachine" # POSTNodesQemuRB | Create or restore a virtual machine. (optional)
 
 # Create or restore a virtual machine.
 try {
-    $Result = New-PVENodesQemuByNode -POSTNodesQemuRB $POSTNodesQemuRB
+    $Result = New-PVENodesQemuByNode -Node $Node -POSTNodesQemuRB $POSTNodesQemuRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -9987,6 +11429,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesQemuRB** | [**POSTNodesQemuRB**](POSTNodesQemuRB.md)| Create or restore a virtual machine. | [optional] 
 
 ### Return type
@@ -10007,6 +11450,8 @@ No authorization required
 <a name="New-PVENodesQemuCloneByNodeAndVmid"></a>
 # **New-PVENodesQemuCloneByNodeAndVmid**
 > void New-PVENodesQemuCloneByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuCloneRB] <PSCustomObject><br>
 
 Create a copy of virtual machine/template.
@@ -10015,11 +11460,13 @@ Create a copy of virtual machine/template.
 
 ### Example
 ```powershell
-$POSTNodesQemuCloneRB = Initialize-POSTNodesQemuCloneRB -Description "MyDescription" -Name "MyName" -Pool "MyPool" -Storage "MyStorage" -Node "MyNode" -Target "MyTarget" -Bwlimit 0 -Newid 0 -Vmid 0 -Full 0 -Snapname "MySnapname" -Format "raw" # POSTNodesQemuCloneRB | Create a copy of virtual machine/template. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuCloneRB = Initialize-POSTNodesQemuCloneRB -Newid 0 -Format "raw" -Name "MyName" -Vmid 0 -Bwlimit 0 -Snapname "MySnapname" -Full 0 -Description "MyDescription" -Storage "MyStorage" -Target "MyTarget" -Pool "MyPool" -Node "MyNode" # POSTNodesQemuCloneRB | Create a copy of virtual machine/template. (optional)
 
 # Create a copy of virtual machine/template.
 try {
-    $Result = New-PVENodesQemuCloneByNodeAndVmid -POSTNodesQemuCloneRB $POSTNodesQemuCloneRB
+    $Result = New-PVENodesQemuCloneByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuCloneRB $POSTNodesQemuCloneRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuCloneByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10030,6 +11477,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuCloneRB** | [**POSTNodesQemuCloneRB**](POSTNodesQemuCloneRB.md)| Create a copy of virtual machine/template. | [optional] 
 
 ### Return type
@@ -10050,6 +11499,8 @@ No authorization required
 <a name="New-PVENodesQemuConfigByNodeAndVmid"></a>
 # **New-PVENodesQemuConfigByNodeAndVmid**
 > void New-PVENodesQemuConfigByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuConfigRB] <PSCustomObject><br>
 
 Set virtual machine options (asynchronous API).
@@ -10058,11 +11509,13 @@ Set virtual machine options (asynchronous API).
 
 ### Example
 ```powershell
-$POSTNodesQemuConfigRB = Initialize-POSTNodesQemuConfigRB -Protection 0 -Watchdog "MyWatchdog" -VarArgs "MyVarArgs" -Cdrom "MyCdrom" -Ostype "other" -Machine "MyMachine" -Skiplock 0 -IpconfigN "MyIpconfigN" -Cpuunits 0 -Force 0 -ScsiN "MyScsiN" -Hookscript "MyHookscript" -Cores 0 -Citype "configdrive2" -ImportWorkingStorage "MyImportWorkingStorage" -Vga "MyVga" -ParallelN "MyParallelN" -UsbN "MyUsbN" -Bootdisk "MyBootdisk" -Sshkeys "MySshkeys" -Ciupgrade 0 -Vcpus 0 -Scsihw "lsi" -BackgroundDelay 0 -SpiceEnhancements "MySpiceEnhancements" -MigrateSpeed 0 -Hotplug "MyHotplug" -Freeze 0 -SerialN "MySerialN" -Startup "MyStartup" -Efidisk0 "MyEfidisk0" -Startdate "MyStartdate" -Nameserver "MyNameserver" -AmdSev "MyAmdSev" -Revert "MyRevert" -SataN "MySataN" -Onboot 0 -Vmgenid "MyVmgenid" -Cicustom "MyCicustom" -NumaN "MyNumaN" -Lock "backup" -IdeN "MyIdeN" -NetN "MyNetN" -Vmid 0 -Acpi 0 -Arch "x86_64" -Audio0 "MyAudio0" -Localtime 0 -Sockets 0 -Tags "MyTags" -Searchdomain "MySearchdomain" -HostpciN "MyHostpciN" -Bios "seabios" -Template 0 -MigrateDowntime 0 -Vmstatestorage "MyVmstatestorage" -Cpulimit 0 -Tablet 0 -Digest "MyDigest" -Ivshmem "MyIvshmem" -Memory "MyMemory" -Tdf 0 -Rng0 "MyRng0" -Delete "MyDelete" -Node "MyNode" -Shares 0 -Cipassword "MyCipassword" -Reboot 0 -Name "MyName" -Hugepages "any" -Boot "MyBoot" -Numa 0 -Affinity "MyAffinity" -Keephugepages 0 -Description "MyDescription" -Tpmstate0 "MyTpmstate0" -VirtioN "MyVirtioN" -Ciuser "MyCiuser" -Smbios1 "MySmbios1" -Agent "MyAgent" -Balloon 0 -Smp 0 -Keyboard "de" -Autostart 0 -UnusedN "MyUnusedN" -Kvm 0 -Cpu "MyCpu" # POSTNodesQemuConfigRB | Set virtual machine options (asynchronous API). (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuConfigRB = Initialize-POSTNodesQemuConfigRB -Ivshmem "MyIvshmem" -IdeN "MyIdeN" -NetN "MyNetN" -Vcpus 0 -Ostype "other" -UnusedN "MyUnusedN" -Rng0 "MyRng0" -AmdSev "MyAmdSev" -Autostart 0 -Acpi 0 -Revert "MyRevert" -Boot "MyBoot" -ScsiN "MyScsiN" -Agent "MyAgent" -IpconfigN "MyIpconfigN" -VarArgs "MyVarArgs" -MigrateSpeed 0 -Name "MyName" -Startup "MyStartup" -Vmstatestorage "MyVmstatestorage" -Keyboard "de" -Memory "MyMemory" -Tpmstate0 "MyTpmstate0" -Description "MyDescription" -SpiceEnhancements "MySpiceEnhancements" -Freeze 0 -Reboot 0 -Smbios1 "MySmbios1" -Cipassword "MyCipassword" -Bootdisk "MyBootdisk" -Citype "configdrive2" -Smp 0 -Hookscript "MyHookscript" -Hotplug "MyHotplug" -Balloon 0 -Tags "MyTags" -ParallelN "MyParallelN" -Sshkeys "MySshkeys" -Efidisk0 "MyEfidisk0" -Arch "x86_64" -Delete "MyDelete" -BackgroundDelay 0 -VirtioN "MyVirtioN" -Vga "MyVga" -Tdf 0 -ImportWorkingStorage "MyImportWorkingStorage" -Watchdog "MyWatchdog" -MigrateDowntime 0 -Vmgenid "MyVmgenid" -Hugepages "any" -SerialN "MySerialN" -Cpuunits 0 -Shares 0 -Cpulimit 0 -Cpu "MyCpu" -Affinity "MyAffinity" -Onboot 0 -Cicustom "MyCicustom" -Sockets 0 -Node "MyNode" -Ciuser "MyCiuser" -Skiplock 0 -Protection 0 -Digest "MyDigest" -Lock "backup" -Numa 0 -Cores 0 -HostpciN "MyHostpciN" -Cdrom "MyCdrom" -SataN "MySataN" -Vmid 0 -Tablet 0 -Bios "seabios" -Localtime 0 -Template 0 -Nameserver "MyNameserver" -Kvm 0 -Force 0 -UsbN "MyUsbN" -Startdate "MyStartdate" -Scsihw "lsi" -Ciupgrade 0 -Keephugepages 0 -Audio0 "MyAudio0" -NumaN "MyNumaN" -Searchdomain "MySearchdomain" -Machine "MyMachine" # POSTNodesQemuConfigRB | Set virtual machine options (asynchronous API). (optional)
 
 # Set virtual machine options (asynchronous API).
 try {
-    $Result = New-PVENodesQemuConfigByNodeAndVmid -POSTNodesQemuConfigRB $POSTNodesQemuConfigRB
+    $Result = New-PVENodesQemuConfigByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuConfigRB $POSTNodesQemuConfigRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuConfigByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10073,6 +11526,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuConfigRB** | [**POSTNodesQemuConfigRB**](POSTNodesQemuConfigRB.md)| Set virtual machine options (asynchronous API). | [optional] 
 
 ### Return type
@@ -10093,6 +11548,8 @@ No authorization required
 <a name="New-PVENodesQemuFirewallAliasesByNodeAndVmid"></a>
 # **New-PVENodesQemuFirewallAliasesByNodeAndVmid**
 > void New-PVENodesQemuFirewallAliasesByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuFirewallAliasesRB] <PSCustomObject><br>
 
 Create IP or Network Alias.
@@ -10101,11 +11558,13 @@ Create IP or Network Alias.
 
 ### Example
 ```powershell
-$POSTNodesQemuFirewallAliasesRB = Initialize-POSTNodesQemuFirewallAliasesRB -Name "MyName" -Node "MyNode" -Comment "MyComment" -Cidr "MyCidr" -Vmid 0 # POSTNodesQemuFirewallAliasesRB | Create IP or Network Alias. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuFirewallAliasesRB = Initialize-POSTNodesQemuFirewallAliasesRB -Name "MyName" -Node "MyNode" -Vmid 0 -Cidr "MyCidr" -Comment "MyComment" # POSTNodesQemuFirewallAliasesRB | Create IP or Network Alias. (optional)
 
 # Create IP or Network Alias.
 try {
-    $Result = New-PVENodesQemuFirewallAliasesByNodeAndVmid -POSTNodesQemuFirewallAliasesRB $POSTNodesQemuFirewallAliasesRB
+    $Result = New-PVENodesQemuFirewallAliasesByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuFirewallAliasesRB $POSTNodesQemuFirewallAliasesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuFirewallAliasesByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10116,6 +11575,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuFirewallAliasesRB** | [**POSTNodesQemuFirewallAliasesRB**](POSTNodesQemuFirewallAliasesRB.md)| Create IP or Network Alias. | [optional] 
 
 ### Return type
@@ -10136,6 +11597,8 @@ No authorization required
 <a name="New-PVENodesQemuFirewallIpsetByNodeAndVmid"></a>
 # **New-PVENodesQemuFirewallIpsetByNodeAndVmid**
 > void New-PVENodesQemuFirewallIpsetByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuFirewallIpsetRB] <PSCustomObject><br>
 
 Create new IPSet
@@ -10144,11 +11607,13 @@ Create new IPSet
 
 ### Example
 ```powershell
-$POSTNodesQemuFirewallIpsetRB = Initialize-POSTNodesQemuFirewallIpsetRB -Name "MyName" -Nomatch 0 -Comment "MyComment" -Vmid 0 -Node "MyNode" -Cidr "MyCidr" # POSTNodesQemuFirewallIpsetRB | Create new IPSet (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuFirewallIpsetRB = Initialize-POSTNodesQemuFirewallIpsetRB -Cidr "MyCidr" -Comment "MyComment" -Node "MyNode" -Name "MyName" -Vmid 0 -Nomatch 0 # POSTNodesQemuFirewallIpsetRB | Create new IPSet (optional)
 
 # Create new IPSet
 try {
-    $Result = New-PVENodesQemuFirewallIpsetByNodeAndVmid -POSTNodesQemuFirewallIpsetRB $POSTNodesQemuFirewallIpsetRB
+    $Result = New-PVENodesQemuFirewallIpsetByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuFirewallIpsetRB $POSTNodesQemuFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuFirewallIpsetByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10159,6 +11624,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuFirewallIpsetRB** | [**POSTNodesQemuFirewallIpsetRB**](POSTNodesQemuFirewallIpsetRB.md)| Create new IPSet | [optional] 
 
 ### Return type
@@ -10179,6 +11646,9 @@ No authorization required
 <a name="New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName"></a>
 # **New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName**
 > void New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuFirewallIpsetRB] <PSCustomObject><br>
 
 Add IP or Network to IPSet.
@@ -10187,11 +11657,14 @@ Add IP or Network to IPSet.
 
 ### Example
 ```powershell
-$POSTNodesQemuFirewallIpsetRB = Initialize-POSTNodesQemuFirewallIpsetRB -Name "MyName" -Nomatch 0 -Comment "MyComment" -Vmid 0 -Node "MyNode" -Cidr "MyCidr" # POSTNodesQemuFirewallIpsetRB | Add IP or Network to IPSet. (optional)
+$Name = "MyName" # String | IP set name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuFirewallIpsetRB = Initialize-POSTNodesQemuFirewallIpsetRB -Cidr "MyCidr" -Comment "MyComment" -Node "MyNode" -Name "MyName" -Vmid 0 -Nomatch 0 # POSTNodesQemuFirewallIpsetRB | Add IP or Network to IPSet. (optional)
 
 # Add IP or Network to IPSet.
 try {
-    $Result = New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName -POSTNodesQemuFirewallIpsetRB $POSTNodesQemuFirewallIpsetRB
+    $Result = New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName -Name $Name -Node $Node -Vmid $Vmid -POSTNodesQemuFirewallIpsetRB $POSTNodesQemuFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuFirewallIpsetByNodeAndVmidAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10202,6 +11675,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| IP set name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuFirewallIpsetRB** | [**POSTNodesQemuFirewallIpsetRB**](POSTNodesQemuFirewallIpsetRB.md)| Add IP or Network to IPSet. | [optional] 
 
 ### Return type
@@ -10222,6 +11698,8 @@ No authorization required
 <a name="New-PVENodesQemuFirewallRulesByNodeAndVmid"></a>
 # **New-PVENodesQemuFirewallRulesByNodeAndVmid**
 > void New-PVENodesQemuFirewallRulesByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuFirewallRulesRB] <PSCustomObject><br>
 
 Create new rule.
@@ -10230,11 +11708,13 @@ Create new rule.
 
 ### Example
 ```powershell
-$POSTNodesQemuFirewallRulesRB = Initialize-POSTNodesQemuFirewallRulesRB -Log "emerg" -Action "MyAction" -IcmpType "MyIcmpType" -Macro "MyMacro" -Comment "MyComment" -Source "MySource" -Dport "MyDport" -Vmid 0 -Proto "MyProto" -Dest "MyDest" -Node "MyNode" -Sport "MySport" -Type "in" -Enable 0 -Digest "MyDigest" -Pos 0 -Iface "MyIface" # POSTNodesQemuFirewallRulesRB | Create new rule. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuFirewallRulesRB = Initialize-POSTNodesQemuFirewallRulesRB -Digest "MyDigest" -Source "MySource" -Sport "MySport" -Action "MyAction" -Comment "MyComment" -Proto "MyProto" -Enable 0 -IcmpType "MyIcmpType" -Macro "MyMacro" -Vmid 0 -Pos 0 -Type "in" -Node "MyNode" -Iface "MyIface" -Log "emerg" -Dest "MyDest" -Dport "MyDport" # POSTNodesQemuFirewallRulesRB | Create new rule. (optional)
 
 # Create new rule.
 try {
-    $Result = New-PVENodesQemuFirewallRulesByNodeAndVmid -POSTNodesQemuFirewallRulesRB $POSTNodesQemuFirewallRulesRB
+    $Result = New-PVENodesQemuFirewallRulesByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuFirewallRulesRB $POSTNodesQemuFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuFirewallRulesByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10245,6 +11725,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuFirewallRulesRB** | [**POSTNodesQemuFirewallRulesRB**](POSTNodesQemuFirewallRulesRB.md)| Create new rule. | [optional] 
 
 ### Return type
@@ -10265,6 +11747,8 @@ No authorization required
 <a name="New-PVENodesQemuMigrateByNodeAndVmid"></a>
 # **New-PVENodesQemuMigrateByNodeAndVmid**
 > void New-PVENodesQemuMigrateByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuMigrateRB] <PSCustomObject><br>
 
 Migrate virtual machine. Creates a new migration task.
@@ -10273,11 +11757,13 @@ Migrate virtual machine. Creates a new migration task.
 
 ### Example
 ```powershell
-$POSTNodesQemuMigrateRB = Initialize-POSTNodesQemuMigrateRB -Force 0 -Vmid 0 -WithLocalDisks 0 -MigrationType "secure" -Node "MyNode" -Bwlimit 0 -Target "MyTarget" -MigrationNetwork "MyMigrationNetwork" -Online 0 -Targetstorage "MyTargetstorage" # POSTNodesQemuMigrateRB | Migrate virtual machine. Creates a new migration task. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuMigrateRB = Initialize-POSTNodesQemuMigrateRB -MigrationType "secure" -Node "MyNode" -Bwlimit 0 -Vmid 0 -Target "MyTarget" -Targetstorage "MyTargetstorage" -Force 0 -MigrationNetwork "MyMigrationNetwork" -WithLocalDisks 0 -Online 0 # POSTNodesQemuMigrateRB | Migrate virtual machine. Creates a new migration task. (optional)
 
 # Migrate virtual machine. Creates a new migration task.
 try {
-    $Result = New-PVENodesQemuMigrateByNodeAndVmid -POSTNodesQemuMigrateRB $POSTNodesQemuMigrateRB
+    $Result = New-PVENodesQemuMigrateByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuMigrateRB $POSTNodesQemuMigrateRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuMigrateByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10288,6 +11774,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuMigrateRB** | [**POSTNodesQemuMigrateRB**](POSTNodesQemuMigrateRB.md)| Migrate virtual machine. Creates a new migration task. | [optional] 
 
 ### Return type
@@ -10308,6 +11796,8 @@ No authorization required
 <a name="New-PVENodesQemuMonitorByNodeAndVmid"></a>
 # **New-PVENodesQemuMonitorByNodeAndVmid**
 > void New-PVENodesQemuMonitorByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuMonitorRB] <PSCustomObject><br>
 
 Execute QEMU monitor commands.
@@ -10316,11 +11806,13 @@ Execute QEMU monitor commands.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 $POSTNodesQemuMonitorRB = Initialize-POSTNodesQemuMonitorRB -Node "MyNode" -Command "MyCommand" -Vmid 0 # POSTNodesQemuMonitorRB | Execute QEMU monitor commands. (optional)
 
 # Execute QEMU monitor commands.
 try {
-    $Result = New-PVENodesQemuMonitorByNodeAndVmid -POSTNodesQemuMonitorRB $POSTNodesQemuMonitorRB
+    $Result = New-PVENodesQemuMonitorByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuMonitorRB $POSTNodesQemuMonitorRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuMonitorByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10331,6 +11823,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuMonitorRB** | [**POSTNodesQemuMonitorRB**](POSTNodesQemuMonitorRB.md)| Execute QEMU monitor commands. | [optional] 
 
 ### Return type
@@ -10351,6 +11845,8 @@ No authorization required
 <a name="New-PVENodesQemuMovediskByNodeAndVmid"></a>
 # **New-PVENodesQemuMovediskByNodeAndVmid**
 > void New-PVENodesQemuMovediskByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuMovediskRB] <PSCustomObject><br>
 
 Move volume to different storage or to a different VM.
@@ -10359,11 +11855,13 @@ Move volume to different storage or to a different VM.
 
 ### Example
 ```powershell
-$POSTNodesQemuMovediskRB = Initialize-POSTNodesQemuMovediskRB -TargetDisk "ide0" -Delete 0 -Digest "MyDigest" -Node "MyNode" -TargetDigest "MyTargetDigest" -Bwlimit 0 -TargetVmid 0 -Disk "ide0" -Storage "MyStorage" -Vmid 0 -Format "raw" # POSTNodesQemuMovediskRB | Move volume to different storage or to a different VM. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuMovediskRB = Initialize-POSTNodesQemuMovediskRB -TargetDisk "ide0" -Format "raw" -Node "MyNode" -Bwlimit 0 -Delete 0 -Vmid 0 -Storage "MyStorage" -TargetVmid 0 -Digest "MyDigest" -Disk "ide0" -TargetDigest "MyTargetDigest" # POSTNodesQemuMovediskRB | Move volume to different storage or to a different VM. (optional)
 
 # Move volume to different storage or to a different VM.
 try {
-    $Result = New-PVENodesQemuMovediskByNodeAndVmid -POSTNodesQemuMovediskRB $POSTNodesQemuMovediskRB
+    $Result = New-PVENodesQemuMovediskByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuMovediskRB $POSTNodesQemuMovediskRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuMovediskByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10374,6 +11872,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuMovediskRB** | [**POSTNodesQemuMovediskRB**](POSTNodesQemuMovediskRB.md)| Move volume to different storage or to a different VM. | [optional] 
 
 ### Return type
@@ -10394,6 +11894,8 @@ No authorization required
 <a name="New-PVENodesQemuMtunnelByNodeAndVmid"></a>
 # **New-PVENodesQemuMtunnelByNodeAndVmid**
 > void New-PVENodesQemuMtunnelByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuMtunnelRB] <PSCustomObject><br>
 
 Migration tunnel endpoint - only for internal use by VM migration.
@@ -10402,11 +11904,13 @@ Migration tunnel endpoint - only for internal use by VM migration.
 
 ### Example
 ```powershell
-$POSTNodesQemuMtunnelRB = Initialize-POSTNodesQemuMtunnelRB -Node "MyNode" -Bridges "MyBridges" -Vmid 0 -Storages "MyStorages" # POSTNodesQemuMtunnelRB | Migration tunnel endpoint - only for internal use by VM migration. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuMtunnelRB = Initialize-POSTNodesQemuMtunnelRB -Storages "MyStorages" -Node "MyNode" -Bridges "MyBridges" -Vmid 0 # POSTNodesQemuMtunnelRB | Migration tunnel endpoint - only for internal use by VM migration. (optional)
 
 # Migration tunnel endpoint - only for internal use by VM migration.
 try {
-    $Result = New-PVENodesQemuMtunnelByNodeAndVmid -POSTNodesQemuMtunnelRB $POSTNodesQemuMtunnelRB
+    $Result = New-PVENodesQemuMtunnelByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuMtunnelRB $POSTNodesQemuMtunnelRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuMtunnelByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10417,6 +11921,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuMtunnelRB** | [**POSTNodesQemuMtunnelRB**](POSTNodesQemuMtunnelRB.md)| Migration tunnel endpoint - only for internal use by VM migration. | [optional] 
 
 ### Return type
@@ -10437,6 +11943,8 @@ No authorization required
 <a name="New-PVENodesQemuRemotemigrateByNodeAndVmid"></a>
 # **New-PVENodesQemuRemotemigrateByNodeAndVmid**
 > void New-PVENodesQemuRemotemigrateByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuRemotemigrateRB] <PSCustomObject><br>
 
 Migrate virtual machine to a remote cluster. Creates a new migration task. EXPERIMENTAL feature!
@@ -10445,11 +11953,13 @@ Migrate virtual machine to a remote cluster. Creates a new migration task. EXPER
 
 ### Example
 ```powershell
-$POSTNodesQemuRemotemigrateRB = Initialize-POSTNodesQemuRemotemigrateRB -Vmid 0 -Node "MyNode" -Delete 0 -TargetBridge "MyTargetBridge" -Bwlimit 0 -TargetVmid 0 -TargetStorage "MyTargetStorage" -Online 0 -TargetEndpoint "MyTargetEndpoint" # POSTNodesQemuRemotemigrateRB | Migrate virtual machine to a remote cluster. Creates a new migration task. EXPERIMENTAL feature! (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuRemotemigrateRB = Initialize-POSTNodesQemuRemotemigrateRB -TargetEndpoint "MyTargetEndpoint" -Node "MyNode" -Bwlimit 0 -Delete 0 -Vmid 0 -TargetStorage "MyTargetStorage" -TargetVmid 0 -TargetBridge "MyTargetBridge" -Online 0 # POSTNodesQemuRemotemigrateRB | Migrate virtual machine to a remote cluster. Creates a new migration task. EXPERIMENTAL feature! (optional)
 
 # Migrate virtual machine to a remote cluster. Creates a new migration task. EXPERIMENTAL feature!
 try {
-    $Result = New-PVENodesQemuRemotemigrateByNodeAndVmid -POSTNodesQemuRemotemigrateRB $POSTNodesQemuRemotemigrateRB
+    $Result = New-PVENodesQemuRemotemigrateByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuRemotemigrateRB $POSTNodesQemuRemotemigrateRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuRemotemigrateByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10460,6 +11970,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuRemotemigrateRB** | [**POSTNodesQemuRemotemigrateRB**](POSTNodesQemuRemotemigrateRB.md)| Migrate virtual machine to a remote cluster. Creates a new migration task. EXPERIMENTAL feature! | [optional] 
 
 ### Return type
@@ -10480,6 +11992,8 @@ No authorization required
 <a name="New-PVENodesQemuSnapshotByNodeAndVmid"></a>
 # **New-PVENodesQemuSnapshotByNodeAndVmid**
 > void New-PVENodesQemuSnapshotByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuSnapshotRB] <PSCustomObject><br>
 
 Snapshot a VM.
@@ -10488,11 +12002,13 @@ Snapshot a VM.
 
 ### Example
 ```powershell
-$POSTNodesQemuSnapshotRB = Initialize-POSTNodesQemuSnapshotRB -Node "MyNode" -Description "MyDescription" -Vmstate 0 -Snapname "MySnapname" -Vmid 0 # POSTNodesQemuSnapshotRB | Snapshot a VM. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuSnapshotRB = Initialize-POSTNodesQemuSnapshotRB -Snapname "MySnapname" -Vmstate 0 -Node "MyNode" -Vmid 0 -Description "MyDescription" # POSTNodesQemuSnapshotRB | Snapshot a VM. (optional)
 
 # Snapshot a VM.
 try {
-    $Result = New-PVENodesQemuSnapshotByNodeAndVmid -POSTNodesQemuSnapshotRB $POSTNodesQemuSnapshotRB
+    $Result = New-PVENodesQemuSnapshotByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuSnapshotRB $POSTNodesQemuSnapshotRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuSnapshotByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10503,6 +12019,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuSnapshotRB** | [**POSTNodesQemuSnapshotRB**](POSTNodesQemuSnapshotRB.md)| Snapshot a VM. | [optional] 
 
 ### Return type
@@ -10523,6 +12041,9 @@ No authorization required
 <a name="New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname"></a>
 # **New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname**
 > void New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Snapname] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuSnapshotRollbackRB] <PSCustomObject><br>
 
 Rollback VM state to specified snapshot.
@@ -10531,11 +12052,14 @@ Rollback VM state to specified snapshot.
 
 ### Example
 ```powershell
-$POSTNodesQemuSnapshotRollbackRB = Initialize-POSTNodesQemuSnapshotRollbackRB -Node "MyNode" -Vmid 0 -Snapname "MySnapname" -Start 0 # POSTNodesQemuSnapshotRollbackRB | Rollback VM state to specified snapshot. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Snapname = "MySnapname" # String | The name of the snapshot.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuSnapshotRollbackRB = Initialize-POSTNodesQemuSnapshotRollbackRB -Snapname "MySnapname" -Start 0 -Node "MyNode" -Vmid 0 # POSTNodesQemuSnapshotRollbackRB | Rollback VM state to specified snapshot. (optional)
 
 # Rollback VM state to specified snapshot.
 try {
-    $Result = New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname -POSTNodesQemuSnapshotRollbackRB $POSTNodesQemuSnapshotRollbackRB
+    $Result = New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname -Node $Node -Snapname $Snapname -Vmid $Vmid -POSTNodesQemuSnapshotRollbackRB $POSTNodesQemuSnapshotRollbackRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuSnapshotRollbackByNodeAndVmidAndSnapname: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10546,6 +12070,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Snapname** | **String**| The name of the snapshot. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuSnapshotRollbackRB** | [**POSTNodesQemuSnapshotRollbackRB**](POSTNodesQemuSnapshotRollbackRB.md)| Rollback VM state to specified snapshot. | [optional] 
 
 ### Return type
@@ -10566,6 +12093,8 @@ No authorization required
 <a name="New-PVENodesQemuSpiceproxyByNodeAndVmid"></a>
 # **New-PVENodesQemuSpiceproxyByNodeAndVmid**
 > void New-PVENodesQemuSpiceproxyByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuSpiceproxyRB] <PSCustomObject><br>
 
 Returns a SPICE configuration to connect to the VM.
@@ -10574,11 +12103,13 @@ Returns a SPICE configuration to connect to the VM.
 
 ### Example
 ```powershell
-$POSTNodesQemuSpiceproxyRB = Initialize-POSTNodesQemuSpiceproxyRB -Node "MyNode" -Proxy "MyProxy" -Vmid 0 # POSTNodesQemuSpiceproxyRB | Returns a SPICE configuration to connect to the VM. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuSpiceproxyRB = Initialize-POSTNodesQemuSpiceproxyRB -Node "MyNode" -Vmid 0 -Proxy "MyProxy" # POSTNodesQemuSpiceproxyRB | Returns a SPICE configuration to connect to the VM. (optional)
 
 # Returns a SPICE configuration to connect to the VM.
 try {
-    $Result = New-PVENodesQemuSpiceproxyByNodeAndVmid -POSTNodesQemuSpiceproxyRB $POSTNodesQemuSpiceproxyRB
+    $Result = New-PVENodesQemuSpiceproxyByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuSpiceproxyRB $POSTNodesQemuSpiceproxyRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuSpiceproxyByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10589,6 +12120,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuSpiceproxyRB** | [**POSTNodesQemuSpiceproxyRB**](POSTNodesQemuSpiceproxyRB.md)| Returns a SPICE configuration to connect to the VM. | [optional] 
 
 ### Return type
@@ -10609,6 +12142,8 @@ No authorization required
 <a name="New-PVENodesQemuStatusRebootByNodeAndVmid"></a>
 # **New-PVENodesQemuStatusRebootByNodeAndVmid**
 > void New-PVENodesQemuStatusRebootByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuStatusRebootRB] <PSCustomObject><br>
 
 Reboot the VM by shutting it down, and starting it again. Applies pending changes.
@@ -10617,11 +12152,13 @@ Reboot the VM by shutting it down, and starting it again. Applies pending change
 
 ### Example
 ```powershell
-$POSTNodesQemuStatusRebootRB = Initialize-POSTNodesQemuStatusRebootRB -Node "MyNode" -Timeout 0 -Vmid 0 # POSTNodesQemuStatusRebootRB | Reboot the VM by shutting it down, and starting it again. Applies pending changes. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuStatusRebootRB = Initialize-POSTNodesQemuStatusRebootRB -Node "MyNode" -Vmid 0 -Timeout 0 # POSTNodesQemuStatusRebootRB | Reboot the VM by shutting it down, and starting it again. Applies pending changes. (optional)
 
 # Reboot the VM by shutting it down, and starting it again. Applies pending changes.
 try {
-    $Result = New-PVENodesQemuStatusRebootByNodeAndVmid -POSTNodesQemuStatusRebootRB $POSTNodesQemuStatusRebootRB
+    $Result = New-PVENodesQemuStatusRebootByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuStatusRebootRB $POSTNodesQemuStatusRebootRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuStatusRebootByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10632,6 +12169,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuStatusRebootRB** | [**POSTNodesQemuStatusRebootRB**](POSTNodesQemuStatusRebootRB.md)| Reboot the VM by shutting it down, and starting it again. Applies pending changes. | [optional] 
 
 ### Return type
@@ -10652,6 +12191,8 @@ No authorization required
 <a name="New-PVENodesQemuStatusResetByNodeAndVmid"></a>
 # **New-PVENodesQemuStatusResetByNodeAndVmid**
 > void New-PVENodesQemuStatusResetByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuStatusResetRB] <PSCustomObject><br>
 
 Reset virtual machine.
@@ -10660,11 +12201,13 @@ Reset virtual machine.
 
 ### Example
 ```powershell
-$POSTNodesQemuStatusResetRB = Initialize-POSTNodesQemuStatusResetRB -Node "MyNode" -Skiplock 0 -Vmid 0 # POSTNodesQemuStatusResetRB | Reset virtual machine. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuStatusResetRB = Initialize-POSTNodesQemuStatusResetRB -Node "MyNode" -Vmid 0 -Skiplock 0 # POSTNodesQemuStatusResetRB | Reset virtual machine. (optional)
 
 # Reset virtual machine.
 try {
-    $Result = New-PVENodesQemuStatusResetByNodeAndVmid -POSTNodesQemuStatusResetRB $POSTNodesQemuStatusResetRB
+    $Result = New-PVENodesQemuStatusResetByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuStatusResetRB $POSTNodesQemuStatusResetRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuStatusResetByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10675,6 +12218,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuStatusResetRB** | [**POSTNodesQemuStatusResetRB**](POSTNodesQemuStatusResetRB.md)| Reset virtual machine. | [optional] 
 
 ### Return type
@@ -10695,6 +12240,8 @@ No authorization required
 <a name="New-PVENodesQemuStatusResumeByNodeAndVmid"></a>
 # **New-PVENodesQemuStatusResumeByNodeAndVmid**
 > void New-PVENodesQemuStatusResumeByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuStatusResumeRB] <PSCustomObject><br>
 
 Resume virtual machine.
@@ -10703,11 +12250,13 @@ Resume virtual machine.
 
 ### Example
 ```powershell
-$POSTNodesQemuStatusResumeRB = Initialize-POSTNodesQemuStatusResumeRB -Node "MyNode" -Skiplock 0 -Nocheck 0 -Vmid 0 # POSTNodesQemuStatusResumeRB | Resume virtual machine. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuStatusResumeRB = Initialize-POSTNodesQemuStatusResumeRB -Nocheck 0 -Node "MyNode" -Vmid 0 -Skiplock 0 # POSTNodesQemuStatusResumeRB | Resume virtual machine. (optional)
 
 # Resume virtual machine.
 try {
-    $Result = New-PVENodesQemuStatusResumeByNodeAndVmid -POSTNodesQemuStatusResumeRB $POSTNodesQemuStatusResumeRB
+    $Result = New-PVENodesQemuStatusResumeByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuStatusResumeRB $POSTNodesQemuStatusResumeRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuStatusResumeByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10718,6 +12267,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuStatusResumeRB** | [**POSTNodesQemuStatusResumeRB**](POSTNodesQemuStatusResumeRB.md)| Resume virtual machine. | [optional] 
 
 ### Return type
@@ -10738,6 +12289,8 @@ No authorization required
 <a name="New-PVENodesQemuStatusShutdownByNodeAndVmid"></a>
 # **New-PVENodesQemuStatusShutdownByNodeAndVmid**
 > void New-PVENodesQemuStatusShutdownByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuStatusShutdownRB] <PSCustomObject><br>
 
 Shutdown virtual machine. This is similar to pressing the power button on a physical machine. This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
@@ -10746,11 +12299,13 @@ Shutdown virtual machine. This is similar to pressing the power button on a phys
 
 ### Example
 ```powershell
-$POSTNodesQemuStatusShutdownRB = Initialize-POSTNodesQemuStatusShutdownRB -ForceStop 0 -Vmid 0 -Skiplock 0 -KeepActive 0 -Node "MyNode" -Timeout 0 # POSTNodesQemuStatusShutdownRB | Shutdown virtual machine. This is similar to pressing the power button on a physical machine. This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuStatusShutdownRB = Initialize-POSTNodesQemuStatusShutdownRB -ForceStop 0 -Node "MyNode" -Skiplock 0 -Vmid 0 -KeepActive 0 -Timeout 0 # POSTNodesQemuStatusShutdownRB | Shutdown virtual machine. This is similar to pressing the power button on a physical machine. This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown. (optional)
 
 # Shutdown virtual machine. This is similar to pressing the power button on a physical machine. This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
 try {
-    $Result = New-PVENodesQemuStatusShutdownByNodeAndVmid -POSTNodesQemuStatusShutdownRB $POSTNodesQemuStatusShutdownRB
+    $Result = New-PVENodesQemuStatusShutdownByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuStatusShutdownRB $POSTNodesQemuStatusShutdownRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuStatusShutdownByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10761,6 +12316,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuStatusShutdownRB** | [**POSTNodesQemuStatusShutdownRB**](POSTNodesQemuStatusShutdownRB.md)| Shutdown virtual machine. This is similar to pressing the power button on a physical machine. This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown. | [optional] 
 
 ### Return type
@@ -10781,6 +12338,8 @@ No authorization required
 <a name="New-PVENodesQemuStatusStartByNodeAndVmid"></a>
 # **New-PVENodesQemuStatusStartByNodeAndVmid**
 > void New-PVENodesQemuStatusStartByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuStatusStartRB] <PSCustomObject><br>
 
 Start virtual machine.
@@ -10789,11 +12348,13 @@ Start virtual machine.
 
 ### Example
 ```powershell
-$POSTNodesQemuStatusStartRB = Initialize-POSTNodesQemuStatusStartRB -Timeout 0 -ForceCpu "MyForceCpu" -Migratedfrom "MyMigratedfrom" -MigrationType "secure" -Node "MyNode" -Skiplock 0 -Stateuri "MyStateuri" -Targetstorage "MyTargetstorage" -MigrationNetwork "MyMigrationNetwork" -Vmid 0 -Machine "MyMachine" # POSTNodesQemuStatusStartRB | Start virtual machine. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuStatusStartRB = Initialize-POSTNodesQemuStatusStartRB -MigrationType "secure" -Timeout 0 -Targetstorage "MyTargetstorage" -Node "MyNode" -Vmid 0 -Migratedfrom "MyMigratedfrom" -Stateuri "MyStateuri" -ForceCpu "MyForceCpu" -Machine "MyMachine" -MigrationNetwork "MyMigrationNetwork" -Skiplock 0 # POSTNodesQemuStatusStartRB | Start virtual machine. (optional)
 
 # Start virtual machine.
 try {
-    $Result = New-PVENodesQemuStatusStartByNodeAndVmid -POSTNodesQemuStatusStartRB $POSTNodesQemuStatusStartRB
+    $Result = New-PVENodesQemuStatusStartByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuStatusStartRB $POSTNodesQemuStatusStartRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuStatusStartByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10804,6 +12365,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuStatusStartRB** | [**POSTNodesQemuStatusStartRB**](POSTNodesQemuStatusStartRB.md)| Start virtual machine. | [optional] 
 
 ### Return type
@@ -10824,6 +12387,8 @@ No authorization required
 <a name="New-PVENodesQemuStatusStopByNodeAndVmid"></a>
 # **New-PVENodesQemuStatusStopByNodeAndVmid**
 > void New-PVENodesQemuStatusStopByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuStatusStopRB] <PSCustomObject><br>
 
 Stop virtual machine. The qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data.
@@ -10832,11 +12397,13 @@ Stop virtual machine. The qemu process will exit immediately. This is akin to pu
 
 ### Example
 ```powershell
-$POSTNodesQemuStatusStopRB = Initialize-POSTNodesQemuStatusStopRB -Timeout 0 -Vmid 0 -Migratedfrom "MyMigratedfrom" -Skiplock 0 -Node "MyNode" -OverruleShutdown 0 -KeepActive 0 # POSTNodesQemuStatusStopRB | Stop virtual machine. The qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuStatusStopRB = Initialize-POSTNodesQemuStatusStopRB -Node "MyNode" -Skiplock 0 -Vmid 0 -KeepActive 0 -OverruleShutdown 0 -Timeout 0 -Migratedfrom "MyMigratedfrom" # POSTNodesQemuStatusStopRB | Stop virtual machine. The qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data. (optional)
 
 # Stop virtual machine. The qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data.
 try {
-    $Result = New-PVENodesQemuStatusStopByNodeAndVmid -POSTNodesQemuStatusStopRB $POSTNodesQemuStatusStopRB
+    $Result = New-PVENodesQemuStatusStopByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuStatusStopRB $POSTNodesQemuStatusStopRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuStatusStopByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10847,6 +12414,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuStatusStopRB** | [**POSTNodesQemuStatusStopRB**](POSTNodesQemuStatusStopRB.md)| Stop virtual machine. The qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data. | [optional] 
 
 ### Return type
@@ -10867,6 +12436,8 @@ No authorization required
 <a name="New-PVENodesQemuStatusSuspendByNodeAndVmid"></a>
 # **New-PVENodesQemuStatusSuspendByNodeAndVmid**
 > void New-PVENodesQemuStatusSuspendByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuStatusSuspendRB] <PSCustomObject><br>
 
 Suspend virtual machine.
@@ -10875,11 +12446,13 @@ Suspend virtual machine.
 
 ### Example
 ```powershell
-$POSTNodesQemuStatusSuspendRB = Initialize-POSTNodesQemuStatusSuspendRB -Node "MyNode" -Statestorage "MyStatestorage" -Todisk 0 -Skiplock 0 -Vmid 0 # POSTNodesQemuStatusSuspendRB | Suspend virtual machine. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuStatusSuspendRB = Initialize-POSTNodesQemuStatusSuspendRB -Todisk 0 -Node "MyNode" -Vmid 0 -Skiplock 0 -Statestorage "MyStatestorage" # POSTNodesQemuStatusSuspendRB | Suspend virtual machine. (optional)
 
 # Suspend virtual machine.
 try {
-    $Result = New-PVENodesQemuStatusSuspendByNodeAndVmid -POSTNodesQemuStatusSuspendRB $POSTNodesQemuStatusSuspendRB
+    $Result = New-PVENodesQemuStatusSuspendByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuStatusSuspendRB $POSTNodesQemuStatusSuspendRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuStatusSuspendByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10890,6 +12463,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuStatusSuspendRB** | [**POSTNodesQemuStatusSuspendRB**](POSTNodesQemuStatusSuspendRB.md)| Suspend virtual machine. | [optional] 
 
 ### Return type
@@ -10910,6 +12485,8 @@ No authorization required
 <a name="New-PVENodesQemuTemplateByNodeAndVmid"></a>
 # **New-PVENodesQemuTemplateByNodeAndVmid**
 > void New-PVENodesQemuTemplateByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuTemplateRB] <PSCustomObject><br>
 
 Create a Template.
@@ -10918,11 +12495,13 @@ Create a Template.
 
 ### Example
 ```powershell
-$POSTNodesQemuTemplateRB = Initialize-POSTNodesQemuTemplateRB -Node "MyNode" -Disk "ide0" -Vmid 0 # POSTNodesQemuTemplateRB | Create a Template. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuTemplateRB = Initialize-POSTNodesQemuTemplateRB -Disk "ide0" -Node "MyNode" -Vmid 0 # POSTNodesQemuTemplateRB | Create a Template. (optional)
 
 # Create a Template.
 try {
-    $Result = New-PVENodesQemuTemplateByNodeAndVmid -POSTNodesQemuTemplateRB $POSTNodesQemuTemplateRB
+    $Result = New-PVENodesQemuTemplateByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuTemplateRB $POSTNodesQemuTemplateRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuTemplateByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10933,6 +12512,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuTemplateRB** | [**POSTNodesQemuTemplateRB**](POSTNodesQemuTemplateRB.md)| Create a Template. | [optional] 
 
 ### Return type
@@ -10953,6 +12534,8 @@ No authorization required
 <a name="New-PVENodesQemuTermproxyByNodeAndVmid"></a>
 # **New-PVENodesQemuTermproxyByNodeAndVmid**
 > void New-PVENodesQemuTermproxyByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuTermproxyRB] <PSCustomObject><br>
 
 Creates a TCP proxy connections.
@@ -10961,11 +12544,13 @@ Creates a TCP proxy connections.
 
 ### Example
 ```powershell
-$POSTNodesQemuTermproxyRB = Initialize-POSTNodesQemuTermproxyRB -Node "MyNode" -Serial "serial0" -Vmid 0 # POSTNodesQemuTermproxyRB | Creates a TCP proxy connections. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuTermproxyRB = Initialize-POSTNodesQemuTermproxyRB -Node "MyNode" -Vmid 0 -Serial "serial0" # POSTNodesQemuTermproxyRB | Creates a TCP proxy connections. (optional)
 
 # Creates a TCP proxy connections.
 try {
-    $Result = New-PVENodesQemuTermproxyByNodeAndVmid -POSTNodesQemuTermproxyRB $POSTNodesQemuTermproxyRB
+    $Result = New-PVENodesQemuTermproxyByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuTermproxyRB $POSTNodesQemuTermproxyRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuTermproxyByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -10976,6 +12561,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuTermproxyRB** | [**POSTNodesQemuTermproxyRB**](POSTNodesQemuTermproxyRB.md)| Creates a TCP proxy connections. | [optional] 
 
 ### Return type
@@ -10996,6 +12583,8 @@ No authorization required
 <a name="New-PVENodesQemuVncproxyByNodeAndVmid"></a>
 # **New-PVENodesQemuVncproxyByNodeAndVmid**
 > void New-PVENodesQemuVncproxyByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesQemuVncproxyRB] <PSCustomObject><br>
 
 Creates a TCP VNC proxy connections.
@@ -11004,11 +12593,13 @@ Creates a TCP VNC proxy connections.
 
 ### Example
 ```powershell
-$POSTNodesQemuVncproxyRB = Initialize-POSTNodesQemuVncproxyRB -Node "MyNode" -Websocket 0 -GeneratePassword 0 -Vmid 0 # POSTNodesQemuVncproxyRB | Creates a TCP VNC proxy connections. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$POSTNodesQemuVncproxyRB = Initialize-POSTNodesQemuVncproxyRB -Node "MyNode" -Websocket 0 -Vmid 0 -GeneratePassword 0 # POSTNodesQemuVncproxyRB | Creates a TCP VNC proxy connections. (optional)
 
 # Creates a TCP VNC proxy connections.
 try {
-    $Result = New-PVENodesQemuVncproxyByNodeAndVmid -POSTNodesQemuVncproxyRB $POSTNodesQemuVncproxyRB
+    $Result = New-PVENodesQemuVncproxyByNodeAndVmid -Node $Node -Vmid $Vmid -POSTNodesQemuVncproxyRB $POSTNodesQemuVncproxyRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesQemuVncproxyByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11019,6 +12610,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **POSTNodesQemuVncproxyRB** | [**POSTNodesQemuVncproxyRB**](POSTNodesQemuVncproxyRB.md)| Creates a TCP VNC proxy connections. | [optional] 
 
 ### Return type
@@ -11039,6 +12632,8 @@ No authorization required
 <a name="New-PVENodesReplicationSchedulenowByNodeAndId"></a>
 # **New-PVENodesReplicationSchedulenowByNodeAndId**
 > void New-PVENodesReplicationSchedulenowByNodeAndId<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Schedule replication job to start as soon as possible.
 
@@ -11046,10 +12641,12 @@ Schedule replication job to start as soon as possible.
 
 ### Example
 ```powershell
+$Id = "MyId" # String | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
+$Node = "MyNode" # String | The cluster node name.
 
 # Schedule replication job to start as soon as possible.
 try {
-    $Result = New-PVENodesReplicationSchedulenowByNodeAndId
+    $Result = New-PVENodesReplicationSchedulenowByNodeAndId -Id $Id -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesReplicationSchedulenowByNodeAndId: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11057,7 +12654,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Id** | **String**| Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. &#39;&lt;GUEST&gt;-&lt;JOBNUM&gt;&#39;. | 
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -11077,6 +12678,8 @@ No authorization required
 <a name="New-PVENodesServicesReloadByNodeAndService"></a>
 # **New-PVENodesServicesReloadByNodeAndService**
 > void New-PVENodesServicesReloadByNodeAndService<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Service] <String><br>
 
 Reload service. Falls back to restart if service cannot be reloaded.
 
@@ -11084,10 +12687,12 @@ Reload service. Falls back to restart if service cannot be reloaded.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Service = "MyService" # String | Service ID
 
 # Reload service. Falls back to restart if service cannot be reloaded.
 try {
-    $Result = New-PVENodesServicesReloadByNodeAndService
+    $Result = New-PVENodesServicesReloadByNodeAndService -Node $Node -Service $Service
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesServicesReloadByNodeAndService: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11095,7 +12700,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Service** | **String**| Service ID | 
 
 ### Return type
 
@@ -11115,6 +12724,8 @@ No authorization required
 <a name="New-PVENodesServicesRestartByNodeAndService"></a>
 # **New-PVENodesServicesRestartByNodeAndService**
 > void New-PVENodesServicesRestartByNodeAndService<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Service] <String><br>
 
 Hard restart service. Use reload if you want to reduce interruptions.
 
@@ -11122,10 +12733,12 @@ Hard restart service. Use reload if you want to reduce interruptions.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Service = "MyService" # String | Service ID
 
 # Hard restart service. Use reload if you want to reduce interruptions.
 try {
-    $Result = New-PVENodesServicesRestartByNodeAndService
+    $Result = New-PVENodesServicesRestartByNodeAndService -Node $Node -Service $Service
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesServicesRestartByNodeAndService: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11133,7 +12746,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Service** | **String**| Service ID | 
 
 ### Return type
 
@@ -11153,6 +12770,8 @@ No authorization required
 <a name="New-PVENodesServicesStartByNodeAndService"></a>
 # **New-PVENodesServicesStartByNodeAndService**
 > void New-PVENodesServicesStartByNodeAndService<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Service] <String><br>
 
 Start service.
 
@@ -11160,10 +12779,12 @@ Start service.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Service = "MyService" # String | Service ID
 
 # Start service.
 try {
-    $Result = New-PVENodesServicesStartByNodeAndService
+    $Result = New-PVENodesServicesStartByNodeAndService -Node $Node -Service $Service
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesServicesStartByNodeAndService: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11171,7 +12792,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Service** | **String**| Service ID | 
 
 ### Return type
 
@@ -11191,6 +12816,8 @@ No authorization required
 <a name="New-PVENodesServicesStopByNodeAndService"></a>
 # **New-PVENodesServicesStopByNodeAndService**
 > void New-PVENodesServicesStopByNodeAndService<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Service] <String><br>
 
 Stop service.
 
@@ -11198,10 +12825,12 @@ Stop service.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Service = "MyService" # String | Service ID
 
 # Stop service.
 try {
-    $Result = New-PVENodesServicesStopByNodeAndService
+    $Result = New-PVENodesServicesStopByNodeAndService -Node $Node -Service $Service
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesServicesStopByNodeAndService: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11209,7 +12838,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Service** | **String**| Service ID | 
 
 ### Return type
 
@@ -11229,6 +12862,7 @@ No authorization required
 <a name="New-PVENodesSpiceshellByNode"></a>
 # **New-PVENodesSpiceshellByNode**
 > void New-PVENodesSpiceshellByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesSpiceshellRB] <PSCustomObject><br>
 
 Creates a SPICE shell.
@@ -11237,11 +12871,12 @@ Creates a SPICE shell.
 
 ### Example
 ```powershell
-$POSTNodesSpiceshellRB = Initialize-POSTNodesSpiceshellRB -Node "MyNode" -Cmd "upgrade" -Proxy "MyProxy" -CmdOpts "MyCmdOpts" # POSTNodesSpiceshellRB | Creates a SPICE shell. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesSpiceshellRB = Initialize-POSTNodesSpiceshellRB -CmdOpts "MyCmdOpts" -Node "MyNode" -Cmd "upgrade" -Proxy "MyProxy" # POSTNodesSpiceshellRB | Creates a SPICE shell. (optional)
 
 # Creates a SPICE shell.
 try {
-    $Result = New-PVENodesSpiceshellByNode -POSTNodesSpiceshellRB $POSTNodesSpiceshellRB
+    $Result = New-PVENodesSpiceshellByNode -Node $Node -POSTNodesSpiceshellRB $POSTNodesSpiceshellRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesSpiceshellByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11252,6 +12887,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesSpiceshellRB** | [**POSTNodesSpiceshellRB**](POSTNodesSpiceshellRB.md)| Creates a SPICE shell. | [optional] 
 
 ### Return type
@@ -11272,6 +12908,7 @@ No authorization required
 <a name="New-PVENodesStartallByNode"></a>
 # **New-PVENodesStartallByNode**
 > void New-PVENodesStartallByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesStartallRB] <PSCustomObject><br>
 
 Start all VMs and containers located on this node (by default only those with onboot=1).
@@ -11280,11 +12917,12 @@ Start all VMs and containers located on this node (by default only those with on
 
 ### Example
 ```powershell
-$POSTNodesStartallRB = Initialize-POSTNodesStartallRB -Node "MyNode" -Force 0 -Vms "MyVms" # POSTNodesStartallRB | Start all VMs and containers located on this node (by default only those with onboot=1). (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesStartallRB = Initialize-POSTNodesStartallRB -Force 0 -Vms "MyVms" -Node "MyNode" # POSTNodesStartallRB | Start all VMs and containers located on this node (by default only those with onboot=1). (optional)
 
 # Start all VMs and containers located on this node (by default only those with onboot=1).
 try {
-    $Result = New-PVENodesStartallByNode -POSTNodesStartallRB $POSTNodesStartallRB
+    $Result = New-PVENodesStartallByNode -Node $Node -POSTNodesStartallRB $POSTNodesStartallRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesStartallByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11295,6 +12933,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesStartallRB** | [**POSTNodesStartallRB**](POSTNodesStartallRB.md)| Start all VMs and containers located on this node (by default only those with onboot&#x3D;1). | [optional] 
 
 ### Return type
@@ -11315,6 +12954,7 @@ No authorization required
 <a name="New-PVENodesStatusByNode"></a>
 # **New-PVENodesStatusByNode**
 > void New-PVENodesStatusByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesStatusRB] <PSCustomObject><br>
 
 Reboot or shutdown a node.
@@ -11323,11 +12963,12 @@ Reboot or shutdown a node.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $POSTNodesStatusRB = Initialize-POSTNodesStatusRB -Command "reboot" -Node "MyNode" # POSTNodesStatusRB | Reboot or shutdown a node. (optional)
 
 # Reboot or shutdown a node.
 try {
-    $Result = New-PVENodesStatusByNode -POSTNodesStatusRB $POSTNodesStatusRB
+    $Result = New-PVENodesStatusByNode -Node $Node -POSTNodesStatusRB $POSTNodesStatusRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesStatusByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11338,6 +12979,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesStatusRB** | [**POSTNodesStatusRB**](POSTNodesStatusRB.md)| Reboot or shutdown a node. | [optional] 
 
 ### Return type
@@ -11358,6 +13000,7 @@ No authorization required
 <a name="New-PVENodesStopallByNode"></a>
 # **New-PVENodesStopallByNode**
 > void New-PVENodesStopallByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesStopallRB] <PSCustomObject><br>
 
 Stop all VMs and Containers.
@@ -11366,11 +13009,12 @@ Stop all VMs and Containers.
 
 ### Example
 ```powershell
-$POSTNodesStopallRB = Initialize-POSTNodesStopallRB -Node "MyNode" -ForceStop 0 -Vms "MyVms" -Timeout 0 # POSTNodesStopallRB | Stop all VMs and Containers. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesStopallRB = Initialize-POSTNodesStopallRB -Vms "MyVms" -Node "MyNode" -ForceStop 0 -Timeout 0 # POSTNodesStopallRB | Stop all VMs and Containers. (optional)
 
 # Stop all VMs and Containers.
 try {
-    $Result = New-PVENodesStopallByNode -POSTNodesStopallRB $POSTNodesStopallRB
+    $Result = New-PVENodesStopallByNode -Node $Node -POSTNodesStopallRB $POSTNodesStopallRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesStopallByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11381,6 +13025,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesStopallRB** | [**POSTNodesStopallRB**](POSTNodesStopallRB.md)| Stop all VMs and Containers. | [optional] 
 
 ### Return type
@@ -11401,6 +13046,8 @@ No authorization required
 <a name="New-PVENodesStorageContentByNodeAndStorage"></a>
 # **New-PVENodesStorageContentByNodeAndStorage**
 > void New-PVENodesStorageContentByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesStorageContentRB] <PSCustomObject><br>
 
 Allocate disk images.
@@ -11409,11 +13056,13 @@ Allocate disk images.
 
 ### Example
 ```powershell
-$POSTNodesStorageContentRB = Initialize-POSTNodesStorageContentRB -Node "MyNode" -Volume "MyVolume" -TargetNode "MyTargetNode" -Storage "MyStorage" -Target "MyTarget" # POSTNodesStorageContentRB | Allocate disk images. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$POSTNodesStorageContentRB = Initialize-POSTNodesStorageContentRB -Storage "MyStorage" -TargetNode "MyTargetNode" -Node "MyNode" -Volume "MyVolume" -Target "MyTarget" # POSTNodesStorageContentRB | Allocate disk images. (optional)
 
 # Allocate disk images.
 try {
-    $Result = New-PVENodesStorageContentByNodeAndStorage -POSTNodesStorageContentRB $POSTNodesStorageContentRB
+    $Result = New-PVENodesStorageContentByNodeAndStorage -Node $Node -Storage $Storage -POSTNodesStorageContentRB $POSTNodesStorageContentRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesStorageContentByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11424,6 +13073,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
  **POSTNodesStorageContentRB** | [**POSTNodesStorageContentRB**](POSTNodesStorageContentRB.md)| Allocate disk images. | [optional] 
 
 ### Return type
@@ -11444,6 +13095,9 @@ No authorization required
 <a name="New-PVENodesStorageContentByNodeAndStorageAndVolume"></a>
 # **New-PVENodesStorageContentByNodeAndStorageAndVolume**
 > void New-PVENodesStorageContentByNodeAndStorageAndVolume<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Volume] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesStorageContentRB] <PSCustomObject><br>
 
 Copy a volume. This is experimental code - do not use.
@@ -11452,11 +13106,14 @@ Copy a volume. This is experimental code - do not use.
 
 ### Example
 ```powershell
-$POSTNodesStorageContentRB = Initialize-POSTNodesStorageContentRB -Node "MyNode" -Volume "MyVolume" -TargetNode "MyTargetNode" -Storage "MyStorage" -Target "MyTarget" # POSTNodesStorageContentRB | Copy a volume. This is experimental code - do not use. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$Volume = "MyVolume" # String | Source volume identifier
+$POSTNodesStorageContentRB = Initialize-POSTNodesStorageContentRB -Storage "MyStorage" -TargetNode "MyTargetNode" -Node "MyNode" -Volume "MyVolume" -Target "MyTarget" # POSTNodesStorageContentRB | Copy a volume. This is experimental code - do not use. (optional)
 
 # Copy a volume. This is experimental code - do not use.
 try {
-    $Result = New-PVENodesStorageContentByNodeAndStorageAndVolume -POSTNodesStorageContentRB $POSTNodesStorageContentRB
+    $Result = New-PVENodesStorageContentByNodeAndStorageAndVolume -Node $Node -Storage $Storage -Volume $Volume -POSTNodesStorageContentRB $POSTNodesStorageContentRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesStorageContentByNodeAndStorageAndVolume: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11467,6 +13124,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
+ **Volume** | **String**| Source volume identifier | 
  **POSTNodesStorageContentRB** | [**POSTNodesStorageContentRB**](POSTNodesStorageContentRB.md)| Copy a volume. This is experimental code - do not use. | [optional] 
 
 ### Return type
@@ -11487,6 +13147,8 @@ No authorization required
 <a name="New-PVENodesStorageDownloadurlByNodeAndStorage"></a>
 # **New-PVENodesStorageDownloadurlByNodeAndStorage**
 > void New-PVENodesStorageDownloadurlByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesStorageDownloadurlRB] <PSCustomObject><br>
 
 Download templates, ISO images and OVAs by using an URL.
@@ -11495,11 +13157,13 @@ Download templates, ISO images and OVAs by using an URL.
 
 ### Example
 ```powershell
-$POSTNodesStorageDownloadurlRB = Initialize-POSTNodesStorageDownloadurlRB -Node "MyNode" -Url "MyUrl" -Compression "MyCompression" -ChecksumAlgorithm "md5" -Content "iso" -Checksum "MyChecksum" -Storage "MyStorage" -Filename "MyFilename" -VerifyCertificates 0 # POSTNodesStorageDownloadurlRB | Download templates, ISO images and OVAs by using an URL. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$POSTNodesStorageDownloadurlRB = Initialize-POSTNodesStorageDownloadurlRB -Compression "MyCompression" -Node "MyNode" -VerifyCertificates 0 -Content "iso" -Filename "MyFilename" -Checksum "MyChecksum" -Storage "MyStorage" -ChecksumAlgorithm "md5" -Url "MyUrl" # POSTNodesStorageDownloadurlRB | Download templates, ISO images and OVAs by using an URL. (optional)
 
 # Download templates, ISO images and OVAs by using an URL.
 try {
-    $Result = New-PVENodesStorageDownloadurlByNodeAndStorage -POSTNodesStorageDownloadurlRB $POSTNodesStorageDownloadurlRB
+    $Result = New-PVENodesStorageDownloadurlByNodeAndStorage -Node $Node -Storage $Storage -POSTNodesStorageDownloadurlRB $POSTNodesStorageDownloadurlRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesStorageDownloadurlByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11510,6 +13174,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
  **POSTNodesStorageDownloadurlRB** | [**POSTNodesStorageDownloadurlRB**](POSTNodesStorageDownloadurlRB.md)| Download templates, ISO images and OVAs by using an URL. | [optional] 
 
 ### Return type
@@ -11530,6 +13196,8 @@ No authorization required
 <a name="New-PVENodesStorageUploadByNodeAndStorage"></a>
 # **New-PVENodesStorageUploadByNodeAndStorage**
 > void New-PVENodesStorageUploadByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesStorageUploadRB] <PSCustomObject><br>
 
 Upload templates, ISO images and OVAs.
@@ -11538,11 +13206,13 @@ Upload templates, ISO images and OVAs.
 
 ### Example
 ```powershell
-$POSTNodesStorageUploadRB = Initialize-POSTNodesStorageUploadRB -Tmpfilename "MyTmpfilename" -ChecksumAlgorithm "md5" -Node "MyNode" -Content "iso" -Checksum "MyChecksum" -Storage "MyStorage" -Filename "MyFilename" # POSTNodesStorageUploadRB | Upload templates, ISO images and OVAs. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$POSTNodesStorageUploadRB = Initialize-POSTNodesStorageUploadRB -Tmpfilename "MyTmpfilename" -Node "MyNode" -Content "iso" -Filename "MyFilename" -Checksum "MyChecksum" -Storage "MyStorage" -ChecksumAlgorithm "md5" # POSTNodesStorageUploadRB | Upload templates, ISO images and OVAs. (optional)
 
 # Upload templates, ISO images and OVAs.
 try {
-    $Result = New-PVENodesStorageUploadByNodeAndStorage -POSTNodesStorageUploadRB $POSTNodesStorageUploadRB
+    $Result = New-PVENodesStorageUploadByNodeAndStorage -Node $Node -Storage $Storage -POSTNodesStorageUploadRB $POSTNodesStorageUploadRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesStorageUploadByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11553,6 +13223,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
  **POSTNodesStorageUploadRB** | [**POSTNodesStorageUploadRB**](POSTNodesStorageUploadRB.md)| Upload templates, ISO images and OVAs. | [optional] 
 
 ### Return type
@@ -11573,6 +13245,7 @@ No authorization required
 <a name="New-PVENodesSubscriptionByNode"></a>
 # **New-PVENodesSubscriptionByNode**
 > void New-PVENodesSubscriptionByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesSubscriptionRB] <PSCustomObject><br>
 
 Update subscription info.
@@ -11581,11 +13254,12 @@ Update subscription info.
 
 ### Example
 ```powershell
-$POSTNodesSubscriptionRB = Initialize-POSTNodesSubscriptionRB -Force 0 -Node "MyNode" # POSTNodesSubscriptionRB | Update subscription info. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesSubscriptionRB = Initialize-POSTNodesSubscriptionRB -Node "MyNode" -Force 0 # POSTNodesSubscriptionRB | Update subscription info. (optional)
 
 # Update subscription info.
 try {
-    $Result = New-PVENodesSubscriptionByNode -POSTNodesSubscriptionRB $POSTNodesSubscriptionRB
+    $Result = New-PVENodesSubscriptionByNode -Node $Node -POSTNodesSubscriptionRB $POSTNodesSubscriptionRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesSubscriptionByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11596,6 +13270,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesSubscriptionRB** | [**POSTNodesSubscriptionRB**](POSTNodesSubscriptionRB.md)| Update subscription info. | [optional] 
 
 ### Return type
@@ -11616,6 +13291,7 @@ No authorization required
 <a name="New-PVENodesSuspendallByNode"></a>
 # **New-PVENodesSuspendallByNode**
 > void New-PVENodesSuspendallByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesSuspendallRB] <PSCustomObject><br>
 
 Suspend all VMs.
@@ -11624,11 +13300,12 @@ Suspend all VMs.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $POSTNodesSuspendallRB = Initialize-POSTNodesSuspendallRB -Vms "MyVms" -Node "MyNode" # POSTNodesSuspendallRB | Suspend all VMs. (optional)
 
 # Suspend all VMs.
 try {
-    $Result = New-PVENodesSuspendallByNode -POSTNodesSuspendallRB $POSTNodesSuspendallRB
+    $Result = New-PVENodesSuspendallByNode -Node $Node -POSTNodesSuspendallRB $POSTNodesSuspendallRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesSuspendallByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11639,6 +13316,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesSuspendallRB** | [**POSTNodesSuspendallRB**](POSTNodesSuspendallRB.md)| Suspend all VMs. | [optional] 
 
 ### Return type
@@ -11659,6 +13337,7 @@ No authorization required
 <a name="New-PVENodesTermproxyByNode"></a>
 # **New-PVENodesTermproxyByNode**
 > void New-PVENodesTermproxyByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesTermproxyRB] <PSCustomObject><br>
 
 Creates a VNC Shell proxy.
@@ -11667,11 +13346,12 @@ Creates a VNC Shell proxy.
 
 ### Example
 ```powershell
-$POSTNodesTermproxyRB = Initialize-POSTNodesTermproxyRB -Node "MyNode" -Cmd "upgrade" -CmdOpts "MyCmdOpts" # POSTNodesTermproxyRB | Creates a VNC Shell proxy. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesTermproxyRB = Initialize-POSTNodesTermproxyRB -CmdOpts "MyCmdOpts" -Node "MyNode" -Cmd "upgrade" # POSTNodesTermproxyRB | Creates a VNC Shell proxy. (optional)
 
 # Creates a VNC Shell proxy.
 try {
-    $Result = New-PVENodesTermproxyByNode -POSTNodesTermproxyRB $POSTNodesTermproxyRB
+    $Result = New-PVENodesTermproxyByNode -Node $Node -POSTNodesTermproxyRB $POSTNodesTermproxyRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesTermproxyByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11682,6 +13362,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesTermproxyRB** | [**POSTNodesTermproxyRB**](POSTNodesTermproxyRB.md)| Creates a VNC Shell proxy. | [optional] 
 
 ### Return type
@@ -11702,6 +13383,7 @@ No authorization required
 <a name="New-PVENodesVncshellByNode"></a>
 # **New-PVENodesVncshellByNode**
 > void New-PVENodesVncshellByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesVncshellRB] <PSCustomObject><br>
 
 Creates a VNC Shell proxy.
@@ -11710,11 +13392,12 @@ Creates a VNC Shell proxy.
 
 ### Example
 ```powershell
-$POSTNodesVncshellRB = Initialize-POSTNodesVncshellRB -Height 0 -Cmd "upgrade" -Node "MyNode" -Width 0 -Websocket 0 -CmdOpts "MyCmdOpts" # POSTNodesVncshellRB | Creates a VNC Shell proxy. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$POSTNodesVncshellRB = Initialize-POSTNodesVncshellRB -Cmd "upgrade" -Node "MyNode" -Websocket 0 -Width 0 -Height 0 -CmdOpts "MyCmdOpts" # POSTNodesVncshellRB | Creates a VNC Shell proxy. (optional)
 
 # Creates a VNC Shell proxy.
 try {
-    $Result = New-PVENodesVncshellByNode -POSTNodesVncshellRB $POSTNodesVncshellRB
+    $Result = New-PVENodesVncshellByNode -Node $Node -POSTNodesVncshellRB $POSTNodesVncshellRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesVncshellByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11725,6 +13408,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **POSTNodesVncshellRB** | [**POSTNodesVncshellRB**](POSTNodesVncshellRB.md)| Creates a VNC Shell proxy. | [optional] 
 
 ### Return type
@@ -11745,6 +13429,7 @@ No authorization required
 <a name="New-PVENodesVzdumpByNode"></a>
 # **New-PVENodesVzdumpByNode**
 > void New-PVENodesVzdumpByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTNodesVzdumpRB] <PSCustomObject><br>
 
 Create backup.
@@ -11753,11 +13438,12 @@ Create backup.
 
 ### Example
 ```powershell
-$POSTNodesVzdumpRB = Initialize-POSTNodesVzdumpRB -Stopwait 0 -Node "MyNode" -NotificationMode "auto" -PbsChangeDetectionMode "legacy" -Protected 0 -Lockwait 0 -Ionice 0 -NotificationTarget "MyNotificationTarget" -Exclude "MyExclude" -Dumpdir "MyDumpdir" -Fleecing "MyFleecing" -Pool "MyPool" -Compress "0" -All 0 -Remove 0 -Tmpdir "MyTmpdir" -Mailto "MyMailto" -Bwlimit 0 -Quiet 0 -Vmid "MyVmid" -Mailnotification "always" -Script "MyScript" -Stdexcludes 0 -Zstd 0 -PruneBackups "MyPruneBackups" -Stdout 0 -Storage "MyStorage" -Mode "snapshot" -NotesTemplate "MyNotesTemplate" -Performance "MyPerformance" -ExcludePath "MyExcludePath" -Stop 0 -Maxfiles 0 -Pigz 0 -NotificationPolicy "always" -JobId "MyJobId" # POSTNodesVzdumpRB | Create backup. (optional)
+$Node = "MyNode" # String | Only run if executed on this node.
+$POSTNodesVzdumpRB = Initialize-POSTNodesVzdumpRB -Tmpdir "MyTmpdir" -Mode "snapshot" -Protected 0 -NotificationMode "auto" -Maxfiles 0 -All 0 -NotificationTarget "MyNotificationTarget" -Mailto "MyMailto" -Ionice 0 -Stop 0 -Zstd 0 -Mailnotification "always" -Performance "MyPerformance" -Node "MyNode" -NotesTemplate "MyNotesTemplate" -JobId "MyJobId" -Fleecing "MyFleecing" -Dumpdir "MyDumpdir" -ExcludePath "MyExcludePath" -Remove 0 -Stdexcludes 0 -Pool "MyPool" -Quiet 0 -Storage "MyStorage" -PbsChangeDetectionMode "legacy" -Bwlimit 0 -Exclude "MyExclude" -PruneBackups "MyPruneBackups" -Script "MyScript" -Lockwait 0 -Compress "0" -Stdout 0 -Stopwait 0 -Vmid "MyVmid" -Pigz 0 -NotificationPolicy "always" # POSTNodesVzdumpRB | Create backup. (optional)
 
 # Create backup.
 try {
-    $Result = New-PVENodesVzdumpByNode -POSTNodesVzdumpRB $POSTNodesVzdumpRB
+    $Result = New-PVENodesVzdumpByNode -Node $Node -POSTNodesVzdumpRB $POSTNodesVzdumpRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesVzdumpByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11768,6 +13454,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| Only run if executed on this node. | 
  **POSTNodesVzdumpRB** | [**POSTNodesVzdumpRB**](POSTNodesVzdumpRB.md)| Create backup. | [optional] 
 
 ### Return type
@@ -11788,6 +13475,7 @@ No authorization required
 <a name="New-PVENodesWakeonlanByNode"></a>
 # **New-PVENodesWakeonlanByNode**
 > void New-PVENodesWakeonlanByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Try to wake a node via 'wake on LAN' network packet.
 
@@ -11795,10 +13483,11 @@ Try to wake a node via 'wake on LAN' network packet.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | target node for wake on LAN packet
 
 # Try to wake a node via 'wake on LAN' network packet.
 try {
-    $Result = New-PVENodesWakeonlanByNode
+    $Result = New-PVENodesWakeonlanByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling New-PVENodesWakeonlanByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11806,7 +13495,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| target node for wake on LAN packet | 
 
 ### Return type
 
@@ -11826,6 +13518,8 @@ No authorization required
 <a name="Remove-PVENodesCephMdsByNodeAndName"></a>
 # **Remove-PVENodesCephMdsByNodeAndName**
 > void Remove-PVENodesCephMdsByNodeAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Destroy Ceph Metadata Server
 
@@ -11833,10 +13527,12 @@ Destroy Ceph Metadata Server
 
 ### Example
 ```powershell
+$Name = "MyName" # String | The name (ID) of the mds
+$Node = "MyNode" # String | The cluster node name.
 
 # Destroy Ceph Metadata Server
 try {
-    $Result = Remove-PVENodesCephMdsByNodeAndName
+    $Result = Remove-PVENodesCephMdsByNodeAndName -Name $Name -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesCephMdsByNodeAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11844,7 +13540,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Name** | **String**| The name (ID) of the mds | 
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -11864,6 +13564,8 @@ No authorization required
 <a name="Remove-PVENodesCephMgrByNodeAndId"></a>
 # **Remove-PVENodesCephMgrByNodeAndId**
 > void Remove-PVENodesCephMgrByNodeAndId<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Destroy Ceph Manager.
 
@@ -11871,10 +13573,12 @@ Destroy Ceph Manager.
 
 ### Example
 ```powershell
+$Id = "MyId" # String | The ID of the manager
+$Node = "MyNode" # String | The cluster node name.
 
 # Destroy Ceph Manager.
 try {
-    $Result = Remove-PVENodesCephMgrByNodeAndId
+    $Result = Remove-PVENodesCephMgrByNodeAndId -Id $Id -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesCephMgrByNodeAndId: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11882,7 +13586,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Id** | **String**| The ID of the manager | 
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -11902,6 +13610,8 @@ No authorization required
 <a name="Remove-PVENodesCephMonByNodeAndMonid"></a>
 # **Remove-PVENodesCephMonByNodeAndMonid**
 > void Remove-PVENodesCephMonByNodeAndMonid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Monid] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Destroy Ceph Monitor and Manager.
 
@@ -11909,10 +13619,12 @@ Destroy Ceph Monitor and Manager.
 
 ### Example
 ```powershell
+$Monid = "MyMonid" # String | Monitor ID
+$Node = "MyNode" # String | The cluster node name.
 
 # Destroy Ceph Monitor and Manager.
 try {
-    $Result = Remove-PVENodesCephMonByNodeAndMonid
+    $Result = Remove-PVENodesCephMonByNodeAndMonid -Monid $Monid -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesCephMonByNodeAndMonid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11920,7 +13632,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Monid** | **String**| Monitor ID | 
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -11940,6 +13656,8 @@ No authorization required
 <a name="Remove-PVENodesCephOsdByNodeAndOsdid"></a>
 # **Remove-PVENodesCephOsdByNodeAndOsdid**
 > void Remove-PVENodesCephOsdByNodeAndOsdid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Osdid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesCephOsdRB] <PSCustomObject><br>
 
 Destroy OSD
@@ -11948,11 +13666,13 @@ Destroy OSD
 
 ### Example
 ```powershell
-$DELETENodesCephOsdRB = Initialize-DELETENodesCephOsdRB -Node "MyNode" -Cleanup 0 -Osdid 0 # DELETENodesCephOsdRB | Destroy OSD (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Osdid = 56 # Int32 | OSD ID
+$DELETENodesCephOsdRB = Initialize-DELETENodesCephOsdRB -Osdid 0 -Node "MyNode" -Cleanup 0 # DELETENodesCephOsdRB | Destroy OSD (optional)
 
 # Destroy OSD
 try {
-    $Result = Remove-PVENodesCephOsdByNodeAndOsdid -DELETENodesCephOsdRB $DELETENodesCephOsdRB
+    $Result = Remove-PVENodesCephOsdByNodeAndOsdid -Node $Node -Osdid $Osdid -DELETENodesCephOsdRB $DELETENodesCephOsdRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesCephOsdByNodeAndOsdid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -11963,6 +13683,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Osdid** | **Int32**| OSD ID | 
  **DELETENodesCephOsdRB** | [**DELETENodesCephOsdRB**](DELETENodesCephOsdRB.md)| Destroy OSD | [optional] 
 
 ### Return type
@@ -11983,6 +13705,8 @@ No authorization required
 <a name="Remove-PVENodesCephPoolByNodeAndName"></a>
 # **Remove-PVENodesCephPoolByNodeAndName**
 > void Remove-PVENodesCephPoolByNodeAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesCephPoolRB] <PSCustomObject><br>
 
 Destroy pool
@@ -11991,11 +13715,13 @@ Destroy pool
 
 ### Example
 ```powershell
-$DELETENodesCephPoolRB = Initialize-DELETENodesCephPoolRB -Name "MyName" -Node "MyNode" -Force 0 -RemoveEcprofile 0 -RemoveStorages 0 # DELETENodesCephPoolRB | Destroy pool (optional)
+$Name = "MyName" # String | The name of the pool. It must be unique.
+$Node = "MyNode" # String | The cluster node name.
+$DELETENodesCephPoolRB = Initialize-DELETENodesCephPoolRB -Force 0 -RemoveStorages 0 -Name "MyName" -Node "MyNode" -RemoveEcprofile 0 # DELETENodesCephPoolRB | Destroy pool (optional)
 
 # Destroy pool
 try {
-    $Result = Remove-PVENodesCephPoolByNodeAndName -DELETENodesCephPoolRB $DELETENodesCephPoolRB
+    $Result = Remove-PVENodesCephPoolByNodeAndName -Name $Name -Node $Node -DELETENodesCephPoolRB $DELETENodesCephPoolRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesCephPoolByNodeAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12006,6 +13732,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| The name of the pool. It must be unique. | 
+ **Node** | **String**| The cluster node name. | 
  **DELETENodesCephPoolRB** | [**DELETENodesCephPoolRB**](DELETENodesCephPoolRB.md)| Destroy pool | [optional] 
 
 ### Return type
@@ -12026,6 +13754,7 @@ No authorization required
 <a name="Remove-PVENodesCertificatesAcmeCertificateByNode"></a>
 # **Remove-PVENodesCertificatesAcmeCertificateByNode**
 > void Remove-PVENodesCertificatesAcmeCertificateByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Revoke existing certificate from CA.
 
@@ -12033,10 +13762,11 @@ Revoke existing certificate from CA.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Revoke existing certificate from CA.
 try {
-    $Result = Remove-PVENodesCertificatesAcmeCertificateByNode
+    $Result = Remove-PVENodesCertificatesAcmeCertificateByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesCertificatesAcmeCertificateByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12044,7 +13774,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -12064,6 +13797,7 @@ No authorization required
 <a name="Remove-PVENodesCertificatesCustomByNode"></a>
 # **Remove-PVENodesCertificatesCustomByNode**
 > void Remove-PVENodesCertificatesCustomByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesCertificatesCustomRB] <PSCustomObject><br>
 
 DELETE custom certificate chain and key.
@@ -12072,11 +13806,12 @@ DELETE custom certificate chain and key.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $DELETENodesCertificatesCustomRB = Initialize-DELETENodesCertificatesCustomRB -Restart 0 -Node "MyNode" # DELETENodesCertificatesCustomRB | DELETE custom certificate chain and key. (optional)
 
 # DELETE custom certificate chain and key.
 try {
-    $Result = Remove-PVENodesCertificatesCustomByNode -DELETENodesCertificatesCustomRB $DELETENodesCertificatesCustomRB
+    $Result = Remove-PVENodesCertificatesCustomByNode -Node $Node -DELETENodesCertificatesCustomRB $DELETENodesCertificatesCustomRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesCertificatesCustomByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12087,6 +13822,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **DELETENodesCertificatesCustomRB** | [**DELETENodesCertificatesCustomRB**](DELETENodesCertificatesCustomRB.md)| DELETE custom certificate chain and key. | [optional] 
 
 ### Return type
@@ -12107,6 +13843,8 @@ No authorization required
 <a name="Remove-PVENodesDisksDirectoryByNodeAndName"></a>
 # **Remove-PVENodesDisksDirectoryByNodeAndName**
 > void Remove-PVENodesDisksDirectoryByNodeAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesDisksDirectoryRB] <PSCustomObject><br>
 
 Unmounts the storage and removes the mount unit.
@@ -12115,11 +13853,13 @@ Unmounts the storage and removes the mount unit.
 
 ### Example
 ```powershell
-$DELETENodesDisksDirectoryRB = Initialize-DELETENodesDisksDirectoryRB -Name "MyName" -CleanupConfig 0 -Node "MyNode" -CleanupDisks 0 # DELETENodesDisksDirectoryRB | Unmounts the storage and removes the mount unit. (optional)
+$Name = "MyName" # String | The storage identifier.
+$Node = "MyNode" # String | The cluster node name.
+$DELETENodesDisksDirectoryRB = Initialize-DELETENodesDisksDirectoryRB -CleanupDisks 0 -Name "MyName" -Node "MyNode" -CleanupConfig 0 # DELETENodesDisksDirectoryRB | Unmounts the storage and removes the mount unit. (optional)
 
 # Unmounts the storage and removes the mount unit.
 try {
-    $Result = Remove-PVENodesDisksDirectoryByNodeAndName -DELETENodesDisksDirectoryRB $DELETENodesDisksDirectoryRB
+    $Result = Remove-PVENodesDisksDirectoryByNodeAndName -Name $Name -Node $Node -DELETENodesDisksDirectoryRB $DELETENodesDisksDirectoryRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesDisksDirectoryByNodeAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12130,6 +13870,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| The storage identifier. | 
+ **Node** | **String**| The cluster node name. | 
  **DELETENodesDisksDirectoryRB** | [**DELETENodesDisksDirectoryRB**](DELETENodesDisksDirectoryRB.md)| Unmounts the storage and removes the mount unit. | [optional] 
 
 ### Return type
@@ -12150,6 +13892,8 @@ No authorization required
 <a name="Remove-PVENodesDisksLvmByNodeAndName"></a>
 # **Remove-PVENodesDisksLvmByNodeAndName**
 > void Remove-PVENodesDisksLvmByNodeAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesDisksLvmRB] <PSCustomObject><br>
 
 Remove an LVM Volume Group.
@@ -12158,11 +13902,13 @@ Remove an LVM Volume Group.
 
 ### Example
 ```powershell
-$DELETENodesDisksLvmRB = Initialize-DELETENodesDisksLvmRB -Name "MyName" -CleanupConfig 0 -Node "MyNode" -CleanupDisks 0 # DELETENodesDisksLvmRB | Remove an LVM Volume Group. (optional)
+$Name = "MyName" # String | The storage identifier.
+$Node = "MyNode" # String | The cluster node name.
+$DELETENodesDisksLvmRB = Initialize-DELETENodesDisksLvmRB -CleanupDisks 0 -Name "MyName" -Node "MyNode" -CleanupConfig 0 # DELETENodesDisksLvmRB | Remove an LVM Volume Group. (optional)
 
 # Remove an LVM Volume Group.
 try {
-    $Result = Remove-PVENodesDisksLvmByNodeAndName -DELETENodesDisksLvmRB $DELETENodesDisksLvmRB
+    $Result = Remove-PVENodesDisksLvmByNodeAndName -Name $Name -Node $Node -DELETENodesDisksLvmRB $DELETENodesDisksLvmRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesDisksLvmByNodeAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12173,6 +13919,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| The storage identifier. | 
+ **Node** | **String**| The cluster node name. | 
  **DELETENodesDisksLvmRB** | [**DELETENodesDisksLvmRB**](DELETENodesDisksLvmRB.md)| Remove an LVM Volume Group. | [optional] 
 
 ### Return type
@@ -12193,6 +13941,8 @@ No authorization required
 <a name="Remove-PVENodesDisksLvmthinByNodeAndName"></a>
 # **Remove-PVENodesDisksLvmthinByNodeAndName**
 > void Remove-PVENodesDisksLvmthinByNodeAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesDisksLvmthinRB] <PSCustomObject><br>
 
 Remove an LVM thin pool.
@@ -12201,11 +13951,13 @@ Remove an LVM thin pool.
 
 ### Example
 ```powershell
-$DELETENodesDisksLvmthinRB = Initialize-DELETENodesDisksLvmthinRB -Name "MyName" -CleanupConfig 0 -Node "MyNode" -VolumeGroup "MyVolumeGroup" -CleanupDisks 0 # DELETENodesDisksLvmthinRB | Remove an LVM thin pool. (optional)
+$Name = "MyName" # String | The storage identifier.
+$Node = "MyNode" # String | The cluster node name.
+$DELETENodesDisksLvmthinRB = Initialize-DELETENodesDisksLvmthinRB -CleanupDisks 0 -Name "MyName" -Node "MyNode" -CleanupConfig 0 -VolumeGroup "MyVolumeGroup" # DELETENodesDisksLvmthinRB | Remove an LVM thin pool. (optional)
 
 # Remove an LVM thin pool.
 try {
-    $Result = Remove-PVENodesDisksLvmthinByNodeAndName -DELETENodesDisksLvmthinRB $DELETENodesDisksLvmthinRB
+    $Result = Remove-PVENodesDisksLvmthinByNodeAndName -Name $Name -Node $Node -DELETENodesDisksLvmthinRB $DELETENodesDisksLvmthinRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesDisksLvmthinByNodeAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12216,6 +13968,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| The storage identifier. | 
+ **Node** | **String**| The cluster node name. | 
  **DELETENodesDisksLvmthinRB** | [**DELETENodesDisksLvmthinRB**](DELETENodesDisksLvmthinRB.md)| Remove an LVM thin pool. | [optional] 
 
 ### Return type
@@ -12236,6 +13990,8 @@ No authorization required
 <a name="Remove-PVENodesDisksZfsByNodeAndName"></a>
 # **Remove-PVENodesDisksZfsByNodeAndName**
 > void Remove-PVENodesDisksZfsByNodeAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesDisksZfsRB] <PSCustomObject><br>
 
 Destroy a ZFS pool.
@@ -12244,11 +14000,13 @@ Destroy a ZFS pool.
 
 ### Example
 ```powershell
-$DELETENodesDisksZfsRB = Initialize-DELETENodesDisksZfsRB -Name "MyName" -CleanupConfig 0 -Node "MyNode" -CleanupDisks 0 # DELETENodesDisksZfsRB | Destroy a ZFS pool. (optional)
+$Name = "MyName" # String | The storage identifier.
+$Node = "MyNode" # String | The cluster node name.
+$DELETENodesDisksZfsRB = Initialize-DELETENodesDisksZfsRB -CleanupDisks 0 -Name "MyName" -Node "MyNode" -CleanupConfig 0 # DELETENodesDisksZfsRB | Destroy a ZFS pool. (optional)
 
 # Destroy a ZFS pool.
 try {
-    $Result = Remove-PVENodesDisksZfsByNodeAndName -DELETENodesDisksZfsRB $DELETENodesDisksZfsRB
+    $Result = Remove-PVENodesDisksZfsByNodeAndName -Name $Name -Node $Node -DELETENodesDisksZfsRB $DELETENodesDisksZfsRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesDisksZfsByNodeAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12259,6 +14017,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| The storage identifier. | 
+ **Node** | **String**| The cluster node name. | 
  **DELETENodesDisksZfsRB** | [**DELETENodesDisksZfsRB**](DELETENodesDisksZfsRB.md)| Destroy a ZFS pool. | [optional] 
 
 ### Return type
@@ -12279,6 +14039,8 @@ No authorization required
 <a name="Remove-PVENodesFirewallRulesByNodeAndPos"></a>
 # **Remove-PVENodesFirewallRulesByNodeAndPos**
 > void Remove-PVENodesFirewallRulesByNodeAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Pos] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesFirewallRulesRB] <PSCustomObject><br>
 
 Delete rule.
@@ -12287,11 +14049,13 @@ Delete rule.
 
 ### Example
 ```powershell
-$DELETENodesFirewallRulesRB = Initialize-DELETENodesFirewallRulesRB -Node "MyNode" -Digest "MyDigest" -Pos 0 # DELETENodesFirewallRulesRB | Delete rule. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Pos = 56 # Int32 | Update rule at position <pos>.
+$DELETENodesFirewallRulesRB = Initialize-DELETENodesFirewallRulesRB -Digest "MyDigest" -Node "MyNode" -Pos 0 # DELETENodesFirewallRulesRB | Delete rule. (optional)
 
 # Delete rule.
 try {
-    $Result = Remove-PVENodesFirewallRulesByNodeAndPos -DELETENodesFirewallRulesRB $DELETENodesFirewallRulesRB
+    $Result = Remove-PVENodesFirewallRulesByNodeAndPos -Node $Node -Pos $Pos -DELETENodesFirewallRulesRB $DELETENodesFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesFirewallRulesByNodeAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12302,6 +14066,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Pos** | **Int32**| Update rule at position &lt;pos&gt;. | 
  **DELETENodesFirewallRulesRB** | [**DELETENodesFirewallRulesRB**](DELETENodesFirewallRulesRB.md)| Delete rule. | [optional] 
 
 ### Return type
@@ -12322,6 +14088,8 @@ No authorization required
 <a name="Remove-PVENodesLxcByNodeAndVmid"></a>
 # **Remove-PVENodesLxcByNodeAndVmid**
 > void Remove-PVENodesLxcByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesLxcRB] <PSCustomObject><br>
 
 Destroy the container (also delete all uses files).
@@ -12330,11 +14098,13 @@ Destroy the container (also delete all uses files).
 
 ### Example
 ```powershell
-$DELETENodesLxcRB = Initialize-DELETENodesLxcRB -Node "MyNode" -Purge 0 -Force 0 -DestroyUnreferencedDisks 0 -Vmid 0 # DELETENodesLxcRB | Destroy the container (also delete all uses files). (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$DELETENodesLxcRB = Initialize-DELETENodesLxcRB -Force 0 -Node "MyNode" -Purge 0 -DestroyUnreferencedDisks 0 -Vmid 0 # DELETENodesLxcRB | Destroy the container (also delete all uses files). (optional)
 
 # Destroy the container (also delete all uses files).
 try {
-    $Result = Remove-PVENodesLxcByNodeAndVmid -DELETENodesLxcRB $DELETENodesLxcRB
+    $Result = Remove-PVENodesLxcByNodeAndVmid -Node $Node -Vmid $Vmid -DELETENodesLxcRB $DELETENodesLxcRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesLxcByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12345,6 +14115,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **DELETENodesLxcRB** | [**DELETENodesLxcRB**](DELETENodesLxcRB.md)| Destroy the container (also delete all uses files). | [optional] 
 
 ### Return type
@@ -12365,6 +14137,9 @@ No authorization required
 <a name="Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName"></a>
 # **Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName**
 > void Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesLxcFirewallAliasesRB] <PSCustomObject><br>
 
 Remove IP or Network alias.
@@ -12373,11 +14148,14 @@ Remove IP or Network alias.
 
 ### Example
 ```powershell
-$DELETENodesLxcFirewallAliasesRB = Initialize-DELETENodesLxcFirewallAliasesRB -Name "MyName" -Node "MyNode" -Digest "MyDigest" -Vmid 0 # DELETENodesLxcFirewallAliasesRB | Remove IP or Network alias. (optional)
+$Name = "MyName" # String | Alias name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$DELETENodesLxcFirewallAliasesRB = Initialize-DELETENodesLxcFirewallAliasesRB -Digest "MyDigest" -Name "MyName" -Node "MyNode" -Vmid 0 # DELETENodesLxcFirewallAliasesRB | Remove IP or Network alias. (optional)
 
 # Remove IP or Network alias.
 try {
-    $Result = Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName -DELETENodesLxcFirewallAliasesRB $DELETENodesLxcFirewallAliasesRB
+    $Result = Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName -Name $Name -Node $Node -Vmid $Vmid -DELETENodesLxcFirewallAliasesRB $DELETENodesLxcFirewallAliasesRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesLxcFirewallAliasesByNodeAndVmidAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12388,6 +14166,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| Alias name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **DELETENodesLxcFirewallAliasesRB** | [**DELETENodesLxcFirewallAliasesRB**](DELETENodesLxcFirewallAliasesRB.md)| Remove IP or Network alias. | [optional] 
 
 ### Return type
@@ -12408,6 +14189,9 @@ No authorization required
 <a name="Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName"></a>
 # **Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName**
 > void Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesLxcFirewallIpsetRB] <PSCustomObject><br>
 
 Delete IPSet
@@ -12416,11 +14200,14 @@ Delete IPSet
 
 ### Example
 ```powershell
-$DELETENodesLxcFirewallIpsetRB = Initialize-DELETENodesLxcFirewallIpsetRB -Name "MyName" -Node "MyNode" -Digest "MyDigest" -Cidr "MyCidr" -Vmid 0 # DELETENodesLxcFirewallIpsetRB | Delete IPSet (optional)
+$Name = "MyName" # String | IP set name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$DELETENodesLxcFirewallIpsetRB = Initialize-DELETENodesLxcFirewallIpsetRB -Digest "MyDigest" -Name "MyName" -Node "MyNode" -Vmid 0 -Cidr "MyCidr" # DELETENodesLxcFirewallIpsetRB | Delete IPSet (optional)
 
 # Delete IPSet
 try {
-    $Result = Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName -DELETENodesLxcFirewallIpsetRB $DELETENodesLxcFirewallIpsetRB
+    $Result = Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName -Name $Name -Node $Node -Vmid $Vmid -DELETENodesLxcFirewallIpsetRB $DELETENodesLxcFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12431,6 +14218,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| IP set name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **DELETENodesLxcFirewallIpsetRB** | [**DELETENodesLxcFirewallIpsetRB**](DELETENodesLxcFirewallIpsetRB.md)| Delete IPSet | [optional] 
 
 ### Return type
@@ -12451,6 +14241,10 @@ No authorization required
 <a name="Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr"></a>
 # **Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr**
 > void Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Cidr] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesLxcFirewallIpsetRB] <PSCustomObject><br>
 
 Remove IP or Network from IPSet.
@@ -12459,11 +14253,15 @@ Remove IP or Network from IPSet.
 
 ### Example
 ```powershell
-$DELETENodesLxcFirewallIpsetRB = Initialize-DELETENodesLxcFirewallIpsetRB -Name "MyName" -Node "MyNode" -Digest "MyDigest" -Cidr "MyCidr" -Vmid 0 # DELETENodesLxcFirewallIpsetRB | Remove IP or Network from IPSet. (optional)
+$Cidr = "MyCidr" # String | Network/IP specification in CIDR format.
+$Name = "MyName" # String | IP set name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$DELETENodesLxcFirewallIpsetRB = Initialize-DELETENodesLxcFirewallIpsetRB -Digest "MyDigest" -Name "MyName" -Node "MyNode" -Vmid 0 -Cidr "MyCidr" # DELETENodesLxcFirewallIpsetRB | Remove IP or Network from IPSet. (optional)
 
 # Remove IP or Network from IPSet.
 try {
-    $Result = Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr -DELETENodesLxcFirewallIpsetRB $DELETENodesLxcFirewallIpsetRB
+    $Result = Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr -Cidr $Cidr -Name $Name -Node $Node -Vmid $Vmid -DELETENodesLxcFirewallIpsetRB $DELETENodesLxcFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12474,6 +14272,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Cidr** | **String**| Network/IP specification in CIDR format. | 
+ **Name** | **String**| IP set name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **DELETENodesLxcFirewallIpsetRB** | [**DELETENodesLxcFirewallIpsetRB**](DELETENodesLxcFirewallIpsetRB.md)| Remove IP or Network from IPSet. | [optional] 
 
 ### Return type
@@ -12494,6 +14296,9 @@ No authorization required
 <a name="Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos"></a>
 # **Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos**
 > void Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Pos] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesLxcFirewallRulesRB] <PSCustomObject><br>
 
 Delete rule.
@@ -12502,11 +14307,14 @@ Delete rule.
 
 ### Example
 ```powershell
-$DELETENodesLxcFirewallRulesRB = Initialize-DELETENodesLxcFirewallRulesRB -Node "MyNode" -Digest "MyDigest" -Vmid 0 -Pos 0 # DELETENodesLxcFirewallRulesRB | Delete rule. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Pos = 56 # Int32 | Update rule at position <pos>.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$DELETENodesLxcFirewallRulesRB = Initialize-DELETENodesLxcFirewallRulesRB -Digest "MyDigest" -Node "MyNode" -Vmid 0 -Pos 0 # DELETENodesLxcFirewallRulesRB | Delete rule. (optional)
 
 # Delete rule.
 try {
-    $Result = Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos -DELETENodesLxcFirewallRulesRB $DELETENodesLxcFirewallRulesRB
+    $Result = Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos -Node $Node -Pos $Pos -Vmid $Vmid -DELETENodesLxcFirewallRulesRB $DELETENodesLxcFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesLxcFirewallRulesByNodeAndVmidAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12517,6 +14325,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Pos** | **Int32**| Update rule at position &lt;pos&gt;. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **DELETENodesLxcFirewallRulesRB** | [**DELETENodesLxcFirewallRulesRB**](DELETENodesLxcFirewallRulesRB.md)| Delete rule. | [optional] 
 
 ### Return type
@@ -12537,6 +14348,9 @@ No authorization required
 <a name="Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname"></a>
 # **Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname**
 > void Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Snapname] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesLxcSnapshotRB] <PSCustomObject><br>
 
 Delete a LXC snapshot.
@@ -12545,11 +14359,14 @@ Delete a LXC snapshot.
 
 ### Example
 ```powershell
-$DELETENodesLxcSnapshotRB = Initialize-DELETENodesLxcSnapshotRB -Node "MyNode" -Force 0 -Snapname "MySnapname" -Vmid 0 # DELETENodesLxcSnapshotRB | Delete a LXC snapshot. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Snapname = "MySnapname" # String | The name of the snapshot.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$DELETENodesLxcSnapshotRB = Initialize-DELETENodesLxcSnapshotRB -Force 0 -Node "MyNode" -Snapname "MySnapname" -Vmid 0 # DELETENodesLxcSnapshotRB | Delete a LXC snapshot. (optional)
 
 # Delete a LXC snapshot.
 try {
-    $Result = Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname -DELETENodesLxcSnapshotRB $DELETENodesLxcSnapshotRB
+    $Result = Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname -Node $Node -Snapname $Snapname -Vmid $Vmid -DELETENodesLxcSnapshotRB $DELETENodesLxcSnapshotRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesLxcSnapshotByNodeAndVmidAndSnapname: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12560,6 +14377,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Snapname** | **String**| The name of the snapshot. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **DELETENodesLxcSnapshotRB** | [**DELETENodesLxcSnapshotRB**](DELETENodesLxcSnapshotRB.md)| Delete a LXC snapshot. | [optional] 
 
 ### Return type
@@ -12580,6 +14400,7 @@ No authorization required
 <a name="Remove-PVENodesNetworkByNode"></a>
 # **Remove-PVENodesNetworkByNode**
 > void Remove-PVENodesNetworkByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Revert network configuration changes.
 
@@ -12587,10 +14408,11 @@ Revert network configuration changes.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Revert network configuration changes.
 try {
-    $Result = Remove-PVENodesNetworkByNode
+    $Result = Remove-PVENodesNetworkByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesNetworkByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12598,7 +14420,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -12618,6 +14443,8 @@ No authorization required
 <a name="Remove-PVENodesNetworkByNodeAndIface"></a>
 # **Remove-PVENodesNetworkByNodeAndIface**
 > void Remove-PVENodesNetworkByNodeAndIface<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Iface] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Delete network device configuration
 
@@ -12625,10 +14452,12 @@ Delete network device configuration
 
 ### Example
 ```powershell
+$Iface = "MyIface" # String | Network interface name.
+$Node = "MyNode" # String | The cluster node name.
 
 # Delete network device configuration
 try {
-    $Result = Remove-PVENodesNetworkByNodeAndIface
+    $Result = Remove-PVENodesNetworkByNodeAndIface -Iface $Iface -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesNetworkByNodeAndIface: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12636,7 +14465,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Iface** | **String**| Network interface name. | 
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -12656,6 +14489,8 @@ No authorization required
 <a name="Remove-PVENodesQemuByNodeAndVmid"></a>
 # **Remove-PVENodesQemuByNodeAndVmid**
 > void Remove-PVENodesQemuByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesQemuRB] <PSCustomObject><br>
 
 Destroy the VM and  all used/owned volumes. Removes any VM specific permissions and firewall rules
@@ -12664,11 +14499,13 @@ Destroy the VM and  all used/owned volumes. Removes any VM specific permissions 
 
 ### Example
 ```powershell
-$DELETENodesQemuRB = Initialize-DELETENodesQemuRB -Node "MyNode" -DestroyUnreferencedDisks 0 -Purge 0 -Vmid 0 -Skiplock 0 # DELETENodesQemuRB | Destroy the VM and  all used/owned volumes. Removes any VM specific permissions and firewall rules (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$DELETENodesQemuRB = Initialize-DELETENodesQemuRB -Node "MyNode" -Purge 0 -DestroyUnreferencedDisks 0 -Skiplock 0 -Vmid 0 # DELETENodesQemuRB | Destroy the VM and  all used/owned volumes. Removes any VM specific permissions and firewall rules (optional)
 
 # Destroy the VM and  all used/owned volumes. Removes any VM specific permissions and firewall rules
 try {
-    $Result = Remove-PVENodesQemuByNodeAndVmid -DELETENodesQemuRB $DELETENodesQemuRB
+    $Result = Remove-PVENodesQemuByNodeAndVmid -Node $Node -Vmid $Vmid -DELETENodesQemuRB $DELETENodesQemuRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesQemuByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12679,6 +14516,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **DELETENodesQemuRB** | [**DELETENodesQemuRB**](DELETENodesQemuRB.md)| Destroy the VM and  all used/owned volumes. Removes any VM specific permissions and firewall rules | [optional] 
 
 ### Return type
@@ -12699,6 +14538,9 @@ No authorization required
 <a name="Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName"></a>
 # **Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName**
 > void Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesQemuFirewallAliasesRB] <PSCustomObject><br>
 
 Remove IP or Network alias.
@@ -12707,11 +14549,14 @@ Remove IP or Network alias.
 
 ### Example
 ```powershell
-$DELETENodesQemuFirewallAliasesRB = Initialize-DELETENodesQemuFirewallAliasesRB -Name "MyName" -Node "MyNode" -Digest "MyDigest" -Vmid 0 # DELETENodesQemuFirewallAliasesRB | Remove IP or Network alias. (optional)
+$Name = "MyName" # String | Alias name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$DELETENodesQemuFirewallAliasesRB = Initialize-DELETENodesQemuFirewallAliasesRB -Digest "MyDigest" -Name "MyName" -Node "MyNode" -Vmid 0 # DELETENodesQemuFirewallAliasesRB | Remove IP or Network alias. (optional)
 
 # Remove IP or Network alias.
 try {
-    $Result = Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName -DELETENodesQemuFirewallAliasesRB $DELETENodesQemuFirewallAliasesRB
+    $Result = Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName -Name $Name -Node $Node -Vmid $Vmid -DELETENodesQemuFirewallAliasesRB $DELETENodesQemuFirewallAliasesRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesQemuFirewallAliasesByNodeAndVmidAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12722,6 +14567,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| Alias name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **DELETENodesQemuFirewallAliasesRB** | [**DELETENodesQemuFirewallAliasesRB**](DELETENodesQemuFirewallAliasesRB.md)| Remove IP or Network alias. | [optional] 
 
 ### Return type
@@ -12742,6 +14590,9 @@ No authorization required
 <a name="Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName"></a>
 # **Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName**
 > void Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesQemuFirewallIpsetRB] <PSCustomObject><br>
 
 Delete IPSet
@@ -12750,11 +14601,14 @@ Delete IPSet
 
 ### Example
 ```powershell
-$DELETENodesQemuFirewallIpsetRB = Initialize-DELETENodesQemuFirewallIpsetRB -Name "MyName" -Node "MyNode" -Digest "MyDigest" -Cidr "MyCidr" -Vmid 0 # DELETENodesQemuFirewallIpsetRB | Delete IPSet (optional)
+$Name = "MyName" # String | IP set name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$DELETENodesQemuFirewallIpsetRB = Initialize-DELETENodesQemuFirewallIpsetRB -Digest "MyDigest" -Name "MyName" -Node "MyNode" -Vmid 0 -Cidr "MyCidr" # DELETENodesQemuFirewallIpsetRB | Delete IPSet (optional)
 
 # Delete IPSet
 try {
-    $Result = Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName -DELETENodesQemuFirewallIpsetRB $DELETENodesQemuFirewallIpsetRB
+    $Result = Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName -Name $Name -Node $Node -Vmid $Vmid -DELETENodesQemuFirewallIpsetRB $DELETENodesQemuFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12765,6 +14619,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| IP set name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **DELETENodesQemuFirewallIpsetRB** | [**DELETENodesQemuFirewallIpsetRB**](DELETENodesQemuFirewallIpsetRB.md)| Delete IPSet | [optional] 
 
 ### Return type
@@ -12785,6 +14642,10 @@ No authorization required
 <a name="Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr"></a>
 # **Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr**
 > void Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Cidr] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesQemuFirewallIpsetRB] <PSCustomObject><br>
 
 Remove IP or Network from IPSet.
@@ -12793,11 +14654,15 @@ Remove IP or Network from IPSet.
 
 ### Example
 ```powershell
-$DELETENodesQemuFirewallIpsetRB = Initialize-DELETENodesQemuFirewallIpsetRB -Name "MyName" -Node "MyNode" -Digest "MyDigest" -Cidr "MyCidr" -Vmid 0 # DELETENodesQemuFirewallIpsetRB | Remove IP or Network from IPSet. (optional)
+$Cidr = "MyCidr" # String | Network/IP specification in CIDR format.
+$Name = "MyName" # String | IP set name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$DELETENodesQemuFirewallIpsetRB = Initialize-DELETENodesQemuFirewallIpsetRB -Digest "MyDigest" -Name "MyName" -Node "MyNode" -Vmid 0 -Cidr "MyCidr" # DELETENodesQemuFirewallIpsetRB | Remove IP or Network from IPSet. (optional)
 
 # Remove IP or Network from IPSet.
 try {
-    $Result = Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr -DELETENodesQemuFirewallIpsetRB $DELETENodesQemuFirewallIpsetRB
+    $Result = Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr -Cidr $Cidr -Name $Name -Node $Node -Vmid $Vmid -DELETENodesQemuFirewallIpsetRB $DELETENodesQemuFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12808,6 +14673,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Cidr** | **String**| Network/IP specification in CIDR format. | 
+ **Name** | **String**| IP set name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **DELETENodesQemuFirewallIpsetRB** | [**DELETENodesQemuFirewallIpsetRB**](DELETENodesQemuFirewallIpsetRB.md)| Remove IP or Network from IPSet. | [optional] 
 
 ### Return type
@@ -12828,6 +14697,9 @@ No authorization required
 <a name="Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos"></a>
 # **Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos**
 > void Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Pos] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesQemuFirewallRulesRB] <PSCustomObject><br>
 
 Delete rule.
@@ -12836,11 +14708,14 @@ Delete rule.
 
 ### Example
 ```powershell
-$DELETENodesQemuFirewallRulesRB = Initialize-DELETENodesQemuFirewallRulesRB -Node "MyNode" -Digest "MyDigest" -Vmid 0 -Pos 0 # DELETENodesQemuFirewallRulesRB | Delete rule. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Pos = 56 # Int32 | Update rule at position <pos>.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$DELETENodesQemuFirewallRulesRB = Initialize-DELETENodesQemuFirewallRulesRB -Digest "MyDigest" -Node "MyNode" -Vmid 0 -Pos 0 # DELETENodesQemuFirewallRulesRB | Delete rule. (optional)
 
 # Delete rule.
 try {
-    $Result = Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos -DELETENodesQemuFirewallRulesRB $DELETENodesQemuFirewallRulesRB
+    $Result = Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos -Node $Node -Pos $Pos -Vmid $Vmid -DELETENodesQemuFirewallRulesRB $DELETENodesQemuFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesQemuFirewallRulesByNodeAndVmidAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12851,6 +14726,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Pos** | **Int32**| Update rule at position &lt;pos&gt;. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **DELETENodesQemuFirewallRulesRB** | [**DELETENodesQemuFirewallRulesRB**](DELETENodesQemuFirewallRulesRB.md)| Delete rule. | [optional] 
 
 ### Return type
@@ -12871,6 +14749,9 @@ No authorization required
 <a name="Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname"></a>
 # **Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname**
 > void Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Snapname] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesQemuSnapshotRB] <PSCustomObject><br>
 
 Delete a VM snapshot.
@@ -12879,11 +14760,14 @@ Delete a VM snapshot.
 
 ### Example
 ```powershell
-$DELETENodesQemuSnapshotRB = Initialize-DELETENodesQemuSnapshotRB -Node "MyNode" -Force 0 -Snapname "MySnapname" -Vmid 0 # DELETENodesQemuSnapshotRB | Delete a VM snapshot. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Snapname = "MySnapname" # String | The name of the snapshot.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$DELETENodesQemuSnapshotRB = Initialize-DELETENodesQemuSnapshotRB -Force 0 -Node "MyNode" -Snapname "MySnapname" -Vmid 0 # DELETENodesQemuSnapshotRB | Delete a VM snapshot. (optional)
 
 # Delete a VM snapshot.
 try {
-    $Result = Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname -DELETENodesQemuSnapshotRB $DELETENodesQemuSnapshotRB
+    $Result = Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname -Node $Node -Snapname $Snapname -Vmid $Vmid -DELETENodesQemuSnapshotRB $DELETENodesQemuSnapshotRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesQemuSnapshotByNodeAndVmidAndSnapname: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12894,6 +14778,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Snapname** | **String**| The name of the snapshot. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **DELETENodesQemuSnapshotRB** | [**DELETENodesQemuSnapshotRB**](DELETENodesQemuSnapshotRB.md)| Delete a VM snapshot. | [optional] 
 
 ### Return type
@@ -12914,6 +14801,9 @@ No authorization required
 <a name="Remove-PVENodesStorageContentByNodeAndStorageAndVolume"></a>
 # **Remove-PVENodesStorageContentByNodeAndStorageAndVolume**
 > void Remove-PVENodesStorageContentByNodeAndStorageAndVolume<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Volume] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesStorageContentRB] <PSCustomObject><br>
 
 Delete volume
@@ -12922,11 +14812,14 @@ Delete volume
 
 ### Example
 ```powershell
-$DELETENodesStorageContentRB = Initialize-DELETENodesStorageContentRB -Node "MyNode" -Delay 0 -Volume "MyVolume" -Storage "MyStorage" # DELETENodesStorageContentRB | Delete volume (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$Volume = "MyVolume" # String | Volume identifier
+$DELETENodesStorageContentRB = Initialize-DELETENodesStorageContentRB -Storage "MyStorage" -Volume "MyVolume" -Node "MyNode" -Delay 0 # DELETENodesStorageContentRB | Delete volume (optional)
 
 # Delete volume
 try {
-    $Result = Remove-PVENodesStorageContentByNodeAndStorageAndVolume -DELETENodesStorageContentRB $DELETENodesStorageContentRB
+    $Result = Remove-PVENodesStorageContentByNodeAndStorageAndVolume -Node $Node -Storage $Storage -Volume $Volume -DELETENodesStorageContentRB $DELETENodesStorageContentRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesStorageContentByNodeAndStorageAndVolume: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12937,6 +14830,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
+ **Volume** | **String**| Volume identifier | 
  **DELETENodesStorageContentRB** | [**DELETENodesStorageContentRB**](DELETENodesStorageContentRB.md)| Delete volume | [optional] 
 
 ### Return type
@@ -12957,6 +14853,8 @@ No authorization required
 <a name="Remove-PVENodesStoragePrunebackupsByNodeAndStorage"></a>
 # **Remove-PVENodesStoragePrunebackupsByNodeAndStorage**
 > void Remove-PVENodesStoragePrunebackupsByNodeAndStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETENodesStoragePrunebackupsRB] <PSCustomObject><br>
 
 Prune backups. Only those using the standard naming scheme are considered.
@@ -12965,11 +14863,13 @@ Prune backups. Only those using the standard naming scheme are considered.
 
 ### Example
 ```powershell
-$DELETENodesStoragePrunebackupsRB = Initialize-DELETENodesStoragePrunebackupsRB -Node "MyNode" -Type "qemu" -Storage "MyStorage" -PruneBackups "MyPruneBackups" -Vmid 0 # DELETENodesStoragePrunebackupsRB | Prune backups. Only those using the standard naming scheme are considered. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$DELETENodesStoragePrunebackupsRB = Initialize-DELETENodesStoragePrunebackupsRB -Storage "MyStorage" -Vmid 0 -Node "MyNode" -PruneBackups "MyPruneBackups" -Type "qemu" # DELETENodesStoragePrunebackupsRB | Prune backups. Only those using the standard naming scheme are considered. (optional)
 
 # Prune backups. Only those using the standard naming scheme are considered.
 try {
-    $Result = Remove-PVENodesStoragePrunebackupsByNodeAndStorage -DELETENodesStoragePrunebackupsRB $DELETENodesStoragePrunebackupsRB
+    $Result = Remove-PVENodesStoragePrunebackupsByNodeAndStorage -Node $Node -Storage $Storage -DELETENodesStoragePrunebackupsRB $DELETENodesStoragePrunebackupsRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesStoragePrunebackupsByNodeAndStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -12980,6 +14880,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
  **DELETENodesStoragePrunebackupsRB** | [**DELETENodesStoragePrunebackupsRB**](DELETENodesStoragePrunebackupsRB.md)| Prune backups. Only those using the standard naming scheme are considered. | [optional] 
 
 ### Return type
@@ -13000,6 +14902,7 @@ No authorization required
 <a name="Remove-PVENodesSubscriptionByNode"></a>
 # **Remove-PVENodesSubscriptionByNode**
 > void Remove-PVENodesSubscriptionByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Delete subscription key of this node.
 
@@ -13007,10 +14910,11 @@ Delete subscription key of this node.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Delete subscription key of this node.
 try {
-    $Result = Remove-PVENodesSubscriptionByNode
+    $Result = Remove-PVENodesSubscriptionByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesSubscriptionByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13018,7 +14922,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -13038,6 +14945,8 @@ No authorization required
 <a name="Remove-PVENodesTasksByNodeAndUpid"></a>
 # **Remove-PVENodesTasksByNodeAndUpid**
 > void Remove-PVENodesTasksByNodeAndUpid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Upid] <String><br>
 
 Stop a task.
 
@@ -13045,10 +14954,12 @@ Stop a task.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Upid = "MyUpid" # String | 
 
 # Stop a task.
 try {
-    $Result = Remove-PVENodesTasksByNodeAndUpid
+    $Result = Remove-PVENodesTasksByNodeAndUpid -Node $Node -Upid $Upid
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVENodesTasksByNodeAndUpid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13056,7 +14967,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Upid** | **String**|  | 
 
 ### Return type
 
@@ -13076,6 +14991,7 @@ No authorization required
 <a name="Set-PVENodesAptRepositoriesByNode"></a>
 # **Set-PVENodesAptRepositoriesByNode**
 > void Set-PVENodesAptRepositoriesByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesAptRepositoriesRB] <PSCustomObject><br>
 
 Add a standard repository to the configuration
@@ -13084,11 +15000,12 @@ Add a standard repository to the configuration
 
 ### Example
 ```powershell
-$PUTNodesAptRepositoriesRB = Initialize-PUTNodesAptRepositoriesRB -Node "MyNode" -Digest "MyDigest" -Handle "MyHandle" # PUTNodesAptRepositoriesRB | Add a standard repository to the configuration (optional)
+$Node = "MyNode" # String | The cluster node name.
+$PUTNodesAptRepositoriesRB = Initialize-PUTNodesAptRepositoriesRB -Digest "MyDigest" -Node "MyNode" -Handle "MyHandle" # PUTNodesAptRepositoriesRB | Add a standard repository to the configuration (optional)
 
 # Add a standard repository to the configuration
 try {
-    $Result = Set-PVENodesAptRepositoriesByNode -PUTNodesAptRepositoriesRB $PUTNodesAptRepositoriesRB
+    $Result = Set-PVENodesAptRepositoriesByNode -Node $Node -PUTNodesAptRepositoriesRB $PUTNodesAptRepositoriesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesAptRepositoriesByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13099,6 +15016,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **PUTNodesAptRepositoriesRB** | [**PUTNodesAptRepositoriesRB**](PUTNodesAptRepositoriesRB.md)| Add a standard repository to the configuration | [optional] 
 
 ### Return type
@@ -13119,6 +15037,8 @@ No authorization required
 <a name="Set-PVENodesCephPoolByNodeAndName"></a>
 # **Set-PVENodesCephPoolByNodeAndName**
 > void Set-PVENodesCephPoolByNodeAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesCephPoolRB] <PSCustomObject><br>
 
 Change POOL settings
@@ -13127,11 +15047,13 @@ Change POOL settings
 
 ### Example
 ```powershell
-$PUTNodesCephPoolRB = Initialize-PUTNodesCephPoolRB -CrushRule "MyCrushRule" -Name "MyName" -MinSize 0 -TargetSizeRatio 0 -TargetSize "MyTargetSize" -PgNumMin 0 -Application "rbd" -Size 0 -Node "MyNode" -PgNum 0 -PgAutoscaleMode "on" # PUTNodesCephPoolRB | Change POOL settings (optional)
+$Name = "MyName" # String | The name of the pool. It must be unique.
+$Node = "MyNode" # String | The cluster node name.
+$PUTNodesCephPoolRB = Initialize-PUTNodesCephPoolRB -MinSize 0 -Node "MyNode" -CrushRule "MyCrushRule" -Name "MyName" -Size 0 -PgNum 0 -PgAutoscaleMode "on" -PgNumMin 0 -TargetSizeRatio 0 -Application "rbd" -TargetSize "MyTargetSize" # PUTNodesCephPoolRB | Change POOL settings (optional)
 
 # Change POOL settings
 try {
-    $Result = Set-PVENodesCephPoolByNodeAndName -PUTNodesCephPoolRB $PUTNodesCephPoolRB
+    $Result = Set-PVENodesCephPoolByNodeAndName -Name $Name -Node $Node -PUTNodesCephPoolRB $PUTNodesCephPoolRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesCephPoolByNodeAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13142,6 +15064,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| The name of the pool. It must be unique. | 
+ **Node** | **String**| The cluster node name. | 
  **PUTNodesCephPoolRB** | [**PUTNodesCephPoolRB**](PUTNodesCephPoolRB.md)| Change POOL settings | [optional] 
 
 ### Return type
@@ -13162,6 +15086,7 @@ No authorization required
 <a name="Set-PVENodesCertificatesAcmeCertificateByNode"></a>
 # **Set-PVENodesCertificatesAcmeCertificateByNode**
 > void Set-PVENodesCertificatesAcmeCertificateByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesCertificatesAcmeCertificateRB] <PSCustomObject><br>
 
 Renew existing certificate from CA.
@@ -13170,11 +15095,12 @@ Renew existing certificate from CA.
 
 ### Example
 ```powershell
-$PUTNodesCertificatesAcmeCertificateRB = Initialize-PUTNodesCertificatesAcmeCertificateRB -Force 0 -Node "MyNode" # PUTNodesCertificatesAcmeCertificateRB | Renew existing certificate from CA. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$PUTNodesCertificatesAcmeCertificateRB = Initialize-PUTNodesCertificatesAcmeCertificateRB -Node "MyNode" -Force 0 # PUTNodesCertificatesAcmeCertificateRB | Renew existing certificate from CA. (optional)
 
 # Renew existing certificate from CA.
 try {
-    $Result = Set-PVENodesCertificatesAcmeCertificateByNode -PUTNodesCertificatesAcmeCertificateRB $PUTNodesCertificatesAcmeCertificateRB
+    $Result = Set-PVENodesCertificatesAcmeCertificateByNode -Node $Node -PUTNodesCertificatesAcmeCertificateRB $PUTNodesCertificatesAcmeCertificateRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesCertificatesAcmeCertificateByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13185,6 +15111,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **PUTNodesCertificatesAcmeCertificateRB** | [**PUTNodesCertificatesAcmeCertificateRB**](PUTNodesCertificatesAcmeCertificateRB.md)| Renew existing certificate from CA. | [optional] 
 
 ### Return type
@@ -13205,6 +15132,7 @@ No authorization required
 <a name="Set-PVENodesConfigByNode"></a>
 # **Set-PVENodesConfigByNode**
 > void Set-PVENodesConfigByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesConfigRB] <PSCustomObject><br>
 
 Set node configuration options.
@@ -13213,11 +15141,12 @@ Set node configuration options.
 
 ### Example
 ```powershell
-$PUTNodesConfigRB = Initialize-PUTNodesConfigRB -Description "MyDescription" -Delete "MyDelete" -Digest "MyDigest" -AcmedomainN "MyAcmedomainN" -Acme "MyAcme" -Node "MyNode" -StartallOnbootDelay 0 -Wakeonlan "MyWakeonlan" # PUTNodesConfigRB | Set node configuration options. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$PUTNodesConfigRB = Initialize-PUTNodesConfigRB -Wakeonlan "MyWakeonlan" -Description "MyDescription" -Delete "MyDelete" -AcmedomainN "MyAcmedomainN" -StartallOnbootDelay 0 -Digest "MyDigest" -Node "MyNode" -Acme "MyAcme" # PUTNodesConfigRB | Set node configuration options. (optional)
 
 # Set node configuration options.
 try {
-    $Result = Set-PVENodesConfigByNode -PUTNodesConfigRB $PUTNodesConfigRB
+    $Result = Set-PVENodesConfigByNode -Node $Node -PUTNodesConfigRB $PUTNodesConfigRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesConfigByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13228,6 +15157,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **PUTNodesConfigRB** | [**PUTNodesConfigRB**](PUTNodesConfigRB.md)| Set node configuration options. | [optional] 
 
 ### Return type
@@ -13248,6 +15178,7 @@ No authorization required
 <a name="Set-PVENodesDisksWipediskByNode"></a>
 # **Set-PVENodesDisksWipediskByNode**
 > void Set-PVENodesDisksWipediskByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesDisksWipediskRB] <PSCustomObject><br>
 
 Wipe a disk or partition.
@@ -13256,11 +15187,12 @@ Wipe a disk or partition.
 
 ### Example
 ```powershell
-$PUTNodesDisksWipediskRB = Initialize-PUTNodesDisksWipediskRB -Disk "MyDisk" -Node "MyNode" # PUTNodesDisksWipediskRB | Wipe a disk or partition. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$PUTNodesDisksWipediskRB = Initialize-PUTNodesDisksWipediskRB -Node "MyNode" -Disk "MyDisk" # PUTNodesDisksWipediskRB | Wipe a disk or partition. (optional)
 
 # Wipe a disk or partition.
 try {
-    $Result = Set-PVENodesDisksWipediskByNode -PUTNodesDisksWipediskRB $PUTNodesDisksWipediskRB
+    $Result = Set-PVENodesDisksWipediskByNode -Node $Node -PUTNodesDisksWipediskRB $PUTNodesDisksWipediskRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesDisksWipediskByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13271,6 +15203,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **PUTNodesDisksWipediskRB** | [**PUTNodesDisksWipediskRB**](PUTNodesDisksWipediskRB.md)| Wipe a disk or partition. | [optional] 
 
 ### Return type
@@ -13291,6 +15224,7 @@ No authorization required
 <a name="Set-PVENodesDnsByNode"></a>
 # **Set-PVENodesDnsByNode**
 > void Set-PVENodesDnsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesDnsRB] <PSCustomObject><br>
 
 Write DNS settings.
@@ -13299,11 +15233,12 @@ Write DNS settings.
 
 ### Example
 ```powershell
-$PUTNodesDnsRB = Initialize-PUTNodesDnsRB -Dns1 "MyDns1" -Node "MyNode" -Dns3 "MyDns3" -Search "MySearch" -Dns2 "MyDns2" # PUTNodesDnsRB | Write DNS settings. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$PUTNodesDnsRB = Initialize-PUTNodesDnsRB -Search "MySearch" -Dns1 "MyDns1" -Dns2 "MyDns2" -Dns3 "MyDns3" -Node "MyNode" # PUTNodesDnsRB | Write DNS settings. (optional)
 
 # Write DNS settings.
 try {
-    $Result = Set-PVENodesDnsByNode -PUTNodesDnsRB $PUTNodesDnsRB
+    $Result = Set-PVENodesDnsByNode -Node $Node -PUTNodesDnsRB $PUTNodesDnsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesDnsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13314,6 +15249,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **PUTNodesDnsRB** | [**PUTNodesDnsRB**](PUTNodesDnsRB.md)| Write DNS settings. | [optional] 
 
 ### Return type
@@ -13334,6 +15270,7 @@ No authorization required
 <a name="Set-PVENodesFirewallOptionsByNode"></a>
 # **Set-PVENodesFirewallOptionsByNode**
 > void Set-PVENodesFirewallOptionsByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesFirewallOptionsRB] <PSCustomObject><br>
 
 Set Firewall options.
@@ -13342,11 +15279,12 @@ Set Firewall options.
 
 ### Example
 ```powershell
-$PUTNodesFirewallOptionsRB = Initialize-PUTNodesFirewallOptionsRB -NfConntrackMax 0 -NfConntrackTcpTimeoutEstablished 0 -LogLevelForward "emerg" -NfConntrackTcpTimeoutSynRecv 0 -ProtectionSynfloodRate 0 -Tcpflags 0 -ProtectionSynflood 0 -Nosmurfs 0 -NfConntrackHelpers "MyNfConntrackHelpers" -LogNfConntrack 0 -NfConntrackAllowInvalid 0 -LogLevelOut "emerg" -Delete "MyDelete" -Node "MyNode" -LogLevelIn "emerg" -Nftables 0 -ProtectionSynfloodBurst 0 -Enable 0 -Digest "MyDigest" -Ndp 0 -TcpFlagsLogLevel "emerg" -SmurfLogLevel "emerg" # PUTNodesFirewallOptionsRB | Set Firewall options. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$PUTNodesFirewallOptionsRB = Initialize-PUTNodesFirewallOptionsRB -LogNfConntrack 0 -Digest "MyDigest" -NfConntrackTcpTimeoutEstablished 0 -LogLevelForward "emerg" -Nosmurfs 0 -ProtectionSynfloodBurst 0 -Ndp 0 -SmurfLogLevel "emerg" -Tcpflags 0 -Nftables 0 -Enable 0 -NfConntrackHelpers "MyNfConntrackHelpers" -TcpFlagsLogLevel "emerg" -NfConntrackTcpTimeoutSynRecv 0 -LogLevelOut "emerg" -ProtectionSynfloodRate 0 -Node "MyNode" -LogLevelIn "emerg" -NfConntrackMax 0 -NfConntrackAllowInvalid 0 -Delete "MyDelete" -ProtectionSynflood 0 # PUTNodesFirewallOptionsRB | Set Firewall options. (optional)
 
 # Set Firewall options.
 try {
-    $Result = Set-PVENodesFirewallOptionsByNode -PUTNodesFirewallOptionsRB $PUTNodesFirewallOptionsRB
+    $Result = Set-PVENodesFirewallOptionsByNode -Node $Node -PUTNodesFirewallOptionsRB $PUTNodesFirewallOptionsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesFirewallOptionsByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13357,6 +15295,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **PUTNodesFirewallOptionsRB** | [**PUTNodesFirewallOptionsRB**](PUTNodesFirewallOptionsRB.md)| Set Firewall options. | [optional] 
 
 ### Return type
@@ -13377,6 +15316,8 @@ No authorization required
 <a name="Set-PVENodesFirewallRulesByNodeAndPos"></a>
 # **Set-PVENodesFirewallRulesByNodeAndPos**
 > void Set-PVENodesFirewallRulesByNodeAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Pos] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesFirewallRulesRB] <PSCustomObject><br>
 
 Modify rule data.
@@ -13385,11 +15326,13 @@ Modify rule data.
 
 ### Example
 ```powershell
-$PUTNodesFirewallRulesRB = Initialize-PUTNodesFirewallRulesRB -Log "emerg" -Action "MyAction" -IcmpType "MyIcmpType" -Macro "MyMacro" -Comment "MyComment" -Source "MySource" -Dport "MyDport" -Proto "MyProto" -Dest "MyDest" -Delete "MyDelete" -Node "MyNode" -Sport "MySport" -Moveto 0 -Type "in" -Enable 0 -Digest "MyDigest" -Pos 0 -Iface "MyIface" # PUTNodesFirewallRulesRB | Modify rule data. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Pos = 56 # Int32 | Update rule at position <pos>.
+$PUTNodesFirewallRulesRB = Initialize-PUTNodesFirewallRulesRB -Digest "MyDigest" -Source "MySource" -Sport "MySport" -Action "MyAction" -Log "emerg" -Comment "MyComment" -Dest "MyDest" -Proto "MyProto" -Enable 0 -IcmpType "MyIcmpType" -Macro "MyMacro" -Pos 0 -Type "in" -Node "MyNode" -Iface "MyIface" -Moveto 0 -Delete "MyDelete" -Dport "MyDport" # PUTNodesFirewallRulesRB | Modify rule data. (optional)
 
 # Modify rule data.
 try {
-    $Result = Set-PVENodesFirewallRulesByNodeAndPos -PUTNodesFirewallRulesRB $PUTNodesFirewallRulesRB
+    $Result = Set-PVENodesFirewallRulesByNodeAndPos -Node $Node -Pos $Pos -PUTNodesFirewallRulesRB $PUTNodesFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesFirewallRulesByNodeAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13400,6 +15343,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Pos** | **Int32**| Update rule at position &lt;pos&gt;. | 
  **PUTNodesFirewallRulesRB** | [**PUTNodesFirewallRulesRB**](PUTNodesFirewallRulesRB.md)| Modify rule data. | [optional] 
 
 ### Return type
@@ -13420,6 +15365,8 @@ No authorization required
 <a name="Set-PVENodesLxcConfigByNodeAndVmid"></a>
 # **Set-PVENodesLxcConfigByNodeAndVmid**
 > void Set-PVENodesLxcConfigByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesLxcConfigRB] <PSCustomObject><br>
 
 Set container options.
@@ -13428,11 +15375,13 @@ Set container options.
 
 ### Example
 ```powershell
-$PUTNodesLxcConfigRB = Initialize-PUTNodesLxcConfigRB -MpN "MyMpN" -Nameserver "MyNameserver" -Hookscript "MyHookscript" -Searchdomain "MySearchdomain" -NetN "MyNetN" -Console 0 -Rootfs "MyRootfs" -Ostype "debian" -Node "MyNode" -Protection 0 -Tty 0 -Cpulimit 0 -Revert "MyRevert" -Arch "amd64" -Template 0 -Delete "MyDelete" -Swap 0 -Features "MyFeatures" -Debug 0 -Vmid 0 -Lock "backup" -Unprivileged 0 -Hostname "MyHostname" -Startup "MyStartup" -Cores 0 -DevN "MyDevN" -Digest "MyDigest" -Description "MyDescription" -Memory 0 -UnusedN "MyUnusedN" -Onboot 0 -Tags "MyTags" -Timezone "MyTimezone" -Cpuunits 0 -Cmode "shell" # PUTNodesLxcConfigRB | Set container options. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesLxcConfigRB = Initialize-PUTNodesLxcConfigRB -Ostype "debian" -Cores 0 -Onboot 0 -Nameserver "MyNameserver" -Delete "MyDelete" -Node "MyNode" -Console 0 -Cpulimit 0 -DevN "MyDevN" -MpN "MyMpN" -Tty 0 -Rootfs "MyRootfs" -Cmode "shell" -Cpuunits 0 -Lock "backup" -Swap 0 -NetN "MyNetN" -Tags "MyTags" -Protection 0 -Arch "amd64" -Startup "MyStartup" -Hostname "MyHostname" -Searchdomain "MySearchdomain" -Memory 0 -Unprivileged 0 -UnusedN "MyUnusedN" -Digest "MyDigest" -Timezone "MyTimezone" -Description "MyDescription" -Debug 0 -Features "MyFeatures" -Vmid 0 -Revert "MyRevert" -Hookscript "MyHookscript" -Template 0 # PUTNodesLxcConfigRB | Set container options. (optional)
 
 # Set container options.
 try {
-    $Result = Set-PVENodesLxcConfigByNodeAndVmid -PUTNodesLxcConfigRB $PUTNodesLxcConfigRB
+    $Result = Set-PVENodesLxcConfigByNodeAndVmid -Node $Node -Vmid $Vmid -PUTNodesLxcConfigRB $PUTNodesLxcConfigRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesLxcConfigByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13443,6 +15392,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesLxcConfigRB** | [**PUTNodesLxcConfigRB**](PUTNodesLxcConfigRB.md)| Set container options. | [optional] 
 
 ### Return type
@@ -13463,6 +15414,9 @@ No authorization required
 <a name="Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName"></a>
 # **Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName**
 > void Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesLxcFirewallAliasesRB] <PSCustomObject><br>
 
 Update IP or Network alias.
@@ -13471,11 +15425,14 @@ Update IP or Network alias.
 
 ### Example
 ```powershell
-$PUTNodesLxcFirewallAliasesRB = Initialize-PUTNodesLxcFirewallAliasesRB -Name "MyName" -Comment "MyComment" -Rename "MyRename" -Vmid 0 -Digest "MyDigest" -Node "MyNode" -Cidr "MyCidr" # PUTNodesLxcFirewallAliasesRB | Update IP or Network alias. (optional)
+$Name = "MyName" # String | Alias name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesLxcFirewallAliasesRB = Initialize-PUTNodesLxcFirewallAliasesRB -Cidr "MyCidr" -Comment "MyComment" -Node "MyNode" -Name "MyName" -Rename "MyRename" -Vmid 0 -Digest "MyDigest" # PUTNodesLxcFirewallAliasesRB | Update IP or Network alias. (optional)
 
 # Update IP or Network alias.
 try {
-    $Result = Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName -PUTNodesLxcFirewallAliasesRB $PUTNodesLxcFirewallAliasesRB
+    $Result = Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName -Name $Name -Node $Node -Vmid $Vmid -PUTNodesLxcFirewallAliasesRB $PUTNodesLxcFirewallAliasesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesLxcFirewallAliasesByNodeAndVmidAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13486,6 +15443,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| Alias name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesLxcFirewallAliasesRB** | [**PUTNodesLxcFirewallAliasesRB**](PUTNodesLxcFirewallAliasesRB.md)| Update IP or Network alias. | [optional] 
 
 ### Return type
@@ -13506,6 +15466,10 @@ No authorization required
 <a name="Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr"></a>
 # **Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr**
 > void Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Cidr] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesLxcFirewallIpsetRB] <PSCustomObject><br>
 
 Update IP or Network settings
@@ -13514,11 +15478,15 @@ Update IP or Network settings
 
 ### Example
 ```powershell
-$PUTNodesLxcFirewallIpsetRB = Initialize-PUTNodesLxcFirewallIpsetRB -Name "MyName" -Nomatch 0 -Comment "MyComment" -Vmid 0 -Digest "MyDigest" -Node "MyNode" -Cidr "MyCidr" # PUTNodesLxcFirewallIpsetRB | Update IP or Network settings (optional)
+$Cidr = "MyCidr" # String | Network/IP specification in CIDR format.
+$Name = "MyName" # String | IP set name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesLxcFirewallIpsetRB = Initialize-PUTNodesLxcFirewallIpsetRB -Cidr "MyCidr" -Comment "MyComment" -Node "MyNode" -Name "MyName" -Vmid 0 -Digest "MyDigest" -Nomatch 0 # PUTNodesLxcFirewallIpsetRB | Update IP or Network settings (optional)
 
 # Update IP or Network settings
 try {
-    $Result = Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr -PUTNodesLxcFirewallIpsetRB $PUTNodesLxcFirewallIpsetRB
+    $Result = Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr -Cidr $Cidr -Name $Name -Node $Node -Vmid $Vmid -PUTNodesLxcFirewallIpsetRB $PUTNodesLxcFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesLxcFirewallIpsetByNodeAndVmidAndNameAndCidr: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13529,6 +15497,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Cidr** | **String**| Network/IP specification in CIDR format. | 
+ **Name** | **String**| IP set name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesLxcFirewallIpsetRB** | [**PUTNodesLxcFirewallIpsetRB**](PUTNodesLxcFirewallIpsetRB.md)| Update IP or Network settings | [optional] 
 
 ### Return type
@@ -13549,6 +15521,8 @@ No authorization required
 <a name="Set-PVENodesLxcFirewallOptionsByNodeAndVmid"></a>
 # **Set-PVENodesLxcFirewallOptionsByNodeAndVmid**
 > void Set-PVENodesLxcFirewallOptionsByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesLxcFirewallOptionsRB] <PSCustomObject><br>
 
 Set Firewall options.
@@ -13557,11 +15531,13 @@ Set Firewall options.
 
 ### Example
 ```powershell
-$PUTNodesLxcFirewallOptionsRB = Initialize-PUTNodesLxcFirewallOptionsRB -PolicyIn "ACCEPT" -Radv 0 -Ipfilter 0 -LogLevelIn "emerg" -Macfilter 0 -Vmid 0 -LogLevelOut "emerg" -Delete "MyDelete" -PolicyOut "ACCEPT" -Node "MyNode" -Enable 0 -Digest "MyDigest" -Ndp 0 -Dhcp 0 # PUTNodesLxcFirewallOptionsRB | Set Firewall options. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesLxcFirewallOptionsRB = Initialize-PUTNodesLxcFirewallOptionsRB -PolicyIn "ACCEPT" -Digest "MyDigest" -Radv 0 -Ndp 0 -PolicyOut "ACCEPT" -Enable 0 -Dhcp 0 -LogLevelIn "emerg" -LogLevelOut "emerg" -Macfilter 0 -Node "MyNode" -Vmid 0 -Ipfilter 0 -Delete "MyDelete" # PUTNodesLxcFirewallOptionsRB | Set Firewall options. (optional)
 
 # Set Firewall options.
 try {
-    $Result = Set-PVENodesLxcFirewallOptionsByNodeAndVmid -PUTNodesLxcFirewallOptionsRB $PUTNodesLxcFirewallOptionsRB
+    $Result = Set-PVENodesLxcFirewallOptionsByNodeAndVmid -Node $Node -Vmid $Vmid -PUTNodesLxcFirewallOptionsRB $PUTNodesLxcFirewallOptionsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesLxcFirewallOptionsByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13572,6 +15548,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesLxcFirewallOptionsRB** | [**PUTNodesLxcFirewallOptionsRB**](PUTNodesLxcFirewallOptionsRB.md)| Set Firewall options. | [optional] 
 
 ### Return type
@@ -13592,6 +15570,9 @@ No authorization required
 <a name="Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos"></a>
 # **Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos**
 > void Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Pos] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesLxcFirewallRulesRB] <PSCustomObject><br>
 
 Modify rule data.
@@ -13600,11 +15581,14 @@ Modify rule data.
 
 ### Example
 ```powershell
-$PUTNodesLxcFirewallRulesRB = Initialize-PUTNodesLxcFirewallRulesRB -Log "emerg" -Action "MyAction" -IcmpType "MyIcmpType" -Macro "MyMacro" -Comment "MyComment" -Source "MySource" -Dport "MyDport" -Vmid 0 -Proto "MyProto" -Dest "MyDest" -Delete "MyDelete" -Node "MyNode" -Sport "MySport" -Moveto 0 -Type "in" -Enable 0 -Digest "MyDigest" -Pos 0 -Iface "MyIface" # PUTNodesLxcFirewallRulesRB | Modify rule data. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Pos = 56 # Int32 | Update rule at position <pos>.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesLxcFirewallRulesRB = Initialize-PUTNodesLxcFirewallRulesRB -Digest "MyDigest" -Source "MySource" -Sport "MySport" -Action "MyAction" -Log "emerg" -Comment "MyComment" -Dest "MyDest" -Proto "MyProto" -Enable 0 -IcmpType "MyIcmpType" -Macro "MyMacro" -Vmid 0 -Pos 0 -Type "in" -Node "MyNode" -Iface "MyIface" -Moveto 0 -Delete "MyDelete" -Dport "MyDport" # PUTNodesLxcFirewallRulesRB | Modify rule data. (optional)
 
 # Modify rule data.
 try {
-    $Result = Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos -PUTNodesLxcFirewallRulesRB $PUTNodesLxcFirewallRulesRB
+    $Result = Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos -Node $Node -Pos $Pos -Vmid $Vmid -PUTNodesLxcFirewallRulesRB $PUTNodesLxcFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesLxcFirewallRulesByNodeAndVmidAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13615,6 +15599,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Pos** | **Int32**| Update rule at position &lt;pos&gt;. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesLxcFirewallRulesRB** | [**PUTNodesLxcFirewallRulesRB**](PUTNodesLxcFirewallRulesRB.md)| Modify rule data. | [optional] 
 
 ### Return type
@@ -13635,6 +15622,8 @@ No authorization required
 <a name="Set-PVENodesLxcResizeByNodeAndVmid"></a>
 # **Set-PVENodesLxcResizeByNodeAndVmid**
 > void Set-PVENodesLxcResizeByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesLxcResizeRB] <PSCustomObject><br>
 
 Resize a container mount point.
@@ -13643,11 +15632,13 @@ Resize a container mount point.
 
 ### Example
 ```powershell
-$PUTNodesLxcResizeRB = Initialize-PUTNodesLxcResizeRB -Disk "rootfs" -Node "MyNode" -Digest "MyDigest" -Size "MySize" -Vmid 0 # PUTNodesLxcResizeRB | Resize a container mount point. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesLxcResizeRB = Initialize-PUTNodesLxcResizeRB -Digest "MyDigest" -Disk "rootfs" -Node "MyNode" -Vmid 0 -Size "MySize" # PUTNodesLxcResizeRB | Resize a container mount point. (optional)
 
 # Resize a container mount point.
 try {
-    $Result = Set-PVENodesLxcResizeByNodeAndVmid -PUTNodesLxcResizeRB $PUTNodesLxcResizeRB
+    $Result = Set-PVENodesLxcResizeByNodeAndVmid -Node $Node -Vmid $Vmid -PUTNodesLxcResizeRB $PUTNodesLxcResizeRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesLxcResizeByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13658,6 +15649,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesLxcResizeRB** | [**PUTNodesLxcResizeRB**](PUTNodesLxcResizeRB.md)| Resize a container mount point. | [optional] 
 
 ### Return type
@@ -13678,6 +15671,9 @@ No authorization required
 <a name="Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname"></a>
 # **Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname**
 > void Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Snapname] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesLxcSnapshotConfigRB] <PSCustomObject><br>
 
 Update snapshot metadata.
@@ -13686,11 +15682,14 @@ Update snapshot metadata.
 
 ### Example
 ```powershell
-$PUTNodesLxcSnapshotConfigRB = Initialize-PUTNodesLxcSnapshotConfigRB -Node "MyNode" -Description "MyDescription" -Snapname "MySnapname" -Vmid 0 # PUTNodesLxcSnapshotConfigRB | Update snapshot metadata. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Snapname = "MySnapname" # String | The name of the snapshot.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesLxcSnapshotConfigRB = Initialize-PUTNodesLxcSnapshotConfigRB -Snapname "MySnapname" -Node "MyNode" -Vmid 0 -Description "MyDescription" # PUTNodesLxcSnapshotConfigRB | Update snapshot metadata. (optional)
 
 # Update snapshot metadata.
 try {
-    $Result = Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname -PUTNodesLxcSnapshotConfigRB $PUTNodesLxcSnapshotConfigRB
+    $Result = Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname -Node $Node -Snapname $Snapname -Vmid $Vmid -PUTNodesLxcSnapshotConfigRB $PUTNodesLxcSnapshotConfigRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesLxcSnapshotConfigByNodeAndVmidAndSnapname: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13701,6 +15700,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Snapname** | **String**| The name of the snapshot. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesLxcSnapshotConfigRB** | [**PUTNodesLxcSnapshotConfigRB**](PUTNodesLxcSnapshotConfigRB.md)| Update snapshot metadata. | [optional] 
 
 ### Return type
@@ -13721,6 +15723,7 @@ No authorization required
 <a name="Set-PVENodesNetworkByNode"></a>
 # **Set-PVENodesNetworkByNode**
 > void Set-PVENodesNetworkByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Reload network configuration
 
@@ -13728,10 +15731,11 @@ Reload network configuration
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 
 # Reload network configuration
 try {
-    $Result = Set-PVENodesNetworkByNode
+    $Result = Set-PVENodesNetworkByNode -Node $Node
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesNetworkByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13739,7 +15743,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
 
 ### Return type
 
@@ -13759,6 +15766,8 @@ No authorization required
 <a name="Set-PVENodesNetworkByNodeAndIface"></a>
 # **Set-PVENodesNetworkByNodeAndIface**
 > void Set-PVENodesNetworkByNodeAndIface<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Iface] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesNetworkRB] <PSCustomObject><br>
 
 Update network device configuration
@@ -13767,11 +15776,13 @@ Update network device configuration
 
 ### Example
 ```powershell
-$PUTNodesNetworkRB = Initialize-PUTNodesNetworkRB -Mtu 0 -Address6 "MyAddress6" -BondPrimary "MyBondPrimary" -OvsBridge "MyOvsBridge" -Node "MyNode" -BondMode "balance-rr" -Comments6 "MyComments6" -Iface "MyIface" -BridgeVids "MyBridgeVids" -Slaves "MySlaves" -Netmask "MyNetmask" -Type "bridge" -OvsPorts "MyOvsPorts" -Address "MyAddress" -Cidr "MyCidr" -Comments "MyComments" -Cidr6 "MyCidr6" -VlanRawDevice "MyVlanRawDevice" -Netmask6 0 -Gateway "MyGateway" -BridgeVlanAware 0 -OvsTag 0 -OvsBonds "MyOvsBonds" -BondXmitHashPolicy "layer2" -OvsOptions "MyOvsOptions" -Delete "MyDelete" -BridgePorts "MyBridgePorts" -VlanId 0 -Gateway6 "MyGateway6" -Autostart 0 # PUTNodesNetworkRB | Update network device configuration (optional)
+$Iface = "MyIface" # String | Network interface name.
+$Node = "MyNode" # String | The cluster node name.
+$PUTNodesNetworkRB = Initialize-PUTNodesNetworkRB -Iface "MyIface" -OvsTag 0 -BridgePorts "MyBridgePorts" -Netmask6 0 -Gateway6 "MyGateway6" -OvsPorts "MyOvsPorts" -VlanRawDevice "MyVlanRawDevice" -Slaves "MySlaves" -BridgeVlanAware 0 -Comments6 "MyComments6" -Mtu 0 -BondXmitHashPolicy "layer2" -Node "MyNode" -Gateway "MyGateway" -Comments "MyComments" -Cidr6 "MyCidr6" -BondMode "balance-rr" -VlanId 0 -OvsBridge "MyOvsBridge" -BridgeVids "MyBridgeVids" -Netmask "MyNetmask" -Address "MyAddress" -BondPrimary "MyBondPrimary" -OvsOptions "MyOvsOptions" -Delete "MyDelete" -Autostart 0 -OvsBonds "MyOvsBonds" -Cidr "MyCidr" -Type "bridge" -Address6 "MyAddress6" # PUTNodesNetworkRB | Update network device configuration (optional)
 
 # Update network device configuration
 try {
-    $Result = Set-PVENodesNetworkByNodeAndIface -PUTNodesNetworkRB $PUTNodesNetworkRB
+    $Result = Set-PVENodesNetworkByNodeAndIface -Iface $Iface -Node $Node -PUTNodesNetworkRB $PUTNodesNetworkRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesNetworkByNodeAndIface: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13782,6 +15793,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Iface** | **String**| Network interface name. | 
+ **Node** | **String**| The cluster node name. | 
  **PUTNodesNetworkRB** | [**PUTNodesNetworkRB**](PUTNodesNetworkRB.md)| Update network device configuration | [optional] 
 
 ### Return type
@@ -13802,6 +15815,8 @@ No authorization required
 <a name="Set-PVENodesQemuCloudinitByNodeAndVmid"></a>
 # **Set-PVENodesQemuCloudinitByNodeAndVmid**
 > void Set-PVENodesQemuCloudinitByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
 Regenerate and change cloudinit config drive.
 
@@ -13809,10 +15824,12 @@ Regenerate and change cloudinit config drive.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
 
 # Regenerate and change cloudinit config drive.
 try {
-    $Result = Set-PVENodesQemuCloudinitByNodeAndVmid
+    $Result = Set-PVENodesQemuCloudinitByNodeAndVmid -Node $Node -Vmid $Vmid
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesQemuCloudinitByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13820,7 +15837,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
 
 ### Return type
 
@@ -13840,6 +15861,8 @@ No authorization required
 <a name="Set-PVENodesQemuConfigByNodeAndVmid"></a>
 # **Set-PVENodesQemuConfigByNodeAndVmid**
 > void Set-PVENodesQemuConfigByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesQemuConfigRB] <PSCustomObject><br>
 
 Set virtual machine options (synchronous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation.
@@ -13848,11 +15871,13 @@ Set virtual machine options (synchronous API) - You should consider using the PO
 
 ### Example
 ```powershell
-$PUTNodesQemuConfigRB = Initialize-PUTNodesQemuConfigRB -Protection 0 -Watchdog "MyWatchdog" -VarArgs "MyVarArgs" -Cdrom "MyCdrom" -Ostype "other" -Machine "MyMachine" -Skiplock 0 -IpconfigN "MyIpconfigN" -Cpuunits 0 -Force 0 -ScsiN "MyScsiN" -Hookscript "MyHookscript" -Cores 0 -Citype "configdrive2" -Vga "MyVga" -ParallelN "MyParallelN" -UsbN "MyUsbN" -Bootdisk "MyBootdisk" -Sshkeys "MySshkeys" -Ciupgrade 0 -Vcpus 0 -Scsihw "lsi" -SpiceEnhancements "MySpiceEnhancements" -MigrateSpeed 0 -Hotplug "MyHotplug" -Freeze 0 -SerialN "MySerialN" -Startup "MyStartup" -Efidisk0 "MyEfidisk0" -Startdate "MyStartdate" -Nameserver "MyNameserver" -AmdSev "MyAmdSev" -Revert "MyRevert" -SataN "MySataN" -Onboot 0 -Vmgenid "MyVmgenid" -Cicustom "MyCicustom" -NumaN "MyNumaN" -Lock "backup" -IdeN "MyIdeN" -NetN "MyNetN" -Vmid 0 -Acpi 0 -Arch "x86_64" -Audio0 "MyAudio0" -Localtime 0 -Sockets 0 -Tags "MyTags" -Searchdomain "MySearchdomain" -HostpciN "MyHostpciN" -Bios "seabios" -Template 0 -MigrateDowntime 0 -Vmstatestorage "MyVmstatestorage" -Cpulimit 0 -Tablet 0 -Digest "MyDigest" -Ivshmem "MyIvshmem" -Memory "MyMemory" -Tdf 0 -Rng0 "MyRng0" -Delete "MyDelete" -Node "MyNode" -Shares 0 -Cipassword "MyCipassword" -Reboot 0 -Name "MyName" -Hugepages "any" -Boot "MyBoot" -Numa 0 -Affinity "MyAffinity" -Keephugepages 0 -Description "MyDescription" -Tpmstate0 "MyTpmstate0" -VirtioN "MyVirtioN" -Ciuser "MyCiuser" -Smbios1 "MySmbios1" -Agent "MyAgent" -Balloon 0 -Smp 0 -Keyboard "de" -Autostart 0 -UnusedN "MyUnusedN" -Kvm 0 -Cpu "MyCpu" # PUTNodesQemuConfigRB | Set virtual machine options (synchronous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesQemuConfigRB = Initialize-PUTNodesQemuConfigRB -Ivshmem "MyIvshmem" -NetN "MyNetN" -Vcpus 0 -Ostype "other" -UnusedN "MyUnusedN" -Rng0 "MyRng0" -AmdSev "MyAmdSev" -Autostart 0 -Acpi 0 -Revert "MyRevert" -Boot "MyBoot" -ScsiN "MyScsiN" -Agent "MyAgent" -IpconfigN "MyIpconfigN" -VarArgs "MyVarArgs" -MigrateSpeed 0 -Startup "MyStartup" -Vmstatestorage "MyVmstatestorage" -Keyboard "de" -Memory "MyMemory" -Tpmstate0 "MyTpmstate0" -Description "MyDescription" -SpiceEnhancements "MySpiceEnhancements" -Freeze 0 -Reboot 0 -Smbios1 "MySmbios1" -Cipassword "MyCipassword" -Bootdisk "MyBootdisk" -Citype "configdrive2" -Smp 0 -Hookscript "MyHookscript" -Hotplug "MyHotplug" -Balloon 0 -Tags "MyTags" -ParallelN "MyParallelN" -Sshkeys "MySshkeys" -Efidisk0 "MyEfidisk0" -Arch "x86_64" -Delete "MyDelete" -IdeN "MyIdeN" -VirtioN "MyVirtioN" -Vga "MyVga" -Tdf 0 -Name "MyName" -Watchdog "MyWatchdog" -MigrateDowntime 0 -Vmgenid "MyVmgenid" -Hugepages "any" -SerialN "MySerialN" -Cpuunits 0 -Shares 0 -Cpulimit 0 -Cpu "MyCpu" -Affinity "MyAffinity" -Onboot 0 -Cicustom "MyCicustom" -Sockets 0 -Node "MyNode" -Ciuser "MyCiuser" -Skiplock 0 -Protection 0 -Digest "MyDigest" -Lock "backup" -Numa 0 -Cores 0 -HostpciN "MyHostpciN" -Cdrom "MyCdrom" -SataN "MySataN" -Vmid 0 -Tablet 0 -Bios "seabios" -Localtime 0 -Template 0 -Nameserver "MyNameserver" -Kvm 0 -Force 0 -UsbN "MyUsbN" -Startdate "MyStartdate" -Scsihw "lsi" -Ciupgrade 0 -Keephugepages 0 -Audio0 "MyAudio0" -NumaN "MyNumaN" -Searchdomain "MySearchdomain" -Machine "MyMachine" # PUTNodesQemuConfigRB | Set virtual machine options (synchronous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation. (optional)
 
 # Set virtual machine options (synchronous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation.
 try {
-    $Result = Set-PVENodesQemuConfigByNodeAndVmid -PUTNodesQemuConfigRB $PUTNodesQemuConfigRB
+    $Result = Set-PVENodesQemuConfigByNodeAndVmid -Node $Node -Vmid $Vmid -PUTNodesQemuConfigRB $PUTNodesQemuConfigRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesQemuConfigByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13863,6 +15888,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesQemuConfigRB** | [**PUTNodesQemuConfigRB**](PUTNodesQemuConfigRB.md)| Set virtual machine options (synchronous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation. | [optional] 
 
 ### Return type
@@ -13883,6 +15910,9 @@ No authorization required
 <a name="Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName"></a>
 # **Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName**
 > void Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesQemuFirewallAliasesRB] <PSCustomObject><br>
 
 Update IP or Network alias.
@@ -13891,11 +15921,14 @@ Update IP or Network alias.
 
 ### Example
 ```powershell
-$PUTNodesQemuFirewallAliasesRB = Initialize-PUTNodesQemuFirewallAliasesRB -Name "MyName" -Comment "MyComment" -Rename "MyRename" -Vmid 0 -Digest "MyDigest" -Node "MyNode" -Cidr "MyCidr" # PUTNodesQemuFirewallAliasesRB | Update IP or Network alias. (optional)
+$Name = "MyName" # String | Alias name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesQemuFirewallAliasesRB = Initialize-PUTNodesQemuFirewallAliasesRB -Cidr "MyCidr" -Comment "MyComment" -Node "MyNode" -Name "MyName" -Rename "MyRename" -Vmid 0 -Digest "MyDigest" # PUTNodesQemuFirewallAliasesRB | Update IP or Network alias. (optional)
 
 # Update IP or Network alias.
 try {
-    $Result = Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName -PUTNodesQemuFirewallAliasesRB $PUTNodesQemuFirewallAliasesRB
+    $Result = Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName -Name $Name -Node $Node -Vmid $Vmid -PUTNodesQemuFirewallAliasesRB $PUTNodesQemuFirewallAliasesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesQemuFirewallAliasesByNodeAndVmidAndName: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13906,6 +15939,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Name** | **String**| Alias name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesQemuFirewallAliasesRB** | [**PUTNodesQemuFirewallAliasesRB**](PUTNodesQemuFirewallAliasesRB.md)| Update IP or Network alias. | [optional] 
 
 ### Return type
@@ -13926,6 +15962,10 @@ No authorization required
 <a name="Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr"></a>
 # **Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr**
 > void Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Cidr] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesQemuFirewallIpsetRB] <PSCustomObject><br>
 
 Update IP or Network settings
@@ -13934,11 +15974,15 @@ Update IP or Network settings
 
 ### Example
 ```powershell
-$PUTNodesQemuFirewallIpsetRB = Initialize-PUTNodesQemuFirewallIpsetRB -Name "MyName" -Nomatch 0 -Comment "MyComment" -Vmid 0 -Digest "MyDigest" -Node "MyNode" -Cidr "MyCidr" # PUTNodesQemuFirewallIpsetRB | Update IP or Network settings (optional)
+$Cidr = "MyCidr" # String | Network/IP specification in CIDR format.
+$Name = "MyName" # String | IP set name.
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesQemuFirewallIpsetRB = Initialize-PUTNodesQemuFirewallIpsetRB -Cidr "MyCidr" -Comment "MyComment" -Node "MyNode" -Name "MyName" -Vmid 0 -Digest "MyDigest" -Nomatch 0 # PUTNodesQemuFirewallIpsetRB | Update IP or Network settings (optional)
 
 # Update IP or Network settings
 try {
-    $Result = Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr -PUTNodesQemuFirewallIpsetRB $PUTNodesQemuFirewallIpsetRB
+    $Result = Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr -Cidr $Cidr -Name $Name -Node $Node -Vmid $Vmid -PUTNodesQemuFirewallIpsetRB $PUTNodesQemuFirewallIpsetRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesQemuFirewallIpsetByNodeAndVmidAndNameAndCidr: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13949,6 +15993,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Cidr** | **String**| Network/IP specification in CIDR format. | 
+ **Name** | **String**| IP set name. | 
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesQemuFirewallIpsetRB** | [**PUTNodesQemuFirewallIpsetRB**](PUTNodesQemuFirewallIpsetRB.md)| Update IP or Network settings | [optional] 
 
 ### Return type
@@ -13969,6 +16017,8 @@ No authorization required
 <a name="Set-PVENodesQemuFirewallOptionsByNodeAndVmid"></a>
 # **Set-PVENodesQemuFirewallOptionsByNodeAndVmid**
 > void Set-PVENodesQemuFirewallOptionsByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesQemuFirewallOptionsRB] <PSCustomObject><br>
 
 Set Firewall options.
@@ -13977,11 +16027,13 @@ Set Firewall options.
 
 ### Example
 ```powershell
-$PUTNodesQemuFirewallOptionsRB = Initialize-PUTNodesQemuFirewallOptionsRB -PolicyIn "ACCEPT" -Radv 0 -Ipfilter 0 -LogLevelIn "emerg" -Macfilter 0 -Vmid 0 -LogLevelOut "emerg" -Delete "MyDelete" -PolicyOut "ACCEPT" -Node "MyNode" -Enable 0 -Digest "MyDigest" -Ndp 0 -Dhcp 0 # PUTNodesQemuFirewallOptionsRB | Set Firewall options. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesQemuFirewallOptionsRB = Initialize-PUTNodesQemuFirewallOptionsRB -PolicyIn "ACCEPT" -Digest "MyDigest" -Radv 0 -Ndp 0 -PolicyOut "ACCEPT" -Enable 0 -Dhcp 0 -LogLevelIn "emerg" -LogLevelOut "emerg" -Macfilter 0 -Node "MyNode" -Vmid 0 -Ipfilter 0 -Delete "MyDelete" # PUTNodesQemuFirewallOptionsRB | Set Firewall options. (optional)
 
 # Set Firewall options.
 try {
-    $Result = Set-PVENodesQemuFirewallOptionsByNodeAndVmid -PUTNodesQemuFirewallOptionsRB $PUTNodesQemuFirewallOptionsRB
+    $Result = Set-PVENodesQemuFirewallOptionsByNodeAndVmid -Node $Node -Vmid $Vmid -PUTNodesQemuFirewallOptionsRB $PUTNodesQemuFirewallOptionsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesQemuFirewallOptionsByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -13992,6 +16044,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesQemuFirewallOptionsRB** | [**PUTNodesQemuFirewallOptionsRB**](PUTNodesQemuFirewallOptionsRB.md)| Set Firewall options. | [optional] 
 
 ### Return type
@@ -14012,6 +16066,9 @@ No authorization required
 <a name="Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos"></a>
 # **Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos**
 > void Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Pos] <Int32><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesQemuFirewallRulesRB] <PSCustomObject><br>
 
 Modify rule data.
@@ -14020,11 +16077,14 @@ Modify rule data.
 
 ### Example
 ```powershell
-$PUTNodesQemuFirewallRulesRB = Initialize-PUTNodesQemuFirewallRulesRB -Log "emerg" -Action "MyAction" -IcmpType "MyIcmpType" -Macro "MyMacro" -Comment "MyComment" -Source "MySource" -Dport "MyDport" -Vmid 0 -Proto "MyProto" -Dest "MyDest" -Delete "MyDelete" -Node "MyNode" -Sport "MySport" -Moveto 0 -Type "in" -Enable 0 -Digest "MyDigest" -Pos 0 -Iface "MyIface" # PUTNodesQemuFirewallRulesRB | Modify rule data. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Pos = 56 # Int32 | Update rule at position <pos>.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesQemuFirewallRulesRB = Initialize-PUTNodesQemuFirewallRulesRB -Digest "MyDigest" -Source "MySource" -Sport "MySport" -Action "MyAction" -Log "emerg" -Comment "MyComment" -Dest "MyDest" -Proto "MyProto" -Enable 0 -IcmpType "MyIcmpType" -Macro "MyMacro" -Vmid 0 -Pos 0 -Type "in" -Node "MyNode" -Iface "MyIface" -Moveto 0 -Delete "MyDelete" -Dport "MyDport" # PUTNodesQemuFirewallRulesRB | Modify rule data. (optional)
 
 # Modify rule data.
 try {
-    $Result = Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos -PUTNodesQemuFirewallRulesRB $PUTNodesQemuFirewallRulesRB
+    $Result = Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos -Node $Node -Pos $Pos -Vmid $Vmid -PUTNodesQemuFirewallRulesRB $PUTNodesQemuFirewallRulesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesQemuFirewallRulesByNodeAndVmidAndPos: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -14035,6 +16095,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Pos** | **Int32**| Update rule at position &lt;pos&gt;. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesQemuFirewallRulesRB** | [**PUTNodesQemuFirewallRulesRB**](PUTNodesQemuFirewallRulesRB.md)| Modify rule data. | [optional] 
 
 ### Return type
@@ -14055,6 +16118,8 @@ No authorization required
 <a name="Set-PVENodesQemuResizeByNodeAndVmid"></a>
 # **Set-PVENodesQemuResizeByNodeAndVmid**
 > void Set-PVENodesQemuResizeByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesQemuResizeRB] <PSCustomObject><br>
 
 Extend volume size.
@@ -14063,11 +16128,13 @@ Extend volume size.
 
 ### Example
 ```powershell
-$PUTNodesQemuResizeRB = Initialize-PUTNodesQemuResizeRB -Vmid 0 -Size "MySize" -Skiplock 0 -Digest "MyDigest" -Node "MyNode" -Disk "ide0" # PUTNodesQemuResizeRB | Extend volume size. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesQemuResizeRB = Initialize-PUTNodesQemuResizeRB -Node "MyNode" -Skiplock 0 -Size "MySize" -Vmid 0 -Digest "MyDigest" -Disk "ide0" # PUTNodesQemuResizeRB | Extend volume size. (optional)
 
 # Extend volume size.
 try {
-    $Result = Set-PVENodesQemuResizeByNodeAndVmid -PUTNodesQemuResizeRB $PUTNodesQemuResizeRB
+    $Result = Set-PVENodesQemuResizeByNodeAndVmid -Node $Node -Vmid $Vmid -PUTNodesQemuResizeRB $PUTNodesQemuResizeRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesQemuResizeByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -14078,6 +16145,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesQemuResizeRB** | [**PUTNodesQemuResizeRB**](PUTNodesQemuResizeRB.md)| Extend volume size. | [optional] 
 
 ### Return type
@@ -14098,6 +16167,8 @@ No authorization required
 <a name="Set-PVENodesQemuSendkeyByNodeAndVmid"></a>
 # **Set-PVENodesQemuSendkeyByNodeAndVmid**
 > void Set-PVENodesQemuSendkeyByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesQemuSendkeyRB] <PSCustomObject><br>
 
 Send key event to virtual machine.
@@ -14106,11 +16177,13 @@ Send key event to virtual machine.
 
 ### Example
 ```powershell
-$PUTNodesQemuSendkeyRB = Initialize-PUTNodesQemuSendkeyRB -Node "MyNode" -Key "MyKey" -Vmid 0 -Skiplock 0 # PUTNodesQemuSendkeyRB | Send key event to virtual machine. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesQemuSendkeyRB = Initialize-PUTNodesQemuSendkeyRB -Key "MyKey" -Node "MyNode" -Vmid 0 -Skiplock 0 # PUTNodesQemuSendkeyRB | Send key event to virtual machine. (optional)
 
 # Send key event to virtual machine.
 try {
-    $Result = Set-PVENodesQemuSendkeyByNodeAndVmid -PUTNodesQemuSendkeyRB $PUTNodesQemuSendkeyRB
+    $Result = Set-PVENodesQemuSendkeyByNodeAndVmid -Node $Node -Vmid $Vmid -PUTNodesQemuSendkeyRB $PUTNodesQemuSendkeyRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesQemuSendkeyByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -14121,6 +16194,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesQemuSendkeyRB** | [**PUTNodesQemuSendkeyRB**](PUTNodesQemuSendkeyRB.md)| Send key event to virtual machine. | [optional] 
 
 ### Return type
@@ -14141,6 +16216,9 @@ No authorization required
 <a name="Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname"></a>
 # **Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname**
 > void Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Snapname] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesQemuSnapshotConfigRB] <PSCustomObject><br>
 
 Update snapshot metadata.
@@ -14149,11 +16227,14 @@ Update snapshot metadata.
 
 ### Example
 ```powershell
-$PUTNodesQemuSnapshotConfigRB = Initialize-PUTNodesQemuSnapshotConfigRB -Node "MyNode" -Description "MyDescription" -Snapname "MySnapname" -Vmid 0 # PUTNodesQemuSnapshotConfigRB | Update snapshot metadata. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Snapname = "MySnapname" # String | The name of the snapshot.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesQemuSnapshotConfigRB = Initialize-PUTNodesQemuSnapshotConfigRB -Snapname "MySnapname" -Node "MyNode" -Vmid 0 -Description "MyDescription" # PUTNodesQemuSnapshotConfigRB | Update snapshot metadata. (optional)
 
 # Update snapshot metadata.
 try {
-    $Result = Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname -PUTNodesQemuSnapshotConfigRB $PUTNodesQemuSnapshotConfigRB
+    $Result = Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname -Node $Node -Snapname $Snapname -Vmid $Vmid -PUTNodesQemuSnapshotConfigRB $PUTNodesQemuSnapshotConfigRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesQemuSnapshotConfigByNodeAndVmidAndSnapname: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -14164,6 +16245,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Snapname** | **String**| The name of the snapshot. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesQemuSnapshotConfigRB** | [**PUTNodesQemuSnapshotConfigRB**](PUTNodesQemuSnapshotConfigRB.md)| Update snapshot metadata. | [optional] 
 
 ### Return type
@@ -14184,6 +16268,8 @@ No authorization required
 <a name="Set-PVENodesQemuUnlinkByNodeAndVmid"></a>
 # **Set-PVENodesQemuUnlinkByNodeAndVmid**
 > void Set-PVENodesQemuUnlinkByNodeAndVmid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesQemuUnlinkRB] <PSCustomObject><br>
 
 Unlink/delete disk images.
@@ -14192,11 +16278,13 @@ Unlink/delete disk images.
 
 ### Example
 ```powershell
-$PUTNodesQemuUnlinkRB = Initialize-PUTNodesQemuUnlinkRB -Node "MyNode" -Force 0 -Idlist "MyIdlist" -Vmid 0 # PUTNodesQemuUnlinkRB | Unlink/delete disk images. (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Vmid = 56 # Int32 | The (unique) ID of the VM.
+$PUTNodesQemuUnlinkRB = Initialize-PUTNodesQemuUnlinkRB -Force 0 -Idlist "MyIdlist" -Node "MyNode" -Vmid 0 # PUTNodesQemuUnlinkRB | Unlink/delete disk images. (optional)
 
 # Unlink/delete disk images.
 try {
-    $Result = Set-PVENodesQemuUnlinkByNodeAndVmid -PUTNodesQemuUnlinkRB $PUTNodesQemuUnlinkRB
+    $Result = Set-PVENodesQemuUnlinkByNodeAndVmid -Node $Node -Vmid $Vmid -PUTNodesQemuUnlinkRB $PUTNodesQemuUnlinkRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesQemuUnlinkByNodeAndVmid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -14207,6 +16295,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Vmid** | **Int32**| The (unique) ID of the VM. | 
  **PUTNodesQemuUnlinkRB** | [**PUTNodesQemuUnlinkRB**](PUTNodesQemuUnlinkRB.md)| Unlink/delete disk images. | [optional] 
 
 ### Return type
@@ -14227,6 +16317,9 @@ No authorization required
 <a name="Set-PVENodesStorageContentByNodeAndStorageAndVolume"></a>
 # **Set-PVENodesStorageContentByNodeAndStorageAndVolume**
 > void Set-PVENodesStorageContentByNodeAndStorageAndVolume<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Volume] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesStorageContentRB] <PSCustomObject><br>
 
 Update volume attributes
@@ -14235,11 +16328,14 @@ Update volume attributes
 
 ### Example
 ```powershell
-$PUTNodesStorageContentRB = Initialize-PUTNodesStorageContentRB -Node "MyNode" -Volume "MyVolume" -Protected 0 -Notes "MyNotes" -Storage "MyStorage" # PUTNodesStorageContentRB | Update volume attributes (optional)
+$Node = "MyNode" # String | The cluster node name.
+$Storage = "MyStorage" # String | The storage identifier.
+$Volume = "MyVolume" # String | Volume identifier
+$PUTNodesStorageContentRB = Initialize-PUTNodesStorageContentRB -Protected 0 -Node "MyNode" -Storage "MyStorage" -Volume "MyVolume" -Notes "MyNotes" # PUTNodesStorageContentRB | Update volume attributes (optional)
 
 # Update volume attributes
 try {
-    $Result = Set-PVENodesStorageContentByNodeAndStorageAndVolume -PUTNodesStorageContentRB $PUTNodesStorageContentRB
+    $Result = Set-PVENodesStorageContentByNodeAndStorageAndVolume -Node $Node -Storage $Storage -Volume $Volume -PUTNodesStorageContentRB $PUTNodesStorageContentRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesStorageContentByNodeAndStorageAndVolume: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -14250,6 +16346,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
+ **Storage** | **String**| The storage identifier. | 
+ **Volume** | **String**| Volume identifier | 
  **PUTNodesStorageContentRB** | [**PUTNodesStorageContentRB**](PUTNodesStorageContentRB.md)| Update volume attributes | [optional] 
 
 ### Return type
@@ -14270,6 +16369,7 @@ No authorization required
 <a name="Set-PVENodesSubscriptionByNode"></a>
 # **Set-PVENodesSubscriptionByNode**
 > void Set-PVENodesSubscriptionByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesSubscriptionRB] <PSCustomObject><br>
 
 Set subscription key.
@@ -14278,11 +16378,12 @@ Set subscription key.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $PUTNodesSubscriptionRB = Initialize-PUTNodesSubscriptionRB -Key "MyKey" -Node "MyNode" # PUTNodesSubscriptionRB | Set subscription key. (optional)
 
 # Set subscription key.
 try {
-    $Result = Set-PVENodesSubscriptionByNode -PUTNodesSubscriptionRB $PUTNodesSubscriptionRB
+    $Result = Set-PVENodesSubscriptionByNode -Node $Node -PUTNodesSubscriptionRB $PUTNodesSubscriptionRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesSubscriptionByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -14293,6 +16394,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **PUTNodesSubscriptionRB** | [**PUTNodesSubscriptionRB**](PUTNodesSubscriptionRB.md)| Set subscription key. | [optional] 
 
 ### Return type
@@ -14313,6 +16415,7 @@ No authorization required
 <a name="Set-PVENodesTimeByNode"></a>
 # **Set-PVENodesTimeByNode**
 > void Set-PVENodesTimeByNode<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTNodesTimeRB] <PSCustomObject><br>
 
 Set time zone.
@@ -14321,11 +16424,12 @@ Set time zone.
 
 ### Example
 ```powershell
+$Node = "MyNode" # String | The cluster node name.
 $PUTNodesTimeRB = Initialize-PUTNodesTimeRB -Timezone "MyTimezone" -Node "MyNode" # PUTNodesTimeRB | Set time zone. (optional)
 
 # Set time zone.
 try {
-    $Result = Set-PVENodesTimeByNode -PUTNodesTimeRB $PUTNodesTimeRB
+    $Result = Set-PVENodesTimeByNode -Node $Node -PUTNodesTimeRB $PUTNodesTimeRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVENodesTimeByNode: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -14336,6 +16440,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Node** | **String**| The cluster node name. | 
  **PUTNodesTimeRB** | [**PUTNodesTimeRB**](PUTNodesTimeRB.md)| Set time zone. | [optional] 
 
 ### Return type

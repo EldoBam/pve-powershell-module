@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Vms
+No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER ForceStop
-No description available.
-.PARAMETER Vms
 No description available.
 .PARAMETER Timeout
 No description available.
@@ -33,13 +33,13 @@ function Initialize-PVEPOSTNodesStopallRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Vms},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${ForceStop},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Vms},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Timeout}
@@ -63,7 +63,7 @@ function Initialize-PVEPOSTNodesStopallRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "ForceStop"="force-stop"; "Vms"="vms"; "Timeout"="timeout"
+			"Vms"="vms"; "Node"="node"; "ForceStop"="force-stop"; "Timeout"="timeout"
         }
 		
 		 $OBJ = @{}
@@ -109,11 +109,17 @@ function ConvertFrom-PVEJsonToPOSTNodesStopallRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesStopallRB
-        $AllProperties = ("node", "force-stop", "vms", "timeout")
+        $AllProperties = ("vms", "node", "force-stop", "timeout")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vms"))) { #optional property not found
+            $Vms = $null
+        } else {
+            $Vms = $JsonParameters.PSobject.Properties["vms"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -128,12 +134,6 @@ function ConvertFrom-PVEJsonToPOSTNodesStopallRB {
             $ForceStop = $JsonParameters.PSobject.Properties["force-stop"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vms"))) { #optional property not found
-            $Vms = $null
-        } else {
-            $Vms = $JsonParameters.PSobject.Properties["vms"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
             $Timeout = $null
         } else {
@@ -141,9 +141,9 @@ function ConvertFrom-PVEJsonToPOSTNodesStopallRB {
         }
 
         $PSO = [PSCustomObject]@{
+            "vms" = ${Vms}
             "node" = ${Node}
             "force-stop" = ${ForceStop}
-            "vms" = ${Vms}
             "timeout" = ${Timeout}
         }
 

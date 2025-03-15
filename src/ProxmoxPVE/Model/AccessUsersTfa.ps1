@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Realm
+.PARAMETER User
 No description available.
 .PARAMETER Types
 No description available.
-.PARAMETER User
+.PARAMETER Realm
 No description available.
 .OUTPUTS
 
@@ -30,17 +30,17 @@ function Initialize-PVEAccessUsersTfa {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("oath", "yubico")]
+        [ValidateSet("oath", "u2f")]
         [String]
-        ${Realm},
+        ${User},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("totp", "u2f", "yubico", "webauthn", "recovedry")]
         [String[]]
         ${Types},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("oath", "u2f")]
+        [ValidateSet("oath", "yubico")]
         [String]
-        ${User}
+        ${Realm}
     )
 
     Process {
@@ -49,7 +49,7 @@ function Initialize-PVEAccessUsersTfa {
 
 
 		 $DisplayNameMapping =@{
-			"Realm"="realm"; "Types"="types"; "User"="user"
+			"User"="user"; "Types"="types"; "Realm"="realm"
         }
 		
 		 $OBJ = @{}
@@ -95,23 +95,11 @@ function ConvertFrom-PVEJsonToAccessUsersTfa {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessUsersTfa
-        $AllProperties = ("realm", "types", "user")
+        $AllProperties = ("user", "types", "realm")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
-            $Realm = $null
-        } else {
-            $Realm = $JsonParameters.PSobject.Properties["realm"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "types"))) { #optional property not found
-            $Types = $null
-        } else {
-            $Types = $JsonParameters.PSobject.Properties["types"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "user"))) { #optional property not found
@@ -120,10 +108,22 @@ function ConvertFrom-PVEJsonToAccessUsersTfa {
             $User = $JsonParameters.PSobject.Properties["user"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "types"))) { #optional property not found
+            $Types = $null
+        } else {
+            $Types = $JsonParameters.PSobject.Properties["types"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
+            $Realm = $null
+        } else {
+            $Realm = $JsonParameters.PSobject.Properties["realm"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "realm" = ${Realm}
-            "types" = ${Types}
             "user" = ${User}
+            "types" = ${Types}
+            "realm" = ${Realm}
         }
 
         return $PSO

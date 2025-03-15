@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Key
+.PARAMETER Force
 No description available.
-.PARAMETER Certificates
+.PARAMETER Key
 No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER Force
-No description available.
 .PARAMETER Restart
+No description available.
+.PARAMETER Certificates
 No description available.
 .OUTPUTS
 
@@ -34,20 +34,20 @@ function Initialize-PVEPOSTNodesCertificatesCustomRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Key},
+        [System.Nullable[Int32]]
+        ${Force},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Certificates},
+        ${Key},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Force},
+        ${Restart},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Restart}
+        [String]
+        ${Certificates}
     )
 
     Process {
@@ -72,7 +72,7 @@ function Initialize-PVEPOSTNodesCertificatesCustomRB {
 
 
 		 $DisplayNameMapping =@{
-			"Key"="key"; "Certificates"="certificates"; "Node"="node"; "Force"="force"; "Restart"="restart"
+			"Force"="force"; "Key"="key"; "Node"="node"; "Restart"="restart"; "Certificates"="certificates"
         }
 		
 		 $OBJ = @{}
@@ -118,29 +118,11 @@ function ConvertFrom-PVEJsonToPOSTNodesCertificatesCustomRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCertificatesCustomRB
-        $AllProperties = ("key", "certificates", "node", "force", "restart")
+        $AllProperties = ("force", "key", "node", "restart", "certificates")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
-            $Key = $null
-        } else {
-            $Key = $JsonParameters.PSobject.Properties["key"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "certificates"))) { #optional property not found
-            $Certificates = $null
-        } else {
-            $Certificates = $JsonParameters.PSobject.Properties["certificates"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
@@ -149,18 +131,36 @@ function ConvertFrom-PVEJsonToPOSTNodesCertificatesCustomRB {
             $Force = $JsonParameters.PSobject.Properties["force"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
+            $Key = $null
+        } else {
+            $Key = $JsonParameters.PSobject.Properties["key"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "restart"))) { #optional property not found
             $Restart = $null
         } else {
             $Restart = $JsonParameters.PSobject.Properties["restart"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "certificates"))) { #optional property not found
+            $Certificates = $null
+        } else {
+            $Certificates = $JsonParameters.PSobject.Properties["certificates"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "key" = ${Key}
-            "certificates" = ${Certificates}
-            "node" = ${Node}
             "force" = ${Force}
+            "key" = ${Key}
+            "node" = ${Node}
             "restart" = ${Restart}
+            "certificates" = ${Certificates}
         }
 
         return $PSO

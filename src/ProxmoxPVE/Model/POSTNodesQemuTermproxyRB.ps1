@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Node
 No description available.
-.PARAMETER Serial
-No description available.
 .PARAMETER Vmid
+No description available.
+.PARAMETER Serial
 No description available.
 .OUTPUTS
 
@@ -33,12 +33,12 @@ function Initialize-PVEPOSTNodesQemuTermproxyRB {
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("serial0", "serial1", "serial2", "serial3")]
         [String]
-        ${Serial},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid}
+        ${Serial}
     )
 
     Process {
@@ -55,7 +55,7 @@ function Initialize-PVEPOSTNodesQemuTermproxyRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Serial"="serial"; "Vmid"="vmid"
+			"Node"="node"; "Vmid"="vmid"; "Serial"="serial"
         }
 		
 		 $OBJ = @{}
@@ -101,7 +101,7 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuTermproxyRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuTermproxyRB
-        $AllProperties = ("node", "serial", "vmid")
+        $AllProperties = ("node", "vmid", "serial")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -114,22 +114,22 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuTermproxyRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "serial"))) { #optional property not found
-            $Serial = $null
-        } else {
-            $Serial = $JsonParameters.PSobject.Properties["serial"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "serial"))) { #optional property not found
+            $Serial = $null
+        } else {
+            $Serial = $JsonParameters.PSobject.Properties["serial"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "node" = ${Node}
-            "serial" = ${Serial}
             "vmid" = ${Vmid}
+            "serial" = ${Serial}
         }
 
         return $PSO

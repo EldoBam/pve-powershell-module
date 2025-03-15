@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Storage** | **String** |  | [optional] 
 **Content** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesStorageContentRB = Initialize-PVEGETNodesStorageContentRB  -Node null `
- -Storage null `
+$GETNodesStorageContentRB = Initialize-PVEGETNodesStorageContentRB  -Storage null `
  -Content null `
+ -Node null `
  -Vmid null
 ```
 

@@ -3,43 +3,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Log** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
 **IcmpType** | **String** |  | [optional] 
-**Macro** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
+**Sport** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Group** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Dport** | **String** |  | [optional] 
 **Proto** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
-**Sport** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Enable** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Macro** | **String** |  | [optional] 
 **Pos** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Iface** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterFirewallGroupsRB = Initialize-PVEPOSTClusterFirewallGroupsRB  -Log null `
+$POSTClusterFirewallGroupsRB = Initialize-PVEPOSTClusterFirewallGroupsRB  -IcmpType null `
+ -Digest null `
+ -Source null `
+ -Sport null `
  -Action null `
- -IcmpType null `
- -Macro null `
  -Comment null `
  -Group null `
- -Source null `
- -Dport null `
  -Proto null `
- -Dest null `
- -Sport null `
- -Type null `
  -Enable null `
- -Digest null `
+ -Dest null `
+ -Macro null `
  -Pos null `
- -Iface null
+ -Type null `
+ -Iface null `
+ -Log null `
+ -Dport null
 ```
 
 - Convert the resource to JSON

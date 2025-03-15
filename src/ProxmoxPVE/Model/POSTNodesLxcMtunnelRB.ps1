@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
+.PARAMETER Storages
+No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Bridges
 No description available.
 .PARAMETER Vmid
-No description available.
-.PARAMETER Storages
 No description available.
 .OUTPUTS
 
@@ -33,16 +33,16 @@ function Initialize-PVEPOSTNodesLxcMtunnelRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Storages},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Bridges},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Storages}
+        ${Vmid}
     )
 
     Process {
@@ -59,7 +59,7 @@ function Initialize-PVEPOSTNodesLxcMtunnelRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Bridges"="bridges"; "Vmid"="vmid"; "Storages"="storages"
+			"Storages"="storages"; "Node"="node"; "Bridges"="bridges"; "Vmid"="vmid"
         }
 		
 		 $OBJ = @{}
@@ -105,11 +105,17 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcMtunnelRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesLxcMtunnelRB
-        $AllProperties = ("node", "bridges", "vmid", "storages")
+        $AllProperties = ("storages", "node", "bridges", "vmid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storages"))) { #optional property not found
+            $Storages = $null
+        } else {
+            $Storages = $JsonParameters.PSobject.Properties["storages"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -130,17 +136,11 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcMtunnelRB {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storages"))) { #optional property not found
-            $Storages = $null
-        } else {
-            $Storages = $JsonParameters.PSobject.Properties["storages"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "storages" = ${Storages}
             "node" = ${Node}
             "bridges" = ${Bridges}
             "vmid" = ${Vmid}
-            "storages" = ${Storages}
         }
 
         return $PSO

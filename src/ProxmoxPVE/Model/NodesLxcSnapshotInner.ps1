@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
-No description available.
-.PARAMETER Description
-No description available.
 .PARAMETER Snaptime
 No description available.
+.PARAMETER Name
+No description available.
 .PARAMETER Parent
+No description available.
+.PARAMETER Description
 No description available.
 .OUTPUTS
 
@@ -32,17 +32,17 @@ function Initialize-PVENodesLxcSnapshotInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Description},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Snaptime},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Parent}
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Parent},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Description}
     )
 
     Process {
@@ -51,7 +51,7 @@ function Initialize-PVENodesLxcSnapshotInner {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Description"="description"; "Snaptime"="snaptime"; "Parent"="parent"
+			"Snaptime"="snaptime"; "Name"="name"; "Parent"="parent"; "Description"="description"
         }
 		
 		 $OBJ = @{}
@@ -97,23 +97,11 @@ function ConvertFrom-PVEJsonToNodesLxcSnapshotInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesLxcSnapshotInner
-        $AllProperties = ("name", "description", "snaptime", "parent")
+        $AllProperties = ("snaptime", "name", "parent", "description")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "snaptime"))) { #optional property not found
@@ -122,17 +110,29 @@ function ConvertFrom-PVEJsonToNodesLxcSnapshotInner {
             $Snaptime = $JsonParameters.PSobject.Properties["snaptime"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "parent"))) { #optional property not found
             $Parent = $null
         } else {
             $Parent = $JsonParameters.PSobject.Properties["parent"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "description" = ${Description}
             "snaptime" = ${Snaptime}
+            "name" = ${Name}
             "parent" = ${Parent}
+            "description" = ${Description}
         }
 
         return $PSO

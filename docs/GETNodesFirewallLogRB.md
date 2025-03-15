@@ -5,9 +5,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Limit** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Since** | **Int32** |  | [optional] 
-**VarUntil** | **Int32** |  | [optional] 
 **Start** | **Int32** |  | [optional] 
+**VarUntil** | **Int32** |  | [optional] 
+**Since** | **Int32** |  | [optional] 
 
 ## Examples
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 ```powershell
 $GETNodesFirewallLogRB = Initialize-PVEGETNodesFirewallLogRB  -Limit null `
  -Node null `
- -Since null `
+ -Start null `
  -VarUntil null `
- -Start null
+ -Since null
 ```
 
 - Convert the resource to JSON

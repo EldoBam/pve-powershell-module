@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DbDevSize** | **Decimal** |  | [optional] 
-**Encrypted** | **Int32** |  | [optional] 
-**WalDevSize** | **Decimal** |  | [optional] 
-**WalDev** | **String** |  | [optional] 
-**OsdsPerDevice** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **DbDev** | **String** |  | [optional] 
 **CrushDeviceClass** | **String** |  | [optional] 
+**WalDev** | **String** |  | [optional] 
+**Encrypted** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Dev** | **String** |  | [optional] 
+**OsdsPerDevice** | **Int32** |  | [optional] 
+**WalDevSize** | **Decimal** |  | [optional] 
+**DbDevSize** | **Decimal** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephOsdRB = Initialize-PVEPOSTNodesCephOsdRB  -DbDevSize null `
- -Encrypted null `
- -WalDevSize null `
- -WalDev null `
- -OsdsPerDevice null `
- -Node null `
- -DbDev null `
+$POSTNodesCephOsdRB = Initialize-PVEPOSTNodesCephOsdRB  -DbDev null `
  -CrushDeviceClass null `
- -Dev null
+ -WalDev null `
+ -Encrypted null `
+ -Node null `
+ -Dev null `
+ -OsdsPerDevice null `
+ -WalDevSize null `
+ -DbDevSize null
 ```
 
 - Convert the resource to JSON

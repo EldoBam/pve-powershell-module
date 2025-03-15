@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Start
-No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER VarUntil
+.PARAMETER Since
 No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Limit
 No description available.
-.PARAMETER Since
+.PARAMETER Vmid
+No description available.
+.PARAMETER VarUntil
+No description available.
+.PARAMETER Start
 No description available.
 .OUTPUTS
 
@@ -37,13 +37,7 @@ function Initialize-PVEGETNodesLxcFirewallLogRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Start},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VarUntil},
+        ${Since},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
@@ -52,7 +46,13 @@ function Initialize-PVEGETNodesLxcFirewallLogRB {
         ${Limit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Since}
+        ${Vmid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${VarUntil},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Start}
     )
 
     Process {
@@ -69,7 +69,7 @@ function Initialize-PVEGETNodesLxcFirewallLogRB {
 
 
 		 $DisplayNameMapping =@{
-			"Start"="start"; "Vmid"="vmid"; "VarUntil"="until"; "Node"="node"; "Limit"="limit"; "Since"="since"
+			"Since"="since"; "Node"="node"; "Limit"="limit"; "Vmid"="vmid"; "VarUntil"="until"; "Start"="start"
         }
 		
 		 $OBJ = @{}
@@ -115,29 +115,17 @@ function ConvertFrom-PVEJsonToGETNodesLxcFirewallLogRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesLxcFirewallLogRB
-        $AllProperties = ("start", "vmid", "until", "node", "limit", "since")
+        $AllProperties = ("since", "node", "limit", "vmid", "until", "start")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) { #optional property not found
-            $Start = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "since"))) { #optional property not found
+            $Since = $null
         } else {
-            $Start = $JsonParameters.PSobject.Properties["start"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
-            $VarUntil = $null
-        } else {
-            $VarUntil = $JsonParameters.PSobject.Properties["until"].value
+            $Since = $JsonParameters.PSobject.Properties["since"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -152,19 +140,31 @@ function ConvertFrom-PVEJsonToGETNodesLxcFirewallLogRB {
             $Limit = $JsonParameters.PSobject.Properties["limit"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "since"))) { #optional property not found
-            $Since = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
         } else {
-            $Since = $JsonParameters.PSobject.Properties["since"].value
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
+            $VarUntil = $null
+        } else {
+            $VarUntil = $JsonParameters.PSobject.Properties["until"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) { #optional property not found
+            $Start = $null
+        } else {
+            $Start = $JsonParameters.PSobject.Properties["start"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "start" = ${Start}
-            "vmid" = ${Vmid}
-            "until" = ${VarUntil}
+            "since" = ${Since}
             "node" = ${Node}
             "limit" = ${Limit}
-            "since" = ${Since}
+            "vmid" = ${Vmid}
+            "until" = ${VarUntil}
+            "start" = ${Start}
         }
 
         return $PSO

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEDELETENodesQemuFirewallAliasesRB' {
     Context 'PVEDELETENodesQemuFirewallAliasesRB' {
         It 'Initialize-PVEDELETENodesQemuFirewallAliasesRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEDELETENodesQemuFirewallAliasesRB -Name "TEST_VALUE" -Node "TEST_VALUE" -Digest "TEST_VALUE" -Vmid "TEST_VALUE"
+            #$NewObject = Initialize-PVEDELETENodesQemuFirewallAliasesRB -Digest "TEST_VALUE" -Name "TEST_VALUE" -Node "TEST_VALUE" -Vmid "TEST_VALUE"
             #$NewObject | Should -BeOfType DELETENodesQemuFirewallAliasesRB
             #$NewObject.property | Should -Be 0
         }

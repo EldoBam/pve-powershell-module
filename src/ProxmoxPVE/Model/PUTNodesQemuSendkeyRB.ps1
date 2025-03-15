@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
 .PARAMETER Key
+No description available.
+.PARAMETER Node
 No description available.
 .PARAMETER Vmid
 No description available.
@@ -33,10 +33,10 @@ function Initialize-PVEPUTNodesQemuSendkeyRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
+        ${Key},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Key},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid},
@@ -67,7 +67,7 @@ function Initialize-PVEPUTNodesQemuSendkeyRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Key"="key"; "Vmid"="vmid"; "Skiplock"="skiplock"
+			"Key"="key"; "Node"="node"; "Vmid"="vmid"; "Skiplock"="skiplock"
         }
 		
 		 $OBJ = @{}
@@ -113,23 +113,23 @@ function ConvertFrom-PVEJsonToPUTNodesQemuSendkeyRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTNodesQemuSendkeyRB
-        $AllProperties = ("node", "key", "vmid", "skiplock")
+        $AllProperties = ("key", "node", "vmid", "skiplock")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
             $Key = $null
         } else {
             $Key = $JsonParameters.PSobject.Properties["key"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
@@ -145,8 +145,8 @@ function ConvertFrom-PVEJsonToPUTNodesQemuSendkeyRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
             "key" = ${Key}
+            "node" = ${Node}
             "vmid" = ${Vmid}
             "skiplock" = ${Skiplock}
         }

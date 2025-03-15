@@ -15,49 +15,49 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
+.PARAMETER Ref
 No description available.
-.PARAMETER Scope
+.PARAMETER Name
 No description available.
 .PARAMETER Type
 No description available.
-.PARAMETER Ref
+.PARAMETER Scope
 No description available.
 .PARAMETER Comment
 No description available.
 .OUTPUTS
 
-NodesLxcFirewallRefsInner<PSCustomObject>
+NodesQemuFirewallRefsInner<PSCustomObject>
 #>
 
-function Initialize-PVENodesLxcFirewallRefsInner {
+function Initialize-PVENodesQemuFirewallRefsInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
+        ${Ref},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Scope},
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("alias", "ipset")]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Ref},
+        ${Scope},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment}
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVENodesLxcFirewallRefsInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVENodesQemuFirewallRefsInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Scope"="scope"; "Type"="type"; "Ref"="ref"; "Comment"="comment"
+			"Ref"="ref"; "Name"="name"; "Type"="type"; "Scope"="scope"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -76,11 +76,11 @@ function Initialize-PVENodesLxcFirewallRefsInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to NodesLxcFirewallRefsInner<PSCustomObject>
+Convert from JSON to NodesQemuFirewallRefsInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to NodesLxcFirewallRefsInner<PSCustomObject>
+Convert from JSON to NodesQemuFirewallRefsInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -88,26 +88,32 @@ Json object
 
 .OUTPUTS
 
-NodesLxcFirewallRefsInner<PSCustomObject>
+NodesQemuFirewallRefsInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToNodesLxcFirewallRefsInner {
+function ConvertFrom-PVEJsonToNodesQemuFirewallRefsInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesLxcFirewallRefsInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesQemuFirewallRefsInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVENodesLxcFirewallRefsInner
-        $AllProperties = ("name", "scope", "type", "ref", "comment")
+        # check if Json contains properties not defined in PVENodesQemuFirewallRefsInner
+        $AllProperties = ("ref", "name", "type", "scope", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ref"))) { #optional property not found
+            $Ref = $null
+        } else {
+            $Ref = $JsonParameters.PSobject.Properties["ref"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -116,22 +122,16 @@ function ConvertFrom-PVEJsonToNodesLxcFirewallRefsInner {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scope"))) { #optional property not found
-            $Scope = $null
-        } else {
-            $Scope = $JsonParameters.PSobject.Properties["scope"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
             $Type = $null
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ref"))) { #optional property not found
-            $Ref = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scope"))) { #optional property not found
+            $Scope = $null
         } else {
-            $Ref = $JsonParameters.PSobject.Properties["ref"].value
+            $Scope = $JsonParameters.PSobject.Properties["scope"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -141,10 +141,10 @@ function ConvertFrom-PVEJsonToNodesLxcFirewallRefsInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "scope" = ${Scope}
-            "type" = ${Type}
             "ref" = ${Ref}
+            "name" = ${Name}
+            "type" = ${Type}
+            "scope" = ${Scope}
             "comment" = ${Comment}
         }
 

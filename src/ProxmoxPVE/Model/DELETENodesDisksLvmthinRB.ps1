@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
+.PARAMETER CleanupDisks
 No description available.
-.PARAMETER CleanupConfig
+.PARAMETER Name
 No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER VolumeGroup
+.PARAMETER CleanupConfig
 No description available.
-.PARAMETER CleanupDisks
+.PARAMETER VolumeGroup
 No description available.
 .OUTPUTS
 
@@ -34,33 +34,25 @@ function Initialize-PVEDELETENodesDisksLvmthinRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${CleanupDisks},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${CleanupConfig},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${VolumeGroup},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${CleanupDisks}
+        ${VolumeGroup}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEDELETENodesDisksLvmthinRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($CleanupConfig -and $CleanupConfig -gt 1) {
-          throw "invalid value for 'CleanupConfig', must be smaller than or equal to 1."
-        }
-
-        if ($CleanupConfig -and $CleanupConfig -lt 0) {
-          throw "invalid value for 'CleanupConfig', must be greater than or equal to 0."
-        }
 
         if ($CleanupDisks -and $CleanupDisks -gt 1) {
           throw "invalid value for 'CleanupDisks', must be smaller than or equal to 1."
@@ -70,9 +62,17 @@ function Initialize-PVEDELETENodesDisksLvmthinRB {
           throw "invalid value for 'CleanupDisks', must be greater than or equal to 0."
         }
 
+        if ($CleanupConfig -and $CleanupConfig -gt 1) {
+          throw "invalid value for 'CleanupConfig', must be smaller than or equal to 1."
+        }
+
+        if ($CleanupConfig -and $CleanupConfig -lt 0) {
+          throw "invalid value for 'CleanupConfig', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "CleanupConfig"="cleanup-config"; "Node"="node"; "VolumeGroup"="volume-group"; "CleanupDisks"="cleanup-disks"
+			"CleanupDisks"="cleanup-disks"; "Name"="name"; "Node"="node"; "CleanupConfig"="cleanup-config"; "VolumeGroup"="volume-group"
         }
 		
 		 $OBJ = @{}
@@ -118,35 +118,11 @@ function ConvertFrom-PVEJsonToDELETENodesDisksLvmthinRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesDisksLvmthinRB
-        $AllProperties = ("name", "cleanup-config", "node", "volume-group", "cleanup-disks")
+        $AllProperties = ("cleanup-disks", "name", "node", "cleanup-config", "volume-group")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cleanup-config"))) { #optional property not found
-            $CleanupConfig = $null
-        } else {
-            $CleanupConfig = $JsonParameters.PSobject.Properties["cleanup-config"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volume-group"))) { #optional property not found
-            $VolumeGroup = $null
-        } else {
-            $VolumeGroup = $JsonParameters.PSobject.Properties["volume-group"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cleanup-disks"))) { #optional property not found
@@ -155,12 +131,36 @@ function ConvertFrom-PVEJsonToDELETENodesDisksLvmthinRB {
             $CleanupDisks = $JsonParameters.PSobject.Properties["cleanup-disks"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cleanup-config"))) { #optional property not found
+            $CleanupConfig = $null
+        } else {
+            $CleanupConfig = $JsonParameters.PSobject.Properties["cleanup-config"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volume-group"))) { #optional property not found
+            $VolumeGroup = $null
+        } else {
+            $VolumeGroup = $JsonParameters.PSobject.Properties["volume-group"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "cleanup-config" = ${CleanupConfig}
-            "node" = ${Node}
-            "volume-group" = ${VolumeGroup}
             "cleanup-disks" = ${CleanupDisks}
+            "name" = ${Name}
+            "node" = ${Node}
+            "cleanup-config" = ${CleanupConfig}
+            "volume-group" = ${VolumeGroup}
         }
 
         return $PSO

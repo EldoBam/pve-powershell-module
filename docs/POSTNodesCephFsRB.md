@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AddStorage** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **PgNum** | **Int32** |  | [optional] 
 
 ## Examples
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $POSTNodesCephFsRB = Initialize-PVEPOSTNodesCephFsRB  -AddStorage null `
- -Node null `
  -Name null `
+ -Node null `
  -PgNum null
 ```
 

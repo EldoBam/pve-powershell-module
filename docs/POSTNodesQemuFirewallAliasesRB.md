@@ -5,9 +5,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Cidr** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 ```powershell
 $POSTNodesQemuFirewallAliasesRB = Initialize-PVEPOSTNodesQemuFirewallAliasesRB  -Name null `
  -Node null `
- -Comment null `
+ -Vmid null `
  -Cidr null `
- -Vmid null
+ -Comment null
 ```
 
 - Convert the resource to JSON

@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER CreationTime
+.PARAMETER LvSize
 No description available.
 .PARAMETER LvName
 No description available.
 .PARAMETER VgName
 No description available.
-.PARAMETER LvSize
+.PARAMETER LvUuid
+No description available.
+.PARAMETER CreationTime
 No description available.
 .PARAMETER LvPath
-No description available.
-.PARAMETER LvUuid
 No description available.
 .OUTPUTS
 
@@ -36,8 +36,8 @@ function Initialize-PVENodesCephOsdLvinfo {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${CreationTime},
+        [System.Nullable[Int32]]
+        ${LvSize},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${LvName},
@@ -45,14 +45,14 @@ function Initialize-PVENodesCephOsdLvinfo {
         [String]
         ${VgName},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${LvSize},
+        [String]
+        ${LvUuid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${LvPath},
+        ${CreationTime},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${LvUuid}
+        ${LvPath}
     )
 
     Process {
@@ -61,7 +61,7 @@ function Initialize-PVENodesCephOsdLvinfo {
 
 
 		 $DisplayNameMapping =@{
-			"CreationTime"="creation_time"; "LvName"="lv_name"; "VgName"="vg_name"; "LvSize"="lv_size"; "LvPath"="lv_path"; "LvUuid"="lv_uuid"
+			"LvSize"="lv_size"; "LvName"="lv_name"; "VgName"="vg_name"; "LvUuid"="lv_uuid"; "CreationTime"="creation_time"; "LvPath"="lv_path"
         }
 		
 		 $OBJ = @{}
@@ -107,17 +107,17 @@ function ConvertFrom-PVEJsonToNodesCephOsdLvinfo {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCephOsdLvinfo
-        $AllProperties = ("creation_time", "lv_name", "vg_name", "lv_size", "lv_path", "lv_uuid")
+        $AllProperties = ("lv_size", "lv_name", "vg_name", "lv_uuid", "creation_time", "lv_path")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "creation_time"))) { #optional property not found
-            $CreationTime = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lv_size"))) { #optional property not found
+            $LvSize = $null
         } else {
-            $CreationTime = $JsonParameters.PSobject.Properties["creation_time"].value
+            $LvSize = $JsonParameters.PSobject.Properties["lv_size"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "lv_name"))) { #optional property not found
@@ -132,10 +132,16 @@ function ConvertFrom-PVEJsonToNodesCephOsdLvinfo {
             $VgName = $JsonParameters.PSobject.Properties["vg_name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lv_size"))) { #optional property not found
-            $LvSize = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lv_uuid"))) { #optional property not found
+            $LvUuid = $null
         } else {
-            $LvSize = $JsonParameters.PSobject.Properties["lv_size"].value
+            $LvUuid = $JsonParameters.PSobject.Properties["lv_uuid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "creation_time"))) { #optional property not found
+            $CreationTime = $null
+        } else {
+            $CreationTime = $JsonParameters.PSobject.Properties["creation_time"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "lv_path"))) { #optional property not found
@@ -144,19 +150,13 @@ function ConvertFrom-PVEJsonToNodesCephOsdLvinfo {
             $LvPath = $JsonParameters.PSobject.Properties["lv_path"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lv_uuid"))) { #optional property not found
-            $LvUuid = $null
-        } else {
-            $LvUuid = $JsonParameters.PSobject.Properties["lv_uuid"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "creation_time" = ${CreationTime}
+            "lv_size" = ${LvSize}
             "lv_name" = ${LvName}
             "vg_name" = ${VgName}
-            "lv_size" = ${LvSize}
-            "lv_path" = ${LvPath}
             "lv_uuid" = ${LvUuid}
+            "creation_time" = ${CreationTime}
+            "lv_path" = ${LvPath}
         }
 
         return $PSO

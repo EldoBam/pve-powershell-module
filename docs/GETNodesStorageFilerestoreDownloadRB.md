@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Storage** | **String** |  | [optional] 
+**Volume** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
 **Tar** | **Int32** |  | [optional] 
-**Volume** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
 **Filepath** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesStorageFilerestoreDownloadRB = Initialize-PVEGETNodesStorageFilerestoreDownloadRB  -Node null `
- -Tar null `
+$GETNodesStorageFilerestoreDownloadRB = Initialize-PVEGETNodesStorageFilerestoreDownloadRB  -Storage null `
  -Volume null `
- -Storage null `
+ -Node null `
+ -Tar null `
  -Filepath null
 ```
 

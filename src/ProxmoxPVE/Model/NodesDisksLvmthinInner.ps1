@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER MetadataSize
-No description available.
-.PARAMETER Vg
-No description available.
 .PARAMETER MetadataUsed
-No description available.
-.PARAMETER Used
 No description available.
 .PARAMETER LvSize
 No description available.
 .PARAMETER Lv
+No description available.
+.PARAMETER Used
+No description available.
+.PARAMETER Vg
+No description available.
+.PARAMETER MetadataSize
 No description available.
 .OUTPUTS
 
@@ -37,22 +37,22 @@ function Initialize-PVENodesDisksLvmthinInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${MetadataSize},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Vg},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${MetadataUsed},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Used},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${LvSize},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Lv}
+        ${Lv},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Used},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Vg},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${MetadataSize}
     )
 
     Process {
@@ -61,7 +61,7 @@ function Initialize-PVENodesDisksLvmthinInner {
 
 
 		 $DisplayNameMapping =@{
-			"MetadataSize"="metadata_size"; "Vg"="vg"; "MetadataUsed"="metadata_used"; "Used"="used"; "LvSize"="lv_size"; "Lv"="lv"
+			"MetadataUsed"="metadata_used"; "LvSize"="lv_size"; "Lv"="lv"; "Used"="used"; "Vg"="vg"; "MetadataSize"="metadata_size"
         }
 		
 		 $OBJ = @{}
@@ -107,35 +107,17 @@ function ConvertFrom-PVEJsonToNodesDisksLvmthinInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesDisksLvmthinInner
-        $AllProperties = ("metadata_size", "vg", "metadata_used", "used", "lv_size", "lv")
+        $AllProperties = ("metadata_used", "lv_size", "lv", "used", "vg", "metadata_size")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata_size"))) { #optional property not found
-            $MetadataSize = $null
-        } else {
-            $MetadataSize = $JsonParameters.PSobject.Properties["metadata_size"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vg"))) { #optional property not found
-            $Vg = $null
-        } else {
-            $Vg = $JsonParameters.PSobject.Properties["vg"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata_used"))) { #optional property not found
             $MetadataUsed = $null
         } else {
             $MetadataUsed = $JsonParameters.PSobject.Properties["metadata_used"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "used"))) { #optional property not found
-            $Used = $null
-        } else {
-            $Used = $JsonParameters.PSobject.Properties["used"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "lv_size"))) { #optional property not found
@@ -150,13 +132,31 @@ function ConvertFrom-PVEJsonToNodesDisksLvmthinInner {
             $Lv = $JsonParameters.PSobject.Properties["lv"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "used"))) { #optional property not found
+            $Used = $null
+        } else {
+            $Used = $JsonParameters.PSobject.Properties["used"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vg"))) { #optional property not found
+            $Vg = $null
+        } else {
+            $Vg = $JsonParameters.PSobject.Properties["vg"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "metadata_size"))) { #optional property not found
+            $MetadataSize = $null
+        } else {
+            $MetadataSize = $JsonParameters.PSobject.Properties["metadata_size"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "metadata_size" = ${MetadataSize}
-            "vg" = ${Vg}
             "metadata_used" = ${MetadataUsed}
-            "used" = ${Used}
             "lv_size" = ${LvSize}
             "lv" = ${Lv}
+            "used" = ${Used}
+            "vg" = ${Vg}
+            "metadata_size" = ${MetadataSize}
         }
 
         return $PSO

@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
 .PARAMETER Force
+No description available.
+.PARAMETER Node
 No description available.
 .PARAMETER Snapname
 No description available.
@@ -32,11 +32,11 @@ function Initialize-PVEDELETENodesQemuSnapshotRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Force},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Snapname},
@@ -71,7 +71,7 @@ function Initialize-PVEDELETENodesQemuSnapshotRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Force"="force"; "Snapname"="snapname"; "Vmid"="vmid"
+			"Force"="force"; "Node"="node"; "Snapname"="snapname"; "Vmid"="vmid"
         }
 		
 		 $OBJ = @{}
@@ -117,23 +117,23 @@ function ConvertFrom-PVEJsonToDELETENodesQemuSnapshotRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesQemuSnapshotRB
-        $AllProperties = ("node", "force", "snapname", "vmid")
+        $AllProperties = ("force", "node", "snapname", "vmid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
             $Force = $null
         } else {
             $Force = $JsonParameters.PSobject.Properties["force"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "snapname"))) { #optional property not found
@@ -149,8 +149,8 @@ function ConvertFrom-PVEJsonToDELETENodesQemuSnapshotRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
             "force" = ${Force}
+            "node" = ${Node}
             "snapname" = ${Snapname}
             "vmid" = ${Vmid}
         }

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEDELETENodesStorageContentRB' {
     Context 'PVEDELETENodesStorageContentRB' {
         It 'Initialize-PVEDELETENodesStorageContentRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEDELETENodesStorageContentRB -Node "TEST_VALUE" -Delay "TEST_VALUE" -Volume "TEST_VALUE" -Storage "TEST_VALUE"
+            #$NewObject = Initialize-PVEDELETENodesStorageContentRB -Storage "TEST_VALUE" -Volume "TEST_VALUE" -Node "TEST_VALUE" -Delay "TEST_VALUE"
             #$NewObject | Should -BeOfType DELETENodesStorageContentRB
             #$NewObject.property | Should -Be 0
         }

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesCephMonRB' {
     Context 'PVEPOSTNodesCephMonRB' {
         It 'Initialize-PVEPOSTNodesCephMonRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesCephMonRB -Node "TEST_VALUE" -Monid "TEST_VALUE" -MonAddress "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesCephMonRB -Node "TEST_VALUE" -MonAddress "TEST_VALUE" -Monid "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesCephMonRB
             #$NewObject.property | Should -Be 0
         }

@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Url
-No description available.
 .PARAMETER Name
+No description available.
+.PARAMETER Url
 No description available.
 .OUTPUTS
 
@@ -28,12 +28,12 @@ function Initialize-PVEClusterAcmeDirectoriesInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("^https?://.*")]
         [String]
-        ${Url},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name}
+        ${Url}
     )
 
     Process {
@@ -42,7 +42,7 @@ function Initialize-PVEClusterAcmeDirectoriesInner {
 
 
 		 $DisplayNameMapping =@{
-			"Url"="url"; "Name"="name"
+			"Name"="name"; "Url"="url"
         }
 		
 		 $OBJ = @{}
@@ -88,17 +88,11 @@ function ConvertFrom-PVEJsonToClusterAcmeDirectoriesInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterAcmeDirectoriesInner
-        $AllProperties = ("url", "name")
+        $AllProperties = ("name", "url")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
-            $Url = $null
-        } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -107,9 +101,15 @@ function ConvertFrom-PVEJsonToClusterAcmeDirectoriesInner {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
+            $Url = $null
+        } else {
+            $Url = $JsonParameters.PSobject.Properties["url"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "url" = ${Url}
             "name" = ${Name}
+            "url" = ${Url}
         }
 
         return $PSO

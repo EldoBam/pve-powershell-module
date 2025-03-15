@@ -17,11 +17,11 @@ No description available.
 
 .PARAMETER Name
 No description available.
-.PARAMETER Comment
+.PARAMETER Nomatch
 No description available.
 .PARAMETER Cidr
 No description available.
-.PARAMETER Nomatch
+.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -36,14 +36,14 @@ function Initialize-PVEPOSTClusterFirewallIpsetRB {
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
+        [System.Nullable[Int32]]
+        ${Nomatch},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Cidr},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Nomatch}
+        [String]
+        ${Comment}
     )
 
     Process {
@@ -68,7 +68,7 @@ function Initialize-PVEPOSTClusterFirewallIpsetRB {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Comment"="comment"; "Cidr"="cidr"; "Nomatch"="nomatch"
+			"Name"="name"; "Nomatch"="nomatch"; "Cidr"="cidr"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -114,7 +114,7 @@ function ConvertFrom-PVEJsonToPOSTClusterFirewallIpsetRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterFirewallIpsetRB
-        $AllProperties = ("name", "comment", "cidr", "nomatch")
+        $AllProperties = ("name", "nomatch", "cidr", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -127,10 +127,10 @@ function ConvertFrom-PVEJsonToPOSTClusterFirewallIpsetRB {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nomatch"))) { #optional property not found
+            $Nomatch = $null
         } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+            $Nomatch = $JsonParameters.PSobject.Properties["nomatch"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
@@ -139,17 +139,17 @@ function ConvertFrom-PVEJsonToPOSTClusterFirewallIpsetRB {
             $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nomatch"))) { #optional property not found
-            $Nomatch = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
         } else {
-            $Nomatch = $JsonParameters.PSobject.Properties["nomatch"].value
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
         $PSO = [PSCustomObject]@{
             "name" = ${Name}
-            "comment" = ${Comment}
-            "cidr" = ${Cidr}
             "nomatch" = ${Nomatch}
+            "cidr" = ${Cidr}
+            "comment" = ${Comment}
         }
 
         return $PSO

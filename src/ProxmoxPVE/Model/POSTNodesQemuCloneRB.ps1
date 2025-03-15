@@ -15,29 +15,29 @@ No summary available.
 
 No description available.
 
-.PARAMETER Description
+.PARAMETER Newid
+No description available.
+.PARAMETER Format
 No description available.
 .PARAMETER Name
 No description available.
-.PARAMETER Pool
-No description available.
-.PARAMETER Storage
-No description available.
-.PARAMETER Node
-No description available.
-.PARAMETER Target
+.PARAMETER Vmid
 No description available.
 .PARAMETER Bwlimit
 No description available.
-.PARAMETER Newid
-No description available.
-.PARAMETER Vmid
+.PARAMETER Snapname
 No description available.
 .PARAMETER Full
 No description available.
-.PARAMETER Snapname
+.PARAMETER Description
 No description available.
-.PARAMETER Format
+.PARAMETER Storage
+No description available.
+.PARAMETER Target
+No description available.
+.PARAMETER Pool
+No description available.
+.PARAMETER Node
 No description available.
 .OUTPUTS
 
@@ -48,42 +48,42 @@ function Initialize-PVEPOSTNodesQemuCloneRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Newid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("raw", "qcow2", "vmdk")]
         [String]
-        ${Description},
+        ${Format},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Pool},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Storage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Target},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Bwlimit},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Newid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Full},
+        ${Bwlimit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Snapname},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("raw", "qcow2", "vmdk")]
+        [System.Nullable[Int32]]
+        ${Full},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Format}
+        ${Description},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Storage},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Target},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Pool},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node}
     )
 
     Process {
@@ -106,6 +106,10 @@ function Initialize-PVEPOSTNodesQemuCloneRB {
           throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
+        if (!$Snapname -and $Snapname.length -gt 40) {
+            throw "invalid value for 'Snapname', the character length must be smaller than or equal to 40."
+        }
+
         if ($Full -and $Full -gt 1) {
           throw "invalid value for 'Full', must be smaller than or equal to 1."
         }
@@ -114,13 +118,9 @@ function Initialize-PVEPOSTNodesQemuCloneRB {
           throw "invalid value for 'Full', must be greater than or equal to 0."
         }
 
-        if (!$Snapname -and $Snapname.length -gt 40) {
-            throw "invalid value for 'Snapname', the character length must be smaller than or equal to 40."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Description"="description"; "Name"="name"; "Pool"="pool"; "Storage"="storage"; "Node"="node"; "Target"="target"; "Bwlimit"="bwlimit"; "Newid"="newid"; "Vmid"="vmid"; "Full"="full"; "Snapname"="snapname"; "Format"="format"
+			"Newid"="newid"; "Format"="format"; "Name"="name"; "Vmid"="vmid"; "Bwlimit"="bwlimit"; "Snapname"="snapname"; "Full"="full"; "Description"="description"; "Storage"="storage"; "Target"="target"; "Pool"="pool"; "Node"="node"
         }
 		
 		 $OBJ = @{}
@@ -166,53 +166,11 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuCloneRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuCloneRB
-        $AllProperties = ("description", "name", "pool", "storage", "node", "target", "bwlimit", "newid", "vmid", "full", "snapname", "format")
+        $AllProperties = ("newid", "format", "name", "vmid", "bwlimit", "snapname", "full", "description", "storage", "target", "pool", "node")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool"))) { #optional property not found
-            $Pool = $null
-        } else {
-            $Pool = $JsonParameters.PSobject.Properties["pool"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
-            $Target = $null
-        } else {
-            $Target = $JsonParameters.PSobject.Properties["target"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
-            $Bwlimit = $null
-        } else {
-            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "newid"))) { #optional property not found
@@ -221,16 +179,28 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuCloneRB {
             $Newid = $JsonParameters.PSobject.Properties["newid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "format"))) { #optional property not found
+            $Format = $null
+        } else {
+            $Format = $JsonParameters.PSobject.Properties["format"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "full"))) { #optional property not found
-            $Full = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
+            $Bwlimit = $null
         } else {
-            $Full = $JsonParameters.PSobject.Properties["full"].value
+            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "snapname"))) { #optional property not found
@@ -239,25 +209,55 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuCloneRB {
             $Snapname = $JsonParameters.PSobject.Properties["snapname"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "format"))) { #optional property not found
-            $Format = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "full"))) { #optional property not found
+            $Full = $null
         } else {
-            $Format = $JsonParameters.PSobject.Properties["format"].value
+            $Full = $JsonParameters.PSobject.Properties["full"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
+            $Storage = $null
+        } else {
+            $Storage = $JsonParameters.PSobject.Properties["storage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
+            $Target = $null
+        } else {
+            $Target = $JsonParameters.PSobject.Properties["target"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool"))) { #optional property not found
+            $Pool = $null
+        } else {
+            $Pool = $JsonParameters.PSobject.Properties["pool"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "description" = ${Description}
-            "name" = ${Name}
-            "pool" = ${Pool}
-            "storage" = ${Storage}
-            "node" = ${Node}
-            "target" = ${Target}
-            "bwlimit" = ${Bwlimit}
             "newid" = ${Newid}
-            "vmid" = ${Vmid}
-            "full" = ${Full}
-            "snapname" = ${Snapname}
             "format" = ${Format}
+            "name" = ${Name}
+            "vmid" = ${Vmid}
+            "bwlimit" = ${Bwlimit}
+            "snapname" = ${Snapname}
+            "full" = ${Full}
+            "description" = ${Description}
+            "storage" = ${Storage}
+            "target" = ${Target}
+            "pool" = ${Pool}
+            "node" = ${Node}
         }
 
         return $PSO

@@ -15,25 +15,25 @@ No summary available.
 
 No description available.
 
+.PARAMETER UsedFraction
+No description available.
+.PARAMETER Avail
+No description available.
+.PARAMETER Type
+No description available.
+.PARAMETER Enabled
+No description available.
 .PARAMETER Total
 No description available.
 .PARAMETER Used
 No description available.
+.PARAMETER Shared
+No description available.
 .PARAMETER Storage
-No description available.
-.PARAMETER Enabled
-No description available.
-.PARAMETER Type
-No description available.
-.PARAMETER Content
 No description available.
 .PARAMETER Active
 No description available.
-.PARAMETER Avail
-No description available.
-.PARAMETER Shared
-No description available.
-.PARAMETER UsedFraction
+.PARAMETER Content
 No description available.
 .OUTPUTS
 
@@ -44,35 +44,35 @@ function Initialize-PVENodesStorageInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Decimal]]
+        ${UsedFraction},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Avail},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Enabled},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Total},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Used},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Shared},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Storage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Enabled},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Content},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${Active},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Avail},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Shared},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${UsedFraction}
+        [String]
+        ${Content}
     )
 
     Process {
@@ -87,14 +87,6 @@ function Initialize-PVENodesStorageInner {
           throw "invalid value for 'Enabled', must be greater than or equal to 0."
         }
 
-        if ($Active -and $Active -gt 1) {
-          throw "invalid value for 'Active', must be smaller than or equal to 1."
-        }
-
-        if ($Active -and $Active -lt 0) {
-          throw "invalid value for 'Active', must be greater than or equal to 0."
-        }
-
         if ($Shared -and $Shared -gt 1) {
           throw "invalid value for 'Shared', must be smaller than or equal to 1."
         }
@@ -103,9 +95,17 @@ function Initialize-PVENodesStorageInner {
           throw "invalid value for 'Shared', must be greater than or equal to 0."
         }
 
+        if ($Active -and $Active -gt 1) {
+          throw "invalid value for 'Active', must be smaller than or equal to 1."
+        }
+
+        if ($Active -and $Active -lt 0) {
+          throw "invalid value for 'Active', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Total"="total"; "Used"="used"; "Storage"="storage"; "Enabled"="enabled"; "Type"="type"; "Content"="content"; "Active"="active"; "Avail"="avail"; "Shared"="shared"; "UsedFraction"="used_fraction"
+			"UsedFraction"="used_fraction"; "Avail"="avail"; "Type"="type"; "Enabled"="enabled"; "Total"="total"; "Used"="used"; "Shared"="shared"; "Storage"="storage"; "Active"="active"; "Content"="content"
         }
 		
 		 $OBJ = @{}
@@ -151,11 +151,35 @@ function ConvertFrom-PVEJsonToNodesStorageInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesStorageInner
-        $AllProperties = ("total", "used", "storage", "enabled", "type", "content", "active", "avail", "shared", "used_fraction")
+        $AllProperties = ("used_fraction", "avail", "type", "enabled", "total", "used", "shared", "storage", "active", "content")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "used_fraction"))) { #optional property not found
+            $UsedFraction = $null
+        } else {
+            $UsedFraction = $JsonParameters.PSobject.Properties["used_fraction"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "avail"))) { #optional property not found
+            $Avail = $null
+        } else {
+            $Avail = $JsonParameters.PSobject.Properties["avail"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
+            $Enabled = $null
+        } else {
+            $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "total"))) { #optional property not found
@@ -170,28 +194,16 @@ function ConvertFrom-PVEJsonToNodesStorageInner {
             $Used = $JsonParameters.PSobject.Properties["used"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "shared"))) { #optional property not found
+            $Shared = $null
+        } else {
+            $Shared = $JsonParameters.PSobject.Properties["shared"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
             $Storage = $null
         } else {
             $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
-            $Enabled = $null
-        } else {
-            $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
-            $Content = $null
-        } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "active"))) { #optional property not found
@@ -200,35 +212,23 @@ function ConvertFrom-PVEJsonToNodesStorageInner {
             $Active = $JsonParameters.PSobject.Properties["active"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "avail"))) { #optional property not found
-            $Avail = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
+            $Content = $null
         } else {
-            $Avail = $JsonParameters.PSobject.Properties["avail"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "shared"))) { #optional property not found
-            $Shared = $null
-        } else {
-            $Shared = $JsonParameters.PSobject.Properties["shared"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "used_fraction"))) { #optional property not found
-            $UsedFraction = $null
-        } else {
-            $UsedFraction = $JsonParameters.PSobject.Properties["used_fraction"].value
+            $Content = $JsonParameters.PSobject.Properties["content"].value
         }
 
         $PSO = [PSCustomObject]@{
+            "used_fraction" = ${UsedFraction}
+            "avail" = ${Avail}
+            "type" = ${Type}
+            "enabled" = ${Enabled}
             "total" = ${Total}
             "used" = ${Used}
-            "storage" = ${Storage}
-            "enabled" = ${Enabled}
-            "type" = ${Type}
-            "content" = ${Content}
-            "active" = ${Active}
-            "avail" = ${Avail}
             "shared" = ${Shared}
-            "used_fraction" = ${UsedFraction}
+            "storage" = ${Storage}
+            "active" = ${Active}
+            "content" = ${Content}
         }
 
         return $PSO

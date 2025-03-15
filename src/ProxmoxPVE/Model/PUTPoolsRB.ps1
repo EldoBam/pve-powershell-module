@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Delete
-No description available.
 .PARAMETER Comment
 No description available.
 .PARAMETER Poolid
 No description available.
+.PARAMETER Delete
+No description available.
+.PARAMETER AllowMove
+No description available.
 .PARAMETER Vms
 No description available.
 .PARAMETER Storage
-No description available.
-.PARAMETER AllowMove
 No description available.
 .OUTPUTS
 
@@ -36,23 +36,23 @@ function Initialize-PVEPUTPoolsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Poolid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Delete},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${AllowMove},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Vms},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Storage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${AllowMove}
+        ${Storage}
     )
 
     Process {
@@ -77,7 +77,7 @@ function Initialize-PVEPUTPoolsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Delete"="delete"; "Comment"="comment"; "Poolid"="poolid"; "Vms"="vms"; "Storage"="storage"; "AllowMove"="allow-move"
+			"Comment"="comment"; "Poolid"="poolid"; "Delete"="delete"; "AllowMove"="allow-move"; "Vms"="vms"; "Storage"="storage"
         }
 		
 		 $OBJ = @{}
@@ -123,17 +123,11 @@ function ConvertFrom-PVEJsonToPUTPoolsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTPoolsRB
-        $AllProperties = ("delete", "comment", "poolid", "vms", "storage", "allow-move")
+        $AllProperties = ("comment", "poolid", "delete", "allow-move", "vms", "storage")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -148,6 +142,18 @@ function ConvertFrom-PVEJsonToPUTPoolsRB {
             $Poolid = $JsonParameters.PSobject.Properties["poolid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "allow-move"))) { #optional property not found
+            $AllowMove = $null
+        } else {
+            $AllowMove = $JsonParameters.PSobject.Properties["allow-move"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vms"))) { #optional property not found
             $Vms = $null
         } else {
@@ -160,19 +166,13 @@ function ConvertFrom-PVEJsonToPUTPoolsRB {
             $Storage = $JsonParameters.PSobject.Properties["storage"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "allow-move"))) { #optional property not found
-            $AllowMove = $null
-        } else {
-            $AllowMove = $JsonParameters.PSobject.Properties["allow-move"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "delete" = ${Delete}
             "comment" = ${Comment}
             "poolid" = ${Poolid}
+            "delete" = ${Delete}
+            "allow-move" = ${AllowMove}
             "vms" = ${Vms}
             "storage" = ${Storage}
-            "allow-move" = ${AllowMove}
         }
 
         return $PSO

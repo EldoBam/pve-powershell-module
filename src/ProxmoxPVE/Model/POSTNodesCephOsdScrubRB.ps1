@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Osdid
+No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Deep
-No description available.
-.PARAMETER Osdid
 No description available.
 .OUTPUTS
 
@@ -30,14 +30,14 @@ function Initialize-PVEPOSTNodesCephOsdScrubRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Osdid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Deep},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Osdid}
+        ${Deep}
     )
 
     Process {
@@ -54,7 +54,7 @@ function Initialize-PVEPOSTNodesCephOsdScrubRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Deep"="deep"; "Osdid"="osdid"
+			"Osdid"="osdid"; "Node"="node"; "Deep"="deep"
         }
 		
 		 $OBJ = @{}
@@ -100,11 +100,17 @@ function ConvertFrom-PVEJsonToPOSTNodesCephOsdScrubRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCephOsdScrubRB
-        $AllProperties = ("node", "deep", "osdid")
+        $AllProperties = ("osdid", "node", "deep")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osdid"))) { #optional property not found
+            $Osdid = $null
+        } else {
+            $Osdid = $JsonParameters.PSobject.Properties["osdid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -119,16 +125,10 @@ function ConvertFrom-PVEJsonToPOSTNodesCephOsdScrubRB {
             $Deep = $JsonParameters.PSobject.Properties["deep"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osdid"))) { #optional property not found
-            $Osdid = $null
-        } else {
-            $Osdid = $JsonParameters.PSobject.Properties["osdid"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "osdid" = ${Osdid}
             "node" = ${Node}
             "deep" = ${Deep}
-            "osdid" = ${Osdid}
         }
 
         return $PSO

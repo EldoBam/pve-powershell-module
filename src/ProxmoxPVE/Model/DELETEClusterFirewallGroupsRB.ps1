@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Group
-No description available.
 .PARAMETER Digest
+No description available.
+.PARAMETER Group
 No description available.
 .PARAMETER Pos
 No description available.
@@ -30,12 +30,12 @@ function Initialize-PVEDELETEClusterFirewallGroupsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
         ${Group},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Pos}
@@ -45,6 +45,10 @@ function Initialize-PVEDELETEClusterFirewallGroupsRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEDELETEClusterFirewallGroupsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        }
+
         if (!$Group -and $Group.length -gt 18) {
             throw "invalid value for 'Group', the character length must be smaller than or equal to 18."
         }
@@ -53,13 +57,9 @@ function Initialize-PVEDELETEClusterFirewallGroupsRB {
             throw "invalid value for 'Group', the character length must be great than or equal to 2."
         }
 
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Group"="group"; "Digest"="digest"; "Pos"="pos"
+			"Digest"="digest"; "Group"="group"; "Pos"="pos"
         }
 		
 		 $OBJ = @{}
@@ -105,23 +105,23 @@ function ConvertFrom-PVEJsonToDELETEClusterFirewallGroupsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEClusterFirewallGroupsRB
-        $AllProperties = ("group", "digest", "pos")
+        $AllProperties = ("digest", "group", "pos")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "group"))) { #optional property not found
-            $Group = $null
-        } else {
-            $Group = $JsonParameters.PSobject.Properties["group"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "group"))) { #optional property not found
+            $Group = $null
+        } else {
+            $Group = $JsonParameters.PSobject.Properties["group"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
@@ -131,8 +131,8 @@ function ConvertFrom-PVEJsonToDELETEClusterFirewallGroupsRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "group" = ${Group}
             "digest" = ${Digest}
+            "group" = ${Group}
             "pos" = ${Pos}
         }
 

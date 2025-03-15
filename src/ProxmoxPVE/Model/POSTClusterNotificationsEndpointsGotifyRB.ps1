@@ -17,13 +17,13 @@ No description available.
 
 .PARAMETER Name
 No description available.
-.PARAMETER Server
+.PARAMETER Disable
 No description available.
 .PARAMETER Token
 No description available.
-.PARAMETER Comment
+.PARAMETER Server
 No description available.
-.PARAMETER Disable
+.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -37,17 +37,17 @@ function Initialize-PVEPOSTClusterNotificationsEndpointsGotifyRB {
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Server},
+        [System.Nullable[Int32]]
+        ${Disable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Token},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comment},
+        ${Server},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable}
+        [String]
+        ${Comment}
     )
 
     Process {
@@ -64,7 +64,7 @@ function Initialize-PVEPOSTClusterNotificationsEndpointsGotifyRB {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Server"="server"; "Token"="token"; "Comment"="comment"; "Disable"="disable"
+			"Name"="name"; "Disable"="disable"; "Token"="token"; "Server"="server"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -110,7 +110,7 @@ function ConvertFrom-PVEJsonToPOSTClusterNotificationsEndpointsGotifyRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterNotificationsEndpointsGotifyRB
-        $AllProperties = ("name", "server", "token", "comment", "disable")
+        $AllProperties = ("name", "disable", "token", "server", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -123,10 +123,10 @@ function ConvertFrom-PVEJsonToPOSTClusterNotificationsEndpointsGotifyRB {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
-            $Server = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
         } else {
-            $Server = $JsonParameters.PSobject.Properties["server"].value
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "token"))) { #optional property not found
@@ -135,24 +135,24 @@ function ConvertFrom-PVEJsonToPOSTClusterNotificationsEndpointsGotifyRB {
             $Token = $JsonParameters.PSobject.Properties["token"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
+            $Server = $null
+        } else {
+            $Server = $JsonParameters.PSobject.Properties["server"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
             $Comment = $null
         } else {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
-        } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "name" = ${Name}
-            "server" = ${Server}
-            "token" = ${Token}
-            "comment" = ${Comment}
             "disable" = ${Disable}
+            "token" = ${Token}
+            "server" = ${Server}
+            "comment" = ${Comment}
         }
 
         return $PSO

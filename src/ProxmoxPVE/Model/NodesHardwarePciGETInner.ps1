@@ -15,28 +15,28 @@ No summary available.
 
 No description available.
 
-.PARAMETER Pos
+.PARAMETER Method
 No description available.
 .OUTPUTS
 
-NodesFirewallRulesGETInner<PSCustomObject>
+NodesHardwarePciGETInner<PSCustomObject>
 #>
 
-function Initialize-PVENodesFirewallRulesGETInner {
+function Initialize-PVENodesHardwarePciGETInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Pos}
+        [String]
+        ${Method}
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVENodesFirewallRulesGETInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVENodesHardwarePciGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
 		 $DisplayNameMapping =@{
-			"Pos"="pos"
+			"Method"="method"
         }
 		
 		 $OBJ = @{}
@@ -55,11 +55,11 @@ function Initialize-PVENodesFirewallRulesGETInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to NodesFirewallRulesGETInner<PSCustomObject>
+Convert from JSON to NodesHardwarePciGETInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to NodesFirewallRulesGETInner<PSCustomObject>
+Convert from JSON to NodesHardwarePciGETInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -67,36 +67,36 @@ Json object
 
 .OUTPUTS
 
-NodesFirewallRulesGETInner<PSCustomObject>
+NodesHardwarePciGETInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToNodesFirewallRulesGETInner {
+function ConvertFrom-PVEJsonToNodesHardwarePciGETInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesFirewallRulesGETInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesHardwarePciGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVENodesFirewallRulesGETInner
-        $AllProperties = ("pos")
+        # check if Json contains properties not defined in PVENodesHardwarePciGETInner
+        $AllProperties = ("method")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
-            $Pos = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method"))) { #optional property not found
+            $Method = $null
         } else {
-            $Pos = $JsonParameters.PSobject.Properties["pos"].value
+            $Method = $JsonParameters.PSobject.Properties["method"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "pos" = ${Pos}
+            "method" = ${Method}
         }
 
         return $PSO

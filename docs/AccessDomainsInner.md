@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Tfa** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 **Realm** | **String** |  | [optional] 
-**Tfa** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessDomainsInner = Initialize-PVEAccessDomainsInner  -Type null `
+$AccessDomainsInner = Initialize-PVEAccessDomainsInner  -Tfa null `
+ -Type null `
  -Realm null `
- -Tfa null `
  -Comment null
 ```
 

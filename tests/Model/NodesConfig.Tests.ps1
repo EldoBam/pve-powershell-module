@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesConfig' {
     Context 'PVENodesConfig' {
         It 'Initialize-PVENodesConfig' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesConfig -Description "TEST_VALUE" -Digest "TEST_VALUE" -AcmedomainN "TEST_VALUE" -Acme "TEST_VALUE" -StartallOnbootDelay "TEST_VALUE" -Wakeonlan "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesConfig -Description "TEST_VALUE" -Wakeonlan "TEST_VALUE" -AcmedomainN "TEST_VALUE" -StartallOnbootDelay "TEST_VALUE" -Digest "TEST_VALUE" -Acme "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesConfig
             #$NewObject.property | Should -Be 0
         }

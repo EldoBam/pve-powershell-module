@@ -89,6 +89,9 @@ Get pool configuration (deprecated, no support for nested pools, use 'GET /pools
 
 No description available.
 
+.PARAMETER Poolid
+No description available.
+
 .PARAMETER GETPoolsRB
 Get pool configuration (deprecated, no support for nested pools, use 'GET /pools/?poolid={poolid}').
 
@@ -104,6 +107,9 @@ function Get-PVEPoolsByPoolid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Poolid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETPoolsRB},
         [Switch]
@@ -131,6 +137,10 @@ function Get-PVEPoolsByPoolid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/pools/{poolid}'
+        if (!$Poolid) {
+            throw "Error! The required parameter `Poolid` missing when calling getPoolsByPoolid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{poolid}', [System.Web.HTTPUtility]::UrlEncode($Poolid))
 
         $LocalVarBodyParameter = $GETPoolsRB | ConvertTo-Json -Depth 100
 
@@ -305,6 +315,9 @@ Delete pool (deprecated, no support for nested pools, use 'DELETE /pools/?poolid
 
 No description available.
 
+.PARAMETER Poolid
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -316,6 +329,9 @@ None
 function Remove-PVEPoolsByPoolid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Poolid},
         [Switch]
         $WithHttpInfo
     )
@@ -335,6 +351,10 @@ function Remove-PVEPoolsByPoolid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/pools/{poolid}'
+        if (!$Poolid) {
+            throw "Error! The required parameter `Poolid` missing when calling removePoolsByPoolid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{poolid}', [System.Web.HTTPUtility]::UrlEncode($Poolid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -436,6 +456,9 @@ Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poo
 
 No description available.
 
+.PARAMETER Poolid
+No description available.
+
 .PARAMETER PUTPoolsRB
 Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poolid={poolid}' instead).
 
@@ -451,6 +474,9 @@ function Set-PVEPoolsByPoolid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Poolid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTPoolsRB},
         [Switch]
@@ -475,6 +501,10 @@ function Set-PVEPoolsByPoolid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/pools/{poolid}'
+        if (!$Poolid) {
+            throw "Error! The required parameter `Poolid` missing when calling setPoolsByPoolid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{poolid}', [System.Web.HTTPUtility]::UrlEncode($Poolid))
 
         $LocalVarBodyParameter = $PUTPoolsRB | ConvertTo-Json -Depth 100
 

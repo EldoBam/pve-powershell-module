@@ -15,33 +15,28 @@ No summary available.
 
 No description available.
 
-.PARAMETER T
-No description available.
-.PARAMETER N
+.PARAMETER Pos
 No description available.
 .OUTPUTS
 
-NodesFirewallLogInner<PSCustomObject>
+ClusterFirewallGroupsGETAVInner<PSCustomObject>
 #>
 
-function Initialize-PVENodesFirewallLogInner {
+function Initialize-PVEClusterFirewallGroupsGETAVInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${T},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${N}
+        ${Pos}
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVENodesFirewallLogInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVEClusterFirewallGroupsGETAVInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
 		 $DisplayNameMapping =@{
-			"T"="t"; "N"="n"
+			"Pos"="pos"
         }
 		
 		 $OBJ = @{}
@@ -60,11 +55,11 @@ function Initialize-PVENodesFirewallLogInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to NodesFirewallLogInner<PSCustomObject>
+Convert from JSON to ClusterFirewallGroupsGETAVInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to NodesFirewallLogInner<PSCustomObject>
+Convert from JSON to ClusterFirewallGroupsGETAVInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -72,43 +67,36 @@ Json object
 
 .OUTPUTS
 
-NodesFirewallLogInner<PSCustomObject>
+ClusterFirewallGroupsGETAVInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToNodesFirewallLogInner {
+function ConvertFrom-PVEJsonToClusterFirewallGroupsGETAVInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesFirewallLogInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVEClusterFirewallGroupsGETAVInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVENodesFirewallLogInner
-        $AllProperties = ("t", "n")
+        # check if Json contains properties not defined in PVEClusterFirewallGroupsGETAVInner
+        $AllProperties = ("pos")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "t"))) { #optional property not found
-            $T = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
+            $Pos = $null
         } else {
-            $T = $JsonParameters.PSobject.Properties["t"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "n"))) { #optional property not found
-            $N = $null
-        } else {
-            $N = $JsonParameters.PSobject.Properties["n"].value
+            $Pos = $JsonParameters.PSobject.Properties["pos"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "t" = ${T}
-            "n" = ${N}
+            "pos" = ${Pos}
         }
 
         return $PSO

@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
-.PARAMETER Timeframe
-No description available.
 .PARAMETER Storage
 No description available.
 .PARAMETER Cf
+No description available.
+.PARAMETER Node
+No description available.
+.PARAMETER Timeframe
 No description available.
 .OUTPUTS
 
@@ -33,18 +33,18 @@ function Initialize-PVEGETNodesStorageRrddataRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("hour", "day", "week", "month", "year")]
-        [String]
-        ${Timeframe},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Storage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("AVERAGE", "MAX")]
         [String]
-        ${Cf}
+        ${Cf},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("hour", "day", "week", "month", "year")]
+        [String]
+        ${Timeframe}
     )
 
     Process {
@@ -53,7 +53,7 @@ function Initialize-PVEGETNodesStorageRrddataRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Timeframe"="timeframe"; "Storage"="storage"; "Cf"="cf"
+			"Storage"="storage"; "Cf"="cf"; "Node"="node"; "Timeframe"="timeframe"
         }
 		
 		 $OBJ = @{}
@@ -99,23 +99,11 @@ function ConvertFrom-PVEJsonToGETNodesStorageRrddataRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesStorageRrddataRB
-        $AllProperties = ("node", "timeframe", "storage", "cf")
+        $AllProperties = ("storage", "cf", "node", "timeframe")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeframe"))) { #optional property not found
-            $Timeframe = $null
-        } else {
-            $Timeframe = $JsonParameters.PSobject.Properties["timeframe"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
@@ -130,11 +118,23 @@ function ConvertFrom-PVEJsonToGETNodesStorageRrddataRB {
             $Cf = $JsonParameters.PSobject.Properties["cf"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeframe"))) { #optional property not found
+            $Timeframe = $null
+        } else {
+            $Timeframe = $JsonParameters.PSobject.Properties["timeframe"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
-            "timeframe" = ${Timeframe}
             "storage" = ${Storage}
             "cf" = ${Cf}
+            "node" = ${Node}
+            "timeframe" = ${Timeframe}
         }
 
         return $PSO

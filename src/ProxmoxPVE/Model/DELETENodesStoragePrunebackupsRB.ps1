@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
-.PARAMETER Type
-No description available.
 .PARAMETER Storage
+No description available.
+.PARAMETER Vmid
+No description available.
+.PARAMETER Node
 No description available.
 .PARAMETER PruneBackups
 No description available.
-.PARAMETER Vmid
+.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -35,20 +35,20 @@ function Initialize-PVEDELETENodesStoragePrunebackupsRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("qemu", "lxc")]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Storage},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${PruneBackups},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid}
+        [ValidateSet("qemu", "lxc")]
+        [String]
+        ${Type}
     )
 
     Process {
@@ -65,7 +65,7 @@ function Initialize-PVEDELETENodesStoragePrunebackupsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Type"="type"; "Storage"="storage"; "PruneBackups"="prune-backups"; "Vmid"="vmid"
+			"Storage"="storage"; "Vmid"="vmid"; "Node"="node"; "PruneBackups"="prune-backups"; "Type"="type"
         }
 		
 		 $OBJ = @{}
@@ -111,23 +111,11 @@ function ConvertFrom-PVEJsonToDELETENodesStoragePrunebackupsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesStoragePrunebackupsRB
-        $AllProperties = ("node", "type", "storage", "prune-backups", "vmid")
+        $AllProperties = ("storage", "vmid", "node", "prune-backups", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
@@ -136,24 +124,36 @@ function ConvertFrom-PVEJsonToDELETENodesStoragePrunebackupsRB {
             $Storage = $JsonParameters.PSobject.Properties["storage"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prune-backups"))) { #optional property not found
-            $PruneBackups = $null
-        } else {
-            $PruneBackups = $JsonParameters.PSobject.Properties["prune-backups"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prune-backups"))) { #optional property not found
+            $PruneBackups = $null
+        } else {
+            $PruneBackups = $JsonParameters.PSobject.Properties["prune-backups"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
-            "type" = ${Type}
             "storage" = ${Storage}
-            "prune-backups" = ${PruneBackups}
             "vmid" = ${Vmid}
+            "node" = ${Node}
+            "prune-backups" = ${PruneBackups}
+            "type" = ${Type}
         }
 
         return $PSO

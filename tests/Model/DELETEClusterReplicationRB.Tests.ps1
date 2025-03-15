@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEDELETEClusterReplicationRB' {
     Context 'PVEDELETEClusterReplicationRB' {
         It 'Initialize-PVEDELETEClusterReplicationRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEDELETEClusterReplicationRB -Id "TEST_VALUE" -Force "TEST_VALUE" -Keep "TEST_VALUE"
+            #$NewObject = Initialize-PVEDELETEClusterReplicationRB -Force "TEST_VALUE" -Id "TEST_VALUE" -Keep "TEST_VALUE"
             #$NewObject | Should -BeOfType DELETEClusterReplicationRB
             #$NewObject.property | Should -Be 0
         }

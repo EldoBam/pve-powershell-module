@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Zone
-No description available.
 .PARAMETER Pending
 No description available.
 .PARAMETER Running
+No description available.
+.PARAMETER Zone
 No description available.
 .OUTPUTS
 
@@ -30,14 +30,14 @@ function Initialize-PVEGETClusterSdnZonesRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Zone},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Pending},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Running}
+        ${Running},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Zone}
     )
 
     Process {
@@ -62,7 +62,7 @@ function Initialize-PVEGETClusterSdnZonesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Zone"="zone"; "Pending"="pending"; "Running"="running"
+			"Pending"="pending"; "Running"="running"; "Zone"="zone"
         }
 		
 		 $OBJ = @{}
@@ -108,17 +108,11 @@ function ConvertFrom-PVEJsonToGETClusterSdnZonesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETClusterSdnZonesRB
-        $AllProperties = ("zone", "pending", "running")
+        $AllProperties = ("pending", "running", "zone")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
-            $Zone = $null
-        } else {
-            $Zone = $JsonParameters.PSobject.Properties["zone"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pending"))) { #optional property not found
@@ -133,10 +127,16 @@ function ConvertFrom-PVEJsonToGETClusterSdnZonesRB {
             $Running = $JsonParameters.PSobject.Properties["running"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
+            $Zone = $null
+        } else {
+            $Zone = $JsonParameters.PSobject.Properties["zone"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "zone" = ${Zone}
             "pending" = ${Pending}
             "running" = ${Running}
+            "zone" = ${Zone}
         }
 
         return $PSO

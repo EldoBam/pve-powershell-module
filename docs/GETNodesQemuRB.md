@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Full** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuRB = Initialize-PVEGETNodesQemuRB  -Node null `
- -Full null
+$GETNodesQemuRB = Initialize-PVEGETNodesQemuRB  -Full null `
+ -Node null
 ```
 
 - Convert the resource to JSON

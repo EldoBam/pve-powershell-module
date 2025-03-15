@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **Rename** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Cidr** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterFirewallAliasesRB = Initialize-PVEPUTClusterFirewallAliasesRB  -Name null `
+$PUTClusterFirewallAliasesRB = Initialize-PVEPUTClusterFirewallAliasesRB  -Rename null `
  -Digest null `
- -Comment null `
- -Rename null `
- -Cidr null
+ -Name null `
+ -Cidr null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

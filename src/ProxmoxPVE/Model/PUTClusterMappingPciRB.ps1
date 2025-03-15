@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Description
+.PARAMETER Mdev
+No description available.
+.PARAMETER Map
 No description available.
 .PARAMETER Id
 No description available.
 .PARAMETER Delete
 No description available.
+.PARAMETER Description
+No description available.
 .PARAMETER Digest
-No description available.
-.PARAMETER Mdev
-No description available.
-.PARAMETER Map
 No description available.
 .OUTPUTS
 
@@ -36,8 +36,11 @@ function Initialize-PVEPUTClusterMappingPciRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Description},
+        [System.Nullable[Int32]]
+        ${Mdev},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${Map},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Id},
@@ -46,30 +49,15 @@ function Initialize-PVEPUTClusterMappingPciRB {
         ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest},
+        ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Mdev},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Map}
+        [String]
+        ${Digest}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterMappingPciRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if (!$Description -and $Description.length -gt 4096) {
-            throw "invalid value for 'Description', the character length must be smaller than or equal to 4096."
-        }
-
-        if (!$Delete -and $Delete.length -gt 4096) {
-            throw "invalid value for 'Delete', the character length must be smaller than or equal to 4096."
-        }
-
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
-        }
 
         if ($Mdev -and $Mdev -gt 1) {
           throw "invalid value for 'Mdev', must be smaller than or equal to 1."
@@ -79,9 +67,21 @@ function Initialize-PVEPUTClusterMappingPciRB {
           throw "invalid value for 'Mdev', must be greater than or equal to 0."
         }
 
+        if (!$Delete -and $Delete.length -gt 4096) {
+            throw "invalid value for 'Delete', the character length must be smaller than or equal to 4096."
+        }
+
+        if (!$Description -and $Description.length -gt 4096) {
+            throw "invalid value for 'Description', the character length must be smaller than or equal to 4096."
+        }
+
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Description"="description"; "Id"="id"; "Delete"="delete"; "Digest"="digest"; "Mdev"="mdev"; "Map"="map"
+			"Mdev"="mdev"; "Map"="map"; "Id"="id"; "Delete"="delete"; "Description"="description"; "Digest"="digest"
         }
 		
 		 $OBJ = @{}
@@ -127,35 +127,11 @@ function ConvertFrom-PVEJsonToPUTClusterMappingPciRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterMappingPciRB
-        $AllProperties = ("description", "id", "delete", "digest", "mdev", "map")
+        $AllProperties = ("mdev", "map", "id", "delete", "description", "digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "mdev"))) { #optional property not found
@@ -170,13 +146,37 @@ function ConvertFrom-PVEJsonToPUTClusterMappingPciRB {
             $Map = $JsonParameters.PSobject.Properties["map"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "description" = ${Description}
-            "id" = ${Id}
-            "delete" = ${Delete}
-            "digest" = ${Digest}
             "mdev" = ${Mdev}
             "map" = ${Map}
+            "id" = ${Id}
+            "delete" = ${Delete}
+            "description" = ${Description}
+            "digest" = ${Digest}
         }
 
         return $PSO

@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Download
+No description available.
 .PARAMETER Limit
 No description available.
 .PARAMETER Node
-No description available.
-.PARAMETER Download
 No description available.
 .PARAMETER Upid
 No description available.
@@ -35,13 +35,13 @@ function Initialize-PVEGETNodesTasksLogRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
+        ${Download},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
         ${Limit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Download},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Upid},
@@ -64,7 +64,7 @@ function Initialize-PVEGETNodesTasksLogRB {
 
 
 		 $DisplayNameMapping =@{
-			"Limit"="limit"; "Node"="node"; "Download"="download"; "Upid"="upid"; "Start"="start"
+			"Download"="download"; "Limit"="limit"; "Node"="node"; "Upid"="upid"; "Start"="start"
         }
 		
 		 $OBJ = @{}
@@ -110,11 +110,17 @@ function ConvertFrom-PVEJsonToGETNodesTasksLogRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesTasksLogRB
-        $AllProperties = ("limit", "node", "download", "upid", "start")
+        $AllProperties = ("download", "limit", "node", "upid", "start")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "download"))) { #optional property not found
+            $Download = $null
+        } else {
+            $Download = $JsonParameters.PSobject.Properties["download"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "limit"))) { #optional property not found
@@ -127,12 +133,6 @@ function ConvertFrom-PVEJsonToGETNodesTasksLogRB {
             $Node = $null
         } else {
             $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "download"))) { #optional property not found
-            $Download = $null
-        } else {
-            $Download = $JsonParameters.PSobject.Properties["download"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "upid"))) { #optional property not found
@@ -148,9 +148,9 @@ function ConvertFrom-PVEJsonToGETNodesTasksLogRB {
         }
 
         $PSO = [PSCustomObject]@{
+            "download" = ${Download}
             "limit" = ${Limit}
             "node" = ${Node}
-            "download" = ${Download}
             "upid" = ${Upid}
             "start" = ${Start}
         }

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTNodesConfigRB' {
     Context 'PVEPUTNodesConfigRB' {
         It 'Initialize-PVEPUTNodesConfigRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTNodesConfigRB -Description "TEST_VALUE" -Delete "TEST_VALUE" -Digest "TEST_VALUE" -AcmedomainN "TEST_VALUE" -Acme "TEST_VALUE" -Node "TEST_VALUE" -StartallOnbootDelay "TEST_VALUE" -Wakeonlan "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTNodesConfigRB -Wakeonlan "TEST_VALUE" -Description "TEST_VALUE" -Delete "TEST_VALUE" -AcmedomainN "TEST_VALUE" -StartallOnbootDelay "TEST_VALUE" -Digest "TEST_VALUE" -Node "TEST_VALUE" -Acme "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTNodesConfigRB
             #$NewObject.property | Should -Be 0
         }

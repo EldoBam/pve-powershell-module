@@ -3,32 +3,32 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**VarLocal** | **Int32** |  | [optional] 
-**Nodes** | **Int32** |  | [optional] 
 **Ip** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**Version** | **Int32** |  | [optional] 
-**Nodeid** | **Int32** |  | [optional] 
-**Level** | **String** |  | [optional] 
 **Quorate** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Nodes** | **Int32** |  | [optional] 
+**Nodeid** | **Int32** |  | [optional] 
+**VarLocal** | **Int32** |  | [optional] 
+**Version** | **Int32** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Level** | **String** |  | [optional] 
 **Online** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterStatusInner = Initialize-PVEClusterStatusInner  -Name null `
- -Id null `
- -VarLocal null `
- -Nodes null `
- -Ip null `
+$ClusterStatusInner = Initialize-PVEClusterStatusInner  -Ip null `
  -Type null `
- -Version null `
- -Nodeid null `
- -Level null `
  -Quorate null `
+ -Name null `
+ -Nodes null `
+ -Nodeid null `
+ -VarLocal null `
+ -Version null `
+ -Id null `
+ -Level null `
  -Online null
 ```
 

@@ -15,19 +15,19 @@ No summary available.
 
 No description available.
 
+.PARAMETER ValidationDelay
+No description available.
+.PARAMETER VarData
+No description available.
+.PARAMETER Id
+No description available.
+.PARAMETER Type
+No description available.
 .PARAMETER Api
 No description available.
 .PARAMETER Nodes
 No description available.
-.PARAMETER Id
-No description available.
 .PARAMETER Disable
-No description available.
-.PARAMETER Type
-No description available.
-.PARAMETER ValidationDelay
-No description available.
-.PARAMETER VarData
 No description available.
 .OUTPUTS
 
@@ -38,6 +38,19 @@ function Initialize-PVEPOSTClusterAcmePluginsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${ValidationDelay},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${VarData},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Id},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("dns", "standalone")]
+        [String]
+        ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("1984hosting", "acmedns", "acmeproxy", "active24", "ad", "ali", "anx", "artfiles", "arvan", "aurora", "autodns", "aws", "azion", "azure", "bookmyname", "bunny", "cf", "clouddns", "cloudns", "cn", "conoha", "constellix", "cpanel", "curanet", "cyon", "da", "ddnss", "desec", "df", "dgon", "dnsexit", "dnshome", "dnsimple", "dnsservices", "do", "doapi", "domeneshop", "dp", "dpi", "dreamhost", "duckdns", "durabledns", "dyn", "dynu", "dynv6", "easydns", "edgedns", "euserv", "exoscale", "fornex", "freedns", "gandi_livedns", "gcloud", "gcore", "gd", "geoscaling", "googledomains", "he", "hetzner", "hexonet", "hostingde", "huaweicloud", "infoblox", "infomaniak", "internetbs", "inwx", "ionos", "ipv64", "ispconfig", "jd", "joker", "kappernet", "kas", "kinghost", "knot", "la", "leaseweb", "lexicon", "linode", "linode_v4", "loopia", "lua", "maradns", "me", "miab", "misaka", "myapi", "mydevil", "mydnsjp", "mythic_beasts", "namecheap", "namecom", "namesilo", "nanelo", "nederhost", "neodigit", "netcup", "netlify", "nic", "njalla", "nm", "nsd", "nsone", "nsupdate", "nw", "oci", "one", "online", "openprovider", "openstack", "opnsense", "ovh", "pdns", "pleskxml", "pointhq", "porkbun", "rackcorp", "rackspace", "rage4", "rcode0", "regru", "scaleway", "schlundtech", "selectel", "selfhost", "servercow", "simply", "tele3", "tencent", "transip", "udr", "ultra", "unoeuro", "variomedia", "veesp", "vercel", "vscale", "vultr", "websupport", "world4you", "yandex", "yc", "zilore", "zone", "zonomi")]
         [String]
         ${Api},
@@ -45,26 +58,17 @@ function Initialize-PVEPOSTClusterAcmePluginsRB {
         [String]
         ${Nodes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Disable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("dns", "standalone")]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${ValidationDelay},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${VarData}
+        ${Disable}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTClusterAcmePluginsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if ($ValidationDelay -and $ValidationDelay -gt 172800) {
+          throw "invalid value for 'ValidationDelay', must be smaller than or equal to 172800."
+        }
 
         if ($Disable -and $Disable -gt 1) {
           throw "invalid value for 'Disable', must be smaller than or equal to 1."
@@ -74,13 +78,9 @@ function Initialize-PVEPOSTClusterAcmePluginsRB {
           throw "invalid value for 'Disable', must be greater than or equal to 0."
         }
 
-        if ($ValidationDelay -and $ValidationDelay -gt 172800) {
-          throw "invalid value for 'ValidationDelay', must be smaller than or equal to 172800."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Api"="api"; "Nodes"="nodes"; "Id"="id"; "Disable"="disable"; "Type"="type"; "ValidationDelay"="validation-delay"; "VarData"="data"
+			"ValidationDelay"="validation-delay"; "VarData"="data"; "Id"="id"; "Type"="type"; "Api"="api"; "Nodes"="nodes"; "Disable"="disable"
         }
 		
 		 $OBJ = @{}
@@ -126,41 +126,11 @@ function ConvertFrom-PVEJsonToPOSTClusterAcmePluginsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterAcmePluginsRB
-        $AllProperties = ("api", "nodes", "id", "disable", "type", "validation-delay", "data")
+        $AllProperties = ("validation-delay", "data", "id", "type", "api", "nodes", "disable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "api"))) { #optional property not found
-            $Api = $null
-        } else {
-            $Api = $JsonParameters.PSobject.Properties["api"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
-            $Nodes = $null
-        } else {
-            $Nodes = $JsonParameters.PSobject.Properties["nodes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
-        } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "validation-delay"))) { #optional property not found
@@ -175,14 +145,44 @@ function ConvertFrom-PVEJsonToPOSTClusterAcmePluginsRB {
             $VarData = $JsonParameters.PSobject.Properties["data"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "api"))) { #optional property not found
+            $Api = $null
+        } else {
+            $Api = $JsonParameters.PSobject.Properties["api"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
+            $Nodes = $null
+        } else {
+            $Nodes = $JsonParameters.PSobject.Properties["nodes"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
+        } else {
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "api" = ${Api}
-            "nodes" = ${Nodes}
-            "id" = ${Id}
-            "disable" = ${Disable}
-            "type" = ${Type}
             "validation-delay" = ${ValidationDelay}
             "data" = ${VarData}
+            "id" = ${Id}
+            "type" = ${Type}
+            "api" = ${Api}
+            "nodes" = ${Nodes}
+            "disable" = ${Disable}
         }
 
         return $PSO

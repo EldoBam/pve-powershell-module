@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Commands** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Commands** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesExecuteRB = Initialize-PVEPOSTNodesExecuteRB  -Commands null `
- -Node null
+$POSTNodesExecuteRB = Initialize-PVEPOSTNodesExecuteRB  -Node null `
+ -Commands null
 ```
 
 - Convert the resource to JSON

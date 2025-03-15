@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 **Value** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 **Section** | **String** |  | [optional] 
-**Level** | **String** |  | [optional] 
-**Mask** | **String** |  | [optional] 
 **CanUpdateAtRuntime** | **Int32** |  | [optional] 
+**Mask** | **String** |  | [optional] 
+**Level** | **String** |  | [optional] 
 
 ## Examples
 
@@ -17,9 +17,9 @@ Name | Type | Description | Notes
 $NodesCephCfgDbInner = Initialize-PVENodesCephCfgDbInner  -Value null `
  -Name null `
  -Section null `
- -Level null `
+ -CanUpdateAtRuntime null `
  -Mask null `
- -CanUpdateAtRuntime null
+ -Level null
 ```
 
 - Convert the resource to JSON

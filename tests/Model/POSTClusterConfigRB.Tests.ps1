@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTClusterConfigRB' {
     Context 'PVEPOSTClusterConfigRB' {
         It 'Initialize-PVEPOSTClusterConfigRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTClusterConfigRB -LinkN "TEST_VALUE" -Nodeid "TEST_VALUE" -Clustername "TEST_VALUE" -Votes "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTClusterConfigRB -Clustername "TEST_VALUE" -Nodeid "TEST_VALUE" -Votes "TEST_VALUE" -LinkN "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTClusterConfigRB
             #$NewObject.property | Should -Be 0
         }

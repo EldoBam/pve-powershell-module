@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Verbose** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesCephPoolStatusRB = Initialize-PVEGETNodesCephPoolStatusRB  -Node null `
- -Name null `
+$GETNodesCephPoolStatusRB = Initialize-PVEGETNodesCephPoolStatusRB  -Name null `
+ -Node null `
  -Verbose null
 ```
 

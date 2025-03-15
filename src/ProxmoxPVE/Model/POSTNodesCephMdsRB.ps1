@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Name
 No description available.
-.PARAMETER Node
-No description available.
 .PARAMETER Hotstandby
+No description available.
+.PARAMETER Node
 No description available.
 .OUTPUTS
 
@@ -34,11 +34,11 @@ function Initialize-PVEPOSTNodesCephMdsRB {
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Hotstandby}
+        ${Hotstandby},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node}
     )
 
     Process {
@@ -59,7 +59,7 @@ function Initialize-PVEPOSTNodesCephMdsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Node"="node"; "Hotstandby"="hotstandby"
+			"Name"="name"; "Hotstandby"="hotstandby"; "Node"="node"
         }
 		
 		 $OBJ = @{}
@@ -105,7 +105,7 @@ function ConvertFrom-PVEJsonToPOSTNodesCephMdsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCephMdsRB
-        $AllProperties = ("name", "node", "hotstandby")
+        $AllProperties = ("name", "hotstandby", "node")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -118,22 +118,22 @@ function ConvertFrom-PVEJsonToPOSTNodesCephMdsRB {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "hotstandby"))) { #optional property not found
             $Hotstandby = $null
         } else {
             $Hotstandby = $JsonParameters.PSobject.Properties["hotstandby"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "name" = ${Name}
-            "node" = ${Node}
             "hotstandby" = ${Hotstandby}
+            "node" = ${Node}
         }
 
         return $PSO

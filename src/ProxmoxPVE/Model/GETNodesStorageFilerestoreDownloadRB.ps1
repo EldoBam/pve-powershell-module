@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
-.PARAMETER Tar
+.PARAMETER Storage
 No description available.
 .PARAMETER Volume
 No description available.
-.PARAMETER Storage
+.PARAMETER Node
+No description available.
+.PARAMETER Tar
 No description available.
 .PARAMETER Filepath
 No description available.
@@ -35,16 +35,16 @@ function Initialize-PVEGETNodesStorageFilerestoreDownloadRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Tar},
+        ${Storage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Volume},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Storage},
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Tar},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Filepath}
@@ -64,7 +64,7 @@ function Initialize-PVEGETNodesStorageFilerestoreDownloadRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Tar"="tar"; "Volume"="volume"; "Storage"="storage"; "Filepath"="filepath"
+			"Storage"="storage"; "Volume"="volume"; "Node"="node"; "Tar"="tar"; "Filepath"="filepath"
         }
 		
 		 $OBJ = @{}
@@ -110,11 +110,23 @@ function ConvertFrom-PVEJsonToGETNodesStorageFilerestoreDownloadRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesStorageFilerestoreDownloadRB
-        $AllProperties = ("node", "tar", "volume", "storage", "filepath")
+        $AllProperties = ("storage", "volume", "node", "tar", "filepath")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
+            $Storage = $null
+        } else {
+            $Storage = $JsonParameters.PSobject.Properties["storage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volume"))) { #optional property not found
+            $Volume = $null
+        } else {
+            $Volume = $JsonParameters.PSobject.Properties["volume"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -129,18 +141,6 @@ function ConvertFrom-PVEJsonToGETNodesStorageFilerestoreDownloadRB {
             $Tar = $JsonParameters.PSobject.Properties["tar"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volume"))) { #optional property not found
-            $Volume = $null
-        } else {
-            $Volume = $JsonParameters.PSobject.Properties["volume"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "filepath"))) { #optional property not found
             $Filepath = $null
         } else {
@@ -148,10 +148,10 @@ function ConvertFrom-PVEJsonToGETNodesStorageFilerestoreDownloadRB {
         }
 
         $PSO = [PSCustomObject]@{
+            "storage" = ${Storage}
+            "volume" = ${Volume}
             "node" = ${Node}
             "tar" = ${Tar}
-            "volume" = ${Volume}
-            "storage" = ${Storage}
             "filepath" = ${Filepath}
         }
 

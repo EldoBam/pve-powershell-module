@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesScanPbsRB' {
     Context 'PVEGETNodesScanPbsRB' {
         It 'Initialize-PVEGETNodesScanPbsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesScanPbsRB -Username "TEST_VALUE" -Node "TEST_VALUE" -Port "TEST_VALUE" -Fingerprint "TEST_VALUE" -Password "TEST_VALUE" -Server "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesScanPbsRB -Password "TEST_VALUE" -Node "TEST_VALUE" -Fingerprint "TEST_VALUE" -Username "TEST_VALUE" -Server "TEST_VALUE" -Port "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesScanPbsRB
             #$NewObject.property | Should -Be 0
         }

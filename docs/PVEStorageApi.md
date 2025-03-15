@@ -57,6 +57,7 @@ No authorization required
 <a name="Get-PVEStorageByStorage"></a>
 # **Get-PVEStorageByStorage**
 > void Get-PVEStorageByStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 
 Read storage configuration.
 
@@ -64,10 +65,11 @@ Read storage configuration.
 
 ### Example
 ```powershell
+$Storage = "MyStorage" # String | The storage identifier.
 
 # Read storage configuration.
 try {
-    $Result = Get-PVEStorageByStorage
+    $Result = Get-PVEStorageByStorage -Storage $Storage
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEStorageByStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -75,7 +77,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Storage** | **String**| The storage identifier. | 
 
 ### Return type
 
@@ -103,7 +108,7 @@ Create a new storage.
 
 ### Example
 ```powershell
-$POSTStorageRB = Initialize-POSTStorageRB -Volume "MyVolume" -Namespace "MyNamespace" -Smbversion "default" -Nodes "MyNodes" -Mountpoint "MyMountpoint" -CreateSubdirs 0 -ComstarTg "MyComstarTg" -FsName "MyFsName" -Username "MyUsername" -Subdir "MySubdir" -SaferemoveThroughput "MySaferemoveThroughput" -Transport "tcp" -Iscsiprovider "MyIscsiprovider" -Keyring "MyKeyring" -Domain "MyDomain" -Path "MyPath" -Target "MyTarget" -Nocow 0 -Fuse 0 -DataPool "MyDataPool" -Type "btrfs" -Share "MyShare" -TaggedOnly 0 -Datastore "MyDatastore" -CreateBasePath 0 -LioTpg "MyLioTpg" -Format "MyFormat" -Sparse 0 -Server2 "MyServer2" -Maxfiles 0 -Preallocation "off" -IsMountpoint "MyIsMountpoint" -Authsupported "MyAuthsupported" -Bwlimit "MyBwlimit" -Disable 0 -ContentDirs "MyContentDirs" -Export "MyExport" -Krbd 0 -MaxProtectedBackups 0 -Portal "MyPortal" -Monhost "MyMonhost" -Port 0 -PruneBackups "MyPruneBackups" -MasterPubkey "MyMasterPubkey" -SkipCertVerification 0 -Thinpool "MyThinpool" -Content "MyContent" -Storage "MyStorage" -EncryptionKey "MyEncryptionKey" -Server "MyServer" -Mkdir 0 -Vgname "MyVgname" -Shared 0 -Password "MyPassword" -Pool "MyPool" -Base "MyBase" -ComstarHg "MyComstarHg" -Options "MyOptions" -Blocksize "MyBlocksize" -Saferemove 0 -Nowritecache 0 -Fingerprint "MyFingerprint" # POSTStorageRB | Create a new storage. (optional)
+$POSTStorageRB = Initialize-POSTStorageRB -Storage "MyStorage" -Password "MyPassword" -Nodes "MyNodes" -Thinpool "MyThinpool" -CreateBasePath 0 -Disable 0 -ComstarTg "MyComstarTg" -Saferemove 0 -LioTpg "MyLioTpg" -Server "MyServer" -Preallocation "off" -Content "MyContent" -Server2 "MyServer2" -Keyring "MyKeyring" -Format "MyFormat" -Base "MyBase" -MaxProtectedBackups 0 -Nocow 0 -TaggedOnly 0 -Mountpoint "MyMountpoint" -Nowritecache 0 -Domain "MyDomain" -ComstarHg "MyComstarHg" -Maxfiles 0 -Datastore "MyDatastore" -Subdir "MySubdir" -DataPool "MyDataPool" -Share "MyShare" -Transport "tcp" -Username "MyUsername" -Path "MyPath" -Fuse 0 -SkipCertVerification 0 -Namespace "MyNamespace" -Volume "MyVolume" -Options "MyOptions" -Pool "MyPool" -CreateSubdirs 0 -IsMountpoint "MyIsMountpoint" -EncryptionKey "MyEncryptionKey" -Export "MyExport" -Fingerprint "MyFingerprint" -Bwlimit "MyBwlimit" -Vgname "MyVgname" -PruneBackups "MyPruneBackups" -Type "btrfs" -Authsupported "MyAuthsupported" -Portal "MyPortal" -ContentDirs "MyContentDirs" -SaferemoveThroughput "MySaferemoveThroughput" -Port 0 -Monhost "MyMonhost" -Sparse 0 -Target "MyTarget" -MasterPubkey "MyMasterPubkey" -Mkdir 0 -Iscsiprovider "MyIscsiprovider" -Shared 0 -Krbd 0 -FsName "MyFsName" -Smbversion "default" -Blocksize "MyBlocksize" # POSTStorageRB | Create a new storage. (optional)
 
 # Create a new storage.
 try {
@@ -138,6 +143,7 @@ No authorization required
 <a name="Remove-PVEStorageByStorage"></a>
 # **Remove-PVEStorageByStorage**
 > void Remove-PVEStorageByStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 
 Delete storage configuration.
 
@@ -145,10 +151,11 @@ Delete storage configuration.
 
 ### Example
 ```powershell
+$Storage = "MyStorage" # String | The storage identifier.
 
 # Delete storage configuration.
 try {
-    $Result = Remove-PVEStorageByStorage
+    $Result = Remove-PVEStorageByStorage -Storage $Storage
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEStorageByStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -156,7 +163,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Storage** | **String**| The storage identifier. | 
 
 ### Return type
 
@@ -176,6 +186,7 @@ No authorization required
 <a name="Set-PVEStorageByStorage"></a>
 # **Set-PVEStorageByStorage**
 > StoragePUT Set-PVEStorageByStorage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Storage] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTStorageRB] <PSCustomObject><br>
 
 Update storage configuration.
@@ -184,11 +195,12 @@ Update storage configuration.
 
 ### Example
 ```powershell
-$PUTStorageRB = Initialize-PUTStorageRB -Namespace "MyNamespace" -Smbversion "default" -Nodes "MyNodes" -Mountpoint "MyMountpoint" -CreateSubdirs 0 -ComstarTg "MyComstarTg" -FsName "MyFsName" -Username "MyUsername" -SaferemoveThroughput "MySaferemoveThroughput" -Transport "tcp" -Keyring "MyKeyring" -Domain "MyDomain" -Nocow 0 -Fuse 0 -DataPool "MyDataPool" -Pool "MyPool" -CreateBasePath 0 -LioTpg "MyLioTpg" -Format "MyFormat" -Delete "MyDelete" -Sparse 0 -Server2 "MyServer2" -Maxfiles 0 -Preallocation "off" -IsMountpoint "MyIsMountpoint" -SkipCertVerification 0 -Bwlimit "MyBwlimit" -Disable 0 -ContentDirs "MyContentDirs" -Krbd 0 -MaxProtectedBackups 0 -TaggedOnly 0 -Monhost "MyMonhost" -Port 0 -PruneBackups "MyPruneBackups" -MasterPubkey "MyMasterPubkey" -Content "MyContent" -Storage "MyStorage" -EncryptionKey "MyEncryptionKey" -Digest "MyDigest" -Server "MyServer" -Mkdir 0 -Shared 0 -Password "MyPassword" -Subdir "MySubdir" -ComstarHg "MyComstarHg" -Options "MyOptions" -Blocksize "MyBlocksize" -Saferemove 0 -Nowritecache 0 -Fingerprint "MyFingerprint" # PUTStorageRB | Update storage configuration. (optional)
+$Storage = "MyStorage" # String | The storage identifier.
+$PUTStorageRB = Initialize-PUTStorageRB -Storage "MyStorage" -Password "MyPassword" -Nodes "MyNodes" -CreateBasePath 0 -Disable 0 -ComstarTg "MyComstarTg" -Saferemove 0 -LioTpg "MyLioTpg" -Server "MyServer" -Preallocation "off" -Content "MyContent" -Server2 "MyServer2" -Keyring "MyKeyring" -Format "MyFormat" -Mountpoint "MyMountpoint" -MaxProtectedBackups 0 -Nocow 0 -TaggedOnly 0 -Shared 0 -Nowritecache 0 -Domain "MyDomain" -ComstarHg "MyComstarHg" -Maxfiles 0 -Subdir "MySubdir" -DataPool "MyDataPool" -Username "MyUsername" -Fuse 0 -SkipCertVerification 0 -Namespace "MyNamespace" -Port 0 -Options "MyOptions" -Pool "MyPool" -CreateSubdirs 0 -IsMountpoint "MyIsMountpoint" -EncryptionKey "MyEncryptionKey" -Transport "tcp" -Fingerprint "MyFingerprint" -Bwlimit "MyBwlimit" -PruneBackups "MyPruneBackups" -SaferemoveThroughput "MySaferemoveThroughput" -ContentDirs "MyContentDirs" -Digest "MyDigest" -Monhost "MyMonhost" -Sparse 0 -Delete "MyDelete" -MasterPubkey "MyMasterPubkey" -Mkdir 0 -Krbd 0 -FsName "MyFsName" -Smbversion "default" -Blocksize "MyBlocksize" # PUTStorageRB | Update storage configuration. (optional)
 
 # Update storage configuration.
 try {
-    $Result = Set-PVEStorageByStorage -PUTStorageRB $PUTStorageRB
+    $Result = Set-PVEStorageByStorage -Storage $Storage -PUTStorageRB $PUTStorageRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEStorageByStorage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -199,6 +211,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Storage** | **String**| The storage identifier. | 
  **PUTStorageRB** | [**PUTStorageRB**](PUTStorageRB.md)| Update storage configuration. | [optional] 
 
 ### Return type

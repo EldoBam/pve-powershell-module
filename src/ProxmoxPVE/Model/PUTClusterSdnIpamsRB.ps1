@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
+.PARAMETER Ipam
+No description available.
 .PARAMETER Delete
 No description available.
 .PARAMETER Section
 No description available.
-.PARAMETER Ipam
-No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Url
-No description available.
 .PARAMETER Token
+No description available.
+.PARAMETER Url
 No description available.
 .OUTPUTS
 
@@ -37,22 +37,22 @@ function Initialize-PVEPUTClusterSdnIpamsRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Ipam},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Section},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Ipam},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Url},
+        ${Token},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Token}
+        ${Url}
     )
 
     Process {
@@ -69,7 +69,7 @@ function Initialize-PVEPUTClusterSdnIpamsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Delete"="delete"; "Section"="section"; "Ipam"="ipam"; "Digest"="digest"; "Url"="url"; "Token"="token"
+			"Ipam"="ipam"; "Delete"="delete"; "Section"="section"; "Digest"="digest"; "Token"="token"; "Url"="url"
         }
 		
 		 $OBJ = @{}
@@ -115,11 +115,17 @@ function ConvertFrom-PVEJsonToPUTClusterSdnIpamsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterSdnIpamsRB
-        $AllProperties = ("delete", "section", "ipam", "digest", "url", "token")
+        $AllProperties = ("ipam", "delete", "section", "digest", "token", "url")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipam"))) { #optional property not found
+            $Ipam = $null
+        } else {
+            $Ipam = $JsonParameters.PSobject.Properties["ipam"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
@@ -134,22 +140,10 @@ function ConvertFrom-PVEJsonToPUTClusterSdnIpamsRB {
             $Section = $JsonParameters.PSobject.Properties["section"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipam"))) { #optional property not found
-            $Ipam = $null
-        } else {
-            $Ipam = $JsonParameters.PSobject.Properties["ipam"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
-            $Url = $null
-        } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "token"))) { #optional property not found
@@ -158,13 +152,19 @@ function ConvertFrom-PVEJsonToPUTClusterSdnIpamsRB {
             $Token = $JsonParameters.PSobject.Properties["token"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
+            $Url = $null
+        } else {
+            $Url = $JsonParameters.PSobject.Properties["url"].value
+        }
+
         $PSO = [PSCustomObject]@{
+            "ipam" = ${Ipam}
             "delete" = ${Delete}
             "section" = ${Section}
-            "ipam" = ${Ipam}
             "digest" = ${Digest}
-            "url" = ${Url}
             "token" = ${Token}
+            "url" = ${Url}
         }
 
         return $PSO

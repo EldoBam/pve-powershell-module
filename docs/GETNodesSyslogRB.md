@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Start** | **Int32** |  | [optional] 
+**Since** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Limit** | **Int32** |  | [optional] 
 **VarUntil** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Start** | **Int32** |  | [optional] 
 **Service** | **String** |  | [optional] 
-**Since** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesSyslogRB = Initialize-PVEGETNodesSyslogRB  -Start null `
+$GETNodesSyslogRB = Initialize-PVEGETNodesSyslogRB  -Since null `
+ -Node null `
  -Limit null `
  -VarUntil null `
- -Node null `
- -Service null `
- -Since null
+ -Start null `
+ -Service null
 ```
 
 - Convert the resource to JSON

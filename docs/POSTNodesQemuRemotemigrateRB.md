@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Delete** | **Int32** |  | [optional] 
-**TargetBridge** | **String** |  | [optional] 
-**Bwlimit** | **Int32** |  | [optional] 
-**TargetVmid** | **Int32** |  | [optional] 
-**TargetStorage** | **String** |  | [optional] 
-**Online** | **Int32** |  | [optional] 
 **TargetEndpoint** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Bwlimit** | **Int32** |  | [optional] 
+**Delete** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**TargetStorage** | **String** |  | [optional] 
+**TargetVmid** | **Int32** |  | [optional] 
+**TargetBridge** | **String** |  | [optional] 
+**Online** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuRemotemigrateRB = Initialize-PVEPOSTNodesQemuRemotemigrateRB  -Vmid null `
+$POSTNodesQemuRemotemigrateRB = Initialize-PVEPOSTNodesQemuRemotemigrateRB  -TargetEndpoint null `
  -Node null `
- -Delete null `
- -TargetBridge null `
  -Bwlimit null `
- -TargetVmid null `
+ -Delete null `
+ -Vmid null `
  -TargetStorage null `
- -Online null `
- -TargetEndpoint null
+ -TargetVmid null `
+ -TargetBridge null `
+ -Online null
 ```
 
 - Convert the resource to JSON

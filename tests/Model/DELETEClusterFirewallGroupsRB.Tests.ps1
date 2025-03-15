@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEDELETEClusterFirewallGroupsRB' {
     Context 'PVEDELETEClusterFirewallGroupsRB' {
         It 'Initialize-PVEDELETEClusterFirewallGroupsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEDELETEClusterFirewallGroupsRB -Group "TEST_VALUE" -Digest "TEST_VALUE" -Pos "TEST_VALUE"
+            #$NewObject = Initialize-PVEDELETEClusterFirewallGroupsRB -Digest "TEST_VALUE" -Group "TEST_VALUE" -Pos "TEST_VALUE"
             #$NewObject | Should -BeOfType DELETEClusterFirewallGroupsRB
             #$NewObject.property | Should -Be 0
         }

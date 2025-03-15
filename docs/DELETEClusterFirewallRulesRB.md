@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
 **Pos** | **Int32** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEClusterFirewallRulesRB = Initialize-PVEDELETEClusterFirewallRulesRB  -Digest null `
- -Pos null
+$DELETEClusterFirewallRulesRB = Initialize-PVEDELETEClusterFirewallRulesRB  -Pos null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

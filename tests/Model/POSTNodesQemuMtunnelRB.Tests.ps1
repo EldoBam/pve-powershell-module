@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesQemuMtunnelRB' {
     Context 'PVEPOSTNodesQemuMtunnelRB' {
         It 'Initialize-PVEPOSTNodesQemuMtunnelRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesQemuMtunnelRB -Node "TEST_VALUE" -Bridges "TEST_VALUE" -Vmid "TEST_VALUE" -Storages "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesQemuMtunnelRB -Storages "TEST_VALUE" -Node "TEST_VALUE" -Bridges "TEST_VALUE" -Vmid "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesQemuMtunnelRB
             #$NewObject.property | Should -Be 0
         }

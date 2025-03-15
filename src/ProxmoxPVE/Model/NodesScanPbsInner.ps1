@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Store
-No description available.
 .PARAMETER Comment
+No description available.
+.PARAMETER Store
 No description available.
 .OUTPUTS
 
@@ -29,10 +29,10 @@ function Initialize-PVENodesScanPbsInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Store},
+        ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comment}
+        ${Store}
     )
 
     Process {
@@ -41,7 +41,7 @@ function Initialize-PVENodesScanPbsInner {
 
 
 		 $DisplayNameMapping =@{
-			"Store"="store"; "Comment"="comment"
+			"Comment"="comment"; "Store"="store"
         }
 		
 		 $OBJ = @{}
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToNodesScanPbsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesScanPbsInner
-        $AllProperties = ("store", "comment")
+        $AllProperties = ("comment", "store")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "store"))) { #optional property not found
-            $Store = $null
-        } else {
-            $Store = $JsonParameters.PSobject.Properties["store"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToNodesScanPbsInner {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "store"))) { #optional property not found
+            $Store = $null
+        } else {
+            $Store = $JsonParameters.PSobject.Properties["store"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "store" = ${Store}
             "comment" = ${Comment}
+            "store" = ${Store}
         }
 
         return $PSO

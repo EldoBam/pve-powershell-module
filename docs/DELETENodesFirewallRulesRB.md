@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Pos** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesFirewallRulesRB = Initialize-PVEDELETENodesFirewallRulesRB  -Node null `
- -Digest null `
+$DELETENodesFirewallRulesRB = Initialize-PVEDELETENodesFirewallRulesRB  -Digest null `
+ -Node null `
  -Pos null
 ```
 

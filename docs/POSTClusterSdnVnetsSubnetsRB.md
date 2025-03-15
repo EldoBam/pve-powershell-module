@@ -3,26 +3,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Gateway** | **String** |  | [optional] 
-**Snat** | **Int32** |  | [optional] 
-**DhcpRange** | **String[]** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Gateway** | **String** |  | [optional] 
 **Dnszoneprefix** | **String** |  | [optional] 
-**Subnet** | **String** |  | [optional] 
+**DhcpRange** | **String[]** |  | [optional] 
+**Snat** | **Int32** |  | [optional] 
 **Vnet** | **String** |  | [optional] 
+**Subnet** | **String** |  | [optional] 
 **DhcpDnsServer** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnVnetsSubnetsRB = Initialize-PVEPOSTClusterSdnVnetsSubnetsRB  -Gateway null `
- -Snat null `
- -DhcpRange null `
- -Type null `
+$POSTClusterSdnVnetsSubnetsRB = Initialize-PVEPOSTClusterSdnVnetsSubnetsRB  -Type null `
+ -Gateway null `
  -Dnszoneprefix null `
- -Subnet null `
+ -DhcpRange null `
+ -Snat null `
  -Vnet null `
+ -Subnet null `
  -DhcpDnsServer null
 ```
 

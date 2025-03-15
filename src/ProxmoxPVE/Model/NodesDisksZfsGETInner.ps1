@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Health
-No description available.
-.PARAMETER Alloc
+.PARAMETER Name
 No description available.
 .PARAMETER Size
 No description available.
-.PARAMETER Free
+.PARAMETER Health
 No description available.
 .PARAMETER Frag
 No description available.
-.PARAMETER Name
+.PARAMETER Free
+No description available.
+.PARAMETER Alloc
 No description available.
 .PARAMETER Dedup
 No description available.
@@ -39,22 +39,22 @@ function Initialize-PVENodesDisksZfsGETInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Health},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Alloc},
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Size},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Health},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Frag},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Free},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Frag},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
+        ${Alloc},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Decimal]]
         ${Dedup}
@@ -66,7 +66,7 @@ function Initialize-PVENodesDisksZfsGETInner {
 
 
 		 $DisplayNameMapping =@{
-			"Health"="health"; "Alloc"="alloc"; "Size"="size"; "Free"="free"; "Frag"="frag"; "Name"="name"; "Dedup"="dedup"
+			"Name"="name"; "Size"="size"; "Health"="health"; "Frag"="frag"; "Free"="free"; "Alloc"="alloc"; "Dedup"="dedup"
         }
 		
 		 $OBJ = @{}
@@ -112,23 +112,17 @@ function ConvertFrom-PVEJsonToNodesDisksZfsGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesDisksZfsGETInner
-        $AllProperties = ("health", "alloc", "size", "free", "frag", "name", "dedup")
+        $AllProperties = ("name", "size", "health", "frag", "free", "alloc", "dedup")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "health"))) { #optional property not found
-            $Health = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
         } else {
-            $Health = $JsonParameters.PSobject.Properties["health"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "alloc"))) { #optional property not found
-            $Alloc = $null
-        } else {
-            $Alloc = $JsonParameters.PSobject.Properties["alloc"].value
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
@@ -137,10 +131,10 @@ function ConvertFrom-PVEJsonToNodesDisksZfsGETInner {
             $Size = $JsonParameters.PSobject.Properties["size"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "free"))) { #optional property not found
-            $Free = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "health"))) { #optional property not found
+            $Health = $null
         } else {
-            $Free = $JsonParameters.PSobject.Properties["free"].value
+            $Health = $JsonParameters.PSobject.Properties["health"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "frag"))) { #optional property not found
@@ -149,10 +143,16 @@ function ConvertFrom-PVEJsonToNodesDisksZfsGETInner {
             $Frag = $JsonParameters.PSobject.Properties["frag"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "free"))) { #optional property not found
+            $Free = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Free = $JsonParameters.PSobject.Properties["free"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "alloc"))) { #optional property not found
+            $Alloc = $null
+        } else {
+            $Alloc = $JsonParameters.PSobject.Properties["alloc"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dedup"))) { #optional property not found
@@ -162,12 +162,12 @@ function ConvertFrom-PVEJsonToNodesDisksZfsGETInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "health" = ${Health}
-            "alloc" = ${Alloc}
-            "size" = ${Size}
-            "free" = ${Free}
-            "frag" = ${Frag}
             "name" = ${Name}
+            "size" = ${Size}
+            "health" = ${Health}
+            "frag" = ${Frag}
+            "free" = ${Free}
+            "alloc" = ${Alloc}
             "dedup" = ${Dedup}
         }
 

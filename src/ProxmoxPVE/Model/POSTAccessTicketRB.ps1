@@ -15,21 +15,21 @@ No summary available.
 
 No description available.
 
-.PARAMETER Username
-No description available.
-.PARAMETER Privs
-No description available.
-.PARAMETER Otp
+.PARAMETER Password
 No description available.
 .PARAMETER NewFormat
 No description available.
+.PARAMETER Privs
+No description available.
+.PARAMETER Username
+No description available.
 .PARAMETER Path
 No description available.
-.PARAMETER Password
-No description available.
-.PARAMETER Realm
+.PARAMETER Otp
 No description available.
 .PARAMETER TfaChallenge
+No description available.
+.PARAMETER Realm
 No description available.
 .OUTPUTS
 
@@ -41,41 +41,33 @@ function Initialize-PVEPOSTAccessTicketRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Username},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Privs},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Otp},
+        ${Password},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${NewFormat},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Privs},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Username},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Path},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Password},
+        ${Otp},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Realm},
+        ${TfaChallenge},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${TfaChallenge}
+        ${Realm}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTAccessTicketRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if (!$Username -and $Username.length -gt 64) {
-            throw "invalid value for 'Username', the character length must be smaller than or equal to 64."
-        }
-
-        if (!$Privs -and $Privs.length -gt 64) {
-            throw "invalid value for 'Privs', the character length must be smaller than or equal to 64."
-        }
 
         if ($NewFormat -and $NewFormat -gt 1) {
           throw "invalid value for 'NewFormat', must be smaller than or equal to 1."
@@ -83,6 +75,14 @@ function Initialize-PVEPOSTAccessTicketRB {
 
         if ($NewFormat -and $NewFormat -lt 0) {
           throw "invalid value for 'NewFormat', must be greater than or equal to 0."
+        }
+
+        if (!$Privs -and $Privs.length -gt 64) {
+            throw "invalid value for 'Privs', the character length must be smaller than or equal to 64."
+        }
+
+        if (!$Username -and $Username.length -gt 64) {
+            throw "invalid value for 'Username', the character length must be smaller than or equal to 64."
         }
 
         if (!$Path -and $Path.length -gt 64) {
@@ -95,7 +95,7 @@ function Initialize-PVEPOSTAccessTicketRB {
 
 
 		 $DisplayNameMapping =@{
-			"Username"="username"; "Privs"="privs"; "Otp"="otp"; "NewFormat"="new-format"; "Path"="path"; "Password"="password"; "Realm"="realm"; "TfaChallenge"="tfa-challenge"
+			"Password"="password"; "NewFormat"="new-format"; "Privs"="privs"; "Username"="username"; "Path"="path"; "Otp"="otp"; "TfaChallenge"="tfa-challenge"; "Realm"="realm"
         }
 		
 		 $OBJ = @{}
@@ -141,41 +141,11 @@ function ConvertFrom-PVEJsonToPOSTAccessTicketRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTAccessTicketRB
-        $AllProperties = ("username", "privs", "otp", "new-format", "path", "password", "realm", "tfa-challenge")
+        $AllProperties = ("password", "new-format", "privs", "username", "path", "otp", "tfa-challenge", "realm")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
-            $Username = $null
-        } else {
-            $Username = $JsonParameters.PSobject.Properties["username"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "privs"))) { #optional property not found
-            $Privs = $null
-        } else {
-            $Privs = $JsonParameters.PSobject.Properties["privs"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "otp"))) { #optional property not found
-            $Otp = $null
-        } else {
-            $Otp = $JsonParameters.PSobject.Properties["otp"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "new-format"))) { #optional property not found
-            $NewFormat = $null
-        } else {
-            $NewFormat = $JsonParameters.PSobject.Properties["new-format"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
-            $Path = $null
-        } else {
-            $Path = $JsonParameters.PSobject.Properties["path"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
@@ -184,10 +154,34 @@ function ConvertFrom-PVEJsonToPOSTAccessTicketRB {
             $Password = $JsonParameters.PSobject.Properties["password"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
-            $Realm = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "new-format"))) { #optional property not found
+            $NewFormat = $null
         } else {
-            $Realm = $JsonParameters.PSobject.Properties["realm"].value
+            $NewFormat = $JsonParameters.PSobject.Properties["new-format"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "privs"))) { #optional property not found
+            $Privs = $null
+        } else {
+            $Privs = $JsonParameters.PSobject.Properties["privs"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
+            $Username = $null
+        } else {
+            $Username = $JsonParameters.PSobject.Properties["username"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
+            $Path = $null
+        } else {
+            $Path = $JsonParameters.PSobject.Properties["path"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "otp"))) { #optional property not found
+            $Otp = $null
+        } else {
+            $Otp = $JsonParameters.PSobject.Properties["otp"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "tfa-challenge"))) { #optional property not found
@@ -196,15 +190,21 @@ function ConvertFrom-PVEJsonToPOSTAccessTicketRB {
             $TfaChallenge = $JsonParameters.PSobject.Properties["tfa-challenge"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
+            $Realm = $null
+        } else {
+            $Realm = $JsonParameters.PSobject.Properties["realm"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "username" = ${Username}
-            "privs" = ${Privs}
-            "otp" = ${Otp}
-            "new-format" = ${NewFormat}
-            "path" = ${Path}
             "password" = ${Password}
-            "realm" = ${Realm}
+            "new-format" = ${NewFormat}
+            "privs" = ${Privs}
+            "username" = ${Username}
+            "path" = ${Path}
+            "otp" = ${Otp}
             "tfa-challenge" = ${TfaChallenge}
+            "realm" = ${Realm}
         }
 
         return $PSO

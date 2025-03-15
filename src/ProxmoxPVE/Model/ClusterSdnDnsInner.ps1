@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Type
-No description available.
 .PARAMETER Dns
+No description available.
+.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -29,10 +29,10 @@ function Initialize-PVEClusterSdnDnsInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
+        ${Dns},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Dns}
+        ${Type}
     )
 
     Process {
@@ -41,7 +41,7 @@ function Initialize-PVEClusterSdnDnsInner {
 
 
 		 $DisplayNameMapping =@{
-			"Type"="type"; "Dns"="dns"
+			"Dns"="dns"; "Type"="type"
         }
 		
 		 $OBJ = @{}
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToClusterSdnDnsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterSdnDnsInner
-        $AllProperties = ("type", "dns")
+        $AllProperties = ("dns", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dns"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToClusterSdnDnsInner {
             $Dns = $JsonParameters.PSobject.Properties["dns"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
             "dns" = ${Dns}
+            "type" = ${Type}
         }
 
         return $PSO

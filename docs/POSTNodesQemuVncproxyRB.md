@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Node** | **String** |  | [optional] 
 **Websocket** | **Int32** |  | [optional] 
-**GeneratePassword** | **Int32** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**GeneratePassword** | **Int32** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $POSTNodesQemuVncproxyRB = Initialize-PVEPOSTNodesQemuVncproxyRB  -Node null `
  -Websocket null `
- -GeneratePassword null `
- -Vmid null
+ -Vmid null `
+ -GeneratePassword null
 ```
 
 - Convert the resource to JSON

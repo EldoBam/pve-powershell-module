@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Node
 No description available.
-.PARAMETER Monid
-No description available.
 .PARAMETER MonAddress
+No description available.
+.PARAMETER Monid
 No description available.
 .OUTPUTS
 
@@ -33,12 +33,12 @@ function Initialize-PVEPOSTNodesCephMonRB {
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${MonAddress},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[a-zA-Z0-9]([a-zA-Z0-9\-]*[a-zA-Z0-9])?")]
         [String]
-        ${Monid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${MonAddress}
+        ${Monid}
     )
 
     Process {
@@ -51,7 +51,7 @@ function Initialize-PVEPOSTNodesCephMonRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Monid"="monid"; "MonAddress"="mon-address"
+			"Node"="node"; "MonAddress"="mon-address"; "Monid"="monid"
         }
 		
 		 $OBJ = @{}
@@ -97,7 +97,7 @@ function ConvertFrom-PVEJsonToPOSTNodesCephMonRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCephMonRB
-        $AllProperties = ("node", "monid", "mon-address")
+        $AllProperties = ("node", "mon-address", "monid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -110,22 +110,22 @@ function ConvertFrom-PVEJsonToPOSTNodesCephMonRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "monid"))) { #optional property not found
-            $Monid = $null
-        } else {
-            $Monid = $JsonParameters.PSobject.Properties["monid"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "mon-address"))) { #optional property not found
             $MonAddress = $null
         } else {
             $MonAddress = $JsonParameters.PSobject.Properties["mon-address"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "monid"))) { #optional property not found
+            $Monid = $null
+        } else {
+            $Monid = $JsonParameters.PSobject.Properties["monid"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "node" = ${Node}
-            "monid" = ${Monid}
             "mon-address" = ${MonAddress}
+            "monid" = ${Monid}
         }
 
         return $PSO

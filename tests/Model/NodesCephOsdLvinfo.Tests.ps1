@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesCephOsdLvinfo' {
     Context 'PVENodesCephOsdLvinfo' {
         It 'Initialize-PVENodesCephOsdLvinfo' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesCephOsdLvinfo -CreationTime "TEST_VALUE" -LvName "TEST_VALUE" -VgName "TEST_VALUE" -LvSize "TEST_VALUE" -LvPath "TEST_VALUE" -LvUuid "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesCephOsdLvinfo -LvSize "TEST_VALUE" -LvName "TEST_VALUE" -VgName "TEST_VALUE" -LvUuid "TEST_VALUE" -CreationTime "TEST_VALUE" -LvPath "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesCephOsdLvinfo
             #$NewObject.property | Should -Be 0
         }

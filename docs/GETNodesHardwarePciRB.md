@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **PciClassBlacklist** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Verbose** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesHardwarePciRB = Initialize-PVEGETNodesHardwarePciRB  -Node null `
- -PciClassBlacklist null `
+$GETNodesHardwarePciRB = Initialize-PVEGETNodesHardwarePciRB  -PciClassBlacklist null `
+ -Node null `
  -Verbose null
 ```
 

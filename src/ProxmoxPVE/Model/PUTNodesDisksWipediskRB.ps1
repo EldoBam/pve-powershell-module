@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Disk
-No description available.
 .PARAMETER Node
+No description available.
+.PARAMETER Disk
 No description available.
 .OUTPUTS
 
@@ -28,12 +28,12 @@ function Initialize-PVEPUTNodesDisksWipediskRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("^/dev/[a-zA-Z0-9/]+$")]
         [String]
-        ${Disk},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Disk}
     )
 
     Process {
@@ -42,7 +42,7 @@ function Initialize-PVEPUTNodesDisksWipediskRB {
 
 
 		 $DisplayNameMapping =@{
-			"Disk"="disk"; "Node"="node"
+			"Node"="node"; "Disk"="disk"
         }
 		
 		 $OBJ = @{}
@@ -88,17 +88,11 @@ function ConvertFrom-PVEJsonToPUTNodesDisksWipediskRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTNodesDisksWipediskRB
-        $AllProperties = ("disk", "node")
+        $AllProperties = ("node", "disk")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disk"))) { #optional property not found
-            $Disk = $null
-        } else {
-            $Disk = $JsonParameters.PSobject.Properties["disk"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -107,9 +101,15 @@ function ConvertFrom-PVEJsonToPUTNodesDisksWipediskRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disk"))) { #optional property not found
+            $Disk = $null
+        } else {
+            $Disk = $JsonParameters.PSobject.Properties["disk"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "disk" = ${Disk}
             "node" = ${Node}
+            "disk" = ${Disk}
         }
 
         return $PSO

@@ -3,22 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PolicyForward** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **LogLevelForward** | **String** |  | [optional] 
+**PolicyForward** | **String** |  | [optional] 
 **Vnet** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 **Enable** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnVnetsFirewallOptionsRB = Initialize-PVEPUTClusterSdnVnetsFirewallOptionsRB  -PolicyForward null `
- -Delete null `
- -Digest null `
+$PUTClusterSdnVnetsFirewallOptionsRB = Initialize-PVEPUTClusterSdnVnetsFirewallOptionsRB  -Delete null `
  -LogLevelForward null `
+ -PolicyForward null `
  -Vnet null `
+ -Digest null `
  -Enable null
 ```
 

@@ -4,34 +4,34 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Loopback** | **String** |  | [optional] 
-**IsisDomain** | **String** |  | [optional] 
 **IsisIfaces** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**Asn** | **Int32** |  | [optional] 
-**IsisNet** | **String** |  | [optional] 
-**Controller** | **String** |  | [optional] 
-**EbgpMultihop** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**IsisDomain** | **String** |  | [optional] 
 **BgpMultipathAsPathRelax** | **Int32** |  | [optional] 
-**Ebgp** | **Int32** |  | [optional] 
+**Controller** | **String** |  | [optional] 
 **Peers** | **String** |  | [optional] 
+**IsisNet** | **String** |  | [optional] 
+**Ebgp** | **Int32** |  | [optional] 
+**Asn** | **Int32** |  | [optional] 
+**EbgpMultihop** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTClusterSdnControllersRB = Initialize-PVEPOSTClusterSdnControllersRB  -Loopback null `
- -IsisDomain null `
  -IsisIfaces null `
- -Node null `
  -Type null `
- -Asn null `
- -IsisNet null `
- -Controller null `
- -EbgpMultihop null `
+ -Node null `
+ -IsisDomain null `
  -BgpMultipathAsPathRelax null `
+ -Controller null `
+ -Peers null `
+ -IsisNet null `
  -Ebgp null `
- -Peers null
+ -Asn null `
+ -EbgpMultihop null
 ```
 
 - Convert the resource to JSON

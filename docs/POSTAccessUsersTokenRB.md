@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Privsep** | **Int32** |  | [optional] 
-**Userid** | **String** |  | [optional] 
-**Tokenid** | **String** |  | [optional] 
 **Expire** | **Int32** |  | [optional] 
+**Userid** | **String** |  | [optional] 
+**Privsep** | **Int32** |  | [optional] 
+**Tokenid** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTAccessUsersTokenRB = Initialize-PVEPOSTAccessUsersTokenRB  -Privsep null `
+$POSTAccessUsersTokenRB = Initialize-PVEPOSTAccessUsersTokenRB  -Expire null `
  -Userid null `
+ -Privsep null `
  -Tokenid null `
- -Expire null `
  -Comment null
 ```
 

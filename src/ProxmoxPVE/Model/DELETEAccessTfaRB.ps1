@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Password
-No description available.
 .PARAMETER Id
+No description available.
+.PARAMETER Password
 No description available.
 .PARAMETER Userid
 No description available.
@@ -31,10 +31,10 @@ function Initialize-PVEDELETEAccessTfaRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Password},
+        ${Id},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
+        ${Password},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Userid}
@@ -58,7 +58,7 @@ function Initialize-PVEDELETEAccessTfaRB {
 
 
 		 $DisplayNameMapping =@{
-			"Password"="password"; "Id"="id"; "Userid"="userid"
+			"Id"="id"; "Password"="password"; "Userid"="userid"
         }
 		
 		 $OBJ = @{}
@@ -104,23 +104,23 @@ function ConvertFrom-PVEJsonToDELETEAccessTfaRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEAccessTfaRB
-        $AllProperties = ("password", "id", "userid")
+        $AllProperties = ("id", "password", "userid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
-            $Password = $null
-        } else {
-            $Password = $JsonParameters.PSobject.Properties["password"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
             $Id = $null
         } else {
             $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
+            $Password = $null
+        } else {
+            $Password = $JsonParameters.PSobject.Properties["password"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "userid"))) { #optional property not found
@@ -130,8 +130,8 @@ function ConvertFrom-PVEJsonToDELETEAccessTfaRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "password" = ${Password}
             "id" = ${Id}
+            "password" = ${Password}
             "userid" = ${Userid}
         }
 

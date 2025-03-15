@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Osdid
+No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Cleanup
-No description available.
-.PARAMETER Osdid
 No description available.
 .OUTPUTS
 
@@ -30,14 +30,14 @@ function Initialize-PVEDELETENodesCephOsdRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Osdid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Cleanup},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Osdid}
+        ${Cleanup}
     )
 
     Process {
@@ -54,7 +54,7 @@ function Initialize-PVEDELETENodesCephOsdRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Cleanup"="cleanup"; "Osdid"="osdid"
+			"Osdid"="osdid"; "Node"="node"; "Cleanup"="cleanup"
         }
 		
 		 $OBJ = @{}
@@ -100,11 +100,17 @@ function ConvertFrom-PVEJsonToDELETENodesCephOsdRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesCephOsdRB
-        $AllProperties = ("node", "cleanup", "osdid")
+        $AllProperties = ("osdid", "node", "cleanup")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osdid"))) { #optional property not found
+            $Osdid = $null
+        } else {
+            $Osdid = $JsonParameters.PSobject.Properties["osdid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -119,16 +125,10 @@ function ConvertFrom-PVEJsonToDELETENodesCephOsdRB {
             $Cleanup = $JsonParameters.PSobject.Properties["cleanup"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osdid"))) { #optional property not found
-            $Osdid = $null
-        } else {
-            $Osdid = $JsonParameters.PSobject.Properties["osdid"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "osdid" = ${Osdid}
             "node" = ${Node}
             "cleanup" = ${Cleanup}
-            "osdid" = ${Osdid}
         }
 
         return $PSO

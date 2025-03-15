@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesStorageImportmetadataRB' {
     Context 'PVEGETNodesStorageImportmetadataRB' {
         It 'Initialize-PVEGETNodesStorageImportmetadataRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesStorageImportmetadataRB -Node "TEST_VALUE" -Volume "TEST_VALUE" -Storage "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesStorageImportmetadataRB -Storage "TEST_VALUE" -Node "TEST_VALUE" -Volume "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesStorageImportmetadataRB
             #$NewObject.property | Should -Be 0
         }

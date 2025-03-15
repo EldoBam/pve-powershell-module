@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Digest** | **String** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
 **Vnet** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $DELETEClusterSdnVnetsFirewallRulesRB = Initialize-PVEDELETEClusterSdnVnetsFirewallRulesRB  -Digest null `
- -Pos null `
- -Vnet null
+ -Vnet null `
+ -Pos null
 ```
 
 - Convert the resource to JSON

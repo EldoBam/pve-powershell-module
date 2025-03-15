@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTAccessOpenidAuthurlRB' {
     Context 'PVEPOSTAccessOpenidAuthurlRB' {
         It 'Initialize-PVEPOSTAccessOpenidAuthurlRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTAccessOpenidAuthurlRB -Realm "TEST_VALUE" -RedirectUrl "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTAccessOpenidAuthurlRB -RedirectUrl "TEST_VALUE" -Realm "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTAccessOpenidAuthurlRB
             #$NewObject.property | Should -Be 0
         }

@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Ttl** | **Int32** |  | [optional] 
+**Url** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Url** | **String** |  | [optional] 
-**Reversemaskv6** | **Int32** |  | [optional] 
 **Dns** | **String** |  | [optional] 
-**Ttl** | **Int32** |  | [optional] 
+**Reversemaskv6** | **Int32** |  | [optional] 
 **Key** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnDnsRB = Initialize-PVEPUTClusterSdnDnsRB  -Delete null `
- -Digest null `
+$PUTClusterSdnDnsRB = Initialize-PVEPUTClusterSdnDnsRB  -Ttl null `
  -Url null `
- -Reversemaskv6 null `
+ -Delete null `
+ -Digest null `
  -Dns null `
- -Ttl null `
+ -Reversemaskv6 null `
  -Key null
 ```
 

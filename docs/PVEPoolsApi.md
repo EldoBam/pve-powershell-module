@@ -24,7 +24,7 @@ List pools or get pool configuration.
 
 ### Example
 ```powershell
-$GETPoolsRB = Initialize-GETPoolsRB -Type "qemu" -Poolid "MyPoolid" # GETPoolsRB | List pools or get pool configuration. (optional)
+$GETPoolsRB = Initialize-GETPoolsRB -Poolid "MyPoolid" -Type "qemu" # GETPoolsRB | List pools or get pool configuration. (optional)
 
 # List pools or get pool configuration.
 try {
@@ -59,6 +59,7 @@ No authorization required
 <a name="Get-PVEPoolsByPoolid"></a>
 # **Get-PVEPoolsByPoolid**
 > Pools Get-PVEPoolsByPoolid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Poolid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETPoolsRB] <PSCustomObject><br>
 
 Get pool configuration (deprecated, no support for nested pools, use 'GET /pools/?poolid={poolid}').
@@ -67,11 +68,12 @@ Get pool configuration (deprecated, no support for nested pools, use 'GET /pools
 
 ### Example
 ```powershell
-$GETPoolsRB = Initialize-GETPoolsRB -Type "qemu" -Poolid "MyPoolid" # GETPoolsRB | Get pool configuration (deprecated, no support for nested pools, use 'GET /pools/?poolid={poolid}'). (optional)
+$Poolid = "MyPoolid" # String | 
+$GETPoolsRB = Initialize-GETPoolsRB -Poolid "MyPoolid" -Type "qemu" # GETPoolsRB | Get pool configuration (deprecated, no support for nested pools, use 'GET /pools/?poolid={poolid}'). (optional)
 
 # Get pool configuration (deprecated, no support for nested pools, use 'GET /pools/?poolid={poolid}').
 try {
-    $Result = Get-PVEPoolsByPoolid -GETPoolsRB $GETPoolsRB
+    $Result = Get-PVEPoolsByPoolid -Poolid $Poolid -GETPoolsRB $GETPoolsRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEPoolsByPoolid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -82,6 +84,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Poolid** | **String**|  | 
  **GETPoolsRB** | [**GETPoolsRB**](GETPoolsRB.md)| Get pool configuration (deprecated, no support for nested pools, use &#39;GET /pools/?poolid&#x3D;{poolid}&#39;). | [optional] 
 
 ### Return type
@@ -188,6 +191,7 @@ No authorization required
 <a name="Remove-PVEPoolsByPoolid"></a>
 # **Remove-PVEPoolsByPoolid**
 > void Remove-PVEPoolsByPoolid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Poolid] <String><br>
 
 Delete pool (deprecated, no support for nested pools, use 'DELETE /pools/?poolid={poolid}').
 
@@ -195,10 +199,11 @@ Delete pool (deprecated, no support for nested pools, use 'DELETE /pools/?poolid
 
 ### Example
 ```powershell
+$Poolid = "MyPoolid" # String | 
 
 # Delete pool (deprecated, no support for nested pools, use 'DELETE /pools/?poolid={poolid}').
 try {
-    $Result = Remove-PVEPoolsByPoolid
+    $Result = Remove-PVEPoolsByPoolid -Poolid $Poolid
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEPoolsByPoolid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -206,7 +211,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Poolid** | **String**|  | 
 
 ### Return type
 
@@ -234,7 +242,7 @@ Update pool.
 
 ### Example
 ```powershell
-$PUTPoolsRB = Initialize-PUTPoolsRB -Delete 0 -Comment "MyComment" -Poolid "MyPoolid" -Vms "MyVms" -Storage "MyStorage" -AllowMove 0 # PUTPoolsRB | Update pool. (optional)
+$PUTPoolsRB = Initialize-PUTPoolsRB -Comment "MyComment" -Poolid "MyPoolid" -Delete 0 -AllowMove 0 -Vms "MyVms" -Storage "MyStorage" # PUTPoolsRB | Update pool. (optional)
 
 # Update pool.
 try {
@@ -269,6 +277,7 @@ No authorization required
 <a name="Set-PVEPoolsByPoolid"></a>
 # **Set-PVEPoolsByPoolid**
 > void Set-PVEPoolsByPoolid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Poolid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTPoolsRB] <PSCustomObject><br>
 
 Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poolid={poolid}' instead).
@@ -277,11 +286,12 @@ Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poo
 
 ### Example
 ```powershell
-$PUTPoolsRB = Initialize-PUTPoolsRB -Delete 0 -Comment "MyComment" -Poolid "MyPoolid" -Vms "MyVms" -Storage "MyStorage" -AllowMove 0 # PUTPoolsRB | Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poolid={poolid}' instead). (optional)
+$Poolid = "MyPoolid" # String | 
+$PUTPoolsRB = Initialize-PUTPoolsRB -Comment "MyComment" -Poolid "MyPoolid" -Delete 0 -AllowMove 0 -Vms "MyVms" -Storage "MyStorage" # PUTPoolsRB | Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poolid={poolid}' instead). (optional)
 
 # Update pool data (deprecated, no support for nested pools - use 'PUT /pools/?poolid={poolid}' instead).
 try {
-    $Result = Set-PVEPoolsByPoolid -PUTPoolsRB $PUTPoolsRB
+    $Result = Set-PVEPoolsByPoolid -Poolid $Poolid -PUTPoolsRB $PUTPoolsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEPoolsByPoolid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -292,6 +302,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Poolid** | **String**|  | 
  **PUTPoolsRB** | [**PUTPoolsRB**](PUTPoolsRB.md)| Update pool data (deprecated, no support for nested pools - use &#39;PUT /pools/?poolid&#x3D;{poolid}&#39; instead). | [optional] 
 
 ### Return type

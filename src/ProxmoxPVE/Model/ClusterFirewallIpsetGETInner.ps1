@@ -15,51 +15,55 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
-No description available.
 .PARAMETER Digest
+No description available.
+.PARAMETER Nomatch
+No description available.
+.PARAMETER Cidr
 No description available.
 .PARAMETER Comment
 No description available.
 .OUTPUTS
 
-NodesQemuFirewallIpsetInner<PSCustomObject>
+ClusterFirewallIpsetGETInner<PSCustomObject>
 #>
 
-function Initialize-PVENodesQemuFirewallIpsetInner {
+function Initialize-PVEClusterFirewallIpsetGETInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
-        [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Nomatch},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Cidr},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment}
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVENodesQemuFirewallIpsetInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVEClusterFirewallIpsetGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if (!$Name -and $Name.length -gt 64) {
-            throw "invalid value for 'Name', the character length must be smaller than or equal to 64."
-        }
-
-        if (!$Name -and $Name.length -lt 2) {
-            throw "invalid value for 'Name', the character length must be great than or equal to 2."
-        }
 
         if (!$Digest -and $Digest.length -gt 64) {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
         }
 
+        if ($Nomatch -and $Nomatch -gt 1) {
+          throw "invalid value for 'Nomatch', must be smaller than or equal to 1."
+        }
+
+        if ($Nomatch -and $Nomatch -lt 0) {
+          throw "invalid value for 'Nomatch', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Digest"="digest"; "Comment"="comment"
+			"Digest"="digest"; "Nomatch"="nomatch"; "Cidr"="cidr"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -78,11 +82,11 @@ function Initialize-PVENodesQemuFirewallIpsetInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to NodesQemuFirewallIpsetInner<PSCustomObject>
+Convert from JSON to ClusterFirewallIpsetGETInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to NodesQemuFirewallIpsetInner<PSCustomObject>
+Convert from JSON to ClusterFirewallIpsetGETInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -90,38 +94,44 @@ Json object
 
 .OUTPUTS
 
-NodesQemuFirewallIpsetInner<PSCustomObject>
+ClusterFirewallIpsetGETInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToNodesQemuFirewallIpsetInner {
+function ConvertFrom-PVEJsonToClusterFirewallIpsetGETInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesQemuFirewallIpsetInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVEClusterFirewallIpsetGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVENodesQemuFirewallIpsetInner
-        $AllProperties = ("name", "digest", "comment")
+        # check if Json contains properties not defined in PVEClusterFirewallIpsetGETInner
+        $AllProperties = ("digest", "nomatch", "cidr", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nomatch"))) { #optional property not found
+            $Nomatch = $null
+        } else {
+            $Nomatch = $JsonParameters.PSobject.Properties["nomatch"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
+            $Cidr = $null
+        } else {
+            $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -131,8 +141,9 @@ function ConvertFrom-PVEJsonToNodesQemuFirewallIpsetInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
             "digest" = ${Digest}
+            "nomatch" = ${Nomatch}
+            "cidr" = ${Cidr}
             "comment" = ${Comment}
         }
 

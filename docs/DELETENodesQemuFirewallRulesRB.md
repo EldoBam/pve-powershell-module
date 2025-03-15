@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Pos** | **Int32** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$DELETENodesQemuFirewallRulesRB = Initialize-PVEDELETENodesQemuFirewallRulesRB  -Node null `
- -Digest null `
+$DELETENodesQemuFirewallRulesRB = Initialize-PVEDELETENodesQemuFirewallRulesRB  -Digest null `
+ -Node null `
  -Vmid null `
  -Pos null
 ```

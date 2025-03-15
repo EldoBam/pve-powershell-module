@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesStorageUploadRB' {
     Context 'PVEPOSTNodesStorageUploadRB' {
         It 'Initialize-PVEPOSTNodesStorageUploadRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesStorageUploadRB -Tmpfilename "TEST_VALUE" -ChecksumAlgorithm "TEST_VALUE" -Node "TEST_VALUE" -Content "TEST_VALUE" -Checksum "TEST_VALUE" -Storage "TEST_VALUE" -Filename "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesStorageUploadRB -Tmpfilename "TEST_VALUE" -Node "TEST_VALUE" -Content "TEST_VALUE" -Filename "TEST_VALUE" -Checksum "TEST_VALUE" -Storage "TEST_VALUE" -ChecksumAlgorithm "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesStorageUploadRB
             #$NewObject.property | Should -Be 0
         }

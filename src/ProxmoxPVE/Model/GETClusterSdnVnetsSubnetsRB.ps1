@@ -17,11 +17,11 @@ No description available.
 
 .PARAMETER Pending
 No description available.
-.PARAMETER Running
-No description available.
 .PARAMETER Vnet
 No description available.
 .PARAMETER Subnet
+No description available.
+.PARAMETER Running
 No description available.
 .OUTPUTS
 
@@ -35,14 +35,14 @@ function Initialize-PVEGETClusterSdnVnetsSubnetsRB {
         [System.Nullable[Int32]]
         ${Pending},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Running},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Vnet},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Subnet}
+        ${Subnet},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Running}
     )
 
     Process {
@@ -67,7 +67,7 @@ function Initialize-PVEGETClusterSdnVnetsSubnetsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Pending"="pending"; "Running"="running"; "Vnet"="vnet"; "Subnet"="subnet"
+			"Pending"="pending"; "Vnet"="vnet"; "Subnet"="subnet"; "Running"="running"
         }
 		
 		 $OBJ = @{}
@@ -113,7 +113,7 @@ function ConvertFrom-PVEJsonToGETClusterSdnVnetsSubnetsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETClusterSdnVnetsSubnetsRB
-        $AllProperties = ("pending", "running", "vnet", "subnet")
+        $AllProperties = ("pending", "vnet", "subnet", "running")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -124,12 +124,6 @@ function ConvertFrom-PVEJsonToGETClusterSdnVnetsSubnetsRB {
             $Pending = $null
         } else {
             $Pending = $JsonParameters.PSobject.Properties["pending"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "running"))) { #optional property not found
-            $Running = $null
-        } else {
-            $Running = $JsonParameters.PSobject.Properties["running"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
@@ -144,11 +138,17 @@ function ConvertFrom-PVEJsonToGETClusterSdnVnetsSubnetsRB {
             $Subnet = $JsonParameters.PSobject.Properties["subnet"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "running"))) { #optional property not found
+            $Running = $null
+        } else {
+            $Running = $JsonParameters.PSobject.Properties["running"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "pending" = ${Pending}
-            "running" = ${Running}
             "vnet" = ${Vnet}
             "subnet" = ${Subnet}
+            "running" = ${Running}
         }
 
         return $PSO

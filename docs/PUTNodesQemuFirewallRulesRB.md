@@ -3,49 +3,49 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Log** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
+**Sport** | **String** |  | [optional] 
 **Action** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
 **IcmpType** | **String** |  | [optional] 
 **Macro** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Dport** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Sport** | **String** |  | [optional] 
-**Moveto** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Pos** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Iface** | **String** |  | [optional] 
+**Moveto** | **Int32** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuFirewallRulesRB = Initialize-PVEPUTNodesQemuFirewallRulesRB  -Log null `
+$PUTNodesQemuFirewallRulesRB = Initialize-PVEPUTNodesQemuFirewallRulesRB  -Digest null `
+ -Source null `
+ -Sport null `
  -Action null `
+ -Log null `
+ -Comment null `
+ -Dest null `
+ -Proto null `
+ -Enable null `
  -IcmpType null `
  -Macro null `
- -Comment null `
- -Source null `
- -Dport null `
  -Vmid null `
- -Proto null `
- -Dest null `
- -Delete null `
- -Node null `
- -Sport null `
- -Moveto null `
- -Type null `
- -Enable null `
- -Digest null `
  -Pos null `
- -Iface null
+ -Type null `
+ -Node null `
+ -Iface null `
+ -Moveto null `
+ -Delete null `
+ -Dport null
 ```
 
 - Convert the resource to JSON

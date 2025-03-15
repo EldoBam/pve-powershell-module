@@ -15,7 +15,7 @@ No summary available.
 
 No description available.
 
-.PARAMETER Errors
+.PARAMETER StandardRepos
 No description available.
 .PARAMETER Digest
 No description available.
@@ -23,7 +23,7 @@ No description available.
 No description available.
 .PARAMETER Files
 No description available.
-.PARAMETER StandardRepos
+.PARAMETER Errors
 No description available.
 .OUTPUTS
 
@@ -35,7 +35,7 @@ function Initialize-PVENodesAptRepositories {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${Errors},
+        ${StandardRepos},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest},
@@ -47,7 +47,7 @@ function Initialize-PVENodesAptRepositories {
         ${Files},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${StandardRepos}
+        ${Errors}
     )
 
     Process {
@@ -56,7 +56,7 @@ function Initialize-PVENodesAptRepositories {
 
 
 		 $DisplayNameMapping =@{
-			"Errors"="errors"; "Digest"="digest"; "Infos"="infos"; "Files"="files"; "StandardRepos"="standard-repos"
+			"StandardRepos"="standard-repos"; "Digest"="digest"; "Infos"="infos"; "Files"="files"; "Errors"="errors"
         }
 		
 		 $OBJ = @{}
@@ -102,17 +102,17 @@ function ConvertFrom-PVEJsonToNodesAptRepositories {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesAptRepositories
-        $AllProperties = ("errors", "digest", "infos", "files", "standard-repos")
+        $AllProperties = ("standard-repos", "digest", "infos", "files", "errors")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "errors"))) { #optional property not found
-            $Errors = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "standard-repos"))) { #optional property not found
+            $StandardRepos = $null
         } else {
-            $Errors = $JsonParameters.PSobject.Properties["errors"].value
+            $StandardRepos = $JsonParameters.PSobject.Properties["standard-repos"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -133,18 +133,18 @@ function ConvertFrom-PVEJsonToNodesAptRepositories {
             $Files = $JsonParameters.PSobject.Properties["files"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "standard-repos"))) { #optional property not found
-            $StandardRepos = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "errors"))) { #optional property not found
+            $Errors = $null
         } else {
-            $StandardRepos = $JsonParameters.PSobject.Properties["standard-repos"].value
+            $Errors = $JsonParameters.PSobject.Properties["errors"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "errors" = ${Errors}
+            "standard-repos" = ${StandardRepos}
             "digest" = ${Digest}
             "infos" = ${Infos}
             "files" = ${Files}
-            "standard-repos" = ${StandardRepos}
+            "errors" = ${Errors}
         }
 
         return $PSO

@@ -17,13 +17,13 @@ No description available.
 
 .PARAMETER ForceStop
 No description available.
-.PARAMETER Vmid
+.PARAMETER Node
 No description available.
 .PARAMETER Skiplock
 No description available.
-.PARAMETER KeepActive
+.PARAMETER Vmid
 No description available.
-.PARAMETER Node
+.PARAMETER KeepActive
 No description available.
 .PARAMETER Timeout
 No description available.
@@ -39,17 +39,17 @@ function Initialize-PVEPOSTNodesQemuStatusShutdownRB {
         [System.Nullable[Int32]]
         ${ForceStop},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
+        [String]
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Skiplock},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${KeepActive},
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
+        [System.Nullable[Int32]]
+        ${KeepActive},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Timeout}
@@ -67,20 +67,20 @@ function Initialize-PVEPOSTNodesQemuStatusShutdownRB {
           throw "invalid value for 'ForceStop', must be greater than or equal to 0."
         }
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
         if ($Skiplock -and $Skiplock -gt 1) {
           throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
         }
 
         if ($Skiplock -and $Skiplock -lt 0) {
           throw "invalid value for 'Skiplock', must be greater than or equal to 0."
+        }
+
+        if ($Vmid -and $Vmid -gt 999999999) {
+          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
+        }
+
+        if ($Vmid -and $Vmid -lt 100) {
+          throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
         if ($KeepActive -and $KeepActive -gt 1) {
@@ -93,7 +93,7 @@ function Initialize-PVEPOSTNodesQemuStatusShutdownRB {
 
 
 		 $DisplayNameMapping =@{
-			"ForceStop"="forceStop"; "Vmid"="vmid"; "Skiplock"="skiplock"; "KeepActive"="keepActive"; "Node"="node"; "Timeout"="timeout"
+			"ForceStop"="forceStop"; "Node"="node"; "Skiplock"="skiplock"; "Vmid"="vmid"; "KeepActive"="keepActive"; "Timeout"="timeout"
         }
 		
 		 $OBJ = @{}
@@ -139,7 +139,7 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusShutdownRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuStatusShutdownRB
-        $AllProperties = ("forceStop", "vmid", "skiplock", "keepActive", "node", "timeout")
+        $AllProperties = ("forceStop", "node", "skiplock", "vmid", "keepActive", "timeout")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -152,10 +152,10 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusShutdownRB {
             $ForceStop = $JsonParameters.PSobject.Properties["forceStop"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
         } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
@@ -164,16 +164,16 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusShutdownRB {
             $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
+        } else {
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "keepActive"))) { #optional property not found
             $KeepActive = $null
         } else {
             $KeepActive = $JsonParameters.PSobject.Properties["keepActive"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
@@ -184,10 +184,10 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusShutdownRB {
 
         $PSO = [PSCustomObject]@{
             "forceStop" = ${ForceStop}
-            "vmid" = ${Vmid}
-            "skiplock" = ${Skiplock}
-            "keepActive" = ${KeepActive}
             "node" = ${Node}
+            "skiplock" = ${Skiplock}
+            "vmid" = ${Vmid}
+            "keepActive" = ${KeepActive}
             "timeout" = ${Timeout}
         }
 

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesLxcSnapshotRB' {
     Context 'PVEPOSTNodesLxcSnapshotRB' {
         It 'Initialize-PVEPOSTNodesLxcSnapshotRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesLxcSnapshotRB -Node "TEST_VALUE" -Description "TEST_VALUE" -Snapname "TEST_VALUE" -Vmid "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesLxcSnapshotRB -Snapname "TEST_VALUE" -Node "TEST_VALUE" -Vmid "TEST_VALUE" -Description "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesLxcSnapshotRB
             #$NewObject.property | Should -Be 0
         }

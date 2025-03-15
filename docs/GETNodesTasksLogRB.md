@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Download** | **Int32** |  | [optional] 
 **Limit** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Download** | **Int32** |  | [optional] 
 **Upid** | **String** |  | [optional] 
 **Start** | **Int32** |  | [optional] 
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$GETNodesTasksLogRB = Initialize-PVEGETNodesTasksLogRB  -Limit null `
+$GETNodesTasksLogRB = Initialize-PVEGETNodesTasksLogRB  -Download null `
+ -Limit null `
  -Node null `
- -Download null `
  -Upid null `
  -Start null
 ```

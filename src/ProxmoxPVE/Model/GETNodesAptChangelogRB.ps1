@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
 .PARAMETER Name
 No description available.
 .PARAMETER Version
+No description available.
+.PARAMETER Node
 No description available.
 .OUTPUTS
 
@@ -31,13 +31,13 @@ function Initialize-PVEGETNodesAptChangelogRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Version}
+        ${Version},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node}
     )
 
     Process {
@@ -46,7 +46,7 @@ function Initialize-PVEGETNodesAptChangelogRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Name"="name"; "Version"="version"
+			"Name"="name"; "Version"="version"; "Node"="node"
         }
 		
 		 $OBJ = @{}
@@ -92,17 +92,11 @@ function ConvertFrom-PVEJsonToGETNodesAptChangelogRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesAptChangelogRB
-        $AllProperties = ("node", "name", "version")
+        $AllProperties = ("name", "version", "node")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -117,10 +111,16 @@ function ConvertFrom-PVEJsonToGETNodesAptChangelogRB {
             $Version = $JsonParameters.PSobject.Properties["version"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
             "name" = ${Name}
             "version" = ${Version}
+            "node" = ${Node}
         }
 
         return $PSO

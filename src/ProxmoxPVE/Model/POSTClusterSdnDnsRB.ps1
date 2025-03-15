@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Url
-No description available.
-.PARAMETER Reversev6mask
+.PARAMETER Ttl
 No description available.
 .PARAMETER Type
+No description available.
+.PARAMETER Url
 No description available.
 .PARAMETER Reversemaskv6
 No description available.
 .PARAMETER Dns
 No description available.
-.PARAMETER Ttl
+.PARAMETER Reversev6mask
 No description available.
 .PARAMETER Key
 No description available.
@@ -38,15 +38,15 @@ function Initialize-PVEPOSTClusterSdnDnsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Url},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Reversev6mask},
+        ${Ttl},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("powerdns")]
         [String]
         ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Url},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Reversemaskv6},
@@ -55,7 +55,7 @@ function Initialize-PVEPOSTClusterSdnDnsRB {
         ${Dns},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Ttl},
+        ${Reversev6mask},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Key}
@@ -67,7 +67,7 @@ function Initialize-PVEPOSTClusterSdnDnsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Url"="url"; "Reversev6mask"="reversev6mask"; "Type"="type"; "Reversemaskv6"="reversemaskv6"; "Dns"="dns"; "Ttl"="ttl"; "Key"="key"
+			"Ttl"="ttl"; "Type"="type"; "Url"="url"; "Reversemaskv6"="reversemaskv6"; "Dns"="dns"; "Reversev6mask"="reversev6mask"; "Key"="key"
         }
 		
 		 $OBJ = @{}
@@ -113,29 +113,29 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnDnsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterSdnDnsRB
-        $AllProperties = ("url", "reversev6mask", "type", "reversemaskv6", "dns", "ttl", "key")
+        $AllProperties = ("ttl", "type", "url", "reversemaskv6", "dns", "reversev6mask", "key")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
-            $Url = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ttl"))) { #optional property not found
+            $Ttl = $null
         } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "reversev6mask"))) { #optional property not found
-            $Reversev6mask = $null
-        } else {
-            $Reversev6mask = $JsonParameters.PSobject.Properties["reversev6mask"].value
+            $Ttl = $JsonParameters.PSobject.Properties["ttl"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
             $Type = $null
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
+            $Url = $null
+        } else {
+            $Url = $JsonParameters.PSobject.Properties["url"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "reversemaskv6"))) { #optional property not found
@@ -150,10 +150,10 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnDnsRB {
             $Dns = $JsonParameters.PSobject.Properties["dns"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ttl"))) { #optional property not found
-            $Ttl = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "reversev6mask"))) { #optional property not found
+            $Reversev6mask = $null
         } else {
-            $Ttl = $JsonParameters.PSobject.Properties["ttl"].value
+            $Reversev6mask = $JsonParameters.PSobject.Properties["reversev6mask"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
@@ -163,12 +163,12 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnDnsRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "url" = ${Url}
-            "reversev6mask" = ${Reversev6mask}
+            "ttl" = ${Ttl}
             "type" = ${Type}
+            "url" = ${Url}
             "reversemaskv6" = ${Reversemaskv6}
             "dns" = ${Dns}
-            "ttl" = ${Ttl}
+            "reversev6mask" = ${Reversev6mask}
             "key" = ${Key}
         }
 

@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Key
-No description available.
 .PARAMETER Pending
+No description available.
+.PARAMETER Key
 No description available.
 .PARAMETER Delete
 No description available.
@@ -25,18 +25,18 @@ No description available.
 No description available.
 .OUTPUTS
 
-NodesQemuPendingInner<PSCustomObject>
+NodesLxcPendingInner<PSCustomObject>
 #>
 
-function Initialize-PVENodesQemuPendingInner {
+function Initialize-PVENodesLxcPendingInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Key},
+        ${Pending},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Pending},
+        ${Key},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Delete},
@@ -46,7 +46,7 @@ function Initialize-PVENodesQemuPendingInner {
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVENodesQemuPendingInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVENodesLxcPendingInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($Delete -and $Delete -gt 2) {
@@ -55,7 +55,7 @@ function Initialize-PVENodesQemuPendingInner {
 
 
 		 $DisplayNameMapping =@{
-			"Key"="key"; "Pending"="pending"; "Delete"="delete"; "Value"="value"
+			"Pending"="pending"; "Key"="key"; "Delete"="delete"; "Value"="value"
         }
 		
 		 $OBJ = @{}
@@ -74,11 +74,11 @@ function Initialize-PVENodesQemuPendingInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to NodesQemuPendingInner<PSCustomObject>
+Convert from JSON to NodesLxcPendingInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to NodesQemuPendingInner<PSCustomObject>
+Convert from JSON to NodesLxcPendingInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -86,38 +86,38 @@ Json object
 
 .OUTPUTS
 
-NodesQemuPendingInner<PSCustomObject>
+NodesLxcPendingInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToNodesQemuPendingInner {
+function ConvertFrom-PVEJsonToNodesLxcPendingInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesQemuPendingInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesLxcPendingInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVENodesQemuPendingInner
-        $AllProperties = ("key", "pending", "delete", "value")
+        # check if Json contains properties not defined in PVENodesLxcPendingInner
+        $AllProperties = ("pending", "key", "delete", "value")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
-            $Key = $null
-        } else {
-            $Key = $JsonParameters.PSobject.Properties["key"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pending"))) { #optional property not found
             $Pending = $null
         } else {
             $Pending = $JsonParameters.PSobject.Properties["pending"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
+            $Key = $null
+        } else {
+            $Key = $JsonParameters.PSobject.Properties["key"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
@@ -133,8 +133,8 @@ function ConvertFrom-PVEJsonToNodesQemuPendingInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "key" = ${Key}
             "pending" = ${Pending}
+            "key" = ${Key}
             "delete" = ${Delete}
             "value" = ${Value}
         }

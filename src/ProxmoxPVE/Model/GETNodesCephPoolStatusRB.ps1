@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
 .PARAMETER Name
+No description available.
+.PARAMETER Node
 No description available.
 .PARAMETER Verbose
 No description available.
@@ -31,10 +31,10 @@ function Initialize-PVEGETNodesCephPoolStatusRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Verbose}
@@ -54,7 +54,7 @@ function Initialize-PVEGETNodesCephPoolStatusRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Name"="name"; "Verbose"="verbose"
+			"Name"="name"; "Node"="node"; "Verbose"="verbose"
         }
 		
 		 $OBJ = @{}
@@ -100,23 +100,23 @@ function ConvertFrom-PVEJsonToGETNodesCephPoolStatusRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesCephPoolStatusRB
-        $AllProperties = ("node", "name", "verbose")
+        $AllProperties = ("name", "node", "verbose")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
             $Name = $null
         } else {
             $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "verbose"))) { #optional property not found
@@ -126,8 +126,8 @@ function ConvertFrom-PVEJsonToGETNodesCephPoolStatusRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
             "name" = ${Name}
+            "node" = ${Node}
             "verbose" = ${Verbose}
         }
 

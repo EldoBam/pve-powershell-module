@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
 .PARAMETER PciClassBlacklist
+No description available.
+.PARAMETER Node
 No description available.
 .PARAMETER Verbose
 No description available.
@@ -31,10 +31,10 @@ function Initialize-PVEGETNodesHardwarePciRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
+        ${PciClassBlacklist},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${PciClassBlacklist},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Verbose}
@@ -54,7 +54,7 @@ function Initialize-PVEGETNodesHardwarePciRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "PciClassBlacklist"="pci-class-blacklist"; "Verbose"="verbose"
+			"PciClassBlacklist"="pci-class-blacklist"; "Node"="node"; "Verbose"="verbose"
         }
 		
 		 $OBJ = @{}
@@ -100,23 +100,23 @@ function ConvertFrom-PVEJsonToGETNodesHardwarePciRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesHardwarePciRB
-        $AllProperties = ("node", "pci-class-blacklist", "verbose")
+        $AllProperties = ("pci-class-blacklist", "node", "verbose")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pci-class-blacklist"))) { #optional property not found
             $PciClassBlacklist = $null
         } else {
             $PciClassBlacklist = $JsonParameters.PSobject.Properties["pci-class-blacklist"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "verbose"))) { #optional property not found
@@ -126,8 +126,8 @@ function ConvertFrom-PVEJsonToGETNodesHardwarePciRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
             "pci-class-blacklist" = ${PciClassBlacklist}
+            "node" = ${Node}
             "verbose" = ${Verbose}
         }
 

@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Username** | **String** |  | [optional] 
-**Ticket** | **String** |  | [optional] 
 **Clustername** | **String** |  | [optional] 
+**Ticket** | **String** |  | [optional] 
 **CSRFPreventionToken** | **String** |  | [optional] 
+**Username** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessTicket = Initialize-PVEAccessTicket  -Username null `
+$AccessTicket = Initialize-PVEAccessTicket  -Clustername null `
  -Ticket null `
- -Clustername null `
- -CSRFPreventionToken null
+ -CSRFPreventionToken null `
+ -Username null
 ```
 
 - Convert the resource to JSON

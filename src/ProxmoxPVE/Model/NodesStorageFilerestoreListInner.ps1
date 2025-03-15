@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Mtime
-No description available.
-.PARAMETER Size
-No description available.
 .PARAMETER Filepath
+No description available.
+.PARAMETER Leaf
 No description available.
 .PARAMETER Type
 No description available.
-.PARAMETER Leaf
+.PARAMETER Mtime
+No description available.
+.PARAMETER Size
 No description available.
 .PARAMETER Text
 No description available.
@@ -36,20 +36,20 @@ function Initialize-PVENodesStorageFilerestoreListInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Mtime},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Size},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Filepath},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Leaf},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Leaf},
+        ${Mtime},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Size},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Text}
@@ -69,7 +69,7 @@ function Initialize-PVENodesStorageFilerestoreListInner {
 
 
 		 $DisplayNameMapping =@{
-			"Mtime"="mtime"; "Size"="size"; "Filepath"="filepath"; "Type"="type"; "Leaf"="leaf"; "Text"="text"
+			"Filepath"="filepath"; "Leaf"="leaf"; "Type"="type"; "Mtime"="mtime"; "Size"="size"; "Text"="text"
         }
 		
 		 $OBJ = @{}
@@ -115,11 +115,29 @@ function ConvertFrom-PVEJsonToNodesStorageFilerestoreListInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesStorageFilerestoreListInner
-        $AllProperties = ("mtime", "size", "filepath", "type", "leaf", "text")
+        $AllProperties = ("filepath", "leaf", "type", "mtime", "size", "text")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filepath"))) { #optional property not found
+            $Filepath = $null
+        } else {
+            $Filepath = $JsonParameters.PSobject.Properties["filepath"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "leaf"))) { #optional property not found
+            $Leaf = $null
+        } else {
+            $Leaf = $JsonParameters.PSobject.Properties["leaf"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "mtime"))) { #optional property not found
@@ -134,24 +152,6 @@ function ConvertFrom-PVEJsonToNodesStorageFilerestoreListInner {
             $Size = $JsonParameters.PSobject.Properties["size"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filepath"))) { #optional property not found
-            $Filepath = $null
-        } else {
-            $Filepath = $JsonParameters.PSobject.Properties["filepath"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "leaf"))) { #optional property not found
-            $Leaf = $null
-        } else {
-            $Leaf = $JsonParameters.PSobject.Properties["leaf"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "text"))) { #optional property not found
             $Text = $null
         } else {
@@ -159,11 +159,11 @@ function ConvertFrom-PVEJsonToNodesStorageFilerestoreListInner {
         }
 
         $PSO = [PSCustomObject]@{
+            "filepath" = ${Filepath}
+            "leaf" = ${Leaf}
+            "type" = ${Type}
             "mtime" = ${Mtime}
             "size" = ${Size}
-            "filepath" = ${Filepath}
-            "type" = ${Type}
-            "leaf" = ${Leaf}
             "text" = ${Text}
         }
 

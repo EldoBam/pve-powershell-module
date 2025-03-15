@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
+.PARAMETER CmdOpts
+No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Cmd
 No description available.
 .PARAMETER Proxy
-No description available.
-.PARAMETER CmdOpts
 No description available.
 .OUTPUTS
 
@@ -33,6 +33,9 @@ function Initialize-PVEPOSTNodesSpiceshellRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${CmdOpts},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("upgrade", "ceph_install", "login")]
@@ -40,10 +43,7 @@ function Initialize-PVEPOSTNodesSpiceshellRB {
         ${Cmd},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Proxy},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${CmdOpts}
+        ${Proxy}
     )
 
     Process {
@@ -52,7 +52,7 @@ function Initialize-PVEPOSTNodesSpiceshellRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Cmd"="cmd"; "Proxy"="proxy"; "CmdOpts"="cmd-opts"
+			"CmdOpts"="cmd-opts"; "Node"="node"; "Cmd"="cmd"; "Proxy"="proxy"
         }
 		
 		 $OBJ = @{}
@@ -98,11 +98,17 @@ function ConvertFrom-PVEJsonToPOSTNodesSpiceshellRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesSpiceshellRB
-        $AllProperties = ("node", "cmd", "proxy", "cmd-opts")
+        $AllProperties = ("cmd-opts", "node", "cmd", "proxy")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cmd-opts"))) { #optional property not found
+            $CmdOpts = $null
+        } else {
+            $CmdOpts = $JsonParameters.PSobject.Properties["cmd-opts"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -123,17 +129,11 @@ function ConvertFrom-PVEJsonToPOSTNodesSpiceshellRB {
             $Proxy = $JsonParameters.PSobject.Properties["proxy"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cmd-opts"))) { #optional property not found
-            $CmdOpts = $null
-        } else {
-            $CmdOpts = $JsonParameters.PSobject.Properties["cmd-opts"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "cmd-opts" = ${CmdOpts}
             "node" = ${Node}
             "cmd" = ${Cmd}
             "proxy" = ${Proxy}
-            "cmd-opts" = ${CmdOpts}
         }
 
         return $PSO

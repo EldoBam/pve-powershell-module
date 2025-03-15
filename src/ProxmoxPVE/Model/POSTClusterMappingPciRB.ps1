@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Description
-No description available.
-.PARAMETER Map
+.PARAMETER Id
 No description available.
 .PARAMETER Mdev
 No description available.
-.PARAMETER Id
+.PARAMETER Map
+No description available.
+.PARAMETER Description
 No description available.
 .OUTPUTS
 
@@ -33,25 +33,21 @@ function Initialize-PVEPOSTClusterMappingPciRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Map},
+        ${Id},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Mdev},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${Map},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id}
+        ${Description}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTClusterMappingPciRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if (!$Description -and $Description.length -gt 4096) {
-            throw "invalid value for 'Description', the character length must be smaller than or equal to 4096."
-        }
 
         if ($Mdev -and $Mdev -gt 1) {
           throw "invalid value for 'Mdev', must be smaller than or equal to 1."
@@ -61,9 +57,13 @@ function Initialize-PVEPOSTClusterMappingPciRB {
           throw "invalid value for 'Mdev', must be greater than or equal to 0."
         }
 
+        if (!$Description -and $Description.length -gt 4096) {
+            throw "invalid value for 'Description', the character length must be smaller than or equal to 4096."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Description"="description"; "Map"="map"; "Mdev"="mdev"; "Id"="id"
+			"Id"="id"; "Mdev"="mdev"; "Map"="map"; "Description"="description"
         }
 		
 		 $OBJ = @{}
@@ -109,29 +109,11 @@ function ConvertFrom-PVEJsonToPOSTClusterMappingPciRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterMappingPciRB
-        $AllProperties = ("description", "map", "mdev", "id")
+        $AllProperties = ("id", "mdev", "map", "description")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "map"))) { #optional property not found
-            $Map = $null
-        } else {
-            $Map = $JsonParameters.PSobject.Properties["map"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mdev"))) { #optional property not found
-            $Mdev = $null
-        } else {
-            $Mdev = $JsonParameters.PSobject.Properties["mdev"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -140,11 +122,29 @@ function ConvertFrom-PVEJsonToPOSTClusterMappingPciRB {
             $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mdev"))) { #optional property not found
+            $Mdev = $null
+        } else {
+            $Mdev = $JsonParameters.PSobject.Properties["mdev"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "map"))) { #optional property not found
+            $Map = $null
+        } else {
+            $Map = $JsonParameters.PSobject.Properties["map"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "description" = ${Description}
-            "map" = ${Map}
-            "mdev" = ${Mdev}
             "id" = ${Id}
+            "mdev" = ${Mdev}
+            "map" = ${Map}
+            "description" = ${Description}
         }
 
         return $PSO

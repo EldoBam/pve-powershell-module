@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Tfa
+No description available.
 .PARAMETER Type
 No description available.
 .PARAMETER Realm
-No description available.
-.PARAMETER Tfa
 No description available.
 .PARAMETER Comment
 No description available.
@@ -32,15 +32,15 @@ function Initialize-PVEAccessDomainsInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("yubico", "oath")]
+        [String]
+        ${Tfa},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Realm},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("yubico", "oath")]
-        [String]
-        ${Tfa},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment}
@@ -52,7 +52,7 @@ function Initialize-PVEAccessDomainsInner {
 
 
 		 $DisplayNameMapping =@{
-			"Type"="type"; "Realm"="realm"; "Tfa"="tfa"; "Comment"="comment"
+			"Tfa"="tfa"; "Type"="type"; "Realm"="realm"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -98,11 +98,17 @@ function ConvertFrom-PVEJsonToAccessDomainsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessDomainsInner
-        $AllProperties = ("type", "realm", "tfa", "comment")
+        $AllProperties = ("tfa", "type", "realm", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tfa"))) { #optional property not found
+            $Tfa = $null
+        } else {
+            $Tfa = $JsonParameters.PSobject.Properties["tfa"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
@@ -117,12 +123,6 @@ function ConvertFrom-PVEJsonToAccessDomainsInner {
             $Realm = $JsonParameters.PSobject.Properties["realm"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tfa"))) { #optional property not found
-            $Tfa = $null
-        } else {
-            $Tfa = $JsonParameters.PSobject.Properties["tfa"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
             $Comment = $null
         } else {
@@ -130,9 +130,9 @@ function ConvertFrom-PVEJsonToAccessDomainsInner {
         }
 
         $PSO = [PSCustomObject]@{
+            "tfa" = ${Tfa}
             "type" = ${Type}
             "realm" = ${Realm}
-            "tfa" = ${Tfa}
             "comment" = ${Comment}
         }
 

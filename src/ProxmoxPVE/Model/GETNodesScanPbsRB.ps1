@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Username
+.PARAMETER Password
 No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER Port
-No description available.
 .PARAMETER Fingerprint
 No description available.
-.PARAMETER Password
+.PARAMETER Username
 No description available.
 .PARAMETER Server
+No description available.
+.PARAMETER Port
 No description available.
 .OUTPUTS
 
@@ -37,23 +37,23 @@ function Initialize-PVEGETNodesScanPbsRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Username},
+        ${Password},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Port},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}")]
         [String]
         ${Fingerprint},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Password},
+        ${Username},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Server}
+        ${Server},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Port}
     )
 
     Process {
@@ -70,7 +70,7 @@ function Initialize-PVEGETNodesScanPbsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Username"="username"; "Node"="node"; "Port"="port"; "Fingerprint"="fingerprint"; "Password"="password"; "Server"="server"
+			"Password"="password"; "Node"="node"; "Fingerprint"="fingerprint"; "Username"="username"; "Server"="server"; "Port"="port"
         }
 		
 		 $OBJ = @{}
@@ -116,35 +116,11 @@ function ConvertFrom-PVEJsonToGETNodesScanPbsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesScanPbsRB
-        $AllProperties = ("username", "node", "port", "fingerprint", "password", "server")
+        $AllProperties = ("password", "node", "fingerprint", "username", "server", "port")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
-            $Username = $null
-        } else {
-            $Username = $JsonParameters.PSobject.Properties["username"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
-            $Port = $null
-        } else {
-            $Port = $JsonParameters.PSobject.Properties["port"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fingerprint"))) { #optional property not found
-            $Fingerprint = $null
-        } else {
-            $Fingerprint = $JsonParameters.PSobject.Properties["fingerprint"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
@@ -153,19 +129,43 @@ function ConvertFrom-PVEJsonToGETNodesScanPbsRB {
             $Password = $JsonParameters.PSobject.Properties["password"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fingerprint"))) { #optional property not found
+            $Fingerprint = $null
+        } else {
+            $Fingerprint = $JsonParameters.PSobject.Properties["fingerprint"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
+            $Username = $null
+        } else {
+            $Username = $JsonParameters.PSobject.Properties["username"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
             $Server = $null
         } else {
             $Server = $JsonParameters.PSobject.Properties["server"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
+            $Port = $null
+        } else {
+            $Port = $JsonParameters.PSobject.Properties["port"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "username" = ${Username}
-            "node" = ${Node}
-            "port" = ${Port}
-            "fingerprint" = ${Fingerprint}
             "password" = ${Password}
+            "node" = ${Node}
+            "fingerprint" = ${Fingerprint}
+            "username" = ${Username}
             "server" = ${Server}
+            "port" = ${Port}
         }
 
         return $PSO

@@ -15,87 +15,87 @@ No summary available.
 
 No description available.
 
-.PARAMETER Stopwait
-No description available.
-.PARAMETER Node
-No description available.
-.PARAMETER NotificationMode
-No description available.
-.PARAMETER Starttime
-No description available.
-.PARAMETER PbsChangeDetectionMode
-No description available.
-.PARAMETER Protected
-No description available.
-.PARAMETER Lockwait
-No description available.
-.PARAMETER Ionice
-No description available.
-.PARAMETER RepeatMissed
-No description available.
-.PARAMETER Exclude
-No description available.
-.PARAMETER Dumpdir
-No description available.
-.PARAMETER Id
-No description available.
-.PARAMETER Fleecing
-No description available.
-.PARAMETER Pool
-No description available.
-.PARAMETER Compress
-No description available.
-.PARAMETER All
-No description available.
-.PARAMETER Comment
-No description available.
-.PARAMETER Remove
-No description available.
 .PARAMETER Tmpdir
-No description available.
-.PARAMETER Mailto
-No description available.
-.PARAMETER Bwlimit
-No description available.
-.PARAMETER NotificationTarget
-No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Mailnotification
-No description available.
-.PARAMETER Script
-No description available.
-.PARAMETER Stdexcludes
-No description available.
-.PARAMETER Zstd
-No description available.
-.PARAMETER PruneBackups
-No description available.
-.PARAMETER Stop
-No description available.
-.PARAMETER Storage
 No description available.
 .PARAMETER Mode
 No description available.
-.PARAMETER Quiet
+.PARAMETER Protected
 No description available.
-.PARAMETER NotesTemplate
+.PARAMETER NotificationMode
 No description available.
-.PARAMETER Dow
+.PARAMETER Comment
 No description available.
-.PARAMETER Performance
+.PARAMETER All
 No description available.
-.PARAMETER ExcludePath
+.PARAMETER NotificationTarget
+No description available.
+.PARAMETER Mailto
 No description available.
 .PARAMETER Enabled
 No description available.
+.PARAMETER Ionice
+No description available.
+.PARAMETER Stop
+No description available.
+.PARAMETER Starttime
+No description available.
+.PARAMETER PruneBackups
+No description available.
+.PARAMETER Mailnotification
+No description available.
+.PARAMETER Id
+No description available.
+.PARAMETER Performance
+No description available.
+.PARAMETER Node
+No description available.
 .PARAMETER Maxfiles
+No description available.
+.PARAMETER Fleecing
+No description available.
+.PARAMETER Dumpdir
+No description available.
+.PARAMETER ExcludePath
+No description available.
+.PARAMETER Remove
+No description available.
+.PARAMETER Stdexcludes
+No description available.
+.PARAMETER RepeatMissed
+No description available.
+.PARAMETER Dow
+No description available.
+.PARAMETER Pool
+No description available.
+.PARAMETER Quiet
+No description available.
+.PARAMETER Storage
+No description available.
+.PARAMETER PbsChangeDetectionMode
+No description available.
+.PARAMETER Bwlimit
+No description available.
+.PARAMETER Exclude
+No description available.
+.PARAMETER NotesTemplate
+No description available.
+.PARAMETER Script
+No description available.
+.PARAMETER Lockwait
+No description available.
+.PARAMETER Compress
+No description available.
+.PARAMETER Schedule
+No description available.
+.PARAMETER Zstd
+No description available.
+.PARAMETER Stopwait
+No description available.
+.PARAMETER Vmid
 No description available.
 .PARAMETER Pigz
 No description available.
 .PARAMETER NotificationPolicy
-No description available.
-.PARAMETER Schedule
 No description available.
 .OUTPUTS
 
@@ -106,135 +106,135 @@ function Initialize-PVEPOSTClusterBackupRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Stopwait},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("auto", "legacy-sendmail", "notification-system")]
-        [String]
-        ${NotificationMode},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("\d{1,2}:\d{1,2}")]
-        [String]
-        ${Starttime},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("legacy", "data", "metadata")]
-        [String]
-        ${PbsChangeDetectionMode},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Protected},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Lockwait},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Ionice},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${RepeatMissed},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Exclude},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Dumpdir},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Fleecing},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Pool},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("0", "1", "gzip", "lzo", "zstd")]
-        [String]
-        ${Compress},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${All},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Remove},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Tmpdir},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Mailto},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Bwlimit},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${NotificationTarget},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("always", "failure")]
-        [String]
-        ${Mailnotification},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Script},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Stdexcludes},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Zstd},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${PruneBackups},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Stop},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Storage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("snapshot", "suspend", "stop")]
         [String]
         ${Mode},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Quiet},
+        ${Protected},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("auto", "legacy-sendmail", "notification-system")]
+        [String]
+        ${NotificationMode},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${NotesTemplate},
+        ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${All},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Dow},
+        ${NotificationTarget},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Performance},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${ExcludePath},
+        ${Mailto},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Enabled},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
+        ${Ionice},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Stop},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("\d{1,2}:\d{1,2}")]
+        [String]
+        ${Starttime},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${PruneBackups},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("always", "failure")]
+        [String]
+        ${Mailnotification},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Id},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Performance},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
         ${Maxfiles},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Fleecing},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Dumpdir},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${ExcludePath},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Remove},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Stdexcludes},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${RepeatMissed},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Dow},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Pool},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Quiet},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Storage},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("legacy", "data", "metadata")]
+        [String]
+        ${PbsChangeDetectionMode},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Bwlimit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Exclude},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${NotesTemplate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Script},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Lockwait},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("0", "1", "gzip", "lzo", "zstd")]
+        [String]
+        ${Compress},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Schedule},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Zstd},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Stopwait},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Pigz},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("always", "failure", "never")]
         [String]
-        ${NotificationPolicy},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Schedule}
+        ${NotificationPolicy}
     )
 
     Process {
@@ -249,16 +249,8 @@ function Initialize-PVEPOSTClusterBackupRB {
           throw "invalid value for 'Protected', must be greater than or equal to 0."
         }
 
-        if ($Ionice -and $Ionice -gt 8) {
-          throw "invalid value for 'Ionice', must be smaller than or equal to 8."
-        }
-
-        if ($RepeatMissed -and $RepeatMissed -gt 1) {
-          throw "invalid value for 'RepeatMissed', must be smaller than or equal to 1."
-        }
-
-        if ($RepeatMissed -and $RepeatMissed -lt 0) {
-          throw "invalid value for 'RepeatMissed', must be greater than or equal to 0."
+        if (!$Comment -and $Comment.length -gt 512) {
+            throw "invalid value for 'Comment', the character length must be smaller than or equal to 512."
         }
 
         if ($All -and $All -gt 1) {
@@ -269,8 +261,28 @@ function Initialize-PVEPOSTClusterBackupRB {
           throw "invalid value for 'All', must be greater than or equal to 0."
         }
 
-        if (!$Comment -and $Comment.length -gt 512) {
-            throw "invalid value for 'Comment', the character length must be smaller than or equal to 512."
+        if ($Enabled -and $Enabled -gt 1) {
+          throw "invalid value for 'Enabled', must be smaller than or equal to 1."
+        }
+
+        if ($Enabled -and $Enabled -lt 0) {
+          throw "invalid value for 'Enabled', must be greater than or equal to 0."
+        }
+
+        if ($Ionice -and $Ionice -gt 8) {
+          throw "invalid value for 'Ionice', must be smaller than or equal to 8."
+        }
+
+        if ($Stop -and $Stop -gt 1) {
+          throw "invalid value for 'Stop', must be smaller than or equal to 1."
+        }
+
+        if ($Stop -and $Stop -lt 0) {
+          throw "invalid value for 'Stop', must be greater than or equal to 0."
+        }
+
+        if ($Maxfiles -and $Maxfiles -lt 1) {
+          throw "invalid value for 'Maxfiles', must be greater than or equal to 1."
         }
 
         if ($Remove -and $Remove -gt 1) {
@@ -289,12 +301,12 @@ function Initialize-PVEPOSTClusterBackupRB {
           throw "invalid value for 'Stdexcludes', must be greater than or equal to 0."
         }
 
-        if ($Stop -and $Stop -gt 1) {
-          throw "invalid value for 'Stop', must be smaller than or equal to 1."
+        if ($RepeatMissed -and $RepeatMissed -gt 1) {
+          throw "invalid value for 'RepeatMissed', must be smaller than or equal to 1."
         }
 
-        if ($Stop -and $Stop -lt 0) {
-          throw "invalid value for 'Stop', must be greater than or equal to 0."
+        if ($RepeatMissed -and $RepeatMissed -lt 0) {
+          throw "invalid value for 'RepeatMissed', must be greater than or equal to 0."
         }
 
         if ($Quiet -and $Quiet -gt 1) {
@@ -309,25 +321,13 @@ function Initialize-PVEPOSTClusterBackupRB {
             throw "invalid value for 'NotesTemplate', the character length must be smaller than or equal to 1024."
         }
 
-        if ($Enabled -and $Enabled -gt 1) {
-          throw "invalid value for 'Enabled', must be smaller than or equal to 1."
-        }
-
-        if ($Enabled -and $Enabled -lt 0) {
-          throw "invalid value for 'Enabled', must be greater than or equal to 0."
-        }
-
-        if ($Maxfiles -and $Maxfiles -lt 1) {
-          throw "invalid value for 'Maxfiles', must be greater than or equal to 1."
-        }
-
         if (!$Schedule -and $Schedule.length -gt 128) {
             throw "invalid value for 'Schedule', the character length must be smaller than or equal to 128."
         }
 
 
 		 $DisplayNameMapping =@{
-			"Stopwait"="stopwait"; "Node"="node"; "NotificationMode"="notification-mode"; "Starttime"="starttime"; "PbsChangeDetectionMode"="pbs-change-detection-mode"; "Protected"="protected"; "Lockwait"="lockwait"; "Ionice"="ionice"; "RepeatMissed"="repeat-missed"; "Exclude"="exclude"; "Dumpdir"="dumpdir"; "Id"="id"; "Fleecing"="fleecing"; "Pool"="pool"; "Compress"="compress"; "All"="all"; "Comment"="comment"; "Remove"="remove"; "Tmpdir"="tmpdir"; "Mailto"="mailto"; "Bwlimit"="bwlimit"; "NotificationTarget"="notification-target"; "Vmid"="vmid"; "Mailnotification"="mailnotification"; "Script"="script"; "Stdexcludes"="stdexcludes"; "Zstd"="zstd"; "PruneBackups"="prune-backups"; "Stop"="stop"; "Storage"="storage"; "Mode"="mode"; "Quiet"="quiet"; "NotesTemplate"="notes-template"; "Dow"="dow"; "Performance"="performance"; "ExcludePath"="exclude-path"; "Enabled"="enabled"; "Maxfiles"="maxfiles"; "Pigz"="pigz"; "NotificationPolicy"="notification-policy"; "Schedule"="schedule"
+			"Tmpdir"="tmpdir"; "Mode"="mode"; "Protected"="protected"; "NotificationMode"="notification-mode"; "Comment"="comment"; "All"="all"; "NotificationTarget"="notification-target"; "Mailto"="mailto"; "Enabled"="enabled"; "Ionice"="ionice"; "Stop"="stop"; "Starttime"="starttime"; "PruneBackups"="prune-backups"; "Mailnotification"="mailnotification"; "Id"="id"; "Performance"="performance"; "Node"="node"; "Maxfiles"="maxfiles"; "Fleecing"="fleecing"; "Dumpdir"="dumpdir"; "ExcludePath"="exclude-path"; "Remove"="remove"; "Stdexcludes"="stdexcludes"; "RepeatMissed"="repeat-missed"; "Dow"="dow"; "Pool"="pool"; "Quiet"="quiet"; "Storage"="storage"; "PbsChangeDetectionMode"="pbs-change-detection-mode"; "Bwlimit"="bwlimit"; "Exclude"="exclude"; "NotesTemplate"="notes-template"; "Script"="script"; "Lockwait"="lockwait"; "Compress"="compress"; "Schedule"="schedule"; "Zstd"="zstd"; "Stopwait"="stopwait"; "Vmid"="vmid"; "Pigz"="pigz"; "NotificationPolicy"="notification-policy"
         }
 		
 		 $OBJ = @{}
@@ -373,119 +373,11 @@ function ConvertFrom-PVEJsonToPOSTClusterBackupRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterBackupRB
-        $AllProperties = ("stopwait", "node", "notification-mode", "starttime", "pbs-change-detection-mode", "protected", "lockwait", "ionice", "repeat-missed", "exclude", "dumpdir", "id", "fleecing", "pool", "compress", "all", "comment", "remove", "tmpdir", "mailto", "bwlimit", "notification-target", "vmid", "mailnotification", "script", "stdexcludes", "zstd", "prune-backups", "stop", "storage", "mode", "quiet", "notes-template", "dow", "performance", "exclude-path", "enabled", "maxfiles", "pigz", "notification-policy", "schedule")
+        $AllProperties = ("tmpdir", "mode", "protected", "notification-mode", "comment", "all", "notification-target", "mailto", "enabled", "ionice", "stop", "starttime", "prune-backups", "mailnotification", "id", "performance", "node", "maxfiles", "fleecing", "dumpdir", "exclude-path", "remove", "stdexcludes", "repeat-missed", "dow", "pool", "quiet", "storage", "pbs-change-detection-mode", "bwlimit", "exclude", "notes-template", "script", "lockwait", "compress", "schedule", "zstd", "stopwait", "vmid", "pigz", "notification-policy")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stopwait"))) { #optional property not found
-            $Stopwait = $null
-        } else {
-            $Stopwait = $JsonParameters.PSobject.Properties["stopwait"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notification-mode"))) { #optional property not found
-            $NotificationMode = $null
-        } else {
-            $NotificationMode = $JsonParameters.PSobject.Properties["notification-mode"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "starttime"))) { #optional property not found
-            $Starttime = $null
-        } else {
-            $Starttime = $JsonParameters.PSobject.Properties["starttime"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pbs-change-detection-mode"))) { #optional property not found
-            $PbsChangeDetectionMode = $null
-        } else {
-            $PbsChangeDetectionMode = $JsonParameters.PSobject.Properties["pbs-change-detection-mode"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protected"))) { #optional property not found
-            $Protected = $null
-        } else {
-            $Protected = $JsonParameters.PSobject.Properties["protected"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lockwait"))) { #optional property not found
-            $Lockwait = $null
-        } else {
-            $Lockwait = $JsonParameters.PSobject.Properties["lockwait"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ionice"))) { #optional property not found
-            $Ionice = $null
-        } else {
-            $Ionice = $JsonParameters.PSobject.Properties["ionice"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "repeat-missed"))) { #optional property not found
-            $RepeatMissed = $null
-        } else {
-            $RepeatMissed = $JsonParameters.PSobject.Properties["repeat-missed"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exclude"))) { #optional property not found
-            $Exclude = $null
-        } else {
-            $Exclude = $JsonParameters.PSobject.Properties["exclude"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dumpdir"))) { #optional property not found
-            $Dumpdir = $null
-        } else {
-            $Dumpdir = $JsonParameters.PSobject.Properties["dumpdir"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fleecing"))) { #optional property not found
-            $Fleecing = $null
-        } else {
-            $Fleecing = $JsonParameters.PSobject.Properties["fleecing"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool"))) { #optional property not found
-            $Pool = $null
-        } else {
-            $Pool = $JsonParameters.PSobject.Properties["pool"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "compress"))) { #optional property not found
-            $Compress = $null
-        } else {
-            $Compress = $JsonParameters.PSobject.Properties["compress"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "all"))) { #optional property not found
-            $All = $null
-        } else {
-            $All = $JsonParameters.PSobject.Properties["all"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove"))) { #optional property not found
-            $Remove = $null
-        } else {
-            $Remove = $JsonParameters.PSobject.Properties["remove"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "tmpdir"))) { #optional property not found
@@ -494,16 +386,34 @@ function ConvertFrom-PVEJsonToPOSTClusterBackupRB {
             $Tmpdir = $JsonParameters.PSobject.Properties["tmpdir"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mailto"))) { #optional property not found
-            $Mailto = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mode"))) { #optional property not found
+            $Mode = $null
         } else {
-            $Mailto = $JsonParameters.PSobject.Properties["mailto"].value
+            $Mode = $JsonParameters.PSobject.Properties["mode"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
-            $Bwlimit = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protected"))) { #optional property not found
+            $Protected = $null
         } else {
-            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
+            $Protected = $JsonParameters.PSobject.Properties["protected"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notification-mode"))) { #optional property not found
+            $NotificationMode = $null
+        } else {
+            $NotificationMode = $JsonParameters.PSobject.Properties["notification-mode"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "all"))) { #optional property not found
+            $All = $null
+        } else {
+            $All = $JsonParameters.PSobject.Properties["all"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "notification-target"))) { #optional property not found
@@ -512,88 +422,10 @@ function ConvertFrom-PVEJsonToPOSTClusterBackupRB {
             $NotificationTarget = $JsonParameters.PSobject.Properties["notification-target"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mailto"))) { #optional property not found
+            $Mailto = $null
         } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mailnotification"))) { #optional property not found
-            $Mailnotification = $null
-        } else {
-            $Mailnotification = $JsonParameters.PSobject.Properties["mailnotification"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "script"))) { #optional property not found
-            $Script = $null
-        } else {
-            $Script = $JsonParameters.PSobject.Properties["script"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stdexcludes"))) { #optional property not found
-            $Stdexcludes = $null
-        } else {
-            $Stdexcludes = $JsonParameters.PSobject.Properties["stdexcludes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zstd"))) { #optional property not found
-            $Zstd = $null
-        } else {
-            $Zstd = $JsonParameters.PSobject.Properties["zstd"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prune-backups"))) { #optional property not found
-            $PruneBackups = $null
-        } else {
-            $PruneBackups = $JsonParameters.PSobject.Properties["prune-backups"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stop"))) { #optional property not found
-            $Stop = $null
-        } else {
-            $Stop = $JsonParameters.PSobject.Properties["stop"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mode"))) { #optional property not found
-            $Mode = $null
-        } else {
-            $Mode = $JsonParameters.PSobject.Properties["mode"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "quiet"))) { #optional property not found
-            $Quiet = $null
-        } else {
-            $Quiet = $JsonParameters.PSobject.Properties["quiet"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notes-template"))) { #optional property not found
-            $NotesTemplate = $null
-        } else {
-            $NotesTemplate = $JsonParameters.PSobject.Properties["notes-template"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dow"))) { #optional property not found
-            $Dow = $null
-        } else {
-            $Dow = $JsonParameters.PSobject.Properties["dow"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "performance"))) { #optional property not found
-            $Performance = $null
-        } else {
-            $Performance = $JsonParameters.PSobject.Properties["performance"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exclude-path"))) { #optional property not found
-            $ExcludePath = $null
-        } else {
-            $ExcludePath = $JsonParameters.PSobject.Properties["exclude-path"].value
+            $Mailto = $JsonParameters.PSobject.Properties["mailto"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
@@ -602,10 +434,184 @@ function ConvertFrom-PVEJsonToPOSTClusterBackupRB {
             $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ionice"))) { #optional property not found
+            $Ionice = $null
+        } else {
+            $Ionice = $JsonParameters.PSobject.Properties["ionice"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stop"))) { #optional property not found
+            $Stop = $null
+        } else {
+            $Stop = $JsonParameters.PSobject.Properties["stop"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "starttime"))) { #optional property not found
+            $Starttime = $null
+        } else {
+            $Starttime = $JsonParameters.PSobject.Properties["starttime"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prune-backups"))) { #optional property not found
+            $PruneBackups = $null
+        } else {
+            $PruneBackups = $JsonParameters.PSobject.Properties["prune-backups"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mailnotification"))) { #optional property not found
+            $Mailnotification = $null
+        } else {
+            $Mailnotification = $JsonParameters.PSobject.Properties["mailnotification"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "performance"))) { #optional property not found
+            $Performance = $null
+        } else {
+            $Performance = $JsonParameters.PSobject.Properties["performance"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxfiles"))) { #optional property not found
             $Maxfiles = $null
         } else {
             $Maxfiles = $JsonParameters.PSobject.Properties["maxfiles"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fleecing"))) { #optional property not found
+            $Fleecing = $null
+        } else {
+            $Fleecing = $JsonParameters.PSobject.Properties["fleecing"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dumpdir"))) { #optional property not found
+            $Dumpdir = $null
+        } else {
+            $Dumpdir = $JsonParameters.PSobject.Properties["dumpdir"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exclude-path"))) { #optional property not found
+            $ExcludePath = $null
+        } else {
+            $ExcludePath = $JsonParameters.PSobject.Properties["exclude-path"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove"))) { #optional property not found
+            $Remove = $null
+        } else {
+            $Remove = $JsonParameters.PSobject.Properties["remove"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stdexcludes"))) { #optional property not found
+            $Stdexcludes = $null
+        } else {
+            $Stdexcludes = $JsonParameters.PSobject.Properties["stdexcludes"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "repeat-missed"))) { #optional property not found
+            $RepeatMissed = $null
+        } else {
+            $RepeatMissed = $JsonParameters.PSobject.Properties["repeat-missed"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dow"))) { #optional property not found
+            $Dow = $null
+        } else {
+            $Dow = $JsonParameters.PSobject.Properties["dow"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool"))) { #optional property not found
+            $Pool = $null
+        } else {
+            $Pool = $JsonParameters.PSobject.Properties["pool"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "quiet"))) { #optional property not found
+            $Quiet = $null
+        } else {
+            $Quiet = $JsonParameters.PSobject.Properties["quiet"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
+            $Storage = $null
+        } else {
+            $Storage = $JsonParameters.PSobject.Properties["storage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pbs-change-detection-mode"))) { #optional property not found
+            $PbsChangeDetectionMode = $null
+        } else {
+            $PbsChangeDetectionMode = $JsonParameters.PSobject.Properties["pbs-change-detection-mode"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
+            $Bwlimit = $null
+        } else {
+            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exclude"))) { #optional property not found
+            $Exclude = $null
+        } else {
+            $Exclude = $JsonParameters.PSobject.Properties["exclude"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notes-template"))) { #optional property not found
+            $NotesTemplate = $null
+        } else {
+            $NotesTemplate = $JsonParameters.PSobject.Properties["notes-template"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "script"))) { #optional property not found
+            $Script = $null
+        } else {
+            $Script = $JsonParameters.PSobject.Properties["script"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lockwait"))) { #optional property not found
+            $Lockwait = $null
+        } else {
+            $Lockwait = $JsonParameters.PSobject.Properties["lockwait"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "compress"))) { #optional property not found
+            $Compress = $null
+        } else {
+            $Compress = $JsonParameters.PSobject.Properties["compress"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "schedule"))) { #optional property not found
+            $Schedule = $null
+        } else {
+            $Schedule = $JsonParameters.PSobject.Properties["schedule"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zstd"))) { #optional property not found
+            $Zstd = $null
+        } else {
+            $Zstd = $JsonParameters.PSobject.Properties["zstd"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "stopwait"))) { #optional property not found
+            $Stopwait = $null
+        } else {
+            $Stopwait = $JsonParameters.PSobject.Properties["stopwait"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
+        } else {
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pigz"))) { #optional property not found
@@ -620,54 +626,48 @@ function ConvertFrom-PVEJsonToPOSTClusterBackupRB {
             $NotificationPolicy = $JsonParameters.PSobject.Properties["notification-policy"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "schedule"))) { #optional property not found
-            $Schedule = $null
-        } else {
-            $Schedule = $JsonParameters.PSobject.Properties["schedule"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "stopwait" = ${Stopwait}
-            "node" = ${Node}
-            "notification-mode" = ${NotificationMode}
-            "starttime" = ${Starttime}
-            "pbs-change-detection-mode" = ${PbsChangeDetectionMode}
-            "protected" = ${Protected}
-            "lockwait" = ${Lockwait}
-            "ionice" = ${Ionice}
-            "repeat-missed" = ${RepeatMissed}
-            "exclude" = ${Exclude}
-            "dumpdir" = ${Dumpdir}
-            "id" = ${Id}
-            "fleecing" = ${Fleecing}
-            "pool" = ${Pool}
-            "compress" = ${Compress}
-            "all" = ${All}
-            "comment" = ${Comment}
-            "remove" = ${Remove}
             "tmpdir" = ${Tmpdir}
-            "mailto" = ${Mailto}
-            "bwlimit" = ${Bwlimit}
-            "notification-target" = ${NotificationTarget}
-            "vmid" = ${Vmid}
-            "mailnotification" = ${Mailnotification}
-            "script" = ${Script}
-            "stdexcludes" = ${Stdexcludes}
-            "zstd" = ${Zstd}
-            "prune-backups" = ${PruneBackups}
-            "stop" = ${Stop}
-            "storage" = ${Storage}
             "mode" = ${Mode}
-            "quiet" = ${Quiet}
-            "notes-template" = ${NotesTemplate}
-            "dow" = ${Dow}
-            "performance" = ${Performance}
-            "exclude-path" = ${ExcludePath}
+            "protected" = ${Protected}
+            "notification-mode" = ${NotificationMode}
+            "comment" = ${Comment}
+            "all" = ${All}
+            "notification-target" = ${NotificationTarget}
+            "mailto" = ${Mailto}
             "enabled" = ${Enabled}
+            "ionice" = ${Ionice}
+            "stop" = ${Stop}
+            "starttime" = ${Starttime}
+            "prune-backups" = ${PruneBackups}
+            "mailnotification" = ${Mailnotification}
+            "id" = ${Id}
+            "performance" = ${Performance}
+            "node" = ${Node}
             "maxfiles" = ${Maxfiles}
+            "fleecing" = ${Fleecing}
+            "dumpdir" = ${Dumpdir}
+            "exclude-path" = ${ExcludePath}
+            "remove" = ${Remove}
+            "stdexcludes" = ${Stdexcludes}
+            "repeat-missed" = ${RepeatMissed}
+            "dow" = ${Dow}
+            "pool" = ${Pool}
+            "quiet" = ${Quiet}
+            "storage" = ${Storage}
+            "pbs-change-detection-mode" = ${PbsChangeDetectionMode}
+            "bwlimit" = ${Bwlimit}
+            "exclude" = ${Exclude}
+            "notes-template" = ${NotesTemplate}
+            "script" = ${Script}
+            "lockwait" = ${Lockwait}
+            "compress" = ${Compress}
+            "schedule" = ${Schedule}
+            "zstd" = ${Zstd}
+            "stopwait" = ${Stopwait}
+            "vmid" = ${Vmid}
             "pigz" = ${Pigz}
             "notification-policy" = ${NotificationPolicy}
-            "schedule" = ${Schedule}
         }
 
         return $PSO

@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Health** | **String** |  | [optional] 
-**Alloc** | **Int32** |  | [optional] 
-**Size** | **Int32** |  | [optional] 
-**Free** | **Int32** |  | [optional] 
-**Frag** | **Int32** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Size** | **Int32** |  | [optional] 
+**Health** | **String** |  | [optional] 
+**Frag** | **Int32** |  | [optional] 
+**Free** | **Int32** |  | [optional] 
+**Alloc** | **Int32** |  | [optional] 
 **Dedup** | **Decimal** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesDisksZfsGETInner = Initialize-PVENodesDisksZfsGETInner  -Health null `
- -Alloc null `
+$NodesDisksZfsGETInner = Initialize-PVENodesDisksZfsGETInner  -Name null `
  -Size null `
- -Free null `
+ -Health null `
  -Frag null `
- -Name null `
+ -Free null `
+ -Alloc null `
  -Dedup null
 ```
 

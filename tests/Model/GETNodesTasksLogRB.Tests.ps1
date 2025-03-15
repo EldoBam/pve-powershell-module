@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesTasksLogRB' {
     Context 'PVEGETNodesTasksLogRB' {
         It 'Initialize-PVEGETNodesTasksLogRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesTasksLogRB -Limit "TEST_VALUE" -Node "TEST_VALUE" -Download "TEST_VALUE" -Upid "TEST_VALUE" -Start "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesTasksLogRB -Download "TEST_VALUE" -Limit "TEST_VALUE" -Node "TEST_VALUE" -Upid "TEST_VALUE" -Start "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesTasksLogRB
             #$NewObject.property | Should -Be 0
         }

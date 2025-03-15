@@ -23,10 +23,10 @@ API token expiration date (seconds since epoch). '0' means no expiration date.
 Restrict API token privileges with separate ACLs (default), or give full privileges of corresponding user.
 .OUTPUTS
 
-AccessUsersTokenPOSTInfo<PSCustomObject>
+AccessUsersTokens<PSCustomObject>
 #>
 
-function Initialize-PVEAccessUsersTokenPOSTInfo {
+function Initialize-PVEAccessUsersTokens {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
@@ -41,7 +41,7 @@ function Initialize-PVEAccessUsersTokenPOSTInfo {
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVEAccessUsersTokenPOSTInfo' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVEAccessUsersTokens' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($Expire -and $Expire -lt 0) {
@@ -69,11 +69,11 @@ function Initialize-PVEAccessUsersTokenPOSTInfo {
 <#
 .SYNOPSIS
 
-Convert from JSON to AccessUsersTokenPOSTInfo<PSCustomObject>
+Convert from JSON to AccessUsersTokens<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to AccessUsersTokenPOSTInfo<PSCustomObject>
+Convert from JSON to AccessUsersTokens<PSCustomObject>
 
 .PARAMETER Json
 
@@ -81,21 +81,21 @@ Json object
 
 .OUTPUTS
 
-AccessUsersTokenPOSTInfo<PSCustomObject>
+AccessUsersTokens<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToAccessUsersTokenPOSTInfo {
+function ConvertFrom-PVEJsonToAccessUsersTokens {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVEAccessUsersTokenPOSTInfo' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVEAccessUsersTokens' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVEAccessUsersTokenPOSTInfo
+        # check if Json contains properties not defined in PVEAccessUsersTokens
         $AllProperties = ("comment", "expire", "privsep")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

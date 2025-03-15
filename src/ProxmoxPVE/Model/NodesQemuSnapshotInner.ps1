@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
-No description available.
-.PARAMETER Description
-No description available.
 .PARAMETER Snaptime
+No description available.
+.PARAMETER Vmstate
+No description available.
+.PARAMETER Name
 No description available.
 .PARAMETER Parent
 No description available.
-.PARAMETER Vmstate
+.PARAMETER Description
 No description available.
 .OUTPUTS
 
@@ -34,20 +34,20 @@ function Initialize-PVENodesQemuSnapshotInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Snaptime},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmstate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Snaptime},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Parent},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmstate}
+        [String]
+        ${Description}
     )
 
     Process {
@@ -64,7 +64,7 @@ function Initialize-PVENodesQemuSnapshotInner {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Description"="description"; "Snaptime"="snaptime"; "Parent"="parent"; "Vmstate"="vmstate"
+			"Snaptime"="snaptime"; "Vmstate"="vmstate"; "Name"="name"; "Parent"="parent"; "Description"="description"
         }
 		
 		 $OBJ = @{}
@@ -110,23 +110,11 @@ function ConvertFrom-PVEJsonToNodesQemuSnapshotInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesQemuSnapshotInner
-        $AllProperties = ("name", "description", "snaptime", "parent", "vmstate")
+        $AllProperties = ("snaptime", "vmstate", "name", "parent", "description")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "snaptime"))) { #optional property not found
@@ -135,24 +123,36 @@ function ConvertFrom-PVEJsonToNodesQemuSnapshotInner {
             $Snaptime = $JsonParameters.PSobject.Properties["snaptime"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "parent"))) { #optional property not found
-            $Parent = $null
-        } else {
-            $Parent = $JsonParameters.PSobject.Properties["parent"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmstate"))) { #optional property not found
             $Vmstate = $null
         } else {
             $Vmstate = $JsonParameters.PSobject.Properties["vmstate"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "parent"))) { #optional property not found
+            $Parent = $null
+        } else {
+            $Parent = $JsonParameters.PSobject.Properties["parent"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "description" = ${Description}
             "snaptime" = ${Snaptime}
-            "parent" = ${Parent}
             "vmstate" = ${Vmstate}
+            "name" = ${Name}
+            "parent" = ${Parent}
+            "description" = ${Description}
         }
 
         return $PSO

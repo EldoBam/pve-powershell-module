@@ -167,6 +167,7 @@ No authorization required
 <a name="Get-PVEAccessDomainsByRealm"></a>
 # **Get-PVEAccessDomainsByRealm**
 > void Get-PVEAccessDomainsByRealm<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Realm] <String><br>
 
 Get auth server configuration.
 
@@ -174,10 +175,11 @@ Get auth server configuration.
 
 ### Example
 ```powershell
+$Realm = "MyRealm" # String | Authentication domain ID
 
 # Get auth server configuration.
 try {
-    $Result = Get-PVEAccessDomainsByRealm
+    $Result = Get-PVEAccessDomainsByRealm -Realm $Realm
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEAccessDomainsByRealm: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -185,7 +187,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Realm** | **String**| Authentication domain ID | 
 
 ### Return type
 
@@ -243,6 +248,7 @@ No authorization required
 <a name="Get-PVEAccessGroupsByGroupid"></a>
 # **Get-PVEAccessGroupsByGroupid**
 > AccessGroups Get-PVEAccessGroupsByGroupid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Groupid] <String><br>
 
 Get group configuration.
 
@@ -250,10 +256,11 @@ Get group configuration.
 
 ### Example
 ```powershell
+$Groupid = "MyGroupid" # String | 
 
 # Get group configuration.
 try {
-    $Result = Get-PVEAccessGroupsByGroupid
+    $Result = Get-PVEAccessGroupsByGroupid -Groupid $Groupid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEAccessGroupsByGroupid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -261,7 +268,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Groupid** | **String**|  | 
 
 ### Return type
 
@@ -400,6 +410,7 @@ No authorization required
 <a name="Get-PVEAccessRolesByRoleid"></a>
 # **Get-PVEAccessRolesByRoleid**
 > AccessRoles Get-PVEAccessRolesByRoleid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Roleid] <String><br>
 
 Get role configuration.
 
@@ -407,10 +418,11 @@ Get role configuration.
 
 ### Example
 ```powershell
+$Roleid = "MyRoleid" # String | 
 
 # Get role configuration.
 try {
-    $Result = Get-PVEAccessRolesByRoleid
+    $Result = Get-PVEAccessRolesByRoleid -Roleid $Roleid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEAccessRolesByRoleid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -418,7 +430,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Roleid** | **String**|  | 
 
 ### Return type
 
@@ -476,6 +491,7 @@ No authorization required
 <a name="Get-PVEAccessTfaByUserid"></a>
 # **Get-PVEAccessTfaByUserid**
 > AccessTfaGETAVInner[] Get-PVEAccessTfaByUserid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 
 List TFA configurations of users.
 
@@ -483,10 +499,11 @@ List TFA configurations of users.
 
 ### Example
 ```powershell
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
 
 # List TFA configurations of users.
 try {
-    $Result = Get-PVEAccessTfaByUserid
+    $Result = Get-PVEAccessTfaByUserid -Userid $Userid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEAccessTfaByUserid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -494,7 +511,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
 
 ### Return type
 
@@ -514,6 +534,8 @@ No authorization required
 <a name="Get-PVEAccessTfaByUseridAndId"></a>
 # **Get-PVEAccessTfaByUseridAndId**
 > AccessTfaGET Get-PVEAccessTfaByUseridAndId<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 
 Fetch a requested TFA entry if present.
 
@@ -521,10 +543,12 @@ Fetch a requested TFA entry if present.
 
 ### Example
 ```powershell
+$Id = "MyId" # String | A TFA entry id.
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
 
 # Fetch a requested TFA entry if present.
 try {
-    $Result = Get-PVEAccessTfaByUseridAndId
+    $Result = Get-PVEAccessTfaByUseridAndId -Id $Id -Userid $Userid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEAccessTfaByUseridAndId: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -532,7 +556,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Id** | **String**| A TFA entry id. | 
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
 
 ### Return type
 
@@ -633,6 +661,7 @@ No authorization required
 <a name="Get-PVEAccessUsersByUserid"></a>
 # **Get-PVEAccessUsersByUserid**
 > AccessUsers Get-PVEAccessUsersByUserid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 
 Get user configuration.
 
@@ -640,10 +669,11 @@ Get user configuration.
 
 ### Example
 ```powershell
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
 
 # Get user configuration.
 try {
-    $Result = Get-PVEAccessUsersByUserid
+    $Result = Get-PVEAccessUsersByUserid -Userid $Userid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEAccessUsersByUserid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -651,7 +681,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
 
 ### Return type
 
@@ -671,6 +704,7 @@ No authorization required
 <a name="Get-PVEAccessUsersTfaByUserid"></a>
 # **Get-PVEAccessUsersTfaByUserid**
 > AccessUsersTfa Get-PVEAccessUsersTfaByUserid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETAccessUsersTfaRB] <PSCustomObject><br>
 
 Get user TFA types (Personal and Realm).
@@ -679,11 +713,12 @@ Get user TFA types (Personal and Realm).
 
 ### Example
 ```powershell
-$GETAccessUsersTfaRB = Initialize-GETAccessUsersTfaRB -Multiple 0 -Userid "MyUserid" # GETAccessUsersTfaRB | Get user TFA types (Personal and Realm). (optional)
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
+$GETAccessUsersTfaRB = Initialize-GETAccessUsersTfaRB -Userid "MyUserid" -Multiple 0 # GETAccessUsersTfaRB | Get user TFA types (Personal and Realm). (optional)
 
 # Get user TFA types (Personal and Realm).
 try {
-    $Result = Get-PVEAccessUsersTfaByUserid -GETAccessUsersTfaRB $GETAccessUsersTfaRB
+    $Result = Get-PVEAccessUsersTfaByUserid -Userid $Userid -GETAccessUsersTfaRB $GETAccessUsersTfaRB
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEAccessUsersTfaByUserid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -694,6 +729,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
  **GETAccessUsersTfaRB** | [**GETAccessUsersTfaRB**](GETAccessUsersTfaRB.md)| Get user TFA types (Personal and Realm). | [optional] 
 
 ### Return type
@@ -714,6 +750,7 @@ No authorization required
 <a name="Get-PVEAccessUsersTokenByUserid"></a>
 # **Get-PVEAccessUsersTokenByUserid**
 > AccessUsersTokenGETInner[] Get-PVEAccessUsersTokenByUserid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 
 Get user API tokens.
 
@@ -721,10 +758,11 @@ Get user API tokens.
 
 ### Example
 ```powershell
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
 
 # Get user API tokens.
 try {
-    $Result = Get-PVEAccessUsersTokenByUserid
+    $Result = Get-PVEAccessUsersTokenByUserid -Userid $Userid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEAccessUsersTokenByUserid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -732,7 +770,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
 
 ### Return type
 
@@ -752,6 +793,8 @@ No authorization required
 <a name="Get-PVEAccessUsersTokenByUseridAndTokenid"></a>
 # **Get-PVEAccessUsersTokenByUseridAndTokenid**
 > AccessUsersToken Get-PVEAccessUsersTokenByUseridAndTokenid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Tokenid] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 
 Get specific API token information.
 
@@ -759,10 +802,12 @@ Get specific API token information.
 
 ### Example
 ```powershell
+$Tokenid = "MyTokenid" # String | User-specific token identifier.
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
 
 # Get specific API token information.
 try {
-    $Result = Get-PVEAccessUsersTokenByUseridAndTokenid
+    $Result = Get-PVEAccessUsersTokenByUseridAndTokenid -Tokenid $Tokenid -Userid $Userid
 } catch {
     Write-Host ("Exception occurred when calling Get-PVEAccessUsersTokenByUseridAndTokenid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -770,7 +815,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Tokenid** | **String**| User-specific token identifier. | 
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
 
 ### Return type
 
@@ -798,7 +847,7 @@ Add an authentication server.
 
 ### Example
 ```powershell
-$POSTAccessDomainsRB = Initialize-POSTAccessDomainsRB -BindDn "MyBindDn" -Default 0 -ClientKey "MyClientKey" -Tfa "MyTfa" -Capath "MyCapath" -Prompt "MyPrompt" -GroupNameAttr "MyGroupNameAttr" -Domain "MyDomain" -UserAttr "MyUserAttr" -Verify 0 -CaseSensitive 0 -Type "ad" -GroupDn "MyGroupDn" -IssuerUrl "MyIssuerUrl" -CheckConnection 0 -Certkey "MyCertkey" -VarFilter "MyVarFilter" -AcrValues "MyAcrValues" -Realm "MyRealm" -ClientId "MyClientId" -Server2 "MyServer2" -UserClasses "MyUserClasses" -Cert "MyCert" -Secure 0 -UsernameClaim "MyUsernameClaim" -GroupFilter "MyGroupFilter" -Sslversion "tlsv1" -Mode "ldap" -Port 0 -Scopes "MyScopes" -SyncDefaultsOptions "MySyncDefaultsOptions" -BaseDn "MyBaseDn" -SyncAttributes "MySyncAttributes" -Autocreate 0 -Comment "MyComment" -GroupClasses "MyGroupClasses" -Server1 "MyServer1" -Password "MyPassword" # POSTAccessDomainsRB | Add an authentication server. (optional)
+$POSTAccessDomainsRB = Initialize-POSTAccessDomainsRB -AcrValues "MyAcrValues" -Password "MyPassword" -BaseDn "MyBaseDn" -Secure 0 -Capath "MyCapath" -Comment "MyComment" -CheckConnection 0 -VarFilter "MyVarFilter" -GroupNameAttr "MyGroupNameAttr" -ClientId "MyClientId" -UserAttr "MyUserAttr" -Server2 "MyServer2" -IssuerUrl "MyIssuerUrl" -Certkey "MyCertkey" -GroupDn "MyGroupDn" -Domain "MyDomain" -UsernameClaim "MyUsernameClaim" -BindDn "MyBindDn" -Sslversion "tlsv1" -Verify 0 -Port 0 -Server1 "MyServer1" -UserClasses "MyUserClasses" -Prompt "MyPrompt" -GroupClasses "MyGroupClasses" -Default 0 -Mode "ldap" -GroupFilter "MyGroupFilter" -SyncDefaultsOptions "MySyncDefaultsOptions" -Realm "MyRealm" -Scopes "MyScopes" -Autocreate 0 -Cert "MyCert" -CaseSensitive 0 -Tfa "MyTfa" -Type "ad" -ClientKey "MyClientKey" -SyncAttributes "MySyncAttributes" # POSTAccessDomainsRB | Add an authentication server. (optional)
 
 # Add an authentication server.
 try {
@@ -833,6 +882,7 @@ No authorization required
 <a name="New-PVEAccessDomainsSyncByRealm"></a>
 # **New-PVEAccessDomainsSyncByRealm**
 > void New-PVEAccessDomainsSyncByRealm<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Realm] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessDomainsSyncRB] <PSCustomObject><br>
 
 Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting.
@@ -841,11 +891,12 @@ Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced gro
 
 ### Example
 ```powershell
-$POSTAccessDomainsSyncRB = Initialize-POSTAccessDomainsSyncRB -RemoveVanished "MyRemoveVanished" -Purge 0 -DryRun 0 -Realm "MyRealm" -Full 0 -Scope "users" -EnableNew 0 # POSTAccessDomainsSyncRB | Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting. (optional)
+$Realm = "MyRealm" # String | Authentication domain ID
+$POSTAccessDomainsSyncRB = Initialize-POSTAccessDomainsSyncRB -DryRun 0 -Scope "users" -Full 0 -Purge 0 -Realm "MyRealm" -RemoveVanished "MyRemoveVanished" -EnableNew 0 # POSTAccessDomainsSyncRB | Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting. (optional)
 
 # Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting.
 try {
-    $Result = New-PVEAccessDomainsSyncByRealm -POSTAccessDomainsSyncRB $POSTAccessDomainsSyncRB
+    $Result = New-PVEAccessDomainsSyncByRealm -Realm $Realm -POSTAccessDomainsSyncRB $POSTAccessDomainsSyncRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessDomainsSyncByRealm: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -856,6 +907,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Realm** | **String**| Authentication domain ID | 
  **POSTAccessDomainsSyncRB** | [**POSTAccessDomainsSyncRB**](POSTAccessDomainsSyncRB.md)| Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name &#39;name-$realm&#39;, so make sure those groups do not exist to prevent overwriting. | [optional] 
 
 ### Return type
@@ -927,7 +979,7 @@ Get the OpenId Authorization Url for the specified realm.
 
 ### Example
 ```powershell
-$POSTAccessOpenidAuthurlRB = Initialize-POSTAccessOpenidAuthurlRB -Realm "MyRealm" -RedirectUrl "MyRedirectUrl" # POSTAccessOpenidAuthurlRB | Get the OpenId Authorization Url for the specified realm. (optional)
+$POSTAccessOpenidAuthurlRB = Initialize-POSTAccessOpenidAuthurlRB -RedirectUrl "MyRedirectUrl" -Realm "MyRealm" # POSTAccessOpenidAuthurlRB | Get the OpenId Authorization Url for the specified realm. (optional)
 
 # Get the OpenId Authorization Url for the specified realm.
 try {
@@ -970,7 +1022,7 @@ No authorization required
 
 ### Example
 ```powershell
-$POSTAccessOpenidLoginRB = Initialize-POSTAccessOpenidLoginRB -Code "MyCode" -State "MyState" -RedirectUrl "MyRedirectUrl" # POSTAccessOpenidLoginRB |  Verify OpenID authorization code and create a ticket. (optional)
+$POSTAccessOpenidLoginRB = Initialize-POSTAccessOpenidLoginRB -State "MyState" -RedirectUrl "MyRedirectUrl" -Code "MyCode" # POSTAccessOpenidLoginRB |  Verify OpenID authorization code and create a ticket. (optional)
 
 #  Verify OpenID authorization code and create a ticket.
 try {
@@ -1013,7 +1065,7 @@ Create new role.
 
 ### Example
 ```powershell
-$POSTAccessRolesRB = Initialize-POSTAccessRolesRB -Roleid "MyRoleid" -Privs "MyPrivs" # POSTAccessRolesRB | Create new role. (optional)
+$POSTAccessRolesRB = Initialize-POSTAccessRolesRB -Privs "MyPrivs" -Roleid "MyRoleid" # POSTAccessRolesRB | Create new role. (optional)
 
 # Create new role.
 try {
@@ -1048,6 +1100,7 @@ No authorization required
 <a name="New-PVEAccessTfaByUserid"></a>
 # **New-PVEAccessTfaByUserid**
 > AccessTfa New-PVEAccessTfaByUserid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessTfaRB] <PSCustomObject><br>
 
 Add a TFA entry for a user.
@@ -1056,11 +1109,12 @@ Add a TFA entry for a user.
 
 ### Example
 ```powershell
-$POSTAccessTfaRB = Initialize-POSTAccessTfaRB -Description "MyDescription" -Challenge "MyChallenge" -Type "totp" -Password "MyPassword" -Totp "MyTotp" -Value "MyValue" -Userid "MyUserid" # POSTAccessTfaRB | Add a TFA entry for a user. (optional)
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
+$POSTAccessTfaRB = Initialize-POSTAccessTfaRB -Password "MyPassword" -Type "totp" -Challenge "MyChallenge" -Description "MyDescription" -Value "MyValue" -Userid "MyUserid" -Totp "MyTotp" # POSTAccessTfaRB | Add a TFA entry for a user. (optional)
 
 # Add a TFA entry for a user.
 try {
-    $Result = New-PVEAccessTfaByUserid -POSTAccessTfaRB $POSTAccessTfaRB
+    $Result = New-PVEAccessTfaByUserid -Userid $Userid -POSTAccessTfaRB $POSTAccessTfaRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessTfaByUserid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1071,6 +1125,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
  **POSTAccessTfaRB** | [**POSTAccessTfaRB**](POSTAccessTfaRB.md)| Add a TFA entry for a user. | [optional] 
 
 ### Return type
@@ -1099,7 +1154,7 @@ Create or verify authentication ticket.
 
 ### Example
 ```powershell
-$POSTAccessTicketRB = Initialize-POSTAccessTicketRB -Username "MyUsername" -Privs "MyPrivs" -Otp "MyOtp" -NewFormat 0 -Path "MyPath" -Password "MyPassword" -Realm "MyRealm" -TfaChallenge "MyTfaChallenge" # POSTAccessTicketRB | Create or verify authentication ticket. (optional)
+$POSTAccessTicketRB = Initialize-POSTAccessTicketRB -Password "MyPassword" -NewFormat 0 -Privs "MyPrivs" -Username "MyUsername" -Path "MyPath" -Otp "MyOtp" -TfaChallenge "MyTfaChallenge" -Realm "MyRealm" # POSTAccessTicketRB | Create or verify authentication ticket. (optional)
 
 # Create or verify authentication ticket.
 try {
@@ -1142,7 +1197,7 @@ Create new user.
 
 ### Example
 ```powershell
-$POSTAccessUsersRB = Initialize-POSTAccessUsersRB -Groups "MyGroups" -Userid "MyUserid" -Comment "MyComment" -Email "MyEmail" -Password "MyPassword" -Lastname "MyLastname" -Expire 0 -Keys "MyKeys" -Enable 0 -Firstname "MyFirstname" # POSTAccessUsersRB | Create new user. (optional)
+$POSTAccessUsersRB = Initialize-POSTAccessUsersRB -Email "MyEmail" -Comment "MyComment" -Expire 0 -Lastname "MyLastname" -Firstname "MyFirstname" -Keys "MyKeys" -Password "MyPassword" -Groups "MyGroups" -Enable 0 -Userid "MyUserid" # POSTAccessUsersRB | Create new user. (optional)
 
 # Create new user.
 try {
@@ -1177,6 +1232,8 @@ No authorization required
 <a name="New-PVEAccessUsersTokenByUseridAndTokenid"></a>
 # **New-PVEAccessUsersTokenByUseridAndTokenid**
 > AccessUsersTokenPOST New-PVEAccessUsersTokenByUseridAndTokenid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Tokenid] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTAccessUsersTokenRB] <PSCustomObject><br>
 
 Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards!
@@ -1185,11 +1242,13 @@ Generate a new API token for a specific user. NOTE: returns API token value, whi
 
 ### Example
 ```powershell
-$POSTAccessUsersTokenRB = Initialize-POSTAccessUsersTokenRB -Privsep 0 -Userid "MyUserid" -Tokenid "MyTokenid" -Expire 0 -Comment "MyComment" # POSTAccessUsersTokenRB | Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards! (optional)
+$Tokenid = "MyTokenid" # String | User-specific token identifier.
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
+$POSTAccessUsersTokenRB = Initialize-POSTAccessUsersTokenRB -Expire 0 -Userid "MyUserid" -Privsep 0 -Tokenid "MyTokenid" -Comment "MyComment" # POSTAccessUsersTokenRB | Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards! (optional)
 
 # Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards!
 try {
-    $Result = New-PVEAccessUsersTokenByUseridAndTokenid -POSTAccessUsersTokenRB $POSTAccessUsersTokenRB
+    $Result = New-PVEAccessUsersTokenByUseridAndTokenid -Tokenid $Tokenid -Userid $Userid -POSTAccessUsersTokenRB $POSTAccessUsersTokenRB
 } catch {
     Write-Host ("Exception occurred when calling New-PVEAccessUsersTokenByUseridAndTokenid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1200,6 +1259,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Tokenid** | **String**| User-specific token identifier. | 
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
  **POSTAccessUsersTokenRB** | [**POSTAccessUsersTokenRB**](POSTAccessUsersTokenRB.md)| Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards! | [optional] 
 
 ### Return type
@@ -1220,6 +1281,7 @@ No authorization required
 <a name="Remove-PVEAccessDomainsByRealm"></a>
 # **Remove-PVEAccessDomainsByRealm**
 > void Remove-PVEAccessDomainsByRealm<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Realm] <String><br>
 
 Delete an authentication server.
 
@@ -1227,10 +1289,11 @@ Delete an authentication server.
 
 ### Example
 ```powershell
+$Realm = "MyRealm" # String | Authentication domain ID
 
 # Delete an authentication server.
 try {
-    $Result = Remove-PVEAccessDomainsByRealm
+    $Result = Remove-PVEAccessDomainsByRealm -Realm $Realm
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEAccessDomainsByRealm: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1238,7 +1301,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Realm** | **String**| Authentication domain ID | 
 
 ### Return type
 
@@ -1258,6 +1324,7 @@ No authorization required
 <a name="Remove-PVEAccessGroupsByGroupid"></a>
 # **Remove-PVEAccessGroupsByGroupid**
 > void Remove-PVEAccessGroupsByGroupid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Groupid] <String><br>
 
 Delete group.
 
@@ -1265,10 +1332,11 @@ Delete group.
 
 ### Example
 ```powershell
+$Groupid = "MyGroupid" # String | 
 
 # Delete group.
 try {
-    $Result = Remove-PVEAccessGroupsByGroupid
+    $Result = Remove-PVEAccessGroupsByGroupid -Groupid $Groupid
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEAccessGroupsByGroupid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1276,7 +1344,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Groupid** | **String**|  | 
 
 ### Return type
 
@@ -1296,6 +1367,7 @@ No authorization required
 <a name="Remove-PVEAccessRolesByRoleid"></a>
 # **Remove-PVEAccessRolesByRoleid**
 > void Remove-PVEAccessRolesByRoleid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Roleid] <String><br>
 
 Delete role.
 
@@ -1303,10 +1375,11 @@ Delete role.
 
 ### Example
 ```powershell
+$Roleid = "MyRoleid" # String | 
 
 # Delete role.
 try {
-    $Result = Remove-PVEAccessRolesByRoleid
+    $Result = Remove-PVEAccessRolesByRoleid -Roleid $Roleid
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEAccessRolesByRoleid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1314,7 +1387,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Roleid** | **String**|  | 
 
 ### Return type
 
@@ -1334,6 +1410,8 @@ No authorization required
 <a name="Remove-PVEAccessTfaByUseridAndId"></a>
 # **Remove-PVEAccessTfaByUseridAndId**
 > void Remove-PVEAccessTfaByUseridAndId<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETEAccessTfaRB] <PSCustomObject><br>
 
 Delete a TFA entry by ID.
@@ -1342,11 +1420,13 @@ Delete a TFA entry by ID.
 
 ### Example
 ```powershell
-$DELETEAccessTfaRB = Initialize-DELETEAccessTfaRB -Password "MyPassword" -Id "MyId" -Userid "MyUserid" # DELETEAccessTfaRB | Delete a TFA entry by ID. (optional)
+$Id = "MyId" # String | A TFA entry id.
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
+$DELETEAccessTfaRB = Initialize-DELETEAccessTfaRB -Id "MyId" -Password "MyPassword" -Userid "MyUserid" # DELETEAccessTfaRB | Delete a TFA entry by ID. (optional)
 
 # Delete a TFA entry by ID.
 try {
-    $Result = Remove-PVEAccessTfaByUseridAndId -DELETEAccessTfaRB $DELETEAccessTfaRB
+    $Result = Remove-PVEAccessTfaByUseridAndId -Id $Id -Userid $Userid -DELETEAccessTfaRB $DELETEAccessTfaRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEAccessTfaByUseridAndId: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1357,6 +1437,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Id** | **String**| A TFA entry id. | 
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
  **DELETEAccessTfaRB** | [**DELETEAccessTfaRB**](DELETEAccessTfaRB.md)| Delete a TFA entry by ID. | [optional] 
 
 ### Return type
@@ -1377,6 +1459,7 @@ No authorization required
 <a name="Remove-PVEAccessUsersByUserid"></a>
 # **Remove-PVEAccessUsersByUserid**
 > void Remove-PVEAccessUsersByUserid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 
 Delete user.
 
@@ -1384,10 +1467,11 @@ Delete user.
 
 ### Example
 ```powershell
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
 
 # Delete user.
 try {
-    $Result = Remove-PVEAccessUsersByUserid
+    $Result = Remove-PVEAccessUsersByUserid -Userid $Userid
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEAccessUsersByUserid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1395,7 +1479,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
 
 ### Return type
 
@@ -1415,6 +1502,8 @@ No authorization required
 <a name="Remove-PVEAccessUsersTokenByUseridAndTokenid"></a>
 # **Remove-PVEAccessUsersTokenByUseridAndTokenid**
 > void Remove-PVEAccessUsersTokenByUseridAndTokenid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Tokenid] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 
 Remove API token for a specific user.
 
@@ -1422,10 +1511,12 @@ Remove API token for a specific user.
 
 ### Example
 ```powershell
+$Tokenid = "MyTokenid" # String | User-specific token identifier.
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
 
 # Remove API token for a specific user.
 try {
-    $Result = Remove-PVEAccessUsersTokenByUseridAndTokenid
+    $Result = Remove-PVEAccessUsersTokenByUseridAndTokenid -Tokenid $Tokenid -Userid $Userid
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEAccessUsersTokenByUseridAndTokenid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1433,7 +1524,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Tokenid** | **String**| User-specific token identifier. | 
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
 
 ### Return type
 
@@ -1461,7 +1556,7 @@ Update Access Control List (add or remove permissions).
 
 ### Example
 ```powershell
-$PUTAccessAclRB = Initialize-PUTAccessAclRB -Groups "MyGroups" -Delete 0 -Users "MyUsers" -Roles "MyRoles" -Propagate 0 -Path "MyPath" -Tokens "MyTokens" # PUTAccessAclRB | Update Access Control List (add or remove permissions). (optional)
+$PUTAccessAclRB = Initialize-PUTAccessAclRB -Users "MyUsers" -Propagate 0 -Path "MyPath" -Delete 0 -Roles "MyRoles" -Groups "MyGroups" -Tokens "MyTokens" # PUTAccessAclRB | Update Access Control List (add or remove permissions). (optional)
 
 # Update Access Control List (add or remove permissions).
 try {
@@ -1496,6 +1591,7 @@ No authorization required
 <a name="Set-PVEAccessDomainsByRealm"></a>
 # **Set-PVEAccessDomainsByRealm**
 > void Set-PVEAccessDomainsByRealm<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Realm] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessDomainsRB] <PSCustomObject><br>
 
 Update authentication server settings.
@@ -1504,11 +1600,12 @@ Update authentication server settings.
 
 ### Example
 ```powershell
-$PUTAccessDomainsRB = Initialize-PUTAccessDomainsRB -BindDn "MyBindDn" -Default 0 -ClientKey "MyClientKey" -Tfa "MyTfa" -Capath "MyCapath" -Prompt "MyPrompt" -GroupNameAttr "MyGroupNameAttr" -VarFilter "MyVarFilter" -Domain "MyDomain" -UserAttr "MyUserAttr" -Verify 0 -CaseSensitive 0 -GroupDn "MyGroupDn" -IssuerUrl "MyIssuerUrl" -CheckConnection 0 -Certkey "MyCertkey" -Digest "MyDigest" -AcrValues "MyAcrValues" -Realm "MyRealm" -ClientId "MyClientId" -Server2 "MyServer2" -UserClasses "MyUserClasses" -Cert "MyCert" -Secure 0 -GroupFilter "MyGroupFilter" -Sslversion "tlsv1" -Mode "ldap" -Delete "MyDelete" -Port 0 -Scopes "MyScopes" -SyncDefaultsOptions "MySyncDefaultsOptions" -BaseDn "MyBaseDn" -SyncAttributes "MySyncAttributes" -Autocreate 0 -Comment "MyComment" -GroupClasses "MyGroupClasses" -Server1 "MyServer1" -Password "MyPassword" # PUTAccessDomainsRB | Update authentication server settings. (optional)
+$Realm = "MyRealm" # String | Authentication domain ID
+$PUTAccessDomainsRB = Initialize-PUTAccessDomainsRB -AcrValues "MyAcrValues" -Password "MyPassword" -BaseDn "MyBaseDn" -Secure 0 -Comment "MyComment" -CheckConnection 0 -VarFilter "MyVarFilter" -GroupNameAttr "MyGroupNameAttr" -ClientId "MyClientId" -UserAttr "MyUserAttr" -Server2 "MyServer2" -IssuerUrl "MyIssuerUrl" -Certkey "MyCertkey" -GroupDn "MyGroupDn" -Domain "MyDomain" -BindDn "MyBindDn" -Sslversion "tlsv1" -Verify 0 -Port 0 -Server1 "MyServer1" -UserClasses "MyUserClasses" -Prompt "MyPrompt" -GroupClasses "MyGroupClasses" -Default 0 -Mode "ldap" -GroupFilter "MyGroupFilter" -SyncDefaultsOptions "MySyncDefaultsOptions" -Capath "MyCapath" -Digest "MyDigest" -Autocreate 0 -Cert "MyCert" -Delete "MyDelete" -Realm "MyRealm" -CaseSensitive 0 -Tfa "MyTfa" -Scopes "MyScopes" -ClientKey "MyClientKey" -SyncAttributes "MySyncAttributes" # PUTAccessDomainsRB | Update authentication server settings. (optional)
 
 # Update authentication server settings.
 try {
-    $Result = Set-PVEAccessDomainsByRealm -PUTAccessDomainsRB $PUTAccessDomainsRB
+    $Result = Set-PVEAccessDomainsByRealm -Realm $Realm -PUTAccessDomainsRB $PUTAccessDomainsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessDomainsByRealm: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1519,6 +1616,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Realm** | **String**| Authentication domain ID | 
  **PUTAccessDomainsRB** | [**PUTAccessDomainsRB**](PUTAccessDomainsRB.md)| Update authentication server settings. | [optional] 
 
 ### Return type
@@ -1539,6 +1637,7 @@ No authorization required
 <a name="Set-PVEAccessGroupsByGroupid"></a>
 # **Set-PVEAccessGroupsByGroupid**
 > void Set-PVEAccessGroupsByGroupid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Groupid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessGroupsRB] <PSCustomObject><br>
 
 Update group data.
@@ -1547,11 +1646,12 @@ Update group data.
 
 ### Example
 ```powershell
+$Groupid = "MyGroupid" # String | 
 $PUTAccessGroupsRB = Initialize-PUTAccessGroupsRB -Comment "MyComment" -Groupid "MyGroupid" # PUTAccessGroupsRB | Update group data. (optional)
 
 # Update group data.
 try {
-    $Result = Set-PVEAccessGroupsByGroupid -PUTAccessGroupsRB $PUTAccessGroupsRB
+    $Result = Set-PVEAccessGroupsByGroupid -Groupid $Groupid -PUTAccessGroupsRB $PUTAccessGroupsRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessGroupsByGroupid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1562,6 +1662,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Groupid** | **String**|  | 
  **PUTAccessGroupsRB** | [**PUTAccessGroupsRB**](PUTAccessGroupsRB.md)| Update group data. | [optional] 
 
 ### Return type
@@ -1590,7 +1691,7 @@ Change user password.
 
 ### Example
 ```powershell
-$PUTAccessPasswordRB = Initialize-PUTAccessPasswordRB -Password "MyPassword" -ConfirmationPassword "MyConfirmationPassword" -Userid "MyUserid" # PUTAccessPasswordRB | Change user password. (optional)
+$PUTAccessPasswordRB = Initialize-PUTAccessPasswordRB -Userid "MyUserid" -Password "MyPassword" -ConfirmationPassword "MyConfirmationPassword" # PUTAccessPasswordRB | Change user password. (optional)
 
 # Change user password.
 try {
@@ -1625,6 +1726,7 @@ No authorization required
 <a name="Set-PVEAccessRolesByRoleid"></a>
 # **Set-PVEAccessRolesByRoleid**
 > void Set-PVEAccessRolesByRoleid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Roleid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessRolesRB] <PSCustomObject><br>
 
 Update an existing role.
@@ -1633,11 +1735,12 @@ Update an existing role.
 
 ### Example
 ```powershell
+$Roleid = "MyRoleid" # String | 
 $PUTAccessRolesRB = Initialize-PUTAccessRolesRB -Privs "MyPrivs" -Roleid "MyRoleid" -Append 0 # PUTAccessRolesRB | Update an existing role. (optional)
 
 # Update an existing role.
 try {
-    $Result = Set-PVEAccessRolesByRoleid -PUTAccessRolesRB $PUTAccessRolesRB
+    $Result = Set-PVEAccessRolesByRoleid -Roleid $Roleid -PUTAccessRolesRB $PUTAccessRolesRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessRolesByRoleid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1648,6 +1751,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Roleid** | **String**|  | 
  **PUTAccessRolesRB** | [**PUTAccessRolesRB**](PUTAccessRolesRB.md)| Update an existing role. | [optional] 
 
 ### Return type
@@ -1668,6 +1772,8 @@ No authorization required
 <a name="Set-PVEAccessTfaByUseridAndId"></a>
 # **Set-PVEAccessTfaByUseridAndId**
 > void Set-PVEAccessTfaByUseridAndId<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessTfaRB] <PSCustomObject><br>
 
 Add a TFA entry for a user.
@@ -1676,11 +1782,13 @@ Add a TFA entry for a user.
 
 ### Example
 ```powershell
-$PUTAccessTfaRB = Initialize-PUTAccessTfaRB -Password "MyPassword" -Description "MyDescription" -Id "MyId" -Userid "MyUserid" -Enable 0 # PUTAccessTfaRB | Add a TFA entry for a user. (optional)
+$Id = "MyId" # String | A TFA entry id.
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
+$PUTAccessTfaRB = Initialize-PUTAccessTfaRB -Enable 0 -Password "MyPassword" -Id "MyId" -Userid "MyUserid" -Description "MyDescription" # PUTAccessTfaRB | Add a TFA entry for a user. (optional)
 
 # Add a TFA entry for a user.
 try {
-    $Result = Set-PVEAccessTfaByUseridAndId -PUTAccessTfaRB $PUTAccessTfaRB
+    $Result = Set-PVEAccessTfaByUseridAndId -Id $Id -Userid $Userid -PUTAccessTfaRB $PUTAccessTfaRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessTfaByUseridAndId: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1691,6 +1799,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Id** | **String**| A TFA entry id. | 
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
  **PUTAccessTfaRB** | [**PUTAccessTfaRB**](PUTAccessTfaRB.md)| Add a TFA entry for a user. | [optional] 
 
 ### Return type
@@ -1711,6 +1821,7 @@ No authorization required
 <a name="Set-PVEAccessUsersByUserid"></a>
 # **Set-PVEAccessUsersByUserid**
 > void Set-PVEAccessUsersByUserid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessUsersRB] <PSCustomObject><br>
 
 Update user configuration.
@@ -1719,11 +1830,12 @@ Update user configuration.
 
 ### Example
 ```powershell
-$PUTAccessUsersRB = Initialize-PUTAccessUsersRB -Groups "MyGroups" -Userid "MyUserid" -Comment "MyComment" -Email "MyEmail" -Append 0 -Lastname "MyLastname" -Expire 0 -Keys "MyKeys" -Enable 0 -Firstname "MyFirstname" # PUTAccessUsersRB | Update user configuration. (optional)
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
+$PUTAccessUsersRB = Initialize-PUTAccessUsersRB -Email "MyEmail" -Comment "MyComment" -Append 0 -Lastname "MyLastname" -Firstname "MyFirstname" -Keys "MyKeys" -Expire 0 -Groups "MyGroups" -Enable 0 -Userid "MyUserid" # PUTAccessUsersRB | Update user configuration. (optional)
 
 # Update user configuration.
 try {
-    $Result = Set-PVEAccessUsersByUserid -PUTAccessUsersRB $PUTAccessUsersRB
+    $Result = Set-PVEAccessUsersByUserid -Userid $Userid -PUTAccessUsersRB $PUTAccessUsersRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessUsersByUserid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1734,6 +1846,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
  **PUTAccessUsersRB** | [**PUTAccessUsersRB**](PUTAccessUsersRB.md)| Update user configuration. | [optional] 
 
 ### Return type
@@ -1754,6 +1867,8 @@ No authorization required
 <a name="Set-PVEAccessUsersTokenByUseridAndTokenid"></a>
 # **Set-PVEAccessUsersTokenByUseridAndTokenid**
 > AccessUsersTokenPUT Set-PVEAccessUsersTokenByUseridAndTokenid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Tokenid] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-PUTAccessUsersTokenRB] <PSCustomObject><br>
 
 Update API token for a specific user.
@@ -1762,11 +1877,13 @@ Update API token for a specific user.
 
 ### Example
 ```powershell
-$PUTAccessUsersTokenRB = Initialize-PUTAccessUsersTokenRB -Privsep 0 -Userid "MyUserid" -Tokenid "MyTokenid" -Expire 0 -Comment "MyComment" # PUTAccessUsersTokenRB | Update API token for a specific user. (optional)
+$Tokenid = "MyTokenid" # String | User-specific token identifier.
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
+$PUTAccessUsersTokenRB = Initialize-PUTAccessUsersTokenRB -Expire 0 -Userid "MyUserid" -Privsep 0 -Tokenid "MyTokenid" -Comment "MyComment" # PUTAccessUsersTokenRB | Update API token for a specific user. (optional)
 
 # Update API token for a specific user.
 try {
-    $Result = Set-PVEAccessUsersTokenByUseridAndTokenid -PUTAccessUsersTokenRB $PUTAccessUsersTokenRB
+    $Result = Set-PVEAccessUsersTokenByUseridAndTokenid -Tokenid $Tokenid -Userid $Userid -PUTAccessUsersTokenRB $PUTAccessUsersTokenRB
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessUsersTokenByUseridAndTokenid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1777,6 +1894,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **Tokenid** | **String**| User-specific token identifier. | 
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
  **PUTAccessUsersTokenRB** | [**PUTAccessUsersTokenRB**](PUTAccessUsersTokenRB.md)| Update API token for a specific user. | [optional] 
 
 ### Return type
@@ -1797,6 +1916,7 @@ No authorization required
 <a name="Set-PVEAccessUsersUnlocktfaByUserid"></a>
 # **Set-PVEAccessUsersUnlocktfaByUserid**
 > Int32 Set-PVEAccessUsersUnlocktfaByUserid<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Userid] <String><br>
 
 Unlock a user's TFA authentication.
 
@@ -1804,10 +1924,11 @@ Unlock a user's TFA authentication.
 
 ### Example
 ```powershell
+$Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
 
 # Unlock a user's TFA authentication.
 try {
-    $Result = Set-PVEAccessUsersUnlocktfaByUserid
+    $Result = Set-PVEAccessUsersUnlocktfaByUserid -Userid $Userid
 } catch {
     Write-Host ("Exception occurred when calling Set-PVEAccessUsersUnlocktfaByUserid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1815,7 +1936,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Userid** | **String**| Full User ID, in the &#x60;name@realm&#x60; format. | 
 
 ### Return type
 

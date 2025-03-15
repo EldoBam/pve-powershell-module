@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Schedule
+.PARAMETER Iterations
 No description available.
 .PARAMETER Starttime
 No description available.
-.PARAMETER Iterations
+.PARAMETER Schedule
 No description available.
 .OUTPUTS
 
@@ -30,23 +30,19 @@ function Initialize-PVEGETClusterJobsScheduleanalyzeRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Schedule},
+        [System.Nullable[Int32]]
+        ${Iterations},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Starttime},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Iterations}
+        [String]
+        ${Schedule}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETClusterJobsScheduleanalyzeRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if (!$Schedule -and $Schedule.length -gt 128) {
-            throw "invalid value for 'Schedule', the character length must be smaller than or equal to 128."
-        }
 
         if ($Iterations -and $Iterations -gt 100) {
           throw "invalid value for 'Iterations', must be smaller than or equal to 100."
@@ -56,9 +52,13 @@ function Initialize-PVEGETClusterJobsScheduleanalyzeRB {
           throw "invalid value for 'Iterations', must be greater than or equal to 1."
         }
 
+        if (!$Schedule -and $Schedule.length -gt 128) {
+            throw "invalid value for 'Schedule', the character length must be smaller than or equal to 128."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Schedule"="schedule"; "Starttime"="starttime"; "Iterations"="iterations"
+			"Iterations"="iterations"; "Starttime"="starttime"; "Schedule"="schedule"
         }
 		
 		 $OBJ = @{}
@@ -104,23 +104,11 @@ function ConvertFrom-PVEJsonToGETClusterJobsScheduleanalyzeRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETClusterJobsScheduleanalyzeRB
-        $AllProperties = ("schedule", "starttime", "iterations")
+        $AllProperties = ("iterations", "starttime", "schedule")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "schedule"))) { #optional property not found
-            $Schedule = $null
-        } else {
-            $Schedule = $JsonParameters.PSobject.Properties["schedule"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "starttime"))) { #optional property not found
-            $Starttime = $null
-        } else {
-            $Starttime = $JsonParameters.PSobject.Properties["starttime"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "iterations"))) { #optional property not found
@@ -129,10 +117,22 @@ function ConvertFrom-PVEJsonToGETClusterJobsScheduleanalyzeRB {
             $Iterations = $JsonParameters.PSobject.Properties["iterations"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "starttime"))) { #optional property not found
+            $Starttime = $null
+        } else {
+            $Starttime = $JsonParameters.PSobject.Properties["starttime"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "schedule"))) { #optional property not found
+            $Schedule = $null
+        } else {
+            $Schedule = $JsonParameters.PSobject.Properties["schedule"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "schedule" = ${Schedule}
-            "starttime" = ${Starttime}
             "iterations" = ${Iterations}
+            "starttime" = ${Starttime}
+            "schedule" = ${Schedule}
         }
 
         return $PSO

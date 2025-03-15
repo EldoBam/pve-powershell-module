@@ -17,13 +17,13 @@ No description available.
 
 .PARAMETER Name
 No description available.
-.PARAMETER AddStorage
-No description available.
-.PARAMETER Node
+.PARAMETER Device
 No description available.
 .PARAMETER Filesystem
 No description available.
-.PARAMETER Device
+.PARAMETER Node
+No description available.
+.PARAMETER AddStorage
 No description available.
 .OUTPUTS
 
@@ -37,18 +37,18 @@ function Initialize-PVEPOSTNodesDisksDirectoryRB {
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${AddStorage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
+        ${Device},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ext4", "xfs")]
         [String]
         ${Filesystem},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Device}
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${AddStorage}
     )
 
     Process {
@@ -65,7 +65,7 @@ function Initialize-PVEPOSTNodesDisksDirectoryRB {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "AddStorage"="add_storage"; "Node"="node"; "Filesystem"="filesystem"; "Device"="device"
+			"Name"="name"; "Device"="device"; "Filesystem"="filesystem"; "Node"="node"; "AddStorage"="add_storage"
         }
 		
 		 $OBJ = @{}
@@ -111,7 +111,7 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksDirectoryRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesDisksDirectoryRB
-        $AllProperties = ("name", "add_storage", "node", "filesystem", "device")
+        $AllProperties = ("name", "device", "filesystem", "node", "add_storage")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -124,16 +124,10 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksDirectoryRB {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "add_storage"))) { #optional property not found
-            $AddStorage = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "device"))) { #optional property not found
+            $Device = $null
         } else {
-            $AddStorage = $JsonParameters.PSobject.Properties["add_storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Device = $JsonParameters.PSobject.Properties["device"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "filesystem"))) { #optional property not found
@@ -142,18 +136,24 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksDirectoryRB {
             $Filesystem = $JsonParameters.PSobject.Properties["filesystem"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "device"))) { #optional property not found
-            $Device = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
         } else {
-            $Device = $JsonParameters.PSobject.Properties["device"].value
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "add_storage"))) { #optional property not found
+            $AddStorage = $null
+        } else {
+            $AddStorage = $JsonParameters.PSobject.Properties["add_storage"].value
         }
 
         $PSO = [PSCustomObject]@{
             "name" = ${Name}
-            "add_storage" = ${AddStorage}
-            "node" = ${Node}
-            "filesystem" = ${Filesystem}
             "device" = ${Device}
+            "filesystem" = ${Filesystem}
+            "node" = ${Node}
+            "add_storage" = ${AddStorage}
         }
 
         return $PSO

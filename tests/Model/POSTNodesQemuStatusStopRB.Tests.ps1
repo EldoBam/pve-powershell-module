@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesQemuStatusStopRB' {
     Context 'PVEPOSTNodesQemuStatusStopRB' {
         It 'Initialize-PVEPOSTNodesQemuStatusStopRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesQemuStatusStopRB -Timeout "TEST_VALUE" -Vmid "TEST_VALUE" -Migratedfrom "TEST_VALUE" -Skiplock "TEST_VALUE" -Node "TEST_VALUE" -OverruleShutdown "TEST_VALUE" -KeepActive "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesQemuStatusStopRB -Node "TEST_VALUE" -Skiplock "TEST_VALUE" -Vmid "TEST_VALUE" -KeepActive "TEST_VALUE" -OverruleShutdown "TEST_VALUE" -Timeout "TEST_VALUE" -Migratedfrom "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesQemuStatusStopRB
             #$NewObject.property | Should -Be 0
         }

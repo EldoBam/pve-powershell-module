@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Server
-No description available.
 .PARAMETER Type
 No description available.
 .PARAMETER Id
 No description available.
-.PARAMETER Port
-No description available.
 .PARAMETER Disable
+No description available.
+.PARAMETER Server
+No description available.
+.PARAMETER Port
 No description available.
 .OUTPUTS
 
@@ -35,19 +35,19 @@ function Initialize-PVEClusterMetricsServerInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Server},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Id},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Port},
+        ${Disable},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Server},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Disable}
+        ${Port}
     )
 
     Process {
@@ -64,7 +64,7 @@ function Initialize-PVEClusterMetricsServerInner {
 
 
 		 $DisplayNameMapping =@{
-			"Server"="server"; "Type"="type"; "Id"="id"; "Port"="port"; "Disable"="disable"
+			"Type"="type"; "Id"="id"; "Disable"="disable"; "Server"="server"; "Port"="port"
         }
 		
 		 $OBJ = @{}
@@ -110,17 +110,11 @@ function ConvertFrom-PVEJsonToClusterMetricsServerInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterMetricsServerInner
-        $AllProperties = ("server", "type", "id", "port", "disable")
+        $AllProperties = ("type", "id", "disable", "server", "port")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
-            $Server = $null
-        } else {
-            $Server = $JsonParameters.PSobject.Properties["server"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
@@ -135,24 +129,30 @@ function ConvertFrom-PVEJsonToClusterMetricsServerInner {
             $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
-            $Port = $null
-        } else {
-            $Port = $JsonParameters.PSobject.Properties["port"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
             $Disable = $null
         } else {
             $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
+            $Server = $null
+        } else {
+            $Server = $JsonParameters.PSobject.Properties["server"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
+            $Port = $null
+        } else {
+            $Port = $JsonParameters.PSobject.Properties["port"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "server" = ${Server}
             "type" = ${Type}
             "id" = ${Id}
-            "port" = ${Port}
             "disable" = ${Disable}
+            "server" = ${Server}
+            "port" = ${Port}
         }
 
         return $PSO

@@ -4,38 +4,38 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PolicyIn** | **String** |  | [optional] 
-**Radv** | **Int32** |  | [optional] 
-**Ipfilter** | **Int32** |  | [optional] 
-**LogLevelIn** | **String** |  | [optional] 
-**Macfilter** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**LogLevelOut** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**PolicyOut** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Radv** | **Int32** |  | [optional] 
 **Ndp** | **Int32** |  | [optional] 
+**PolicyOut** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
 **Dhcp** | **Int32** |  | [optional] 
+**LogLevelIn** | **String** |  | [optional] 
+**LogLevelOut** | **String** |  | [optional] 
+**Macfilter** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Ipfilter** | **Int32** |  | [optional] 
+**Delete** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $PUTNodesLxcFirewallOptionsRB = Initialize-PVEPUTNodesLxcFirewallOptionsRB  -PolicyIn null `
- -Radv null `
- -Ipfilter null `
- -LogLevelIn null `
- -Macfilter null `
- -Vmid null `
- -LogLevelOut null `
- -Delete null `
- -PolicyOut null `
- -Node null `
- -Enable null `
  -Digest null `
+ -Radv null `
  -Ndp null `
- -Dhcp null
+ -PolicyOut null `
+ -Enable null `
+ -Dhcp null `
+ -LogLevelIn null `
+ -LogLevelOut null `
+ -Macfilter null `
+ -Node null `
+ -Vmid null `
+ -Ipfilter null `
+ -Delete null
 ```
 
 - Convert the resource to JSON

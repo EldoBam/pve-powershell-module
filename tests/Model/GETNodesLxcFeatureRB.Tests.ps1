@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesLxcFeatureRB' {
     Context 'PVEGETNodesLxcFeatureRB' {
         It 'Initialize-PVEGETNodesLxcFeatureRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesLxcFeatureRB -Node "TEST_VALUE" -Feature "TEST_VALUE" -Snapname "TEST_VALUE" -Vmid "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesLxcFeatureRB -Snapname "TEST_VALUE" -Feature "TEST_VALUE" -Node "TEST_VALUE" -Vmid "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesLxcFeatureRB
             #$NewObject.property | Should -Be 0
         }

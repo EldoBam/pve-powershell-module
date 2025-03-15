@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Format** | **String** |  | [optional] 
+**Path** | **String** |  | [optional] 
+**Protected** | **Int32** |  | [optional] 
 **Size** | **Int32** |  | [optional] 
 **Used** | **Int32** |  | [optional] 
-**Protected** | **Int32** |  | [optional] 
-**Path** | **String** |  | [optional] 
 **Notes** | **String** |  | [optional] 
-**Format** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStorageContent = Initialize-PVENodesStorageContent  -Size null `
- -Used null `
- -Protected null `
+$NodesStorageContent = Initialize-PVENodesStorageContent  -Format null `
  -Path null `
- -Notes null `
- -Format null
+ -Protected null `
+ -Size null `
+ -Used null `
+ -Notes null
 ```
 
 - Convert the resource to JSON

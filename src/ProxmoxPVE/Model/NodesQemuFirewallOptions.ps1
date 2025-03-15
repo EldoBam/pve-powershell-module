@@ -15,25 +15,25 @@ No summary available.
 
 No description available.
 
-.PARAMETER LogLevelIn
-No description available.
-.PARAMETER Ipfilter
-No description available.
-.PARAMETER Dhcp
-No description available.
-.PARAMETER Radv
-No description available.
 .PARAMETER PolicyIn
-No description available.
-.PARAMETER Ndp
-No description available.
-.PARAMETER Macfilter
-No description available.
-.PARAMETER LogLevelOut
 No description available.
 .PARAMETER Enable
 No description available.
+.PARAMETER Dhcp
+No description available.
 .PARAMETER PolicyOut
+No description available.
+.PARAMETER LogLevelOut
+No description available.
+.PARAMETER Ipfilter
+No description available.
+.PARAMETER Macfilter
+No description available.
+.PARAMETER LogLevelIn
+No description available.
+.PARAMETER Ndp
+No description available.
+.PARAMETER Radv
 No description available.
 .OUTPUTS
 
@@ -44,51 +44,51 @@ function Initialize-PVENodesQemuFirewallOptions {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
-        [String]
-        ${LogLevelIn},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Ipfilter},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Dhcp},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Radv},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ACCEPT", "REJECT", "DROP")]
         [String]
         ${PolicyIn},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Ndp},
+        ${Enable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Macfilter},
+        ${Dhcp},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("ACCEPT", "REJECT", "DROP")]
+        [String]
+        ${PolicyOut},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
         [String]
         ${LogLevelOut},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Enable},
+        ${Ipfilter},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("ACCEPT", "REJECT", "DROP")]
+        [System.Nullable[Int32]]
+        ${Macfilter},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
         [String]
-        ${PolicyOut}
+        ${LogLevelIn},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Ndp},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Radv}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesQemuFirewallOptions' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Ipfilter -and $Ipfilter -gt 1) {
-          throw "invalid value for 'Ipfilter', must be smaller than or equal to 1."
+        if ($Enable -and $Enable -gt 1) {
+          throw "invalid value for 'Enable', must be smaller than or equal to 1."
         }
 
-        if ($Ipfilter -and $Ipfilter -lt 0) {
-          throw "invalid value for 'Ipfilter', must be greater than or equal to 0."
+        if ($Enable -and $Enable -lt 0) {
+          throw "invalid value for 'Enable', must be greater than or equal to 0."
         }
 
         if ($Dhcp -and $Dhcp -gt 1) {
@@ -99,20 +99,12 @@ function Initialize-PVENodesQemuFirewallOptions {
           throw "invalid value for 'Dhcp', must be greater than or equal to 0."
         }
 
-        if ($Radv -and $Radv -gt 1) {
-          throw "invalid value for 'Radv', must be smaller than or equal to 1."
+        if ($Ipfilter -and $Ipfilter -gt 1) {
+          throw "invalid value for 'Ipfilter', must be smaller than or equal to 1."
         }
 
-        if ($Radv -and $Radv -lt 0) {
-          throw "invalid value for 'Radv', must be greater than or equal to 0."
-        }
-
-        if ($Ndp -and $Ndp -gt 1) {
-          throw "invalid value for 'Ndp', must be smaller than or equal to 1."
-        }
-
-        if ($Ndp -and $Ndp -lt 0) {
-          throw "invalid value for 'Ndp', must be greater than or equal to 0."
+        if ($Ipfilter -and $Ipfilter -lt 0) {
+          throw "invalid value for 'Ipfilter', must be greater than or equal to 0."
         }
 
         if ($Macfilter -and $Macfilter -gt 1) {
@@ -123,17 +115,25 @@ function Initialize-PVENodesQemuFirewallOptions {
           throw "invalid value for 'Macfilter', must be greater than or equal to 0."
         }
 
-        if ($Enable -and $Enable -gt 1) {
-          throw "invalid value for 'Enable', must be smaller than or equal to 1."
+        if ($Ndp -and $Ndp -gt 1) {
+          throw "invalid value for 'Ndp', must be smaller than or equal to 1."
         }
 
-        if ($Enable -and $Enable -lt 0) {
-          throw "invalid value for 'Enable', must be greater than or equal to 0."
+        if ($Ndp -and $Ndp -lt 0) {
+          throw "invalid value for 'Ndp', must be greater than or equal to 0."
+        }
+
+        if ($Radv -and $Radv -gt 1) {
+          throw "invalid value for 'Radv', must be smaller than or equal to 1."
+        }
+
+        if ($Radv -and $Radv -lt 0) {
+          throw "invalid value for 'Radv', must be greater than or equal to 0."
         }
 
 
 		 $DisplayNameMapping =@{
-			"LogLevelIn"="log_level_in"; "Ipfilter"="ipfilter"; "Dhcp"="dhcp"; "Radv"="radv"; "PolicyIn"="policy_in"; "Ndp"="ndp"; "Macfilter"="macfilter"; "LogLevelOut"="log_level_out"; "Enable"="enable"; "PolicyOut"="policy_out"
+			"PolicyIn"="policy_in"; "Enable"="enable"; "Dhcp"="dhcp"; "PolicyOut"="policy_out"; "LogLevelOut"="log_level_out"; "Ipfilter"="ipfilter"; "Macfilter"="macfilter"; "LogLevelIn"="log_level_in"; "Ndp"="ndp"; "Radv"="radv"
         }
 		
 		 $OBJ = @{}
@@ -179,35 +179,11 @@ function ConvertFrom-PVEJsonToNodesQemuFirewallOptions {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesQemuFirewallOptions
-        $AllProperties = ("log_level_in", "ipfilter", "dhcp", "radv", "policy_in", "ndp", "macfilter", "log_level_out", "enable", "policy_out")
+        $AllProperties = ("policy_in", "enable", "dhcp", "policy_out", "log_level_out", "ipfilter", "macfilter", "log_level_in", "ndp", "radv")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_in"))) { #optional property not found
-            $LogLevelIn = $null
-        } else {
-            $LogLevelIn = $JsonParameters.PSobject.Properties["log_level_in"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipfilter"))) { #optional property not found
-            $Ipfilter = $null
-        } else {
-            $Ipfilter = $JsonParameters.PSobject.Properties["ipfilter"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dhcp"))) { #optional property not found
-            $Dhcp = $null
-        } else {
-            $Dhcp = $JsonParameters.PSobject.Properties["dhcp"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "radv"))) { #optional property not found
-            $Radv = $null
-        } else {
-            $Radv = $JsonParameters.PSobject.Properties["radv"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_in"))) { #optional property not found
@@ -216,28 +192,16 @@ function ConvertFrom-PVEJsonToNodesQemuFirewallOptions {
             $PolicyIn = $JsonParameters.PSobject.Properties["policy_in"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ndp"))) { #optional property not found
-            $Ndp = $null
-        } else {
-            $Ndp = $JsonParameters.PSobject.Properties["ndp"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "macfilter"))) { #optional property not found
-            $Macfilter = $null
-        } else {
-            $Macfilter = $JsonParameters.PSobject.Properties["macfilter"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_out"))) { #optional property not found
-            $LogLevelOut = $null
-        } else {
-            $LogLevelOut = $JsonParameters.PSobject.Properties["log_level_out"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
             $Enable = $null
         } else {
             $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dhcp"))) { #optional property not found
+            $Dhcp = $null
+        } else {
+            $Dhcp = $JsonParameters.PSobject.Properties["dhcp"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_out"))) { #optional property not found
@@ -246,17 +210,53 @@ function ConvertFrom-PVEJsonToNodesQemuFirewallOptions {
             $PolicyOut = $JsonParameters.PSobject.Properties["policy_out"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_out"))) { #optional property not found
+            $LogLevelOut = $null
+        } else {
+            $LogLevelOut = $JsonParameters.PSobject.Properties["log_level_out"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipfilter"))) { #optional property not found
+            $Ipfilter = $null
+        } else {
+            $Ipfilter = $JsonParameters.PSobject.Properties["ipfilter"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "macfilter"))) { #optional property not found
+            $Macfilter = $null
+        } else {
+            $Macfilter = $JsonParameters.PSobject.Properties["macfilter"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_in"))) { #optional property not found
+            $LogLevelIn = $null
+        } else {
+            $LogLevelIn = $JsonParameters.PSobject.Properties["log_level_in"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ndp"))) { #optional property not found
+            $Ndp = $null
+        } else {
+            $Ndp = $JsonParameters.PSobject.Properties["ndp"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "radv"))) { #optional property not found
+            $Radv = $null
+        } else {
+            $Radv = $JsonParameters.PSobject.Properties["radv"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "log_level_in" = ${LogLevelIn}
-            "ipfilter" = ${Ipfilter}
-            "dhcp" = ${Dhcp}
-            "radv" = ${Radv}
             "policy_in" = ${PolicyIn}
-            "ndp" = ${Ndp}
-            "macfilter" = ${Macfilter}
-            "log_level_out" = ${LogLevelOut}
             "enable" = ${Enable}
+            "dhcp" = ${Dhcp}
             "policy_out" = ${PolicyOut}
+            "log_level_out" = ${LogLevelOut}
+            "ipfilter" = ${Ipfilter}
+            "macfilter" = ${Macfilter}
+            "log_level_in" = ${LogLevelIn}
+            "ndp" = ${Ndp}
+            "radv" = ${Radv}
         }
 
         return $PSO

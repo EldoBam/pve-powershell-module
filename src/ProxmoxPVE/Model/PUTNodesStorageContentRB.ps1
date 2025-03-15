@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
+.PARAMETER Protected
+No description available.
 .PARAMETER Node
+No description available.
+.PARAMETER Storage
 No description available.
 .PARAMETER Volume
 No description available.
-.PARAMETER Protected
-No description available.
 .PARAMETER Notes
-No description available.
-.PARAMETER Storage
 No description available.
 .OUTPUTS
 
@@ -34,20 +34,20 @@ function Initialize-PVEPUTNodesStorageContentRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Volume},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Protected},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Notes},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Storage}
+        ${Storage},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Volume},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Notes}
     )
 
     Process {
@@ -64,7 +64,7 @@ function Initialize-PVEPUTNodesStorageContentRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Volume"="volume"; "Protected"="protected"; "Notes"="notes"; "Storage"="storage"
+			"Protected"="protected"; "Node"="node"; "Storage"="storage"; "Volume"="volume"; "Notes"="notes"
         }
 		
 		 $OBJ = @{}
@@ -110,23 +110,11 @@ function ConvertFrom-PVEJsonToPUTNodesStorageContentRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTNodesStorageContentRB
-        $AllProperties = ("node", "volume", "protected", "notes", "storage")
+        $AllProperties = ("protected", "node", "storage", "volume", "notes")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volume"))) { #optional property not found
-            $Volume = $null
-        } else {
-            $Volume = $JsonParameters.PSobject.Properties["volume"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "protected"))) { #optional property not found
@@ -135,10 +123,10 @@ function ConvertFrom-PVEJsonToPUTNodesStorageContentRB {
             $Protected = $JsonParameters.PSobject.Properties["protected"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notes"))) { #optional property not found
-            $Notes = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
         } else {
-            $Notes = $JsonParameters.PSobject.Properties["notes"].value
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
@@ -147,12 +135,24 @@ function ConvertFrom-PVEJsonToPUTNodesStorageContentRB {
             $Storage = $JsonParameters.PSobject.Properties["storage"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volume"))) { #optional property not found
+            $Volume = $null
+        } else {
+            $Volume = $JsonParameters.PSobject.Properties["volume"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notes"))) { #optional property not found
+            $Notes = $null
+        } else {
+            $Notes = $JsonParameters.PSobject.Properties["notes"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
-            "volume" = ${Volume}
             "protected" = ${Protected}
-            "notes" = ${Notes}
+            "node" = ${Node}
             "storage" = ${Storage}
+            "volume" = ${Volume}
+            "notes" = ${Notes}
         }
 
         return $PSO

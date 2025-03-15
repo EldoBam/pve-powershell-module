@@ -17,11 +17,11 @@ No description available.
 
 .PARAMETER Node
 No description available.
-.PARAMETER Snapshot
+.PARAMETER Vmid
 No description available.
 .PARAMETER Current
 No description available.
-.PARAMETER Vmid
+.PARAMETER Snapshot
 No description available.
 .OUTPUTS
 
@@ -35,22 +35,26 @@ function Initialize-PVEGETNodesLxcConfigRB {
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Snapshot},
+        [System.Nullable[Int32]]
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Current},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid}
+        [String]
+        ${Snapshot}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETNodesLxcConfigRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if (!$Snapshot -and $Snapshot.length -gt 40) {
-            throw "invalid value for 'Snapshot', the character length must be smaller than or equal to 40."
+        if ($Vmid -and $Vmid -gt 999999999) {
+          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
+        }
+
+        if ($Vmid -and $Vmid -lt 100) {
+          throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
         if ($Current -and $Current -gt 1) {
@@ -61,17 +65,13 @@ function Initialize-PVEGETNodesLxcConfigRB {
           throw "invalid value for 'Current', must be greater than or equal to 0."
         }
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
+        if (!$Snapshot -and $Snapshot.length -gt 40) {
+            throw "invalid value for 'Snapshot', the character length must be smaller than or equal to 40."
         }
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Snapshot"="snapshot"; "Current"="current"; "Vmid"="vmid"
+			"Node"="node"; "Vmid"="vmid"; "Current"="current"; "Snapshot"="snapshot"
         }
 		
 		 $OBJ = @{}
@@ -117,7 +117,7 @@ function ConvertFrom-PVEJsonToGETNodesLxcConfigRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesLxcConfigRB
-        $AllProperties = ("node", "snapshot", "current", "vmid")
+        $AllProperties = ("node", "vmid", "current", "snapshot")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -130,10 +130,10 @@ function ConvertFrom-PVEJsonToGETNodesLxcConfigRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snapshot"))) { #optional property not found
-            $Snapshot = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
         } else {
-            $Snapshot = $JsonParameters.PSobject.Properties["snapshot"].value
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "current"))) { #optional property not found
@@ -142,17 +142,17 @@ function ConvertFrom-PVEJsonToGETNodesLxcConfigRB {
             $Current = $JsonParameters.PSobject.Properties["current"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snapshot"))) { #optional property not found
+            $Snapshot = $null
         } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+            $Snapshot = $JsonParameters.PSobject.Properties["snapshot"].value
         }
 
         $PSO = [PSCustomObject]@{
             "node" = ${Node}
-            "snapshot" = ${Snapshot}
-            "current" = ${Current}
             "vmid" = ${Vmid}
+            "current" = ${Current}
+            "snapshot" = ${Snapshot}
         }
 
         return $PSO

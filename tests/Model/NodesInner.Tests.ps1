@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesInner' {
     Context 'PVENodesInner' {
         It 'Initialize-PVENodesInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesInner -Mem "TEST_VALUE" -SslFingerprint "TEST_VALUE" -Maxcpu "TEST_VALUE" -Status "TEST_VALUE" -Node "TEST_VALUE" -Cpu "TEST_VALUE" -Level "TEST_VALUE" -Maxmem "TEST_VALUE" -Uptime "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesInner -Uptime "TEST_VALUE" -Maxcpu "TEST_VALUE" -Node "TEST_VALUE" -SslFingerprint "TEST_VALUE" -Maxmem "TEST_VALUE" -Cpu "TEST_VALUE" -Status "TEST_VALUE" -Mem "TEST_VALUE" -Level "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesInner
             #$NewObject.property | Should -Be 0
         }

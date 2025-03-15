@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Disk** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Uuid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesDisksInitgptRB = Initialize-PVEPOSTNodesDisksInitgptRB  -Node null `
- -Disk null `
+$POSTNodesDisksInitgptRB = Initialize-PVEPOSTNodesDisksInitgptRB  -Disk null `
+ -Node null `
  -Uuid null
 ```
 

@@ -1,20 +1,26 @@
-# NodesScanInner
+# ClusterFirewallIpsetGETInner
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Method** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Nomatch** | **Int32** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesScanInner = Initialize-PVENodesScanInner  -Method null
+$ClusterFirewallIpsetGETInner = Initialize-PVEClusterFirewallIpsetGETInner  -Digest null `
+ -Nomatch null `
+ -Cidr null `
+ -Comment null
 ```
 
 - Convert the resource to JSON
 ```powershell
-$NodesScanInner | ConvertTo-JSON
+$ClusterFirewallIpsetGETInner | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

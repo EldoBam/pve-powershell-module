@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CaaIdentities** | **String[]** |  | [optional] 
 **TermsOfService** | **String** |  | [optional] 
-**Website** | **String** |  | [optional] 
 **ExternalAccountRequired** | **Int32** |  | [optional] 
+**Website** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $ClusterAcmeMeta = Initialize-PVEClusterAcmeMeta  -CaaIdentities null `
  -TermsOfService null `
- -Website null `
- -ExternalAccountRequired null
+ -ExternalAccountRequired null `
+ -Website null
 ```
 
 - Convert the resource to JSON

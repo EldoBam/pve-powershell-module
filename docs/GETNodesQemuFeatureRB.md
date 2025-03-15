@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
-**Feature** | **String** |  | [optional] 
 **Snapname** | **String** |  | [optional] 
+**Feature** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuFeatureRB = Initialize-PVEGETNodesQemuFeatureRB  -Node null `
+$GETNodesQemuFeatureRB = Initialize-PVEGETNodesQemuFeatureRB  -Snapname null `
  -Feature null `
- -Snapname null `
+ -Node null `
  -Vmid null
 ```
 

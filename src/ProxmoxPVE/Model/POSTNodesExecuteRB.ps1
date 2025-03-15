@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Commands
-No description available.
 .PARAMETER Node
+No description available.
+.PARAMETER Commands
 No description available.
 .OUTPUTS
 
@@ -29,10 +29,10 @@ function Initialize-PVEPOSTNodesExecuteRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Commands},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${Commands}
     )
 
     Process {
@@ -41,7 +41,7 @@ function Initialize-PVEPOSTNodesExecuteRB {
 
 
 		 $DisplayNameMapping =@{
-			"Commands"="commands"; "Node"="node"
+			"Node"="node"; "Commands"="commands"
         }
 		
 		 $OBJ = @{}
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToPOSTNodesExecuteRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesExecuteRB
-        $AllProperties = ("commands", "node")
+        $AllProperties = ("node", "commands")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "commands"))) { #optional property not found
-            $Commands = $null
-        } else {
-            $Commands = $JsonParameters.PSobject.Properties["commands"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToPOSTNodesExecuteRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "commands"))) { #optional property not found
+            $Commands = $null
+        } else {
+            $Commands = $JsonParameters.PSobject.Properties["commands"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "commands" = ${Commands}
             "node" = ${Node}
+            "commands" = ${Commands}
         }
 
         return $PSO

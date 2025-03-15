@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Value
+No description available.
 .PARAMETER Name
 No description available.
 .PARAMETER Description
-No description available.
-.PARAMETER Value
 No description available.
 .OUTPUTS
 
@@ -30,15 +30,15 @@ function Initialize-PVEClusterCephFlagsInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Value},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("nobackfill", "nodeep-scrub", "nodown", "noin", "noout", "norebalance", "norecover", "noscrub", "notieragent", "noup", "pause")]
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Value}
+        ${Description}
     )
 
     Process {
@@ -55,7 +55,7 @@ function Initialize-PVEClusterCephFlagsInner {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Description"="description"; "Value"="value"
+			"Value"="value"; "Name"="name"; "Description"="description"
         }
 		
 		 $OBJ = @{}
@@ -101,11 +101,17 @@ function ConvertFrom-PVEJsonToClusterCephFlagsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterCephFlagsInner
-        $AllProperties = ("name", "description", "value")
+        $AllProperties = ("value", "name", "description")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
+            $Value = $null
+        } else {
+            $Value = $JsonParameters.PSobject.Properties["value"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -120,16 +126,10 @@ function ConvertFrom-PVEJsonToClusterCephFlagsInner {
             $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
-            $Value = $null
-        } else {
-            $Value = $JsonParameters.PSobject.Properties["value"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "value" = ${Value}
             "name" = ${Name}
             "description" = ${Description}
-            "value" = ${Value}
         }
 
         return $PSO

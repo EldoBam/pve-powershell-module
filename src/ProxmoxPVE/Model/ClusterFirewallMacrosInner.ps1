@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Macro
-No description available.
 .PARAMETER Descr
+No description available.
+.PARAMETER Macro
 No description available.
 .OUTPUTS
 
@@ -29,10 +29,10 @@ function Initialize-PVEClusterFirewallMacrosInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Macro},
+        ${Descr},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Descr}
+        ${Macro}
     )
 
     Process {
@@ -41,7 +41,7 @@ function Initialize-PVEClusterFirewallMacrosInner {
 
 
 		 $DisplayNameMapping =@{
-			"Macro"="macro"; "Descr"="descr"
+			"Descr"="descr"; "Macro"="macro"
         }
 		
 		 $OBJ = @{}
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToClusterFirewallMacrosInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterFirewallMacrosInner
-        $AllProperties = ("macro", "descr")
+        $AllProperties = ("descr", "macro")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "macro"))) { #optional property not found
-            $Macro = $null
-        } else {
-            $Macro = $JsonParameters.PSobject.Properties["macro"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "descr"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToClusterFirewallMacrosInner {
             $Descr = $JsonParameters.PSobject.Properties["descr"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "macro"))) { #optional property not found
+            $Macro = $null
+        } else {
+            $Macro = $JsonParameters.PSobject.Properties["macro"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "macro" = ${Macro}
             "descr" = ${Descr}
+            "macro" = ${Macro}
         }
 
         return $PSO

@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
+.PARAMETER Force
+No description available.
+.PARAMETER RemoveStorages
+No description available.
 .PARAMETER Name
 No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER Force
-No description available.
 .PARAMETER RemoveEcprofile
-No description available.
-.PARAMETER RemoveStorages
 No description available.
 .OUTPUTS
 
@@ -34,6 +34,12 @@ function Initialize-PVEDELETENodesCephPoolRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Force},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${RemoveStorages},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
@@ -41,13 +47,7 @@ function Initialize-PVEDELETENodesCephPoolRB {
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Force},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${RemoveEcprofile},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${RemoveStorages}
+        ${RemoveEcprofile}
     )
 
     Process {
@@ -62,14 +62,6 @@ function Initialize-PVEDELETENodesCephPoolRB {
           throw "invalid value for 'Force', must be greater than or equal to 0."
         }
 
-        if ($RemoveEcprofile -and $RemoveEcprofile -gt 1) {
-          throw "invalid value for 'RemoveEcprofile', must be smaller than or equal to 1."
-        }
-
-        if ($RemoveEcprofile -and $RemoveEcprofile -lt 0) {
-          throw "invalid value for 'RemoveEcprofile', must be greater than or equal to 0."
-        }
-
         if ($RemoveStorages -and $RemoveStorages -gt 1) {
           throw "invalid value for 'RemoveStorages', must be smaller than or equal to 1."
         }
@@ -78,9 +70,17 @@ function Initialize-PVEDELETENodesCephPoolRB {
           throw "invalid value for 'RemoveStorages', must be greater than or equal to 0."
         }
 
+        if ($RemoveEcprofile -and $RemoveEcprofile -gt 1) {
+          throw "invalid value for 'RemoveEcprofile', must be smaller than or equal to 1."
+        }
+
+        if ($RemoveEcprofile -and $RemoveEcprofile -lt 0) {
+          throw "invalid value for 'RemoveEcprofile', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Node"="node"; "Force"="force"; "RemoveEcprofile"="remove_ecprofile"; "RemoveStorages"="remove_storages"
+			"Force"="force"; "RemoveStorages"="remove_storages"; "Name"="name"; "Node"="node"; "RemoveEcprofile"="remove_ecprofile"
         }
 		
 		 $OBJ = @{}
@@ -126,11 +126,23 @@ function ConvertFrom-PVEJsonToDELETENodesCephPoolRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesCephPoolRB
-        $AllProperties = ("name", "node", "force", "remove_ecprofile", "remove_storages")
+        $AllProperties = ("force", "remove_storages", "name", "node", "remove_ecprofile")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
+            $Force = $null
+        } else {
+            $Force = $JsonParameters.PSobject.Properties["force"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove_storages"))) { #optional property not found
+            $RemoveStorages = $null
+        } else {
+            $RemoveStorages = $JsonParameters.PSobject.Properties["remove_storages"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -145,30 +157,18 @@ function ConvertFrom-PVEJsonToDELETENodesCephPoolRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
-            $Force = $null
-        } else {
-            $Force = $JsonParameters.PSobject.Properties["force"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove_ecprofile"))) { #optional property not found
             $RemoveEcprofile = $null
         } else {
             $RemoveEcprofile = $JsonParameters.PSobject.Properties["remove_ecprofile"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove_storages"))) { #optional property not found
-            $RemoveStorages = $null
-        } else {
-            $RemoveStorages = $JsonParameters.PSobject.Properties["remove_storages"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "force" = ${Force}
+            "remove_storages" = ${RemoveStorages}
             "name" = ${Name}
             "node" = ${Node}
-            "force" = ${Force}
             "remove_ecprofile" = ${RemoveEcprofile}
-            "remove_storages" = ${RemoveStorages}
         }
 
         return $PSO

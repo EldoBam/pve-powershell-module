@@ -15,25 +15,25 @@ No summary available.
 
 No description available.
 
+.PARAMETER Comment
+No description available.
 .PARAMETER Name
+No description available.
+.PARAMETER MatchField
 No description available.
 .PARAMETER MatchCalendar
 No description available.
 .PARAMETER MatchSeverity
 No description available.
-.PARAMETER Disable
+.PARAMETER Mode
 No description available.
-.PARAMETER Comment
+.PARAMETER InvertMatch
 No description available.
 .PARAMETER Digest
 No description available.
 .PARAMETER Target
 No description available.
-.PARAMETER MatchField
-No description available.
-.PARAMETER InvertMatch
-No description available.
-.PARAMETER Mode
+.PARAMETER Disable
 No description available.
 .OUTPUTS
 
@@ -45,7 +45,13 @@ function Initialize-PVEClusterNotificationsMatchers {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${MatchField},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${MatchCalendar},
@@ -53,11 +59,12 @@ function Initialize-PVEClusterNotificationsMatchers {
         [String[]]
         ${MatchSeverity},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("all", "any")]
         [String]
-        ${Comment},
+        ${Mode},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${InvertMatch},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest},
@@ -65,32 +72,13 @@ function Initialize-PVEClusterNotificationsMatchers {
         [String[]]
         ${Target},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${MatchField},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${InvertMatch},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("all", "any")]
-        [String]
-        ${Mode}
+        ${Disable}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEClusterNotificationsMatchers' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Disable -and $Disable -gt 1) {
-          throw "invalid value for 'Disable', must be smaller than or equal to 1."
-        }
-
-        if ($Disable -and $Disable -lt 0) {
-          throw "invalid value for 'Disable', must be greater than or equal to 0."
-        }
-
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
-        }
 
         if ($InvertMatch -and $InvertMatch -gt 1) {
           throw "invalid value for 'InvertMatch', must be smaller than or equal to 1."
@@ -100,9 +88,21 @@ function Initialize-PVEClusterNotificationsMatchers {
           throw "invalid value for 'InvertMatch', must be greater than or equal to 0."
         }
 
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        }
+
+        if ($Disable -and $Disable -gt 1) {
+          throw "invalid value for 'Disable', must be smaller than or equal to 1."
+        }
+
+        if ($Disable -and $Disable -lt 0) {
+          throw "invalid value for 'Disable', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "MatchCalendar"="match-calendar"; "MatchSeverity"="match-severity"; "Disable"="disable"; "Comment"="comment"; "Digest"="digest"; "Target"="target"; "MatchField"="match-field"; "InvertMatch"="invert-match"; "Mode"="mode"
+			"Comment"="comment"; "Name"="name"; "MatchField"="match-field"; "MatchCalendar"="match-calendar"; "MatchSeverity"="match-severity"; "Mode"="mode"; "InvertMatch"="invert-match"; "Digest"="digest"; "Target"="target"; "Disable"="disable"
         }
 		
 		 $OBJ = @{}
@@ -148,17 +148,29 @@ function ConvertFrom-PVEJsonToClusterNotificationsMatchers {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterNotificationsMatchers
-        $AllProperties = ("name", "match-calendar", "match-severity", "disable", "comment", "digest", "target", "match-field", "invert-match", "mode")
+        $AllProperties = ("comment", "name", "match-field", "match-calendar", "match-severity", "mode", "invert-match", "digest", "target", "disable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
             $Name = $null
         } else {
             $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "match-field"))) { #optional property not found
+            $MatchField = $null
+        } else {
+            $MatchField = $JsonParameters.PSobject.Properties["match-field"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "match-calendar"))) { #optional property not found
@@ -173,16 +185,16 @@ function ConvertFrom-PVEJsonToClusterNotificationsMatchers {
             $MatchSeverity = $JsonParameters.PSobject.Properties["match-severity"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mode"))) { #optional property not found
+            $Mode = $null
         } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
+            $Mode = $JsonParameters.PSobject.Properties["mode"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "invert-match"))) { #optional property not found
+            $InvertMatch = $null
         } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+            $InvertMatch = $JsonParameters.PSobject.Properties["invert-match"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -197,35 +209,23 @@ function ConvertFrom-PVEJsonToClusterNotificationsMatchers {
             $Target = $JsonParameters.PSobject.Properties["target"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "match-field"))) { #optional property not found
-            $MatchField = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
         } else {
-            $MatchField = $JsonParameters.PSobject.Properties["match-field"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "invert-match"))) { #optional property not found
-            $InvertMatch = $null
-        } else {
-            $InvertMatch = $JsonParameters.PSobject.Properties["invert-match"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mode"))) { #optional property not found
-            $Mode = $null
-        } else {
-            $Mode = $JsonParameters.PSobject.Properties["mode"].value
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
         $PSO = [PSCustomObject]@{
+            "comment" = ${Comment}
             "name" = ${Name}
+            "match-field" = ${MatchField}
             "match-calendar" = ${MatchCalendar}
             "match-severity" = ${MatchSeverity}
-            "disable" = ${Disable}
-            "comment" = ${Comment}
+            "mode" = ${Mode}
+            "invert-match" = ${InvertMatch}
             "digest" = ${Digest}
             "target" = ${Target}
-            "match-field" = ${MatchField}
-            "invert-match" = ${InvertMatch}
-            "mode" = ${Mode}
+            "disable" = ${Disable}
         }
 
         return $PSO

@@ -33,7 +33,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Get-PVEAccessDomainsByRealm' {
         It 'Test Get-PVEAccessDomainsByRealm' {
-            #$TestResult = Get-PVEAccessDomainsByRealm
+            #$TestResult = Get-PVEAccessDomainsByRealm -Realm "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -49,7 +49,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Get-PVEAccessGroupsByGroupid' {
         It 'Test Get-PVEAccessGroupsByGroupid' {
-            #$TestResult = Get-PVEAccessGroupsByGroupid
+            #$TestResult = Get-PVEAccessGroupsByGroupid -Groupid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -81,7 +81,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Get-PVEAccessRolesByRoleid' {
         It 'Test Get-PVEAccessRolesByRoleid' {
-            #$TestResult = Get-PVEAccessRolesByRoleid
+            #$TestResult = Get-PVEAccessRolesByRoleid -Roleid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -97,7 +97,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Get-PVEAccessTfaByUserid' {
         It 'Test Get-PVEAccessTfaByUserid' {
-            #$TestResult = Get-PVEAccessTfaByUserid
+            #$TestResult = Get-PVEAccessTfaByUserid -Userid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -105,7 +105,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Get-PVEAccessTfaByUseridAndId' {
         It 'Test Get-PVEAccessTfaByUseridAndId' {
-            #$TestResult = Get-PVEAccessTfaByUseridAndId
+            #$TestResult = Get-PVEAccessTfaByUseridAndId -Id "TEST_VALUE" -Userid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -129,7 +129,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Get-PVEAccessUsersByUserid' {
         It 'Test Get-PVEAccessUsersByUserid' {
-            #$TestResult = Get-PVEAccessUsersByUserid
+            #$TestResult = Get-PVEAccessUsersByUserid -Userid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -137,7 +137,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Get-PVEAccessUsersTfaByUserid' {
         It 'Test Get-PVEAccessUsersTfaByUserid' {
-            #$TestResult = Get-PVEAccessUsersTfaByUserid -GETAccessUsersTfaRB "TEST_VALUE"
+            #$TestResult = Get-PVEAccessUsersTfaByUserid -Userid "TEST_VALUE" -GETAccessUsersTfaRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -145,7 +145,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Get-PVEAccessUsersTokenByUserid' {
         It 'Test Get-PVEAccessUsersTokenByUserid' {
-            #$TestResult = Get-PVEAccessUsersTokenByUserid
+            #$TestResult = Get-PVEAccessUsersTokenByUserid -Userid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -153,7 +153,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Get-PVEAccessUsersTokenByUseridAndTokenid' {
         It 'Test Get-PVEAccessUsersTokenByUseridAndTokenid' {
-            #$TestResult = Get-PVEAccessUsersTokenByUseridAndTokenid
+            #$TestResult = Get-PVEAccessUsersTokenByUseridAndTokenid -Tokenid "TEST_VALUE" -Userid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -169,7 +169,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'New-PVEAccessDomainsSyncByRealm' {
         It 'Test New-PVEAccessDomainsSyncByRealm' {
-            #$TestResult = New-PVEAccessDomainsSyncByRealm -POSTAccessDomainsSyncRB "TEST_VALUE"
+            #$TestResult = New-PVEAccessDomainsSyncByRealm -Realm "TEST_VALUE" -POSTAccessDomainsSyncRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -209,7 +209,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'New-PVEAccessTfaByUserid' {
         It 'Test New-PVEAccessTfaByUserid' {
-            #$TestResult = New-PVEAccessTfaByUserid -POSTAccessTfaRB "TEST_VALUE"
+            #$TestResult = New-PVEAccessTfaByUserid -Userid "TEST_VALUE" -POSTAccessTfaRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -233,7 +233,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'New-PVEAccessUsersTokenByUseridAndTokenid' {
         It 'Test New-PVEAccessUsersTokenByUseridAndTokenid' {
-            #$TestResult = New-PVEAccessUsersTokenByUseridAndTokenid -POSTAccessUsersTokenRB "TEST_VALUE"
+            #$TestResult = New-PVEAccessUsersTokenByUseridAndTokenid -Tokenid "TEST_VALUE" -Userid "TEST_VALUE" -POSTAccessUsersTokenRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -241,7 +241,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Remove-PVEAccessDomainsByRealm' {
         It 'Test Remove-PVEAccessDomainsByRealm' {
-            #$TestResult = Remove-PVEAccessDomainsByRealm
+            #$TestResult = Remove-PVEAccessDomainsByRealm -Realm "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -249,7 +249,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Remove-PVEAccessGroupsByGroupid' {
         It 'Test Remove-PVEAccessGroupsByGroupid' {
-            #$TestResult = Remove-PVEAccessGroupsByGroupid
+            #$TestResult = Remove-PVEAccessGroupsByGroupid -Groupid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -257,7 +257,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Remove-PVEAccessRolesByRoleid' {
         It 'Test Remove-PVEAccessRolesByRoleid' {
-            #$TestResult = Remove-PVEAccessRolesByRoleid
+            #$TestResult = Remove-PVEAccessRolesByRoleid -Roleid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -265,7 +265,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Remove-PVEAccessTfaByUseridAndId' {
         It 'Test Remove-PVEAccessTfaByUseridAndId' {
-            #$TestResult = Remove-PVEAccessTfaByUseridAndId -DELETEAccessTfaRB "TEST_VALUE"
+            #$TestResult = Remove-PVEAccessTfaByUseridAndId -Id "TEST_VALUE" -Userid "TEST_VALUE" -DELETEAccessTfaRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -273,7 +273,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Remove-PVEAccessUsersByUserid' {
         It 'Test Remove-PVEAccessUsersByUserid' {
-            #$TestResult = Remove-PVEAccessUsersByUserid
+            #$TestResult = Remove-PVEAccessUsersByUserid -Userid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -281,7 +281,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Remove-PVEAccessUsersTokenByUseridAndTokenid' {
         It 'Test Remove-PVEAccessUsersTokenByUseridAndTokenid' {
-            #$TestResult = Remove-PVEAccessUsersTokenByUseridAndTokenid
+            #$TestResult = Remove-PVEAccessUsersTokenByUseridAndTokenid -Tokenid "TEST_VALUE" -Userid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -297,7 +297,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Set-PVEAccessDomainsByRealm' {
         It 'Test Set-PVEAccessDomainsByRealm' {
-            #$TestResult = Set-PVEAccessDomainsByRealm -PUTAccessDomainsRB "TEST_VALUE"
+            #$TestResult = Set-PVEAccessDomainsByRealm -Realm "TEST_VALUE" -PUTAccessDomainsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -305,7 +305,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Set-PVEAccessGroupsByGroupid' {
         It 'Test Set-PVEAccessGroupsByGroupid' {
-            #$TestResult = Set-PVEAccessGroupsByGroupid -PUTAccessGroupsRB "TEST_VALUE"
+            #$TestResult = Set-PVEAccessGroupsByGroupid -Groupid "TEST_VALUE" -PUTAccessGroupsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -321,7 +321,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Set-PVEAccessRolesByRoleid' {
         It 'Test Set-PVEAccessRolesByRoleid' {
-            #$TestResult = Set-PVEAccessRolesByRoleid -PUTAccessRolesRB "TEST_VALUE"
+            #$TestResult = Set-PVEAccessRolesByRoleid -Roleid "TEST_VALUE" -PUTAccessRolesRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -329,7 +329,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Set-PVEAccessTfaByUseridAndId' {
         It 'Test Set-PVEAccessTfaByUseridAndId' {
-            #$TestResult = Set-PVEAccessTfaByUseridAndId -PUTAccessTfaRB "TEST_VALUE"
+            #$TestResult = Set-PVEAccessTfaByUseridAndId -Id "TEST_VALUE" -Userid "TEST_VALUE" -PUTAccessTfaRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -337,7 +337,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Set-PVEAccessUsersByUserid' {
         It 'Test Set-PVEAccessUsersByUserid' {
-            #$TestResult = Set-PVEAccessUsersByUserid -PUTAccessUsersRB "TEST_VALUE"
+            #$TestResult = Set-PVEAccessUsersByUserid -Userid "TEST_VALUE" -PUTAccessUsersRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -345,7 +345,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Set-PVEAccessUsersTokenByUseridAndTokenid' {
         It 'Test Set-PVEAccessUsersTokenByUseridAndTokenid' {
-            #$TestResult = Set-PVEAccessUsersTokenByUseridAndTokenid -PUTAccessUsersTokenRB "TEST_VALUE"
+            #$TestResult = Set-PVEAccessUsersTokenByUseridAndTokenid -Tokenid "TEST_VALUE" -Userid "TEST_VALUE" -PUTAccessUsersTokenRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -353,7 +353,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEAccessApi' {
 
     Context 'Set-PVEAccessUsersUnlocktfaByUserid' {
         It 'Test Set-PVEAccessUsersUnlocktfaByUserid' {
-            #$TestResult = Set-PVEAccessUsersUnlocktfaByUserid
+            #$TestResult = Set-PVEAccessUsersUnlocktfaByUserid -Userid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }

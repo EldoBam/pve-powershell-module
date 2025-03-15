@@ -15,29 +15,29 @@ No summary available.
 
 No description available.
 
-.PARAMETER MailtoUser
-No description available.
-.PARAMETER Mode
-No description available.
-.PARAMETER Username
-No description available.
-.PARAMETER Disable
+.PARAMETER Server
 No description available.
 .PARAMETER Comment
 No description available.
-.PARAMETER Author
-No description available.
 .PARAMETER Password
 No description available.
-.PARAMETER Mailto
-No description available.
-.PARAMETER Server
-No description available.
-.PARAMETER Name
+.PARAMETER MailtoUser
 No description available.
 .PARAMETER Port
 No description available.
+.PARAMETER Name
+No description available.
+.PARAMETER Username
+No description available.
+.PARAMETER Author
+No description available.
+.PARAMETER Mailto
+No description available.
+.PARAMETER Mode
+No description available.
 .PARAMETER FromAddress
+No description available.
+.PARAMETER Disable
 No description available.
 .OUTPUTS
 
@@ -48,42 +48,42 @@ function Initialize-PVEPOSTClusterNotificationsEndpointsSmtpRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Server},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Password},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${MailtoUser},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Port},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Username},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Author},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${Mailto},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("insecure", "starttls", "tls")]
         [String]
         ${Mode},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Username},
+        ${FromAddress},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Disable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Author},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Password},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Mailto},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Server},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Port},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${FromAddress}
+        ${Disable}
     )
 
     Process {
@@ -100,7 +100,7 @@ function Initialize-PVEPOSTClusterNotificationsEndpointsSmtpRB {
 
 
 		 $DisplayNameMapping =@{
-			"MailtoUser"="mailto-user"; "Mode"="mode"; "Username"="username"; "Disable"="disable"; "Comment"="comment"; "Author"="author"; "Password"="password"; "Mailto"="mailto"; "Server"="server"; "Name"="name"; "Port"="port"; "FromAddress"="from-address"
+			"Server"="server"; "Comment"="comment"; "Password"="password"; "MailtoUser"="mailto-user"; "Port"="port"; "Name"="name"; "Username"="username"; "Author"="author"; "Mailto"="mailto"; "Mode"="mode"; "FromAddress"="from-address"; "Disable"="disable"
         }
 		
 		 $OBJ = @{}
@@ -146,59 +146,11 @@ function ConvertFrom-PVEJsonToPOSTClusterNotificationsEndpointsSmtpRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterNotificationsEndpointsSmtpRB
-        $AllProperties = ("mailto-user", "mode", "username", "disable", "comment", "author", "password", "mailto", "server", "name", "port", "from-address")
+        $AllProperties = ("server", "comment", "password", "mailto-user", "port", "name", "username", "author", "mailto", "mode", "from-address", "disable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mailto-user"))) { #optional property not found
-            $MailtoUser = $null
-        } else {
-            $MailtoUser = $JsonParameters.PSobject.Properties["mailto-user"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mode"))) { #optional property not found
-            $Mode = $null
-        } else {
-            $Mode = $JsonParameters.PSobject.Properties["mode"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
-            $Username = $null
-        } else {
-            $Username = $JsonParameters.PSobject.Properties["username"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
-        } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "author"))) { #optional property not found
-            $Author = $null
-        } else {
-            $Author = $JsonParameters.PSobject.Properties["author"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
-            $Password = $null
-        } else {
-            $Password = $JsonParameters.PSobject.Properties["password"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mailto"))) { #optional property not found
-            $Mailto = $null
-        } else {
-            $Mailto = $JsonParameters.PSobject.Properties["mailto"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
@@ -207,10 +159,22 @@ function ConvertFrom-PVEJsonToPOSTClusterNotificationsEndpointsSmtpRB {
             $Server = $JsonParameters.PSobject.Properties["server"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
+            $Password = $null
+        } else {
+            $Password = $JsonParameters.PSobject.Properties["password"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mailto-user"))) { #optional property not found
+            $MailtoUser = $null
+        } else {
+            $MailtoUser = $JsonParameters.PSobject.Properties["mailto-user"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
@@ -219,25 +183,61 @@ function ConvertFrom-PVEJsonToPOSTClusterNotificationsEndpointsSmtpRB {
             $Port = $JsonParameters.PSobject.Properties["port"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
+            $Username = $null
+        } else {
+            $Username = $JsonParameters.PSobject.Properties["username"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "author"))) { #optional property not found
+            $Author = $null
+        } else {
+            $Author = $JsonParameters.PSobject.Properties["author"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mailto"))) { #optional property not found
+            $Mailto = $null
+        } else {
+            $Mailto = $JsonParameters.PSobject.Properties["mailto"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mode"))) { #optional property not found
+            $Mode = $null
+        } else {
+            $Mode = $JsonParameters.PSobject.Properties["mode"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "from-address"))) { #optional property not found
             $FromAddress = $null
         } else {
             $FromAddress = $JsonParameters.PSobject.Properties["from-address"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
+        } else {
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "mailto-user" = ${MailtoUser}
-            "mode" = ${Mode}
-            "username" = ${Username}
-            "disable" = ${Disable}
-            "comment" = ${Comment}
-            "author" = ${Author}
-            "password" = ${Password}
-            "mailto" = ${Mailto}
             "server" = ${Server}
-            "name" = ${Name}
+            "comment" = ${Comment}
+            "password" = ${Password}
+            "mailto-user" = ${MailtoUser}
             "port" = ${Port}
+            "name" = ${Name}
+            "username" = ${Username}
+            "author" = ${Author}
+            "mailto" = ${Mailto}
+            "mode" = ${Mode}
             "from-address" = ${FromAddress}
+            "disable" = ${Disable}
         }
 
         return $PSO

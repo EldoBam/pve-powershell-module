@@ -15,27 +15,27 @@ No summary available.
 
 No description available.
 
-.PARAMETER Description
-No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Target
-No description available.
-.PARAMETER Snapname
-No description available.
-.PARAMETER Storage
+.PARAMETER Newid
 No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER Hostname
+.PARAMETER Vmid
 No description available.
 .PARAMETER Bwlimit
 No description available.
-.PARAMETER Newid
+.PARAMETER Hostname
 No description available.
 .PARAMETER Full
 No description available.
+.PARAMETER Description
+No description available.
+.PARAMETER Snapname
+No description available.
+.PARAMETER Target
+No description available.
 .PARAMETER Pool
+No description available.
+.PARAMETER Storage
 No description available.
 .OUTPUTS
 
@@ -46,55 +46,43 @@ function Initialize-PVEPOSTNodesLxcCloneRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Description},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Target},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Snapname},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Storage},
+        ${Newid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Hostname},
+        [System.Nullable[Int32]]
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Decimal]]
         ${Bwlimit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Newid},
+        [String]
+        ${Hostname},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Full},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Pool}
+        ${Description},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Snapname},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Target},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Pool},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Storage}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesLxcCloneRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
-        if (!$Snapname -and $Snapname.length -gt 40) {
-            throw "invalid value for 'Snapname', the character length must be smaller than or equal to 40."
-        }
 
         if ($Newid -and $Newid -gt 999999999) {
           throw "invalid value for 'Newid', must be smaller than or equal to 999999999."
@@ -102,6 +90,14 @@ function Initialize-PVEPOSTNodesLxcCloneRB {
 
         if ($Newid -and $Newid -lt 100) {
           throw "invalid value for 'Newid', must be greater than or equal to 100."
+        }
+
+        if ($Vmid -and $Vmid -gt 999999999) {
+          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
+        }
+
+        if ($Vmid -and $Vmid -lt 100) {
+          throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
         if ($Full -and $Full -gt 1) {
@@ -112,9 +108,13 @@ function Initialize-PVEPOSTNodesLxcCloneRB {
           throw "invalid value for 'Full', must be greater than or equal to 0."
         }
 
+        if (!$Snapname -and $Snapname.length -gt 40) {
+            throw "invalid value for 'Snapname', the character length must be smaller than or equal to 40."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Description"="description"; "Vmid"="vmid"; "Target"="target"; "Snapname"="snapname"; "Storage"="storage"; "Node"="node"; "Hostname"="hostname"; "Bwlimit"="bwlimit"; "Newid"="newid"; "Full"="full"; "Pool"="pool"
+			"Newid"="newid"; "Node"="node"; "Vmid"="vmid"; "Bwlimit"="bwlimit"; "Hostname"="hostname"; "Full"="full"; "Description"="description"; "Snapname"="snapname"; "Target"="target"; "Pool"="pool"; "Storage"="storage"
         }
 		
 		 $OBJ = @{}
@@ -160,59 +160,11 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcCloneRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesLxcCloneRB
-        $AllProperties = ("description", "vmid", "target", "snapname", "storage", "node", "hostname", "bwlimit", "newid", "full", "pool")
+        $AllProperties = ("newid", "node", "vmid", "bwlimit", "hostname", "full", "description", "snapname", "target", "pool", "storage")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
-            $Target = $null
-        } else {
-            $Target = $JsonParameters.PSobject.Properties["target"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snapname"))) { #optional property not found
-            $Snapname = $null
-        } else {
-            $Snapname = $JsonParameters.PSobject.Properties["snapname"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hostname"))) { #optional property not found
-            $Hostname = $null
-        } else {
-            $Hostname = $JsonParameters.PSobject.Properties["hostname"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
-            $Bwlimit = $null
-        } else {
-            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "newid"))) { #optional property not found
@@ -221,10 +173,52 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcCloneRB {
             $Newid = $JsonParameters.PSobject.Properties["newid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
+        } else {
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
+            $Bwlimit = $null
+        } else {
+            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hostname"))) { #optional property not found
+            $Hostname = $null
+        } else {
+            $Hostname = $JsonParameters.PSobject.Properties["hostname"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "full"))) { #optional property not found
             $Full = $null
         } else {
             $Full = $JsonParameters.PSobject.Properties["full"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snapname"))) { #optional property not found
+            $Snapname = $null
+        } else {
+            $Snapname = $JsonParameters.PSobject.Properties["snapname"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
+            $Target = $null
+        } else {
+            $Target = $JsonParameters.PSobject.Properties["target"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool"))) { #optional property not found
@@ -233,18 +227,24 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcCloneRB {
             $Pool = $JsonParameters.PSobject.Properties["pool"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
+            $Storage = $null
+        } else {
+            $Storage = $JsonParameters.PSobject.Properties["storage"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "description" = ${Description}
-            "vmid" = ${Vmid}
-            "target" = ${Target}
-            "snapname" = ${Snapname}
-            "storage" = ${Storage}
-            "node" = ${Node}
-            "hostname" = ${Hostname}
-            "bwlimit" = ${Bwlimit}
             "newid" = ${Newid}
+            "node" = ${Node}
+            "vmid" = ${Vmid}
+            "bwlimit" = ${Bwlimit}
+            "hostname" = ${Hostname}
             "full" = ${Full}
+            "description" = ${Description}
+            "snapname" = ${Snapname}
+            "target" = ${Target}
             "pool" = ${Pool}
+            "storage" = ${Storage}
         }
 
         return $PSO

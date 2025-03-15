@@ -3,37 +3,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PgAutoscaleMode** | **String** |  | [optional] 
-**Application** | **String** |  | [optional] 
-**TargetSizeRatio** | **Decimal** |  | [optional] 
-**MinSize** | **Int32** |  | [optional] 
-**PgNum** | **Int32** |  | [optional] 
-**CrushRule** | **String** |  | [optional] 
 **AddStorages** | **Int32** |  | [optional] 
 **PgNumMin** | **Int32** |  | [optional] 
+**PgNum** | **Int32** |  | [optional] 
 **TargetSize** | **String** |  | [optional] 
+**MinSize** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**CrushRule** | **String** |  | [optional] 
 **Size** | **Int32** |  | [optional] 
-**ErasureCoding** | **String** |  | [optional] 
+**TargetSizeRatio** | **Decimal** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Application** | **String** |  | [optional] 
+**ErasureCoding** | **String** |  | [optional] 
+**PgAutoscaleMode** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephPoolRB = Initialize-PVEPOSTNodesCephPoolRB  -PgAutoscaleMode null `
- -Application null `
- -TargetSizeRatio null `
- -MinSize null `
- -PgNum null `
- -CrushRule null `
- -AddStorages null `
+$POSTNodesCephPoolRB = Initialize-PVEPOSTNodesCephPoolRB  -AddStorages null `
  -PgNumMin null `
+ -PgNum null `
  -TargetSize null `
+ -MinSize null `
  -Node null `
+ -CrushRule null `
  -Size null `
+ -TargetSizeRatio null `
+ -Name null `
+ -Application null `
  -ErasureCoding null `
- -Name null
+ -PgAutoscaleMode null
 ```
 
 - Convert the resource to JSON

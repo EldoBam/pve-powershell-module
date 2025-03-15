@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
+.PARAMETER Snapname
 No description available.
 .PARAMETER Feature
 No description available.
-.PARAMETER Snapname
+.PARAMETER Node
 No description available.
 .PARAMETER Vmid
 No description available.
@@ -33,14 +33,14 @@ function Initialize-PVEGETNodesLxcFeatureRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
+        ${Snapname},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("snapshot", "clone", "copy")]
         [String]
         ${Feature},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Snapname},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid}
@@ -64,7 +64,7 @@ function Initialize-PVEGETNodesLxcFeatureRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Feature"="feature"; "Snapname"="snapname"; "Vmid"="vmid"
+			"Snapname"="snapname"; "Feature"="feature"; "Node"="node"; "Vmid"="vmid"
         }
 		
 		 $OBJ = @{}
@@ -110,17 +110,17 @@ function ConvertFrom-PVEJsonToGETNodesLxcFeatureRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesLxcFeatureRB
-        $AllProperties = ("node", "feature", "snapname", "vmid")
+        $AllProperties = ("snapname", "feature", "node", "vmid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snapname"))) { #optional property not found
+            $Snapname = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Snapname = $JsonParameters.PSobject.Properties["snapname"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "feature"))) { #optional property not found
@@ -129,10 +129,10 @@ function ConvertFrom-PVEJsonToGETNodesLxcFeatureRB {
             $Feature = $JsonParameters.PSobject.Properties["feature"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snapname"))) { #optional property not found
-            $Snapname = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
         } else {
-            $Snapname = $JsonParameters.PSobject.Properties["snapname"].value
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
@@ -142,9 +142,9 @@ function ConvertFrom-PVEJsonToGETNodesLxcFeatureRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
-            "feature" = ${Feature}
             "snapname" = ${Snapname}
+            "feature" = ${Feature}
+            "node" = ${Node}
             "vmid" = ${Vmid}
         }
 

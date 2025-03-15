@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Pending
 No description available.
-.PARAMETER Running
-No description available.
 .PARAMETER Controller
+No description available.
+.PARAMETER Running
 No description available.
 .OUTPUTS
 
@@ -33,11 +33,11 @@ function Initialize-PVEGETClusterSdnControllersRB {
         [System.Nullable[Int32]]
         ${Pending},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Running},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Controller}
+        ${Controller},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Running}
     )
 
     Process {
@@ -62,7 +62,7 @@ function Initialize-PVEGETClusterSdnControllersRB {
 
 
 		 $DisplayNameMapping =@{
-			"Pending"="pending"; "Running"="running"; "Controller"="controller"
+			"Pending"="pending"; "Controller"="controller"; "Running"="running"
         }
 		
 		 $OBJ = @{}
@@ -108,7 +108,7 @@ function ConvertFrom-PVEJsonToGETClusterSdnControllersRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETClusterSdnControllersRB
-        $AllProperties = ("pending", "running", "controller")
+        $AllProperties = ("pending", "controller", "running")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -121,22 +121,22 @@ function ConvertFrom-PVEJsonToGETClusterSdnControllersRB {
             $Pending = $JsonParameters.PSobject.Properties["pending"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "running"))) { #optional property not found
-            $Running = $null
-        } else {
-            $Running = $JsonParameters.PSobject.Properties["running"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "controller"))) { #optional property not found
             $Controller = $null
         } else {
             $Controller = $JsonParameters.PSobject.Properties["controller"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "running"))) { #optional property not found
+            $Running = $null
+        } else {
+            $Running = $JsonParameters.PSobject.Properties["running"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "pending" = ${Pending}
-            "running" = ${Running}
             "controller" = ${Controller}
+            "running" = ${Running}
         }
 
         return $PSO

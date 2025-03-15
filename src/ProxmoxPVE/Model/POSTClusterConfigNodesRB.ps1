@@ -15,19 +15,19 @@ No summary available.
 
 No description available.
 
-.PARAMETER Force
-No description available.
 .PARAMETER Votes
 No description available.
-.PARAMETER NewNodeIp
-No description available.
 .PARAMETER Nodeid
-No description available.
-.PARAMETER Node
 No description available.
 .PARAMETER LinkN
 No description available.
 .PARAMETER Apiversion
+No description available.
+.PARAMETER Node
+No description available.
+.PARAMETER Force
+No description available.
+.PARAMETER NewNodeIp
 No description available.
 .OUTPUTS
 
@@ -39,30 +39,34 @@ function Initialize-PVEPOSTClusterConfigNodesRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Force},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${Votes},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${NewNodeIp},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Nodeid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${LinkN},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Apiversion}
+        ${Apiversion},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Force},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${NewNodeIp}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTClusterConfigNodesRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if ($Nodeid -and $Nodeid -lt 1) {
+          throw "invalid value for 'Nodeid', must be greater than or equal to 1."
+        }
 
         if ($Force -and $Force -gt 1) {
           throw "invalid value for 'Force', must be smaller than or equal to 1."
@@ -72,13 +76,9 @@ function Initialize-PVEPOSTClusterConfigNodesRB {
           throw "invalid value for 'Force', must be greater than or equal to 0."
         }
 
-        if ($Nodeid -and $Nodeid -lt 1) {
-          throw "invalid value for 'Nodeid', must be greater than or equal to 1."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Force"="force"; "Votes"="votes"; "NewNodeIp"="new_node_ip"; "Nodeid"="nodeid"; "Node"="node"; "LinkN"="link[n]"; "Apiversion"="apiversion"
+			"Votes"="votes"; "Nodeid"="nodeid"; "LinkN"="link[n]"; "Apiversion"="apiversion"; "Node"="node"; "Force"="force"; "NewNodeIp"="new_node_ip"
         }
 		
 		 $OBJ = @{}
@@ -124,17 +124,11 @@ function ConvertFrom-PVEJsonToPOSTClusterConfigNodesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterConfigNodesRB
-        $AllProperties = ("force", "votes", "new_node_ip", "nodeid", "node", "link[n]", "apiversion")
+        $AllProperties = ("votes", "nodeid", "link[n]", "apiversion", "node", "force", "new_node_ip")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
-            $Force = $null
-        } else {
-            $Force = $JsonParameters.PSobject.Properties["force"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "votes"))) { #optional property not found
@@ -143,22 +137,10 @@ function ConvertFrom-PVEJsonToPOSTClusterConfigNodesRB {
             $Votes = $JsonParameters.PSobject.Properties["votes"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "new_node_ip"))) { #optional property not found
-            $NewNodeIp = $null
-        } else {
-            $NewNodeIp = $JsonParameters.PSobject.Properties["new_node_ip"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodeid"))) { #optional property not found
             $Nodeid = $null
         } else {
             $Nodeid = $JsonParameters.PSobject.Properties["nodeid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "link[n]"))) { #optional property not found
@@ -173,14 +155,32 @@ function ConvertFrom-PVEJsonToPOSTClusterConfigNodesRB {
             $Apiversion = $JsonParameters.PSobject.Properties["apiversion"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
+            $Force = $null
+        } else {
+            $Force = $JsonParameters.PSobject.Properties["force"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "new_node_ip"))) { #optional property not found
+            $NewNodeIp = $null
+        } else {
+            $NewNodeIp = $JsonParameters.PSobject.Properties["new_node_ip"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "force" = ${Force}
             "votes" = ${Votes}
-            "new_node_ip" = ${NewNodeIp}
             "nodeid" = ${Nodeid}
-            "node" = ${Node}
             "link[n]" = ${LinkN}
             "apiversion" = ${Apiversion}
+            "node" = ${Node}
+            "force" = ${Force}
+            "new_node_ip" = ${NewNodeIp}
         }
 
         return $PSO

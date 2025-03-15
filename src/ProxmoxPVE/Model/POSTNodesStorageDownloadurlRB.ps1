@@ -15,23 +15,23 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
-.PARAMETER Url
-No description available.
 .PARAMETER Compression
 No description available.
-.PARAMETER ChecksumAlgorithm
+.PARAMETER Node
+No description available.
+.PARAMETER VerifyCertificates
 No description available.
 .PARAMETER Content
+No description available.
+.PARAMETER Filename
 No description available.
 .PARAMETER Checksum
 No description available.
 .PARAMETER Storage
 No description available.
-.PARAMETER Filename
+.PARAMETER ChecksumAlgorithm
 No description available.
-.PARAMETER VerifyCertificates
+.PARAMETER Url
 No description available.
 .OUTPUTS
 
@@ -43,22 +43,20 @@ function Initialize-PVEPOSTNodesStorageDownloadurlRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("https?://.*")]
-        [String]
-        ${Url},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Compression},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("md5", "sha1", "sha224", "sha256", "sha384", "sha512")]
         [String]
-        ${ChecksumAlgorithm},
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${VerifyCertificates},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("iso", "vztmpl", "import")]
         [String]
         ${Content},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Filename},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Checksum},
@@ -66,20 +64,18 @@ function Initialize-PVEPOSTNodesStorageDownloadurlRB {
         [String]
         ${Storage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("md5", "sha1", "sha224", "sha256", "sha384", "sha512")]
         [String]
-        ${Filename},
+        ${ChecksumAlgorithm},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VerifyCertificates}
+        [ValidatePattern("https?://.*")]
+        [String]
+        ${Url}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesStorageDownloadurlRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if (!$Filename -and $Filename.length -gt 255) {
-            throw "invalid value for 'Filename', the character length must be smaller than or equal to 255."
-        }
 
         if ($VerifyCertificates -and $VerifyCertificates -gt 1) {
           throw "invalid value for 'VerifyCertificates', must be smaller than or equal to 1."
@@ -89,9 +85,13 @@ function Initialize-PVEPOSTNodesStorageDownloadurlRB {
           throw "invalid value for 'VerifyCertificates', must be greater than or equal to 0."
         }
 
+        if (!$Filename -and $Filename.length -gt 255) {
+            throw "invalid value for 'Filename', the character length must be smaller than or equal to 255."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Url"="url"; "Compression"="compression"; "ChecksumAlgorithm"="checksum-algorithm"; "Content"="content"; "Checksum"="checksum"; "Storage"="storage"; "Filename"="filename"; "VerifyCertificates"="verify-certificates"
+			"Compression"="compression"; "Node"="node"; "VerifyCertificates"="verify-certificates"; "Content"="content"; "Filename"="filename"; "Checksum"="checksum"; "Storage"="storage"; "ChecksumAlgorithm"="checksum-algorithm"; "Url"="url"
         }
 		
 		 $OBJ = @{}
@@ -137,23 +137,11 @@ function ConvertFrom-PVEJsonToPOSTNodesStorageDownloadurlRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesStorageDownloadurlRB
-        $AllProperties = ("node", "url", "compression", "checksum-algorithm", "content", "checksum", "storage", "filename", "verify-certificates")
+        $AllProperties = ("compression", "node", "verify-certificates", "content", "filename", "checksum", "storage", "checksum-algorithm", "url")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
-            $Url = $null
-        } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "compression"))) { #optional property not found
@@ -162,16 +150,28 @@ function ConvertFrom-PVEJsonToPOSTNodesStorageDownloadurlRB {
             $Compression = $JsonParameters.PSobject.Properties["compression"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "checksum-algorithm"))) { #optional property not found
-            $ChecksumAlgorithm = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
         } else {
-            $ChecksumAlgorithm = $JsonParameters.PSobject.Properties["checksum-algorithm"].value
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "verify-certificates"))) { #optional property not found
+            $VerifyCertificates = $null
+        } else {
+            $VerifyCertificates = $JsonParameters.PSobject.Properties["verify-certificates"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
             $Content = $null
         } else {
             $Content = $JsonParameters.PSobject.Properties["content"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filename"))) { #optional property not found
+            $Filename = $null
+        } else {
+            $Filename = $JsonParameters.PSobject.Properties["filename"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "checksum"))) { #optional property not found
@@ -186,28 +186,28 @@ function ConvertFrom-PVEJsonToPOSTNodesStorageDownloadurlRB {
             $Storage = $JsonParameters.PSobject.Properties["storage"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filename"))) { #optional property not found
-            $Filename = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "checksum-algorithm"))) { #optional property not found
+            $ChecksumAlgorithm = $null
         } else {
-            $Filename = $JsonParameters.PSobject.Properties["filename"].value
+            $ChecksumAlgorithm = $JsonParameters.PSobject.Properties["checksum-algorithm"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "verify-certificates"))) { #optional property not found
-            $VerifyCertificates = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
+            $Url = $null
         } else {
-            $VerifyCertificates = $JsonParameters.PSobject.Properties["verify-certificates"].value
+            $Url = $JsonParameters.PSobject.Properties["url"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
-            "url" = ${Url}
             "compression" = ${Compression}
-            "checksum-algorithm" = ${ChecksumAlgorithm}
+            "node" = ${Node}
+            "verify-certificates" = ${VerifyCertificates}
             "content" = ${Content}
+            "filename" = ${Filename}
             "checksum" = ${Checksum}
             "storage" = ${Storage}
-            "filename" = ${Filename}
-            "verify-certificates" = ${VerifyCertificates}
+            "checksum-algorithm" = ${ChecksumAlgorithm}
+            "url" = ${Url}
         }
 
         return $PSO

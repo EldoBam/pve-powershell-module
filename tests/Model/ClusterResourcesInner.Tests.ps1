@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterResourcesInner' {
     Context 'PVEClusterResourcesInner' {
         It 'Initialize-PVEClusterResourcesInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterResourcesInner -Maxdisk "TEST_VALUE" -Status "TEST_VALUE" -Node "TEST_VALUE" -Netout "TEST_VALUE" -Mem "TEST_VALUE" -Diskwrite "TEST_VALUE" -Diskread "TEST_VALUE" -Template "TEST_VALUE" -Type "TEST_VALUE" -Name "TEST_VALUE" -Pool "TEST_VALUE" -Cpu "TEST_VALUE" -Maxcpu "TEST_VALUE" -Level "TEST_VALUE" -Plugintype "TEST_VALUE" -Maxmem "TEST_VALUE" -Vmid "TEST_VALUE" -Lock "TEST_VALUE" -Hastate "TEST_VALUE" -CgroupMode "TEST_VALUE" -Content "TEST_VALUE" -Storage "TEST_VALUE" -Netin "TEST_VALUE" -Disk "TEST_VALUE" -Tags "TEST_VALUE" -Id "TEST_VALUE" -Uptime "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterResourcesInner -Hastate "TEST_VALUE" -Netout "TEST_VALUE" -Diskread "TEST_VALUE" -Plugintype "TEST_VALUE" -Name "TEST_VALUE" -Level "TEST_VALUE" -Content "TEST_VALUE" -Status "TEST_VALUE" -Storage "TEST_VALUE" -Id "TEST_VALUE" -Node "TEST_VALUE" -Vmid "TEST_VALUE" -Maxcpu "TEST_VALUE" -Lock "TEST_VALUE" -Uptime "TEST_VALUE" -Tags "TEST_VALUE" -Pool "TEST_VALUE" -Mem "TEST_VALUE" -Maxmem "TEST_VALUE" -Cpu "TEST_VALUE" -Maxdisk "TEST_VALUE" -CgroupMode "TEST_VALUE" -Netin "TEST_VALUE" -Diskwrite "TEST_VALUE" -Disk "TEST_VALUE" -Type "TEST_VALUE" -Template "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterResourcesInner
             #$NewObject.property | Should -Be 0
         }

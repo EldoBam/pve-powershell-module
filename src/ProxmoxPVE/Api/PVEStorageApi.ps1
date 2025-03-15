@@ -89,6 +89,9 @@ Read storage configuration.
 
 No description available.
 
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -100,6 +103,9 @@ None
 function Get-PVEStorageByStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
         [Switch]
         $WithHttpInfo
     )
@@ -119,6 +125,10 @@ function Get-PVEStorageByStorage {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/storage/{storage}'
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling getStorageByStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -223,6 +233,9 @@ Delete storage configuration.
 
 No description available.
 
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -234,6 +247,9 @@ None
 function Remove-PVEStorageByStorage {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
         [Switch]
         $WithHttpInfo
     )
@@ -253,6 +269,10 @@ function Remove-PVEStorageByStorage {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/storage/{storage}'
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling removeStorageByStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -283,6 +303,9 @@ Update storage configuration.
 
 No description available.
 
+.PARAMETER Storage
+The storage identifier.
+
 .PARAMETER PUTStorageRB
 Update storage configuration.
 
@@ -298,6 +321,9 @@ function Set-PVEStorageByStorage {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Storage},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTStorageRB},
         [Switch]
@@ -325,6 +351,10 @@ function Set-PVEStorageByStorage {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/storage/{storage}'
+        if (!$Storage) {
+            throw "Error! The required parameter `Storage` missing when calling setStorageByStorage."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{storage}', [System.Web.HTTPUtility]::UrlEncode($Storage))
 
         $LocalVarBodyParameter = $PUTStorageRB | ConvertTo-Json -Depth 100
 

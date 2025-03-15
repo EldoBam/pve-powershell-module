@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ds** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Timeframe** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Cf** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Timeframe** | **String** |  | [optional] 
+**Ds** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuRrdRB = Initialize-PVEGETNodesQemuRrdRB  -Ds null `
+$GETNodesQemuRrdRB = Initialize-PVEGETNodesQemuRrdRB  -Cf null `
  -Node null `
- -Timeframe null `
  -Vmid null `
- -Cf null
+ -Timeframe null `
+ -Ds null
 ```
 
 - Convert the resource to JSON

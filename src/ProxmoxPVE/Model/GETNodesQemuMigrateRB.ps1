@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Node
 No description available.
-.PARAMETER Target
-No description available.
 .PARAMETER Vmid
+No description available.
+.PARAMETER Target
 No description available.
 .OUTPUTS
 
@@ -33,11 +33,11 @@ function Initialize-PVEGETNodesQemuMigrateRB {
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Target},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid}
+        ${Vmid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Target}
     )
 
     Process {
@@ -54,7 +54,7 @@ function Initialize-PVEGETNodesQemuMigrateRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Target"="target"; "Vmid"="vmid"
+			"Node"="node"; "Vmid"="vmid"; "Target"="target"
         }
 		
 		 $OBJ = @{}
@@ -100,7 +100,7 @@ function ConvertFrom-PVEJsonToGETNodesQemuMigrateRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesQemuMigrateRB
-        $AllProperties = ("node", "target", "vmid")
+        $AllProperties = ("node", "vmid", "target")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -113,22 +113,22 @@ function ConvertFrom-PVEJsonToGETNodesQemuMigrateRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
-            $Target = $null
-        } else {
-            $Target = $JsonParameters.PSobject.Properties["target"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
+            $Target = $null
+        } else {
+            $Target = $JsonParameters.PSobject.Properties["target"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "node" = ${Node}
-            "target" = ${Target}
             "vmid" = ${Vmid}
+            "target" = ${Target}
         }
 
         return $PSO

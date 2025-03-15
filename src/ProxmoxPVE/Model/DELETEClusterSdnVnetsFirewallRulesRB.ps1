@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Digest
 No description available.
-.PARAMETER Pos
-No description available.
 .PARAMETER Vnet
+No description available.
+.PARAMETER Pos
 No description available.
 .OUTPUTS
 
@@ -33,11 +33,11 @@ function Initialize-PVEDELETEClusterSdnVnetsFirewallRulesRB {
         [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Pos},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vnet}
+        ${Vnet},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Pos}
     )
 
     Process {
@@ -50,7 +50,7 @@ function Initialize-PVEDELETEClusterSdnVnetsFirewallRulesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Digest"="digest"; "Pos"="pos"; "Vnet"="vnet"
+			"Digest"="digest"; "Vnet"="vnet"; "Pos"="pos"
         }
 		
 		 $OBJ = @{}
@@ -96,7 +96,7 @@ function ConvertFrom-PVEJsonToDELETEClusterSdnVnetsFirewallRulesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEClusterSdnVnetsFirewallRulesRB
-        $AllProperties = ("digest", "pos", "vnet")
+        $AllProperties = ("digest", "vnet", "pos")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -109,22 +109,22 @@ function ConvertFrom-PVEJsonToDELETEClusterSdnVnetsFirewallRulesRB {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
-            $Pos = $null
-        } else {
-            $Pos = $JsonParameters.PSobject.Properties["pos"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
             $Vnet = $null
         } else {
             $Vnet = $JsonParameters.PSobject.Properties["vnet"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
+            $Pos = $null
+        } else {
+            $Pos = $JsonParameters.PSobject.Properties["pos"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "digest" = ${Digest}
-            "pos" = ${Pos}
             "vnet" = ${Vnet}
+            "pos" = ${Pos}
         }
 
         return $PSO

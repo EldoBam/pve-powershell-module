@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesTime' {
     Context 'PVENodesTime' {
         It 'Initialize-PVENodesTime' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesTime -Localtime "TEST_VALUE" -Timezone "TEST_VALUE" -Time "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesTime -Timezone "TEST_VALUE" -Localtime "TEST_VALUE" -Time "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesTime
             #$NewObject.property | Should -Be 0
         }

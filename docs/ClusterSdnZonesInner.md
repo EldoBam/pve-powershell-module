@@ -3,33 +3,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Nodes** | **String** |  | [optional] 
-**Zone** | **String** |  | [optional] 
-**Dhcp** | **String** |  | [optional] 
-**Ipam** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Dnszone** | **String** |  | [optional] 
-**Reversedns** | **String** |  | [optional] 
-**Mtu** | **Int32** |  | [optional] 
-**Dns** | **String** |  | [optional] 
 **State** | **String** |  | [optional] 
+**Reversedns** | **String** |  | [optional] 
 **Pending** | **Int32** |  | [optional] 
+**Dhcp** | **String** |  | [optional] 
+**Mtu** | **Int32** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
+**Dnszone** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Zone** | **String** |  | [optional] 
+**Dns** | **String** |  | [optional] 
+**Ipam** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnZonesInner = Initialize-PVEClusterSdnZonesInner  -Nodes null `
- -Zone null `
- -Dhcp null `
- -Ipam null `
- -Type null `
- -Dnszone null `
+$ClusterSdnZonesInner = Initialize-PVEClusterSdnZonesInner  -State null `
  -Reversedns null `
+ -Pending null `
+ -Dhcp null `
  -Mtu null `
+ -Nodes null `
+ -Dnszone null `
+ -Type null `
+ -Zone null `
  -Dns null `
- -State null `
- -Pending null
+ -Ipam null
 ```
 
 - Convert the resource to JSON

@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
 .PARAMETER Full
+No description available.
+.PARAMETER Node
 No description available.
 .OUTPUTS
 
@@ -28,11 +28,11 @@ function Initialize-PVEGETNodesQemuRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Full}
+        ${Full},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node}
     )
 
     Process {
@@ -49,7 +49,7 @@ function Initialize-PVEGETNodesQemuRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Full"="full"
+			"Full"="full"; "Node"="node"
         }
 		
 		 $OBJ = @{}
@@ -95,17 +95,11 @@ function ConvertFrom-PVEJsonToGETNodesQemuRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesQemuRB
-        $AllProperties = ("node", "full")
+        $AllProperties = ("full", "node")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "full"))) { #optional property not found
@@ -114,9 +108,15 @@ function ConvertFrom-PVEJsonToGETNodesQemuRB {
             $Full = $JsonParameters.PSobject.Properties["full"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
             "full" = ${Full}
+            "node" = ${Node}
         }
 
         return $PSO

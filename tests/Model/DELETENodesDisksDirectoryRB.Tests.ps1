@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEDELETENodesDisksDirectoryRB' {
     Context 'PVEDELETENodesDisksDirectoryRB' {
         It 'Initialize-PVEDELETENodesDisksDirectoryRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEDELETENodesDisksDirectoryRB -Name "TEST_VALUE" -CleanupConfig "TEST_VALUE" -Node "TEST_VALUE" -CleanupDisks "TEST_VALUE"
+            #$NewObject = Initialize-PVEDELETENodesDisksDirectoryRB -CleanupDisks "TEST_VALUE" -Name "TEST_VALUE" -Node "TEST_VALUE" -CleanupConfig "TEST_VALUE"
             #$NewObject | Should -BeOfType DELETENodesDisksDirectoryRB
             #$NewObject.property | Should -Be 0
         }

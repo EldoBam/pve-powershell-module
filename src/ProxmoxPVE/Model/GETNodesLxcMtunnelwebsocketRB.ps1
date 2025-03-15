@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
 .PARAMETER Ticket
+No description available.
+.PARAMETER Node
 No description available.
 .PARAMETER Vmid
 No description available.
@@ -33,10 +33,10 @@ function Initialize-PVEGETNodesLxcMtunnelwebsocketRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
+        ${Ticket},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Ticket},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid},
@@ -59,7 +59,7 @@ function Initialize-PVEGETNodesLxcMtunnelwebsocketRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Ticket"="ticket"; "Vmid"="vmid"; "Socket"="socket"
+			"Ticket"="ticket"; "Node"="node"; "Vmid"="vmid"; "Socket"="socket"
         }
 		
 		 $OBJ = @{}
@@ -105,23 +105,23 @@ function ConvertFrom-PVEJsonToGETNodesLxcMtunnelwebsocketRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesLxcMtunnelwebsocketRB
-        $AllProperties = ("node", "ticket", "vmid", "socket")
+        $AllProperties = ("ticket", "node", "vmid", "socket")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "ticket"))) { #optional property not found
             $Ticket = $null
         } else {
             $Ticket = $JsonParameters.PSobject.Properties["ticket"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
@@ -137,8 +137,8 @@ function ConvertFrom-PVEJsonToGETNodesLxcMtunnelwebsocketRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
             "ticket" = ${Ticket}
+            "node" = ${Node}
             "vmid" = ${Vmid}
             "socket" = ${Socket}
         }

@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Type
-No description available.
 .PARAMETER Poolid
+No description available.
+.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -28,12 +28,12 @@ function Initialize-PVEGETPoolsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Poolid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("qemu", "lxc", "storage")]
         [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Poolid}
+        ${Type}
     )
 
     Process {
@@ -42,7 +42,7 @@ function Initialize-PVEGETPoolsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Type"="type"; "Poolid"="poolid"
+			"Poolid"="poolid"; "Type"="type"
         }
 		
 		 $OBJ = @{}
@@ -88,17 +88,11 @@ function ConvertFrom-PVEJsonToGETPoolsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETPoolsRB
-        $AllProperties = ("type", "poolid")
+        $AllProperties = ("poolid", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "poolid"))) { #optional property not found
@@ -107,9 +101,15 @@ function ConvertFrom-PVEJsonToGETPoolsRB {
             $Poolid = $JsonParameters.PSobject.Properties["poolid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
             "poolid" = ${Poolid}
+            "type" = ${Type}
         }
 
         return $PSO

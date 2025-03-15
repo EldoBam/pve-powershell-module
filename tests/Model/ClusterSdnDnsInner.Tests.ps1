@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterSdnDnsInner' {
     Context 'PVEClusterSdnDnsInner' {
         It 'Initialize-PVEClusterSdnDnsInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterSdnDnsInner -Type "TEST_VALUE" -Dns "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterSdnDnsInner -Dns "TEST_VALUE" -Type "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterSdnDnsInner
             #$NewObject.property | Should -Be 0
         }

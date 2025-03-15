@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Limit** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Id** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Start** | **Int32** |  | [optional] 
 
 ## Examples
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $GETNodesReplicationLogRB = Initialize-PVEGETNodesReplicationLogRB  -Limit null `
- -Node null `
  -Id null `
+ -Node null `
  -Start null
 ```
 

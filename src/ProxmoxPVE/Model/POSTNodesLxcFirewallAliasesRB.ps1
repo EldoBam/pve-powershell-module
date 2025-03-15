@@ -19,11 +19,11 @@ No description available.
 No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER Comment
+.PARAMETER Vmid
 No description available.
 .PARAMETER Cidr
 No description available.
-.PARAMETER Vmid
+.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -41,14 +41,14 @@ function Initialize-PVEPOSTNodesLxcFirewallAliasesRB {
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
+        [System.Nullable[Int32]]
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Cidr},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid}
+        [String]
+        ${Comment}
     )
 
     Process {
@@ -73,7 +73,7 @@ function Initialize-PVEPOSTNodesLxcFirewallAliasesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Node"="node"; "Comment"="comment"; "Cidr"="cidr"; "Vmid"="vmid"
+			"Name"="name"; "Node"="node"; "Vmid"="vmid"; "Cidr"="cidr"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -119,7 +119,7 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcFirewallAliasesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesLxcFirewallAliasesRB
-        $AllProperties = ("name", "node", "comment", "cidr", "vmid")
+        $AllProperties = ("name", "node", "vmid", "cidr", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -138,10 +138,10 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcFirewallAliasesRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
         } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
@@ -150,18 +150,18 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcFirewallAliasesRB {
             $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
         } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
         $PSO = [PSCustomObject]@{
             "name" = ${Name}
             "node" = ${Node}
-            "comment" = ${Comment}
-            "cidr" = ${Cidr}
             "vmid" = ${Vmid}
+            "cidr" = ${Cidr}
+            "comment" = ${Comment}
         }
 
         return $PSO

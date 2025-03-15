@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER LinkN
+.PARAMETER Clustername
 No description available.
 .PARAMETER Nodeid
 No description available.
-.PARAMETER Clustername
-No description available.
 .PARAMETER Votes
+No description available.
+.PARAMETER LinkN
 No description available.
 .OUTPUTS
 
@@ -33,28 +33,28 @@ function Initialize-PVEPOSTClusterConfigRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${LinkN},
+        ${Clustername},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Nodeid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Clustername},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Votes}
+        ${Votes},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${LinkN}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTClusterConfigRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Nodeid -and $Nodeid -lt 1) {
-          throw "invalid value for 'Nodeid', must be greater than or equal to 1."
-        }
-
         if (!$Clustername -and $Clustername.length -gt 15) {
             throw "invalid value for 'Clustername', the character length must be smaller than or equal to 15."
+        }
+
+        if ($Nodeid -and $Nodeid -lt 1) {
+          throw "invalid value for 'Nodeid', must be greater than or equal to 1."
         }
 
         if ($Votes -and $Votes -lt 1) {
@@ -63,7 +63,7 @@ function Initialize-PVEPOSTClusterConfigRB {
 
 
 		 $DisplayNameMapping =@{
-			"LinkN"="link[n]"; "Nodeid"="nodeid"; "Clustername"="clustername"; "Votes"="votes"
+			"Clustername"="clustername"; "Nodeid"="nodeid"; "Votes"="votes"; "LinkN"="link[n]"
         }
 		
 		 $OBJ = @{}
@@ -109,23 +109,11 @@ function ConvertFrom-PVEJsonToPOSTClusterConfigRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterConfigRB
-        $AllProperties = ("link[n]", "nodeid", "clustername", "votes")
+        $AllProperties = ("clustername", "nodeid", "votes", "link[n]")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "link[n]"))) { #optional property not found
-            $LinkN = $null
-        } else {
-            $LinkN = $JsonParameters.PSobject.Properties["link[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodeid"))) { #optional property not found
-            $Nodeid = $null
-        } else {
-            $Nodeid = $JsonParameters.PSobject.Properties["nodeid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "clustername"))) { #optional property not found
@@ -134,17 +122,29 @@ function ConvertFrom-PVEJsonToPOSTClusterConfigRB {
             $Clustername = $JsonParameters.PSobject.Properties["clustername"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodeid"))) { #optional property not found
+            $Nodeid = $null
+        } else {
+            $Nodeid = $JsonParameters.PSobject.Properties["nodeid"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "votes"))) { #optional property not found
             $Votes = $null
         } else {
             $Votes = $JsonParameters.PSobject.Properties["votes"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "link[n]"))) { #optional property not found
+            $LinkN = $null
+        } else {
+            $LinkN = $JsonParameters.PSobject.Properties["link[n]"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "link[n]" = ${LinkN}
-            "nodeid" = ${Nodeid}
             "clustername" = ${Clustername}
+            "nodeid" = ${Nodeid}
             "votes" = ${Votes}
+            "link[n]" = ${LinkN}
         }
 
         return $PSO

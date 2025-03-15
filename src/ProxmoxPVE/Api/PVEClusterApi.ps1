@@ -204,6 +204,9 @@ Return existing ACME account information.
 
 No description available.
 
+.PARAMETER Name
+ACME account config file name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -215,6 +218,9 @@ ClusterAcmeAccount
 function Get-PVEClusterAcmeAccountByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -237,6 +243,10 @@ function Get-PVEClusterAcmeAccountByName {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/acme/account/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getClusterAcmeAccountByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -541,6 +551,9 @@ Get ACME plugin configuration.
 
 No description available.
 
+.PARAMETER Id
+Unique identifier for ACME plugin instance.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -552,6 +565,9 @@ None
 function Get-PVEClusterAcmePluginsById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -571,6 +587,10 @@ function Get-PVEClusterAcmePluginsById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/acme/plugins/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getClusterAcmePluginsById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -735,6 +755,9 @@ Read vzdump backup job definition.
 
 No description available.
 
+.PARAMETER Id
+The job ID.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -746,6 +769,9 @@ None
 function Get-PVEClusterBackupById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -765,6 +791,10 @@ function Get-PVEClusterBackupById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/backup/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getClusterBackupById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -795,6 +825,9 @@ Returns included guests and the backup status of their disks. Optimized to be us
 
 No description available.
 
+.PARAMETER Id
+The job ID.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -806,6 +839,9 @@ ClusterBackupIncludedvolumes
 function Get-PVEClusterBackupIncludedvolumesById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -828,6 +864,10 @@ function Get-PVEClusterBackupIncludedvolumesById {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/backup/{id}/included_volumes'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getClusterBackupIncludedvolumesById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1107,6 +1147,9 @@ Get the status of a specific ceph flag.
 
 No description available.
 
+.PARAMETER Flag
+The name of the flag name to get.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1118,6 +1161,9 @@ Int32
 function Get-PVEClusterCephFlagsByFlag {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Flag},
         [Switch]
         $WithHttpInfo
     )
@@ -1140,6 +1186,10 @@ function Get-PVEClusterCephFlagsByFlag {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/ceph/flags/{flag}'
+        if (!$Flag) {
+            throw "Error! The required parameter `Flag` missing when calling getClusterCephFlagsByFlag."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{flag}', [System.Web.HTTPUtility]::UrlEncode($Flag))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1813,6 +1863,9 @@ Read alias.
 
 No description available.
 
+.PARAMETER Name
+Alias name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -1824,6 +1877,9 @@ None
 function Get-PVEClusterFirewallAliasesByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -1843,6 +1899,10 @@ function Get-PVEClusterFirewallAliasesByName {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/firewall/aliases/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getClusterFirewallAliasesByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1936,17 +1996,23 @@ List rules.
 
 No description available.
 
+.PARAMETER Group
+Security Group name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesFirewallRulesGETInner[]
+ClusterFirewallGroupsGETAVInner[]
 #>
 function Get-PVEClusterFirewallGroupsByGroup {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Group},
         [Switch]
         $WithHttpInfo
     )
@@ -1969,6 +2035,10 @@ function Get-PVEClusterFirewallGroupsByGroup {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/groups/{group}'
+        if (!$Group) {
+            throw "Error! The required parameter `Group` missing when calling getClusterFirewallGroupsByGroup."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{group}', [System.Web.HTTPUtility]::UrlEncode($Group))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -1979,7 +2049,7 @@ function Get-PVEClusterFirewallGroupsByGroup {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallRulesGETInner[]" `
+                                -ReturnType "ClusterFirewallGroupsGETAVInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1999,6 +2069,12 @@ Get single rule data.
 
 No description available.
 
+.PARAMETER Group
+Security Group name.
+
+.PARAMETER Pos
+Update rule at position <pos>.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2010,6 +2086,12 @@ ClusterFirewallGroups
 function Get-PVEClusterFirewallGroupsByGroupAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Group},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
         [Switch]
         $WithHttpInfo
     )
@@ -2032,6 +2114,14 @@ function Get-PVEClusterFirewallGroupsByGroupAndPos {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/groups/{group}/{pos}'
+        if (!$Group) {
+            throw "Error! The required parameter `Group` missing when calling getClusterFirewallGroupsByGroupAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{group}', [System.Web.HTTPUtility]::UrlEncode($Group))
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling getClusterFirewallGroupsByGroupAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2068,7 +2158,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesQemuFirewallIpsetInner[]
+NodesLxcFirewallIpsetInner[]
 #>
 function Get-PVEClusterFirewallIpset {
     [CmdletBinding()]
@@ -2105,7 +2195,7 @@ function Get-PVEClusterFirewallIpset {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesQemuFirewallIpsetInner[]" `
+                                -ReturnType "NodesLxcFirewallIpsetInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2125,17 +2215,23 @@ List IPSet content
 
 No description available.
 
+.PARAMETER Name
+IP set name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesLxcFirewallIpsetGETInner[]
+ClusterFirewallIpsetGETInner[]
 #>
 function Get-PVEClusterFirewallIpsetByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -2158,6 +2254,10 @@ function Get-PVEClusterFirewallIpsetByName {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/ipset/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getClusterFirewallIpsetByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2168,7 +2268,7 @@ function Get-PVEClusterFirewallIpsetByName {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallIpsetGETInner[]" `
+                                -ReturnType "ClusterFirewallIpsetGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2188,6 +2288,12 @@ Read IP or Network settings from IPSet.
 
 No description available.
 
+.PARAMETER Cidr
+Network/IP specification in CIDR format.
+
+.PARAMETER Name
+IP set name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2199,6 +2305,12 @@ None
 function Get-PVEClusterFirewallIpsetByNameAndCidr {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Cidr},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -2218,6 +2330,14 @@ function Get-PVEClusterFirewallIpsetByNameAndCidr {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/firewall/ipset/{name}/{cidr}'
+        if (!$Cidr) {
+            throw "Error! The required parameter `Cidr` missing when calling getClusterFirewallIpsetByNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{cidr}', [System.Web.HTTPUtility]::UrlEncode($Cidr))
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getClusterFirewallIpsetByNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2383,7 +2503,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallRefsInner[]
+NodesQemuFirewallRefsInner[]
 #>
 function Get-PVEClusterFirewallRefs {
     [CmdletBinding()]
@@ -2428,7 +2548,7 @@ function Get-PVEClusterFirewallRefs {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallRefsInner[]" `
+                                -ReturnType "NodesQemuFirewallRefsInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2454,7 +2574,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesFirewallRulesGETInner[]
+ClusterFirewallGroupsGETAVInner[]
 #>
 function Get-PVEClusterFirewallRules {
     [CmdletBinding()]
@@ -2491,7 +2611,7 @@ function Get-PVEClusterFirewallRules {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallRulesGETInner[]" `
+                                -ReturnType "ClusterFirewallGroupsGETAVInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2511,6 +2631,9 @@ Get single rule data.
 
 No description available.
 
+.PARAMETER Pos
+Update rule at position <pos>.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2522,6 +2645,9 @@ ClusterFirewallRules
 function Get-PVEClusterFirewallRulesByPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
         [Switch]
         $WithHttpInfo
     )
@@ -2544,6 +2670,10 @@ function Get-PVEClusterFirewallRulesByPos {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/rules/{pos}'
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling getClusterFirewallRulesByPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2700,6 +2830,9 @@ Read ha group configuration.
 
 No description available.
 
+.PARAMETER Group
+The HA group identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2711,6 +2844,9 @@ None
 function Get-PVEClusterHaGroupsByGroup {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Group},
         [Switch]
         $WithHttpInfo
     )
@@ -2730,6 +2866,10 @@ function Get-PVEClusterHaGroupsByGroup {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/ha/groups/{group}'
+        if (!$Group) {
+            throw "Error! The required parameter `Group` missing when calling getClusterHaGroupsByGroup."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{group}', [System.Web.HTTPUtility]::UrlEncode($Group))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -2834,6 +2974,9 @@ Read resource configuration.
 
 No description available.
 
+.PARAMETER Sid
+HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -2845,6 +2988,9 @@ ClusterHaResources
 function Get-PVEClusterHaResourcesBySid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Sid},
         [Switch]
         $WithHttpInfo
     )
@@ -2867,6 +3013,10 @@ function Get-PVEClusterHaResourcesBySid {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/ha/resources/{sid}'
+        if (!$Sid) {
+            throw "Error! The required parameter `Sid` missing when calling getClusterHaResourcesBySid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{sid}', [System.Web.HTTPUtility]::UrlEncode($Sid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3206,6 +3356,9 @@ Read realm-sync job definition.
 
 No description available.
 
+.PARAMETER Id
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3217,6 +3370,9 @@ None
 function Get-PVEClusterJobsRealmsyncById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -3236,6 +3392,10 @@ function Get-PVEClusterJobsRealmsyncById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/jobs/realm-sync/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getClusterJobsRealmsyncById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3548,6 +3708,9 @@ Get PCI Mapping.
 
 No description available.
 
+.PARAMETER Id
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3559,6 +3722,9 @@ None
 function Get-PVEClusterMappingPciById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -3578,6 +3744,10 @@ function Get-PVEClusterMappingPciById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/mapping/pci/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getClusterMappingPciById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3682,6 +3852,9 @@ Get USB Mapping.
 
 No description available.
 
+.PARAMETER Id
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3693,6 +3866,9 @@ None
 function Get-PVEClusterMappingUsbById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -3712,6 +3888,10 @@ function Get-PVEClusterMappingUsbById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/mapping/usb/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getClusterMappingUsbById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -3942,6 +4122,9 @@ Read metric server configuration.
 
 No description available.
 
+.PARAMETER Id
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -3953,6 +4136,9 @@ None
 function Get-PVEClusterMetricsServerById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -3972,6 +4158,10 @@ function Get-PVEClusterMetricsServerById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/metrics/server/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getClusterMetricsServerById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4265,6 +4455,9 @@ Return a specific gotify endpoint
 
 No description available.
 
+.PARAMETER Name
+Name of the endpoint.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4276,6 +4469,9 @@ ClusterNotificationsEndpointsGotify
 function Get-PVEClusterNotificationsEndpointsGotifyByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -4298,6 +4494,10 @@ function Get-PVEClusterNotificationsEndpointsGotifyByName {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/notifications/endpoints/gotify/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getClusterNotificationsEndpointsGotifyByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4391,6 +4591,9 @@ Return a specific sendmail endpoint
 
 No description available.
 
+.PARAMETER Name
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4402,6 +4605,9 @@ ClusterNotificationsEndpointsSendmail
 function Get-PVEClusterNotificationsEndpointsSendmailByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -4424,6 +4630,10 @@ function Get-PVEClusterNotificationsEndpointsSendmailByName {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/notifications/endpoints/sendmail/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getClusterNotificationsEndpointsSendmailByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4517,6 +4727,9 @@ Return a specific smtp endpoint
 
 No description available.
 
+.PARAMETER Name
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4528,6 +4741,9 @@ ClusterNotificationsEndpointsSmtp
 function Get-PVEClusterNotificationsEndpointsSmtpByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -4550,6 +4766,10 @@ function Get-PVEClusterNotificationsEndpointsSmtpByName {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/notifications/endpoints/smtp/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getClusterNotificationsEndpointsSmtpByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4643,6 +4863,9 @@ Return a specific webhook endpoint
 
 No description available.
 
+.PARAMETER Name
+Name of the endpoint.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4654,6 +4877,9 @@ ClusterNotificationsEndpointsWebhook
 function Get-PVEClusterNotificationsEndpointsWebhookByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -4676,6 +4902,10 @@ function Get-PVEClusterNotificationsEndpointsWebhookByName {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/notifications/endpoints/webhook/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getClusterNotificationsEndpointsWebhookByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -4895,6 +5125,9 @@ Return a specific matcher
 
 No description available.
 
+.PARAMETER Name
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -4906,6 +5139,9 @@ ClusterNotificationsMatchers
 function Get-PVEClusterNotificationsMatchersByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -4928,6 +5164,10 @@ function Get-PVEClusterNotificationsMatchersByName {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/notifications/matchers/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling getClusterNotificationsMatchersByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5144,6 +5384,9 @@ Read replication job configuration.
 
 No description available.
 
+.PARAMETER Id
+Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5155,6 +5398,9 @@ None
 function Get-PVEClusterReplicationById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -5174,6 +5420,10 @@ function Get-PVEClusterReplicationById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/replication/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling getClusterReplicationById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5415,6 +5665,9 @@ Read sdn controller configuration.
 
 No description available.
 
+.PARAMETER Controller
+The SDN controller object identifier.
+
 .PARAMETER GETClusterSdnControllersRB
 Read sdn controller configuration.
 
@@ -5430,6 +5683,9 @@ function Get-PVEClusterSdnControllersByController {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Controller},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETClusterSdnControllersRB},
         [Switch]
@@ -5454,6 +5710,10 @@ function Get-PVEClusterSdnControllersByController {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/controllers/{controller}'
+        if (!$Controller) {
+            throw "Error! The required parameter `Controller` missing when calling getClusterSdnControllersByController."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{controller}', [System.Web.HTTPUtility]::UrlEncode($Controller))
 
         $LocalVarBodyParameter = $GETClusterSdnControllersRB | ConvertTo-Json -Depth 100
 
@@ -5560,6 +5820,9 @@ Read sdn dns configuration.
 
 No description available.
 
+.PARAMETER Dns
+The SDN dns object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5571,6 +5834,9 @@ None
 function Get-PVEClusterSdnDnsByDns {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Dns},
         [Switch]
         $WithHttpInfo
     )
@@ -5590,6 +5856,10 @@ function Get-PVEClusterSdnDnsByDns {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/sdn/dns/{dns}'
+        if (!$Dns) {
+            throw "Error! The required parameter `Dns` missing when calling getClusterSdnDnsByDns."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{dns}', [System.Web.HTTPUtility]::UrlEncode($Dns))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5694,6 +5964,9 @@ Read sdn ipam configuration.
 
 No description available.
 
+.PARAMETER Ipam
+The SDN ipam object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5705,6 +5978,9 @@ None
 function Get-PVEClusterSdnIpamsByIpam {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Ipam},
         [Switch]
         $WithHttpInfo
     )
@@ -5724,6 +6000,10 @@ function Get-PVEClusterSdnIpamsByIpam {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/sdn/ipams/{ipam}'
+        if (!$Ipam) {
+            throw "Error! The required parameter `Ipam` missing when calling getClusterSdnIpamsByIpam."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{ipam}', [System.Web.HTTPUtility]::UrlEncode($Ipam))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5754,6 +6034,9 @@ List PVE IPAM Entries
 
 No description available.
 
+.PARAMETER Ipam
+The SDN ipam object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5765,6 +6048,9 @@ None
 function Get-PVEClusterSdnIpamsStatusByIpam {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Ipam},
         [Switch]
         $WithHttpInfo
     )
@@ -5784,6 +6070,10 @@ function Get-PVEClusterSdnIpamsStatusByIpam {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/sdn/ipams/{ipam}/status'
+        if (!$Ipam) {
+            throw "Error! The required parameter `Ipam` missing when calling getClusterSdnIpamsStatusByIpam."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{ipam}', [System.Web.HTTPUtility]::UrlEncode($Ipam))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -5888,6 +6178,9 @@ Read sdn vnet configuration.
 
 No description available.
 
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER GETClusterSdnVnetsRB
 Read sdn vnet configuration.
 
@@ -5903,6 +6196,9 @@ function Get-PVEClusterSdnVnetsByVnet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETClusterSdnVnetsRB},
         [Switch]
@@ -5927,6 +6223,10 @@ function Get-PVEClusterSdnVnetsByVnet {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling getClusterSdnVnetsByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $GETClusterSdnVnetsRB | ConvertTo-Json -Depth 100
 
@@ -5959,6 +6259,9 @@ Directory index.
 
 No description available.
 
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -5970,6 +6273,9 @@ SystemCollectionsHashtable[]
 function Get-PVEClusterSdnVnetsFirewallByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
         [Switch]
         $WithHttpInfo
     )
@@ -5992,6 +6298,10 @@ function Get-PVEClusterSdnVnetsFirewallByVnet {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/firewall'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling getClusterSdnVnetsFirewallByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6022,6 +6332,9 @@ Get vnet firewall options.
 
 No description available.
 
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6033,6 +6346,9 @@ ClusterSdnVnetsFirewallOptions
 function Get-PVEClusterSdnVnetsFirewallOptionsByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
         [Switch]
         $WithHttpInfo
     )
@@ -6055,6 +6371,10 @@ function Get-PVEClusterSdnVnetsFirewallOptionsByVnet {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/firewall/options'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling getClusterSdnVnetsFirewallOptionsByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6085,17 +6405,23 @@ List rules.
 
 No description available.
 
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-NodesFirewallRulesGETInner[]
+ClusterFirewallGroupsGETAVInner[]
 #>
 function Get-PVEClusterSdnVnetsFirewallRulesByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
         [Switch]
         $WithHttpInfo
     )
@@ -6118,6 +6444,10 @@ function Get-PVEClusterSdnVnetsFirewallRulesByVnet {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/firewall/rules'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling getClusterSdnVnetsFirewallRulesByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6128,7 +6458,7 @@ function Get-PVEClusterSdnVnetsFirewallRulesByVnet {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesFirewallRulesGETInner[]" `
+                                -ReturnType "ClusterFirewallGroupsGETAVInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -6148,6 +6478,12 @@ Get single rule data.
 
 No description available.
 
+.PARAMETER Pos
+Update rule at position <pos>.
+
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -6159,6 +6495,12 @@ ClusterSdnVnetsFirewallRules
 function Get-PVEClusterSdnVnetsFirewallRulesByVnetAndPos {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
         [Switch]
         $WithHttpInfo
     )
@@ -6181,6 +6523,14 @@ function Get-PVEClusterSdnVnetsFirewallRulesByVnetAndPos {
         $LocalVarAccepts = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/firewall/rules/{pos}'
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling getClusterSdnVnetsFirewallRulesByVnetAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling getClusterSdnVnetsFirewallRulesByVnetAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
@@ -6211,6 +6561,9 @@ SDN subnets index.
 
 No description available.
 
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER GETClusterSdnVnetsSubnetsRB
 SDN subnets index.
 
@@ -6226,6 +6579,9 @@ function Get-PVEClusterSdnVnetsSubnetsByVnet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETClusterSdnVnetsSubnetsRB},
         [Switch]
@@ -6253,6 +6609,10 @@ function Get-PVEClusterSdnVnetsSubnetsByVnet {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/subnets'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling getClusterSdnVnetsSubnetsByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $GETClusterSdnVnetsSubnetsRB | ConvertTo-Json -Depth 100
 
@@ -6285,6 +6645,12 @@ Read sdn subnet configuration.
 
 No description available.
 
+.PARAMETER Subnet
+The SDN subnet object identifier.
+
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER GETClusterSdnVnetsSubnetsRB
 Read sdn subnet configuration.
 
@@ -6300,6 +6666,12 @@ function Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Subnet},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETClusterSdnVnetsSubnetsRB},
         [Switch]
@@ -6324,6 +6696,14 @@ function Get-PVEClusterSdnVnetsSubnetsByVnetAndSubnet {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/subnets/{subnet}'
+        if (!$Subnet) {
+            throw "Error! The required parameter `Subnet` missing when calling getClusterSdnVnetsSubnetsByVnetAndSubnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{subnet}', [System.Web.HTTPUtility]::UrlEncode($Subnet))
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling getClusterSdnVnetsSubnetsByVnetAndSubnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $GETClusterSdnVnetsSubnetsRB | ConvertTo-Json -Depth 100
 
@@ -6430,6 +6810,9 @@ Read sdn zone configuration.
 
 No description available.
 
+.PARAMETER Zone
+The SDN zone object identifier.
+
 .PARAMETER GETClusterSdnZonesRB
 Read sdn zone configuration.
 
@@ -6445,6 +6828,9 @@ function Get-PVEClusterSdnZonesByZone {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Zone},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${GETClusterSdnZonesRB},
         [Switch]
@@ -6469,6 +6855,10 @@ function Get-PVEClusterSdnZonesByZone {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/zones/{zone}'
+        if (!$Zone) {
+            throw "Error! The required parameter `Zone` missing when calling getClusterSdnZonesByZone."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{zone}', [System.Web.HTTPUtility]::UrlEncode($Zone))
 
         $LocalVarBodyParameter = $GETClusterSdnZonesRB | ConvertTo-Json -Depth 100
 
@@ -6982,6 +7372,9 @@ Adds a node to the cluster configuration. This call is for internal use.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER POSTClusterConfigNodesRB
 Adds a node to the cluster configuration. This call is for internal use.
 
@@ -6997,6 +7390,9 @@ function New-PVEClusterConfigNodesByNode {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTClusterConfigNodesRB},
         [Switch]
@@ -7024,6 +7420,10 @@ function New-PVEClusterConfigNodesByNode {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/config/nodes/{node}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling newClusterConfigNodesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarBodyParameter = $POSTClusterConfigNodesRB | ConvertTo-Json -Depth 100
 
@@ -7198,6 +7598,9 @@ Create new rule.
 
 No description available.
 
+.PARAMETER Group
+Security Group name.
+
 .PARAMETER POSTClusterFirewallGroupsRB
 Create new rule.
 
@@ -7213,6 +7616,9 @@ function New-PVEClusterFirewallGroupsByGroup {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Group},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTClusterFirewallGroupsRB},
         [Switch]
@@ -7237,6 +7643,10 @@ function New-PVEClusterFirewallGroupsByGroup {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/groups/{group}'
+        if (!$Group) {
+            throw "Error! The required parameter `Group` missing when calling newClusterFirewallGroupsByGroup."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{group}', [System.Web.HTTPUtility]::UrlEncode($Group))
 
         $LocalVarBodyParameter = $POSTClusterFirewallGroupsRB | ConvertTo-Json -Depth 100
 
@@ -7340,6 +7750,9 @@ Add IP or Network to IPSet.
 
 No description available.
 
+.PARAMETER Name
+IP set name.
+
 .PARAMETER POSTClusterFirewallIpsetRB
 Add IP or Network to IPSet.
 
@@ -7355,6 +7768,9 @@ function New-PVEClusterFirewallIpsetByName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTClusterFirewallIpsetRB},
         [Switch]
@@ -7379,6 +7795,10 @@ function New-PVEClusterFirewallIpsetByName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/ipset/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling newClusterFirewallIpsetByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarBodyParameter = $POSTClusterFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -7624,6 +8044,9 @@ Request resource migration (online) to another node.
 
 No description available.
 
+.PARAMETER Sid
+HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100).
+
 .PARAMETER POSTClusterHaResourcesMigrateRB
 Request resource migration (online) to another node.
 
@@ -7639,6 +8062,9 @@ function New-PVEClusterHaResourcesMigrateBySid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Sid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTClusterHaResourcesMigrateRB},
         [Switch]
@@ -7663,6 +8089,10 @@ function New-PVEClusterHaResourcesMigrateBySid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/ha/resources/{sid}/migrate'
+        if (!$Sid) {
+            throw "Error! The required parameter `Sid` missing when calling newClusterHaResourcesMigrateBySid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{sid}', [System.Web.HTTPUtility]::UrlEncode($Sid))
 
         $LocalVarBodyParameter = $POSTClusterHaResourcesMigrateRB | ConvertTo-Json -Depth 100
 
@@ -7695,6 +8125,9 @@ Request resource relocatzion to another node. This stops the service on the old 
 
 No description available.
 
+.PARAMETER Sid
+HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100).
+
 .PARAMETER POSTClusterHaResourcesRelocateRB
 Request resource relocatzion to another node. This stops the service on the old node, and restarts it on the target node.
 
@@ -7710,6 +8143,9 @@ function New-PVEClusterHaResourcesRelocateBySid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Sid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTClusterHaResourcesRelocateRB},
         [Switch]
@@ -7734,6 +8170,10 @@ function New-PVEClusterHaResourcesRelocateBySid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/ha/resources/{sid}/relocate'
+        if (!$Sid) {
+            throw "Error! The required parameter `Sid` missing when calling newClusterHaResourcesRelocateBySid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{sid}', [System.Web.HTTPUtility]::UrlEncode($Sid))
 
         $LocalVarBodyParameter = $POSTClusterHaResourcesRelocateRB | ConvertTo-Json -Depth 100
 
@@ -7766,6 +8206,9 @@ Create new realm-sync job.
 
 No description available.
 
+.PARAMETER Id
+The ID of the job.
+
 .PARAMETER POSTClusterJobsRealmsyncRB
 Create new realm-sync job.
 
@@ -7781,6 +8224,9 @@ function New-PVEClusterJobsRealmsyncById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTClusterJobsRealmsyncRB},
         [Switch]
@@ -7805,6 +8251,10 @@ function New-PVEClusterJobsRealmsyncById {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/jobs/realm-sync/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling newClusterJobsRealmsyncById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarBodyParameter = $POSTClusterJobsRealmsyncRB | ConvertTo-Json -Depth 100
 
@@ -7979,6 +8429,9 @@ Create a new external metric server config
 
 No description available.
 
+.PARAMETER Id
+The ID of the entry.
+
 .PARAMETER POSTClusterMetricsServerRB
 Create a new external metric server config
 
@@ -7994,6 +8447,9 @@ function New-PVEClusterMetricsServerById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTClusterMetricsServerRB},
         [Switch]
@@ -8018,6 +8474,10 @@ function New-PVEClusterMetricsServerById {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/metrics/server/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling newClusterMetricsServerById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarBodyParameter = $POSTClusterMetricsServerRB | ConvertTo-Json -Depth 100
 
@@ -8405,6 +8865,9 @@ Send a test notification to a provided target.
 
 No description available.
 
+.PARAMETER Name
+Name of the target.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -8416,6 +8879,9 @@ None
 function New-PVEClusterNotificationsTargetsTestByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -8435,6 +8901,10 @@ function New-PVEClusterNotificationsTargetsTestByName {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/notifications/targets/{name}/test'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling newClusterNotificationsTargetsTestByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
@@ -8820,6 +9290,9 @@ Create new rule.
 
 No description available.
 
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER POSTClusterSdnVnetsFirewallRulesRB
 Create new rule.
 
@@ -8835,6 +9308,9 @@ function New-PVEClusterSdnVnetsFirewallRulesByVnet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTClusterSdnVnetsFirewallRulesRB},
         [Switch]
@@ -8859,6 +9335,10 @@ function New-PVEClusterSdnVnetsFirewallRulesByVnet {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/firewall/rules'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling newClusterSdnVnetsFirewallRulesByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $POSTClusterSdnVnetsFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -8891,6 +9371,9 @@ Create IP Mapping in a VNet
 
 No description available.
 
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER POSTClusterSdnVnetsIpsRB
 Create IP Mapping in a VNet
 
@@ -8906,6 +9389,9 @@ function New-PVEClusterSdnVnetsIpsByVnet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTClusterSdnVnetsIpsRB},
         [Switch]
@@ -8930,6 +9416,10 @@ function New-PVEClusterSdnVnetsIpsByVnet {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/ips'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling newClusterSdnVnetsIpsByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $POSTClusterSdnVnetsIpsRB | ConvertTo-Json -Depth 100
 
@@ -8962,6 +9452,9 @@ Create a new sdn subnet object.
 
 No description available.
 
+.PARAMETER Vnet
+associated vnet
+
 .PARAMETER POSTClusterSdnVnetsSubnetsRB
 Create a new sdn subnet object.
 
@@ -8977,6 +9470,9 @@ function New-PVEClusterSdnVnetsSubnetsByVnet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${POSTClusterSdnVnetsSubnetsRB},
         [Switch]
@@ -9001,6 +9497,10 @@ function New-PVEClusterSdnVnetsSubnetsByVnet {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/subnets'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling newClusterSdnVnetsSubnetsByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $POSTClusterSdnVnetsSubnetsRB | ConvertTo-Json -Depth 100
 
@@ -9104,6 +9604,9 @@ Deactivate existing ACME account at CA.
 
 No description available.
 
+.PARAMETER Name
+ACME account config file name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9115,6 +9618,9 @@ None
 function Remove-PVEClusterAcmeAccountByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -9134,6 +9640,10 @@ function Remove-PVEClusterAcmeAccountByName {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/acme/account/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeClusterAcmeAccountByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -9164,6 +9674,9 @@ Delete ACME plugin configuration.
 
 No description available.
 
+.PARAMETER Id
+Unique identifier for ACME plugin instance.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9175,6 +9688,9 @@ None
 function Remove-PVEClusterAcmePluginsById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -9194,6 +9710,10 @@ function Remove-PVEClusterAcmePluginsById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/acme/plugins/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling removeClusterAcmePluginsById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -9224,6 +9744,9 @@ Delete vzdump backup job definition.
 
 No description available.
 
+.PARAMETER Id
+The job ID.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9235,6 +9758,9 @@ None
 function Remove-PVEClusterBackupById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -9254,6 +9780,10 @@ function Remove-PVEClusterBackupById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/backup/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling removeClusterBackupById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -9284,6 +9814,9 @@ Removes a node from the cluster configuration.
 
 No description available.
 
+.PARAMETER Node
+The cluster node name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9295,6 +9828,9 @@ None
 function Remove-PVEClusterConfigNodesByNode {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Node},
         [Switch]
         $WithHttpInfo
     )
@@ -9314,6 +9850,10 @@ function Remove-PVEClusterConfigNodesByNode {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/config/nodes/{node}'
+        if (!$Node) {
+            throw "Error! The required parameter `Node` missing when calling removeClusterConfigNodesByNode."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{node}', [System.Web.HTTPUtility]::UrlEncode($Node))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -9344,6 +9884,9 @@ Remove IP or Network alias.
 
 No description available.
 
+.PARAMETER Name
+Alias name.
+
 .PARAMETER DELETEClusterFirewallAliasesRB
 Remove IP or Network alias.
 
@@ -9359,6 +9902,9 @@ function Remove-PVEClusterFirewallAliasesByName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETEClusterFirewallAliasesRB},
         [Switch]
@@ -9383,6 +9929,10 @@ function Remove-PVEClusterFirewallAliasesByName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/aliases/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeClusterFirewallAliasesByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarBodyParameter = $DELETEClusterFirewallAliasesRB | ConvertTo-Json -Depth 100
 
@@ -9415,6 +9965,9 @@ Delete security group.
 
 No description available.
 
+.PARAMETER Group
+Security Group name.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9426,6 +9979,9 @@ None
 function Remove-PVEClusterFirewallGroupsByGroup {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Group},
         [Switch]
         $WithHttpInfo
     )
@@ -9445,6 +10001,10 @@ function Remove-PVEClusterFirewallGroupsByGroup {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/firewall/groups/{group}'
+        if (!$Group) {
+            throw "Error! The required parameter `Group` missing when calling removeClusterFirewallGroupsByGroup."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{group}', [System.Web.HTTPUtility]::UrlEncode($Group))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -9475,6 +10035,12 @@ Delete rule.
 
 No description available.
 
+.PARAMETER Group
+Security Group name.
+
+.PARAMETER Pos
+Update rule at position <pos>.
+
 .PARAMETER DELETEClusterFirewallGroupsRB
 Delete rule.
 
@@ -9490,6 +10056,12 @@ function Remove-PVEClusterFirewallGroupsByGroupAndPos {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Group},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETEClusterFirewallGroupsRB},
         [Switch]
@@ -9514,6 +10086,14 @@ function Remove-PVEClusterFirewallGroupsByGroupAndPos {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/groups/{group}/{pos}'
+        if (!$Group) {
+            throw "Error! The required parameter `Group` missing when calling removeClusterFirewallGroupsByGroupAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{group}', [System.Web.HTTPUtility]::UrlEncode($Group))
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling removeClusterFirewallGroupsByGroupAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
 
         $LocalVarBodyParameter = $DELETEClusterFirewallGroupsRB | ConvertTo-Json -Depth 100
 
@@ -9546,6 +10126,9 @@ Delete IPSet
 
 No description available.
 
+.PARAMETER Name
+IP set name.
+
 .PARAMETER DELETEClusterFirewallIpsetRB
 Delete IPSet
 
@@ -9561,6 +10144,9 @@ function Remove-PVEClusterFirewallIpsetByName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETEClusterFirewallIpsetRB},
         [Switch]
@@ -9585,6 +10171,10 @@ function Remove-PVEClusterFirewallIpsetByName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/ipset/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeClusterFirewallIpsetByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarBodyParameter = $DELETEClusterFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -9617,6 +10207,12 @@ Remove IP or Network from IPSet.
 
 No description available.
 
+.PARAMETER Cidr
+Network/IP specification in CIDR format.
+
+.PARAMETER Name
+IP set name.
+
 .PARAMETER DELETEClusterFirewallIpsetRB
 Remove IP or Network from IPSet.
 
@@ -9632,6 +10228,12 @@ function Remove-PVEClusterFirewallIpsetByNameAndCidr {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Cidr},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETEClusterFirewallIpsetRB},
         [Switch]
@@ -9656,6 +10258,14 @@ function Remove-PVEClusterFirewallIpsetByNameAndCidr {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/ipset/{name}/{cidr}'
+        if (!$Cidr) {
+            throw "Error! The required parameter `Cidr` missing when calling removeClusterFirewallIpsetByNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{cidr}', [System.Web.HTTPUtility]::UrlEncode($Cidr))
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeClusterFirewallIpsetByNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarBodyParameter = $DELETEClusterFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -9688,6 +10298,9 @@ Delete rule.
 
 No description available.
 
+.PARAMETER Pos
+Update rule at position <pos>.
+
 .PARAMETER DELETEClusterFirewallRulesRB
 Delete rule.
 
@@ -9703,6 +10316,9 @@ function Remove-PVEClusterFirewallRulesByPos {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETEClusterFirewallRulesRB},
         [Switch]
@@ -9727,6 +10343,10 @@ function Remove-PVEClusterFirewallRulesByPos {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/rules/{pos}'
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling removeClusterFirewallRulesByPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
 
         $LocalVarBodyParameter = $DELETEClusterFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -9759,6 +10379,9 @@ Delete ha group configuration.
 
 No description available.
 
+.PARAMETER Group
+The HA group identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9770,6 +10393,9 @@ None
 function Remove-PVEClusterHaGroupsByGroup {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Group},
         [Switch]
         $WithHttpInfo
     )
@@ -9789,6 +10415,10 @@ function Remove-PVEClusterHaGroupsByGroup {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/ha/groups/{group}'
+        if (!$Group) {
+            throw "Error! The required parameter `Group` missing when calling removeClusterHaGroupsByGroup."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{group}', [System.Web.HTTPUtility]::UrlEncode($Group))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -9819,6 +10449,9 @@ Delete resource configuration.
 
 No description available.
 
+.PARAMETER Sid
+HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100).
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9830,6 +10463,9 @@ None
 function Remove-PVEClusterHaResourcesBySid {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Sid},
         [Switch]
         $WithHttpInfo
     )
@@ -9849,6 +10485,10 @@ function Remove-PVEClusterHaResourcesBySid {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/ha/resources/{sid}'
+        if (!$Sid) {
+            throw "Error! The required parameter `Sid` missing when calling removeClusterHaResourcesBySid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{sid}', [System.Web.HTTPUtility]::UrlEncode($Sid))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -9879,6 +10519,9 @@ Delete realm-sync job definition.
 
 No description available.
 
+.PARAMETER Id
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9890,6 +10533,9 @@ None
 function Remove-PVEClusterJobsRealmsyncById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -9909,6 +10555,10 @@ function Remove-PVEClusterJobsRealmsyncById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/jobs/realm-sync/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling removeClusterJobsRealmsyncById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -9939,6 +10589,9 @@ Remove Hardware Mapping.
 
 No description available.
 
+.PARAMETER Id
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -9950,6 +10603,9 @@ None
 function Remove-PVEClusterMappingPciById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -9969,6 +10625,10 @@ function Remove-PVEClusterMappingPciById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/mapping/pci/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling removeClusterMappingPciById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -9999,6 +10659,9 @@ Remove Hardware Mapping.
 
 No description available.
 
+.PARAMETER Id
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10010,6 +10673,9 @@ None
 function Remove-PVEClusterMappingUsbById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -10029,6 +10695,10 @@ function Remove-PVEClusterMappingUsbById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/mapping/usb/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling removeClusterMappingUsbById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10059,6 +10729,9 @@ Remove Metric server.
 
 No description available.
 
+.PARAMETER Id
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10070,6 +10743,9 @@ None
 function Remove-PVEClusterMetricsServerById {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -10089,6 +10765,10 @@ function Remove-PVEClusterMetricsServerById {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/metrics/server/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling removeClusterMetricsServerById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10119,6 +10799,9 @@ Remove gotify endpoint
 
 No description available.
 
+.PARAMETER Name
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10130,6 +10813,9 @@ None
 function Remove-PVEClusterNotificationsEndpointsGotifyByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -10149,6 +10835,10 @@ function Remove-PVEClusterNotificationsEndpointsGotifyByName {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/notifications/endpoints/gotify/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeClusterNotificationsEndpointsGotifyByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10179,6 +10869,9 @@ Remove sendmail endpoint
 
 No description available.
 
+.PARAMETER Name
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10190,6 +10883,9 @@ None
 function Remove-PVEClusterNotificationsEndpointsSendmailByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -10209,6 +10905,10 @@ function Remove-PVEClusterNotificationsEndpointsSendmailByName {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/notifications/endpoints/sendmail/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeClusterNotificationsEndpointsSendmailByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10239,6 +10939,9 @@ Remove smtp endpoint
 
 No description available.
 
+.PARAMETER Name
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10250,6 +10953,9 @@ None
 function Remove-PVEClusterNotificationsEndpointsSmtpByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -10269,6 +10975,10 @@ function Remove-PVEClusterNotificationsEndpointsSmtpByName {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/notifications/endpoints/smtp/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeClusterNotificationsEndpointsSmtpByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10299,6 +11009,9 @@ Remove webhook endpoint
 
 No description available.
 
+.PARAMETER Name
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10310,6 +11023,9 @@ None
 function Remove-PVEClusterNotificationsEndpointsWebhookByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -10329,6 +11045,10 @@ function Remove-PVEClusterNotificationsEndpointsWebhookByName {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/notifications/endpoints/webhook/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeClusterNotificationsEndpointsWebhookByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10359,6 +11079,9 @@ Remove matcher
 
 No description available.
 
+.PARAMETER Name
+No description available.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10370,6 +11093,9 @@ None
 function Remove-PVEClusterNotificationsMatchersByName {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
         [Switch]
         $WithHttpInfo
     )
@@ -10389,6 +11115,10 @@ function Remove-PVEClusterNotificationsMatchersByName {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/notifications/matchers/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling removeClusterNotificationsMatchersByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10419,6 +11149,9 @@ Mark replication job for removal.
 
 No description available.
 
+.PARAMETER Id
+Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
+
 .PARAMETER DELETEClusterReplicationRB
 Mark replication job for removal.
 
@@ -10434,6 +11167,9 @@ function Remove-PVEClusterReplicationById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETEClusterReplicationRB},
         [Switch]
@@ -10458,6 +11194,10 @@ function Remove-PVEClusterReplicationById {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/replication/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling removeClusterReplicationById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarBodyParameter = $DELETEClusterReplicationRB | ConvertTo-Json -Depth 100
 
@@ -10490,6 +11230,9 @@ Delete sdn controller object configuration.
 
 No description available.
 
+.PARAMETER Controller
+The SDN controller object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10501,6 +11244,9 @@ None
 function Remove-PVEClusterSdnControllersByController {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Controller},
         [Switch]
         $WithHttpInfo
     )
@@ -10520,6 +11266,10 @@ function Remove-PVEClusterSdnControllersByController {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/sdn/controllers/{controller}'
+        if (!$Controller) {
+            throw "Error! The required parameter `Controller` missing when calling removeClusterSdnControllersByController."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{controller}', [System.Web.HTTPUtility]::UrlEncode($Controller))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10550,6 +11300,9 @@ Delete sdn dns object configuration.
 
 No description available.
 
+.PARAMETER Dns
+The SDN dns object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10561,6 +11314,9 @@ None
 function Remove-PVEClusterSdnDnsByDns {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Dns},
         [Switch]
         $WithHttpInfo
     )
@@ -10580,6 +11336,10 @@ function Remove-PVEClusterSdnDnsByDns {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/sdn/dns/{dns}'
+        if (!$Dns) {
+            throw "Error! The required parameter `Dns` missing when calling removeClusterSdnDnsByDns."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{dns}', [System.Web.HTTPUtility]::UrlEncode($Dns))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10610,6 +11370,9 @@ Delete sdn ipam object configuration.
 
 No description available.
 
+.PARAMETER Ipam
+The SDN ipam object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10621,6 +11384,9 @@ None
 function Remove-PVEClusterSdnIpamsByIpam {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Ipam},
         [Switch]
         $WithHttpInfo
     )
@@ -10640,6 +11406,10 @@ function Remove-PVEClusterSdnIpamsByIpam {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/sdn/ipams/{ipam}'
+        if (!$Ipam) {
+            throw "Error! The required parameter `Ipam` missing when calling removeClusterSdnIpamsByIpam."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{ipam}', [System.Web.HTTPUtility]::UrlEncode($Ipam))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10670,6 +11440,9 @@ Delete sdn vnet object configuration.
 
 No description available.
 
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10681,6 +11454,9 @@ None
 function Remove-PVEClusterSdnVnetsByVnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
         [Switch]
         $WithHttpInfo
     )
@@ -10700,6 +11476,10 @@ function Remove-PVEClusterSdnVnetsByVnet {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling removeClusterSdnVnetsByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10730,6 +11510,12 @@ Delete rule.
 
 No description available.
 
+.PARAMETER Pos
+Update rule at position <pos>.
+
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER DELETEClusterSdnVnetsFirewallRulesRB
 Delete rule.
 
@@ -10745,6 +11531,12 @@ function Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETEClusterSdnVnetsFirewallRulesRB},
         [Switch]
@@ -10769,6 +11561,14 @@ function Remove-PVEClusterSdnVnetsFirewallRulesByVnetAndPos {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/firewall/rules/{pos}'
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling removeClusterSdnVnetsFirewallRulesByVnetAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling removeClusterSdnVnetsFirewallRulesByVnetAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $DELETEClusterSdnVnetsFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -10801,6 +11601,9 @@ Delete IP Mappings in a VNet
 
 No description available.
 
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER DELETEClusterSdnVnetsIpsRB
 Delete IP Mappings in a VNet
 
@@ -10816,6 +11619,9 @@ function Remove-PVEClusterSdnVnetsIpsByVnet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${DELETEClusterSdnVnetsIpsRB},
         [Switch]
@@ -10840,6 +11646,10 @@ function Remove-PVEClusterSdnVnetsIpsByVnet {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/ips'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling removeClusterSdnVnetsIpsByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $DELETEClusterSdnVnetsIpsRB | ConvertTo-Json -Depth 100
 
@@ -10872,6 +11682,12 @@ Delete sdn subnet object configuration.
 
 No description available.
 
+.PARAMETER Subnet
+The SDN subnet object identifier.
+
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10883,6 +11699,12 @@ None
 function Remove-PVEClusterSdnVnetsSubnetsByVnetAndSubnet {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Subnet},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
         [Switch]
         $WithHttpInfo
     )
@@ -10902,6 +11724,14 @@ function Remove-PVEClusterSdnVnetsSubnetsByVnetAndSubnet {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/subnets/{subnet}'
+        if (!$Subnet) {
+            throw "Error! The required parameter `Subnet` missing when calling removeClusterSdnVnetsSubnetsByVnetAndSubnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{subnet}', [System.Web.HTTPUtility]::UrlEncode($Subnet))
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling removeClusterSdnVnetsSubnetsByVnetAndSubnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10932,6 +11762,9 @@ Delete sdn zone object configuration.
 
 No description available.
 
+.PARAMETER Zone
+The SDN zone object identifier.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -10943,6 +11776,9 @@ None
 function Remove-PVEClusterSdnZonesByZone {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Zone},
         [Switch]
         $WithHttpInfo
     )
@@ -10962,6 +11798,10 @@ function Remove-PVEClusterSdnZonesByZone {
 
         $Configuration = Get-PVEConfiguration
         $LocalVarUri = '/cluster/sdn/zones/{zone}'
+        if (!$Zone) {
+            throw "Error! The required parameter `Zone` missing when calling removeClusterSdnZonesByZone."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{zone}', [System.Web.HTTPUtility]::UrlEncode($Zone))
 
         $LocalVarResult = Invoke-PVEApiClient -Method 'DELETE' `
                                 -Uri $LocalVarUri `
@@ -10992,6 +11832,9 @@ Update existing ACME account information with CA. Note: not specifying any new a
 
 No description available.
 
+.PARAMETER Name
+ACME account config file name.
+
 .PARAMETER PUTClusterAcmeAccountRB
 Update existing ACME account information with CA. Note: not specifying any new account information triggers a refresh.
 
@@ -11007,6 +11850,9 @@ function Set-PVEClusterAcmeAccountByName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterAcmeAccountRB},
         [Switch]
@@ -11031,6 +11877,10 @@ function Set-PVEClusterAcmeAccountByName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/acme/account/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setClusterAcmeAccountByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarBodyParameter = $PUTClusterAcmeAccountRB | ConvertTo-Json -Depth 100
 
@@ -11063,6 +11913,9 @@ Update ACME plugin configuration.
 
 No description available.
 
+.PARAMETER Id
+ACME Plugin ID name
+
 .PARAMETER PUTClusterAcmePluginsRB
 Update ACME plugin configuration.
 
@@ -11078,6 +11931,9 @@ function Set-PVEClusterAcmePluginsById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterAcmePluginsRB},
         [Switch]
@@ -11102,6 +11958,10 @@ function Set-PVEClusterAcmePluginsById {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/acme/plugins/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling setClusterAcmePluginsById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarBodyParameter = $PUTClusterAcmePluginsRB | ConvertTo-Json -Depth 100
 
@@ -11134,6 +11994,9 @@ Update vzdump backup job definition.
 
 No description available.
 
+.PARAMETER Id
+The job ID.
+
 .PARAMETER PUTClusterBackupRB
 Update vzdump backup job definition.
 
@@ -11149,6 +12012,9 @@ function Set-PVEClusterBackupById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterBackupRB},
         [Switch]
@@ -11173,6 +12039,10 @@ function Set-PVEClusterBackupById {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/backup/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling setClusterBackupById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarBodyParameter = $PUTClusterBackupRB | ConvertTo-Json -Depth 100
 
@@ -11276,6 +12146,9 @@ Set or clear (unset) a specific ceph flag
 
 No description available.
 
+.PARAMETER Flag
+The ceph flag to update
+
 .PARAMETER PUTClusterCephFlagsRB
 Set or clear (unset) a specific ceph flag
 
@@ -11291,6 +12164,9 @@ function Set-PVEClusterCephFlagsByFlag {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Flag},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterCephFlagsRB},
         [Switch]
@@ -11315,6 +12191,10 @@ function Set-PVEClusterCephFlagsByFlag {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/ceph/flags/{flag}'
+        if (!$Flag) {
+            throw "Error! The required parameter `Flag` missing when calling setClusterCephFlagsByFlag."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{flag}', [System.Web.HTTPUtility]::UrlEncode($Flag))
 
         $LocalVarBodyParameter = $PUTClusterCephFlagsRB | ConvertTo-Json -Depth 100
 
@@ -11347,6 +12227,9 @@ Update IP or Network alias.
 
 No description available.
 
+.PARAMETER Name
+Alias name.
+
 .PARAMETER PUTClusterFirewallAliasesRB
 Update IP or Network alias.
 
@@ -11362,6 +12245,9 @@ function Set-PVEClusterFirewallAliasesByName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterFirewallAliasesRB},
         [Switch]
@@ -11386,6 +12272,10 @@ function Set-PVEClusterFirewallAliasesByName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/aliases/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setClusterFirewallAliasesByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarBodyParameter = $PUTClusterFirewallAliasesRB | ConvertTo-Json -Depth 100
 
@@ -11418,6 +12308,12 @@ Modify rule data.
 
 No description available.
 
+.PARAMETER Group
+Security Group name.
+
+.PARAMETER Pos
+Update rule at position <pos>.
+
 .PARAMETER PUTClusterFirewallGroupsRB
 Modify rule data.
 
@@ -11433,6 +12329,12 @@ function Set-PVEClusterFirewallGroupsByGroupAndPos {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Group},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterFirewallGroupsRB},
         [Switch]
@@ -11457,6 +12359,14 @@ function Set-PVEClusterFirewallGroupsByGroupAndPos {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/groups/{group}/{pos}'
+        if (!$Group) {
+            throw "Error! The required parameter `Group` missing when calling setClusterFirewallGroupsByGroupAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{group}', [System.Web.HTTPUtility]::UrlEncode($Group))
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling setClusterFirewallGroupsByGroupAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
 
         $LocalVarBodyParameter = $PUTClusterFirewallGroupsRB | ConvertTo-Json -Depth 100
 
@@ -11489,6 +12399,12 @@ Update IP or Network settings
 
 No description available.
 
+.PARAMETER Cidr
+Network/IP specification in CIDR format.
+
+.PARAMETER Name
+IP set name.
+
 .PARAMETER PUTClusterFirewallIpsetRB
 Update IP or Network settings
 
@@ -11504,6 +12420,12 @@ function Set-PVEClusterFirewallIpsetByNameAndCidr {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Cidr},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterFirewallIpsetRB},
         [Switch]
@@ -11528,6 +12450,14 @@ function Set-PVEClusterFirewallIpsetByNameAndCidr {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/ipset/{name}/{cidr}'
+        if (!$Cidr) {
+            throw "Error! The required parameter `Cidr` missing when calling setClusterFirewallIpsetByNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{cidr}', [System.Web.HTTPUtility]::UrlEncode($Cidr))
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setClusterFirewallIpsetByNameAndCidr."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarBodyParameter = $PUTClusterFirewallIpsetRB | ConvertTo-Json -Depth 100
 
@@ -11631,6 +12561,9 @@ Modify rule data.
 
 No description available.
 
+.PARAMETER Pos
+Update rule at position <pos>.
+
 .PARAMETER PUTClusterFirewallRulesRB
 Modify rule data.
 
@@ -11646,6 +12579,9 @@ function Set-PVEClusterFirewallRulesByPos {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterFirewallRulesRB},
         [Switch]
@@ -11670,6 +12606,10 @@ function Set-PVEClusterFirewallRulesByPos {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/firewall/rules/{pos}'
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling setClusterFirewallRulesByPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
 
         $LocalVarBodyParameter = $PUTClusterFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -11702,6 +12642,9 @@ Update ha group configuration.
 
 No description available.
 
+.PARAMETER Group
+The HA group identifier.
+
 .PARAMETER PUTClusterHaGroupsRB
 Update ha group configuration.
 
@@ -11717,6 +12660,9 @@ function Set-PVEClusterHaGroupsByGroup {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Group},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterHaGroupsRB},
         [Switch]
@@ -11741,6 +12687,10 @@ function Set-PVEClusterHaGroupsByGroup {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/ha/groups/{group}'
+        if (!$Group) {
+            throw "Error! The required parameter `Group` missing when calling setClusterHaGroupsByGroup."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{group}', [System.Web.HTTPUtility]::UrlEncode($Group))
 
         $LocalVarBodyParameter = $PUTClusterHaGroupsRB | ConvertTo-Json -Depth 100
 
@@ -11773,6 +12723,9 @@ Update resource configuration.
 
 No description available.
 
+.PARAMETER Sid
+HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100).
+
 .PARAMETER PUTClusterHaResourcesRB
 Update resource configuration.
 
@@ -11788,6 +12741,9 @@ function Set-PVEClusterHaResourcesBySid {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Sid},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterHaResourcesRB},
         [Switch]
@@ -11812,6 +12768,10 @@ function Set-PVEClusterHaResourcesBySid {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/ha/resources/{sid}'
+        if (!$Sid) {
+            throw "Error! The required parameter `Sid` missing when calling setClusterHaResourcesBySid."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{sid}', [System.Web.HTTPUtility]::UrlEncode($Sid))
 
         $LocalVarBodyParameter = $PUTClusterHaResourcesRB | ConvertTo-Json -Depth 100
 
@@ -11844,6 +12804,9 @@ Update realm-sync job definition.
 
 No description available.
 
+.PARAMETER Id
+The ID of the job.
+
 .PARAMETER PUTClusterJobsRealmsyncRB
 Update realm-sync job definition.
 
@@ -11859,6 +12822,9 @@ function Set-PVEClusterJobsRealmsyncById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterJobsRealmsyncRB},
         [Switch]
@@ -11883,6 +12849,10 @@ function Set-PVEClusterJobsRealmsyncById {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/jobs/realm-sync/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling setClusterJobsRealmsyncById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarBodyParameter = $PUTClusterJobsRealmsyncRB | ConvertTo-Json -Depth 100
 
@@ -11915,6 +12885,9 @@ Update a hardware mapping.
 
 No description available.
 
+.PARAMETER Id
+The ID of the logical PCI mapping.
+
 .PARAMETER PUTClusterMappingPciRB
 Update a hardware mapping.
 
@@ -11930,6 +12903,9 @@ function Set-PVEClusterMappingPciById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterMappingPciRB},
         [Switch]
@@ -11954,6 +12930,10 @@ function Set-PVEClusterMappingPciById {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/mapping/pci/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling setClusterMappingPciById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarBodyParameter = $PUTClusterMappingPciRB | ConvertTo-Json -Depth 100
 
@@ -11986,6 +12966,9 @@ Update a hardware mapping.
 
 No description available.
 
+.PARAMETER Id
+The ID of the logical USB mapping.
+
 .PARAMETER PUTClusterMappingUsbRB
 Update a hardware mapping.
 
@@ -12001,6 +12984,9 @@ function Set-PVEClusterMappingUsbById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterMappingUsbRB},
         [Switch]
@@ -12025,6 +13011,10 @@ function Set-PVEClusterMappingUsbById {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/mapping/usb/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling setClusterMappingUsbById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarBodyParameter = $PUTClusterMappingUsbRB | ConvertTo-Json -Depth 100
 
@@ -12057,6 +13047,9 @@ Update metric server configuration.
 
 No description available.
 
+.PARAMETER Id
+The ID of the entry.
+
 .PARAMETER PUTClusterMetricsServerRB
 Update metric server configuration.
 
@@ -12072,6 +13065,9 @@ function Set-PVEClusterMetricsServerById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterMetricsServerRB},
         [Switch]
@@ -12096,6 +13092,10 @@ function Set-PVEClusterMetricsServerById {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/metrics/server/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling setClusterMetricsServerById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarBodyParameter = $PUTClusterMetricsServerRB | ConvertTo-Json -Depth 100
 
@@ -12128,6 +13128,9 @@ Update existing gotify endpoint
 
 No description available.
 
+.PARAMETER Name
+The name of the endpoint.
+
 .PARAMETER PUTClusterNotificationsEndpointsGotifyRB
 Update existing gotify endpoint
 
@@ -12143,6 +13146,9 @@ function Set-PVEClusterNotificationsEndpointsGotifyByName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterNotificationsEndpointsGotifyRB},
         [Switch]
@@ -12167,6 +13173,10 @@ function Set-PVEClusterNotificationsEndpointsGotifyByName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/notifications/endpoints/gotify/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setClusterNotificationsEndpointsGotifyByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarBodyParameter = $PUTClusterNotificationsEndpointsGotifyRB | ConvertTo-Json -Depth 100
 
@@ -12199,6 +13209,9 @@ Update existing sendmail endpoint
 
 No description available.
 
+.PARAMETER Name
+The name of the endpoint.
+
 .PARAMETER PUTClusterNotificationsEndpointsSendmailRB
 Update existing sendmail endpoint
 
@@ -12214,6 +13227,9 @@ function Set-PVEClusterNotificationsEndpointsSendmailByName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterNotificationsEndpointsSendmailRB},
         [Switch]
@@ -12238,6 +13254,10 @@ function Set-PVEClusterNotificationsEndpointsSendmailByName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/notifications/endpoints/sendmail/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setClusterNotificationsEndpointsSendmailByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarBodyParameter = $PUTClusterNotificationsEndpointsSendmailRB | ConvertTo-Json -Depth 100
 
@@ -12270,6 +13290,9 @@ Update existing smtp endpoint
 
 No description available.
 
+.PARAMETER Name
+The name of the endpoint.
+
 .PARAMETER PUTClusterNotificationsEndpointsSmtpRB
 Update existing smtp endpoint
 
@@ -12285,6 +13308,9 @@ function Set-PVEClusterNotificationsEndpointsSmtpByName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterNotificationsEndpointsSmtpRB},
         [Switch]
@@ -12309,6 +13335,10 @@ function Set-PVEClusterNotificationsEndpointsSmtpByName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/notifications/endpoints/smtp/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setClusterNotificationsEndpointsSmtpByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarBodyParameter = $PUTClusterNotificationsEndpointsSmtpRB | ConvertTo-Json -Depth 100
 
@@ -12341,6 +13371,9 @@ Update existing webhook endpoint
 
 No description available.
 
+.PARAMETER Name
+The name of the endpoint.
+
 .PARAMETER PUTClusterNotificationsEndpointsWebhookRB
 Update existing webhook endpoint
 
@@ -12356,6 +13389,9 @@ function Set-PVEClusterNotificationsEndpointsWebhookByName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterNotificationsEndpointsWebhookRB},
         [Switch]
@@ -12380,6 +13416,10 @@ function Set-PVEClusterNotificationsEndpointsWebhookByName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/notifications/endpoints/webhook/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setClusterNotificationsEndpointsWebhookByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarBodyParameter = $PUTClusterNotificationsEndpointsWebhookRB | ConvertTo-Json -Depth 100
 
@@ -12412,6 +13452,9 @@ Update existing matcher
 
 No description available.
 
+.PARAMETER Name
+Name of the matcher.
+
 .PARAMETER PUTClusterNotificationsMatchersRB
 Update existing matcher
 
@@ -12427,6 +13470,9 @@ function Set-PVEClusterNotificationsMatchersByName {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Name},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterNotificationsMatchersRB},
         [Switch]
@@ -12451,6 +13497,10 @@ function Set-PVEClusterNotificationsMatchersByName {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/notifications/matchers/{name}'
+        if (!$Name) {
+            throw "Error! The required parameter `Name` missing when calling setClusterNotificationsMatchersByName."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{name}', [System.Web.HTTPUtility]::UrlEncode($Name))
 
         $LocalVarBodyParameter = $PUTClusterNotificationsMatchersRB | ConvertTo-Json -Depth 100
 
@@ -12554,6 +13604,9 @@ Update replication job configuration.
 
 No description available.
 
+.PARAMETER Id
+Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
+
 .PARAMETER PUTClusterReplicationRB
 Update replication job configuration.
 
@@ -12569,6 +13622,9 @@ function Set-PVEClusterReplicationById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterReplicationRB},
         [Switch]
@@ -12593,6 +13649,10 @@ function Set-PVEClusterReplicationById {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/replication/{id}'
+        if (!$Id) {
+            throw "Error! The required parameter `Id` missing when calling setClusterReplicationById."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
 
         $LocalVarBodyParameter = $PUTClusterReplicationRB | ConvertTo-Json -Depth 100
 
@@ -12685,6 +13745,9 @@ Update sdn controller object configuration.
 
 No description available.
 
+.PARAMETER Controller
+The SDN controller object identifier.
+
 .PARAMETER PUTClusterSdnControllersRB
 Update sdn controller object configuration.
 
@@ -12700,6 +13763,9 @@ function Set-PVEClusterSdnControllersByController {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Controller},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterSdnControllersRB},
         [Switch]
@@ -12724,6 +13790,10 @@ function Set-PVEClusterSdnControllersByController {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/controllers/{controller}'
+        if (!$Controller) {
+            throw "Error! The required parameter `Controller` missing when calling setClusterSdnControllersByController."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{controller}', [System.Web.HTTPUtility]::UrlEncode($Controller))
 
         $LocalVarBodyParameter = $PUTClusterSdnControllersRB | ConvertTo-Json -Depth 100
 
@@ -12756,6 +13826,9 @@ Update sdn dns object configuration.
 
 No description available.
 
+.PARAMETER Dns
+The SDN dns object identifier.
+
 .PARAMETER PUTClusterSdnDnsRB
 Update sdn dns object configuration.
 
@@ -12771,6 +13844,9 @@ function Set-PVEClusterSdnDnsByDns {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Dns},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterSdnDnsRB},
         [Switch]
@@ -12795,6 +13871,10 @@ function Set-PVEClusterSdnDnsByDns {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/dns/{dns}'
+        if (!$Dns) {
+            throw "Error! The required parameter `Dns` missing when calling setClusterSdnDnsByDns."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{dns}', [System.Web.HTTPUtility]::UrlEncode($Dns))
 
         $LocalVarBodyParameter = $PUTClusterSdnDnsRB | ConvertTo-Json -Depth 100
 
@@ -12827,6 +13907,9 @@ Update sdn ipam object configuration.
 
 No description available.
 
+.PARAMETER Ipam
+The SDN ipam object identifier.
+
 .PARAMETER PUTClusterSdnIpamsRB
 Update sdn ipam object configuration.
 
@@ -12842,6 +13925,9 @@ function Set-PVEClusterSdnIpamsByIpam {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Ipam},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterSdnIpamsRB},
         [Switch]
@@ -12866,6 +13952,10 @@ function Set-PVEClusterSdnIpamsByIpam {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/ipams/{ipam}'
+        if (!$Ipam) {
+            throw "Error! The required parameter `Ipam` missing when calling setClusterSdnIpamsByIpam."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{ipam}', [System.Web.HTTPUtility]::UrlEncode($Ipam))
 
         $LocalVarBodyParameter = $PUTClusterSdnIpamsRB | ConvertTo-Json -Depth 100
 
@@ -12898,6 +13988,9 @@ Update sdn vnet object configuration.
 
 No description available.
 
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER PUTClusterSdnVnetsRB
 Update sdn vnet object configuration.
 
@@ -12913,6 +14006,9 @@ function Set-PVEClusterSdnVnetsByVnet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterSdnVnetsRB},
         [Switch]
@@ -12937,6 +14033,10 @@ function Set-PVEClusterSdnVnetsByVnet {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling setClusterSdnVnetsByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $PUTClusterSdnVnetsRB | ConvertTo-Json -Depth 100
 
@@ -12969,6 +14069,9 @@ Set Firewall options.
 
 No description available.
 
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER PUTClusterSdnVnetsFirewallOptionsRB
 Set Firewall options.
 
@@ -12984,6 +14087,9 @@ function Set-PVEClusterSdnVnetsFirewallOptionsByVnet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterSdnVnetsFirewallOptionsRB},
         [Switch]
@@ -13008,6 +14114,10 @@ function Set-PVEClusterSdnVnetsFirewallOptionsByVnet {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/firewall/options'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling setClusterSdnVnetsFirewallOptionsByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $PUTClusterSdnVnetsFirewallOptionsRB | ConvertTo-Json -Depth 100
 
@@ -13040,6 +14150,12 @@ Modify rule data.
 
 No description available.
 
+.PARAMETER Pos
+Update rule at position <pos>.
+
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER PUTClusterSdnVnetsFirewallRulesRB
 Modify rule data.
 
@@ -13055,6 +14171,12 @@ function Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Int32]
+        ${Pos},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterSdnVnetsFirewallRulesRB},
         [Switch]
@@ -13079,6 +14201,14 @@ function Set-PVEClusterSdnVnetsFirewallRulesByVnetAndPos {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/firewall/rules/{pos}'
+        if (!$Pos) {
+            throw "Error! The required parameter `Pos` missing when calling setClusterSdnVnetsFirewallRulesByVnetAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{pos}', [System.Web.HTTPUtility]::UrlEncode($Pos))
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling setClusterSdnVnetsFirewallRulesByVnetAndPos."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $PUTClusterSdnVnetsFirewallRulesRB | ConvertTo-Json -Depth 100
 
@@ -13111,6 +14241,9 @@ Update IP Mapping in a VNet
 
 No description available.
 
+.PARAMETER Vnet
+The SDN vnet object identifier.
+
 .PARAMETER PUTClusterSdnVnetsIpsRB
 Update IP Mapping in a VNet
 
@@ -13126,6 +14259,9 @@ function Set-PVEClusterSdnVnetsIpsByVnet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterSdnVnetsIpsRB},
         [Switch]
@@ -13150,6 +14286,10 @@ function Set-PVEClusterSdnVnetsIpsByVnet {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/ips'
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling setClusterSdnVnetsIpsByVnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $PUTClusterSdnVnetsIpsRB | ConvertTo-Json -Depth 100
 
@@ -13182,6 +14322,12 @@ Update sdn subnet object configuration.
 
 No description available.
 
+.PARAMETER Subnet
+The SDN subnet object identifier.
+
+.PARAMETER Vnet
+associated vnet
+
 .PARAMETER PUTClusterSdnVnetsSubnetsRB
 Update sdn subnet object configuration.
 
@@ -13197,6 +14343,12 @@ function Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Subnet},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Vnet},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterSdnVnetsSubnetsRB},
         [Switch]
@@ -13221,6 +14373,14 @@ function Set-PVEClusterSdnVnetsSubnetsByVnetAndSubnet {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/vnets/{vnet}/subnets/{subnet}'
+        if (!$Subnet) {
+            throw "Error! The required parameter `Subnet` missing when calling setClusterSdnVnetsSubnetsByVnetAndSubnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{subnet}', [System.Web.HTTPUtility]::UrlEncode($Subnet))
+        if (!$Vnet) {
+            throw "Error! The required parameter `Vnet` missing when calling setClusterSdnVnetsSubnetsByVnetAndSubnet."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{vnet}', [System.Web.HTTPUtility]::UrlEncode($Vnet))
 
         $LocalVarBodyParameter = $PUTClusterSdnVnetsSubnetsRB | ConvertTo-Json -Depth 100
 
@@ -13253,6 +14413,9 @@ Update sdn zone object configuration.
 
 No description available.
 
+.PARAMETER Zone
+The SDN zone object identifier.
+
 .PARAMETER PUTClusterSdnZonesRB
 Update sdn zone object configuration.
 
@@ -13268,6 +14431,9 @@ function Set-PVEClusterSdnZonesByZone {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Zone},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${PUTClusterSdnZonesRB},
         [Switch]
@@ -13292,6 +14458,10 @@ function Set-PVEClusterSdnZonesByZone {
         $LocalVarContentTypes = @('application/json')
 
         $LocalVarUri = '/cluster/sdn/zones/{zone}'
+        if (!$Zone) {
+            throw "Error! The required parameter `Zone` missing when calling setClusterSdnZonesByZone."
+        }
+        $LocalVarUri = $LocalVarUri.replace('{zone}', [System.Web.HTTPUtility]::UrlEncode($Zone))
 
         $LocalVarBodyParameter = $PUTClusterSdnZonesRB | ConvertTo-Json -Depth 100
 

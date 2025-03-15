@@ -15,25 +15,25 @@ No summary available.
 
 No description available.
 
-.PARAMETER Secret
+.PARAMETER Comment
 No description available.
 .PARAMETER Name
 No description available.
+.PARAMETER Method
+No description available.
 .PARAMETER Delete
 No description available.
-.PARAMETER Disable
-No description available.
-.PARAMETER Comment
+.PARAMETER Body
 No description available.
 .PARAMETER Header
 No description available.
 .PARAMETER Digest
 No description available.
+.PARAMETER Secret
+No description available.
+.PARAMETER Disable
+No description available.
 .PARAMETER Url
-No description available.
-.PARAMETER Body
-No description available.
-.PARAMETER Method
 No description available.
 .OUTPUTS
 
@@ -44,20 +44,21 @@ function Initialize-PVEPUTClusterNotificationsEndpointsWebhookRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Secret},
+        [String]
+        ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("post", "put", "get")]
+        [String]
+        ${Method},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comment},
+        ${Body},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${Header},
@@ -65,20 +66,23 @@ function Initialize-PVEPUTClusterNotificationsEndpointsWebhookRB {
         [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Url},
+        [String[]]
+        ${Secret},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Disable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Body},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("post", "put", "get")]
-        [String]
-        ${Method}
+        ${Url}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterNotificationsEndpointsWebhookRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        }
 
         if ($Disable -and $Disable -gt 1) {
           throw "invalid value for 'Disable', must be smaller than or equal to 1."
@@ -88,13 +92,9 @@ function Initialize-PVEPUTClusterNotificationsEndpointsWebhookRB {
           throw "invalid value for 'Disable', must be greater than or equal to 0."
         }
 
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Secret"="secret"; "Name"="name"; "Delete"="delete"; "Disable"="disable"; "Comment"="comment"; "Header"="header"; "Digest"="digest"; "Url"="url"; "Body"="body"; "Method"="method"
+			"Comment"="comment"; "Name"="name"; "Method"="method"; "Delete"="delete"; "Body"="body"; "Header"="header"; "Digest"="digest"; "Secret"="secret"; "Disable"="disable"; "Url"="url"
         }
 		
 		 $OBJ = @{}
@@ -140,17 +140,17 @@ function ConvertFrom-PVEJsonToPUTClusterNotificationsEndpointsWebhookRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterNotificationsEndpointsWebhookRB
-        $AllProperties = ("secret", "name", "delete", "disable", "comment", "header", "digest", "url", "body", "method")
+        $AllProperties = ("comment", "name", "method", "delete", "body", "header", "digest", "secret", "disable", "url")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "secret"))) { #optional property not found
-            $Secret = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
         } else {
-            $Secret = $JsonParameters.PSobject.Properties["secret"].value
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -159,22 +159,22 @@ function ConvertFrom-PVEJsonToPUTClusterNotificationsEndpointsWebhookRB {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method"))) { #optional property not found
+            $Method = $null
+        } else {
+            $Method = $JsonParameters.PSobject.Properties["method"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
             $Delete = $null
         } else {
             $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "body"))) { #optional property not found
+            $Body = $null
         } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+            $Body = $JsonParameters.PSobject.Properties["body"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "header"))) { #optional property not found
@@ -189,35 +189,35 @@ function ConvertFrom-PVEJsonToPUTClusterNotificationsEndpointsWebhookRB {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "secret"))) { #optional property not found
+            $Secret = $null
+        } else {
+            $Secret = $JsonParameters.PSobject.Properties["secret"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
+        } else {
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
             $Url = $null
         } else {
             $Url = $JsonParameters.PSobject.Properties["url"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "body"))) { #optional property not found
-            $Body = $null
-        } else {
-            $Body = $JsonParameters.PSobject.Properties["body"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method"))) { #optional property not found
-            $Method = $null
-        } else {
-            $Method = $JsonParameters.PSobject.Properties["method"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "secret" = ${Secret}
-            "name" = ${Name}
-            "delete" = ${Delete}
-            "disable" = ${Disable}
             "comment" = ${Comment}
+            "name" = ${Name}
+            "method" = ${Method}
+            "delete" = ${Delete}
+            "body" = ${Body}
             "header" = ${Header}
             "digest" = ${Digest}
+            "secret" = ${Secret}
+            "disable" = ${Disable}
             "url" = ${Url}
-            "body" = ${Body}
-            "method" = ${Method}
         }
 
         return $PSO

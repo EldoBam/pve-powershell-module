@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Users** | **String** |  | [optional] 
 **Groupid** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Users** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessGroupsGETInner = Initialize-PVEAccessGroupsGETInner  -Groupid null `
- -Comment null `
- -Users null
+$AccessGroupsGETInner = Initialize-PVEAccessGroupsGETInner  -Users null `
+ -Groupid null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

@@ -15,25 +15,25 @@ No summary available.
 
 No description available.
 
-.PARAMETER Starttime
-No description available.
-.PARAMETER Id
-No description available.
-.PARAMETER Pstart
+.PARAMETER VarPid
 No description available.
 .PARAMETER Status
 No description available.
-.PARAMETER Endtime
+.PARAMETER Node
 No description available.
-.PARAMETER VarPid
+.PARAMETER Starttime
 No description available.
 .PARAMETER Upid
 No description available.
-.PARAMETER Node
+.PARAMETER Endtime
 No description available.
-.PARAMETER User
+.PARAMETER Pstart
+No description available.
+.PARAMETER Id
 No description available.
 .PARAMETER Type
+No description available.
+.PARAMETER User
 No description available.
 .OUTPUTS
 
@@ -45,34 +45,34 @@ function Initialize-PVENodesTasksInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Starttime},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Pstart},
+        ${VarPid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Status},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Starttime},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Upid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Endtime},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VarPid},
+        ${Pstart},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Upid},
+        ${Id},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
+        ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${User},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type}
+        ${User}
     )
 
     Process {
@@ -81,7 +81,7 @@ function Initialize-PVENodesTasksInner {
 
 
 		 $DisplayNameMapping =@{
-			"Starttime"="starttime"; "Id"="id"; "Pstart"="pstart"; "Status"="status"; "Endtime"="endtime"; "VarPid"="pid"; "Upid"="upid"; "Node"="node"; "User"="user"; "Type"="type"
+			"VarPid"="pid"; "Status"="status"; "Node"="node"; "Starttime"="starttime"; "Upid"="upid"; "Endtime"="endtime"; "Pstart"="pstart"; "Id"="id"; "Type"="type"; "User"="user"
         }
 		
 		 $OBJ = @{}
@@ -127,41 +127,11 @@ function ConvertFrom-PVEJsonToNodesTasksInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesTasksInner
-        $AllProperties = ("starttime", "id", "pstart", "status", "endtime", "pid", "upid", "node", "user", "type")
+        $AllProperties = ("pid", "status", "node", "starttime", "upid", "endtime", "pstart", "id", "type", "user")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "starttime"))) { #optional property not found
-            $Starttime = $null
-        } else {
-            $Starttime = $JsonParameters.PSobject.Properties["starttime"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pstart"))) { #optional property not found
-            $Pstart = $null
-        } else {
-            $Pstart = $JsonParameters.PSobject.Properties["pstart"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
-            $Status = $null
-        } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "endtime"))) { #optional property not found
-            $Endtime = $null
-        } else {
-            $Endtime = $JsonParameters.PSobject.Properties["endtime"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pid"))) { #optional property not found
@@ -170,10 +140,10 @@ function ConvertFrom-PVEJsonToNodesTasksInner {
             $VarPid = $JsonParameters.PSobject.Properties["pid"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "upid"))) { #optional property not found
-            $Upid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
+            $Status = $null
         } else {
-            $Upid = $JsonParameters.PSobject.Properties["upid"].value
+            $Status = $JsonParameters.PSobject.Properties["status"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -182,10 +152,34 @@ function ConvertFrom-PVEJsonToNodesTasksInner {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user"))) { #optional property not found
-            $User = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "starttime"))) { #optional property not found
+            $Starttime = $null
         } else {
-            $User = $JsonParameters.PSobject.Properties["user"].value
+            $Starttime = $JsonParameters.PSobject.Properties["starttime"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "upid"))) { #optional property not found
+            $Upid = $null
+        } else {
+            $Upid = $JsonParameters.PSobject.Properties["upid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "endtime"))) { #optional property not found
+            $Endtime = $null
+        } else {
+            $Endtime = $JsonParameters.PSobject.Properties["endtime"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pstart"))) { #optional property not found
+            $Pstart = $null
+        } else {
+            $Pstart = $JsonParameters.PSobject.Properties["pstart"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
@@ -194,17 +188,23 @@ function ConvertFrom-PVEJsonToNodesTasksInner {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user"))) { #optional property not found
+            $User = $null
+        } else {
+            $User = $JsonParameters.PSobject.Properties["user"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "starttime" = ${Starttime}
-            "id" = ${Id}
-            "pstart" = ${Pstart}
-            "status" = ${Status}
-            "endtime" = ${Endtime}
             "pid" = ${VarPid}
-            "upid" = ${Upid}
+            "status" = ${Status}
             "node" = ${Node}
-            "user" = ${User}
+            "starttime" = ${Starttime}
+            "upid" = ${Upid}
+            "endtime" = ${Endtime}
+            "pstart" = ${Pstart}
+            "id" = ${Id}
             "type" = ${Type}
+            "user" = ${User}
         }
 
         return $PSO

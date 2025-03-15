@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Config
 No description available.
-.PARAMETER Type
-No description available.
 .PARAMETER Storage
+No description available.
+.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -33,12 +33,12 @@ function Initialize-PVEStorage {
         [PSCustomObject]
         ${Config},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Storage},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("btrfs", "cephfs", "cifs", "dir", "esxi", "glusterfs", "iscsi", "iscsidirect", "lvm", "lvmthin", "nfs", "pbs", "rbd", "zfs", "zfspool")]
         [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Storage}
+        ${Type}
     )
 
     Process {
@@ -47,7 +47,7 @@ function Initialize-PVEStorage {
 
 
 		 $DisplayNameMapping =@{
-			"Config"="config"; "Type"="type"; "Storage"="storage"
+			"Config"="config"; "Storage"="storage"; "Type"="type"
         }
 		
 		 $OBJ = @{}
@@ -93,7 +93,7 @@ function ConvertFrom-PVEJsonToStorage {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEStorage
-        $AllProperties = ("config", "type", "storage")
+        $AllProperties = ("config", "storage", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -106,22 +106,22 @@ function ConvertFrom-PVEJsonToStorage {
             $Config = $JsonParameters.PSobject.Properties["config"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
             $Storage = $null
         } else {
             $Storage = $JsonParameters.PSobject.Properties["storage"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "config" = ${Config}
-            "type" = ${Type}
             "storage" = ${Storage}
+            "type" = ${Type}
         }
 
         return $PSO

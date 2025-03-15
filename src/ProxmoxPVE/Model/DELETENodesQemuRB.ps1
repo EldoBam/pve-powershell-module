@@ -17,13 +17,13 @@ No description available.
 
 .PARAMETER Node
 No description available.
-.PARAMETER DestroyUnreferencedDisks
-No description available.
 .PARAMETER Purge
 No description available.
-.PARAMETER Vmid
+.PARAMETER DestroyUnreferencedDisks
 No description available.
 .PARAMETER Skiplock
+No description available.
+.PARAMETER Vmid
 No description available.
 .OUTPUTS
 
@@ -38,29 +38,21 @@ function Initialize-PVEDELETENodesQemuRB {
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${DestroyUnreferencedDisks},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${Purge},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid},
+        ${DestroyUnreferencedDisks},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Skiplock}
+        ${Skiplock},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmid}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEDELETENodesQemuRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($DestroyUnreferencedDisks -and $DestroyUnreferencedDisks -gt 1) {
-          throw "invalid value for 'DestroyUnreferencedDisks', must be smaller than or equal to 1."
-        }
-
-        if ($DestroyUnreferencedDisks -and $DestroyUnreferencedDisks -lt 0) {
-          throw "invalid value for 'DestroyUnreferencedDisks', must be greater than or equal to 0."
-        }
 
         if ($Purge -and $Purge -gt 1) {
           throw "invalid value for 'Purge', must be smaller than or equal to 1."
@@ -70,12 +62,12 @@ function Initialize-PVEDELETENodesQemuRB {
           throw "invalid value for 'Purge', must be greater than or equal to 0."
         }
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
+        if ($DestroyUnreferencedDisks -and $DestroyUnreferencedDisks -gt 1) {
+          throw "invalid value for 'DestroyUnreferencedDisks', must be smaller than or equal to 1."
         }
 
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
+        if ($DestroyUnreferencedDisks -and $DestroyUnreferencedDisks -lt 0) {
+          throw "invalid value for 'DestroyUnreferencedDisks', must be greater than or equal to 0."
         }
 
         if ($Skiplock -and $Skiplock -gt 1) {
@@ -86,9 +78,17 @@ function Initialize-PVEDELETENodesQemuRB {
           throw "invalid value for 'Skiplock', must be greater than or equal to 0."
         }
 
+        if ($Vmid -and $Vmid -gt 999999999) {
+          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
+        }
+
+        if ($Vmid -and $Vmid -lt 100) {
+          throw "invalid value for 'Vmid', must be greater than or equal to 100."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "DestroyUnreferencedDisks"="destroy-unreferenced-disks"; "Purge"="purge"; "Vmid"="vmid"; "Skiplock"="skiplock"
+			"Node"="node"; "Purge"="purge"; "DestroyUnreferencedDisks"="destroy-unreferenced-disks"; "Skiplock"="skiplock"; "Vmid"="vmid"
         }
 		
 		 $OBJ = @{}
@@ -134,7 +134,7 @@ function ConvertFrom-PVEJsonToDELETENodesQemuRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesQemuRB
-        $AllProperties = ("node", "destroy-unreferenced-disks", "purge", "vmid", "skiplock")
+        $AllProperties = ("node", "purge", "destroy-unreferenced-disks", "skiplock", "vmid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -147,22 +147,16 @@ function ConvertFrom-PVEJsonToDELETENodesQemuRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "destroy-unreferenced-disks"))) { #optional property not found
-            $DestroyUnreferencedDisks = $null
-        } else {
-            $DestroyUnreferencedDisks = $JsonParameters.PSobject.Properties["destroy-unreferenced-disks"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "purge"))) { #optional property not found
             $Purge = $null
         } else {
             $Purge = $JsonParameters.PSobject.Properties["purge"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "destroy-unreferenced-disks"))) { #optional property not found
+            $DestroyUnreferencedDisks = $null
         } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+            $DestroyUnreferencedDisks = $JsonParameters.PSobject.Properties["destroy-unreferenced-disks"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
@@ -171,12 +165,18 @@ function ConvertFrom-PVEJsonToDELETENodesQemuRB {
             $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
+        } else {
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "node" = ${Node}
-            "destroy-unreferenced-disks" = ${DestroyUnreferencedDisks}
             "purge" = ${Purge}
-            "vmid" = ${Vmid}
+            "destroy-unreferenced-disks" = ${DestroyUnreferencedDisks}
             "skiplock" = ${Skiplock}
+            "vmid" = ${Vmid}
         }
 
         return $PSO

@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Force
-No description available.
 .PARAMETER Password
-No description available.
-.PARAMETER Hostname
 No description available.
 .PARAMETER Nodeid
 No description available.
+.PARAMETER LinkN
+No description available.
 .PARAMETER Fingerprint
 No description available.
-.PARAMETER LinkN
+.PARAMETER Hostname
+No description available.
+.PARAMETER Force
 No description available.
 .PARAMETER Votes
 No description available.
@@ -38,24 +38,24 @@ function Initialize-PVEPOSTClusterConfigJoinRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Force},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Password},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Hostname},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Nodeid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${LinkN},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}")]
         [String]
         ${Fingerprint},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${LinkN},
+        ${Hostname},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Force},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Votes}
@@ -65,14 +65,6 @@ function Initialize-PVEPOSTClusterConfigJoinRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTClusterConfigJoinRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Force -and $Force -gt 1) {
-          throw "invalid value for 'Force', must be smaller than or equal to 1."
-        }
-
-        if ($Force -and $Force -lt 0) {
-          throw "invalid value for 'Force', must be greater than or equal to 0."
-        }
-
         if (!$Password -and $Password.length -gt 128) {
             throw "invalid value for 'Password', the character length must be smaller than or equal to 128."
         }
@@ -81,9 +73,17 @@ function Initialize-PVEPOSTClusterConfigJoinRB {
           throw "invalid value for 'Nodeid', must be greater than or equal to 1."
         }
 
+        if ($Force -and $Force -gt 1) {
+          throw "invalid value for 'Force', must be smaller than or equal to 1."
+        }
+
+        if ($Force -and $Force -lt 0) {
+          throw "invalid value for 'Force', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Force"="force"; "Password"="password"; "Hostname"="hostname"; "Nodeid"="nodeid"; "Fingerprint"="fingerprint"; "LinkN"="link[n]"; "Votes"="votes"
+			"Password"="password"; "Nodeid"="nodeid"; "LinkN"="link[n]"; "Fingerprint"="fingerprint"; "Hostname"="hostname"; "Force"="force"; "Votes"="votes"
         }
 		
 		 $OBJ = @{}
@@ -129,17 +129,11 @@ function ConvertFrom-PVEJsonToPOSTClusterConfigJoinRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterConfigJoinRB
-        $AllProperties = ("force", "password", "hostname", "nodeid", "fingerprint", "link[n]", "votes")
+        $AllProperties = ("password", "nodeid", "link[n]", "fingerprint", "hostname", "force", "votes")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
-            $Force = $null
-        } else {
-            $Force = $JsonParameters.PSobject.Properties["force"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
@@ -148,16 +142,16 @@ function ConvertFrom-PVEJsonToPOSTClusterConfigJoinRB {
             $Password = $JsonParameters.PSobject.Properties["password"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hostname"))) { #optional property not found
-            $Hostname = $null
-        } else {
-            $Hostname = $JsonParameters.PSobject.Properties["hostname"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodeid"))) { #optional property not found
             $Nodeid = $null
         } else {
             $Nodeid = $JsonParameters.PSobject.Properties["nodeid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "link[n]"))) { #optional property not found
+            $LinkN = $null
+        } else {
+            $LinkN = $JsonParameters.PSobject.Properties["link[n]"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "fingerprint"))) { #optional property not found
@@ -166,10 +160,16 @@ function ConvertFrom-PVEJsonToPOSTClusterConfigJoinRB {
             $Fingerprint = $JsonParameters.PSobject.Properties["fingerprint"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "link[n]"))) { #optional property not found
-            $LinkN = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hostname"))) { #optional property not found
+            $Hostname = $null
         } else {
-            $LinkN = $JsonParameters.PSobject.Properties["link[n]"].value
+            $Hostname = $JsonParameters.PSobject.Properties["hostname"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
+            $Force = $null
+        } else {
+            $Force = $JsonParameters.PSobject.Properties["force"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "votes"))) { #optional property not found
@@ -179,12 +179,12 @@ function ConvertFrom-PVEJsonToPOSTClusterConfigJoinRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "force" = ${Force}
             "password" = ${Password}
-            "hostname" = ${Hostname}
             "nodeid" = ${Nodeid}
-            "fingerprint" = ${Fingerprint}
             "link[n]" = ${LinkN}
+            "fingerprint" = ${Fingerprint}
+            "hostname" = ${Hostname}
+            "force" = ${Force}
             "votes" = ${Votes}
         }
 

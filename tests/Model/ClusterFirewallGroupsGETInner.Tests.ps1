@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterFirewallGroupsGETInner' {
     Context 'PVEClusterFirewallGroupsGETInner' {
         It 'Initialize-PVEClusterFirewallGroupsGETInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterFirewallGroupsGETInner -Group "TEST_VALUE" -Digest "TEST_VALUE" -Comment "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterFirewallGroupsGETInner -Digest "TEST_VALUE" -Group "TEST_VALUE" -Comment "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterFirewallGroupsGETInner
             #$NewObject.property | Should -Be 0
         }

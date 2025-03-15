@@ -15,55 +15,55 @@ No summary available.
 
 No description available.
 
-.PARAMETER Nodes
-No description available.
-.PARAMETER VlanProtocol
-No description available.
-.PARAMETER VxlanPort
-No description available.
-.PARAMETER Zone
-No description available.
-.PARAMETER RtImport
-No description available.
-.PARAMETER Tag
-No description available.
-.PARAMETER Ipam
+.PARAMETER Mac
 No description available.
 .PARAMETER Exitnodes
 No description available.
-.PARAMETER DpId
-No description available.
-.PARAMETER ExitnodesPrimary
-No description available.
-.PARAMETER Bridge
-No description available.
-.PARAMETER VrfVxlan
-No description available.
-.PARAMETER Dnszone
-No description available.
-.PARAMETER Type
-No description available.
-.PARAMETER BridgeDisableMacLearning
-No description available.
-.PARAMETER Dhcp
-No description available.
-.PARAMETER Mtu
-No description available.
-.PARAMETER Controller
-No description available.
-.PARAMETER DisableArpNdSuppression
-No description available.
-.PARAMETER Peers
-No description available.
-.PARAMETER Mac
-No description available.
-.PARAMETER ExitnodesLocalRouting
+.PARAMETER Reversedns
 No description available.
 .PARAMETER Dns
 No description available.
-.PARAMETER Reversedns
-No description available.
 .PARAMETER AdvertiseSubnets
+No description available.
+.PARAMETER ExitnodesPrimary
+No description available.
+.PARAMETER DisableArpNdSuppression
+No description available.
+.PARAMETER Zone
+No description available.
+.PARAMETER Tag
+No description available.
+.PARAMETER Dnszone
+No description available.
+.PARAMETER Nodes
+No description available.
+.PARAMETER VxlanPort
+No description available.
+.PARAMETER Dhcp
+No description available.
+.PARAMETER Type
+No description available.
+.PARAMETER VlanProtocol
+No description available.
+.PARAMETER Bridge
+No description available.
+.PARAMETER Ipam
+No description available.
+.PARAMETER BridgeDisableMacLearning
+No description available.
+.PARAMETER Mtu
+No description available.
+.PARAMETER ExitnodesLocalRouting
+No description available.
+.PARAMETER RtImport
+No description available.
+.PARAMETER VrfVxlan
+No description available.
+.PARAMETER Peers
+No description available.
+.PARAMETER Controller
+No description available.
+.PARAMETER DpId
 No description available.
 .OUTPUTS
 
@@ -75,87 +75,103 @@ function Initialize-PVEPOSTClusterSdnZonesRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Nodes},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("802.1q", "802.1ad")]
-        [String]
-        ${VlanProtocol},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VxlanPort},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Zone},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${RtImport},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Tag},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Ipam},
+        ${Mac},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Exitnodes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Reversedns},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Dns},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${DpId},
+        ${AdvertiseSubnets},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${ExitnodesPrimary},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Bridge},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VrfVxlan},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Dnszone},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("evpn", "faucet", "qinq", "simple", "vlan", "vxlan")]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${BridgeDisableMacLearning},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("dnsmasq")]
-        [String]
-        ${Dhcp},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Mtu},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Controller},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${DisableArpNdSuppression},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Peers},
+        ${Zone},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Tag},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Mac},
+        ${Dnszone},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Nodes},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${VxlanPort},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("dnsmasq")]
+        [String]
+        ${Dhcp},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("evpn", "faucet", "qinq", "simple", "vlan", "vxlan")]
+        [String]
+        ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("802.1q", "802.1ad")]
+        [String]
+        ${VlanProtocol},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Bridge},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Ipam},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${BridgeDisableMacLearning},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Mtu},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${ExitnodesLocalRouting},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Dns},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Reversedns},
+        ${RtImport},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${AdvertiseSubnets}
+        ${VrfVxlan},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Peers},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Controller},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${DpId}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTClusterSdnZonesRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if ($AdvertiseSubnets -and $AdvertiseSubnets -gt 1) {
+          throw "invalid value for 'AdvertiseSubnets', must be smaller than or equal to 1."
+        }
+
+        if ($AdvertiseSubnets -and $AdvertiseSubnets -lt 0) {
+          throw "invalid value for 'AdvertiseSubnets', must be greater than or equal to 0."
+        }
+
+        if ($DisableArpNdSuppression -and $DisableArpNdSuppression -gt 1) {
+          throw "invalid value for 'DisableArpNdSuppression', must be smaller than or equal to 1."
+        }
+
+        if ($DisableArpNdSuppression -and $DisableArpNdSuppression -lt 0) {
+          throw "invalid value for 'DisableArpNdSuppression', must be greater than or equal to 0."
+        }
 
         if ($VxlanPort -and $VxlanPort -gt 65536) {
           throw "invalid value for 'VxlanPort', must be smaller than or equal to 65536."
@@ -173,14 +189,6 @@ function Initialize-PVEPOSTClusterSdnZonesRB {
           throw "invalid value for 'BridgeDisableMacLearning', must be greater than or equal to 0."
         }
 
-        if ($DisableArpNdSuppression -and $DisableArpNdSuppression -gt 1) {
-          throw "invalid value for 'DisableArpNdSuppression', must be smaller than or equal to 1."
-        }
-
-        if ($DisableArpNdSuppression -and $DisableArpNdSuppression -lt 0) {
-          throw "invalid value for 'DisableArpNdSuppression', must be greater than or equal to 0."
-        }
-
         if ($ExitnodesLocalRouting -and $ExitnodesLocalRouting -gt 1) {
           throw "invalid value for 'ExitnodesLocalRouting', must be smaller than or equal to 1."
         }
@@ -189,17 +197,9 @@ function Initialize-PVEPOSTClusterSdnZonesRB {
           throw "invalid value for 'ExitnodesLocalRouting', must be greater than or equal to 0."
         }
 
-        if ($AdvertiseSubnets -and $AdvertiseSubnets -gt 1) {
-          throw "invalid value for 'AdvertiseSubnets', must be smaller than or equal to 1."
-        }
-
-        if ($AdvertiseSubnets -and $AdvertiseSubnets -lt 0) {
-          throw "invalid value for 'AdvertiseSubnets', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Nodes"="nodes"; "VlanProtocol"="vlan-protocol"; "VxlanPort"="vxlan-port"; "Zone"="zone"; "RtImport"="rt-import"; "Tag"="tag"; "Ipam"="ipam"; "Exitnodes"="exitnodes"; "DpId"="dp-id"; "ExitnodesPrimary"="exitnodes-primary"; "Bridge"="bridge"; "VrfVxlan"="vrf-vxlan"; "Dnszone"="dnszone"; "Type"="type"; "BridgeDisableMacLearning"="bridge-disable-mac-learning"; "Dhcp"="dhcp"; "Mtu"="mtu"; "Controller"="controller"; "DisableArpNdSuppression"="disable-arp-nd-suppression"; "Peers"="peers"; "Mac"="mac"; "ExitnodesLocalRouting"="exitnodes-local-routing"; "Dns"="dns"; "Reversedns"="reversedns"; "AdvertiseSubnets"="advertise-subnets"
+			"Mac"="mac"; "Exitnodes"="exitnodes"; "Reversedns"="reversedns"; "Dns"="dns"; "AdvertiseSubnets"="advertise-subnets"; "ExitnodesPrimary"="exitnodes-primary"; "DisableArpNdSuppression"="disable-arp-nd-suppression"; "Zone"="zone"; "Tag"="tag"; "Dnszone"="dnszone"; "Nodes"="nodes"; "VxlanPort"="vxlan-port"; "Dhcp"="dhcp"; "Type"="type"; "VlanProtocol"="vlan-protocol"; "Bridge"="bridge"; "Ipam"="ipam"; "BridgeDisableMacLearning"="bridge-disable-mac-learning"; "Mtu"="mtu"; "ExitnodesLocalRouting"="exitnodes-local-routing"; "RtImport"="rt-import"; "VrfVxlan"="vrf-vxlan"; "Peers"="peers"; "Controller"="controller"; "DpId"="dp-id"
         }
 		
 		 $OBJ = @{}
@@ -245,131 +245,11 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnZonesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterSdnZonesRB
-        $AllProperties = ("nodes", "vlan-protocol", "vxlan-port", "zone", "rt-import", "tag", "ipam", "exitnodes", "dp-id", "exitnodes-primary", "bridge", "vrf-vxlan", "dnszone", "type", "bridge-disable-mac-learning", "dhcp", "mtu", "controller", "disable-arp-nd-suppression", "peers", "mac", "exitnodes-local-routing", "dns", "reversedns", "advertise-subnets")
+        $AllProperties = ("mac", "exitnodes", "reversedns", "dns", "advertise-subnets", "exitnodes-primary", "disable-arp-nd-suppression", "zone", "tag", "dnszone", "nodes", "vxlan-port", "dhcp", "type", "vlan-protocol", "bridge", "ipam", "bridge-disable-mac-learning", "mtu", "exitnodes-local-routing", "rt-import", "vrf-vxlan", "peers", "controller", "dp-id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
-            $Nodes = $null
-        } else {
-            $Nodes = $JsonParameters.PSobject.Properties["nodes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vlan-protocol"))) { #optional property not found
-            $VlanProtocol = $null
-        } else {
-            $VlanProtocol = $JsonParameters.PSobject.Properties["vlan-protocol"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vxlan-port"))) { #optional property not found
-            $VxlanPort = $null
-        } else {
-            $VxlanPort = $JsonParameters.PSobject.Properties["vxlan-port"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
-            $Zone = $null
-        } else {
-            $Zone = $JsonParameters.PSobject.Properties["zone"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rt-import"))) { #optional property not found
-            $RtImport = $null
-        } else {
-            $RtImport = $JsonParameters.PSobject.Properties["rt-import"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tag"))) { #optional property not found
-            $Tag = $null
-        } else {
-            $Tag = $JsonParameters.PSobject.Properties["tag"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipam"))) { #optional property not found
-            $Ipam = $null
-        } else {
-            $Ipam = $JsonParameters.PSobject.Properties["ipam"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exitnodes"))) { #optional property not found
-            $Exitnodes = $null
-        } else {
-            $Exitnodes = $JsonParameters.PSobject.Properties["exitnodes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dp-id"))) { #optional property not found
-            $DpId = $null
-        } else {
-            $DpId = $JsonParameters.PSobject.Properties["dp-id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exitnodes-primary"))) { #optional property not found
-            $ExitnodesPrimary = $null
-        } else {
-            $ExitnodesPrimary = $JsonParameters.PSobject.Properties["exitnodes-primary"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge"))) { #optional property not found
-            $Bridge = $null
-        } else {
-            $Bridge = $JsonParameters.PSobject.Properties["bridge"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vrf-vxlan"))) { #optional property not found
-            $VrfVxlan = $null
-        } else {
-            $VrfVxlan = $JsonParameters.PSobject.Properties["vrf-vxlan"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dnszone"))) { #optional property not found
-            $Dnszone = $null
-        } else {
-            $Dnszone = $JsonParameters.PSobject.Properties["dnszone"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge-disable-mac-learning"))) { #optional property not found
-            $BridgeDisableMacLearning = $null
-        } else {
-            $BridgeDisableMacLearning = $JsonParameters.PSobject.Properties["bridge-disable-mac-learning"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dhcp"))) { #optional property not found
-            $Dhcp = $null
-        } else {
-            $Dhcp = $JsonParameters.PSobject.Properties["dhcp"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mtu"))) { #optional property not found
-            $Mtu = $null
-        } else {
-            $Mtu = $JsonParameters.PSobject.Properties["mtu"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "controller"))) { #optional property not found
-            $Controller = $null
-        } else {
-            $Controller = $JsonParameters.PSobject.Properties["controller"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable-arp-nd-suppression"))) { #optional property not found
-            $DisableArpNdSuppression = $null
-        } else {
-            $DisableArpNdSuppression = $JsonParameters.PSobject.Properties["disable-arp-nd-suppression"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "peers"))) { #optional property not found
-            $Peers = $null
-        } else {
-            $Peers = $JsonParameters.PSobject.Properties["peers"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "mac"))) { #optional property not found
@@ -378,16 +258,10 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnZonesRB {
             $Mac = $JsonParameters.PSobject.Properties["mac"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exitnodes-local-routing"))) { #optional property not found
-            $ExitnodesLocalRouting = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exitnodes"))) { #optional property not found
+            $Exitnodes = $null
         } else {
-            $ExitnodesLocalRouting = $JsonParameters.PSobject.Properties["exitnodes-local-routing"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dns"))) { #optional property not found
-            $Dns = $null
-        } else {
-            $Dns = $JsonParameters.PSobject.Properties["dns"].value
+            $Exitnodes = $JsonParameters.PSobject.Properties["exitnodes"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "reversedns"))) { #optional property not found
@@ -396,38 +270,164 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnZonesRB {
             $Reversedns = $JsonParameters.PSobject.Properties["reversedns"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dns"))) { #optional property not found
+            $Dns = $null
+        } else {
+            $Dns = $JsonParameters.PSobject.Properties["dns"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "advertise-subnets"))) { #optional property not found
             $AdvertiseSubnets = $null
         } else {
             $AdvertiseSubnets = $JsonParameters.PSobject.Properties["advertise-subnets"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exitnodes-primary"))) { #optional property not found
+            $ExitnodesPrimary = $null
+        } else {
+            $ExitnodesPrimary = $JsonParameters.PSobject.Properties["exitnodes-primary"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable-arp-nd-suppression"))) { #optional property not found
+            $DisableArpNdSuppression = $null
+        } else {
+            $DisableArpNdSuppression = $JsonParameters.PSobject.Properties["disable-arp-nd-suppression"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
+            $Zone = $null
+        } else {
+            $Zone = $JsonParameters.PSobject.Properties["zone"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tag"))) { #optional property not found
+            $Tag = $null
+        } else {
+            $Tag = $JsonParameters.PSobject.Properties["tag"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dnszone"))) { #optional property not found
+            $Dnszone = $null
+        } else {
+            $Dnszone = $JsonParameters.PSobject.Properties["dnszone"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
+            $Nodes = $null
+        } else {
+            $Nodes = $JsonParameters.PSobject.Properties["nodes"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vxlan-port"))) { #optional property not found
+            $VxlanPort = $null
+        } else {
+            $VxlanPort = $JsonParameters.PSobject.Properties["vxlan-port"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dhcp"))) { #optional property not found
+            $Dhcp = $null
+        } else {
+            $Dhcp = $JsonParameters.PSobject.Properties["dhcp"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vlan-protocol"))) { #optional property not found
+            $VlanProtocol = $null
+        } else {
+            $VlanProtocol = $JsonParameters.PSobject.Properties["vlan-protocol"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge"))) { #optional property not found
+            $Bridge = $null
+        } else {
+            $Bridge = $JsonParameters.PSobject.Properties["bridge"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipam"))) { #optional property not found
+            $Ipam = $null
+        } else {
+            $Ipam = $JsonParameters.PSobject.Properties["ipam"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge-disable-mac-learning"))) { #optional property not found
+            $BridgeDisableMacLearning = $null
+        } else {
+            $BridgeDisableMacLearning = $JsonParameters.PSobject.Properties["bridge-disable-mac-learning"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mtu"))) { #optional property not found
+            $Mtu = $null
+        } else {
+            $Mtu = $JsonParameters.PSobject.Properties["mtu"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exitnodes-local-routing"))) { #optional property not found
+            $ExitnodesLocalRouting = $null
+        } else {
+            $ExitnodesLocalRouting = $JsonParameters.PSobject.Properties["exitnodes-local-routing"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rt-import"))) { #optional property not found
+            $RtImport = $null
+        } else {
+            $RtImport = $JsonParameters.PSobject.Properties["rt-import"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vrf-vxlan"))) { #optional property not found
+            $VrfVxlan = $null
+        } else {
+            $VrfVxlan = $JsonParameters.PSobject.Properties["vrf-vxlan"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "peers"))) { #optional property not found
+            $Peers = $null
+        } else {
+            $Peers = $JsonParameters.PSobject.Properties["peers"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "controller"))) { #optional property not found
+            $Controller = $null
+        } else {
+            $Controller = $JsonParameters.PSobject.Properties["controller"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dp-id"))) { #optional property not found
+            $DpId = $null
+        } else {
+            $DpId = $JsonParameters.PSobject.Properties["dp-id"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "nodes" = ${Nodes}
-            "vlan-protocol" = ${VlanProtocol}
-            "vxlan-port" = ${VxlanPort}
-            "zone" = ${Zone}
-            "rt-import" = ${RtImport}
-            "tag" = ${Tag}
-            "ipam" = ${Ipam}
-            "exitnodes" = ${Exitnodes}
-            "dp-id" = ${DpId}
-            "exitnodes-primary" = ${ExitnodesPrimary}
-            "bridge" = ${Bridge}
-            "vrf-vxlan" = ${VrfVxlan}
-            "dnszone" = ${Dnszone}
-            "type" = ${Type}
-            "bridge-disable-mac-learning" = ${BridgeDisableMacLearning}
-            "dhcp" = ${Dhcp}
-            "mtu" = ${Mtu}
-            "controller" = ${Controller}
-            "disable-arp-nd-suppression" = ${DisableArpNdSuppression}
-            "peers" = ${Peers}
             "mac" = ${Mac}
-            "exitnodes-local-routing" = ${ExitnodesLocalRouting}
-            "dns" = ${Dns}
+            "exitnodes" = ${Exitnodes}
             "reversedns" = ${Reversedns}
+            "dns" = ${Dns}
             "advertise-subnets" = ${AdvertiseSubnets}
+            "exitnodes-primary" = ${ExitnodesPrimary}
+            "disable-arp-nd-suppression" = ${DisableArpNdSuppression}
+            "zone" = ${Zone}
+            "tag" = ${Tag}
+            "dnszone" = ${Dnszone}
+            "nodes" = ${Nodes}
+            "vxlan-port" = ${VxlanPort}
+            "dhcp" = ${Dhcp}
+            "type" = ${Type}
+            "vlan-protocol" = ${VlanProtocol}
+            "bridge" = ${Bridge}
+            "ipam" = ${Ipam}
+            "bridge-disable-mac-learning" = ${BridgeDisableMacLearning}
+            "mtu" = ${Mtu}
+            "exitnodes-local-routing" = ${ExitnodesLocalRouting}
+            "rt-import" = ${RtImport}
+            "vrf-vxlan" = ${VrfVxlan}
+            "peers" = ${Peers}
+            "controller" = ${Controller}
+            "dp-id" = ${DpId}
         }
 
         return $PSO

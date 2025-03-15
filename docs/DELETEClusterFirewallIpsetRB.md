@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Cidr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEClusterFirewallIpsetRB = Initialize-PVEDELETEClusterFirewallIpsetRB  -Name null `
- -Digest null `
+$DELETEClusterFirewallIpsetRB = Initialize-PVEDELETEClusterFirewallIpsetRB  -Digest null `
+ -Name null `
  -Cidr null
 ```
 

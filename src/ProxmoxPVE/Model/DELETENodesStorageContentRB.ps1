@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
-.PARAMETER Delay
+.PARAMETER Storage
 No description available.
 .PARAMETER Volume
 No description available.
-.PARAMETER Storage
+.PARAMETER Node
+No description available.
+.PARAMETER Delay
 No description available.
 .OUTPUTS
 
@@ -33,16 +33,16 @@ function Initialize-PVEDELETENodesStorageContentRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Delay},
+        ${Storage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Volume},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Storage}
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Delay}
     )
 
     Process {
@@ -59,7 +59,7 @@ function Initialize-PVEDELETENodesStorageContentRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Delay"="delay"; "Volume"="volume"; "Storage"="storage"
+			"Storage"="storage"; "Volume"="volume"; "Node"="node"; "Delay"="delay"
         }
 		
 		 $OBJ = @{}
@@ -105,11 +105,23 @@ function ConvertFrom-PVEJsonToDELETENodesStorageContentRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesStorageContentRB
-        $AllProperties = ("node", "delay", "volume", "storage")
+        $AllProperties = ("storage", "volume", "node", "delay")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
+            $Storage = $null
+        } else {
+            $Storage = $JsonParameters.PSobject.Properties["storage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volume"))) { #optional property not found
+            $Volume = $null
+        } else {
+            $Volume = $JsonParameters.PSobject.Properties["volume"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -124,23 +136,11 @@ function ConvertFrom-PVEJsonToDELETENodesStorageContentRB {
             $Delay = $JsonParameters.PSobject.Properties["delay"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volume"))) { #optional property not found
-            $Volume = $null
-        } else {
-            $Volume = $JsonParameters.PSobject.Properties["volume"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "storage" = ${Storage}
+            "volume" = ${Volume}
             "node" = ${Node}
             "delay" = ${Delay}
-            "volume" = ${Volume}
-            "storage" = ${Storage}
         }
 
         return $PSO

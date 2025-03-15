@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterNotificationsEndpointsSendmailGETInn
     Context 'PVEClusterNotificationsEndpointsSendmailGETInner' {
         It 'Initialize-PVEClusterNotificationsEndpointsSendmailGETInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterNotificationsEndpointsSendmailGETInner -MailtoUser "TEST_VALUE" -Name "TEST_VALUE" -Origin "TEST_VALUE" -Disable "TEST_VALUE" -Comment "TEST_VALUE" -Author "TEST_VALUE" -Mailto "TEST_VALUE" -FromAddress "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterNotificationsEndpointsSendmailGETInner -Comment "TEST_VALUE" -MailtoUser "TEST_VALUE" -Name "TEST_VALUE" -Author "TEST_VALUE" -Mailto "TEST_VALUE" -FromAddress "TEST_VALUE" -Disable "TEST_VALUE" -Origin "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterNotificationsEndpointsSendmailGETInner
             #$NewObject.property | Should -Be 0
         }

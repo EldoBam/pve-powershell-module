@@ -15,9 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Vnet
+.PARAMETER Tag
+No description available.
+.PARAMETER Zone
 No description available.
 .PARAMETER Delete
+No description available.
+.PARAMETER Vnet
 No description available.
 .PARAMETER IsolatePorts
 No description available.
@@ -25,11 +29,7 @@ No description available.
 No description available.
 .PARAMETER Vlanaware
 No description available.
-.PARAMETER Zone
-No description available.
 .PARAMETER Alias
-No description available.
-.PARAMETER Tag
 No description available.
 .OUTPUTS
 
@@ -40,11 +40,17 @@ function Initialize-PVEPUTClusterSdnVnetsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Tag},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vnet},
+        ${Zone},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Delete},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Vnet},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${IsolatePorts},
@@ -55,15 +61,9 @@ function Initialize-PVEPUTClusterSdnVnetsRB {
         [System.Nullable[Int32]]
         ${Vlanaware},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Zone},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("(?^i:[\(\)-_.\w\d\s]{0,256})")]
         [String]
-        ${Alias},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Tag}
+        ${Alias}
     )
 
     Process {
@@ -100,7 +100,7 @@ function Initialize-PVEPUTClusterSdnVnetsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Vnet"="vnet"; "Delete"="delete"; "IsolatePorts"="isolate-ports"; "Digest"="digest"; "Vlanaware"="vlanaware"; "Zone"="zone"; "Alias"="alias"; "Tag"="tag"
+			"Tag"="tag"; "Zone"="zone"; "Delete"="delete"; "Vnet"="vnet"; "IsolatePorts"="isolate-ports"; "Digest"="digest"; "Vlanaware"="vlanaware"; "Alias"="alias"
         }
 		
 		 $OBJ = @{}
@@ -146,23 +146,35 @@ function ConvertFrom-PVEJsonToPUTClusterSdnVnetsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterSdnVnetsRB
-        $AllProperties = ("vnet", "delete", "isolate-ports", "digest", "vlanaware", "zone", "alias", "tag")
+        $AllProperties = ("tag", "zone", "delete", "vnet", "isolate-ports", "digest", "vlanaware", "alias")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
-            $Vnet = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tag"))) { #optional property not found
+            $Tag = $null
         } else {
-            $Vnet = $JsonParameters.PSobject.Properties["vnet"].value
+            $Tag = $JsonParameters.PSobject.Properties["tag"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
+            $Zone = $null
+        } else {
+            $Zone = $JsonParameters.PSobject.Properties["zone"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
             $Delete = $null
         } else {
             $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
+            $Vnet = $null
+        } else {
+            $Vnet = $JsonParameters.PSobject.Properties["vnet"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "isolate-ports"))) { #optional property not found
@@ -183,33 +195,21 @@ function ConvertFrom-PVEJsonToPUTClusterSdnVnetsRB {
             $Vlanaware = $JsonParameters.PSobject.Properties["vlanaware"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
-            $Zone = $null
-        } else {
-            $Zone = $JsonParameters.PSobject.Properties["zone"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "alias"))) { #optional property not found
             $Alias = $null
         } else {
             $Alias = $JsonParameters.PSobject.Properties["alias"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tag"))) { #optional property not found
-            $Tag = $null
-        } else {
-            $Tag = $JsonParameters.PSobject.Properties["tag"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "vnet" = ${Vnet}
+            "tag" = ${Tag}
+            "zone" = ${Zone}
             "delete" = ${Delete}
+            "vnet" = ${Vnet}
             "isolate-ports" = ${IsolatePorts}
             "digest" = ${Digest}
             "vlanaware" = ${Vlanaware}
-            "zone" = ${Zone}
             "alias" = ${Alias}
-            "tag" = ${Tag}
         }
 
         return $PSO

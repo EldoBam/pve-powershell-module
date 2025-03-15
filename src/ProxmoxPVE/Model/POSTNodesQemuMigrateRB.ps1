@@ -15,25 +15,25 @@ No summary available.
 
 No description available.
 
-.PARAMETER Force
-No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER WithLocalDisks
-No description available.
 .PARAMETER MigrationType
 No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Bwlimit
 No description available.
+.PARAMETER Vmid
+No description available.
 .PARAMETER Target
+No description available.
+.PARAMETER Targetstorage
+No description available.
+.PARAMETER Force
 No description available.
 .PARAMETER MigrationNetwork
 No description available.
-.PARAMETER Online
+.PARAMETER WithLocalDisks
 No description available.
-.PARAMETER Targetstorage
+.PARAMETER Online
 No description available.
 .OUTPUTS
 
@@ -43,15 +43,6 @@ POSTNodesQemuMigrateRB<PSCustomObject>
 function Initialize-PVEPOSTNodesQemuMigrateRB {
     [CmdletBinding()]
     Param (
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Force},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${WithLocalDisks},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("secure", "insecure")]
         [String]
@@ -63,30 +54,31 @@ function Initialize-PVEPOSTNodesQemuMigrateRB {
         [System.Nullable[Int32]]
         ${Bwlimit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Target},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Targetstorage},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Force},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${MigrationNetwork},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Online},
+        ${WithLocalDisks},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Targetstorage}
+        [System.Nullable[Int32]]
+        ${Online}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesQemuMigrateRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Force -and $Force -gt 1) {
-          throw "invalid value for 'Force', must be smaller than or equal to 1."
-        }
-
-        if ($Force -and $Force -lt 0) {
-          throw "invalid value for 'Force', must be greater than or equal to 0."
-        }
 
         if ($Vmid -and $Vmid -gt 999999999) {
           throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
@@ -94,6 +86,14 @@ function Initialize-PVEPOSTNodesQemuMigrateRB {
 
         if ($Vmid -and $Vmid -lt 100) {
           throw "invalid value for 'Vmid', must be greater than or equal to 100."
+        }
+
+        if ($Force -and $Force -gt 1) {
+          throw "invalid value for 'Force', must be smaller than or equal to 1."
+        }
+
+        if ($Force -and $Force -lt 0) {
+          throw "invalid value for 'Force', must be greater than or equal to 0."
         }
 
         if ($WithLocalDisks -and $WithLocalDisks -gt 1) {
@@ -114,7 +114,7 @@ function Initialize-PVEPOSTNodesQemuMigrateRB {
 
 
 		 $DisplayNameMapping =@{
-			"Force"="force"; "Vmid"="vmid"; "WithLocalDisks"="with-local-disks"; "MigrationType"="migration_type"; "Node"="node"; "Bwlimit"="bwlimit"; "Target"="target"; "MigrationNetwork"="migration_network"; "Online"="online"; "Targetstorage"="targetstorage"
+			"MigrationType"="migration_type"; "Node"="node"; "Bwlimit"="bwlimit"; "Vmid"="vmid"; "Target"="target"; "Targetstorage"="targetstorage"; "Force"="force"; "MigrationNetwork"="migration_network"; "WithLocalDisks"="with-local-disks"; "Online"="online"
         }
 		
 		 $OBJ = @{}
@@ -160,29 +160,11 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuMigrateRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuMigrateRB
-        $AllProperties = ("force", "vmid", "with-local-disks", "migration_type", "node", "bwlimit", "target", "migration_network", "online", "targetstorage")
+        $AllProperties = ("migration_type", "node", "bwlimit", "vmid", "target", "targetstorage", "force", "migration_network", "with-local-disks", "online")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
-            $Force = $null
-        } else {
-            $Force = $JsonParameters.PSobject.Properties["force"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "with-local-disks"))) { #optional property not found
-            $WithLocalDisks = $null
-        } else {
-            $WithLocalDisks = $JsonParameters.PSobject.Properties["with-local-disks"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "migration_type"))) { #optional property not found
@@ -203,22 +185,16 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuMigrateRB {
             $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
+        } else {
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
             $Target = $null
         } else {
             $Target = $JsonParameters.PSobject.Properties["target"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "migration_network"))) { #optional property not found
-            $MigrationNetwork = $null
-        } else {
-            $MigrationNetwork = $JsonParameters.PSobject.Properties["migration_network"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "online"))) { #optional property not found
-            $Online = $null
-        } else {
-            $Online = $JsonParameters.PSobject.Properties["online"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "targetstorage"))) { #optional property not found
@@ -227,17 +203,41 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuMigrateRB {
             $Targetstorage = $JsonParameters.PSobject.Properties["targetstorage"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
+            $Force = $null
+        } else {
+            $Force = $JsonParameters.PSobject.Properties["force"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "migration_network"))) { #optional property not found
+            $MigrationNetwork = $null
+        } else {
+            $MigrationNetwork = $JsonParameters.PSobject.Properties["migration_network"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "with-local-disks"))) { #optional property not found
+            $WithLocalDisks = $null
+        } else {
+            $WithLocalDisks = $JsonParameters.PSobject.Properties["with-local-disks"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "online"))) { #optional property not found
+            $Online = $null
+        } else {
+            $Online = $JsonParameters.PSobject.Properties["online"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "force" = ${Force}
-            "vmid" = ${Vmid}
-            "with-local-disks" = ${WithLocalDisks}
             "migration_type" = ${MigrationType}
             "node" = ${Node}
             "bwlimit" = ${Bwlimit}
+            "vmid" = ${Vmid}
             "target" = ${Target}
-            "migration_network" = ${MigrationNetwork}
-            "online" = ${Online}
             "targetstorage" = ${Targetstorage}
+            "force" = ${Force}
+            "migration_network" = ${MigrationNetwork}
+            "with-local-disks" = ${WithLocalDisks}
+            "online" = ${Online}
         }
 
         return $PSO

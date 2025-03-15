@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEAccessUsersTokenGETInner' {
     Context 'PVEAccessUsersTokenGETInner' {
         It 'Initialize-PVEAccessUsersTokenGETInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEAccessUsersTokenGETInner -Privsep "TEST_VALUE" -Tokenid "TEST_VALUE" -Expire "TEST_VALUE" -Comment "TEST_VALUE"
+            #$NewObject = Initialize-PVEAccessUsersTokenGETInner -Expire "TEST_VALUE" -Privsep "TEST_VALUE" -Tokenid "TEST_VALUE" -Comment "TEST_VALUE"
             #$NewObject | Should -BeOfType AccessUsersTokenGETInner
             #$NewObject.property | Should -Be 0
         }

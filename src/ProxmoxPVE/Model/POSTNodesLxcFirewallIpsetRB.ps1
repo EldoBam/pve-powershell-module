@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
-No description available.
-.PARAMETER Nomatch
+.PARAMETER Cidr
 No description available.
 .PARAMETER Comment
 No description available.
-.PARAMETER Vmid
-No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER Cidr
+.PARAMETER Name
+No description available.
+.PARAMETER Vmid
+No description available.
+.PARAMETER Nomatch
 No description available.
 .OUTPUTS
 
@@ -36,24 +36,24 @@ function Initialize-PVEPOSTNodesLxcFirewallIpsetRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Cidr},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Nomatch},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Cidr}
+        [System.Nullable[Int32]]
+        ${Nomatch}
     )
 
     Process {
@@ -68,14 +68,6 @@ function Initialize-PVEPOSTNodesLxcFirewallIpsetRB {
             throw "invalid value for 'Name', the character length must be great than or equal to 2."
         }
 
-        if ($Nomatch -and $Nomatch -gt 1) {
-          throw "invalid value for 'Nomatch', must be smaller than or equal to 1."
-        }
-
-        if ($Nomatch -and $Nomatch -lt 0) {
-          throw "invalid value for 'Nomatch', must be greater than or equal to 0."
-        }
-
         if ($Vmid -and $Vmid -gt 999999999) {
           throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
         }
@@ -84,9 +76,17 @@ function Initialize-PVEPOSTNodesLxcFirewallIpsetRB {
           throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
+        if ($Nomatch -and $Nomatch -gt 1) {
+          throw "invalid value for 'Nomatch', must be smaller than or equal to 1."
+        }
+
+        if ($Nomatch -and $Nomatch -lt 0) {
+          throw "invalid value for 'Nomatch', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Nomatch"="nomatch"; "Comment"="comment"; "Vmid"="vmid"; "Node"="node"; "Cidr"="cidr"
+			"Cidr"="cidr"; "Comment"="comment"; "Node"="node"; "Name"="name"; "Vmid"="vmid"; "Nomatch"="nomatch"
         }
 		
 		 $OBJ = @{}
@@ -132,41 +132,11 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcFirewallIpsetRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesLxcFirewallIpsetRB
-        $AllProperties = ("name", "nomatch", "comment", "vmid", "node", "cidr")
+        $AllProperties = ("cidr", "comment", "node", "name", "vmid", "nomatch")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nomatch"))) { #optional property not found
-            $Nomatch = $null
-        } else {
-            $Nomatch = $JsonParameters.PSobject.Properties["nomatch"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
@@ -175,13 +145,43 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcFirewallIpsetRB {
             $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
+        } else {
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nomatch"))) { #optional property not found
+            $Nomatch = $null
+        } else {
+            $Nomatch = $JsonParameters.PSobject.Properties["nomatch"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
-            "nomatch" = ${Nomatch}
-            "comment" = ${Comment}
-            "vmid" = ${Vmid}
-            "node" = ${Node}
             "cidr" = ${Cidr}
+            "comment" = ${Comment}
+            "node" = ${Node}
+            "name" = ${Name}
+            "vmid" = ${Vmid}
+            "nomatch" = ${Nomatch}
         }
 
         return $PSO

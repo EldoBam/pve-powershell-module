@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Node
 No description available.
-.PARAMETER Skiplock
-No description available.
 .PARAMETER OverruleShutdown
+No description available.
+.PARAMETER Skiplock
 No description available.
 .PARAMETER Vmid
 No description available.
@@ -36,10 +36,10 @@ function Initialize-PVEPOSTNodesLxcStatusStopRB {
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Skiplock},
+        ${OverruleShutdown},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${OverruleShutdown},
+        ${Skiplock},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid}
@@ -49,20 +49,20 @@ function Initialize-PVEPOSTNodesLxcStatusStopRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesLxcStatusStopRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Skiplock -and $Skiplock -gt 1) {
-          throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
-        }
-
-        if ($Skiplock -and $Skiplock -lt 0) {
-          throw "invalid value for 'Skiplock', must be greater than or equal to 0."
-        }
-
         if ($OverruleShutdown -and $OverruleShutdown -gt 1) {
           throw "invalid value for 'OverruleShutdown', must be smaller than or equal to 1."
         }
 
         if ($OverruleShutdown -and $OverruleShutdown -lt 0) {
           throw "invalid value for 'OverruleShutdown', must be greater than or equal to 0."
+        }
+
+        if ($Skiplock -and $Skiplock -gt 1) {
+          throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
+        }
+
+        if ($Skiplock -and $Skiplock -lt 0) {
+          throw "invalid value for 'Skiplock', must be greater than or equal to 0."
         }
 
         if ($Vmid -and $Vmid -gt 999999999) {
@@ -75,7 +75,7 @@ function Initialize-PVEPOSTNodesLxcStatusStopRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Skiplock"="skiplock"; "OverruleShutdown"="overrule-shutdown"; "Vmid"="vmid"
+			"Node"="node"; "OverruleShutdown"="overrule-shutdown"; "Skiplock"="skiplock"; "Vmid"="vmid"
         }
 		
 		 $OBJ = @{}
@@ -121,7 +121,7 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcStatusStopRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesLxcStatusStopRB
-        $AllProperties = ("node", "skiplock", "overrule-shutdown", "vmid")
+        $AllProperties = ("node", "overrule-shutdown", "skiplock", "vmid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -134,16 +134,16 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcStatusStopRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
-            $Skiplock = $null
-        } else {
-            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "overrule-shutdown"))) { #optional property not found
             $OverruleShutdown = $null
         } else {
             $OverruleShutdown = $JsonParameters.PSobject.Properties["overrule-shutdown"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
+            $Skiplock = $null
+        } else {
+            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
@@ -154,8 +154,8 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcStatusStopRB {
 
         $PSO = [PSCustomObject]@{
             "node" = ${Node}
-            "skiplock" = ${Skiplock}
             "overrule-shutdown" = ${OverruleShutdown}
+            "skiplock" = ${Skiplock}
             "vmid" = ${Vmid}
         }
 

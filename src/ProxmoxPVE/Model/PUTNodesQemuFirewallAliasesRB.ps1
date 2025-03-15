@@ -15,19 +15,19 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
+.PARAMETER Cidr
 No description available.
 .PARAMETER Comment
+No description available.
+.PARAMETER Node
+No description available.
+.PARAMETER Name
 No description available.
 .PARAMETER Rename
 No description available.
 .PARAMETER Vmid
 No description available.
 .PARAMETER Digest
-No description available.
-.PARAMETER Node
-No description available.
-.PARAMETER Cidr
 No description available.
 .OUTPUTS
 
@@ -38,12 +38,18 @@ function Initialize-PVEPUTNodesQemuFirewallAliasesRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
-        ${Name},
+        ${Cidr},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
+        [String]
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
@@ -53,13 +59,7 @@ function Initialize-PVEPUTNodesQemuFirewallAliasesRB {
         ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Cidr}
+        ${Digest}
     )
 
     Process {
@@ -96,7 +96,7 @@ function Initialize-PVEPUTNodesQemuFirewallAliasesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Comment"="comment"; "Rename"="rename"; "Vmid"="vmid"; "Digest"="digest"; "Node"="node"; "Cidr"="cidr"
+			"Cidr"="cidr"; "Comment"="comment"; "Node"="node"; "Name"="name"; "Rename"="rename"; "Vmid"="vmid"; "Digest"="digest"
         }
 		
 		 $OBJ = @{}
@@ -142,23 +142,35 @@ function ConvertFrom-PVEJsonToPUTNodesQemuFirewallAliasesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTNodesQemuFirewallAliasesRB
-        $AllProperties = ("name", "comment", "rename", "vmid", "digest", "node", "cidr")
+        $AllProperties = ("cidr", "comment", "node", "name", "rename", "vmid", "digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
+            $Cidr = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
             $Comment = $null
         } else {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "rename"))) { #optional property not found
@@ -179,26 +191,14 @@ function ConvertFrom-PVEJsonToPUTNodesQemuFirewallAliasesRB {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
-            $Cidr = $null
-        } else {
-            $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
+            "cidr" = ${Cidr}
             "comment" = ${Comment}
+            "node" = ${Node}
+            "name" = ${Name}
             "rename" = ${Rename}
             "vmid" = ${Vmid}
             "digest" = ${Digest}
-            "node" = ${Node}
-            "cidr" = ${Cidr}
         }
 
         return $PSO

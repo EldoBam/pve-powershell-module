@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterSdnZonesRB' {
     Context 'PVEPUTClusterSdnZonesRB' {
         It 'Initialize-PVEPUTClusterSdnZonesRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterSdnZonesRB -Nodes "TEST_VALUE" -VlanProtocol "TEST_VALUE" -VxlanPort "TEST_VALUE" -Zone "TEST_VALUE" -ExitnodesPrimary "TEST_VALUE" -RtImport "TEST_VALUE" -Tag "TEST_VALUE" -Ipam "TEST_VALUE" -Exitnodes "TEST_VALUE" -DpId "TEST_VALUE" -Dns "TEST_VALUE" -Bridge "TEST_VALUE" -VrfVxlan "TEST_VALUE" -Dnszone "TEST_VALUE" -BridgeDisableMacLearning "TEST_VALUE" -Delete "TEST_VALUE" -Mac "TEST_VALUE" -Dhcp "TEST_VALUE" -Mtu "TEST_VALUE" -Controller "TEST_VALUE" -DisableArpNdSuppression "TEST_VALUE" -Peers "TEST_VALUE" -Digest "TEST_VALUE" -ExitnodesLocalRouting "TEST_VALUE" -Reversedns "TEST_VALUE" -AdvertiseSubnets "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterSdnZonesRB -Mac "TEST_VALUE" -Reversedns "TEST_VALUE" -Digest "TEST_VALUE" -ExitnodesPrimary "TEST_VALUE" -Dns "TEST_VALUE" -AdvertiseSubnets "TEST_VALUE" -Dnszone "TEST_VALUE" -DisableArpNdSuppression "TEST_VALUE" -Zone "TEST_VALUE" -Tag "TEST_VALUE" -Exitnodes "TEST_VALUE" -Nodes "TEST_VALUE" -VxlanPort "TEST_VALUE" -Delete "TEST_VALUE" -Dhcp "TEST_VALUE" -VlanProtocol "TEST_VALUE" -Bridge "TEST_VALUE" -Ipam "TEST_VALUE" -BridgeDisableMacLearning "TEST_VALUE" -Mtu "TEST_VALUE" -ExitnodesLocalRouting "TEST_VALUE" -RtImport "TEST_VALUE" -VrfVxlan "TEST_VALUE" -Peers "TEST_VALUE" -Controller "TEST_VALUE" -DpId "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterSdnZonesRB
             #$NewObject.property | Should -Be 0
         }

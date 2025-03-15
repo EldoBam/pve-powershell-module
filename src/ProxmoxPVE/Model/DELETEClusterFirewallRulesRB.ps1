@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Digest
-No description available.
 .PARAMETER Pos
+No description available.
+.PARAMETER Digest
 No description available.
 .OUTPUTS
 
@@ -28,11 +28,11 @@ function Initialize-PVEDELETEClusterFirewallRulesRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Pos}
+        ${Pos},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest}
     )
 
     Process {
@@ -45,7 +45,7 @@ function Initialize-PVEDELETEClusterFirewallRulesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Digest"="digest"; "Pos"="pos"
+			"Pos"="pos"; "Digest"="digest"
         }
 		
 		 $OBJ = @{}
@@ -91,17 +91,11 @@ function ConvertFrom-PVEJsonToDELETEClusterFirewallRulesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEClusterFirewallRulesRB
-        $AllProperties = ("digest", "pos")
+        $AllProperties = ("pos", "digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
@@ -110,9 +104,15 @@ function ConvertFrom-PVEJsonToDELETEClusterFirewallRulesRB {
             $Pos = $JsonParameters.PSobject.Properties["pos"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "digest" = ${Digest}
             "pos" = ${Pos}
+            "digest" = ${Digest}
         }
 
         return $PSO

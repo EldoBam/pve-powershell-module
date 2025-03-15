@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
 **Path** | **String** |  | [optional] 
-**Roleid** | **String** |  | [optional] 
-**Propagate** | **Int32** |  | [optional] 
 **Ugid** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Propagate** | **Int32** |  | [optional] 
+**Roleid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessAclInner = Initialize-PVEAccessAclInner  -Type null `
- -Path null `
- -Roleid null `
+$AccessAclInner = Initialize-PVEAccessAclInner  -Path null `
+ -Ugid null `
+ -Type null `
  -Propagate null `
- -Ugid null
+ -Roleid null
 ```
 
 - Convert the resource to JSON

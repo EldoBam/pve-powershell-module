@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Description
+.PARAMETER Id
 No description available.
 .PARAMETER Map
 No description available.
-.PARAMETER Id
+.PARAMETER Description
 No description available.
 .OUTPUTS
 
@@ -31,13 +31,13 @@ function Initialize-PVEPOSTClusterMappingUsbRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description},
+        ${Id},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${Map},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id}
+        ${Description}
     )
 
     Process {
@@ -50,7 +50,7 @@ function Initialize-PVEPOSTClusterMappingUsbRB {
 
 
 		 $DisplayNameMapping =@{
-			"Description"="description"; "Map"="map"; "Id"="id"
+			"Id"="id"; "Map"="map"; "Description"="description"
         }
 		
 		 $OBJ = @{}
@@ -96,23 +96,11 @@ function ConvertFrom-PVEJsonToPOSTClusterMappingUsbRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterMappingUsbRB
-        $AllProperties = ("description", "map", "id")
+        $AllProperties = ("id", "map", "description")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "map"))) { #optional property not found
-            $Map = $null
-        } else {
-            $Map = $JsonParameters.PSobject.Properties["map"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -121,10 +109,22 @@ function ConvertFrom-PVEJsonToPOSTClusterMappingUsbRB {
             $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "map"))) { #optional property not found
+            $Map = $null
+        } else {
+            $Map = $JsonParameters.PSobject.Properties["map"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "description" = ${Description}
-            "map" = ${Map}
             "id" = ${Id}
+            "map" = ${Map}
+            "description" = ${Description}
         }
 
         return $PSO

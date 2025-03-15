@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
-No description available.
 .PARAMETER Digest
+No description available.
+.PARAMETER Name
 No description available.
 .PARAMETER Cidr
 No description available.
@@ -30,12 +30,12 @@ function Initialize-PVEDELETEClusterFirewallIpsetRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
         ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Cidr}
@@ -45,6 +45,10 @@ function Initialize-PVEDELETEClusterFirewallIpsetRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEDELETEClusterFirewallIpsetRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        }
+
         if (!$Name -and $Name.length -gt 64) {
             throw "invalid value for 'Name', the character length must be smaller than or equal to 64."
         }
@@ -53,13 +57,9 @@ function Initialize-PVEDELETEClusterFirewallIpsetRB {
             throw "invalid value for 'Name', the character length must be great than or equal to 2."
         }
 
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Digest"="digest"; "Cidr"="cidr"
+			"Digest"="digest"; "Name"="name"; "Cidr"="cidr"
         }
 		
 		 $OBJ = @{}
@@ -105,23 +105,23 @@ function ConvertFrom-PVEJsonToDELETEClusterFirewallIpsetRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEClusterFirewallIpsetRB
-        $AllProperties = ("name", "digest", "cidr")
+        $AllProperties = ("digest", "name", "cidr")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
@@ -131,8 +131,8 @@ function ConvertFrom-PVEJsonToDELETEClusterFirewallIpsetRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
             "digest" = ${Digest}
+            "name" = ${Name}
             "cidr" = ${Cidr}
         }
 

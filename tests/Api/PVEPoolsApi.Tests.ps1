@@ -17,7 +17,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEPoolsApi' {
 
     Context 'Get-PVEPoolsByPoolid' {
         It 'Test Get-PVEPoolsByPoolid' {
-            #$TestResult = Get-PVEPoolsByPoolid -GETPoolsRB "TEST_VALUE"
+            #$TestResult = Get-PVEPoolsByPoolid -Poolid "TEST_VALUE" -GETPoolsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -41,7 +41,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEPoolsApi' {
 
     Context 'Remove-PVEPoolsByPoolid' {
         It 'Test Remove-PVEPoolsByPoolid' {
-            #$TestResult = Remove-PVEPoolsByPoolid
+            #$TestResult = Remove-PVEPoolsByPoolid -Poolid "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -57,7 +57,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPVEPoolsApi' {
 
     Context 'Set-PVEPoolsByPoolid' {
         It 'Test Set-PVEPoolsByPoolid' {
-            #$TestResult = Set-PVEPoolsByPoolid -PUTPoolsRB "TEST_VALUE"
+            #$TestResult = Set-PVEPoolsByPoolid -Poolid "TEST_VALUE" -PUTPoolsRB "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }

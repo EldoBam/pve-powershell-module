@@ -4,20 +4,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **String** |  | [optional] 
-**Server** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **Disable** | **Int32** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $ClusterNotificationsEndpointsGotify = Initialize-PVEClusterNotificationsEndpointsGotify  -Name null `
- -Server null `
  -Digest null `
- -Comment null `
- -Disable null
+ -Disable null `
+ -Server null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

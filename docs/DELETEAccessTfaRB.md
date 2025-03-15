@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Password** | **String** |  | [optional] 
 **Id** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
 **Userid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEAccessTfaRB = Initialize-PVEDELETEAccessTfaRB  -Password null `
- -Id null `
+$DELETEAccessTfaRB = Initialize-PVEDELETEAccessTfaRB  -Id null `
+ -Password null `
  -Userid null
 ```
 

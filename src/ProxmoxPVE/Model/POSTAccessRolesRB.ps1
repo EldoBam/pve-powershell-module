@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Roleid
-No description available.
 .PARAMETER Privs
+No description available.
+.PARAMETER Roleid
 No description available.
 .OUTPUTS
 
@@ -29,10 +29,10 @@ function Initialize-PVEPOSTAccessRolesRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Roleid},
+        ${Privs},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Privs}
+        ${Roleid}
     )
 
     Process {
@@ -41,7 +41,7 @@ function Initialize-PVEPOSTAccessRolesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Roleid"="roleid"; "Privs"="privs"
+			"Privs"="privs"; "Roleid"="roleid"
         }
 		
 		 $OBJ = @{}
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToPOSTAccessRolesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTAccessRolesRB
-        $AllProperties = ("roleid", "privs")
+        $AllProperties = ("privs", "roleid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "roleid"))) { #optional property not found
-            $Roleid = $null
-        } else {
-            $Roleid = $JsonParameters.PSobject.Properties["roleid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "privs"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToPOSTAccessRolesRB {
             $Privs = $JsonParameters.PSobject.Properties["privs"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "roleid"))) { #optional property not found
+            $Roleid = $null
+        } else {
+            $Roleid = $JsonParameters.PSobject.Properties["roleid"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "roleid" = ${Roleid}
             "privs" = ${Privs}
+            "roleid" = ${Roleid}
         }
 
         return $PSO

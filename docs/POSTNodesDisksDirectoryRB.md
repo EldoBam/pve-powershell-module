@@ -4,20 +4,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **String** |  | [optional] 
-**AddStorage** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Filesystem** | **String** |  | [optional] 
 **Device** | **String** |  | [optional] 
+**Filesystem** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**AddStorage** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTNodesDisksDirectoryRB = Initialize-PVEPOSTNodesDisksDirectoryRB  -Name null `
- -AddStorage null `
- -Node null `
+ -Device null `
  -Filesystem null `
- -Device null
+ -Node null `
+ -AddStorage null
 ```
 
 - Convert the resource to JSON

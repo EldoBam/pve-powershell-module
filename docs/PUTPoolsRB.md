@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delete** | **Int32** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Poolid** | **String** |  | [optional] 
+**Delete** | **Int32** |  | [optional] 
+**AllowMove** | **Int32** |  | [optional] 
 **Vms** | **String** |  | [optional] 
 **Storage** | **String** |  | [optional] 
-**AllowMove** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTPoolsRB = Initialize-PVEPUTPoolsRB  -Delete null `
- -Comment null `
+$PUTPoolsRB = Initialize-PVEPUTPoolsRB  -Comment null `
  -Poolid null `
+ -Delete null `
+ -AllowMove null `
  -Vms null `
- -Storage null `
- -AllowMove null
+ -Storage null
 ```
 
 - Convert the resource to JSON

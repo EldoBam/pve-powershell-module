@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
+.PARAMETER Digest
+No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER Index
-No description available.
-.PARAMETER Digest
+.PARAMETER Enabled
 No description available.
 .PARAMETER Path
 No description available.
-.PARAMETER Enabled
+.PARAMETER Index
 No description available.
 .OUTPUTS
 
@@ -35,19 +35,19 @@ function Initialize-PVEPOSTNodesAptRepositoriesRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Index},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
+        ${Enabled},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Path},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Enabled}
+        ${Index}
     )
 
     Process {
@@ -68,7 +68,7 @@ function Initialize-PVEPOSTNodesAptRepositoriesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Index"="index"; "Digest"="digest"; "Path"="path"; "Enabled"="enabled"
+			"Digest"="digest"; "Node"="node"; "Enabled"="enabled"; "Path"="path"; "Index"="index"
         }
 		
 		 $OBJ = @{}
@@ -114,23 +114,11 @@ function ConvertFrom-PVEJsonToPOSTNodesAptRepositoriesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesAptRepositoriesRB
-        $AllProperties = ("node", "index", "digest", "path", "enabled")
+        $AllProperties = ("digest", "node", "enabled", "path", "index")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "index"))) { #optional property not found
-            $Index = $null
-        } else {
-            $Index = $JsonParameters.PSobject.Properties["index"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -139,10 +127,10 @@ function ConvertFrom-PVEJsonToPOSTNodesAptRepositoriesRB {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
-            $Path = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
         } else {
-            $Path = $JsonParameters.PSobject.Properties["path"].value
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
@@ -151,12 +139,24 @@ function ConvertFrom-PVEJsonToPOSTNodesAptRepositoriesRB {
             $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
+            $Path = $null
+        } else {
+            $Path = $JsonParameters.PSobject.Properties["path"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "index"))) { #optional property not found
+            $Index = $null
+        } else {
+            $Index = $JsonParameters.PSobject.Properties["index"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
-            "index" = ${Index}
             "digest" = ${Digest}
-            "path" = ${Path}
+            "node" = ${Node}
             "enabled" = ${Enabled}
+            "path" = ${Path}
+            "index" = ${Index}
         }
 
         return $PSO

@@ -15,21 +15,21 @@ No summary available.
 
 No description available.
 
-.PARAMETER RemoveVanished
-No description available.
-.PARAMETER Id
-No description available.
 .PARAMETER NextRun
 No description available.
 .PARAMETER Comment
 No description available.
-.PARAMETER Enabled
-No description available.
-.PARAMETER Realm
+.PARAMETER Id
 No description available.
 .PARAMETER Scope
 No description available.
+.PARAMETER Enabled
+No description available.
 .PARAMETER Schedule
+No description available.
+.PARAMETER Realm
+No description available.
+.PARAMETER RemoveVanished
 No description available.
 .PARAMETER LastRun
 No description available.
@@ -42,31 +42,31 @@ function Initialize-PVEClusterJobsRealmsyncInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(?:(?:(?:acl|properties|entry);)*(?:acl|properties|entry))|none")]
-        [String]
-        ${RemoveVanished},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${NextRun},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enabled},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Realm},
+        ${Id},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("users", "groups", "both")]
         [String]
         ${Scope},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Enabled},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Schedule},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Realm},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("(?:(?:(?:acl|properties|entry);)*(?:acl|properties|entry))|none")]
+        [String]
+        ${RemoveVanished},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${LastRun}
@@ -90,7 +90,7 @@ function Initialize-PVEClusterJobsRealmsyncInner {
 
 
 		 $DisplayNameMapping =@{
-			"RemoveVanished"="remove-vanished"; "Id"="id"; "NextRun"="next-run"; "Comment"="comment"; "Enabled"="enabled"; "Realm"="realm"; "Scope"="scope"; "Schedule"="schedule"; "LastRun"="last-run"
+			"NextRun"="next-run"; "Comment"="comment"; "Id"="id"; "Scope"="scope"; "Enabled"="enabled"; "Schedule"="schedule"; "Realm"="realm"; "RemoveVanished"="remove-vanished"; "LastRun"="last-run"
         }
 		
 		 $OBJ = @{}
@@ -136,23 +136,11 @@ function ConvertFrom-PVEJsonToClusterJobsRealmsyncInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterJobsRealmsyncInner
-        $AllProperties = ("remove-vanished", "id", "next-run", "comment", "enabled", "realm", "scope", "schedule", "last-run")
+        $AllProperties = ("next-run", "comment", "id", "scope", "enabled", "schedule", "realm", "remove-vanished", "last-run")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove-vanished"))) { #optional property not found
-            $RemoveVanished = $null
-        } else {
-            $RemoveVanished = $JsonParameters.PSobject.Properties["remove-vanished"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "next-run"))) { #optional property not found
@@ -167,16 +155,10 @@ function ConvertFrom-PVEJsonToClusterJobsRealmsyncInner {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
-            $Enabled = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
         } else {
-            $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
-            $Realm = $null
-        } else {
-            $Realm = $JsonParameters.PSobject.Properties["realm"].value
+            $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "scope"))) { #optional property not found
@@ -185,10 +167,28 @@ function ConvertFrom-PVEJsonToClusterJobsRealmsyncInner {
             $Scope = $JsonParameters.PSobject.Properties["scope"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
+            $Enabled = $null
+        } else {
+            $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "schedule"))) { #optional property not found
             $Schedule = $null
         } else {
             $Schedule = $JsonParameters.PSobject.Properties["schedule"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
+            $Realm = $null
+        } else {
+            $Realm = $JsonParameters.PSobject.Properties["realm"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove-vanished"))) { #optional property not found
+            $RemoveVanished = $null
+        } else {
+            $RemoveVanished = $JsonParameters.PSobject.Properties["remove-vanished"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "last-run"))) { #optional property not found
@@ -198,14 +198,14 @@ function ConvertFrom-PVEJsonToClusterJobsRealmsyncInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "remove-vanished" = ${RemoveVanished}
-            "id" = ${Id}
             "next-run" = ${NextRun}
             "comment" = ${Comment}
-            "enabled" = ${Enabled}
-            "realm" = ${Realm}
+            "id" = ${Id}
             "scope" = ${Scope}
+            "enabled" = ${Enabled}
             "schedule" = ${Schedule}
+            "realm" = ${Realm}
+            "remove-vanished" = ${RemoveVanished}
             "last-run" = ${LastRun}
         }
 

@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Storage** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
 **Volume** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
 **Filepath** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesStorageFilerestoreListRB = Initialize-PVEGETNodesStorageFilerestoreListRB  -Node null `
+$GETNodesStorageFilerestoreListRB = Initialize-PVEGETNodesStorageFilerestoreListRB  -Storage null `
+ -Node null `
  -Volume null `
- -Storage null `
  -Filepath null
 ```
 

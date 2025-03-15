@@ -17,35 +17,35 @@ No description available.
 
 .PARAMETER Netout
 No description available.
-.PARAMETER Cpus
+.PARAMETER Tags
 No description available.
-.PARAMETER Vmid
+.PARAMETER Uptime
 No description available.
-.PARAMETER Maxdisk
+.PARAMETER Maxmem
 No description available.
-.PARAMETER Template
-No description available.
-.PARAMETER Diskread
+.PARAMETER Maxswap
 No description available.
 .PARAMETER Netin
 No description available.
 .PARAMETER Diskwrite
 No description available.
-.PARAMETER Tags
+.PARAMETER Lock
 No description available.
-.PARAMETER Maxmem
+.PARAMETER Template
+No description available.
+.PARAMETER Disk
+No description available.
+.PARAMETER Vmid
 No description available.
 .PARAMETER Name
 No description available.
-.PARAMETER Uptime
+.PARAMETER Maxdisk
+No description available.
+.PARAMETER Diskread
 No description available.
 .PARAMETER Status
 No description available.
-.PARAMETER Lock
-No description available.
-.PARAMETER Maxswap
-No description available.
-.PARAMETER Disk
+.PARAMETER Cpus
 No description available.
 .OUTPUTS
 
@@ -59,20 +59,17 @@ function Initialize-PVENodesLxcInner {
         [System.Nullable[Int32]]
         ${Netout},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${Cpus},
+        [String]
+        ${Tags},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid},
+        ${Uptime},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Maxdisk},
+        ${Maxmem},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Template},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Diskread},
+        ${Maxswap},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Netin},
@@ -81,42 +78,37 @@ function Initialize-PVENodesLxcInner {
         ${Diskwrite},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Tags},
+        ${Lock},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Maxmem},
+        ${Template},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Disk},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Uptime},
+        ${Maxdisk},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Diskread},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("stopped", "running")]
         [String]
         ${Status},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Lock},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Maxswap},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disk}
+        [System.Nullable[Decimal]]
+        ${Cpus}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesLxcInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
 
         if ($Template -and $Template -gt 1) {
           throw "invalid value for 'Template', must be smaller than or equal to 1."
@@ -126,9 +118,17 @@ function Initialize-PVENodesLxcInner {
           throw "invalid value for 'Template', must be greater than or equal to 0."
         }
 
+        if ($Vmid -and $Vmid -gt 999999999) {
+          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
+        }
+
+        if ($Vmid -and $Vmid -lt 100) {
+          throw "invalid value for 'Vmid', must be greater than or equal to 100."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Netout"="netout"; "Cpus"="cpus"; "Vmid"="vmid"; "Maxdisk"="maxdisk"; "Template"="template"; "Diskread"="diskread"; "Netin"="netin"; "Diskwrite"="diskwrite"; "Tags"="tags"; "Maxmem"="maxmem"; "Name"="name"; "Uptime"="uptime"; "Status"="status"; "Lock"="lock"; "Maxswap"="maxswap"; "Disk"="disk"
+			"Netout"="netout"; "Tags"="tags"; "Uptime"="uptime"; "Maxmem"="maxmem"; "Maxswap"="maxswap"; "Netin"="netin"; "Diskwrite"="diskwrite"; "Lock"="lock"; "Template"="template"; "Disk"="disk"; "Vmid"="vmid"; "Name"="name"; "Maxdisk"="maxdisk"; "Diskread"="diskread"; "Status"="status"; "Cpus"="cpus"
         }
 		
 		 $OBJ = @{}
@@ -174,7 +174,7 @@ function ConvertFrom-PVEJsonToNodesLxcInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesLxcInner
-        $AllProperties = ("netout", "cpus", "vmid", "maxdisk", "template", "diskread", "netin", "diskwrite", "tags", "maxmem", "name", "uptime", "status", "lock", "maxswap", "disk")
+        $AllProperties = ("netout", "tags", "uptime", "maxmem", "maxswap", "netin", "diskwrite", "lock", "template", "disk", "vmid", "name", "maxdisk", "diskread", "status", "cpus")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -187,34 +187,28 @@ function ConvertFrom-PVEJsonToNodesLxcInner {
             $Netout = $JsonParameters.PSobject.Properties["netout"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpus"))) { #optional property not found
-            $Cpus = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tags"))) { #optional property not found
+            $Tags = $null
         } else {
-            $Cpus = $JsonParameters.PSobject.Properties["cpus"].value
+            $Tags = $JsonParameters.PSobject.Properties["tags"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "uptime"))) { #optional property not found
+            $Uptime = $null
         } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+            $Uptime = $JsonParameters.PSobject.Properties["uptime"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxdisk"))) { #optional property not found
-            $Maxdisk = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxmem"))) { #optional property not found
+            $Maxmem = $null
         } else {
-            $Maxdisk = $JsonParameters.PSobject.Properties["maxdisk"].value
+            $Maxmem = $JsonParameters.PSobject.Properties["maxmem"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "template"))) { #optional property not found
-            $Template = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxswap"))) { #optional property not found
+            $Maxswap = $null
         } else {
-            $Template = $JsonParameters.PSobject.Properties["template"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "diskread"))) { #optional property not found
-            $Diskread = $null
-        } else {
-            $Diskread = $JsonParameters.PSobject.Properties["diskread"].value
+            $Maxswap = $JsonParameters.PSobject.Properties["maxswap"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "netin"))) { #optional property not found
@@ -229,46 +223,16 @@ function ConvertFrom-PVEJsonToNodesLxcInner {
             $Diskwrite = $JsonParameters.PSobject.Properties["diskwrite"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tags"))) { #optional property not found
-            $Tags = $null
-        } else {
-            $Tags = $JsonParameters.PSobject.Properties["tags"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxmem"))) { #optional property not found
-            $Maxmem = $null
-        } else {
-            $Maxmem = $JsonParameters.PSobject.Properties["maxmem"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "uptime"))) { #optional property not found
-            $Uptime = $null
-        } else {
-            $Uptime = $JsonParameters.PSobject.Properties["uptime"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
-            $Status = $null
-        } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "lock"))) { #optional property not found
             $Lock = $null
         } else {
             $Lock = $JsonParameters.PSobject.Properties["lock"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxswap"))) { #optional property not found
-            $Maxswap = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "template"))) { #optional property not found
+            $Template = $null
         } else {
-            $Maxswap = $JsonParameters.PSobject.Properties["maxswap"].value
+            $Template = $JsonParameters.PSobject.Properties["template"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "disk"))) { #optional property not found
@@ -277,23 +241,59 @@ function ConvertFrom-PVEJsonToNodesLxcInner {
             $Disk = $JsonParameters.PSobject.Properties["disk"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
+        } else {
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxdisk"))) { #optional property not found
+            $Maxdisk = $null
+        } else {
+            $Maxdisk = $JsonParameters.PSobject.Properties["maxdisk"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "diskread"))) { #optional property not found
+            $Diskread = $null
+        } else {
+            $Diskread = $JsonParameters.PSobject.Properties["diskread"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
+            $Status = $null
+        } else {
+            $Status = $JsonParameters.PSobject.Properties["status"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpus"))) { #optional property not found
+            $Cpus = $null
+        } else {
+            $Cpus = $JsonParameters.PSobject.Properties["cpus"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "netout" = ${Netout}
-            "cpus" = ${Cpus}
-            "vmid" = ${Vmid}
-            "maxdisk" = ${Maxdisk}
-            "template" = ${Template}
-            "diskread" = ${Diskread}
+            "tags" = ${Tags}
+            "uptime" = ${Uptime}
+            "maxmem" = ${Maxmem}
+            "maxswap" = ${Maxswap}
             "netin" = ${Netin}
             "diskwrite" = ${Diskwrite}
-            "tags" = ${Tags}
-            "maxmem" = ${Maxmem}
-            "name" = ${Name}
-            "uptime" = ${Uptime}
-            "status" = ${Status}
             "lock" = ${Lock}
-            "maxswap" = ${Maxswap}
+            "template" = ${Template}
             "disk" = ${Disk}
+            "vmid" = ${Vmid}
+            "name" = ${Name}
+            "maxdisk" = ${Maxdisk}
+            "diskread" = ${Diskread}
+            "status" = ${Status}
+            "cpus" = ${Cpus}
         }
 
         return $PSO

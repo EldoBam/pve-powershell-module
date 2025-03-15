@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEAccessGroupsGETInner' {
     Context 'PVEAccessGroupsGETInner' {
         It 'Initialize-PVEAccessGroupsGETInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEAccessGroupsGETInner -Groupid "TEST_VALUE" -Comment "TEST_VALUE" -Users "TEST_VALUE"
+            #$NewObject = Initialize-PVEAccessGroupsGETInner -Users "TEST_VALUE" -Groupid "TEST_VALUE" -Comment "TEST_VALUE"
             #$NewObject | Should -BeOfType AccessGroupsGETInner
             #$NewObject.property | Should -Be 0
         }

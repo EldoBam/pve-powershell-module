@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Digest
+No description available.
 .PARAMETER Name
 No description available.
 .PARAMETER Node
-No description available.
-.PARAMETER Digest
 No description available.
 .PARAMETER Vmid
 No description available.
@@ -32,15 +32,15 @@ function Initialize-PVEDELETENodesQemuFirewallAliasesRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid}
@@ -50,16 +50,16 @@ function Initialize-PVEDELETENodesQemuFirewallAliasesRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEDELETENodesQemuFirewallAliasesRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        }
+
         if (!$Name -and $Name.length -gt 64) {
             throw "invalid value for 'Name', the character length must be smaller than or equal to 64."
         }
 
         if (!$Name -and $Name.length -lt 2) {
             throw "invalid value for 'Name', the character length must be great than or equal to 2."
-        }
-
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
         }
 
         if ($Vmid -and $Vmid -gt 999999999) {
@@ -72,7 +72,7 @@ function Initialize-PVEDELETENodesQemuFirewallAliasesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Node"="node"; "Digest"="digest"; "Vmid"="vmid"
+			"Digest"="digest"; "Name"="name"; "Node"="node"; "Vmid"="vmid"
         }
 		
 		 $OBJ = @{}
@@ -118,11 +118,17 @@ function ConvertFrom-PVEJsonToDELETENodesQemuFirewallAliasesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesQemuFirewallAliasesRB
-        $AllProperties = ("name", "node", "digest", "vmid")
+        $AllProperties = ("digest", "name", "node", "vmid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -137,12 +143,6 @@ function ConvertFrom-PVEJsonToDELETENodesQemuFirewallAliasesRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
@@ -150,9 +150,9 @@ function ConvertFrom-PVEJsonToDELETENodesQemuFirewallAliasesRB {
         }
 
         $PSO = [PSCustomObject]@{
+            "digest" = ${Digest}
             "name" = ${Name}
             "node" = ${Node}
-            "digest" = ${Digest}
             "vmid" = ${Vmid}
         }
 

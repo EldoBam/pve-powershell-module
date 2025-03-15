@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER InputData
+No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Command
-No description available.
-.PARAMETER InputData
 No description available.
 .PARAMETER Vmid
 No description available.
@@ -33,13 +33,13 @@ function Initialize-PVEPOSTNodesQemuAgentExecRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${InputData},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${Command},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${InputData},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid}
@@ -63,7 +63,7 @@ function Initialize-PVEPOSTNodesQemuAgentExecRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Command"="command"; "InputData"="input-data"; "Vmid"="vmid"
+			"InputData"="input-data"; "Node"="node"; "Command"="command"; "Vmid"="vmid"
         }
 		
 		 $OBJ = @{}
@@ -109,11 +109,17 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuAgentExecRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuAgentExecRB
-        $AllProperties = ("node", "command", "input-data", "vmid")
+        $AllProperties = ("input-data", "node", "command", "vmid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input-data"))) { #optional property not found
+            $InputData = $null
+        } else {
+            $InputData = $JsonParameters.PSobject.Properties["input-data"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -128,12 +134,6 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuAgentExecRB {
             $Command = $JsonParameters.PSobject.Properties["command"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "input-data"))) { #optional property not found
-            $InputData = $null
-        } else {
-            $InputData = $JsonParameters.PSobject.Properties["input-data"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
@@ -141,9 +141,9 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuAgentExecRB {
         }
 
         $PSO = [PSCustomObject]@{
+            "input-data" = ${InputData}
             "node" = ${Node}
             "command" = ${Command}
-            "input-data" = ${InputData}
             "vmid" = ${Vmid}
         }
 

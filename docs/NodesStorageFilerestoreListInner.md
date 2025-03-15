@@ -3,22 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Filepath** | **String** |  | [optional] 
+**Leaf** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Mtime** | **Int32** |  | [optional] 
 **Size** | **Int32** |  | [optional] 
-**Filepath** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Leaf** | **Int32** |  | [optional] 
 **Text** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStorageFilerestoreListInner = Initialize-PVENodesStorageFilerestoreListInner  -Mtime null `
- -Size null `
- -Filepath null `
- -Type null `
+$NodesStorageFilerestoreListInner = Initialize-PVENodesStorageFilerestoreListInner  -Filepath null `
  -Leaf null `
+ -Type null `
+ -Mtime null `
+ -Size null `
  -Text null
 ```
 

@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
-.PARAMETER Description
+.PARAMETER Snapname
 No description available.
 .PARAMETER Vmstate
 No description available.
-.PARAMETER Snapname
+.PARAMETER Node
 No description available.
 .PARAMETER Vmid
+No description available.
+.PARAMETER Description
 No description available.
 .OUTPUTS
 
@@ -35,24 +35,28 @@ function Initialize-PVEPOSTNodesQemuSnapshotRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Description},
+        ${Snapname},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmstate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Snapname},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid}
+        ${Vmid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Description}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesQemuSnapshotRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if (!$Snapname -and $Snapname.length -gt 40) {
+            throw "invalid value for 'Snapname', the character length must be smaller than or equal to 40."
+        }
 
         if ($Vmstate -and $Vmstate -gt 1) {
           throw "invalid value for 'Vmstate', must be smaller than or equal to 1."
@@ -60,10 +64,6 @@ function Initialize-PVEPOSTNodesQemuSnapshotRB {
 
         if ($Vmstate -and $Vmstate -lt 0) {
           throw "invalid value for 'Vmstate', must be greater than or equal to 0."
-        }
-
-        if (!$Snapname -and $Snapname.length -gt 40) {
-            throw "invalid value for 'Snapname', the character length must be smaller than or equal to 40."
         }
 
         if ($Vmid -and $Vmid -gt 999999999) {
@@ -76,7 +76,7 @@ function Initialize-PVEPOSTNodesQemuSnapshotRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Description"="description"; "Vmstate"="vmstate"; "Snapname"="snapname"; "Vmid"="vmid"
+			"Snapname"="snapname"; "Vmstate"="vmstate"; "Node"="node"; "Vmid"="vmid"; "Description"="description"
         }
 		
 		 $OBJ = @{}
@@ -122,29 +122,11 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuSnapshotRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuSnapshotRB
-        $AllProperties = ("node", "description", "vmstate", "snapname", "vmid")
+        $AllProperties = ("snapname", "vmstate", "node", "vmid", "description")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmstate"))) { #optional property not found
-            $Vmstate = $null
-        } else {
-            $Vmstate = $JsonParameters.PSobject.Properties["vmstate"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "snapname"))) { #optional property not found
@@ -153,18 +135,36 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuSnapshotRB {
             $Snapname = $JsonParameters.PSobject.Properties["snapname"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmstate"))) { #optional property not found
+            $Vmstate = $null
+        } else {
+            $Vmstate = $JsonParameters.PSobject.Properties["vmstate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
-            "description" = ${Description}
-            "vmstate" = ${Vmstate}
             "snapname" = ${Snapname}
+            "vmstate" = ${Vmstate}
+            "node" = ${Node}
             "vmid" = ${Vmid}
+            "description" = ${Description}
         }
 
         return $PSO

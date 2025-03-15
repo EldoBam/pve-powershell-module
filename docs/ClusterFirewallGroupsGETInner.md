@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Group** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Group** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterFirewallGroupsGETInner = Initialize-PVEClusterFirewallGroupsGETInner  -Group null `
- -Digest null `
+$ClusterFirewallGroupsGETInner = Initialize-PVEClusterFirewallGroupsGETInner  -Digest null `
+ -Group null `
  -Comment null
 ```
 

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTClusterFirewallAliasesRB' {
     Context 'PVEPOSTClusterFirewallAliasesRB' {
         It 'Initialize-PVEPOSTClusterFirewallAliasesRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTClusterFirewallAliasesRB -Name "TEST_VALUE" -Comment "TEST_VALUE" -Cidr "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTClusterFirewallAliasesRB -Name "TEST_VALUE" -Cidr "TEST_VALUE" -Comment "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTClusterFirewallAliasesRB
             #$NewObject.property | Should -Be 0
         }

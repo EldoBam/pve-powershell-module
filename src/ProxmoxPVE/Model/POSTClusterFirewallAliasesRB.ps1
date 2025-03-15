@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Name
 No description available.
-.PARAMETER Comment
-No description available.
 .PARAMETER Cidr
+No description available.
+.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -35,10 +35,10 @@ function Initialize-PVEPOSTClusterFirewallAliasesRB {
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comment},
+        ${Cidr},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Cidr}
+        ${Comment}
     )
 
     Process {
@@ -55,7 +55,7 @@ function Initialize-PVEPOSTClusterFirewallAliasesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Comment"="comment"; "Cidr"="cidr"
+			"Name"="name"; "Cidr"="cidr"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -101,7 +101,7 @@ function ConvertFrom-PVEJsonToPOSTClusterFirewallAliasesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterFirewallAliasesRB
-        $AllProperties = ("name", "comment", "cidr")
+        $AllProperties = ("name", "cidr", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -114,22 +114,22 @@ function ConvertFrom-PVEJsonToPOSTClusterFirewallAliasesRB {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
             $Cidr = $null
         } else {
             $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "name" = ${Name}
-            "comment" = ${Comment}
             "cidr" = ${Cidr}
+            "comment" = ${Comment}
         }
 
         return $PSO

@@ -15,19 +15,19 @@ No summary available.
 
 No description available.
 
-.PARAMETER RemoveVanished
+.PARAMETER Comment
 No description available.
 .PARAMETER Id
 No description available.
-.PARAMETER Delete
-No description available.
-.PARAMETER Comment
+.PARAMETER Scope
 No description available.
 .PARAMETER Enabled
 No description available.
-.PARAMETER Scope
+.PARAMETER Delete
 No description available.
 .PARAMETER Schedule
+No description available.
+.PARAMETER RemoveVanished
 No description available.
 .PARAMETER EnableNew
 No description available.
@@ -40,28 +40,28 @@ function Initialize-PVEPUTClusterJobsRealmsyncRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(?:(?:(?:acl|properties|entry);)*(?:acl|properties|entry))|none")]
-        [String]
-        ${RemoveVanished},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enabled},
+        [String]
+        ${Id},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("users", "groups", "both")]
         [String]
         ${Scope},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Enabled},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Delete},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Schedule},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("(?:(?:(?:acl|properties|entry);)*(?:acl|properties|entry))|none")]
+        [String]
+        ${RemoveVanished},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${EnableNew}
@@ -71,16 +71,12 @@ function Initialize-PVEPUTClusterJobsRealmsyncRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterJobsRealmsyncRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if (!$Id -and $Id.length -gt 64) {
-            throw "invalid value for 'Id', the character length must be smaller than or equal to 64."
-        }
-
-        if (!$Delete -and $Delete.length -gt 4096) {
-            throw "invalid value for 'Delete', the character length must be smaller than or equal to 4096."
-        }
-
         if (!$Comment -and $Comment.length -gt 512) {
             throw "invalid value for 'Comment', the character length must be smaller than or equal to 512."
+        }
+
+        if (!$Id -and $Id.length -gt 64) {
+            throw "invalid value for 'Id', the character length must be smaller than or equal to 64."
         }
 
         if ($Enabled -and $Enabled -gt 1) {
@@ -89,6 +85,10 @@ function Initialize-PVEPUTClusterJobsRealmsyncRB {
 
         if ($Enabled -and $Enabled -lt 0) {
           throw "invalid value for 'Enabled', must be greater than or equal to 0."
+        }
+
+        if (!$Delete -and $Delete.length -gt 4096) {
+            throw "invalid value for 'Delete', the character length must be smaller than or equal to 4096."
         }
 
         if (!$Schedule -and $Schedule.length -gt 128) {
@@ -105,7 +105,7 @@ function Initialize-PVEPUTClusterJobsRealmsyncRB {
 
 
 		 $DisplayNameMapping =@{
-			"RemoveVanished"="remove-vanished"; "Id"="id"; "Delete"="delete"; "Comment"="comment"; "Enabled"="enabled"; "Scope"="scope"; "Schedule"="schedule"; "EnableNew"="enable-new"
+			"Comment"="comment"; "Id"="id"; "Scope"="scope"; "Enabled"="enabled"; "Delete"="delete"; "Schedule"="schedule"; "RemoveVanished"="remove-vanished"; "EnableNew"="enable-new"
         }
 		
 		 $OBJ = @{}
@@ -151,29 +151,11 @@ function ConvertFrom-PVEJsonToPUTClusterJobsRealmsyncRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterJobsRealmsyncRB
-        $AllProperties = ("remove-vanished", "id", "delete", "comment", "enabled", "scope", "schedule", "enable-new")
+        $AllProperties = ("comment", "id", "scope", "enabled", "delete", "schedule", "remove-vanished", "enable-new")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove-vanished"))) { #optional property not found
-            $RemoveVanished = $null
-        } else {
-            $RemoveVanished = $JsonParameters.PSobject.Properties["remove-vanished"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -182,10 +164,10 @@ function ConvertFrom-PVEJsonToPUTClusterJobsRealmsyncRB {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
-            $Enabled = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
         } else {
-            $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
+            $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "scope"))) { #optional property not found
@@ -194,10 +176,28 @@ function ConvertFrom-PVEJsonToPUTClusterJobsRealmsyncRB {
             $Scope = $JsonParameters.PSobject.Properties["scope"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
+            $Enabled = $null
+        } else {
+            $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "schedule"))) { #optional property not found
             $Schedule = $null
         } else {
             $Schedule = $JsonParameters.PSobject.Properties["schedule"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove-vanished"))) { #optional property not found
+            $RemoveVanished = $null
+        } else {
+            $RemoveVanished = $JsonParameters.PSobject.Properties["remove-vanished"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable-new"))) { #optional property not found
@@ -207,13 +207,13 @@ function ConvertFrom-PVEJsonToPUTClusterJobsRealmsyncRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "remove-vanished" = ${RemoveVanished}
-            "id" = ${Id}
-            "delete" = ${Delete}
             "comment" = ${Comment}
-            "enabled" = ${Enabled}
+            "id" = ${Id}
             "scope" = ${Scope}
+            "enabled" = ${Enabled}
+            "delete" = ${Delete}
             "schedule" = ${Schedule}
+            "remove-vanished" = ${RemoveVanished}
             "enable-new" = ${EnableNew}
         }
 

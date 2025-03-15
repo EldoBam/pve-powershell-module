@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Digest
-No description available.
 .PARAMETER Name
+No description available.
+.PARAMETER Digest
 No description available.
 .OUTPUTS
 
@@ -28,21 +28,17 @@ function Initialize-PVEDELETEClusterFirewallAliasesRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
-        ${Name}
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEDELETEClusterFirewallAliasesRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
-        }
 
         if (!$Name -and $Name.length -gt 64) {
             throw "invalid value for 'Name', the character length must be smaller than or equal to 64."
@@ -52,9 +48,13 @@ function Initialize-PVEDELETEClusterFirewallAliasesRB {
             throw "invalid value for 'Name', the character length must be great than or equal to 2."
         }
 
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Digest"="digest"; "Name"="name"
+			"Name"="name"; "Digest"="digest"
         }
 		
 		 $OBJ = @{}
@@ -100,17 +100,11 @@ function ConvertFrom-PVEJsonToDELETEClusterFirewallAliasesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEClusterFirewallAliasesRB
-        $AllProperties = ("digest", "name")
+        $AllProperties = ("name", "digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -119,9 +113,15 @@ function ConvertFrom-PVEJsonToDELETEClusterFirewallAliasesRB {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "digest" = ${Digest}
             "name" = ${Name}
+            "digest" = ${Digest}
         }
 
         return $PSO

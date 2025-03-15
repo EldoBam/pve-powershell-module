@@ -15,19 +15,19 @@ No summary available.
 
 No description available.
 
+.PARAMETER Comment
+No description available.
+.PARAMETER Token
+No description available.
 .PARAMETER Name
 No description available.
 .PARAMETER Delete
 No description available.
-.PARAMETER Disable
-No description available.
-.PARAMETER Comment
+.PARAMETER Server
 No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Token
-No description available.
-.PARAMETER Server
+.PARAMETER Disable
 No description available.
 .OUTPUTS
 
@@ -39,30 +39,34 @@ function Initialize-PVEPUTClusterNotificationsEndpointsGotifyRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Token},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Server}
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${Delete},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Server},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Disable}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterNotificationsEndpointsGotifyRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if (!$Digest -and $Digest.length -gt 64) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
+        }
 
         if ($Disable -and $Disable -gt 1) {
           throw "invalid value for 'Disable', must be smaller than or equal to 1."
@@ -72,13 +76,9 @@ function Initialize-PVEPUTClusterNotificationsEndpointsGotifyRB {
           throw "invalid value for 'Disable', must be greater than or equal to 0."
         }
 
-        if (!$Digest -and $Digest.length -gt 64) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Delete"="delete"; "Disable"="disable"; "Comment"="comment"; "Digest"="digest"; "Token"="token"; "Server"="server"
+			"Comment"="comment"; "Token"="token"; "Name"="name"; "Delete"="delete"; "Server"="server"; "Digest"="digest"; "Disable"="disable"
         }
 		
 		 $OBJ = @{}
@@ -124,11 +124,23 @@ function ConvertFrom-PVEJsonToPUTClusterNotificationsEndpointsGotifyRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterNotificationsEndpointsGotifyRB
-        $AllProperties = ("name", "delete", "disable", "comment", "digest", "token", "server")
+        $AllProperties = ("comment", "token", "name", "delete", "server", "digest", "disable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "token"))) { #optional property not found
+            $Token = $null
+        } else {
+            $Token = $JsonParameters.PSobject.Properties["token"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -143,16 +155,10 @@ function ConvertFrom-PVEJsonToPUTClusterNotificationsEndpointsGotifyRB {
             $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
+            $Server = $null
         } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+            $Server = $JsonParameters.PSobject.Properties["server"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -161,26 +167,20 @@ function ConvertFrom-PVEJsonToPUTClusterNotificationsEndpointsGotifyRB {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "token"))) { #optional property not found
-            $Token = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
         } else {
-            $Token = $JsonParameters.PSobject.Properties["token"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
-            $Server = $null
-        } else {
-            $Server = $JsonParameters.PSobject.Properties["server"].value
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
         $PSO = [PSCustomObject]@{
+            "comment" = ${Comment}
+            "token" = ${Token}
             "name" = ${Name}
             "delete" = ${Delete}
-            "disable" = ${Disable}
-            "comment" = ${Comment}
-            "digest" = ${Digest}
-            "token" = ${Token}
             "server" = ${Server}
+            "digest" = ${Digest}
+            "disable" = ${Disable}
         }
 
         return $PSO

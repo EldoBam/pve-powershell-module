@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Comment** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**MatchField** | **String[]** |  | [optional] 
 **MatchCalendar** | **String[]** |  | [optional] 
 **MatchSeverity** | **String[]** |  | [optional] 
-**Disable** | **Int32** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **Target** | **String[]** |  | [optional] 
-**MatchField** | **String[]** |  | [optional] 
 **InvertMatch** | **Int32** |  | [optional] 
 **Mode** | **String** |  | [optional] 
+**Disable** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterNotificationsMatchersRB = Initialize-PVEPOSTClusterNotificationsMatchersRB  -Name null `
+$POSTClusterNotificationsMatchersRB = Initialize-PVEPOSTClusterNotificationsMatchersRB  -Comment null `
+ -Name null `
+ -MatchField null `
  -MatchCalendar null `
  -MatchSeverity null `
- -Disable null `
- -Comment null `
  -Target null `
- -MatchField null `
  -InvertMatch null `
- -Mode null
+ -Mode null `
+ -Disable null
 ```
 
 - Convert the resource to JSON

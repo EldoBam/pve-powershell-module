@@ -15,21 +15,21 @@ No summary available.
 
 No description available.
 
-.PARAMETER Comment
-No description available.
-.PARAMETER Type
-No description available.
-.PARAMETER Digest
-No description available.
 .PARAMETER State
 No description available.
-.PARAMETER Sid
-No description available.
-.PARAMETER MaxRelocate
+.PARAMETER Comment
 No description available.
 .PARAMETER MaxRestart
 No description available.
+.PARAMETER Type
+No description available.
+.PARAMETER MaxRelocate
+No description available.
 .PARAMETER Group
+No description available.
+.PARAMETER Sid
+No description available.
+.PARAMETER Digest
 No description available.
 .OUTPUTS
 
@@ -40,30 +40,30 @@ function Initialize-PVEClusterHaResources {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("started", "stopped", "enabled", "disabled", "ignored")]
         [String]
         ${State},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Sid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${MaxRelocate},
+        ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${MaxRestart},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Group}
+        ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${MaxRelocate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Group},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Sid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest}
     )
 
     Process {
@@ -72,7 +72,7 @@ function Initialize-PVEClusterHaResources {
 
 
 		 $DisplayNameMapping =@{
-			"Comment"="comment"; "Type"="type"; "Digest"="digest"; "State"="state"; "Sid"="sid"; "MaxRelocate"="max_relocate"; "MaxRestart"="max_restart"; "Group"="group"
+			"State"="state"; "Comment"="comment"; "MaxRestart"="max_restart"; "Type"="type"; "MaxRelocate"="max_relocate"; "Group"="group"; "Sid"="sid"; "Digest"="digest"
         }
 		
 		 $OBJ = @{}
@@ -118,29 +118,11 @@ function ConvertFrom-PVEJsonToClusterHaResources {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterHaResources
-        $AllProperties = ("comment", "type", "digest", "state", "sid", "max_relocate", "max_restart", "group")
+        $AllProperties = ("state", "comment", "max_restart", "type", "max_relocate", "group", "sid", "digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
@@ -149,16 +131,10 @@ function ConvertFrom-PVEJsonToClusterHaResources {
             $State = $JsonParameters.PSobject.Properties["state"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sid"))) { #optional property not found
-            $Sid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
         } else {
-            $Sid = $JsonParameters.PSobject.Properties["sid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_relocate"))) { #optional property not found
-            $MaxRelocate = $null
-        } else {
-            $MaxRelocate = $JsonParameters.PSobject.Properties["max_relocate"].value
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_restart"))) { #optional property not found
@@ -167,21 +143,45 @@ function ConvertFrom-PVEJsonToClusterHaResources {
             $MaxRestart = $JsonParameters.PSobject.Properties["max_restart"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_relocate"))) { #optional property not found
+            $MaxRelocate = $null
+        } else {
+            $MaxRelocate = $JsonParameters.PSobject.Properties["max_relocate"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "group"))) { #optional property not found
             $Group = $null
         } else {
             $Group = $JsonParameters.PSobject.Properties["group"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sid"))) { #optional property not found
+            $Sid = $null
+        } else {
+            $Sid = $JsonParameters.PSobject.Properties["sid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "comment" = ${Comment}
-            "type" = ${Type}
-            "digest" = ${Digest}
             "state" = ${State}
-            "sid" = ${Sid}
-            "max_relocate" = ${MaxRelocate}
+            "comment" = ${Comment}
             "max_restart" = ${MaxRestart}
+            "type" = ${Type}
+            "max_relocate" = ${MaxRelocate}
             "group" = ${Group}
+            "sid" = ${Sid}
+            "digest" = ${Digest}
         }
 
         return $PSO

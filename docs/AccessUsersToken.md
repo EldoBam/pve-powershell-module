@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Privsep** | **Int32** |  | [optional] 
 **Expire** | **Int32** |  | [optional] 
+**Privsep** | **Int32** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessUsersToken = Initialize-PVEAccessUsersToken  -Privsep null `
- -Expire null `
+$AccessUsersToken = Initialize-PVEAccessUsersToken  -Expire null `
+ -Privsep null `
  -Comment null
 ```
 

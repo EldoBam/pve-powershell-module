@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Privsep
+.PARAMETER Expire
 No description available.
 .PARAMETER Userid
 No description available.
-.PARAMETER Tokenid
+.PARAMETER Privsep
 No description available.
-.PARAMETER Expire
+.PARAMETER Tokenid
 No description available.
 .PARAMETER Comment
 No description available.
@@ -35,17 +35,17 @@ function Initialize-PVEPUTAccessUsersTokenRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Privsep},
+        ${Expire},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Userid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Privsep},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("(?^:[A-Za-z][A-Za-z0-9\.\-_]+)")]
         [String]
         ${Tokenid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Expire},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment}
@@ -55,6 +55,10 @@ function Initialize-PVEPUTAccessUsersTokenRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTAccessUsersTokenRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
+        if (!$Userid -and $Userid.length -gt 64) {
+            throw "invalid value for 'Userid', the character length must be smaller than or equal to 64."
+        }
+
         if ($Privsep -and $Privsep -gt 1) {
           throw "invalid value for 'Privsep', must be smaller than or equal to 1."
         }
@@ -63,13 +67,9 @@ function Initialize-PVEPUTAccessUsersTokenRB {
           throw "invalid value for 'Privsep', must be greater than or equal to 0."
         }
 
-        if (!$Userid -and $Userid.length -gt 64) {
-            throw "invalid value for 'Userid', the character length must be smaller than or equal to 64."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Privsep"="privsep"; "Userid"="userid"; "Tokenid"="tokenid"; "Expire"="expire"; "Comment"="comment"
+			"Expire"="expire"; "Userid"="userid"; "Privsep"="privsep"; "Tokenid"="tokenid"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -115,17 +115,17 @@ function ConvertFrom-PVEJsonToPUTAccessUsersTokenRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTAccessUsersTokenRB
-        $AllProperties = ("privsep", "userid", "tokenid", "expire", "comment")
+        $AllProperties = ("expire", "userid", "privsep", "tokenid", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "privsep"))) { #optional property not found
-            $Privsep = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expire"))) { #optional property not found
+            $Expire = $null
         } else {
-            $Privsep = $JsonParameters.PSobject.Properties["privsep"].value
+            $Expire = $JsonParameters.PSobject.Properties["expire"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "userid"))) { #optional property not found
@@ -134,16 +134,16 @@ function ConvertFrom-PVEJsonToPUTAccessUsersTokenRB {
             $Userid = $JsonParameters.PSobject.Properties["userid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "privsep"))) { #optional property not found
+            $Privsep = $null
+        } else {
+            $Privsep = $JsonParameters.PSobject.Properties["privsep"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "tokenid"))) { #optional property not found
             $Tokenid = $null
         } else {
             $Tokenid = $JsonParameters.PSobject.Properties["tokenid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expire"))) { #optional property not found
-            $Expire = $null
-        } else {
-            $Expire = $JsonParameters.PSobject.Properties["expire"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -153,10 +153,10 @@ function ConvertFrom-PVEJsonToPUTAccessUsersTokenRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "privsep" = ${Privsep}
-            "userid" = ${Userid}
-            "tokenid" = ${Tokenid}
             "expire" = ${Expire}
+            "userid" = ${Userid}
+            "privsep" = ${Privsep}
+            "tokenid" = ${Tokenid}
             "comment" = ${Comment}
         }
 

@@ -15,19 +15,19 @@ No summary available.
 
 No description available.
 
+.PARAMETER Signal
+No description available.
+.PARAMETER OutData
+No description available.
 .PARAMETER Exited
 No description available.
 .PARAMETER OutTruncated
 No description available.
+.PARAMETER Exitcode
+No description available.
 .PARAMETER ErrData
 No description available.
-.PARAMETER OutData
-No description available.
 .PARAMETER ErrTruncated
-No description available.
-.PARAMETER Signal
-No description available.
-.PARAMETER Exitcode
 No description available.
 .OUTPUTS
 
@@ -39,25 +39,25 @@ function Initialize-PVENodesQemuAgentExecstatus {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Exited},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${OutTruncated},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${ErrData},
+        ${Signal},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${OutData},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${ErrTruncated},
+        ${Exited},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Signal},
+        ${OutTruncated},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Exitcode}
+        ${Exitcode},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${ErrData},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${ErrTruncated}
     )
 
     Process {
@@ -90,7 +90,7 @@ function Initialize-PVENodesQemuAgentExecstatus {
 
 
 		 $DisplayNameMapping =@{
-			"Exited"="exited"; "OutTruncated"="out-truncated"; "ErrData"="err-data"; "OutData"="out-data"; "ErrTruncated"="err-truncated"; "Signal"="signal"; "Exitcode"="exitcode"
+			"Signal"="signal"; "OutData"="out-data"; "Exited"="exited"; "OutTruncated"="out-truncated"; "Exitcode"="exitcode"; "ErrData"="err-data"; "ErrTruncated"="err-truncated"
         }
 		
 		 $OBJ = @{}
@@ -136,11 +136,23 @@ function ConvertFrom-PVEJsonToNodesQemuAgentExecstatus {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesQemuAgentExecstatus
-        $AllProperties = ("exited", "out-truncated", "err-data", "out-data", "err-truncated", "signal", "exitcode")
+        $AllProperties = ("signal", "out-data", "exited", "out-truncated", "exitcode", "err-data", "err-truncated")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "signal"))) { #optional property not found
+            $Signal = $null
+        } else {
+            $Signal = $JsonParameters.PSobject.Properties["signal"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "out-data"))) { #optional property not found
+            $OutData = $null
+        } else {
+            $OutData = $JsonParameters.PSobject.Properties["out-data"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "exited"))) { #optional property not found
@@ -155,16 +167,16 @@ function ConvertFrom-PVEJsonToNodesQemuAgentExecstatus {
             $OutTruncated = $JsonParameters.PSobject.Properties["out-truncated"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exitcode"))) { #optional property not found
+            $Exitcode = $null
+        } else {
+            $Exitcode = $JsonParameters.PSobject.Properties["exitcode"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "err-data"))) { #optional property not found
             $ErrData = $null
         } else {
             $ErrData = $JsonParameters.PSobject.Properties["err-data"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "out-data"))) { #optional property not found
-            $OutData = $null
-        } else {
-            $OutData = $JsonParameters.PSobject.Properties["out-data"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "err-truncated"))) { #optional property not found
@@ -173,26 +185,14 @@ function ConvertFrom-PVEJsonToNodesQemuAgentExecstatus {
             $ErrTruncated = $JsonParameters.PSobject.Properties["err-truncated"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "signal"))) { #optional property not found
-            $Signal = $null
-        } else {
-            $Signal = $JsonParameters.PSobject.Properties["signal"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exitcode"))) { #optional property not found
-            $Exitcode = $null
-        } else {
-            $Exitcode = $JsonParameters.PSobject.Properties["exitcode"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "signal" = ${Signal}
+            "out-data" = ${OutData}
             "exited" = ${Exited}
             "out-truncated" = ${OutTruncated}
-            "err-data" = ${ErrData}
-            "out-data" = ${OutData}
-            "err-truncated" = ${ErrTruncated}
-            "signal" = ${Signal}
             "exitcode" = ${Exitcode}
+            "err-data" = ${ErrData}
+            "err-truncated" = ${ErrTruncated}
         }
 
         return $PSO

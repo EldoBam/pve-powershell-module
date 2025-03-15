@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Guest
-No description available.
 .PARAMETER Node
+No description available.
+.PARAMETER Guest
 No description available.
 .OUTPUTS
 
@@ -28,11 +28,11 @@ function Initialize-PVEGETNodesReplicationRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Guest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Guest}
     )
 
     Process {
@@ -49,7 +49,7 @@ function Initialize-PVEGETNodesReplicationRB {
 
 
 		 $DisplayNameMapping =@{
-			"Guest"="guest"; "Node"="node"
+			"Node"="node"; "Guest"="guest"
         }
 		
 		 $OBJ = @{}
@@ -95,17 +95,11 @@ function ConvertFrom-PVEJsonToGETNodesReplicationRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesReplicationRB
-        $AllProperties = ("guest", "node")
+        $AllProperties = ("node", "guest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "guest"))) { #optional property not found
-            $Guest = $null
-        } else {
-            $Guest = $JsonParameters.PSobject.Properties["guest"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -114,9 +108,15 @@ function ConvertFrom-PVEJsonToGETNodesReplicationRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "guest"))) { #optional property not found
+            $Guest = $null
+        } else {
+            $Guest = $JsonParameters.PSobject.Properties["guest"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "guest" = ${Guest}
             "node" = ${Node}
+            "guest" = ${Guest}
         }
 
         return $PSO

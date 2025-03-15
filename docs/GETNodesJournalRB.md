@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VarUntil** | **Int32** |  | [optional] 
-**Startcursor** | **String** |  | [optional] 
+**Lastentries** | **Int32** |  | [optional] 
+**Since** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
 **Endcursor** | **String** |  | [optional] 
-**Since** | **Int32** |  | [optional] 
-**Lastentries** | **Int32** |  | [optional] 
+**VarUntil** | **Int32** |  | [optional] 
+**Startcursor** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesJournalRB = Initialize-PVEGETNodesJournalRB  -VarUntil null `
- -Startcursor null `
+$GETNodesJournalRB = Initialize-PVEGETNodesJournalRB  -Lastentries null `
+ -Since null `
  -Node null `
  -Endcursor null `
- -Since null `
- -Lastentries null
+ -VarUntil null `
+ -Startcursor null
 ```
 
 - Convert the resource to JSON

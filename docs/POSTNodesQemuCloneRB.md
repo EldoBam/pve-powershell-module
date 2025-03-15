@@ -3,35 +3,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Pool** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Target** | **String** |  | [optional] 
-**Bwlimit** | **Int32** |  | [optional] 
 **Newid** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Full** | **Int32** |  | [optional] 
-**Snapname** | **String** |  | [optional] 
 **Format** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Bwlimit** | **Int32** |  | [optional] 
+**Snapname** | **String** |  | [optional] 
+**Full** | **Int32** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**Target** | **String** |  | [optional] 
+**Pool** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuCloneRB = Initialize-PVEPOSTNodesQemuCloneRB  -Description null `
+$POSTNodesQemuCloneRB = Initialize-PVEPOSTNodesQemuCloneRB  -Newid null `
+ -Format null `
  -Name null `
- -Pool null `
- -Storage null `
- -Node null `
- -Target null `
- -Bwlimit null `
- -Newid null `
  -Vmid null `
- -Full null `
+ -Bwlimit null `
  -Snapname null `
- -Format null
+ -Full null `
+ -Description null `
+ -Storage null `
+ -Target null `
+ -Pool null `
+ -Node null
 ```
 
 - Convert the resource to JSON

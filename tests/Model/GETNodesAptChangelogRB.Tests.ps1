@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesAptChangelogRB' {
     Context 'PVEGETNodesAptChangelogRB' {
         It 'Initialize-PVEGETNodesAptChangelogRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesAptChangelogRB -Node "TEST_VALUE" -Name "TEST_VALUE" -Version "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesAptChangelogRB -Name "TEST_VALUE" -Version "TEST_VALUE" -Node "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesAptChangelogRB
             #$NewObject.property | Should -Be 0
         }

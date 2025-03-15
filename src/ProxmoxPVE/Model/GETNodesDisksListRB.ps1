@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
 .PARAMETER Skipsmart
 No description available.
-.PARAMETER Type
+.PARAMETER Node
 No description available.
 .PARAMETER IncludePartitions
+No description available.
+.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -32,18 +32,18 @@ function Initialize-PVEGETNodesDisksListRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Skipsmart},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Skipsmart},
+        ${IncludePartitions},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("unused", "journal_disks")]
         [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${IncludePartitions}
+        ${Type}
     )
 
     Process {
@@ -68,7 +68,7 @@ function Initialize-PVEGETNodesDisksListRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Skipsmart"="skipsmart"; "Type"="type"; "IncludePartitions"="include-partitions"
+			"Skipsmart"="skipsmart"; "Node"="node"; "IncludePartitions"="include-partitions"; "Type"="type"
         }
 		
 		 $OBJ = @{}
@@ -114,17 +114,11 @@ function ConvertFrom-PVEJsonToGETNodesDisksListRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesDisksListRB
-        $AllProperties = ("node", "skipsmart", "type", "include-partitions")
+        $AllProperties = ("skipsmart", "node", "include-partitions", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "skipsmart"))) { #optional property not found
@@ -133,10 +127,10 @@ function ConvertFrom-PVEJsonToGETNodesDisksListRB {
             $Skipsmart = $JsonParameters.PSobject.Properties["skipsmart"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "include-partitions"))) { #optional property not found
@@ -145,11 +139,17 @@ function ConvertFrom-PVEJsonToGETNodesDisksListRB {
             $IncludePartitions = $JsonParameters.PSobject.Properties["include-partitions"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
             "skipsmart" = ${Skipsmart}
-            "type" = ${Type}
+            "node" = ${Node}
             "include-partitions" = ${IncludePartitions}
+            "type" = ${Type}
         }
 
         return $PSO

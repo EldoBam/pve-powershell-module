@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
+.PARAMETER Vms
+No description available.
 .PARAMETER Node
-No description available.
-.PARAMETER Maxworkers
-No description available.
-.PARAMETER WithLocalDisks
 No description available.
 .PARAMETER Target
 No description available.
-.PARAMETER Vms
+.PARAMETER WithLocalDisks
+No description available.
+.PARAMETER Maxworkers
 No description available.
 .OUTPUTS
 
@@ -35,28 +35,24 @@ function Initialize-PVEPOSTNodesMigrateallRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Vms},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Maxworkers},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${WithLocalDisks},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Target},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Vms}
+        [System.Nullable[Int32]]
+        ${WithLocalDisks},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Maxworkers}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesMigrateallRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Maxworkers -and $Maxworkers -lt 1) {
-          throw "invalid value for 'Maxworkers', must be greater than or equal to 1."
-        }
 
         if ($WithLocalDisks -and $WithLocalDisks -gt 1) {
           throw "invalid value for 'WithLocalDisks', must be smaller than or equal to 1."
@@ -66,9 +62,13 @@ function Initialize-PVEPOSTNodesMigrateallRB {
           throw "invalid value for 'WithLocalDisks', must be greater than or equal to 0."
         }
 
+        if ($Maxworkers -and $Maxworkers -lt 1) {
+          throw "invalid value for 'Maxworkers', must be greater than or equal to 1."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Maxworkers"="maxworkers"; "WithLocalDisks"="with-local-disks"; "Target"="target"; "Vms"="vms"
+			"Vms"="vms"; "Node"="node"; "Target"="target"; "WithLocalDisks"="with-local-disks"; "Maxworkers"="maxworkers"
         }
 		
 		 $OBJ = @{}
@@ -114,35 +114,11 @@ function ConvertFrom-PVEJsonToPOSTNodesMigrateallRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesMigrateallRB
-        $AllProperties = ("node", "maxworkers", "with-local-disks", "target", "vms")
+        $AllProperties = ("vms", "node", "target", "with-local-disks", "maxworkers")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxworkers"))) { #optional property not found
-            $Maxworkers = $null
-        } else {
-            $Maxworkers = $JsonParameters.PSobject.Properties["maxworkers"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "with-local-disks"))) { #optional property not found
-            $WithLocalDisks = $null
-        } else {
-            $WithLocalDisks = $JsonParameters.PSobject.Properties["with-local-disks"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
-            $Target = $null
-        } else {
-            $Target = $JsonParameters.PSobject.Properties["target"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vms"))) { #optional property not found
@@ -151,12 +127,36 @@ function ConvertFrom-PVEJsonToPOSTNodesMigrateallRB {
             $Vms = $JsonParameters.PSobject.Properties["vms"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
+            $Target = $null
+        } else {
+            $Target = $JsonParameters.PSobject.Properties["target"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "with-local-disks"))) { #optional property not found
+            $WithLocalDisks = $null
+        } else {
+            $WithLocalDisks = $JsonParameters.PSobject.Properties["with-local-disks"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxworkers"))) { #optional property not found
+            $Maxworkers = $null
+        } else {
+            $Maxworkers = $JsonParameters.PSobject.Properties["maxworkers"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
-            "maxworkers" = ${Maxworkers}
-            "with-local-disks" = ${WithLocalDisks}
-            "target" = ${Target}
             "vms" = ${Vms}
+            "node" = ${Node}
+            "target" = ${Target}
+            "with-local-disks" = ${WithLocalDisks}
+            "maxworkers" = ${Maxworkers}
         }
 
         return $PSO

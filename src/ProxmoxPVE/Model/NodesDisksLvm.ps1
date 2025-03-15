@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Leaf
-No description available.
 .PARAMETER Children
+No description available.
+.PARAMETER Leaf
 No description available.
 .OUTPUTS
 
@@ -28,11 +28,11 @@ function Initialize-PVENodesDisksLvm {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Leaf},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${Children}
+        ${Children},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Leaf}
     )
 
     Process {
@@ -49,7 +49,7 @@ function Initialize-PVENodesDisksLvm {
 
 
 		 $DisplayNameMapping =@{
-			"Leaf"="leaf"; "Children"="children"
+			"Children"="children"; "Leaf"="leaf"
         }
 		
 		 $OBJ = @{}
@@ -95,17 +95,11 @@ function ConvertFrom-PVEJsonToNodesDisksLvm {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesDisksLvm
-        $AllProperties = ("leaf", "children")
+        $AllProperties = ("children", "leaf")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "leaf"))) { #optional property not found
-            $Leaf = $null
-        } else {
-            $Leaf = $JsonParameters.PSobject.Properties["leaf"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "children"))) { #optional property not found
@@ -114,9 +108,15 @@ function ConvertFrom-PVEJsonToNodesDisksLvm {
             $Children = $JsonParameters.PSobject.Properties["children"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "leaf"))) { #optional property not found
+            $Leaf = $null
+        } else {
+            $Leaf = $JsonParameters.PSobject.Properties["leaf"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "leaf" = ${Leaf}
             "children" = ${Children}
+            "leaf" = ${Leaf}
         }
 
         return $PSO

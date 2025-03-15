@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Ipam** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
 **Section** | **Int32** |  | [optional] 
-**Ipam** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Url** | **String** |  | [optional] 
 **Token** | **String** |  | [optional] 
+**Url** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnIpamsRB = Initialize-PVEPUTClusterSdnIpamsRB  -Delete null `
+$PUTClusterSdnIpamsRB = Initialize-PVEPUTClusterSdnIpamsRB  -Ipam null `
+ -Delete null `
  -Section null `
- -Ipam null `
  -Digest null `
- -Url null `
- -Token null
+ -Token null `
+ -Url null
 ```
 
 - Convert the resource to JSON

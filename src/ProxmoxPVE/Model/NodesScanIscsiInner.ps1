@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Portal
-No description available.
 .PARAMETER Target
+No description available.
+.PARAMETER Portal
 No description available.
 .OUTPUTS
 
@@ -29,10 +29,10 @@ function Initialize-PVENodesScanIscsiInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Portal},
+        ${Target},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Target}
+        ${Portal}
     )
 
     Process {
@@ -41,7 +41,7 @@ function Initialize-PVENodesScanIscsiInner {
 
 
 		 $DisplayNameMapping =@{
-			"Portal"="portal"; "Target"="target"
+			"Target"="target"; "Portal"="portal"
         }
 		
 		 $OBJ = @{}
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToNodesScanIscsiInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesScanIscsiInner
-        $AllProperties = ("portal", "target")
+        $AllProperties = ("target", "portal")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "portal"))) { #optional property not found
-            $Portal = $null
-        } else {
-            $Portal = $JsonParameters.PSobject.Properties["portal"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToNodesScanIscsiInner {
             $Target = $JsonParameters.PSobject.Properties["target"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "portal"))) { #optional property not found
+            $Portal = $null
+        } else {
+            $Portal = $JsonParameters.PSobject.Properties["portal"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "portal" = ${Portal}
             "target" = ${Target}
+            "portal" = ${Portal}
         }
 
         return $PSO

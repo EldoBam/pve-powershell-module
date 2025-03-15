@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | [**AnyType**](.md) |  | [optional] 
 **State** | **String** |  | [optional] 
+**Name** | [**AnyType**](.md) |  | [optional] 
 **VarHost** | **String** |  | [optional] 
 **Addr** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$NodesCephMgrInner = Initialize-PVENodesCephMgrInner  -Name null `
- -State null `
+$NodesCephMgrInner = Initialize-PVENodesCephMgrInner  -State null `
+ -Name null `
  -VarHost null `
  -Addr null
 ```

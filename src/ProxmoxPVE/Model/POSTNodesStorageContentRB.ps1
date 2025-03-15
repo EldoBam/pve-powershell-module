@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
-.PARAMETER Volume
+.PARAMETER Storage
 No description available.
 .PARAMETER TargetNode
 No description available.
-.PARAMETER Storage
+.PARAMETER Node
+No description available.
+.PARAMETER Volume
 No description available.
 .PARAMETER Target
 No description available.
@@ -35,16 +35,16 @@ function Initialize-PVEPOSTNodesStorageContentRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Volume},
+        ${Storage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${TargetNode},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Storage},
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Volume},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Target}
@@ -56,7 +56,7 @@ function Initialize-PVEPOSTNodesStorageContentRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Volume"="volume"; "TargetNode"="target_node"; "Storage"="storage"; "Target"="target"
+			"Storage"="storage"; "TargetNode"="target_node"; "Node"="node"; "Volume"="volume"; "Target"="target"
         }
 		
 		 $OBJ = @{}
@@ -102,11 +102,23 @@ function ConvertFrom-PVEJsonToPOSTNodesStorageContentRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesStorageContentRB
-        $AllProperties = ("node", "volume", "target_node", "storage", "target")
+        $AllProperties = ("storage", "target_node", "node", "volume", "target")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
+            $Storage = $null
+        } else {
+            $Storage = $JsonParameters.PSobject.Properties["storage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target_node"))) { #optional property not found
+            $TargetNode = $null
+        } else {
+            $TargetNode = $JsonParameters.PSobject.Properties["target_node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -121,18 +133,6 @@ function ConvertFrom-PVEJsonToPOSTNodesStorageContentRB {
             $Volume = $JsonParameters.PSobject.Properties["volume"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target_node"))) { #optional property not found
-            $TargetNode = $null
-        } else {
-            $TargetNode = $JsonParameters.PSobject.Properties["target_node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
             $Target = $null
         } else {
@@ -140,10 +140,10 @@ function ConvertFrom-PVEJsonToPOSTNodesStorageContentRB {
         }
 
         $PSO = [PSCustomObject]@{
+            "storage" = ${Storage}
+            "target_node" = ${TargetNode}
             "node" = ${Node}
             "volume" = ${Volume}
-            "target_node" = ${TargetNode}
-            "storage" = ${Storage}
             "target" = ${Target}
         }
 

@@ -15,23 +15,23 @@ No summary available.
 
 No description available.
 
+.PARAMETER DhcpDnsServer
+No description available.
 .PARAMETER Gateway
-No description available.
-.PARAMETER Snat
-No description available.
-.PARAMETER Delete
-No description available.
-.PARAMETER Digest
 No description available.
 .PARAMETER Dnszoneprefix
 No description available.
 .PARAMETER DhcpRange
 No description available.
-.PARAMETER Subnet
+.PARAMETER Snat
 No description available.
 .PARAMETER Vnet
 No description available.
-.PARAMETER DhcpDnsServer
+.PARAMETER Digest
+No description available.
+.PARAMETER Subnet
+No description available.
+.PARAMETER Delete
 No description available.
 .OUTPUTS
 
@@ -43,16 +43,10 @@ function Initialize-PVEPUTClusterSdnVnetsSubnetsRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${DhcpDnsServer},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Gateway},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Snat},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Dnszoneprefix},
@@ -60,14 +54,20 @@ function Initialize-PVEPUTClusterSdnVnetsSubnetsRB {
         [String[]]
         ${DhcpRange},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Subnet},
+        [System.Nullable[Int32]]
+        ${Snat},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Vnet},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${DhcpDnsServer}
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Subnet},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Delete}
     )
 
     Process {
@@ -82,17 +82,17 @@ function Initialize-PVEPUTClusterSdnVnetsSubnetsRB {
           throw "invalid value for 'Snat', must be greater than or equal to 0."
         }
 
-        if (!$Delete -and $Delete.length -gt 4096) {
-            throw "invalid value for 'Delete', the character length must be smaller than or equal to 4096."
-        }
-
         if (!$Digest -and $Digest.length -gt 64) {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
         }
 
+        if (!$Delete -and $Delete.length -gt 4096) {
+            throw "invalid value for 'Delete', the character length must be smaller than or equal to 4096."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Gateway"="gateway"; "Snat"="snat"; "Delete"="delete"; "Digest"="digest"; "Dnszoneprefix"="dnszoneprefix"; "DhcpRange"="dhcp-range"; "Subnet"="subnet"; "Vnet"="vnet"; "DhcpDnsServer"="dhcp-dns-server"
+			"DhcpDnsServer"="dhcp-dns-server"; "Gateway"="gateway"; "Dnszoneprefix"="dnszoneprefix"; "DhcpRange"="dhcp-range"; "Snat"="snat"; "Vnet"="vnet"; "Digest"="digest"; "Subnet"="subnet"; "Delete"="delete"
         }
 		
 		 $OBJ = @{}
@@ -138,35 +138,23 @@ function ConvertFrom-PVEJsonToPUTClusterSdnVnetsSubnetsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterSdnVnetsSubnetsRB
-        $AllProperties = ("gateway", "snat", "delete", "digest", "dnszoneprefix", "dhcp-range", "subnet", "vnet", "dhcp-dns-server")
+        $AllProperties = ("dhcp-dns-server", "gateway", "dnszoneprefix", "dhcp-range", "snat", "vnet", "digest", "subnet", "delete")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dhcp-dns-server"))) { #optional property not found
+            $DhcpDnsServer = $null
+        } else {
+            $DhcpDnsServer = $JsonParameters.PSobject.Properties["dhcp-dns-server"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "gateway"))) { #optional property not found
             $Gateway = $null
         } else {
             $Gateway = $JsonParameters.PSobject.Properties["gateway"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snat"))) { #optional property not found
-            $Snat = $null
-        } else {
-            $Snat = $JsonParameters.PSobject.Properties["snat"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dnszoneprefix"))) { #optional property not found
@@ -181,10 +169,10 @@ function ConvertFrom-PVEJsonToPUTClusterSdnVnetsSubnetsRB {
             $DhcpRange = $JsonParameters.PSobject.Properties["dhcp-range"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subnet"))) { #optional property not found
-            $Subnet = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snat"))) { #optional property not found
+            $Snat = $null
         } else {
-            $Subnet = $JsonParameters.PSobject.Properties["subnet"].value
+            $Snat = $JsonParameters.PSobject.Properties["snat"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
@@ -193,22 +181,34 @@ function ConvertFrom-PVEJsonToPUTClusterSdnVnetsSubnetsRB {
             $Vnet = $JsonParameters.PSobject.Properties["vnet"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dhcp-dns-server"))) { #optional property not found
-            $DhcpDnsServer = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
         } else {
-            $DhcpDnsServer = $JsonParameters.PSobject.Properties["dhcp-dns-server"].value
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subnet"))) { #optional property not found
+            $Subnet = $null
+        } else {
+            $Subnet = $JsonParameters.PSobject.Properties["subnet"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
         $PSO = [PSCustomObject]@{
+            "dhcp-dns-server" = ${DhcpDnsServer}
             "gateway" = ${Gateway}
-            "snat" = ${Snat}
-            "delete" = ${Delete}
-            "digest" = ${Digest}
             "dnszoneprefix" = ${Dnszoneprefix}
             "dhcp-range" = ${DhcpRange}
-            "subnet" = ${Subnet}
+            "snat" = ${Snat}
             "vnet" = ${Vnet}
-            "dhcp-dns-server" = ${DhcpDnsServer}
+            "digest" = ${Digest}
+            "subnet" = ${Subnet}
+            "delete" = ${Delete}
         }
 
         return $PSO

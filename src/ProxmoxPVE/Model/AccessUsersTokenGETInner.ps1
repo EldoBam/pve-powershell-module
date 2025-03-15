@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Expire
+No description available.
 .PARAMETER Privsep
 No description available.
 .PARAMETER Tokenid
-No description available.
-.PARAMETER Expire
 No description available.
 .PARAMETER Comment
 No description available.
@@ -33,14 +33,14 @@ function Initialize-PVEAccessUsersTokenGETInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
+        ${Expire},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
         ${Privsep},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("(?^:[A-Za-z][A-Za-z0-9\.\-_]+)")]
         [String]
         ${Tokenid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Expire},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment}
@@ -60,7 +60,7 @@ function Initialize-PVEAccessUsersTokenGETInner {
 
 
 		 $DisplayNameMapping =@{
-			"Privsep"="privsep"; "Tokenid"="tokenid"; "Expire"="expire"; "Comment"="comment"
+			"Expire"="expire"; "Privsep"="privsep"; "Tokenid"="tokenid"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -106,11 +106,17 @@ function ConvertFrom-PVEJsonToAccessUsersTokenGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessUsersTokenGETInner
-        $AllProperties = ("privsep", "tokenid", "expire", "comment")
+        $AllProperties = ("expire", "privsep", "tokenid", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expire"))) { #optional property not found
+            $Expire = $null
+        } else {
+            $Expire = $JsonParameters.PSobject.Properties["expire"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "privsep"))) { #optional property not found
@@ -125,12 +131,6 @@ function ConvertFrom-PVEJsonToAccessUsersTokenGETInner {
             $Tokenid = $JsonParameters.PSobject.Properties["tokenid"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expire"))) { #optional property not found
-            $Expire = $null
-        } else {
-            $Expire = $JsonParameters.PSobject.Properties["expire"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
             $Comment = $null
         } else {
@@ -138,9 +138,9 @@ function ConvertFrom-PVEJsonToAccessUsersTokenGETInner {
         }
 
         $PSO = [PSCustomObject]@{
+            "expire" = ${Expire}
             "privsep" = ${Privsep}
             "tokenid" = ${Tokenid}
-            "expire" = ${Expire}
             "comment" = ${Comment}
         }
 

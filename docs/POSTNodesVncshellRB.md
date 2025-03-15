@@ -3,22 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Height** | **Int32** |  | [optional] 
 **Cmd** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Width** | **Int32** |  | [optional] 
 **Websocket** | **Int32** |  | [optional] 
+**Width** | **Int32** |  | [optional] 
+**Height** | **Int32** |  | [optional] 
 **CmdOpts** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesVncshellRB = Initialize-PVEPOSTNodesVncshellRB  -Height null `
- -Cmd null `
+$POSTNodesVncshellRB = Initialize-PVEPOSTNodesVncshellRB  -Cmd null `
  -Node null `
- -Width null `
  -Websocket null `
+ -Width null `
+ -Height null `
  -CmdOpts null
 ```
 

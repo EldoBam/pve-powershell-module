@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Type
+.PARAMETER Pending
 No description available.
 .PARAMETER State
 No description available.
-.PARAMETER Pending
-No description available.
 .PARAMETER Controller
+No description available.
+.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -32,17 +32,17 @@ function Initialize-PVEClusterSdnControllersInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${State},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Pending},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Controller}
+        ${State},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Controller},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type}
     )
 
     Process {
@@ -59,7 +59,7 @@ function Initialize-PVEClusterSdnControllersInner {
 
 
 		 $DisplayNameMapping =@{
-			"Type"="type"; "State"="state"; "Pending"="pending"; "Controller"="controller"
+			"Pending"="pending"; "State"="state"; "Controller"="controller"; "Type"="type"
         }
 		
 		 $OBJ = @{}
@@ -105,23 +105,11 @@ function ConvertFrom-PVEJsonToClusterSdnControllersInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterSdnControllersInner
-        $AllProperties = ("type", "state", "pending", "controller")
+        $AllProperties = ("pending", "state", "controller", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
-            $State = $null
-        } else {
-            $State = $JsonParameters.PSobject.Properties["state"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pending"))) { #optional property not found
@@ -130,17 +118,29 @@ function ConvertFrom-PVEJsonToClusterSdnControllersInner {
             $Pending = $JsonParameters.PSobject.Properties["pending"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
+            $State = $null
+        } else {
+            $State = $JsonParameters.PSobject.Properties["state"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "controller"))) { #optional property not found
             $Controller = $null
         } else {
             $Controller = $JsonParameters.PSobject.Properties["controller"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "state" = ${State}
             "pending" = ${Pending}
+            "state" = ${State}
             "controller" = ${Controller}
+            "type" = ${Type}
         }
 
         return $PSO

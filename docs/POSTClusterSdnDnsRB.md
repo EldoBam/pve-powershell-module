@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **String** |  | [optional] 
-**Reversev6mask** | **Int32** |  | [optional] 
+**Ttl** | **Int32** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Url** | **String** |  | [optional] 
 **Reversemaskv6** | **Int32** |  | [optional] 
 **Dns** | **String** |  | [optional] 
-**Ttl** | **Int32** |  | [optional] 
+**Reversev6mask** | **Int32** |  | [optional] 
 **Key** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnDnsRB = Initialize-PVEPOSTClusterSdnDnsRB  -Url null `
- -Reversev6mask null `
+$POSTClusterSdnDnsRB = Initialize-PVEPOSTClusterSdnDnsRB  -Ttl null `
  -Type null `
+ -Url null `
  -Reversemaskv6 null `
  -Dns null `
- -Ttl null `
+ -Reversev6mask null `
  -Key null
 ```
 

@@ -1,24 +1,20 @@
-# NodesQemuFirewallIpsetInner
+# ClusterFirewallGroupsGETAVInner
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuFirewallIpsetInner = Initialize-PVENodesQemuFirewallIpsetInner  -Name null `
- -Digest null `
- -Comment null
+$ClusterFirewallGroupsGETAVInner = Initialize-PVEClusterFirewallGroupsGETAVInner  -Pos null
 ```
 
 - Convert the resource to JSON
 ```powershell
-$NodesQemuFirewallIpsetInner | ConvertTo-JSON
+$ClusterFirewallGroupsGETAVInner | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

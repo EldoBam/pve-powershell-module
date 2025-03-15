@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Force
+No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Purge
-No description available.
-.PARAMETER Force
 No description available.
 .PARAMETER DestroyUnreferencedDisks
 No description available.
@@ -34,14 +34,14 @@ function Initialize-PVEDELETENodesLxcRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Force},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Purge},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Force},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${DestroyUnreferencedDisks},
@@ -54,20 +54,20 @@ function Initialize-PVEDELETENodesLxcRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEDELETENodesLxcRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Purge -and $Purge -gt 1) {
-          throw "invalid value for 'Purge', must be smaller than or equal to 1."
-        }
-
-        if ($Purge -and $Purge -lt 0) {
-          throw "invalid value for 'Purge', must be greater than or equal to 0."
-        }
-
         if ($Force -and $Force -gt 1) {
           throw "invalid value for 'Force', must be smaller than or equal to 1."
         }
 
         if ($Force -and $Force -lt 0) {
           throw "invalid value for 'Force', must be greater than or equal to 0."
+        }
+
+        if ($Purge -and $Purge -gt 1) {
+          throw "invalid value for 'Purge', must be smaller than or equal to 1."
+        }
+
+        if ($Purge -and $Purge -lt 0) {
+          throw "invalid value for 'Purge', must be greater than or equal to 0."
         }
 
         if ($DestroyUnreferencedDisks -and $DestroyUnreferencedDisks -gt 1) {
@@ -88,7 +88,7 @@ function Initialize-PVEDELETENodesLxcRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Purge"="purge"; "Force"="force"; "DestroyUnreferencedDisks"="destroy-unreferenced-disks"; "Vmid"="vmid"
+			"Force"="force"; "Node"="node"; "Purge"="purge"; "DestroyUnreferencedDisks"="destroy-unreferenced-disks"; "Vmid"="vmid"
         }
 		
 		 $OBJ = @{}
@@ -134,11 +134,17 @@ function ConvertFrom-PVEJsonToDELETENodesLxcRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesLxcRB
-        $AllProperties = ("node", "purge", "force", "destroy-unreferenced-disks", "vmid")
+        $AllProperties = ("force", "node", "purge", "destroy-unreferenced-disks", "vmid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
+            $Force = $null
+        } else {
+            $Force = $JsonParameters.PSobject.Properties["force"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -151,12 +157,6 @@ function ConvertFrom-PVEJsonToDELETENodesLxcRB {
             $Purge = $null
         } else {
             $Purge = $JsonParameters.PSobject.Properties["purge"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
-            $Force = $null
-        } else {
-            $Force = $JsonParameters.PSobject.Properties["force"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "destroy-unreferenced-disks"))) { #optional property not found
@@ -172,9 +172,9 @@ function ConvertFrom-PVEJsonToDELETENodesLxcRB {
         }
 
         $PSO = [PSCustomObject]@{
+            "force" = ${Force}
             "node" = ${Node}
             "purge" = ${Purge}
-            "force" = ${Force}
             "destroy-unreferenced-disks" = ${DestroyUnreferencedDisks}
             "vmid" = ${Vmid}
         }

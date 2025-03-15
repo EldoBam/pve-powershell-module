@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER Node
 No description available.
-.PARAMETER VarPid
-No description available.
 .PARAMETER Vmid
+No description available.
+.PARAMETER VarPid
 No description available.
 .OUTPUTS
 
@@ -34,10 +34,10 @@ function Initialize-PVEGETNodesQemuAgentExecstatusRB {
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VarPid},
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid}
+        ${VarPid}
     )
 
     Process {
@@ -54,7 +54,7 @@ function Initialize-PVEGETNodesQemuAgentExecstatusRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "VarPid"="pid"; "Vmid"="vmid"
+			"Node"="node"; "Vmid"="vmid"; "VarPid"="pid"
         }
 		
 		 $OBJ = @{}
@@ -100,7 +100,7 @@ function ConvertFrom-PVEJsonToGETNodesQemuAgentExecstatusRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesQemuAgentExecstatusRB
-        $AllProperties = ("node", "pid", "vmid")
+        $AllProperties = ("node", "vmid", "pid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -113,22 +113,22 @@ function ConvertFrom-PVEJsonToGETNodesQemuAgentExecstatusRB {
             $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pid"))) { #optional property not found
-            $VarPid = $null
-        } else {
-            $VarPid = $JsonParameters.PSobject.Properties["pid"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
             $Vmid = $null
         } else {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pid"))) { #optional property not found
+            $VarPid = $null
+        } else {
+            $VarPid = $JsonParameters.PSobject.Properties["pid"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "node" = ${Node}
-            "pid" = ${VarPid}
             "vmid" = ${Vmid}
+            "pid" = ${VarPid}
         }
 
         return $PSO

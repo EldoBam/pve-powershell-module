@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Expire** | **Int32** |  | [optional] 
 **Privsep** | **Int32** |  | [optional] 
 **Tokenid** | **String** |  | [optional] 
-**Expire** | **Int32** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessUsersTokenGETInner = Initialize-PVEAccessUsersTokenGETInner  -Privsep null `
+$AccessUsersTokenGETInner = Initialize-PVEAccessUsersTokenGETInner  -Expire null `
+ -Privsep null `
  -Tokenid null `
- -Expire null `
  -Comment null
 ```
 

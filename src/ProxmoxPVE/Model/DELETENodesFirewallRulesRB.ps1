@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
-No description available.
 .PARAMETER Digest
+No description available.
+.PARAMETER Node
 No description available.
 .PARAMETER Pos
 No description available.
@@ -31,10 +31,10 @@ function Initialize-PVEDELETENodesFirewallRulesRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
+        ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest},
+        ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Pos}
@@ -50,7 +50,7 @@ function Initialize-PVEDELETENodesFirewallRulesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Digest"="digest"; "Pos"="pos"
+			"Digest"="digest"; "Node"="node"; "Pos"="pos"
         }
 		
 		 $OBJ = @{}
@@ -96,23 +96,23 @@ function ConvertFrom-PVEJsonToDELETENodesFirewallRulesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesFirewallRulesRB
-        $AllProperties = ("node", "digest", "pos")
+        $AllProperties = ("digest", "node", "pos")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
@@ -122,8 +122,8 @@ function ConvertFrom-PVEJsonToDELETENodesFirewallRulesRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
             "digest" = ${Digest}
+            "node" = ${Node}
             "pos" = ${Pos}
         }
 

@@ -17,9 +17,9 @@ No description available.
 
 .PARAMETER LogLevelForward
 No description available.
-.PARAMETER PolicyForward
-No description available.
 .PARAMETER Enable
+No description available.
+.PARAMETER PolicyForward
 No description available.
 .OUTPUTS
 
@@ -34,12 +34,12 @@ function Initialize-PVEClusterSdnVnetsFirewallOptions {
         [String]
         ${LogLevelForward},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Enable},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ACCEPT", "DROP")]
         [String]
-        ${PolicyForward},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enable}
+        ${PolicyForward}
     )
 
     Process {
@@ -56,7 +56,7 @@ function Initialize-PVEClusterSdnVnetsFirewallOptions {
 
 
 		 $DisplayNameMapping =@{
-			"LogLevelForward"="log_level_forward"; "PolicyForward"="policy_forward"; "Enable"="enable"
+			"LogLevelForward"="log_level_forward"; "Enable"="enable"; "PolicyForward"="policy_forward"
         }
 		
 		 $OBJ = @{}
@@ -102,7 +102,7 @@ function ConvertFrom-PVEJsonToClusterSdnVnetsFirewallOptions {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterSdnVnetsFirewallOptions
-        $AllProperties = ("log_level_forward", "policy_forward", "enable")
+        $AllProperties = ("log_level_forward", "enable", "policy_forward")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -115,22 +115,22 @@ function ConvertFrom-PVEJsonToClusterSdnVnetsFirewallOptions {
             $LogLevelForward = $JsonParameters.PSobject.Properties["log_level_forward"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_forward"))) { #optional property not found
-            $PolicyForward = $null
-        } else {
-            $PolicyForward = $JsonParameters.PSobject.Properties["policy_forward"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
             $Enable = $null
         } else {
             $Enable = $JsonParameters.PSobject.Properties["enable"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_forward"))) { #optional property not found
+            $PolicyForward = $null
+        } else {
+            $PolicyForward = $JsonParameters.PSobject.Properties["policy_forward"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "log_level_forward" = ${LogLevelForward}
-            "policy_forward" = ${PolicyForward}
             "enable" = ${Enable}
+            "policy_forward" = ${PolicyForward}
         }
 
         return $PSO

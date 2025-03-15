@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesLxcVncwebsocketRB' {
     Context 'PVEGETNodesLxcVncwebsocketRB' {
         It 'Initialize-PVEGETNodesLxcVncwebsocketRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesLxcVncwebsocketRB -Node "TEST_VALUE" -Vncticket "TEST_VALUE" -Port "TEST_VALUE" -Vmid "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesLxcVncwebsocketRB -Vncticket "TEST_VALUE" -Node "TEST_VALUE" -Vmid "TEST_VALUE" -Port "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesLxcVncwebsocketRB
             #$NewObject.property | Should -Be 0
         }

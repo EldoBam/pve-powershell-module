@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTAccessTfaRB' {
     Context 'PVEPUTAccessTfaRB' {
         It 'Initialize-PVEPUTAccessTfaRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTAccessTfaRB -Password "TEST_VALUE" -Description "TEST_VALUE" -Id "TEST_VALUE" -Userid "TEST_VALUE" -Enable "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTAccessTfaRB -Enable "TEST_VALUE" -Password "TEST_VALUE" -Id "TEST_VALUE" -Userid "TEST_VALUE" -Description "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTAccessTfaRB
             #$NewObject.property | Should -Be 0
         }

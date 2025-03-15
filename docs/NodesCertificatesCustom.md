@@ -3,30 +3,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PublicKeyBits** | **Int32** |  | [optional] 
-**Notafter** | **Int32** |  | [optional] 
 **PublicKeyType** | **String** |  | [optional] 
-**Pem** | **String** |  | [optional] 
-**Notbefore** | **Int32** |  | [optional] 
 **Subject** | **String** |  | [optional] 
 **Fingerprint** | **String** |  | [optional] 
+**Notafter** | **Int32** |  | [optional] 
+**PublicKeyBits** | **Int32** |  | [optional] 
+**Notbefore** | **Int32** |  | [optional] 
 **San** | **String[]** |  | [optional] 
 **Filename** | **String** |  | [optional] 
+**Pem** | **String** |  | [optional] 
 **Issuer** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCertificatesCustom = Initialize-PVENodesCertificatesCustom  -PublicKeyBits null `
- -Notafter null `
- -PublicKeyType null `
- -Pem null `
- -Notbefore null `
+$NodesCertificatesCustom = Initialize-PVENodesCertificatesCustom  -PublicKeyType null `
  -Subject null `
  -Fingerprint null `
+ -Notafter null `
+ -PublicKeyBits null `
+ -Notbefore null `
  -San null `
  -Filename null `
+ -Pem null `
  -Issuer null
 ```
 

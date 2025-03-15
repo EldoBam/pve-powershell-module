@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Quiet
+No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Notify
-No description available.
-.PARAMETER Quiet
 No description available.
 .OUTPUTS
 
@@ -30,27 +30,19 @@ function Initialize-PVEPOSTNodesAptUpdateRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Quiet},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Notify},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Quiet}
+        ${Notify}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesAptUpdateRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Notify -and $Notify -gt 1) {
-          throw "invalid value for 'Notify', must be smaller than or equal to 1."
-        }
-
-        if ($Notify -and $Notify -lt 0) {
-          throw "invalid value for 'Notify', must be greater than or equal to 0."
-        }
 
         if ($Quiet -and $Quiet -gt 1) {
           throw "invalid value for 'Quiet', must be smaller than or equal to 1."
@@ -60,9 +52,17 @@ function Initialize-PVEPOSTNodesAptUpdateRB {
           throw "invalid value for 'Quiet', must be greater than or equal to 0."
         }
 
+        if ($Notify -and $Notify -gt 1) {
+          throw "invalid value for 'Notify', must be smaller than or equal to 1."
+        }
+
+        if ($Notify -and $Notify -lt 0) {
+          throw "invalid value for 'Notify', must be greater than or equal to 0."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "Notify"="notify"; "Quiet"="quiet"
+			"Quiet"="quiet"; "Node"="node"; "Notify"="notify"
         }
 		
 		 $OBJ = @{}
@@ -108,11 +108,17 @@ function ConvertFrom-PVEJsonToPOSTNodesAptUpdateRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesAptUpdateRB
-        $AllProperties = ("node", "notify", "quiet")
+        $AllProperties = ("quiet", "node", "notify")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "quiet"))) { #optional property not found
+            $Quiet = $null
+        } else {
+            $Quiet = $JsonParameters.PSobject.Properties["quiet"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -127,16 +133,10 @@ function ConvertFrom-PVEJsonToPOSTNodesAptUpdateRB {
             $Notify = $JsonParameters.PSobject.Properties["notify"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "quiet"))) { #optional property not found
-            $Quiet = $null
-        } else {
-            $Quiet = $JsonParameters.PSobject.Properties["quiet"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "quiet" = ${Quiet}
             "node" = ${Node}
             "notify" = ${Notify}
-            "quiet" = ${Quiet}
         }
 
         return $PSO

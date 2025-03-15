@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesCertificatesCustomRB' {
     Context 'PVEPOSTNodesCertificatesCustomRB' {
         It 'Initialize-PVEPOSTNodesCertificatesCustomRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesCertificatesCustomRB -Key "TEST_VALUE" -Certificates "TEST_VALUE" -Node "TEST_VALUE" -Force "TEST_VALUE" -Restart "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesCertificatesCustomRB -Force "TEST_VALUE" -Key "TEST_VALUE" -Node "TEST_VALUE" -Restart "TEST_VALUE" -Certificates "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesCertificatesCustomRB
             #$NewObject.property | Should -Be 0
         }

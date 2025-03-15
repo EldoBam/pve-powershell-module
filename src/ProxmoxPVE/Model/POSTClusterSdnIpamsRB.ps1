@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Type
-No description available.
-.PARAMETER Token
-No description available.
-.PARAMETER Section
-No description available.
 .PARAMETER Url
 No description available.
 .PARAMETER Ipam
+No description available.
+.PARAMETER Section
+No description available.
+.PARAMETER Token
+No description available.
+.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -34,21 +34,21 @@ function Initialize-PVEPOSTClusterSdnIpamsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("netbox", "phpipam", "pve")]
         [String]
-        ${Type},
+        ${Url},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Token},
+        ${Ipam},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Section},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Url},
+        ${Token},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("netbox", "phpipam", "pve")]
         [String]
-        ${Ipam}
+        ${Type}
     )
 
     Process {
@@ -57,7 +57,7 @@ function Initialize-PVEPOSTClusterSdnIpamsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Type"="type"; "Token"="token"; "Section"="section"; "Url"="url"; "Ipam"="ipam"
+			"Url"="url"; "Ipam"="ipam"; "Section"="section"; "Token"="token"; "Type"="type"
         }
 		
 		 $OBJ = @{}
@@ -103,29 +103,11 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnIpamsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterSdnIpamsRB
-        $AllProperties = ("type", "token", "section", "url", "ipam")
+        $AllProperties = ("url", "ipam", "section", "token", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "token"))) { #optional property not found
-            $Token = $null
-        } else {
-            $Token = $JsonParameters.PSobject.Properties["token"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "section"))) { #optional property not found
-            $Section = $null
-        } else {
-            $Section = $JsonParameters.PSobject.Properties["section"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
@@ -140,12 +122,30 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnIpamsRB {
             $Ipam = $JsonParameters.PSobject.Properties["ipam"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "section"))) { #optional property not found
+            $Section = $null
+        } else {
+            $Section = $JsonParameters.PSobject.Properties["section"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "token"))) { #optional property not found
+            $Token = $null
+        } else {
+            $Token = $JsonParameters.PSobject.Properties["token"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "token" = ${Token}
-            "section" = ${Section}
             "url" = ${Url}
             "ipam" = ${Ipam}
+            "section" = ${Section}
+            "token" = ${Token}
+            "type" = ${Type}
         }
 
         return $PSO

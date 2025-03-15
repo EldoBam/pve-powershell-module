@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTClusterSdnControllersRB' {
     Context 'PVEPOSTClusterSdnControllersRB' {
         It 'Initialize-PVEPOSTClusterSdnControllersRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTClusterSdnControllersRB -Loopback "TEST_VALUE" -IsisDomain "TEST_VALUE" -IsisIfaces "TEST_VALUE" -Node "TEST_VALUE" -Type "TEST_VALUE" -Asn "TEST_VALUE" -IsisNet "TEST_VALUE" -Controller "TEST_VALUE" -EbgpMultihop "TEST_VALUE" -BgpMultipathAsPathRelax "TEST_VALUE" -Ebgp "TEST_VALUE" -Peers "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTClusterSdnControllersRB -Loopback "TEST_VALUE" -IsisIfaces "TEST_VALUE" -Type "TEST_VALUE" -Node "TEST_VALUE" -IsisDomain "TEST_VALUE" -BgpMultipathAsPathRelax "TEST_VALUE" -Controller "TEST_VALUE" -Peers "TEST_VALUE" -IsisNet "TEST_VALUE" -Ebgp "TEST_VALUE" -Asn "TEST_VALUE" -EbgpMultihop "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTClusterSdnControllersRB
             #$NewObject.property | Should -Be 0
         }

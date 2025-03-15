@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesLxcSnapshotRollbackRB' {
     Context 'PVEPOSTNodesLxcSnapshotRollbackRB' {
         It 'Initialize-PVEPOSTNodesLxcSnapshotRollbackRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesLxcSnapshotRollbackRB -Node "TEST_VALUE" -Vmid "TEST_VALUE" -Snapname "TEST_VALUE" -Start "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesLxcSnapshotRollbackRB -Snapname "TEST_VALUE" -Start "TEST_VALUE" -Node "TEST_VALUE" -Vmid "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesLxcSnapshotRollbackRB
             #$NewObject.property | Should -Be 0
         }

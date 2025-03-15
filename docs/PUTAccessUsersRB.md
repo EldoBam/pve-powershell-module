@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Groups** | **String** |  | [optional] 
-**Userid** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **Email** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Append** | **Int32** |  | [optional] 
 **Lastname** | **String** |  | [optional] 
-**Expire** | **Int32** |  | [optional] 
-**Keys** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
 **Firstname** | **String** |  | [optional] 
+**Keys** | **String** |  | [optional] 
+**Expire** | **Int32** |  | [optional] 
+**Groups** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
+**Userid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTAccessUsersRB = Initialize-PVEPUTAccessUsersRB  -Groups null `
- -Userid null `
+$PUTAccessUsersRB = Initialize-PVEPUTAccessUsersRB  -Email null `
  -Comment null `
- -Email null `
  -Append null `
  -Lastname null `
- -Expire null `
+ -Firstname null `
  -Keys null `
+ -Expire null `
+ -Groups null `
  -Enable null `
- -Firstname null
+ -Userid null
 ```
 
 - Convert the resource to JSON

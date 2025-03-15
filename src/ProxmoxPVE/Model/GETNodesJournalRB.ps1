@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER VarUntil
+.PARAMETER Lastentries
 No description available.
-.PARAMETER Startcursor
+.PARAMETER Since
 No description available.
 .PARAMETER Node
 No description available.
 .PARAMETER Endcursor
 No description available.
-.PARAMETER Since
+.PARAMETER VarUntil
 No description available.
-.PARAMETER Lastentries
+.PARAMETER Startcursor
 No description available.
 .OUTPUTS
 
@@ -37,10 +37,10 @@ function Initialize-PVEGETNodesJournalRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VarUntil},
+        ${Lastentries},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Startcursor},
+        [System.Nullable[Int32]]
+        ${Since},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
@@ -49,10 +49,10 @@ function Initialize-PVEGETNodesJournalRB {
         ${Endcursor},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Since},
+        ${VarUntil},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Lastentries}
+        [String]
+        ${Startcursor}
     )
 
     Process {
@@ -61,7 +61,7 @@ function Initialize-PVEGETNodesJournalRB {
 
 
 		 $DisplayNameMapping =@{
-			"VarUntil"="until"; "Startcursor"="startcursor"; "Node"="node"; "Endcursor"="endcursor"; "Since"="since"; "Lastentries"="lastentries"
+			"Lastentries"="lastentries"; "Since"="since"; "Node"="node"; "Endcursor"="endcursor"; "VarUntil"="until"; "Startcursor"="startcursor"
         }
 		
 		 $OBJ = @{}
@@ -107,23 +107,23 @@ function ConvertFrom-PVEJsonToGETNodesJournalRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesJournalRB
-        $AllProperties = ("until", "startcursor", "node", "endcursor", "since", "lastentries")
+        $AllProperties = ("lastentries", "since", "node", "endcursor", "until", "startcursor")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
-            $VarUntil = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lastentries"))) { #optional property not found
+            $Lastentries = $null
         } else {
-            $VarUntil = $JsonParameters.PSobject.Properties["until"].value
+            $Lastentries = $JsonParameters.PSobject.Properties["lastentries"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "startcursor"))) { #optional property not found
-            $Startcursor = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "since"))) { #optional property not found
+            $Since = $null
         } else {
-            $Startcursor = $JsonParameters.PSobject.Properties["startcursor"].value
+            $Since = $JsonParameters.PSobject.Properties["since"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -138,25 +138,25 @@ function ConvertFrom-PVEJsonToGETNodesJournalRB {
             $Endcursor = $JsonParameters.PSobject.Properties["endcursor"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "since"))) { #optional property not found
-            $Since = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
+            $VarUntil = $null
         } else {
-            $Since = $JsonParameters.PSobject.Properties["since"].value
+            $VarUntil = $JsonParameters.PSobject.Properties["until"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lastentries"))) { #optional property not found
-            $Lastentries = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "startcursor"))) { #optional property not found
+            $Startcursor = $null
         } else {
-            $Lastentries = $JsonParameters.PSobject.Properties["lastentries"].value
+            $Startcursor = $JsonParameters.PSobject.Properties["startcursor"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "until" = ${VarUntil}
-            "startcursor" = ${Startcursor}
+            "lastentries" = ${Lastentries}
+            "since" = ${Since}
             "node" = ${Node}
             "endcursor" = ${Endcursor}
-            "since" = ${Since}
-            "lastentries" = ${Lastentries}
+            "until" = ${VarUntil}
+            "startcursor" = ${Startcursor}
         }
 
         return $PSO

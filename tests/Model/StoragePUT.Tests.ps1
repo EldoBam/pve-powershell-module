@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEStoragePUT' {
     Context 'PVEStoragePUT' {
         It 'Initialize-PVEStoragePUT' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEStoragePUT -Config "TEST_VALUE" -Type "TEST_VALUE" -Storage "TEST_VALUE"
+            #$NewObject = Initialize-PVEStoragePUT -Config "TEST_VALUE" -Storage "TEST_VALUE" -Type "TEST_VALUE"
             #$NewObject | Should -BeOfType StoragePUT
             #$NewObject.property | Should -Be 0
         }

@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
-No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Comment
+.PARAMETER Name
 No description available.
 .PARAMETER Cidr
+No description available.
+.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -33,16 +33,16 @@ function Initialize-PVEClusterFirewallAliasesInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comment},
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Cidr}
+        ${Cidr},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Comment}
     )
 
     Process {
@@ -55,7 +55,7 @@ function Initialize-PVEClusterFirewallAliasesInner {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Digest"="digest"; "Comment"="comment"; "Cidr"="cidr"
+			"Digest"="digest"; "Name"="name"; "Cidr"="cidr"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
@@ -101,17 +101,11 @@ function ConvertFrom-PVEJsonToClusterFirewallAliasesInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterFirewallAliasesInner
-        $AllProperties = ("name", "digest", "comment", "cidr")
+        $AllProperties = ("digest", "name", "cidr", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -120,10 +114,10 @@ function ConvertFrom-PVEJsonToClusterFirewallAliasesInner {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
         } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
@@ -132,11 +126,17 @@ function ConvertFrom-PVEJsonToClusterFirewallAliasesInner {
             $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
             "digest" = ${Digest}
-            "comment" = ${Comment}
+            "name" = ${Name}
             "cidr" = ${Cidr}
+            "comment" = ${Comment}
         }
 
         return $PSO

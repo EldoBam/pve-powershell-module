@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **String** |  | [optional] 
 **Force** | **Int32** |  | [optional] 
+**Id** | **String** |  | [optional] 
 **Keep** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEClusterReplicationRB = Initialize-PVEDELETEClusterReplicationRB  -Id null `
- -Force null `
+$DELETEClusterReplicationRB = Initialize-PVEDELETEClusterReplicationRB  -Force null `
+ -Id null `
  -Keep null
 ```
 
