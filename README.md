@@ -92,7 +92,7 @@ if((Invoke-PVELogin -Silent)){
 ## Basic Example to get started
 ```powershell
 Import-Module -Name '.\src\ProxmoxPVE\ProxmoxPVE.psm1' -Verbose
-Initialize-PVEPVE
+Initialize-PVE
 $nodes = Get-PVENodes
 $nodes
 ```
