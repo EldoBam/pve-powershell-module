@@ -78,7 +78,7 @@ function Invoke-PVEApiClient {
             }
         }
     }
-	
+    
     # construct URL query string
     $HttpValues = [System.Web.HttpUtility]::ParseQueryString([String]::Empty)
     foreach ($Parameter in $QueryParameters.GetEnumerator()) {
@@ -105,32 +105,36 @@ function Invoke-PVEApiClient {
             $RequestBody = "null"
         }
     }
-	
-	if($RequestBody -and $RequestBody -ne "null"){
-	    $RequestBody = ([System.Text.Encoding]::UTF8.GetBytes($RequestBody))
-	}
+    
+    if($RequestBody -and $RequestBody -ne "null"){
+        $RequestBody = ([System.Text.Encoding]::UTF8.GetBytes($RequestBody))
+    }
 
-	
-	$RequestSplat = @{
-		Uri					= $UriBuilder.Uri;
-		Method 				= $Method;
-		Headers			= $HeaderParameters;
-		Body					= $RequestBody;
-		ErrorAction		=	"Stop";
-		UseBasicParsing	=	$true;
-        WebSession		= $Configuration["webSession"];
-	}
-	
-	 if ($SkipCertificateCheck -eq $true) {
-		$RequestSplat.SkipCertificateCheck = $true
-	}
-	if ($Configuration["Proxy"] -ne $null) {
-		 $RequestSplat.Proxy = $Configuration["Proxy"].GetProxy($UriBuilder.Uri) 
+    
+    $RequestSplat = @{
+        Uri             = $UriBuilder.Uri
+        Method          = $Method
+        Headers         = $HeaderParameters
+        ErrorAction     = "Stop"
+        UseBasicParsing = $true
+        WebSession      = $Configuration["webSession"]
+    }
+    
+    if($RequestBody -and $RequestBody -ne "null"){
+        $RequestSplat["Body"] = $RequestBody
+    }
+
+    if ($SkipCertificateCheck -eq $true) {
+        $RequestSplat.SkipCertificateCheck = $true
+    }
+
+    if ($Configuration["Proxy"] -ne $null) {
+         $RequestSplat.Proxy = $Configuration["Proxy"].GetProxy($UriBuilder.Uri) 
          $RequestSplat.ProxyUseDefaultCredentials = $true
-	}
-	
-	
-	$Response = Invoke-WebRequest @RequestSplat
+    }
+    
+    
+    $Response = Invoke-WebRequest @RequestSplat
     return @{
         Response = DeserializeResponse -Response $Response -ReturnType $ReturnType -ContentTypes $Response.Headers["Content-Type"]
         StatusCode = $Response.StatusCode
@@ -194,7 +198,7 @@ function DeserializeResponse {
     } elseif ($ReturnType -match '\[\]$') { # array
         return (ConvertFrom-Json $Response).data
     } elseif (@("String", "Boolean", "System.DateTime") -contains $ReturnType) { # string, boolean ,datetime
-        return $Response
+        return (ConvertFrom-Json $Response).data
     } else { # others (e.g. model, file)
         if ($ContentTypes) {
             $ContentType = $null
