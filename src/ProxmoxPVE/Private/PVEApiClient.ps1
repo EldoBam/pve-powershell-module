@@ -209,7 +209,7 @@ function DeserializeResponse {
             }
 
             if (IsJsonMIME -MIME $ContentType) { # JSON
-                return ConvertFrom-Json $Response
+                return (ConvertFrom-Json $Response).data
             } else { # XML, file, etc
                 return $Response
             }
