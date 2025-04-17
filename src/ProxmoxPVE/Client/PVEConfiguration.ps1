@@ -186,6 +186,10 @@ function Set-PVEConfiguration{
             $Script:Configuration['DefaultHeaders'] = $DefaultHeaders
         }
 
+        if ($SkipCertificateCheck){
+            $Script:Configuration['SkipCertificateCheck'] = $true
+        }
+
         if ($Proxy -ne $null){
             if ($Proxy.GetType().FullName -ne "System.Net.SystemWebProxy" -and $Proxy.GetType().FullName -ne "System.Net.WebRequest+WebProxyWrapperOpaque"){
                 throw "Incorrect Proxy type '$($Proxy.GetType().FullName)'. Must be System.Net.SystemWebProxy or System.Net.WebRequest+WebProxyWrapperOpaque."
@@ -302,7 +306,9 @@ function Invoke-PVELogin {
                                     password = (DecryptSecureString -SecureString $crds.Password)
                                 } `
                                 -ContentType "application/x-www-form-urlencoded" `
+                                -SkipCertificateCheck:$Script:Configuration["SkipCertificateCheck"] `
                                 -ErrorAction Stop
+
             if($LoginResponse.StatusCode -eq 200){
                 $LoginData = $LoginResponse.Content | ConvertFrom-Json
                 $script:AuthData["Ticket"] = (ConvertTo-SecureString -String $LoginData.data.ticket -AsPlainText -Force)
@@ -331,7 +337,13 @@ function Invoke-PVELogin {
             Authorization = ("PVEAPIToken {0}={1}" -f $Script:Configuration["Credential"].UserName,(DecryptSecureString -SecureString $Script:Configuration["Credential"].Password))
         }
         try{
-            $LoginResponse = Invoke-WebRequest -Uri $Script:Configuration["BaseUrl"] -Method Get -Headers $AuthHeaders
+            $LoginResponse = Invoke-WebRequest `
+                                -Uri $Script:Configuration["BaseUrl"] `
+                                -Method Get `
+                                -Headers $AuthHeaders `
+                                -SkipCertificateCheck:$Script:Configuration["SkipCertificateCheck"] `
+                                -ErrorAction Stop
+
             if($LoginResponse.StatusCode -eq 200){
                 $Script:AuthData["PVEAPIToken"] = (ConvertTo-SecureString -String $AuthHeaders.Authorization -AsPlainText -Force)
             }else{
