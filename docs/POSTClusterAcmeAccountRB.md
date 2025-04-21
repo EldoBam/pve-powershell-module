@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
-**Contact** | **String** |  | [optional] 
 **Directory** | **String** |  | [optional] 
-**EabHmacKey** | **String** |  | [optional] 
 **TosUrl** | **String** |  | [optional] 
+**EabHmacKey** | **String** |  | [optional] 
+**Contact** | **String** |  | [optional] 
 **EabKid** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterAcmeAccountRB = Initialize-PVEPOSTClusterAcmeAccountRB  -Name null `
- -Contact null `
- -Directory null `
- -EabHmacKey null `
+$POSTClusterAcmeAccountRB = Initialize-PVEPOSTClusterAcmeAccountRB  -Directory null `
  -TosUrl null `
- -EabKid null
+ -EabHmacKey null `
+ -Contact null `
+ -EabKid null `
+ -Name null
 ```
 
 - Convert the resource to JSON

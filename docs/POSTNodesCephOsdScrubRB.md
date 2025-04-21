@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Deep** | **Int32** |  | [optional] 
 **Osdid** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Deep** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephOsdScrubRB = Initialize-PVEPOSTNodesCephOsdScrubRB  -Osdid null `
- -Node null `
- -Deep null
+$POSTNodesCephOsdScrubRB = Initialize-PVEPOSTNodesCephOsdScrubRB  -Deep null `
+ -Osdid null `
+ -Node null
 ```
 
 - Convert the resource to JSON

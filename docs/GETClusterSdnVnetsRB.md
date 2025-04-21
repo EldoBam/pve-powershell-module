@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pending** | **Int32** |  | [optional] 
 **Vnet** | **String** |  | [optional] 
+**Pending** | **Int32** |  | [optional] 
 **Running** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETClusterSdnVnetsRB = Initialize-PVEGETClusterSdnVnetsRB  -Pending null `
- -Vnet null `
+$GETClusterSdnVnetsRB = Initialize-PVEGETClusterSdnVnetsRB  -Vnet null `
+ -Pending null `
  -Running null
 ```
 

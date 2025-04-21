@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Cleanup** | **Int32** |  | [optional] 
 **Osdid** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Cleanup** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesCephOsdRB = Initialize-PVEDELETENodesCephOsdRB  -Osdid null `
- -Node null `
- -Cleanup null
+$DELETENodesCephOsdRB = Initialize-PVEDELETENodesCephOsdRB  -Cleanup null `
+ -Osdid null `
+ -Node null
 ```
 
 - Convert the resource to JSON

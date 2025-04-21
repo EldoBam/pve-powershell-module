@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**MatchField** | **String[]** |  | [optional] 
-**MatchCalendar** | **String[]** |  | [optional] 
 **MatchSeverity** | **String[]** |  | [optional] 
-**Mode** | **String** |  | [optional] 
 **InvertMatch** | **Int32** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Disable** | **Int32** |  | [optional] 
+**MatchCalendar** | **String[]** |  | [optional] 
+**MatchField** | **String[]** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **Target** | **String[]** |  | [optional] 
-**Disable** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Mode** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterNotificationsMatchers = Initialize-PVEClusterNotificationsMatchers  -Comment null `
- -Name null `
- -MatchField null `
- -MatchCalendar null `
- -MatchSeverity null `
- -Mode null `
+$ClusterNotificationsMatchers = Initialize-PVEClusterNotificationsMatchers  -MatchSeverity null `
  -InvertMatch null `
+ -Comment null `
+ -Disable null `
+ -MatchCalendar null `
+ -MatchField null `
  -Digest null `
  -Target null `
- -Disable null
+ -Name null `
+ -Mode null
 ```
 
 - Convert the resource to JSON

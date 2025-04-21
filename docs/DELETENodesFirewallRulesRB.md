@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Pos** | **Int32** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesFirewallRulesRB = Initialize-PVEDELETENodesFirewallRulesRB  -Digest null `
- -Node null `
- -Pos null
+$DELETENodesFirewallRulesRB = Initialize-PVEDELETENodesFirewallRulesRB  -Pos null `
+ -Digest null `
+ -Node null
 ```
 
 - Convert the resource to JSON

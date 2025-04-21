@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Force** | **Int32** |  | [optional] 
-**RemoveStorages** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **RemoveEcprofile** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**RemoveStorages** | **Int32** |  | [optional] 
+**Force** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesCephPoolRB = Initialize-PVEDELETENodesCephPoolRB  -Force null `
- -RemoveStorages null `
- -Name null `
+$DELETENodesCephPoolRB = Initialize-PVEDELETENodesCephPoolRB  -RemoveEcprofile null `
  -Node null `
- -RemoveEcprofile null
+ -Name null `
+ -RemoveStorages null `
+ -Force null
 ```
 
 - Convert the resource to JSON

@@ -3,22 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
-**Disks** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**Net** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 **Source** | **String** |  | [optional] 
+**Net** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 **CreateArgs** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**Disks** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Warnings** | [**NodesStorageImportmetadataWarningsInner[]**](NodesStorageImportmetadataWarningsInner.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStorageImportmetadata = Initialize-PVENodesStorageImportmetadata  -Type null `
- -Disks null `
+$NodesStorageImportmetadata = Initialize-PVENodesStorageImportmetadata  -Source null `
  -Net null `
- -Source null `
  -CreateArgs null `
+ -Disks null `
+ -Type null `
  -Warnings null
 ```
 

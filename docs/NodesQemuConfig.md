@@ -3,169 +3,171 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ivshmem** | **String** |  | [optional] 
+**Balloon** | **Int32** |  | [optional] 
+**Tdf** | **Int32** |  | [optional] 
+**Tags** | **String** |  | [optional] 
+**Template** | **Int32** |  | [optional] 
 **NetN** | **String** |  | [optional] 
-**Vcpus** | **Int32** |  | [optional] 
+**Protection** | **Int32** |  | [optional] 
+**Onboot** | **Int32** |  | [optional] 
+**Audio0** | **String** |  | [optional] 
+**Bios** | **String** |  | [optional] 
+**Keyboard** | **String** |  | [optional] 
+**NumaN** | **String** |  | [optional] 
+**Machine** | **String** |  | [optional] 
+**ScsiN** | **String** |  | [optional] 
+**HostpciN** | **String** |  | [optional] 
+**SerialN** | **String** |  | [optional] 
+**Efidisk0** | **String** |  | [optional] 
+**Lock** | **String** |  | [optional] 
+**Smbios1** | **String** |  | [optional] 
 **Ostype** | **String** |  | [optional] 
-**Rng0** | **String** |  | [optional] 
-**Autostart** | **Int32** |  | [optional] 
-**Acpi** | **Int32** |  | [optional] 
+**Smp** | **Int32** |  | [optional] 
+**Startdate** | **String** |  | [optional] 
+**Hugepages** | **String** |  | [optional] 
+**Vcpus** | **Int32** |  | [optional] 
+**Cpulimit** | **Decimal** |  | [optional] 
+**VirtiofsN** | **String** |  | [optional] 
+**SataN** | **String** |  | [optional] 
+**Freeze** | **Int32** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Ciuser** | **String** |  | [optional] 
+**VirtioN** | **String** |  | [optional] 
+**Watchdog** | **String** |  | [optional] 
+**Ciupgrade** | **Int32** |  | [optional] 
 **AmdSev** | **String** |  | [optional] 
 **Boot** | **String** |  | [optional] 
-**ScsiN** | **String** |  | [optional] 
-**Agent** | **String** |  | [optional] 
-**IpconfigN** | **String** |  | [optional] 
-**VarArgs** | **String** |  | [optional] 
 **MigrateSpeed** | **Int32** |  | [optional] 
-**Vmstatestorage** | **String** |  | [optional] 
-**Keyboard** | **String** |  | [optional] 
-**Memory** | **String** |  | [optional] 
-**Tpmstate0** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**SpiceEnhancements** | **String** |  | [optional] 
-**Freeze** | **Int32** |  | [optional] 
-**Reboot** | **Int32** |  | [optional] 
-**Smbios1** | **String** |  | [optional] 
-**Cipassword** | **String** |  | [optional] 
 **Bootdisk** | **String** |  | [optional] 
-**Citype** | **String** |  | [optional] 
-**Smp** | **Int32** |  | [optional] 
-**Hookscript** | **String** |  | [optional] 
-**Hotplug** | **String** |  | [optional] 
-**Balloon** | **Int32** |  | [optional] 
-**Tags** | **String** |  | [optional] 
-**ParallelN** | **String** |  | [optional] 
-**Sshkeys** | **String** |  | [optional] 
-**Efidisk0** | **String** |  | [optional] 
-**Arch** | **String** |  | [optional] 
-**UnusedN** | **String** |  | [optional] 
-**IdeN** | **String** |  | [optional] 
-**VirtioN** | **String** |  | [optional] 
-**Vga** | **String** |  | [optional] 
-**Tdf** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Watchdog** | **String** |  | [optional] 
-**MigrateDowntime** | **Decimal** |  | [optional] 
-**Vmgenid** | **String** |  | [optional] 
-**Hugepages** | **String** |  | [optional] 
-**SerialN** | **String** |  | [optional] 
-**Cpuunits** | **Int32** |  | [optional] 
-**Shares** | **Int32** |  | [optional] 
-**Cpulimit** | **Decimal** |  | [optional] 
-**Cpu** | **String** |  | [optional] 
-**Affinity** | **String** |  | [optional] 
-**Onboot** | **Int32** |  | [optional] 
-**Cicustom** | **String** |  | [optional] 
-**Sockets** | **Int32** |  | [optional] 
-**Ciuser** | **String** |  | [optional] 
-**Protection** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Lock** | **String** |  | [optional] 
-**Numa** | **Int32** |  | [optional] 
-**Cores** | **Int32** |  | [optional] 
-**HostpciN** | **String** |  | [optional] 
-**Cdrom** | **String** |  | [optional] 
-**SataN** | **String** |  | [optional] 
-**Tablet** | **Int32** |  | [optional] 
-**Bios** | **String** |  | [optional] 
-**Localtime** | **Int32** |  | [optional] 
-**Template** | **Int32** |  | [optional] 
-**Nameserver** | **String** |  | [optional] 
-**Kvm** | **Int32** |  | [optional] 
-**Startdate** | **String** |  | [optional] 
 **UsbN** | **String** |  | [optional] 
-**Startup** | **String** |  | [optional] 
-**Scsihw** | **String** |  | [optional] 
-**Ciupgrade** | **Int32** |  | [optional] 
-**Keephugepages** | **Int32** |  | [optional] 
-**Audio0** | **String** |  | [optional] 
-**NumaN** | **String** |  | [optional] 
+**Arch** | **String** |  | [optional] 
 **Searchdomain** | **String** |  | [optional] 
-**Machine** | **String** |  | [optional] 
+**Reboot** | **Int32** |  | [optional] 
+**Acpi** | **Int32** |  | [optional] 
+**Cpu** | **String** |  | [optional] 
+**IpconfigN** | **String** |  | [optional] 
+**Memory** | **String** |  | [optional] 
+**Localtime** | **Int32** |  | [optional] 
+**Shares** | **Int32** |  | [optional] 
+**Keephugepages** | **Int32** |  | [optional] 
+**ParallelN** | **String** |  | [optional] 
+**Affinity** | **String** |  | [optional] 
+**Vmstatestorage** | **String** |  | [optional] 
+**Autostart** | **Int32** |  | [optional] 
+**Startup** | **String** |  | [optional] 
+**Hookscript** | **String** |  | [optional] 
+**Cipassword** | **String** |  | [optional] 
+**Kvm** | **Int32** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Tablet** | **Int32** |  | [optional] 
+**Hotplug** | **String** |  | [optional] 
+**Scsihw** | **String** |  | [optional] 
+**Vmgenid** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Numa** | **Int32** |  | [optional] 
+**Sockets** | **Int32** |  | [optional] 
+**Agent** | **String** |  | [optional] 
+**SpiceEnhancements** | **String** |  | [optional] 
+**Tpmstate0** | **String** |  | [optional] 
+**Sshkeys** | **String** |  | [optional] 
+**Cdrom** | **String** |  | [optional] 
+**MigrateDowntime** | **Decimal** |  | [optional] 
+**VarArgs** | **String** |  | [optional] 
+**Cores** | **Int32** |  | [optional] 
+**Cicustom** | **String** |  | [optional] 
+**IdeN** | **String** |  | [optional] 
+**Vga** | **String** |  | [optional] 
+**UnusedN** | **String** |  | [optional] 
+**Citype** | **String** |  | [optional] 
+**Ivshmem** | **String** |  | [optional] 
+**Cpuunits** | **Int32** |  | [optional] 
+**Rng0** | **String** |  | [optional] 
+**Nameserver** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuConfig = Initialize-PVENodesQemuConfig  -Ivshmem null `
+$NodesQemuConfig = Initialize-PVENodesQemuConfig  -Balloon null `
+ -Tdf null `
+ -Tags null `
+ -Template null `
  -NetN null `
- -Vcpus null `
+ -Protection null `
+ -Onboot null `
+ -Audio0 null `
+ -Bios null `
+ -Keyboard null `
+ -NumaN null `
+ -Machine null `
+ -ScsiN null `
+ -HostpciN null `
+ -SerialN null `
+ -Efidisk0 null `
+ -Lock null `
+ -Smbios1 null `
  -Ostype null `
- -Rng0 null `
- -Autostart null `
- -Acpi null `
+ -Smp null `
+ -Startdate null `
+ -Hugepages null `
+ -Vcpus null `
+ -Cpulimit null `
+ -VirtiofsN null `
+ -SataN null `
+ -Freeze null `
+ -Digest null `
+ -Ciuser null `
+ -VirtioN null `
+ -Watchdog null `
+ -Ciupgrade null `
  -AmdSev null `
  -Boot null `
- -ScsiN null `
- -Agent null `
- -IpconfigN null `
- -VarArgs null `
  -MigrateSpeed null `
- -Vmstatestorage null `
- -Keyboard null `
- -Memory null `
- -Tpmstate0 null `
- -Description null `
- -SpiceEnhancements null `
- -Freeze null `
- -Reboot null `
- -Smbios1 null `
- -Cipassword null `
  -Bootdisk null `
- -Citype null `
- -Smp null `
- -Hookscript null `
- -Hotplug null `
- -Balloon null `
- -Tags null `
- -ParallelN null `
- -Sshkeys null `
- -Efidisk0 null `
- -Arch null `
- -UnusedN null `
- -IdeN null `
- -VirtioN null `
- -Vga null `
- -Tdf null `
- -Name null `
- -Watchdog null `
- -MigrateDowntime null `
- -Vmgenid null `
- -Hugepages null `
- -SerialN null `
- -Cpuunits null `
- -Shares null `
- -Cpulimit null `
- -Cpu null `
- -Affinity null `
- -Onboot null `
- -Cicustom null `
- -Sockets null `
- -Ciuser null `
- -Protection null `
- -Digest null `
- -Lock null `
- -Numa null `
- -Cores null `
- -HostpciN null `
- -Cdrom null `
- -SataN null `
- -Tablet null `
- -Bios null `
- -Localtime null `
- -Template null `
- -Nameserver null `
- -Kvm null `
- -Startdate null `
  -UsbN null `
- -Startup null `
- -Scsihw null `
- -Ciupgrade null `
- -Keephugepages null `
- -Audio0 null `
- -NumaN null `
+ -Arch null `
  -Searchdomain null `
- -Machine null
+ -Reboot null `
+ -Acpi null `
+ -Cpu null `
+ -IpconfigN null `
+ -Memory null `
+ -Localtime null `
+ -Shares null `
+ -Keephugepages null `
+ -ParallelN null `
+ -Affinity null `
+ -Vmstatestorage null `
+ -Autostart null `
+ -Startup null `
+ -Hookscript null `
+ -Cipassword null `
+ -Kvm null `
+ -Description null `
+ -Tablet null `
+ -Hotplug null `
+ -Scsihw null `
+ -Vmgenid null `
+ -Name null `
+ -Numa null `
+ -Sockets null `
+ -Agent null `
+ -SpiceEnhancements null `
+ -Tpmstate0 null `
+ -Sshkeys null `
+ -Cdrom null `
+ -MigrateDowntime null `
+ -VarArgs null `
+ -Cores null `
+ -Cicustom null `
+ -IdeN null `
+ -Vga null `
+ -UnusedN null `
+ -Citype null `
+ -Ivshmem null `
+ -Cpuunits null `
+ -Rng0 null `
+ -Nameserver null
 ```
 
 - Convert the resource to JSON

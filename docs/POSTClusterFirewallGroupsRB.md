@@ -3,43 +3,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IcmpType** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Sport** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Group** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**Dest** | **String** |  | [optional] 
 **Macro** | **String** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
 **Log** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Dport** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
+**Source** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
+**IcmpType** | **String** |  | [optional] 
+**Group** | **String** |  | [optional] 
+**Sport** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterFirewallGroupsRB = Initialize-PVEPOSTClusterFirewallGroupsRB  -IcmpType null `
- -Digest null `
- -Source null `
- -Sport null `
+$POSTClusterFirewallGroupsRB = Initialize-PVEPOSTClusterFirewallGroupsRB  -Macro null `
  -Action null `
- -Comment null `
- -Group null `
  -Proto null `
- -Enable null `
- -Dest null `
- -Macro null `
- -Pos null `
- -Type null `
- -Iface null `
  -Log null `
- -Dport null
+ -Pos null `
+ -Dest null `
+ -Type null `
+ -Comment null `
+ -Dport null `
+ -Digest null `
+ -Enable null `
+ -Source null `
+ -Iface null `
+ -IcmpType null `
+ -Group null `
+ -Sport null
 ```
 
 - Convert the resource to JSON

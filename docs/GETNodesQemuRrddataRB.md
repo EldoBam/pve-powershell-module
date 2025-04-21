@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cf** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Timeframe** | **String** |  | [optional] 
+**Cf** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuRrddataRB = Initialize-PVEGETNodesQemuRrddataRB  -Cf null `
- -Node null `
+$GETNodesQemuRrddataRB = Initialize-PVEGETNodesQemuRrddataRB  -Timeframe null `
+ -Cf null `
  -Vmid null `
- -Timeframe null
+ -Node null
 ```
 
 - Convert the resource to JSON

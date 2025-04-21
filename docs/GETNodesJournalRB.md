@@ -4,22 +4,22 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Lastentries** | **Int32** |  | [optional] 
+**Endcursor** | **String** |  | [optional] 
+**Startcursor** | **String** |  | [optional] 
+**VarUntil** | **Int32** |  | [optional] 
 **Since** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Endcursor** | **String** |  | [optional] 
-**VarUntil** | **Int32** |  | [optional] 
-**Startcursor** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesJournalRB = Initialize-PVEGETNodesJournalRB  -Lastentries null `
- -Since null `
- -Node null `
  -Endcursor null `
+ -Startcursor null `
  -VarUntil null `
- -Startcursor null
+ -Since null `
+ -Node null
 ```
 
 - Convert the resource to JSON

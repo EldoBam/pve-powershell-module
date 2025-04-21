@@ -3,37 +3,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Wwn** | **String** |  | [optional] 
-**Osdid** | **Int32** |  | [optional] 
-**Used** | **String** |  | [optional] 
 **Devpath** | **String** |  | [optional] 
-**OsdidList** | **Int32[]** |  | [optional] 
-**Parent** | **String** |  | [optional] 
 **Gpt** | **Int32** |  | [optional] 
-**Size** | **Int32** |  | [optional] 
-**Model** | **String** |  | [optional] 
 **Serial** | **String** |  | [optional] 
-**Health** | **String** |  | [optional] 
+**OsdidList** | **Int32[]** |  | [optional] 
 **Vendor** | **String** |  | [optional] 
+**Health** | **String** |  | [optional] 
+**Used** | **String** |  | [optional] 
+**Model** | **String** |  | [optional] 
+**Osdid** | **Int32** |  | [optional] 
+**Parent** | **String** |  | [optional] 
+**Size** | **Int32** |  | [optional] 
 **Mounted** | **Int32** |  | [optional] 
+**Wwn** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesDisksListInner = Initialize-PVENodesDisksListInner  -Wwn null `
- -Osdid null `
- -Used null `
- -Devpath null `
- -OsdidList null `
- -Parent null `
+$NodesDisksListInner = Initialize-PVENodesDisksListInner  -Devpath null `
  -Gpt null `
- -Size null `
- -Model null `
  -Serial null `
- -Health null `
+ -OsdidList null `
  -Vendor null `
- -Mounted null
+ -Health null `
+ -Used null `
+ -Model null `
+ -Osdid null `
+ -Parent null `
+ -Size null `
+ -Mounted null `
+ -Wwn null
 ```
 
 - Convert the resource to JSON

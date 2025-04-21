@@ -5,13 +5,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Expire** | **Int32** |  | [optional] 
-**Lastname** | **String** |  | [optional] 
-**Firstname** | **String** |  | [optional] 
-**Keys** | **String** |  | [optional] 
 **Tokens** | [**AccessUsersTokens**](AccessUsersTokens.md) |  | [optional] 
-**Groups** | **String[]** |  | [optional] 
 **Enable** | **Int32** |  | [optional] 
+**Groups** | **String[]** |  | [optional] 
+**Firstname** | **String** |  | [optional] 
+**Lastname** | **String** |  | [optional] 
+**Expire** | **Int32** |  | [optional] 
+**Keys** | **String** |  | [optional] 
 
 ## Examples
 
@@ -19,13 +19,13 @@ Name | Type | Description | Notes
 ```powershell
 $AccessUsers = Initialize-PVEAccessUsers  -Email null `
  -Comment null `
- -Expire null `
- -Lastname null `
- -Firstname null `
- -Keys null `
  -Tokens null `
+ -Enable null `
  -Groups null `
- -Enable null
+ -Firstname null `
+ -Lastname null `
+ -Expire null `
+ -Keys null
 ```
 
 - Convert the resource to JSON

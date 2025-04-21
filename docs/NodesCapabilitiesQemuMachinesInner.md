@@ -3,16 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | **String** |  | [optional] 
 **Id** | **String** |  | [optional] 
+**Version** | **String** |  | [optional] 
+**Changes** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCapabilitiesQemuMachinesInner = Initialize-PVENodesCapabilitiesQemuMachinesInner  -Version null `
- -Id null `
+$NodesCapabilitiesQemuMachinesInner = Initialize-PVENodesCapabilitiesQemuMachinesInner  -Id null `
+ -Version null `
+ -Changes null `
  -Type null
 ```
 

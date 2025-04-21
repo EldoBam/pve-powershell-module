@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cidr** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Nomatch** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuFirewallIpsetRB = Initialize-PVEPOSTNodesQemuFirewallIpsetRB  -Cidr null `
+$POSTNodesQemuFirewallIpsetRB = Initialize-PVEPOSTNodesQemuFirewallIpsetRB  -Node null `
  -Comment null `
- -Node null `
- -Name null `
+ -Cidr null `
  -Vmid null `
- -Nomatch null
+ -Nomatch null `
+ -Name null
 ```
 
 - Convert the resource to JSON

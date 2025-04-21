@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
 **Device** | **String** |  | [optional] 
-**Filesystem** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **AddStorage** | **Int32** |  | [optional] 
+**Filesystem** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesDisksDirectoryRB = Initialize-PVEPOSTNodesDisksDirectoryRB  -Name null `
- -Device null `
+$POSTNodesDisksDirectoryRB = Initialize-PVEPOSTNodesDisksDirectoryRB  -Device null `
+ -AddStorage null `
  -Filesystem null `
- -Node null `
- -AddStorage null
+ -Name null `
+ -Node null
 ```
 
 - Convert the resource to JSON

@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pending** | **Int32** |  | [optional] 
-**Vnet** | **String** |  | [optional] 
 **Subnet** | **String** |  | [optional] 
+**Vnet** | **String** |  | [optional] 
+**Pending** | **Int32** |  | [optional] 
 **Running** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETClusterSdnVnetsSubnetsRB = Initialize-PVEGETClusterSdnVnetsSubnetsRB  -Pending null `
+$GETClusterSdnVnetsSubnetsRB = Initialize-PVEGETClusterSdnVnetsSubnetsRB  -Subnet null `
  -Vnet null `
- -Subnet null `
+ -Pending null `
  -Running null
 ```
 

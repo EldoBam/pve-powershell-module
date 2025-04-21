@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Node** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Cidr** | **String** |  | [optional] 
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$DELETENodesLxcFirewallIpsetRB = Initialize-PVEDELETENodesLxcFirewallIpsetRB  -Digest null `
+$DELETENodesLxcFirewallIpsetRB = Initialize-PVEDELETENodesLxcFirewallIpsetRB  -Node null `
+ -Digest null `
  -Name null `
- -Node null `
  -Vmid null `
  -Cidr null
 ```

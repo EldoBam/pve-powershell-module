@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Search** | **String** |  | [optional] 
-**Dns1** | **String** |  | [optional] 
 **Dns2** | **String** |  | [optional] 
+**Dns1** | **String** |  | [optional] 
+**Search** | **String** |  | [optional] 
 **Dns3** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesDns = Initialize-PVENodesDns  -Search null `
+$NodesDns = Initialize-PVENodesDns  -Dns2 null `
  -Dns1 null `
- -Dns2 null `
+ -Search null `
  -Dns3 null
 ```
 

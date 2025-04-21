@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Crypted** | **Int32** |  | [optional] 
-**Password** | **String** |  | [optional] 
 **Username** | **String** |  | [optional] 
+**Crypted** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Password** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuAgentSetuserpasswordRB = Initialize-PVEPOSTNodesQemuAgentSetuserpasswordRB  -Vmid null `
- -Node null `
+$POSTNodesQemuAgentSetuserpasswordRB = Initialize-PVEPOSTNodesQemuAgentSetuserpasswordRB  -Username null `
  -Crypted null `
+ -Vmid null `
  -Password null `
- -Username null
+ -Node null
 ```
 
 - Convert the resource to JSON

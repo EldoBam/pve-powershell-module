@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Userid** | **String** |  | [optional] 
-**Password** | **String** |  | [optional] 
 **ConfirmationPassword** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $PUTAccessPasswordRB = Initialize-PVEPUTAccessPasswordRB  -Userid null `
- -Password null `
- -ConfirmationPassword null
+ -ConfirmationPassword null `
+ -Password null
 ```
 
 - Convert the resource to JSON

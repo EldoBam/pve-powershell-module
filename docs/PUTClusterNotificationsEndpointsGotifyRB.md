@@ -5,11 +5,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Comment** | **String** |  | [optional] 
 **Token** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Delete** | **String[]** |  | [optional] 
-**Server** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Disable** | **Int32** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Delete** | **String[]** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 ```powershell
 $PUTClusterNotificationsEndpointsGotifyRB = Initialize-PVEPUTClusterNotificationsEndpointsGotifyRB  -Comment null `
  -Token null `
- -Name null `
- -Delete null `
+ -Disable null `
  -Server null `
+ -Delete null `
  -Digest null `
- -Disable null
+ -Name null
 ```
 
 - Convert the resource to JSON

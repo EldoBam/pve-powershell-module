@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Force** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Snapname** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Force** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesLxcSnapshotRB = Initialize-PVEDELETENodesLxcSnapshotRB  -Force null `
+$DELETENodesLxcSnapshotRB = Initialize-PVEDELETENodesLxcSnapshotRB  -Snapname null `
  -Node null `
- -Snapname null `
- -Vmid null
+ -Vmid null `
+ -Force null
 ```
 
 - Convert the resource to JSON

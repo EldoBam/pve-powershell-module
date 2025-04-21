@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Uuid** | **String** |  | [optional] 
 **Disk** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Uuid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesDisksInitgptRB = Initialize-PVEPOSTNodesDisksInitgptRB  -Disk null `
- -Node null `
- -Uuid null
+$POSTNodesDisksInitgptRB = Initialize-PVEPOSTNodesDisksInitgptRB  -Uuid null `
+ -Disk null `
+ -Node null
 ```
 
 - Convert the resource to JSON

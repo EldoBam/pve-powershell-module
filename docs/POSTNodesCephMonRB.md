@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **MonAddress** | **String** |  | [optional] 
 **Monid** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephMonRB = Initialize-PVEPOSTNodesCephMonRB  -Node null `
- -MonAddress null `
- -Monid null
+$POSTNodesCephMonRB = Initialize-PVEPOSTNodesCephMonRB  -MonAddress null `
+ -Monid null `
+ -Node null
 ```
 
 - Convert the resource to JSON

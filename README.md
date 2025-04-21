@@ -129,6 +129,20 @@ Initialize-PVE
 ```
 done.
 
+### SkipCertificateCheck
+To skip the check, you can enable the SkipCertificateCheck in the configuration, as seen in the example below:
+```powershell
+# insert your Proxmox Credentials according your login method
+$Credentials = Get-Credential
+$LoginMethod = "token"
+Set-PVEConfiguration -BaseUrl "https://pve.local:8006/api2/json" `
+                     -LoginMethod $LoginMethod `
+                     -Credential $Credentials `
+                     -SkipCertificateCheck `
+                     -Persistent
+Initialize-PVE
+```
+
 ## Tests
 Tests are currently not implemented properly. I'm sad to tell, that they're currently useless.
 To install and run `Pester`, please execute the following commands in the terminal:
@@ -245,6 +259,8 @@ Class | Method | HTTP request | Description
 *PVEClusterApi* | [**Get-PVEClusterJobsScheduleanalyze**](docs/PVEClusterApi.md#Get-PVEClusterJobsScheduleanalyze) | **GET** /cluster/jobs/schedule-analyze | Returns a list of future schedule runtimes.
 *PVEClusterApi* | [**Get-PVEClusterLog**](docs/PVEClusterApi.md#Get-PVEClusterLog) | **GET** /cluster/log | Read cluster log
 *PVEClusterApi* | [**Get-PVEClusterMapping**](docs/PVEClusterApi.md#Get-PVEClusterMapping) | **GET** /cluster/mapping | List resource types.
+*PVEClusterApi* | [**Get-PVEClusterMappingDir**](docs/PVEClusterApi.md#Get-PVEClusterMappingDir) | **GET** /cluster/mapping/dir | List directory mapping
+*PVEClusterApi* | [**Get-PVEClusterMappingDirById**](docs/PVEClusterApi.md#Get-PVEClusterMappingDirById) | **GET** /cluster/mapping/dir/{id} | Get directory mapping.
 *PVEClusterApi* | [**Get-PVEClusterMappingPci**](docs/PVEClusterApi.md#Get-PVEClusterMappingPci) | **GET** /cluster/mapping/pci | List PCI Hardware Mapping
 *PVEClusterApi* | [**Get-PVEClusterMappingPciById**](docs/PVEClusterApi.md#Get-PVEClusterMappingPciById) | **GET** /cluster/mapping/pci/{id} | Get PCI Mapping.
 *PVEClusterApi* | [**Get-PVEClusterMappingUsb**](docs/PVEClusterApi.md#Get-PVEClusterMappingUsb) | **GET** /cluster/mapping/usb | List USB Hardware Mappings
@@ -310,6 +326,7 @@ Class | Method | HTTP request | Description
 *PVEClusterApi* | [**New-PVEClusterHaResourcesMigrateBySid**](docs/PVEClusterApi.md#New-PVEClusterHaResourcesMigrateBySid) | **POST** /cluster/ha/resources/{sid}/migrate | Request resource migration (online) to another node.
 *PVEClusterApi* | [**New-PVEClusterHaResourcesRelocateBySid**](docs/PVEClusterApi.md#New-PVEClusterHaResourcesRelocateBySid) | **POST** /cluster/ha/resources/{sid}/relocate | Request resource relocatzion to another node. This stops the service on the old node, and restarts it on the target node.
 *PVEClusterApi* | [**New-PVEClusterJobsRealmsyncById**](docs/PVEClusterApi.md#New-PVEClusterJobsRealmsyncById) | **POST** /cluster/jobs/realm-sync/{id} | Create new realm-sync job.
+*PVEClusterApi* | [**New-PVEClusterMappingDir**](docs/PVEClusterApi.md#New-PVEClusterMappingDir) | **POST** /cluster/mapping/dir | Create a new directory mapping.
 *PVEClusterApi* | [**New-PVEClusterMappingPci**](docs/PVEClusterApi.md#New-PVEClusterMappingPci) | **POST** /cluster/mapping/pci | Create a new hardware mapping.
 *PVEClusterApi* | [**New-PVEClusterMappingUsb**](docs/PVEClusterApi.md#New-PVEClusterMappingUsb) | **POST** /cluster/mapping/usb | Create a new hardware mapping.
 *PVEClusterApi* | [**New-PVEClusterMetricsServerById**](docs/PVEClusterApi.md#New-PVEClusterMetricsServerById) | **POST** /cluster/metrics/server/{id} | Create a new external metric server config
@@ -341,6 +358,7 @@ Class | Method | HTTP request | Description
 *PVEClusterApi* | [**Remove-PVEClusterHaGroupsByGroup**](docs/PVEClusterApi.md#Remove-PVEClusterHaGroupsByGroup) | **DELETE** /cluster/ha/groups/{group} | Delete ha group configuration.
 *PVEClusterApi* | [**Remove-PVEClusterHaResourcesBySid**](docs/PVEClusterApi.md#Remove-PVEClusterHaResourcesBySid) | **DELETE** /cluster/ha/resources/{sid} | Delete resource configuration.
 *PVEClusterApi* | [**Remove-PVEClusterJobsRealmsyncById**](docs/PVEClusterApi.md#Remove-PVEClusterJobsRealmsyncById) | **DELETE** /cluster/jobs/realm-sync/{id} | Delete realm-sync job definition.
+*PVEClusterApi* | [**Remove-PVEClusterMappingDirById**](docs/PVEClusterApi.md#Remove-PVEClusterMappingDirById) | **DELETE** /cluster/mapping/dir/{id} | Remove directory mapping.
 *PVEClusterApi* | [**Remove-PVEClusterMappingPciById**](docs/PVEClusterApi.md#Remove-PVEClusterMappingPciById) | **DELETE** /cluster/mapping/pci/{id} | Remove Hardware Mapping.
 *PVEClusterApi* | [**Remove-PVEClusterMappingUsbById**](docs/PVEClusterApi.md#Remove-PVEClusterMappingUsbById) | **DELETE** /cluster/mapping/usb/{id} | Remove Hardware Mapping.
 *PVEClusterApi* | [**Remove-PVEClusterMetricsServerById**](docs/PVEClusterApi.md#Remove-PVEClusterMetricsServerById) | **DELETE** /cluster/metrics/server/{id} | Remove Metric server.
@@ -371,6 +389,7 @@ Class | Method | HTTP request | Description
 *PVEClusterApi* | [**Set-PVEClusterHaGroupsByGroup**](docs/PVEClusterApi.md#Set-PVEClusterHaGroupsByGroup) | **PUT** /cluster/ha/groups/{group} | Update ha group configuration.
 *PVEClusterApi* | [**Set-PVEClusterHaResourcesBySid**](docs/PVEClusterApi.md#Set-PVEClusterHaResourcesBySid) | **PUT** /cluster/ha/resources/{sid} | Update resource configuration.
 *PVEClusterApi* | [**Set-PVEClusterJobsRealmsyncById**](docs/PVEClusterApi.md#Set-PVEClusterJobsRealmsyncById) | **PUT** /cluster/jobs/realm-sync/{id} | Update realm-sync job definition.
+*PVEClusterApi* | [**Set-PVEClusterMappingDirById**](docs/PVEClusterApi.md#Set-PVEClusterMappingDirById) | **PUT** /cluster/mapping/dir/{id} | Update a directory mapping.
 *PVEClusterApi* | [**Set-PVEClusterMappingPciById**](docs/PVEClusterApi.md#Set-PVEClusterMappingPciById) | **PUT** /cluster/mapping/pci/{id} | Update a hardware mapping.
 *PVEClusterApi* | [**Set-PVEClusterMappingUsbById**](docs/PVEClusterApi.md#Set-PVEClusterMappingUsbById) | **PUT** /cluster/mapping/usb/{id} | Update a hardware mapping.
 *PVEClusterApi* | [**Set-PVEClusterMetricsServerById**](docs/PVEClusterApi.md#Set-PVEClusterMetricsServerById) | **PUT** /cluster/metrics/server/{id} | Update metric server configuration.
@@ -666,8 +685,8 @@ Class | Method | HTTP request | Description
 *PVENodesApi* | [**New-PVENodesStopallByNode**](docs/PVENodesApi.md#New-PVENodesStopallByNode) | **POST** /nodes/{node}/stopall | Stop all VMs and Containers.
 *PVENodesApi* | [**New-PVENodesStorageContentByNodeAndStorage**](docs/PVENodesApi.md#New-PVENodesStorageContentByNodeAndStorage) | **POST** /nodes/{node}/storage/{storage}/content | Allocate disk images.
 *PVENodesApi* | [**New-PVENodesStorageContentByNodeAndStorageAndVolume**](docs/PVENodesApi.md#New-PVENodesStorageContentByNodeAndStorageAndVolume) | **POST** /nodes/{node}/storage/{storage}/content/{volume} | Copy a volume. This is experimental code - do not use.
-*PVENodesApi* | [**New-PVENodesStorageDownloadurlByNodeAndStorage**](docs/PVENodesApi.md#New-PVENodesStorageDownloadurlByNodeAndStorage) | **POST** /nodes/{node}/storage/{storage}/download-url | Download templates, ISO images and OVAs by using an URL.
-*PVENodesApi* | [**New-PVENodesStorageUploadByNodeAndStorage**](docs/PVENodesApi.md#New-PVENodesStorageUploadByNodeAndStorage) | **POST** /nodes/{node}/storage/{storage}/upload | Upload templates, ISO images and OVAs.
+*PVENodesApi* | [**New-PVENodesStorageDownloadurlByNodeAndStorage**](docs/PVENodesApi.md#New-PVENodesStorageDownloadurlByNodeAndStorage) | **POST** /nodes/{node}/storage/{storage}/download-url | Download templates, ISO images, OVAs and VM images by using an URL.
+*PVENodesApi* | [**New-PVENodesStorageUploadByNodeAndStorage**](docs/PVENodesApi.md#New-PVENodesStorageUploadByNodeAndStorage) | **POST** /nodes/{node}/storage/{storage}/upload | Upload templates, ISO images, OVAs and VM images.
 *PVENodesApi* | [**New-PVENodesSubscriptionByNode**](docs/PVENodesApi.md#New-PVENodesSubscriptionByNode) | **POST** /nodes/{node}/subscription | Update subscription info.
 *PVENodesApi* | [**New-PVENodesSuspendallByNode**](docs/PVENodesApi.md#New-PVENodesSuspendallByNode) | **POST** /nodes/{node}/suspendall | Suspend all VMs.
 *PVENodesApi* | [**New-PVENodesTermproxyByNode**](docs/PVENodesApi.md#New-PVENodesTermproxyByNode) | **POST** /nodes/{node}/termproxy | Creates a VNC Shell proxy.
@@ -795,22 +814,22 @@ Class | Method | HTTP request | Description
  - [ProxmoxPVE\Model.ClusterConfigJoinNodelistInner](docs/ClusterConfigJoinNodelistInner.md)
  - [ProxmoxPVE\Model.ClusterConfigNodes](docs/ClusterConfigNodes.md)
  - [ProxmoxPVE\Model.ClusterConfigNodesGETInner](docs/ClusterConfigNodesGETInner.md)
- - [ProxmoxPVE\Model.ClusterFirewallAliasesInner](docs/ClusterFirewallAliasesInner.md)
  - [ProxmoxPVE\Model.ClusterFirewallGroups](docs/ClusterFirewallGroups.md)
- - [ProxmoxPVE\Model.ClusterFirewallGroupsGETAVInner](docs/ClusterFirewallGroupsGETAVInner.md)
  - [ProxmoxPVE\Model.ClusterFirewallGroupsGETInner](docs/ClusterFirewallGroupsGETInner.md)
- - [ProxmoxPVE\Model.ClusterFirewallIpsetGETInner](docs/ClusterFirewallIpsetGETInner.md)
+ - [ProxmoxPVE\Model.ClusterFirewallIpsetInner](docs/ClusterFirewallIpsetInner.md)
  - [ProxmoxPVE\Model.ClusterFirewallMacrosInner](docs/ClusterFirewallMacrosInner.md)
  - [ProxmoxPVE\Model.ClusterFirewallOptions](docs/ClusterFirewallOptions.md)
+ - [ProxmoxPVE\Model.ClusterFirewallRefsInner](docs/ClusterFirewallRefsInner.md)
  - [ProxmoxPVE\Model.ClusterFirewallRules](docs/ClusterFirewallRules.md)
  - [ProxmoxPVE\Model.ClusterHaGroupsInner](docs/ClusterHaGroupsInner.md)
+ - [ProxmoxPVE\Model.ClusterHaInner](docs/ClusterHaInner.md)
  - [ProxmoxPVE\Model.ClusterHaResources](docs/ClusterHaResources.md)
  - [ProxmoxPVE\Model.ClusterHaResourcesGETInner](docs/ClusterHaResourcesGETInner.md)
  - [ProxmoxPVE\Model.ClusterHaStatusCurrentInner](docs/ClusterHaStatusCurrentInner.md)
  - [ProxmoxPVE\Model.ClusterJobsRealmsyncInner](docs/ClusterJobsRealmsyncInner.md)
  - [ProxmoxPVE\Model.ClusterJobsScheduleanalyzeInner](docs/ClusterJobsScheduleanalyzeInner.md)
- - [ProxmoxPVE\Model.ClusterMappingPciInner](docs/ClusterMappingPciInner.md)
- - [ProxmoxPVE\Model.ClusterMappingPciInnerChecksInner](docs/ClusterMappingPciInnerChecksInner.md)
+ - [ProxmoxPVE\Model.ClusterMappingDirInner](docs/ClusterMappingDirInner.md)
+ - [ProxmoxPVE\Model.ClusterMappingDirInnerChecksInner](docs/ClusterMappingDirInnerChecksInner.md)
  - [ProxmoxPVE\Model.ClusterMappingUsbInner](docs/ClusterMappingUsbInner.md)
  - [ProxmoxPVE\Model.ClusterMetricsExport](docs/ClusterMetricsExport.md)
  - [ProxmoxPVE\Model.ClusterMetricsExportDataInner](docs/ClusterMetricsExportDataInner.md)
@@ -823,7 +842,6 @@ Class | Method | HTTP request | Description
  - [ProxmoxPVE\Model.ClusterNotificationsEndpointsSmtpGETInner](docs/ClusterNotificationsEndpointsSmtpGETInner.md)
  - [ProxmoxPVE\Model.ClusterNotificationsEndpointsWebhook](docs/ClusterNotificationsEndpointsWebhook.md)
  - [ProxmoxPVE\Model.ClusterNotificationsEndpointsWebhookGETInner](docs/ClusterNotificationsEndpointsWebhookGETInner.md)
- - [ProxmoxPVE\Model.ClusterNotificationsMatcherfieldsInner](docs/ClusterNotificationsMatcherfieldsInner.md)
  - [ProxmoxPVE\Model.ClusterNotificationsMatcherfieldvaluesInner](docs/ClusterNotificationsMatcherfieldvaluesInner.md)
  - [ProxmoxPVE\Model.ClusterNotificationsMatchers](docs/ClusterNotificationsMatchers.md)
  - [ProxmoxPVE\Model.ClusterNotificationsMatchersGETInner](docs/ClusterNotificationsMatchersGETInner.md)
@@ -834,6 +852,7 @@ Class | Method | HTTP request | Description
  - [ProxmoxPVE\Model.ClusterSdnIpamsInner](docs/ClusterSdnIpamsInner.md)
  - [ProxmoxPVE\Model.ClusterSdnVnetsFirewallOptions](docs/ClusterSdnVnetsFirewallOptions.md)
  - [ProxmoxPVE\Model.ClusterSdnVnetsFirewallRules](docs/ClusterSdnVnetsFirewallRules.md)
+ - [ProxmoxPVE\Model.ClusterSdnVnetsFirewallRulesGETInner](docs/ClusterSdnVnetsFirewallRulesGETInner.md)
  - [ProxmoxPVE\Model.ClusterSdnZonesInner](docs/ClusterSdnZonesInner.md)
  - [ProxmoxPVE\Model.ClusterStatusInner](docs/ClusterStatusInner.md)
  - [ProxmoxPVE\Model.ClusterTasksInner](docs/ClusterTasksInner.md)
@@ -878,6 +897,7 @@ Class | Method | HTTP request | Description
  - [ProxmoxPVE\Model.GETClusterHaResourcesRB](docs/GETClusterHaResourcesRB.md)
  - [ProxmoxPVE\Model.GETClusterJobsScheduleanalyzeRB](docs/GETClusterJobsScheduleanalyzeRB.md)
  - [ProxmoxPVE\Model.GETClusterLogRB](docs/GETClusterLogRB.md)
+ - [ProxmoxPVE\Model.GETClusterMappingDirRB](docs/GETClusterMappingDirRB.md)
  - [ProxmoxPVE\Model.GETClusterMappingPciRB](docs/GETClusterMappingPciRB.md)
  - [ProxmoxPVE\Model.GETClusterMappingUsbRB](docs/GETClusterMappingUsbRB.md)
  - [ProxmoxPVE\Model.GETClusterMetricsExportRB](docs/GETClusterMetricsExportRB.md)
@@ -950,7 +970,6 @@ Class | Method | HTTP request | Description
  - [ProxmoxPVE\Model.GETNodesVzdumpExtractconfigRB](docs/GETNodesVzdumpExtractconfigRB.md)
  - [ProxmoxPVE\Model.GETPoolsRB](docs/GETPoolsRB.md)
  - [ProxmoxPVE\Model.GETStorageRB](docs/GETStorageRB.md)
- - [ProxmoxPVE\Model.NodesAptInner](docs/NodesAptInner.md)
  - [ProxmoxPVE\Model.NodesAptRepositories](docs/NodesAptRepositories.md)
  - [ProxmoxPVE\Model.NodesAptRepositoriesErrorsInner](docs/NodesAptRepositoriesErrorsInner.md)
  - [ProxmoxPVE\Model.NodesAptRepositoriesFilesInner](docs/NodesAptRepositoriesFilesInner.md)
@@ -972,6 +991,7 @@ Class | Method | HTTP request | Description
  - [ProxmoxPVE\Model.NodesCephOsdMetadataOsd](docs/NodesCephOsdMetadataOsd.md)
  - [ProxmoxPVE\Model.NodesCephPoolInner](docs/NodesCephPoolInner.md)
  - [ProxmoxPVE\Model.NodesCephPoolStatus](docs/NodesCephPoolStatus.md)
+ - [ProxmoxPVE\Model.NodesCephRulesInner](docs/NodesCephRulesInner.md)
  - [ProxmoxPVE\Model.NodesCertificatesCustom](docs/NodesCertificatesCustom.md)
  - [ProxmoxPVE\Model.NodesCertificatesInfoInner](docs/NodesCertificatesInfoInner.md)
  - [ProxmoxPVE\Model.NodesConfig](docs/NodesConfig.md)
@@ -997,11 +1017,13 @@ Class | Method | HTTP request | Description
  - [ProxmoxPVE\Model.NodesInner](docs/NodesInner.md)
  - [ProxmoxPVE\Model.NodesLxcConfig](docs/NodesLxcConfig.md)
  - [ProxmoxPVE\Model.NodesLxcFeature](docs/NodesLxcFeature.md)
- - [ProxmoxPVE\Model.NodesLxcFirewallIpsetInner](docs/NodesLxcFirewallIpsetInner.md)
+ - [ProxmoxPVE\Model.NodesLxcFirewallAliasesInner](docs/NodesLxcFirewallAliasesInner.md)
+ - [ProxmoxPVE\Model.NodesLxcFirewallLogInner](docs/NodesLxcFirewallLogInner.md)
  - [ProxmoxPVE\Model.NodesLxcFirewallOptions](docs/NodesLxcFirewallOptions.md)
  - [ProxmoxPVE\Model.NodesLxcFirewallRules](docs/NodesLxcFirewallRules.md)
  - [ProxmoxPVE\Model.NodesLxcInner](docs/NodesLxcInner.md)
  - [ProxmoxPVE\Model.NodesLxcInterfacesInner](docs/NodesLxcInterfacesInner.md)
+ - [ProxmoxPVE\Model.NodesLxcInterfacesInnerIpAddressesInner](docs/NodesLxcInterfacesInnerIpAddressesInner.md)
  - [ProxmoxPVE\Model.NodesLxcMtunnelwebsocket](docs/NodesLxcMtunnelwebsocket.md)
  - [ProxmoxPVE\Model.NodesLxcPendingInner](docs/NodesLxcPendingInner.md)
  - [ProxmoxPVE\Model.NodesLxcRrd](docs/NodesLxcRrd.md)
@@ -1009,24 +1031,26 @@ Class | Method | HTTP request | Description
  - [ProxmoxPVE\Model.NodesLxcStatusCurrent](docs/NodesLxcStatusCurrent.md)
  - [ProxmoxPVE\Model.NodesLxcVncwebsocket](docs/NodesLxcVncwebsocket.md)
  - [ProxmoxPVE\Model.NodesNetwork](docs/NodesNetwork.md)
+ - [ProxmoxPVE\Model.NodesNetworkGETInner](docs/NodesNetworkGETInner.md)
  - [ProxmoxPVE\Model.NodesQemuAgentExec](docs/NodesQemuAgentExec.md)
  - [ProxmoxPVE\Model.NodesQemuAgentExecstatus](docs/NodesQemuAgentExecstatus.md)
  - [ProxmoxPVE\Model.NodesQemuAgentFileread](docs/NodesQemuAgentFileread.md)
  - [ProxmoxPVE\Model.NodesQemuCloudinitInner](docs/NodesQemuCloudinitInner.md)
  - [ProxmoxPVE\Model.NodesQemuConfig](docs/NodesQemuConfig.md)
  - [ProxmoxPVE\Model.NodesQemuFeature](docs/NodesQemuFeature.md)
+ - [ProxmoxPVE\Model.NodesQemuFirewallIpsetGETInner](docs/NodesQemuFirewallIpsetGETInner.md)
  - [ProxmoxPVE\Model.NodesQemuFirewallOptions](docs/NodesQemuFirewallOptions.md)
- - [ProxmoxPVE\Model.NodesQemuFirewallRefsInner](docs/NodesQemuFirewallRefsInner.md)
  - [ProxmoxPVE\Model.NodesQemuFirewallRules](docs/NodesQemuFirewallRules.md)
  - [ProxmoxPVE\Model.NodesQemuInner](docs/NodesQemuInner.md)
  - [ProxmoxPVE\Model.NodesQemuMigrate](docs/NodesQemuMigrate.md)
+ - [ProxmoxPVE\Model.NodesQemuMigrateLocalDisksInner](docs/NodesQemuMigrateLocalDisksInner.md)
+ - [ProxmoxPVE\Model.NodesQemuMigrateNotAllowedNodes](docs/NodesQemuMigrateNotAllowedNodes.md)
  - [ProxmoxPVE\Model.NodesQemuMtunnelwebsocket](docs/NodesQemuMtunnelwebsocket.md)
  - [ProxmoxPVE\Model.NodesQemuRrd](docs/NodesQemuRrd.md)
  - [ProxmoxPVE\Model.NodesQemuSnapshotInner](docs/NodesQemuSnapshotInner.md)
  - [ProxmoxPVE\Model.NodesQemuStatusCurrent](docs/NodesQemuStatusCurrent.md)
  - [ProxmoxPVE\Model.NodesQemuVncwebsocket](docs/NodesQemuVncwebsocket.md)
  - [ProxmoxPVE\Model.NodesQueryurlmetadata](docs/NodesQueryurlmetadata.md)
- - [ProxmoxPVE\Model.NodesReplicationLogInner](docs/NodesReplicationLogInner.md)
  - [ProxmoxPVE\Model.NodesRrd](docs/NodesRrd.md)
  - [ProxmoxPVE\Model.NodesScanCifsInner](docs/NodesScanCifsInner.md)
  - [ProxmoxPVE\Model.NodesScanGlusterfsInner](docs/NodesScanGlusterfsInner.md)
@@ -1040,7 +1064,10 @@ Class | Method | HTTP request | Description
  - [ProxmoxPVE\Model.NodesSdnZonesInner](docs/NodesSdnZonesInner.md)
  - [ProxmoxPVE\Model.NodesStatus](docs/NodesStatus.md)
  - [ProxmoxPVE\Model.NodesStatusBootInfo](docs/NodesStatusBootInfo.md)
+ - [ProxmoxPVE\Model.NodesStatusCpuinfo](docs/NodesStatusCpuinfo.md)
  - [ProxmoxPVE\Model.NodesStatusCurrentKernel](docs/NodesStatusCurrentKernel.md)
+ - [ProxmoxPVE\Model.NodesStatusMemory](docs/NodesStatusMemory.md)
+ - [ProxmoxPVE\Model.NodesStatusRootfs](docs/NodesStatusRootfs.md)
  - [ProxmoxPVE\Model.NodesStorageContent](docs/NodesStorageContent.md)
  - [ProxmoxPVE\Model.NodesStorageContentGETInner](docs/NodesStorageContentGETInner.md)
  - [ProxmoxPVE\Model.NodesStorageContentGETInnerVerification](docs/NodesStorageContentGETInnerVerification.md)
@@ -1082,6 +1109,7 @@ Class | Method | HTTP request | Description
  - [ProxmoxPVE\Model.POSTClusterHaResourcesRB](docs/POSTClusterHaResourcesRB.md)
  - [ProxmoxPVE\Model.POSTClusterHaResourcesRelocateRB](docs/POSTClusterHaResourcesRelocateRB.md)
  - [ProxmoxPVE\Model.POSTClusterJobsRealmsyncRB](docs/POSTClusterJobsRealmsyncRB.md)
+ - [ProxmoxPVE\Model.POSTClusterMappingDirRB](docs/POSTClusterMappingDirRB.md)
  - [ProxmoxPVE\Model.POSTClusterMappingPciRB](docs/POSTClusterMappingPciRB.md)
  - [ProxmoxPVE\Model.POSTClusterMappingUsbRB](docs/POSTClusterMappingUsbRB.md)
  - [ProxmoxPVE\Model.POSTClusterMetricsServerRB](docs/POSTClusterMetricsServerRB.md)
@@ -1203,6 +1231,7 @@ Class | Method | HTTP request | Description
  - [ProxmoxPVE\Model.PUTClusterHaGroupsRB](docs/PUTClusterHaGroupsRB.md)
  - [ProxmoxPVE\Model.PUTClusterHaResourcesRB](docs/PUTClusterHaResourcesRB.md)
  - [ProxmoxPVE\Model.PUTClusterJobsRealmsyncRB](docs/PUTClusterJobsRealmsyncRB.md)
+ - [ProxmoxPVE\Model.PUTClusterMappingDirRB](docs/PUTClusterMappingDirRB.md)
  - [ProxmoxPVE\Model.PUTClusterMappingPciRB](docs/PUTClusterMappingPciRB.md)
  - [ProxmoxPVE\Model.PUTClusterMappingUsbRB](docs/PUTClusterMappingUsbRB.md)
  - [ProxmoxPVE\Model.PUTClusterMetricsServerRB](docs/PUTClusterMetricsServerRB.md)

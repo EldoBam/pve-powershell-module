@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Digest** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $DELETENodesQemuFirewallAliasesRB = Initialize-PVEDELETENodesQemuFirewallAliasesRB  -Digest null `
  -Name null `
- -Node null `
- -Vmid null
+ -Vmid null `
+ -Node null
 ```
 
 - Convert the resource to JSON

@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PublicKeyType** | **String** |  | [optional] 
-**Subject** | **String** |  | [optional] 
-**Fingerprint** | **String** |  | [optional] 
 **Notafter** | **Int32** |  | [optional] 
-**PublicKeyBits** | **Int32** |  | [optional] 
-**Notbefore** | **Int32** |  | [optional] 
-**San** | **String[]** |  | [optional] 
-**Filename** | **String** |  | [optional] 
-**Pem** | **String** |  | [optional] 
 **Issuer** | **String** |  | [optional] 
+**PublicKeyType** | **String** |  | [optional] 
+**Pem** | **String** |  | [optional] 
+**Filename** | **String** |  | [optional] 
+**San** | **String[]** |  | [optional] 
+**Notbefore** | **Int32** |  | [optional] 
+**Fingerprint** | **String** |  | [optional] 
+**Subject** | **String** |  | [optional] 
+**PublicKeyBits** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCertificatesInfoInner = Initialize-PVENodesCertificatesInfoInner  -PublicKeyType null `
- -Subject null `
- -Fingerprint null `
- -Notafter null `
- -PublicKeyBits null `
- -Notbefore null `
- -San null `
- -Filename null `
+$NodesCertificatesInfoInner = Initialize-PVENodesCertificatesInfoInner  -Notafter null `
+ -Issuer null `
+ -PublicKeyType null `
  -Pem null `
- -Issuer null
+ -Filename null `
+ -San null `
+ -Notbefore null `
+ -Fingerprint null `
+ -Subject null `
+ -PublicKeyBits null
 ```
 
 - Convert the resource to JSON

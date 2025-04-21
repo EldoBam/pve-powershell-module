@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **File** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuAgentFilereadRB = Initialize-PVEGETNodesQemuAgentFilereadRB  -Node null `
+$GETNodesQemuAgentFilereadRB = Initialize-PVEGETNodesQemuAgentFilereadRB  -File null `
  -Vmid null `
- -File null
+ -Node null
 ```
 
 - Convert the resource to JSON

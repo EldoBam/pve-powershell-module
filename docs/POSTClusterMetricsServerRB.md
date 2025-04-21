@@ -3,43 +3,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Path** | **String** |  | [optional] 
-**Bucket** | **String** |  | [optional] 
-**Token** | **String** |  | [optional] 
 **Influxdbproto** | **String** |  | [optional] 
-**Server** | **String** |  | [optional] 
-**MaxBodySize** | **Int32** |  | [optional] 
-**ApiPathPrefix** | **String** |  | [optional] 
-**Timeout** | **Int32** |  | [optional] 
-**Organization** | **String** |  | [optional] 
 **Proto** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**VerifyCertificate** | **Int32** |  | [optional] 
-**Disable** | **Int32** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
 **Mtu** | **Int32** |  | [optional] 
+**Path** | **String** |  | [optional] 
+**ApiPathPrefix** | **String** |  | [optional] 
+**Disable** | **Int32** |  | [optional] 
+**VerifyCertificate** | **Int32** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**Organization** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Bucket** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**MaxBodySize** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Token** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterMetricsServerRB = Initialize-PVEPOSTClusterMetricsServerRB  -Path null `
- -Bucket null `
- -Token null `
- -Influxdbproto null `
- -Server null `
- -MaxBodySize null `
- -ApiPathPrefix null `
- -Timeout null `
- -Organization null `
+$POSTClusterMetricsServerRB = Initialize-PVEPOSTClusterMetricsServerRB  -Influxdbproto null `
  -Proto null `
- -Id null `
- -Port null `
- -Type null `
- -VerifyCertificate null `
+ -Timeout null `
+ -Mtu null `
+ -Path null `
+ -ApiPathPrefix null `
  -Disable null `
- -Mtu null
+ -VerifyCertificate null `
+ -Port null `
+ -Organization null `
+ -Server null `
+ -Bucket null `
+ -Id null `
+ -MaxBodySize null `
+ -Type null `
+ -Token null
 ```
 
 - Convert the resource to JSON

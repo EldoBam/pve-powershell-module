@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
 **Groupid** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTAccessGroupsRB = Initialize-PVEPUTAccessGroupsRB  -Comment null `
- -Groupid null
+$PUTAccessGroupsRB = Initialize-PVEPUTAccessGroupsRB  -Groupid null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

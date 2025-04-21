@@ -4,11 +4,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ValidationDelay** | **Int32** |  | [optional] 
-**VarData** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Api** | **String** |  | [optional] 
 **Nodes** | **String** |  | [optional] 
+**Api** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**VarData** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Disable** | **Int32** |  | [optional] 
 
 ## Examples
@@ -16,11 +16,11 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $POSTClusterAcmePluginsRB = Initialize-PVEPOSTClusterAcmePluginsRB  -ValidationDelay null `
- -VarData null `
- -Id null `
- -Type null `
- -Api null `
  -Nodes null `
+ -Api null `
+ -Id null `
+ -VarData null `
+ -Type null `
  -Disable null
 ```
 

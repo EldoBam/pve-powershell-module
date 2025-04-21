@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Source** | **String** |  | [optional] 
+**RemoveJob** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Disable** | **Int32** |  | [optional] 
 **Id** | **String** |  | [optional] 
+**Schedule** | **String** |  | [optional] 
+**Target** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 **Rate** | **Decimal** |  | [optional] 
-**RemoveJob** | **String** |  | [optional] 
-**Target** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Schedule** | **String** |  | [optional] 
-**Disable** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterReplicationRB = Initialize-PVEPOSTClusterReplicationRB  -Comment null `
- -Id null `
- -Type null `
- -Rate null `
+$POSTClusterReplicationRB = Initialize-PVEPOSTClusterReplicationRB  -Source null `
  -RemoveJob null `
- -Target null `
- -Source null `
+ -Comment null `
+ -Disable null `
+ -Id null `
  -Schedule null `
- -Disable null
+ -Target null `
+ -Type null `
+ -Rate null
 ```
 
 - Convert the resource to JSON

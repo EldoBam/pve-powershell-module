@@ -3,55 +3,57 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Crs** | **String** |  | [optional] 
+**Language** | **String** |  | [optional] 
+**ConsentText** | **String** |  | [optional] 
+**Keyboard** | **String** |  | [optional] 
+**TagStyle** | **String** |  | [optional] 
+**MigrationUnsecure** | **Int32** |  | [optional] 
+**MacPrefix** | **String** |  | [optional] 
+**RegisteredTags** | **String** |  | [optional] 
 **Migration** | **String** |  | [optional] 
-**Webauthn** | **String** |  | [optional] 
+**NextId** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Ha** | **String** |  | [optional] 
+**UserTagAccess** | **String** |  | [optional] 
 **Console** | **String** |  | [optional] 
+**U2f** | **String** |  | [optional] 
 **MaxWorkers** | **Int32** |  | [optional] 
 **EmailFrom** | **String** |  | [optional] 
-**TagStyle** | **String** |  | [optional] 
-**Ha** | **String** |  | [optional] 
-**Fencing** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**MacPrefix** | **String** |  | [optional] 
-**HttpProxy** | **String** |  | [optional] 
-**MigrationUnsecure** | **Int32** |  | [optional] 
-**Language** | **String** |  | [optional] 
-**NextId** | **String** |  | [optional] 
-**Keyboard** | **String** |  | [optional] 
-**UserTagAccess** | **String** |  | [optional] 
-**RegisteredTags** | **String** |  | [optional] 
-**Notify** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**U2f** | **String** |  | [optional] 
+**Fencing** | **String** |  | [optional] 
 **Bwlimit** | **String** |  | [optional] 
-**Crs** | **String** |  | [optional] 
+**Notify** | **String** |  | [optional] 
+**HttpProxy** | **String** |  | [optional] 
+**Webauthn** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterOptionsRB = Initialize-PVEPUTClusterOptionsRB  -Migration null `
- -Webauthn null `
+$PUTClusterOptionsRB = Initialize-PVEPUTClusterOptionsRB  -Crs null `
+ -Language null `
+ -ConsentText null `
+ -Keyboard null `
+ -TagStyle null `
+ -MigrationUnsecure null `
+ -MacPrefix null `
+ -RegisteredTags null `
+ -Migration null `
+ -NextId null `
+ -Description null `
+ -Ha null `
+ -UserTagAccess null `
  -Console null `
+ -U2f null `
  -MaxWorkers null `
  -EmailFrom null `
- -TagStyle null `
- -Ha null `
- -Fencing null `
  -Delete null `
- -MacPrefix null `
- -HttpProxy null `
- -MigrationUnsecure null `
- -Language null `
- -NextId null `
- -Keyboard null `
- -UserTagAccess null `
- -RegisteredTags null `
- -Notify null `
- -Description null `
- -U2f null `
+ -Fencing null `
  -Bwlimit null `
- -Crs null
+ -Notify null `
+ -HttpProxy null `
+ -Webauthn null
 ```
 
 - Convert the resource to JSON

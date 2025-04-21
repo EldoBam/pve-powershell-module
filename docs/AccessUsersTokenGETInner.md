@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Expire** | **Int32** |  | [optional] 
 **Privsep** | **Int32** |  | [optional] 
-**Tokenid** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Tokenid** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $AccessUsersTokenGETInner = Initialize-PVEAccessUsersTokenGETInner  -Expire null `
  -Privsep null `
- -Tokenid null `
- -Comment null
+ -Comment null `
+ -Tokenid null
 ```
 
 - Convert the resource to JSON

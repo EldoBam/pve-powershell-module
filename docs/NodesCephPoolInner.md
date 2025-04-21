@@ -3,45 +3,45 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CrushRule** | **Int32** |  | [optional] 
-**BytesUsed** | **Int32** |  | [optional] 
-**ApplicationMetadata** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**PgNum** | **Int32** |  | [optional] 
-**PgNumFinal** | **Int32** |  | [optional] 
-**CrushRuleName** | **String** |  | [optional] 
-**Pool** | **Int32** |  | [optional] 
-**MinSize** | **Int32** |  | [optional] 
-**Size** | **Int32** |  | [optional] 
-**PercentUsed** | **Decimal** |  | [optional] 
 **PoolName** | **String** |  | [optional] 
-**TargetSizeRatio** | **Decimal** |  | [optional] 
-**AutoscaleStatus** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**Type** | **String** |  | [optional] 
 **PgNumMin** | **Int32** |  | [optional] 
 **TargetSize** | **Int32** |  | [optional] 
+**PgNumFinal** | **Int32** |  | [optional] 
 **PgAutoscaleMode** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**CrushRule** | **Int32** |  | [optional] 
+**CrushRuleName** | **String** |  | [optional] 
+**ApplicationMetadata** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**BytesUsed** | **Int32** |  | [optional] 
+**Pool** | **Int32** |  | [optional] 
+**Size** | **Int32** |  | [optional] 
+**PercentUsed** | **Decimal** |  | [optional] 
+**AutoscaleStatus** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**PgNum** | **Int32** |  | [optional] 
+**MinSize** | **Int32** |  | [optional] 
+**TargetSizeRatio** | **Decimal** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephPoolInner = Initialize-PVENodesCephPoolInner  -CrushRule null `
- -BytesUsed null `
- -ApplicationMetadata null `
- -PgNum null `
- -PgNumFinal null `
- -CrushRuleName null `
- -Pool null `
- -MinSize null `
- -Size null `
- -PercentUsed null `
- -PoolName null `
- -TargetSizeRatio null `
- -AutoscaleStatus null `
- -Type null `
+$NodesCephPoolInner = Initialize-PVENodesCephPoolInner  -PoolName null `
  -PgNumMin null `
  -TargetSize null `
- -PgAutoscaleMode null
+ -PgNumFinal null `
+ -PgAutoscaleMode null `
+ -Type null `
+ -CrushRule null `
+ -CrushRuleName null `
+ -ApplicationMetadata null `
+ -BytesUsed null `
+ -Pool null `
+ -Size null `
+ -PercentUsed null `
+ -AutoscaleStatus null `
+ -PgNum null `
+ -MinSize null `
+ -TargetSizeRatio null
 ```
 
 - Convert the resource to JSON

@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Scope** | **String** |  | [optional] 
-**EnableNew** | **Int32** |  | [optional] 
-**Schedule** | **String** |  | [optional] 
-**RemoveVanished** | **String** |  | [optional] 
 **Realm** | **String** |  | [optional] 
+**Scope** | **String** |  | [optional] 
+**RemoveVanished** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**EnableNew** | **Int32** |  | [optional] 
+**Id** | **String** |  | [optional] 
 **Enabled** | **Int32** |  | [optional] 
+**Schedule** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterJobsRealmsyncRB = Initialize-PVEPOSTClusterJobsRealmsyncRB  -Comment null `
- -Id null `
+$POSTClusterJobsRealmsyncRB = Initialize-PVEPOSTClusterJobsRealmsyncRB  -Realm null `
  -Scope null `
- -EnableNew null `
- -Schedule null `
  -RemoveVanished null `
- -Realm null `
- -Enabled null
+ -Comment null `
+ -EnableNew null `
+ -Id null `
+ -Enabled null `
+ -Schedule null
 ```
 
 - Convert the resource to JSON

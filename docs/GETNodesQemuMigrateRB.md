@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Target** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuMigrateRB = Initialize-PVEGETNodesQemuMigrateRB  -Node null `
+$GETNodesQemuMigrateRB = Initialize-PVEGETNodesQemuMigrateRB  -Target null `
  -Vmid null `
- -Target null
+ -Node null
 ```
 
 - Convert the resource to JSON

@@ -3,59 +3,59 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CrushRule** | **String** |  | [optional] 
-**Hashpspool** | **Int32** |  | [optional] 
-**TargetSizeRatio** | **Decimal** |  | [optional] 
-**Noscrub** | **Int32** |  | [optional] 
-**UseGmtHitset** | **Int32** |  | [optional] 
-**PgNumMin** | **Int32** |  | [optional] 
-**ApplicationList** | [**AnyType[]**](AnyType.md) |  | [optional] 
-**PgNum** | **Int32** |  | [optional] 
-**TargetSize** | **String** |  | [optional] 
-**Nosizechange** | **Int32** |  | [optional] 
-**PgpNum** | **Int32** |  | [optional] 
-**Nodelete** | **Int32** |  | [optional] 
-**Id** | **Int32** |  | [optional] 
 **NodeepScrub** | **Int32** |  | [optional] 
 **Statistics** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**WriteFadviseDontneed** | **Int32** |  | [optional] 
-**Nopgchange** | **Int32** |  | [optional] 
-**Size** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
+**PgNumMin** | **Int32** |  | [optional] 
 **AutoscaleStatus** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**Application** | **String** |  | [optional] 
-**FastRead** | **Int32** |  | [optional] 
-**PgAutoscaleMode** | **String** |  | [optional] 
+**TargetSize** | **String** |  | [optional] 
+**Nopgchange** | **Int32** |  | [optional] 
 **MinSize** | **Int32** |  | [optional] 
+**Application** | **String** |  | [optional] 
+**Nodelete** | **Int32** |  | [optional] 
+**ApplicationList** | [**AnyType[]**](AnyType.md) |  | [optional] 
+**Noscrub** | **Int32** |  | [optional] 
+**CrushRule** | **String** |  | [optional] 
+**Nosizechange** | **Int32** |  | [optional] 
+**PgpNum** | **Int32** |  | [optional] 
+**PgAutoscaleMode** | **String** |  | [optional] 
+**WriteFadviseDontneed** | **Int32** |  | [optional] 
+**Size** | **Int32** |  | [optional] 
+**Hashpspool** | **Int32** |  | [optional] 
+**PgNum** | **Int32** |  | [optional] 
+**Id** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**UseGmtHitset** | **Int32** |  | [optional] 
+**FastRead** | **Int32** |  | [optional] 
+**TargetSizeRatio** | **Decimal** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephPoolStatus = Initialize-PVENodesCephPoolStatus  -CrushRule null `
- -Hashpspool null `
- -TargetSizeRatio null `
- -Noscrub null `
- -UseGmtHitset null `
+$NodesCephPoolStatus = Initialize-PVENodesCephPoolStatus  -NodeepScrub null `
+ -Statistics null `
  -PgNumMin null `
- -ApplicationList null `
- -PgNum null `
+ -AutoscaleStatus null `
  -TargetSize null `
+ -Nopgchange null `
+ -MinSize null `
+ -Application null `
+ -Nodelete null `
+ -ApplicationList null `
+ -Noscrub null `
+ -CrushRule null `
  -Nosizechange null `
  -PgpNum null `
- -Nodelete null `
- -Id null `
- -NodeepScrub null `
- -Statistics null `
- -WriteFadviseDontneed null `
- -Nopgchange null `
- -Size null `
- -Name null `
- -AutoscaleStatus null `
- -Application null `
- -FastRead null `
  -PgAutoscaleMode null `
- -MinSize null
+ -WriteFadviseDontneed null `
+ -Size null `
+ -Hashpspool null `
+ -PgNum null `
+ -Id null `
+ -Name null `
+ -UseGmtHitset null `
+ -FastRead null `
+ -TargetSizeRatio null
 ```
 
 - Convert the resource to JSON

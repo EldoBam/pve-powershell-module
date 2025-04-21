@@ -4,20 +4,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Todisk** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Statestorage** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Skiplock** | **Int32** |  | [optional] 
-**Statestorage** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTNodesQemuStatusSuspendRB = Initialize-PVEPOSTNodesQemuStatusSuspendRB  -Todisk null `
- -Node null `
+ -Statestorage null `
  -Vmid null `
  -Skiplock null `
- -Statestorage null
+ -Node null
 ```
 
 - Convert the resource to JSON

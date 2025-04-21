@@ -3,49 +3,49 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Node** | **String** |  | [optional] 
+**Macro** | **String** |  | [optional] 
+**Moveto** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
+**IcmpType** | **String** |  | [optional] 
 **Source** | **String** |  | [optional] 
 **Sport** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
-**Log** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**IcmpType** | **String** |  | [optional] 
-**Macro** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
-**Moveto** | **Int32** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Dport** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuFirewallRulesRB = Initialize-PVEPUTNodesQemuFirewallRulesRB  -Digest null `
- -Source null `
- -Sport null `
- -Action null `
- -Log null `
- -Comment null `
- -Dest null `
- -Proto null `
- -Enable null `
- -IcmpType null `
+$PUTNodesQemuFirewallRulesRB = Initialize-PVEPUTNodesQemuFirewallRulesRB  -Node null `
  -Macro null `
- -Vmid null `
- -Pos null `
- -Type null `
- -Node null `
- -Iface null `
  -Moveto null `
+ -Vmid null `
+ -Proto null `
+ -Log null `
+ -Pos null `
+ -Dest null `
+ -Action null `
+ -Type null `
+ -Comment null `
+ -Dport null `
+ -Digest null `
+ -Enable null `
  -Delete null `
- -Dport null
+ -Iface null `
+ -IcmpType null `
+ -Source null `
+ -Sport null
 ```
 
 - Convert the resource to JSON

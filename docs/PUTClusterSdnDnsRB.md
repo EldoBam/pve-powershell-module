@@ -4,11 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ttl** | **Int32** |  | [optional] 
+**Reversemaskv6** | **Int32** |  | [optional] 
 **Url** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Fingerprint** | **String** |  | [optional] 
 **Dns** | **String** |  | [optional] 
-**Reversemaskv6** | **Int32** |  | [optional] 
 **Key** | **String** |  | [optional] 
 
 ## Examples
@@ -16,11 +17,12 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $PUTClusterSdnDnsRB = Initialize-PVEPUTClusterSdnDnsRB  -Ttl null `
+ -Reversemaskv6 null `
  -Url null `
  -Delete null `
  -Digest null `
+ -Fingerprint null `
  -Dns null `
- -Reversemaskv6 null `
  -Key null
 ```
 

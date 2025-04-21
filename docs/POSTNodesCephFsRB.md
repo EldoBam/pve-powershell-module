@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AddStorage** | **Int32** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **PgNum** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $POSTNodesCephFsRB = Initialize-PVEPOSTNodesCephFsRB  -AddStorage null `
  -Name null `
- -Node null `
- -PgNum null
+ -PgNum null `
+ -Node null
 ```
 
 - Convert the resource to JSON

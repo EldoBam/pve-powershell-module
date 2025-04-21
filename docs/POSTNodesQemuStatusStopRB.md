@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
-**Skiplock** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**KeepActive** | **Int32** |  | [optional] 
 **OverruleShutdown** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Skiplock** | **Int32** |  | [optional] 
 **Timeout** | **Int32** |  | [optional] 
 **Migratedfrom** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**KeepActive** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuStatusStopRB = Initialize-PVEPOSTNodesQemuStatusStopRB  -Node null `
- -Skiplock null `
+$POSTNodesQemuStatusStopRB = Initialize-PVEPOSTNodesQemuStatusStopRB  -OverruleShutdown null `
  -Vmid null `
- -KeepActive null `
- -OverruleShutdown null `
+ -Skiplock null `
  -Timeout null `
- -Migratedfrom null
+ -Migratedfrom null `
+ -Node null `
+ -KeepActive null
 ```
 
 - Convert the resource to JSON

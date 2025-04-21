@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**State** | **String** |  | [optional] 
 **StandbyReplay** | **Int32** |  | [optional] 
-**Name** | [**AnyType**](.md) |  | [optional] 
-**VarHost** | **String** |  | [optional] 
-**Addr** | **String** |  | [optional] 
 **Rank** | **Int32** |  | [optional] 
+**VarHost** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
+**Addr** | **String** |  | [optional] 
+**Name** | [**AnyType**](.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephMdsInner = Initialize-PVENodesCephMdsInner  -State null `
- -StandbyReplay null `
- -Name null `
+$NodesCephMdsInner = Initialize-PVENodesCephMdsInner  -StandbyReplay null `
+ -Rank null `
  -VarHost null `
+ -State null `
  -Addr null `
- -Rank null
+ -Name null
 ```
 
 - Convert the resource to JSON

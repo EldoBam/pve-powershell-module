@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Download** | **Int32** |  | [optional] 
 **Limit** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Upid** | **String** |  | [optional] 
 **Start** | **Int32** |  | [optional] 
+**Download** | **Int32** |  | [optional] 
+**Upid** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesTasksLogRB = Initialize-PVEGETNodesTasksLogRB  -Download null `
- -Limit null `
- -Node null `
+$GETNodesTasksLogRB = Initialize-PVEGETNodesTasksLogRB  -Limit null `
+ -Start null `
+ -Download null `
  -Upid null `
- -Start null
+ -Node null
 ```
 
 - Convert the resource to JSON

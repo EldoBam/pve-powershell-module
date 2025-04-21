@@ -3,20 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **String** |  | [optional] 
 **Ipam** | **String** |  | [optional] 
-**Section** | **Int32** |  | [optional] 
 **Token** | **String** |  | [optional] 
+**Section** | **Int32** |  | [optional] 
+**Url** | **String** |  | [optional] 
+**Fingerprint** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnIpamsRB = Initialize-PVEPOSTClusterSdnIpamsRB  -Url null `
- -Ipam null `
- -Section null `
+$POSTClusterSdnIpamsRB = Initialize-PVEPOSTClusterSdnIpamsRB  -Ipam null `
  -Token null `
+ -Section null `
+ -Url null `
+ -Fingerprint null `
  -Type null
 ```
 

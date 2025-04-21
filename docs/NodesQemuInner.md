@@ -3,47 +3,53 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RunningMachine** | **String** |  | [optional] 
-**Tags** | **String** |  | [optional] 
+**Diskread** | **Int32** |  | [optional] 
 **Uptime** | **Int32** |  | [optional] 
-**Maxmem** | **Int32** |  | [optional] 
-**VarPid** | **Int32** |  | [optional] 
-**Status** | **String** |  | [optional] 
-**Netin** | **Int32** |  | [optional] 
-**Diskwrite** | **Int32** |  | [optional] 
+**Cpus** | **Decimal** |  | [optional] 
+**Maxdisk** | **Int32** |  | [optional] 
 **Qmpstatus** | **String** |  | [optional] 
+**Cpu** | **Decimal** |  | [optional] 
+**Tags** | **String** |  | [optional] 
+**Status** | **String** |  | [optional] 
+**VarPid** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 **Lock** | **String** |  | [optional] 
 **Template** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Maxdisk** | **Int32** |  | [optional] 
-**Diskread** | **Int32** |  | [optional] 
+**Serial** | **Int32** |  | [optional] 
+**Netin** | **Int32** |  | [optional] 
+**Mem** | **Int32** |  | [optional] 
 **Netout** | **Int32** |  | [optional] 
+**Diskwrite** | **Int32** |  | [optional] 
+**Maxmem** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **RunningQemu** | **String** |  | [optional] 
-**Cpus** | **Decimal** |  | [optional] 
+**RunningMachine** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuInner = Initialize-PVENodesQemuInner  -RunningMachine null `
- -Tags null `
+$NodesQemuInner = Initialize-PVENodesQemuInner  -Diskread null `
  -Uptime null `
- -Maxmem null `
- -VarPid null `
- -Status null `
- -Netin null `
- -Diskwrite null `
+ -Cpus null `
+ -Maxdisk null `
  -Qmpstatus null `
+ -Cpu null `
+ -Tags null `
+ -Status null `
+ -VarPid null `
+ -Vmid null `
  -Lock null `
  -Template null `
- -Vmid null `
- -Name null `
- -Maxdisk null `
- -Diskread null `
+ -Serial null `
+ -Netin null `
+ -Mem null `
  -Netout null `
+ -Diskwrite null `
+ -Maxmem null `
+ -Name null `
  -RunningQemu null `
- -Cpus null
+ -RunningMachine null
 ```
 
 - Convert the resource to JSON

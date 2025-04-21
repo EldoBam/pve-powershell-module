@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Poolid** | **String** |  | [optional] 
-**Members** | [**PoolsMembersInner[]**](PoolsMembersInner.md) |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Members** | [**PoolsMembersInner[]**](PoolsMembersInner.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $PoolsGETInner = Initialize-PVEPoolsGETInner  -Poolid null `
- -Members null `
- -Comment null
+ -Comment null `
+ -Members null
 ```
 
 - Convert the resource to JSON

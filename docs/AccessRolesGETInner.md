@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Privs** | **String** |  | [optional] 
 **Roleid** | **String** |  | [optional] 
+**Privs** | **String** |  | [optional] 
 **Special** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessRolesGETInner = Initialize-PVEAccessRolesGETInner  -Privs null `
- -Roleid null `
+$AccessRolesGETInner = Initialize-PVEAccessRolesGETInner  -Roleid null `
+ -Privs null `
  -Special null
 ```
 

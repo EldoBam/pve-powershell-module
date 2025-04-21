@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Available** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
 
 ## Examples
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $NodesHardwarePciMdevInner = Initialize-PVENodesHardwarePciMdevInner  -Available null `
- -Name null `
  -Type null `
+ -Name null `
  -Description null
 ```
 

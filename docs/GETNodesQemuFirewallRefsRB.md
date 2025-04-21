@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuFirewallRefsRB = Initialize-PVEGETNodesQemuFirewallRefsRB  -Node null `
- -Type null `
- -Vmid null
+$GETNodesQemuFirewallRefsRB = Initialize-PVEGETNodesQemuFirewallRefsRB  -Type null `
+ -Vmid null `
+ -Node null
 ```
 
 - Convert the resource to JSON

@@ -4,26 +4,28 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Wakeonlan** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
 **AcmedomainN** | **String** |  | [optional] 
 **StartallOnbootDelay** | **Int32** |  | [optional] 
+**BallooningTarget** | **Int32** |  | [optional] 
+**Acme** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Acme** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $PUTNodesConfigRB = Initialize-PVEPUTNodesConfigRB  -Wakeonlan null `
- -Description null `
- -Delete null `
  -AcmedomainN null `
  -StartallOnbootDelay null `
+ -BallooningTarget null `
+ -Acme null `
+ -Delete null `
+ -Description null `
  -Digest null `
- -Node null `
- -Acme null
+ -Node null
 ```
 
 - Convert the resource to JSON

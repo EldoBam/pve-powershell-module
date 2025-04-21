@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
 **Version** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesAptChangelogRB = Initialize-PVEGETNodesAptChangelogRB  -Name null `
- -Version null `
+$GETNodesAptChangelogRB = Initialize-PVEGETNodesAptChangelogRB  -Version null `
+ -Name null `
  -Node null
 ```
 

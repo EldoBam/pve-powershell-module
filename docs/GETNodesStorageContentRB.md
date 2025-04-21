@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Storage** | **String** |  | [optional] 
 **Content** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesStorageContentRB = Initialize-PVEGETNodesStorageContentRB  -Storage null `
- -Content null `
- -Node null `
- -Vmid null
+$GETNodesStorageContentRB = Initialize-PVEGETNodesStorageContentRB  -Content null `
+ -Storage null `
+ -Vmid null `
+ -Node null
 ```
 
 - Convert the resource to JSON

@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pending** | **Int32** |  | [optional] 
 **State** | **String** |  | [optional] 
-**Controller** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Controller** | **String** |  | [optional] 
+**Pending** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnControllersInner = Initialize-PVEClusterSdnControllersInner  -Pending null `
- -State null `
+$ClusterSdnControllersInner = Initialize-PVEClusterSdnControllersInner  -State null `
+ -Type null `
  -Controller null `
- -Type null
+ -Pending null
 ```
 
 - Convert the resource to JSON

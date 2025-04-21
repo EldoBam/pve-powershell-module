@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**VarData** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**VarData** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesHostsRB = Initialize-PVEPOSTNodesHostsRB  -Digest null `
- -Node null `
- -VarData null
+$POSTNodesHostsRB = Initialize-PVEPOSTNodesHostsRB  -VarData null `
+ -Digest null `
+ -Node null
 ```
 
 - Convert the resource to JSON

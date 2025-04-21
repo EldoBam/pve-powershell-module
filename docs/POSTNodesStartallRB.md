@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Force** | **Int32** |  | [optional] 
 **Vms** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Force** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesStartallRB = Initialize-PVEPOSTNodesStartallRB  -Force null `
- -Vms null `
- -Node null
+$POSTNodesStartallRB = Initialize-PVEPOSTNodesStartallRB  -Vms null `
+ -Node null `
+ -Force null
 ```
 
 - Convert the resource to JSON

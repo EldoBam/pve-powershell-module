@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **String** |  | [optional] 
-**Map** | **String[]** |  | [optional] 
 **Description** | **String** |  | [optional] 
+**Map** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTClusterMappingUsbRB = Initialize-PVEPOSTClusterMappingUsbRB  -Id null `
- -Map null `
- -Description null
+ -Description null `
+ -Map null
 ```
 
 - Convert the resource to JSON

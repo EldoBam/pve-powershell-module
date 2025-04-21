@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
-**Vnet** | **String** |  | [optional] 
 **Pos** | **Int32** |  | [optional] 
+**Vnet** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEClusterSdnVnetsFirewallRulesRB = Initialize-PVEDELETEClusterSdnVnetsFirewallRulesRB  -Digest null `
+$DELETEClusterSdnVnetsFirewallRulesRB = Initialize-PVEDELETEClusterSdnVnetsFirewallRulesRB  -Pos null `
  -Vnet null `
- -Pos null
+ -Digest null
 ```
 
 - Convert the resource to JSON

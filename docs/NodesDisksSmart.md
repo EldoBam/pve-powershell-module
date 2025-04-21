@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Text** | **String** |  | [optional] 
 **Health** | **String** |  | [optional] 
-**Attributes** | [**AnyType[]**](AnyType.md) |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Attributes** | [**AnyType[]**](AnyType.md) |  | [optional] 
+**Text** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesDisksSmart = Initialize-PVENodesDisksSmart  -Text null `
- -Health null `
+$NodesDisksSmart = Initialize-PVENodesDisksSmart  -Health null `
+ -Type null `
  -Attributes null `
- -Type null
+ -Text null
 ```
 
 - Convert the resource to JSON

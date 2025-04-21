@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Service** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Action** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Service** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesCephCmdsafetyRB = Initialize-PVEGETNodesCephCmdsafetyRB  -Service null `
+$GETNodesCephCmdsafetyRB = Initialize-PVEGETNodesCephCmdsafetyRB  -Action null `
  -Id null `
- -Node null `
- -Action null
+ -Service null `
+ -Node null
 ```
 
 - Convert the resource to JSON

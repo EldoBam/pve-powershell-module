@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Current** | **Int32** |  | [optional] 
 **Snapshot** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesLxcConfigRB = Initialize-PVEGETNodesLxcConfigRB  -Node null `
- -Vmid null `
+$GETNodesLxcConfigRB = Initialize-PVEGETNodesLxcConfigRB  -Vmid null `
  -Current null `
- -Snapshot null
+ -Snapshot null `
+ -Node null
 ```
 
 - Convert the resource to JSON

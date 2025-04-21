@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 **Handle** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesAptRepositoriesRB = Initialize-PVEPUTNodesAptRepositoriesRB  -Digest null `
- -Node null `
+$PUTNodesAptRepositoriesRB = Initialize-PVEPUTNodesAptRepositoriesRB  -Node null `
+ -Digest null `
  -Handle null
 ```
 

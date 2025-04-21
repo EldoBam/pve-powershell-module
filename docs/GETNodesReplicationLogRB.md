@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Limit** | **Int32** |  | [optional] 
 **Id** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Start** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $GETNodesReplicationLogRB = Initialize-PVEGETNodesReplicationLogRB  -Limit null `
  -Id null `
- -Node null `
- -Start null
+ -Start null `
+ -Node null
 ```
 
 - Convert the resource to JSON

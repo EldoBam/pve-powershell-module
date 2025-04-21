@@ -5,8 +5,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **String** |  | [optional] 
 **Mdev** | **Int32** |  | [optional] 
-**Map** | **String[]** |  | [optional] 
+**LiveMigrationCapable** | **Int32** |  | [optional] 
 **Description** | **String** |  | [optional] 
+**Map** | **String[]** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +15,9 @@ Name | Type | Description | Notes
 ```powershell
 $POSTClusterMappingPciRB = Initialize-PVEPOSTClusterMappingPciRB  -Id null `
  -Mdev null `
- -Map null `
- -Description null
+ -LiveMigrationCapable null `
+ -Description null `
+ -Map null
 ```
 
 - Convert the resource to JSON

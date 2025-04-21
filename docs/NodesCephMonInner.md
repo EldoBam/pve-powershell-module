@@ -3,30 +3,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CephVersionShort** | **String** |  | [optional] 
-**Rank** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **CephVersion** | **String** |  | [optional] 
-**Quorum** | **Int32** |  | [optional] 
-**State** | **String** |  | [optional] 
-**Addr** | **String** |  | [optional] 
-**VarHost** | **Int32** |  | [optional] 
 **Direxists** | **String** |  | [optional] 
+**VarHost** | **Int32** |  | [optional] 
+**State** | **String** |  | [optional] 
+**Rank** | **Int32** |  | [optional] 
+**CephVersionShort** | **String** |  | [optional] 
+**Quorum** | **Int32** |  | [optional] 
+**Addr** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Service** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephMonInner = Initialize-PVENodesCephMonInner  -CephVersionShort null `
- -Rank null `
- -Name null `
- -CephVersion null `
- -Quorum null `
- -State null `
- -Addr null `
- -VarHost null `
+$NodesCephMonInner = Initialize-PVENodesCephMonInner  -CephVersion null `
  -Direxists null `
+ -VarHost null `
+ -State null `
+ -Rank null `
+ -CephVersionShort null `
+ -Quorum null `
+ -Addr null `
+ -Name null `
  -Service null
 ```
 

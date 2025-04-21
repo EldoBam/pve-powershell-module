@@ -4,32 +4,32 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MatchSeverity** | **String[]** |  | [optional] 
+**InvertMatch** | **Int32** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**MatchField** | **String[]** |  | [optional] 
+**Disable** | **Int32** |  | [optional] 
 **MatchCalendar** | **String[]** |  | [optional] 
 **Delete** | **String[]** |  | [optional] 
-**Mode** | **String** |  | [optional] 
-**InvertMatch** | **Int32** |  | [optional] 
+**MatchField** | **String[]** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **Target** | **String[]** |  | [optional] 
-**Disable** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Mode** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $PUTClusterNotificationsMatchersRB = Initialize-PVEPUTClusterNotificationsMatchersRB  -MatchSeverity null `
+ -InvertMatch null `
  -Comment null `
- -Name null `
- -MatchField null `
+ -Disable null `
  -MatchCalendar null `
  -Delete null `
- -Mode null `
- -InvertMatch null `
+ -MatchField null `
  -Digest null `
  -Target null `
- -Disable null
+ -Name null `
+ -Mode null
 ```
 
 - Convert the resource to JSON

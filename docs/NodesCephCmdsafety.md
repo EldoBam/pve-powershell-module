@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | **String** |  | [optional] 
 **Safe** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephCmdsafety = Initialize-PVENodesCephCmdsafety  -Status null `
- -Safe null
+$NodesCephCmdsafety = Initialize-PVENodesCephCmdsafety  -Safe null `
+ -Status null
 ```
 
 - Convert the resource to JSON

@@ -3,34 +3,34 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | **String** |  | [optional] 
-**Productname** | **String** |  | [optional] 
 **Signature** | **String** |  | [optional] 
 **Serverid** | **String** |  | [optional] 
-**Checktime** | **Int32** |  | [optional] 
-**Status** | **String** |  | [optional] 
 **Nextduedate** | **String** |  | [optional] 
-**Sockets** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
+**Productname** | **String** |  | [optional] 
+**Checktime** | **Int32** |  | [optional] 
 **Regdate** | **String** |  | [optional] 
+**Message** | **String** |  | [optional] 
 **Url** | **String** |  | [optional] 
 **Level** | **String** |  | [optional] 
+**Sockets** | **Int32** |  | [optional] 
 **Key** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesSubscription = Initialize-PVENodesSubscription  -Message null `
- -Productname null `
- -Signature null `
+$NodesSubscription = Initialize-PVENodesSubscription  -Signature null `
  -Serverid null `
- -Checktime null `
- -Status null `
  -Nextduedate null `
- -Sockets null `
+ -Status null `
+ -Productname null `
+ -Checktime null `
  -Regdate null `
+ -Message null `
  -Url null `
  -Level null `
+ -Sockets null `
  -Key null
 ```
 

@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Force** | **Int32** |  | [optional] 
 **Id** | **String** |  | [optional] 
 **Keep** | **Int32** |  | [optional] 
+**Force** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEClusterReplicationRB = Initialize-PVEDELETEClusterReplicationRB  -Force null `
- -Id null `
- -Keep null
+$DELETEClusterReplicationRB = Initialize-PVEDELETEClusterReplicationRB  -Id null `
+ -Keep null `
+ -Force null
 ```
 
 - Convert the resource to JSON

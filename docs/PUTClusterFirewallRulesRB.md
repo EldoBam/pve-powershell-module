@@ -3,45 +3,45 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Macro** | **String** |  | [optional] 
+**Moveto** | **Int32** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
+**IcmpType** | **String** |  | [optional] 
 **Source** | **String** |  | [optional] 
 **Sport** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
-**Log** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**IcmpType** | **String** |  | [optional] 
-**Macro** | **String** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
-**Moveto** | **Int32** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Dport** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterFirewallRulesRB = Initialize-PVEPUTClusterFirewallRulesRB  -Digest null `
- -Source null `
- -Sport null `
- -Action null `
- -Log null `
- -Comment null `
- -Dest null `
- -Proto null `
- -Enable null `
- -IcmpType null `
- -Macro null `
- -Pos null `
- -Type null `
- -Iface null `
+$PUTClusterFirewallRulesRB = Initialize-PVEPUTClusterFirewallRulesRB  -Macro null `
  -Moveto null `
+ -Proto null `
+ -Log null `
+ -Pos null `
+ -Dest null `
+ -Action null `
+ -Type null `
+ -Comment null `
+ -Dport null `
+ -Digest null `
+ -Enable null `
  -Delete null `
- -Dport null
+ -Iface null `
+ -IcmpType null `
+ -Source null `
+ -Sport null
 ```
 
 - Convert the resource to JSON

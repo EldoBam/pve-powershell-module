@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Comment** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **Group** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterFirewallGroupsGETInner = Initialize-PVEClusterFirewallGroupsGETInner  -Digest null `
- -Group null `
- -Comment null
+$ClusterFirewallGroupsGETInner = Initialize-PVEClusterFirewallGroupsGETInner  -Comment null `
+ -Digest null `
+ -Group null
 ```
 
 - Convert the resource to JSON

@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuCloudinitDumpRB = Initialize-PVEGETNodesQemuCloudinitDumpRB  -Node null `
- -Type null `
- -Vmid null
+$GETNodesQemuCloudinitDumpRB = Initialize-PVEGETNodesQemuCloudinitDumpRB  -Type null `
+ -Vmid null `
+ -Node null
 ```
 
 - Convert the resource to JSON

@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Clustername** | **String** |  | [optional] 
-**Nodeid** | **Int32** |  | [optional] 
 **Votes** | **Int32** |  | [optional] 
+**Nodeid** | **Int32** |  | [optional] 
 **LinkN** | **String** |  | [optional] 
 
 ## Examples
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $POSTClusterConfigRB = Initialize-PVEPOSTClusterConfigRB  -Clustername null `
- -Nodeid null `
  -Votes null `
+ -Nodeid null `
  -LinkN null
 ```
 

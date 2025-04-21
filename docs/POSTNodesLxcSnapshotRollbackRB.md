@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Snapname** | **String** |  | [optional] 
 **Start** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $POSTNodesLxcSnapshotRollbackRB = Initialize-PVEPOSTNodesLxcSnapshotRollbackRB  -Snapname null `
  -Start null `
- -Node null `
- -Vmid null
+ -Vmid null `
+ -Node null
 ```
 
 - Convert the resource to JSON

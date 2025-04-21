@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pending** | **Int32** |  | [optional] 
 **Controller** | **String** |  | [optional] 
+**Pending** | **Int32** |  | [optional] 
 **Running** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETClusterSdnControllersRB = Initialize-PVEGETClusterSdnControllersRB  -Pending null `
- -Controller null `
+$GETClusterSdnControllersRB = Initialize-PVEGETClusterSdnControllersRB  -Controller null `
+ -Pending null `
  -Running null
 ```
 

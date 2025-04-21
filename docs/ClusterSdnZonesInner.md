@@ -3,33 +3,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**State** | **String** |  | [optional] 
-**Reversedns** | **String** |  | [optional] 
-**Pending** | **Int32** |  | [optional] 
 **Dhcp** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Mtu** | **Int32** |  | [optional] 
 **Nodes** | **String** |  | [optional] 
-**Dnszone** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Zone** | **String** |  | [optional] 
-**Dns** | **String** |  | [optional] 
 **Ipam** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
+**Dnszone** | **String** |  | [optional] 
+**Zone** | **String** |  | [optional] 
+**Reversedns** | **String** |  | [optional] 
+**Dns** | **String** |  | [optional] 
+**Pending** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnZonesInner = Initialize-PVEClusterSdnZonesInner  -State null `
- -Reversedns null `
- -Pending null `
- -Dhcp null `
+$ClusterSdnZonesInner = Initialize-PVEClusterSdnZonesInner  -Dhcp null `
+ -Type null `
  -Mtu null `
  -Nodes null `
+ -Ipam null `
+ -State null `
  -Dnszone null `
- -Type null `
  -Zone null `
+ -Reversedns null `
  -Dns null `
- -Ipam null
+ -Pending null
 ```
 
 - Convert the resource to JSON

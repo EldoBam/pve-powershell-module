@@ -5,11 +5,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Password** | **String** |  | [optional] 
 **Nodeid** | **Int32** |  | [optional] 
+**Force** | **Int32** |  | [optional] 
+**Hostname** | **String** |  | [optional] 
+**Votes** | **Int32** |  | [optional] 
 **LinkN** | **String** |  | [optional] 
 **Fingerprint** | **String** |  | [optional] 
-**Hostname** | **String** |  | [optional] 
-**Force** | **Int32** |  | [optional] 
-**Votes** | **Int32** |  | [optional] 
 
 ## Examples
 
@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 ```powershell
 $POSTClusterConfigJoinRB = Initialize-PVEPOSTClusterConfigJoinRB  -Password null `
  -Nodeid null `
- -LinkN null `
- -Fingerprint null `
- -Hostname null `
  -Force null `
- -Votes null
+ -Hostname null `
+ -Votes null `
+ -LinkN null `
+ -Fingerprint null
 ```
 
 - Convert the resource to JSON

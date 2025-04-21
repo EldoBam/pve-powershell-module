@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
 **Members** | [**PoolsMembersInner[]**](PoolsMembersInner.md) |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$Pools = Initialize-PVEPools  -Comment null `
- -Members null
+$Pools = Initialize-PVEPools  -Members null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

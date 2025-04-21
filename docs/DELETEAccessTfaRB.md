@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **String** |  | [optional] 
-**Password** | **String** |  | [optional] 
 **Userid** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $DELETEAccessTfaRB = Initialize-PVEDELETEAccessTfaRB  -Id null `
- -Password null `
- -Userid null
+ -Userid null `
+ -Password null
 ```
 
 - Convert the resource to JSON

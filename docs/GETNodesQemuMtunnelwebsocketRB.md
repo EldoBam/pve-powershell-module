@@ -4,18 +4,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ticket** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Socket** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesQemuMtunnelwebsocketRB = Initialize-PVEGETNodesQemuMtunnelwebsocketRB  -Ticket null `
- -Node null `
+ -Socket null `
  -Vmid null `
- -Socket null
+ -Node null
 ```
 
 - Convert the resource to JSON
