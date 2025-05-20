@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesConfigRB' {
     Context 'PVEGETNodesConfigRB' {
         It 'Initialize-PVEGETNodesConfigRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesConfigRB -Property "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesConfigRB -Property "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesConfigRB
             #$NewObject.property | Should -Be 0
         }

@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Safe
-No description available.
 .PARAMETER Status
+No description available.
+.PARAMETER Safe
 No description available.
 .OUTPUTS
 
@@ -28,34 +28,26 @@ function Initialize-PVENodesCephCmdsafety {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Safe},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Status}
+        ${Status},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Safe}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesCephCmdsafety' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Safe -and $Safe -gt 1) {
-          throw "invalid value for 'Safe', must be smaller than or equal to 1."
-        }
-
-        if ($Safe -and $Safe -lt 0) {
-          throw "invalid value for 'Safe', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Safe"="safe"; "Status"="status"
+			"Status"="status"; "Safe"="safe"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -95,17 +87,11 @@ function ConvertFrom-PVEJsonToNodesCephCmdsafety {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCephCmdsafety
-        $AllProperties = ("safe", "status")
+        $AllProperties = ("status", "safe")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "safe"))) { #optional property not found
-            $Safe = $null
-        } else {
-            $Safe = $JsonParameters.PSobject.Properties["safe"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
@@ -114,9 +100,15 @@ function ConvertFrom-PVEJsonToNodesCephCmdsafety {
             $Status = $JsonParameters.PSobject.Properties["status"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "safe"))) { #optional property not found
+            $Safe = $null
+        } else {
+            $Safe = $JsonParameters.PSobject.Properties["safe"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "safe" = ${Safe}
             "status" = ${Status}
+            "safe" = ${Safe}
         }
 
         return $PSO

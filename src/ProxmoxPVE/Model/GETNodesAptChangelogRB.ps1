@@ -15,11 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Version
-No description available.
 .PARAMETER Name
 No description available.
-.PARAMETER Node
+.PARAMETER Version
 No description available.
 .OUTPUTS
 
@@ -31,13 +29,10 @@ function Initialize-PVEGETNodesAptChangelogRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Version},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${Version}
     )
 
     Process {
@@ -46,13 +41,13 @@ function Initialize-PVEGETNodesAptChangelogRB {
 
 
 		 $DisplayNameMapping =@{
-			"Version"="version"; "Name"="name"; "Node"="node"
+			"Name"="name"; "Version"="version"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -92,17 +87,11 @@ function ConvertFrom-PVEJsonToGETNodesAptChangelogRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesAptChangelogRB
-        $AllProperties = ("version", "name", "node")
+        $AllProperties = ("name", "version")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "version"))) { #optional property not found
-            $Version = $null
-        } else {
-            $Version = $JsonParameters.PSobject.Properties["version"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -111,16 +100,15 @@ function ConvertFrom-PVEJsonToGETNodesAptChangelogRB {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "version"))) { #optional property not found
+            $Version = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Version = $JsonParameters.PSobject.Properties["version"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "version" = ${Version}
             "name" = ${Name}
-            "node" = ${Node}
+            "version" = ${Version}
         }
 
         return $PSO

@@ -160,7 +160,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterHaInner[]
+ClusterSdnInner[]
 #>
 function Get-PVENodesAptByNode {
     [CmdletBinding()]
@@ -204,7 +204,7 @@ function Get-PVENodesAptByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterHaInner[]" `
+                                -ReturnType "ClusterSdnInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -1498,7 +1498,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesTasksLogInner[]
 #>
 function Get-PVENodesCephLogByNode {
     [CmdletBinding()]
@@ -1550,7 +1550,7 @@ function Get-PVENodesCephLogByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesTasksLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2378,7 +2378,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesCephRulesInner[]
+ClusterNotificationsMatcherfieldsInner[]
 #>
 function Get-PVENodesCephRulesByNode {
     [CmdletBinding()]
@@ -2422,7 +2422,7 @@ function Get-PVENodesCephRulesByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesCephRulesInner[]" `
+                                -ReturnType "ClusterNotificationsMatcherfieldsInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -3589,7 +3589,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesTasksLogInner[]
 #>
 function Get-PVENodesFirewallLogByNode {
     [CmdletBinding()]
@@ -3641,7 +3641,7 @@ function Get-PVENodesFirewallLogByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesTasksLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -3743,7 +3743,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterSdnVnetsFirewallRulesGETInner[]
+NodesLxcFirewallRulesGETInner[]
 #>
 function Get-PVENodesFirewallRulesByNode {
     [CmdletBinding()]
@@ -3787,7 +3787,7 @@ function Get-PVENodesFirewallRulesByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterSdnVnetsFirewallRulesGETInner[]" `
+                                -ReturnType "NodesLxcFirewallRulesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -5049,7 +5049,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterFirewallIpsetInner[]
+NodesQemuFirewallIpsetInner[]
 #>
 function Get-PVENodesLxcFirewallIpsetByNodeAndVmid {
     [CmdletBinding()]
@@ -5100,7 +5100,7 @@ function Get-PVENodesLxcFirewallIpsetByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterFirewallIpsetInner[]" `
+                                -ReturnType "NodesQemuFirewallIpsetInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -5135,7 +5135,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesQemuFirewallIpsetGETInner[]
+ClusterFirewallIpsetGETInner[]
 #>
 function Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
@@ -5193,7 +5193,7 @@ function Get-PVENodesLxcFirewallIpsetByNodeAndVmidAndName {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesQemuFirewallIpsetGETInner[]" `
+                                -ReturnType "ClusterFirewallIpsetGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -5328,7 +5328,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesTasksLogInner[]
 #>
 function Get-PVENodesLxcFirewallLogByNodeAndVmid {
     [CmdletBinding()]
@@ -5387,7 +5387,7 @@ function Get-PVENodesLxcFirewallLogByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesTasksLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -5596,7 +5596,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterSdnVnetsFirewallRulesGETInner[]
+NodesLxcFirewallRulesGETInner[]
 #>
 function Get-PVENodesLxcFirewallRulesByNodeAndVmid {
     [CmdletBinding()]
@@ -5647,7 +5647,7 @@ function Get-PVENodesLxcFirewallRulesByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterSdnVnetsFirewallRulesGETInner[]" `
+                                -ReturnType "NodesLxcFirewallRulesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -5949,7 +5949,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcPendingInner[]
+NodesQemuPendingInner[]
 #>
 function Get-PVENodesLxcPendingByNodeAndVmid {
     [CmdletBinding()]
@@ -6000,7 +6000,7 @@ function Get-PVENodesLxcPendingByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcPendingInner[]" `
+                                -ReturnType "NodesQemuPendingInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -8916,7 +8916,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterFirewallIpsetInner[]
+NodesQemuFirewallIpsetInner[]
 #>
 function Get-PVENodesQemuFirewallIpsetByNodeAndVmid {
     [CmdletBinding()]
@@ -8967,7 +8967,7 @@ function Get-PVENodesQemuFirewallIpsetByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterFirewallIpsetInner[]" `
+                                -ReturnType "NodesQemuFirewallIpsetInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -9002,7 +9002,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesQemuFirewallIpsetGETInner[]
+ClusterFirewallIpsetGETInner[]
 #>
 function Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
     [CmdletBinding()]
@@ -9060,7 +9060,7 @@ function Get-PVENodesQemuFirewallIpsetByNodeAndVmidAndName {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesQemuFirewallIpsetGETInner[]" `
+                                -ReturnType "ClusterFirewallIpsetGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -9195,7 +9195,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesTasksLogInner[]
 #>
 function Get-PVENodesQemuFirewallLogByNodeAndVmid {
     [CmdletBinding()]
@@ -9254,7 +9254,7 @@ function Get-PVENodesQemuFirewallLogByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesTasksLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -9463,7 +9463,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterSdnVnetsFirewallRulesGETInner[]
+NodesLxcFirewallRulesGETInner[]
 #>
 function Get-PVENodesQemuFirewallRulesByNodeAndVmid {
     [CmdletBinding()]
@@ -9514,7 +9514,7 @@ function Get-PVENodesQemuFirewallRulesByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterSdnVnetsFirewallRulesGETInner[]" `
+                                -ReturnType "NodesLxcFirewallRulesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -9827,7 +9827,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcPendingInner[]
+NodesQemuPendingInner[]
 #>
 function Get-PVENodesQemuPendingByNodeAndVmid {
     [CmdletBinding()]
@@ -9878,7 +9878,7 @@ function Get-PVENodesQemuPendingByNodeAndVmid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcPendingInner[]" `
+                                -ReturnType "NodesQemuPendingInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -10705,7 +10705,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterHaInner[]
+ClusterSdnInner[]
 #>
 function Get-PVENodesReplicationByNode {
     [CmdletBinding()]
@@ -10757,7 +10757,7 @@ function Get-PVENodesReplicationByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterHaInner[]" `
+                                -ReturnType "ClusterSdnInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -10875,7 +10875,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesTasksLogInner[]
 #>
 function Get-PVENodesReplicationLogByNodeAndId {
     [CmdletBinding()]
@@ -10934,7 +10934,7 @@ function Get-PVENodesReplicationLogByNodeAndId {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesTasksLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -13690,7 +13690,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesTasksLogInner[]
 #>
 function Get-PVENodesSyslogByNode {
     [CmdletBinding()]
@@ -13742,7 +13742,7 @@ function Get-PVENodesSyslogByNode {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesTasksLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -13944,7 +13944,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner[]
+NodesTasksLogInner[]
 #>
 function Get-PVENodesTasksLogByNodeAndUpid {
     [CmdletBinding()]
@@ -14003,7 +14003,7 @@ function Get-PVENodesTasksLogByNodeAndUpid {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesLxcFirewallLogInner[]" `
+                                -ReturnType "NodesTasksLogInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {

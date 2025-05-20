@@ -5,9 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Path** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Enabled** | **Boolean** |  | [optional] 
 **Index** | **Int32** |  | [optional] 
-**Enabled** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
@@ -15,9 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $POSTNodesAptRepositoriesRB = Initialize-PVEPOSTNodesAptRepositoriesRB  -Path null `
  -Digest null `
- -Index null `
  -Enabled null `
- -Node null
+ -Index null
 ```
 
 - Convert the resource to JSON

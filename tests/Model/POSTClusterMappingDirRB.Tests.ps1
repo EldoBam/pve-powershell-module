@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTClusterMappingDirRB' {
     Context 'PVEPOSTClusterMappingDirRB' {
         It 'Initialize-PVEPOSTClusterMappingDirRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTClusterMappingDirRB -Id "TEST_VALUE" -Description "TEST_VALUE" -Map "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTClusterMappingDirRB -Map "TEST_VALUE" -Description "TEST_VALUE" -Id "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTClusterMappingDirRB
             #$NewObject.property | Should -Be 0
         }

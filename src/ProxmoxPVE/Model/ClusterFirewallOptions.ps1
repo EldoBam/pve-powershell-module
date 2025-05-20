@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Ebtables
-No description available.
-.PARAMETER PolicyForward
-No description available.
-.PARAMETER PolicyOut
-No description available.
-.PARAMETER Enable
+.PARAMETER LogRatelimit
 No description available.
 .PARAMETER PolicyIn
 No description available.
-.PARAMETER LogRatelimit
+.PARAMETER PolicyForward
+No description available.
+.PARAMETER Ebtables
+No description available.
+.PARAMETER Enable
+No description available.
+.PARAMETER PolicyOut
 No description available.
 .OUTPUTS
 
@@ -36,49 +36,41 @@ function Initialize-PVEClusterFirewallOptions {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Ebtables},
+        [String]
+        ${LogRatelimit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("ACCEPT", "REJECT", "DROP")]
+        [String]
+        ${PolicyIn},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ACCEPT", "DROP")]
         [String]
         ${PolicyForward},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("ACCEPT", "REJECT", "DROP")]
-        [String]
-        ${PolicyOut},
+        [System.Nullable[Boolean]]
+        ${Ebtables},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Enable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ACCEPT", "REJECT", "DROP")]
         [String]
-        ${PolicyIn},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${LogRatelimit}
+        ${PolicyOut}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEClusterFirewallOptions' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Ebtables -and $Ebtables -gt 1) {
-          throw "invalid value for 'Ebtables', must be smaller than or equal to 1."
-        }
-
-        if ($Ebtables -and $Ebtables -lt 0) {
-          throw "invalid value for 'Ebtables', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Ebtables"="ebtables"; "PolicyForward"="policy_forward"; "PolicyOut"="policy_out"; "Enable"="enable"; "PolicyIn"="policy_in"; "LogRatelimit"="log_ratelimit"
+			"LogRatelimit"="log_ratelimit"; "PolicyIn"="policy_in"; "PolicyForward"="policy_forward"; "Ebtables"="ebtables"; "Enable"="enable"; "PolicyOut"="policy_out"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -118,41 +110,11 @@ function ConvertFrom-PVEJsonToClusterFirewallOptions {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterFirewallOptions
-        $AllProperties = ("ebtables", "policy_forward", "policy_out", "enable", "policy_in", "log_ratelimit")
+        $AllProperties = ("log_ratelimit", "policy_in", "policy_forward", "ebtables", "enable", "policy_out")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ebtables"))) { #optional property not found
-            $Ebtables = $null
-        } else {
-            $Ebtables = $JsonParameters.PSobject.Properties["ebtables"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_forward"))) { #optional property not found
-            $PolicyForward = $null
-        } else {
-            $PolicyForward = $JsonParameters.PSobject.Properties["policy_forward"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_out"))) { #optional property not found
-            $PolicyOut = $null
-        } else {
-            $PolicyOut = $JsonParameters.PSobject.Properties["policy_out"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
-            $Enable = $null
-        } else {
-            $Enable = $JsonParameters.PSobject.Properties["enable"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_in"))) { #optional property not found
-            $PolicyIn = $null
-        } else {
-            $PolicyIn = $JsonParameters.PSobject.Properties["policy_in"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_ratelimit"))) { #optional property not found
@@ -161,13 +123,43 @@ function ConvertFrom-PVEJsonToClusterFirewallOptions {
             $LogRatelimit = $JsonParameters.PSobject.Properties["log_ratelimit"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_in"))) { #optional property not found
+            $PolicyIn = $null
+        } else {
+            $PolicyIn = $JsonParameters.PSobject.Properties["policy_in"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_forward"))) { #optional property not found
+            $PolicyForward = $null
+        } else {
+            $PolicyForward = $JsonParameters.PSobject.Properties["policy_forward"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ebtables"))) { #optional property not found
+            $Ebtables = $null
+        } else {
+            $Ebtables = $JsonParameters.PSobject.Properties["ebtables"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
+            $Enable = $null
+        } else {
+            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_out"))) { #optional property not found
+            $PolicyOut = $null
+        } else {
+            $PolicyOut = $JsonParameters.PSobject.Properties["policy_out"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "ebtables" = ${Ebtables}
-            "policy_forward" = ${PolicyForward}
-            "policy_out" = ${PolicyOut}
-            "enable" = ${Enable}
-            "policy_in" = ${PolicyIn}
             "log_ratelimit" = ${LogRatelimit}
+            "policy_in" = ${PolicyIn}
+            "policy_forward" = ${PolicyForward}
+            "ebtables" = ${Ebtables}
+            "enable" = ${Enable}
+            "policy_out" = ${PolicyOut}
         }
 
         return $PSO

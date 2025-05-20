@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesCephPoolStatus' {
     Context 'PVENodesCephPoolStatus' {
         It 'Initialize-PVENodesCephPoolStatus' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesCephPoolStatus -NodeepScrub "TEST_VALUE" -Statistics "TEST_VALUE" -PgNumMin "TEST_VALUE" -AutoscaleStatus "TEST_VALUE" -TargetSize "TEST_VALUE" -Nopgchange "TEST_VALUE" -MinSize "TEST_VALUE" -Application "TEST_VALUE" -Nodelete "TEST_VALUE" -ApplicationList "TEST_VALUE" -Noscrub "TEST_VALUE" -CrushRule "TEST_VALUE" -Nosizechange "TEST_VALUE" -PgpNum "TEST_VALUE" -PgAutoscaleMode "TEST_VALUE" -WriteFadviseDontneed "TEST_VALUE" -Size "TEST_VALUE" -Hashpspool "TEST_VALUE" -PgNum "TEST_VALUE" -Id "TEST_VALUE" -Name "TEST_VALUE" -UseGmtHitset "TEST_VALUE" -FastRead "TEST_VALUE" -TargetSizeRatio "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesCephPoolStatus -PgNumMin "TEST_VALUE" -PgNum "TEST_VALUE" -Noscrub "TEST_VALUE" -TargetSizeRatio "TEST_VALUE" -FastRead "TEST_VALUE" -Nodelete "TEST_VALUE" -Hashpspool "TEST_VALUE" -Nopgchange "TEST_VALUE" -Name "TEST_VALUE" -Statistics "TEST_VALUE" -CrushRule "TEST_VALUE" -PgAutoscaleMode "TEST_VALUE" -ApplicationList "TEST_VALUE" -Size "TEST_VALUE" -AutoscaleStatus "TEST_VALUE" -NodeepScrub "TEST_VALUE" -PgpNum "TEST_VALUE" -MinSize "TEST_VALUE" -Application "TEST_VALUE" -UseGmtHitset "TEST_VALUE" -Id "TEST_VALUE" -Nosizechange "TEST_VALUE" -WriteFadviseDontneed "TEST_VALUE" -TargetSize "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesCephPoolStatus
             #$NewObject.property | Should -Be 0
         }

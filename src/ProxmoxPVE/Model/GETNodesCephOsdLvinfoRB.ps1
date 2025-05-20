@@ -17,10 +17,6 @@ No description available.
 
 .PARAMETER Type
 No description available.
-.PARAMETER Osdid
-No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 GETNodesCephOsdLvinfoRB<PSCustomObject>
@@ -32,13 +28,7 @@ function Initialize-PVEGETNodesCephOsdLvinfoRB {
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("block", "db", "wal")]
         [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Osdid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Type}
     )
 
     Process {
@@ -47,13 +37,13 @@ function Initialize-PVEGETNodesCephOsdLvinfoRB {
 
 
 		 $DisplayNameMapping =@{
-			"Type"="type"; "Osdid"="osdid"; "Node"="node"
+			"Type"="type"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -93,7 +83,7 @@ function ConvertFrom-PVEJsonToGETNodesCephOsdLvinfoRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesCephOsdLvinfoRB
-        $AllProperties = ("type", "osdid", "node")
+        $AllProperties = ("type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -106,22 +96,8 @@ function ConvertFrom-PVEJsonToGETNodesCephOsdLvinfoRB {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osdid"))) { #optional property not found
-            $Osdid = $null
-        } else {
-            $Osdid = $JsonParameters.PSobject.Properties["osdid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "type" = ${Type}
-            "osdid" = ${Osdid}
-            "node" = ${Node}
         }
 
         return $PSO

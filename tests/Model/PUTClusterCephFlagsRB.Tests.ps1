@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterCephFlagsRB' {
     Context 'PVEPUTClusterCephFlagsRB' {
         It 'Initialize-PVEPUTClusterCephFlagsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterCephFlagsRB -Flag "TEST_VALUE" -Value "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterCephFlagsRB -Value "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterCephFlagsRB
             #$NewObject.property | Should -Be 0
         }

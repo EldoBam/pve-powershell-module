@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Name
+No description available.
 .PARAMETER Custom
 No description available.
 .PARAMETER Vendor
-No description available.
-.PARAMETER Name
 No description available.
 .OUTPUTS
 
@@ -30,37 +30,29 @@ function Initialize-PVENodesCapabilitiesQemuCpuInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [String]
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
         ${Custom},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vendor},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name}
+        ${Vendor}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesCapabilitiesQemuCpuInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Custom -and $Custom -gt 1) {
-          throw "invalid value for 'Custom', must be smaller than or equal to 1."
-        }
-
-        if ($Custom -and $Custom -lt 0) {
-          throw "invalid value for 'Custom', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Custom"="custom"; "Vendor"="vendor"; "Name"="name"
+			"Name"="name"; "Custom"="custom"; "Vendor"="vendor"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -100,11 +92,17 @@ function ConvertFrom-PVEJsonToNodesCapabilitiesQemuCpuInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCapabilitiesQemuCpuInner
-        $AllProperties = ("custom", "vendor", "name")
+        $AllProperties = ("name", "custom", "vendor")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "custom"))) { #optional property not found
@@ -119,16 +117,10 @@ function ConvertFrom-PVEJsonToNodesCapabilitiesQemuCpuInner {
             $Vendor = $JsonParameters.PSobject.Properties["vendor"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "name" = ${Name}
             "custom" = ${Custom}
             "vendor" = ${Vendor}
-            "name" = ${Name}
         }
 
         return $PSO

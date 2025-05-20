@@ -3,7 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **Handle** | **String** |  | [optional] 
 
@@ -11,8 +10,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$PUTNodesAptRepositoriesRB = Initialize-PVEPUTNodesAptRepositoriesRB  -Node null `
- -Digest null `
+$PUTNodesAptRepositoriesRB = Initialize-PVEPUTNodesAptRepositoriesRB  -Digest null `
  -Handle null
 ```
 

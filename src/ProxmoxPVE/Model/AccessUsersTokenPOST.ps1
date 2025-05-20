@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Info
-No description available.
 .PARAMETER FullTokenid
 No description available.
 .PARAMETER Value
+No description available.
+.PARAMETER Info
 No description available.
 .OUTPUTS
 
@@ -30,14 +30,14 @@ function Initialize-PVEAccessUsersTokenPOST {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Info},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${FullTokenid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Value}
+        ${Value},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${Info}
     )
 
     Process {
@@ -46,13 +46,13 @@ function Initialize-PVEAccessUsersTokenPOST {
 
 
 		 $DisplayNameMapping =@{
-			"Info"="info"; "FullTokenid"="full-tokenid"; "Value"="value"
+			"FullTokenid"="full-tokenid"; "Value"="value"; "Info"="info"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -92,17 +92,11 @@ function ConvertFrom-PVEJsonToAccessUsersTokenPOST {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessUsersTokenPOST
-        $AllProperties = ("info", "full-tokenid", "value")
+        $AllProperties = ("full-tokenid", "value", "info")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "info"))) { #optional property not found
-            $Info = $null
-        } else {
-            $Info = $JsonParameters.PSobject.Properties["info"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "full-tokenid"))) { #optional property not found
@@ -117,10 +111,16 @@ function ConvertFrom-PVEJsonToAccessUsersTokenPOST {
             $Value = $JsonParameters.PSobject.Properties["value"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "info"))) { #optional property not found
+            $Info = $null
+        } else {
+            $Info = $JsonParameters.PSobject.Properties["info"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "info" = ${Info}
             "full-tokenid" = ${FullTokenid}
             "value" = ${Value}
+            "info" = ${Info}
         }
 
         return $PSO

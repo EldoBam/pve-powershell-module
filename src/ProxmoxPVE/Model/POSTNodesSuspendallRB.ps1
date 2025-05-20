@@ -17,8 +17,6 @@ No description available.
 
 .PARAMETER Vms
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 POSTNodesSuspendallRB<PSCustomObject>
@@ -29,10 +27,7 @@ function Initialize-PVEPOSTNodesSuspendallRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vms},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Vms}
     )
 
     Process {
@@ -41,13 +36,13 @@ function Initialize-PVEPOSTNodesSuspendallRB {
 
 
 		 $DisplayNameMapping =@{
-			"Vms"="vms"; "Node"="node"
+			"Vms"="vms"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -87,7 +82,7 @@ function ConvertFrom-PVEJsonToPOSTNodesSuspendallRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesSuspendallRB
-        $AllProperties = ("vms", "node")
+        $AllProperties = ("vms")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,15 +95,8 @@ function ConvertFrom-PVEJsonToPOSTNodesSuspendallRB {
             $Vms = $JsonParameters.PSobject.Properties["vms"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "vms" = ${Vms}
-            "node" = ${Node}
         }
 
         return $PSO

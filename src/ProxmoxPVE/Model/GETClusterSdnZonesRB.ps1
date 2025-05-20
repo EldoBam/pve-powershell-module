@@ -15,11 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Zone
+.PARAMETER Running
 No description available.
 .PARAMETER Pending
-No description available.
-.PARAMETER Running
 No description available.
 .OUTPUTS
 
@@ -30,45 +28,26 @@ function Initialize-PVEGETClusterSdnZonesRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Zone},
+        [System.Nullable[Boolean]]
+        ${Running},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Pending},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Running}
+        [System.Nullable[Boolean]]
+        ${Pending}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETClusterSdnZonesRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Pending -and $Pending -gt 1) {
-          throw "invalid value for 'Pending', must be smaller than or equal to 1."
-        }
-
-        if ($Pending -and $Pending -lt 0) {
-          throw "invalid value for 'Pending', must be greater than or equal to 0."
-        }
-
-        if ($Running -and $Running -gt 1) {
-          throw "invalid value for 'Running', must be smaller than or equal to 1."
-        }
-
-        if ($Running -and $Running -lt 0) {
-          throw "invalid value for 'Running', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Zone"="zone"; "Pending"="pending"; "Running"="running"
+			"Running"="running"; "Pending"="pending"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -108,23 +87,11 @@ function ConvertFrom-PVEJsonToGETClusterSdnZonesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETClusterSdnZonesRB
-        $AllProperties = ("zone", "pending", "running")
+        $AllProperties = ("running", "pending")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
-            $Zone = $null
-        } else {
-            $Zone = $JsonParameters.PSobject.Properties["zone"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pending"))) { #optional property not found
-            $Pending = $null
-        } else {
-            $Pending = $JsonParameters.PSobject.Properties["pending"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "running"))) { #optional property not found
@@ -133,10 +100,15 @@ function ConvertFrom-PVEJsonToGETClusterSdnZonesRB {
             $Running = $JsonParameters.PSobject.Properties["running"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pending"))) { #optional property not found
+            $Pending = $null
+        } else {
+            $Pending = $JsonParameters.PSobject.Properties["pending"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "zone" = ${Zone}
-            "pending" = ${Pending}
             "running" = ${Running}
+            "pending" = ${Pending}
         }
 
         return $PSO

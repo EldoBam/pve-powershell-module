@@ -3,37 +3,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Peers** | **String** |  | [optional] 
-**IsisDomain** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
 **Loopback** | **String** |  | [optional] 
-**BgpMultipathAsPathRelax** | **Int32** |  | [optional] 
+**EbgpMultihop** | **Int32** |  | [optional] 
+**Ebgp** | **Boolean** |  | [optional] 
 **IsisNet** | **String** |  | [optional] 
 **IsisIfaces** | **String** |  | [optional] 
-**EbgpMultihop** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Controller** | **String** |  | [optional] 
-**Ebgp** | **Int32** |  | [optional] 
 **Asn** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**BgpMultipathAsPathRelax** | **Boolean** |  | [optional] 
+**IsisDomain** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnControllersRB = Initialize-PVEPUTClusterSdnControllersRB  -Node null `
- -Peers null `
- -IsisDomain null `
+$PUTClusterSdnControllersRB = Initialize-PVEPUTClusterSdnControllersRB  -Peers null `
+ -Delete null `
  -Loopback null `
- -BgpMultipathAsPathRelax null `
+ -EbgpMultihop null `
+ -Ebgp null `
  -IsisNet null `
  -IsisIfaces null `
- -EbgpMultihop null `
- -Digest null `
- -Delete null `
- -Controller null `
- -Ebgp null `
- -Asn null
+ -Asn null `
+ -Node null `
+ -BgpMultipathAsPathRelax null `
+ -IsisDomain null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

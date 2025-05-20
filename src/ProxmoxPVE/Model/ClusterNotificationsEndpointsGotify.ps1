@@ -15,8 +15,6 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
-No description available.
 .PARAMETER Server
 No description available.
 .PARAMETER Comment
@@ -24,6 +22,8 @@ No description available.
 .PARAMETER Digest
 No description available.
 .PARAMETER Disable
+No description available.
+.PARAMETER Name
 No description available.
 .OUTPUTS
 
@@ -35,9 +35,6 @@ function Initialize-PVEClusterNotificationsEndpointsGotify {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Server},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
@@ -46,8 +43,11 @@ function Initialize-PVEClusterNotificationsEndpointsGotify {
         [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable}
+        [System.Nullable[Boolean]]
+        ${Disable},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name}
     )
 
     Process {
@@ -58,23 +58,15 @@ function Initialize-PVEClusterNotificationsEndpointsGotify {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
         }
 
-        if ($Disable -and $Disable -gt 1) {
-          throw "invalid value for 'Disable', must be smaller than or equal to 1."
-        }
-
-        if ($Disable -and $Disable -lt 0) {
-          throw "invalid value for 'Disable', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Server"="server"; "Comment"="comment"; "Digest"="digest"; "Disable"="disable"
+			"Server"="server"; "Comment"="comment"; "Digest"="digest"; "Disable"="disable"; "Name"="name"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -114,17 +106,11 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsGotify {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterNotificationsEndpointsGotify
-        $AllProperties = ("name", "server", "comment", "digest", "disable")
+        $AllProperties = ("server", "comment", "digest", "disable", "name")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
@@ -151,12 +137,18 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsGotify {
             $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
             "server" = ${Server}
             "comment" = ${Comment}
             "digest" = ${Digest}
             "disable" = ${Disable}
+            "name" = ${Name}
         }
 
         return $PSO

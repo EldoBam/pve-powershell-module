@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Release
-No description available.
 .PARAMETER Repoid
 No description available.
 .PARAMETER Version
+No description available.
+.PARAMETER Release
 No description available.
 .OUTPUTS
 
@@ -31,13 +31,13 @@ function Initialize-PVENodesVersion {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Release},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Repoid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Version}
+        ${Version},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Release}
     )
 
     Process {
@@ -46,13 +46,13 @@ function Initialize-PVENodesVersion {
 
 
 		 $DisplayNameMapping =@{
-			"Release"="release"; "Repoid"="repoid"; "Version"="version"
+			"Repoid"="repoid"; "Version"="version"; "Release"="release"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -92,17 +92,11 @@ function ConvertFrom-PVEJsonToNodesVersion {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesVersion
-        $AllProperties = ("release", "repoid", "version")
+        $AllProperties = ("repoid", "version", "release")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "release"))) { #optional property not found
-            $Release = $null
-        } else {
-            $Release = $JsonParameters.PSobject.Properties["release"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "repoid"))) { #optional property not found
@@ -117,10 +111,16 @@ function ConvertFrom-PVEJsonToNodesVersion {
             $Version = $JsonParameters.PSobject.Properties["version"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "release"))) { #optional property not found
+            $Release = $null
+        } else {
+            $Release = $JsonParameters.PSobject.Properties["release"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "release" = ${Release}
             "repoid" = ${Repoid}
             "version" = ${Version}
+            "release" = ${Release}
         }
 
         return $PSO

@@ -3,24 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Content** | **String** |  | [optional] 
 **Checksum** | **String** |  | [optional] 
-**Filename** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
 **Tmpfilename** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Content** | **String** |  | [optional] 
+**Filename** | **String** |  | [optional] 
 **ChecksumAlgorithm** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesStorageUploadRB = Initialize-PVEPOSTNodesStorageUploadRB  -Content null `
- -Checksum null `
- -Filename null `
- -Storage null `
+$POSTNodesStorageUploadRB = Initialize-PVEPOSTNodesStorageUploadRB  -Checksum null `
  -Tmpfilename null `
- -Node null `
+ -Content null `
+ -Filename null `
  -ChecksumAlgorithm null
 ```
 

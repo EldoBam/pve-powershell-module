@@ -17,8 +17,6 @@ No description available.
 
 .PARAMETER Vg
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 GETNodesScanLvmthinRB<PSCustomObject>
@@ -30,10 +28,7 @@ function Initialize-PVEGETNodesScanLvmthinRB {
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[a-zA-Z0-9\.\+\_][a-zA-Z0-9\.\+\_\-]+")]
         [String]
-        ${Vg},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Vg}
     )
 
     Process {
@@ -46,13 +41,13 @@ function Initialize-PVEGETNodesScanLvmthinRB {
 
 
 		 $DisplayNameMapping =@{
-			"Vg"="vg"; "Node"="node"
+			"Vg"="vg"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -92,7 +87,7 @@ function ConvertFrom-PVEJsonToGETNodesScanLvmthinRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesScanLvmthinRB
-        $AllProperties = ("vg", "node")
+        $AllProperties = ("vg")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -105,15 +100,8 @@ function ConvertFrom-PVEJsonToGETNodesScanLvmthinRB {
             $Vg = $JsonParameters.PSobject.Properties["vg"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "vg" = ${Vg}
-            "node" = ${Node}
         }
 
         return $PSO

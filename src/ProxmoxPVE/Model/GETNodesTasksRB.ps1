@@ -15,27 +15,25 @@ No summary available.
 
 No description available.
 
-.PARAMETER Typefilter
-No description available.
-.PARAMETER Source
-No description available.
 .PARAMETER Start
 No description available.
 .PARAMETER Userfilter
 No description available.
 .PARAMETER Vmid
 No description available.
-.PARAMETER VarUntil
-No description available.
-.PARAMETER Limit
-No description available.
-.PARAMETER Statusfilter
+.PARAMETER Typefilter
 No description available.
 .PARAMETER Errors
 No description available.
-.PARAMETER Since
+.PARAMETER Source
 No description available.
-.PARAMETER Node
+.PARAMETER VarUntil
+No description available.
+.PARAMETER Statusfilter
+No description available.
+.PARAMETER Limit
+No description available.
+.PARAMETER Since
 No description available.
 .OUTPUTS
 
@@ -46,13 +44,6 @@ function Initialize-PVEGETNodesTasksRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Typefilter},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("archive", "active", "all")]
-        [String]
-        ${Source},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Start},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
@@ -62,23 +53,27 @@ function Initialize-PVEGETNodesTasksRB {
         [System.Nullable[Int32]]
         ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VarUntil},
+        [String]
+        ${Typefilter},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Errors},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("archive", "active", "all")]
+        [String]
+        ${Source},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Limit},
+        ${VarUntil},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Statusfilter},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Errors},
+        ${Limit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Since},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Since}
     )
 
     Process {
@@ -93,23 +88,15 @@ function Initialize-PVEGETNodesTasksRB {
           throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
-        if ($Errors -and $Errors -gt 1) {
-          throw "invalid value for 'Errors', must be smaller than or equal to 1."
-        }
-
-        if ($Errors -and $Errors -lt 0) {
-          throw "invalid value for 'Errors', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Typefilter"="typefilter"; "Source"="source"; "Start"="start"; "Userfilter"="userfilter"; "Vmid"="vmid"; "VarUntil"="until"; "Limit"="limit"; "Statusfilter"="statusfilter"; "Errors"="errors"; "Since"="since"; "Node"="node"
+			"Start"="start"; "Userfilter"="userfilter"; "Vmid"="vmid"; "Typefilter"="typefilter"; "Errors"="errors"; "Source"="source"; "VarUntil"="until"; "Statusfilter"="statusfilter"; "Limit"="limit"; "Since"="since"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -149,23 +136,11 @@ function ConvertFrom-PVEJsonToGETNodesTasksRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesTasksRB
-        $AllProperties = ("typefilter", "source", "start", "userfilter", "vmid", "until", "limit", "statusfilter", "errors", "since", "node")
+        $AllProperties = ("start", "userfilter", "vmid", "typefilter", "errors", "source", "until", "statusfilter", "limit", "since")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "typefilter"))) { #optional property not found
-            $Typefilter = $null
-        } else {
-            $Typefilter = $JsonParameters.PSobject.Properties["typefilter"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
-            $Source = $null
-        } else {
-            $Source = $JsonParameters.PSobject.Properties["source"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) { #optional property not found
@@ -186,22 +161,10 @@ function ConvertFrom-PVEJsonToGETNodesTasksRB {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
-            $VarUntil = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "typefilter"))) { #optional property not found
+            $Typefilter = $null
         } else {
-            $VarUntil = $JsonParameters.PSobject.Properties["until"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "limit"))) { #optional property not found
-            $Limit = $null
-        } else {
-            $Limit = $JsonParameters.PSobject.Properties["limit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "statusfilter"))) { #optional property not found
-            $Statusfilter = $null
-        } else {
-            $Statusfilter = $JsonParameters.PSobject.Properties["statusfilter"].value
+            $Typefilter = $JsonParameters.PSobject.Properties["typefilter"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "errors"))) { #optional property not found
@@ -210,30 +173,47 @@ function ConvertFrom-PVEJsonToGETNodesTasksRB {
             $Errors = $JsonParameters.PSobject.Properties["errors"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
+            $Source = $null
+        } else {
+            $Source = $JsonParameters.PSobject.Properties["source"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
+            $VarUntil = $null
+        } else {
+            $VarUntil = $JsonParameters.PSobject.Properties["until"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "statusfilter"))) { #optional property not found
+            $Statusfilter = $null
+        } else {
+            $Statusfilter = $JsonParameters.PSobject.Properties["statusfilter"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "limit"))) { #optional property not found
+            $Limit = $null
+        } else {
+            $Limit = $JsonParameters.PSobject.Properties["limit"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "since"))) { #optional property not found
             $Since = $null
         } else {
             $Since = $JsonParameters.PSobject.Properties["since"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "typefilter" = ${Typefilter}
-            "source" = ${Source}
             "start" = ${Start}
             "userfilter" = ${Userfilter}
             "vmid" = ${Vmid}
-            "until" = ${VarUntil}
-            "limit" = ${Limit}
-            "statusfilter" = ${Statusfilter}
+            "typefilter" = ${Typefilter}
             "errors" = ${Errors}
+            "source" = ${Source}
+            "until" = ${VarUntil}
+            "statusfilter" = ${Statusfilter}
+            "limit" = ${Limit}
             "since" = ${Since}
-            "node" = ${Node}
         }
 
         return $PSO

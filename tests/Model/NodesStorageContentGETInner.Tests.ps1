@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesStorageContentGETInner' {
     Context 'PVENodesStorageContentGETInner' {
         It 'Initialize-PVENodesStorageContentGETInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesStorageContentGETInner -Ctime "TEST_VALUE" -Notes "TEST_VALUE" -Format "TEST_VALUE" -Protected "TEST_VALUE" -Volid "TEST_VALUE" -Verification "TEST_VALUE" -Vmid "TEST_VALUE" -Parent "TEST_VALUE" -Encrypted "TEST_VALUE" -Used "TEST_VALUE" -Size "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesStorageContentGETInner -Size "TEST_VALUE" -Vmid "TEST_VALUE" -Parent "TEST_VALUE" -Encrypted "TEST_VALUE" -Protected "TEST_VALUE" -Format "TEST_VALUE" -Ctime "TEST_VALUE" -Volid "TEST_VALUE" -Used "TEST_VALUE" -Verification "TEST_VALUE" -Notes "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesStorageContentGETInner
             #$NewObject.property | Should -Be 0
         }

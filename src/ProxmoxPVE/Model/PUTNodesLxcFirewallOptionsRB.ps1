@@ -15,33 +15,29 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
+.PARAMETER LogLevelOut
+No description available.
+.PARAMETER Delete
+No description available.
+.PARAMETER PolicyOut
 No description available.
 .PARAMETER LogLevelIn
 No description available.
 .PARAMETER Ndp
 No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER LogLevelOut
-No description available.
-.PARAMETER PolicyOut
-No description available.
-.PARAMETER Radv
-No description available.
 .PARAMETER Ipfilter
 No description available.
-.PARAMETER Digest
-No description available.
-.PARAMETER Enable
-No description available.
-.PARAMETER Delete
-No description available.
 .PARAMETER Dhcp
+No description available.
+.PARAMETER Radv
 No description available.
 .PARAMETER Macfilter
 No description available.
 .PARAMETER PolicyIn
+No description available.
+.PARAMETER Digest
+No description available.
+.PARAMETER Enable
 No description available.
 .OUTPUTS
 
@@ -52,126 +48,64 @@ function Initialize-PVEPUTNodesLxcFirewallOptionsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
-        [String]
-        ${LogLevelIn},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Ndp},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
         [String]
         ${LogLevelOut},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ACCEPT", "REJECT", "DROP")]
         [String]
         ${PolicyOut},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Radv},
+        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
+        [String]
+        ${LogLevelIn},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
+        ${Ndp},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
         ${Ipfilter},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Dhcp},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
+        ${Radv},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
         ${Macfilter},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ACCEPT", "REJECT", "DROP")]
         [String]
-        ${PolicyIn}
+        ${PolicyIn},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Enable}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTNodesLxcFirewallOptionsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Ndp -and $Ndp -gt 1) {
-          throw "invalid value for 'Ndp', must be smaller than or equal to 1."
-        }
-
-        if ($Ndp -and $Ndp -lt 0) {
-          throw "invalid value for 'Ndp', must be greater than or equal to 0."
-        }
-
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
-        if ($Radv -and $Radv -gt 1) {
-          throw "invalid value for 'Radv', must be smaller than or equal to 1."
-        }
-
-        if ($Radv -and $Radv -lt 0) {
-          throw "invalid value for 'Radv', must be greater than or equal to 0."
-        }
-
-        if ($Ipfilter -and $Ipfilter -gt 1) {
-          throw "invalid value for 'Ipfilter', must be smaller than or equal to 1."
-        }
-
-        if ($Ipfilter -and $Ipfilter -lt 0) {
-          throw "invalid value for 'Ipfilter', must be greater than or equal to 0."
-        }
-
         if (!$Digest -and $Digest.length -gt 64) {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
         }
 
-        if ($Enable -and $Enable -gt 1) {
-          throw "invalid value for 'Enable', must be smaller than or equal to 1."
-        }
-
-        if ($Enable -and $Enable -lt 0) {
-          throw "invalid value for 'Enable', must be greater than or equal to 0."
-        }
-
-        if ($Dhcp -and $Dhcp -gt 1) {
-          throw "invalid value for 'Dhcp', must be smaller than or equal to 1."
-        }
-
-        if ($Dhcp -and $Dhcp -lt 0) {
-          throw "invalid value for 'Dhcp', must be greater than or equal to 0."
-        }
-
-        if ($Macfilter -and $Macfilter -gt 1) {
-          throw "invalid value for 'Macfilter', must be smaller than or equal to 1."
-        }
-
-        if ($Macfilter -and $Macfilter -lt 0) {
-          throw "invalid value for 'Macfilter', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "LogLevelIn"="log_level_in"; "Ndp"="ndp"; "Vmid"="vmid"; "LogLevelOut"="log_level_out"; "PolicyOut"="policy_out"; "Radv"="radv"; "Ipfilter"="ipfilter"; "Digest"="digest"; "Enable"="enable"; "Delete"="delete"; "Dhcp"="dhcp"; "Macfilter"="macfilter"; "PolicyIn"="policy_in"
+			"LogLevelOut"="log_level_out"; "Delete"="delete"; "PolicyOut"="policy_out"; "LogLevelIn"="log_level_in"; "Ndp"="ndp"; "Ipfilter"="ipfilter"; "Dhcp"="dhcp"; "Radv"="radv"; "Macfilter"="macfilter"; "PolicyIn"="policy_in"; "Digest"="digest"; "Enable"="enable"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -211,17 +145,29 @@ function ConvertFrom-PVEJsonToPUTNodesLxcFirewallOptionsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTNodesLxcFirewallOptionsRB
-        $AllProperties = ("node", "log_level_in", "ndp", "vmid", "log_level_out", "policy_out", "radv", "ipfilter", "digest", "enable", "delete", "dhcp", "macfilter", "policy_in")
+        $AllProperties = ("log_level_out", "delete", "policy_out", "log_level_in", "ndp", "ipfilter", "dhcp", "radv", "macfilter", "policy_in", "digest", "enable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_out"))) { #optional property not found
+            $LogLevelOut = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $LogLevelOut = $JsonParameters.PSobject.Properties["log_level_out"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_out"))) { #optional property not found
+            $PolicyOut = $null
+        } else {
+            $PolicyOut = $JsonParameters.PSobject.Properties["policy_out"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_in"))) { #optional property not found
@@ -236,58 +182,22 @@ function ConvertFrom-PVEJsonToPUTNodesLxcFirewallOptionsRB {
             $Ndp = $JsonParameters.PSobject.Properties["ndp"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_out"))) { #optional property not found
-            $LogLevelOut = $null
-        } else {
-            $LogLevelOut = $JsonParameters.PSobject.Properties["log_level_out"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_out"))) { #optional property not found
-            $PolicyOut = $null
-        } else {
-            $PolicyOut = $JsonParameters.PSobject.Properties["policy_out"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "radv"))) { #optional property not found
-            $Radv = $null
-        } else {
-            $Radv = $JsonParameters.PSobject.Properties["radv"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipfilter"))) { #optional property not found
             $Ipfilter = $null
         } else {
             $Ipfilter = $JsonParameters.PSobject.Properties["ipfilter"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
-            $Enable = $null
-        } else {
-            $Enable = $JsonParameters.PSobject.Properties["enable"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dhcp"))) { #optional property not found
             $Dhcp = $null
         } else {
             $Dhcp = $JsonParameters.PSobject.Properties["dhcp"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "radv"))) { #optional property not found
+            $Radv = $null
+        } else {
+            $Radv = $JsonParameters.PSobject.Properties["radv"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "macfilter"))) { #optional property not found
@@ -302,21 +212,31 @@ function ConvertFrom-PVEJsonToPUTNodesLxcFirewallOptionsRB {
             $PolicyIn = $JsonParameters.PSobject.Properties["policy_in"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
+            $Enable = $null
+        } else {
+            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
+            "log_level_out" = ${LogLevelOut}
+            "delete" = ${Delete}
+            "policy_out" = ${PolicyOut}
             "log_level_in" = ${LogLevelIn}
             "ndp" = ${Ndp}
-            "vmid" = ${Vmid}
-            "log_level_out" = ${LogLevelOut}
-            "policy_out" = ${PolicyOut}
-            "radv" = ${Radv}
             "ipfilter" = ${Ipfilter}
-            "digest" = ${Digest}
-            "enable" = ${Enable}
-            "delete" = ${Delete}
             "dhcp" = ${Dhcp}
+            "radv" = ${Radv}
             "macfilter" = ${Macfilter}
             "policy_in" = ${PolicyIn}
+            "digest" = ${Digest}
+            "enable" = ${Enable}
         }
 
         return $PSO

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEDELETENodesLxcFirewallRulesRB' {
     Context 'PVEDELETENodesLxcFirewallRulesRB' {
         It 'Initialize-PVEDELETENodesLxcFirewallRulesRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEDELETENodesLxcFirewallRulesRB -Pos "TEST_VALUE" -Digest "TEST_VALUE" -Vmid "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEDELETENodesLxcFirewallRulesRB -Digest "TEST_VALUE"
             #$NewObject | Should -BeOfType DELETENodesLxcFirewallRulesRB
             #$NewObject.property | Should -Be 0
         }

@@ -5,17 +5,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Timeframe** | **String** |  | [optional] 
 **Cf** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesLxcRrddataRB = Initialize-PVEGETNodesLxcRrddataRB  -Timeframe null `
- -Cf null `
- -Vmid null `
- -Node null
+ -Cf null
 ```
 
 - Convert the resource to JSON

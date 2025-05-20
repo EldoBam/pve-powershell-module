@@ -17,13 +17,11 @@ No description available.
 
 .PARAMETER Server
 No description available.
-.PARAMETER Username
-No description available.
 .PARAMETER Password
 No description available.
-.PARAMETER Domain
+.PARAMETER Username
 No description available.
-.PARAMETER Node
+.PARAMETER Domain
 No description available.
 .OUTPUTS
 
@@ -38,16 +36,13 @@ function Initialize-PVEGETNodesScanCifsRB {
         ${Server},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Username},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Password},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Domain},
+        ${Username},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${Domain}
     )
 
     Process {
@@ -56,13 +51,13 @@ function Initialize-PVEGETNodesScanCifsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Server"="server"; "Username"="username"; "Password"="password"; "Domain"="domain"; "Node"="node"
+			"Server"="server"; "Password"="password"; "Username"="username"; "Domain"="domain"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -102,7 +97,7 @@ function ConvertFrom-PVEJsonToGETNodesScanCifsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesScanCifsRB
-        $AllProperties = ("server", "username", "password", "domain", "node")
+        $AllProperties = ("server", "password", "username", "domain")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -115,16 +110,16 @@ function ConvertFrom-PVEJsonToGETNodesScanCifsRB {
             $Server = $JsonParameters.PSobject.Properties["server"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
-            $Username = $null
-        } else {
-            $Username = $JsonParameters.PSobject.Properties["username"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
             $Password = $null
         } else {
             $Password = $JsonParameters.PSobject.Properties["password"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
+            $Username = $null
+        } else {
+            $Username = $JsonParameters.PSobject.Properties["username"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "domain"))) { #optional property not found
@@ -133,18 +128,11 @@ function ConvertFrom-PVEJsonToGETNodesScanCifsRB {
             $Domain = $JsonParameters.PSobject.Properties["domain"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "server" = ${Server}
-            "username" = ${Username}
             "password" = ${Password}
+            "username" = ${Username}
             "domain" = ${Domain}
-            "node" = ${Node}
         }
 
         return $PSO

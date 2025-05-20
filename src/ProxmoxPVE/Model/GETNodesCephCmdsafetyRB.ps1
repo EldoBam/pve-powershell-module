@@ -17,11 +17,9 @@ No description available.
 
 .PARAMETER Action
 No description available.
-.PARAMETER Id
-No description available.
 .PARAMETER Service
 No description available.
-.PARAMETER Node
+.PARAMETER Id
 No description available.
 .OUTPUTS
 
@@ -36,15 +34,12 @@ function Initialize-PVEGETNodesCephCmdsafetyRB {
         [String]
         ${Action},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("osd", "mon", "mds")]
         [String]
         ${Service},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${Id}
     )
 
     Process {
@@ -53,13 +48,13 @@ function Initialize-PVEGETNodesCephCmdsafetyRB {
 
 
 		 $DisplayNameMapping =@{
-			"Action"="action"; "Id"="id"; "Service"="service"; "Node"="node"
+			"Action"="action"; "Service"="service"; "Id"="id"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -99,7 +94,7 @@ function ConvertFrom-PVEJsonToGETNodesCephCmdsafetyRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesCephCmdsafetyRB
-        $AllProperties = ("action", "id", "service", "node")
+        $AllProperties = ("action", "service", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -112,29 +107,22 @@ function ConvertFrom-PVEJsonToGETNodesCephCmdsafetyRB {
             $Action = $JsonParameters.PSobject.Properties["action"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "service"))) { #optional property not found
             $Service = $null
         } else {
             $Service = $JsonParameters.PSobject.Properties["service"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
         $PSO = [PSCustomObject]@{
             "action" = ${Action}
-            "id" = ${Id}
             "service" = ${Service}
-            "node" = ${Node}
+            "id" = ${Id}
         }
 
         return $PSO

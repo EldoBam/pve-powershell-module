@@ -3,17 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Healthonly** | **Int32** |  | [optional] 
 **Disk** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Healthonly** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesDisksSmartRB = Initialize-PVEGETNodesDisksSmartRB  -Healthonly null `
- -Disk null `
- -Node null
+$GETNodesDisksSmartRB = Initialize-PVEGETNodesDisksSmartRB  -Disk null `
+ -Healthonly null
 ```
 
 - Convert the resource to JSON

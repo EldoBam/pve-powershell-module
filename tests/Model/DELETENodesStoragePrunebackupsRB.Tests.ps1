@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEDELETENodesStoragePrunebackupsRB' {
     Context 'PVEDELETENodesStoragePrunebackupsRB' {
         It 'Initialize-PVEDELETENodesStoragePrunebackupsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEDELETENodesStoragePrunebackupsRB -Type "TEST_VALUE" -Storage "TEST_VALUE" -PruneBackups "TEST_VALUE" -Vmid "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEDELETENodesStoragePrunebackupsRB -Vmid "TEST_VALUE" -PruneBackups "TEST_VALUE" -Type "TEST_VALUE"
             #$NewObject | Should -BeOfType DELETENodesStoragePrunebackupsRB
             #$NewObject.property | Should -Be 0
         }

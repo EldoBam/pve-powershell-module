@@ -15,13 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Skipsmart
+No description available.
 .PARAMETER IncludePartitions
 No description available.
 .PARAMETER Type
-No description available.
-.PARAMETER Skipsmart
-No description available.
-.PARAMETER Node
 No description available.
 .OUTPUTS
 
@@ -32,49 +30,30 @@ function Initialize-PVEGETNodesDisksListRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
+        ${Skipsmart},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
         ${IncludePartitions},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("unused", "journal_disks")]
         [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Skipsmart},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Type}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETNodesDisksListRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($IncludePartitions -and $IncludePartitions -gt 1) {
-          throw "invalid value for 'IncludePartitions', must be smaller than or equal to 1."
-        }
-
-        if ($IncludePartitions -and $IncludePartitions -lt 0) {
-          throw "invalid value for 'IncludePartitions', must be greater than or equal to 0."
-        }
-
-        if ($Skipsmart -and $Skipsmart -gt 1) {
-          throw "invalid value for 'Skipsmart', must be smaller than or equal to 1."
-        }
-
-        if ($Skipsmart -and $Skipsmart -lt 0) {
-          throw "invalid value for 'Skipsmart', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"IncludePartitions"="include-partitions"; "Type"="type"; "Skipsmart"="skipsmart"; "Node"="node"
+			"Skipsmart"="skipsmart"; "IncludePartitions"="include-partitions"; "Type"="type"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -114,11 +93,17 @@ function ConvertFrom-PVEJsonToGETNodesDisksListRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesDisksListRB
-        $AllProperties = ("include-partitions", "type", "skipsmart", "node")
+        $AllProperties = ("skipsmart", "include-partitions", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skipsmart"))) { #optional property not found
+            $Skipsmart = $null
+        } else {
+            $Skipsmart = $JsonParameters.PSobject.Properties["skipsmart"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "include-partitions"))) { #optional property not found
@@ -133,23 +118,10 @@ function ConvertFrom-PVEJsonToGETNodesDisksListRB {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skipsmart"))) { #optional property not found
-            $Skipsmart = $null
-        } else {
-            $Skipsmart = $JsonParameters.PSobject.Properties["skipsmart"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "skipsmart" = ${Skipsmart}
             "include-partitions" = ${IncludePartitions}
             "type" = ${Type}
-            "skipsmart" = ${Skipsmart}
-            "node" = ${Node}
         }
 
         return $PSO

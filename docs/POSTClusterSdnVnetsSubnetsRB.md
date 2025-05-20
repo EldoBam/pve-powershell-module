@@ -3,27 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Gateway** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **DhcpRange** | **String[]** |  | [optional] 
 **DhcpDnsServer** | **String** |  | [optional] 
-**Gateway** | **String** |  | [optional] 
-**Snat** | **Int32** |  | [optional] 
 **Subnet** | **String** |  | [optional] 
 **Dnszoneprefix** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Vnet** | **String** |  | [optional] 
+**Snat** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnVnetsSubnetsRB = Initialize-PVEPOSTClusterSdnVnetsSubnetsRB  -DhcpRange null `
+$POSTClusterSdnVnetsSubnetsRB = Initialize-PVEPOSTClusterSdnVnetsSubnetsRB  -Gateway null `
+ -Type null `
+ -DhcpRange null `
  -DhcpDnsServer null `
- -Gateway null `
- -Snat null `
  -Subnet null `
  -Dnszoneprefix null `
- -Type null `
- -Vnet null
+ -Snat null
 ```
 
 - Convert the resource to JSON

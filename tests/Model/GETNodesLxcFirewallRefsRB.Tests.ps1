@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesLxcFirewallRefsRB' {
     Context 'PVEGETNodesLxcFirewallRefsRB' {
         It 'Initialize-PVEGETNodesLxcFirewallRefsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesLxcFirewallRefsRB -Type "TEST_VALUE" -Vmid "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesLxcFirewallRefsRB -Type "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesLxcFirewallRefsRB
             #$NewObject.property | Should -Be 0
         }

@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Content** | **String** |  | [optional] 
-**Active** | **Int32** |  | [optional] 
 **UsedFraction** | **Decimal** |  | [optional] 
-**Used** | **Int32** |  | [optional] 
-**Avail** | **Int32** |  | [optional] 
-**Enabled** | **Int32** |  | [optional] 
-**Total** | **Int32** |  | [optional] 
-**Shared** | **Int32** |  | [optional] 
-**Storage** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Enabled** | **Boolean** |  | [optional] 
+**Content** | **String** |  | [optional] 
+**Shared** | **Boolean** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**Active** | **Boolean** |  | [optional] 
+**Used** | **Int32** |  | [optional] 
+**Total** | **Int32** |  | [optional] 
+**Avail** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStorageInner = Initialize-PVENodesStorageInner  -Content null `
- -Active null `
- -UsedFraction null `
- -Used null `
- -Avail null `
+$NodesStorageInner = Initialize-PVENodesStorageInner  -UsedFraction null `
+ -Type null `
  -Enabled null `
- -Total null `
+ -Content null `
  -Shared null `
  -Storage null `
- -Type null
+ -Active null `
+ -Used null `
+ -Total null `
+ -Avail null
 ```
 
 - Convert the resource to JSON

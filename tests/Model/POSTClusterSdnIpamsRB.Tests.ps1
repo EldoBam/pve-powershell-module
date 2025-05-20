@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTClusterSdnIpamsRB' {
     Context 'PVEPOSTClusterSdnIpamsRB' {
         It 'Initialize-PVEPOSTClusterSdnIpamsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTClusterSdnIpamsRB -Ipam "TEST_VALUE" -Token "TEST_VALUE" -Section "TEST_VALUE" -Url "TEST_VALUE" -Fingerprint "TEST_VALUE" -Type "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTClusterSdnIpamsRB -Section "TEST_VALUE" -Type "TEST_VALUE" -Token "TEST_VALUE" -Ipam "TEST_VALUE" -Fingerprint "TEST_VALUE" -Url "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTClusterSdnIpamsRB
             #$NewObject.property | Should -Be 0
         }

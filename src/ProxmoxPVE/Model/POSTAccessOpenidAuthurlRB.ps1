@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Realm
-No description available.
 .PARAMETER RedirectUrl
+No description available.
+.PARAMETER Realm
 No description available.
 .OUTPUTS
 
@@ -29,33 +29,33 @@ function Initialize-PVEPOSTAccessOpenidAuthurlRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Realm},
+        ${RedirectUrl},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${RedirectUrl}
+        ${Realm}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTAccessOpenidAuthurlRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if (!$Realm -and $Realm.length -gt 32) {
-            throw "invalid value for 'Realm', the character length must be smaller than or equal to 32."
-        }
-
         if (!$RedirectUrl -and $RedirectUrl.length -gt 255) {
             throw "invalid value for 'RedirectUrl', the character length must be smaller than or equal to 255."
         }
 
+        if (!$Realm -and $Realm.length -gt 32) {
+            throw "invalid value for 'Realm', the character length must be smaller than or equal to 32."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Realm"="realm"; "RedirectUrl"="redirect-url"
+			"RedirectUrl"="redirect-url"; "Realm"="realm"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -95,17 +95,11 @@ function ConvertFrom-PVEJsonToPOSTAccessOpenidAuthurlRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTAccessOpenidAuthurlRB
-        $AllProperties = ("realm", "redirect-url")
+        $AllProperties = ("redirect-url", "realm")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
-            $Realm = $null
-        } else {
-            $Realm = $JsonParameters.PSobject.Properties["realm"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "redirect-url"))) { #optional property not found
@@ -114,9 +108,15 @@ function ConvertFrom-PVEJsonToPOSTAccessOpenidAuthurlRB {
             $RedirectUrl = $JsonParameters.PSobject.Properties["redirect-url"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
+            $Realm = $null
+        } else {
+            $Realm = $JsonParameters.PSobject.Properties["realm"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "realm" = ${Realm}
             "redirect-url" = ${RedirectUrl}
+            "realm" = ${Realm}
         }
 
         return $PSO

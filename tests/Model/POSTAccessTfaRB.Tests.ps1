@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTAccessTfaRB' {
     Context 'PVEPOSTAccessTfaRB' {
         It 'Initialize-PVEPOSTAccessTfaRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTAccessTfaRB -Totp "TEST_VALUE" -Password "TEST_VALUE" -Value "TEST_VALUE" -Challenge "TEST_VALUE" -Description "TEST_VALUE" -Userid "TEST_VALUE" -Type "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTAccessTfaRB -Type "TEST_VALUE" -Description "TEST_VALUE" -Challenge "TEST_VALUE" -Totp "TEST_VALUE" -Value "TEST_VALUE" -Password "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTAccessTfaRB
             #$NewObject.property | Should -Be 0
         }

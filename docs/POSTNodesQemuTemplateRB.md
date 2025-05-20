@@ -4,16 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Disk** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuTemplateRB = Initialize-PVEPOSTNodesQemuTemplateRB  -Disk null `
- -Vmid null `
- -Node null
+$POSTNodesQemuTemplateRB = Initialize-PVEPOSTNodesQemuTemplateRB  -Disk null
 ```
 
 - Convert the resource to JSON

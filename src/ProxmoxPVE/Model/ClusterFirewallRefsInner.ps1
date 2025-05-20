@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Scope
-No description available.
-.PARAMETER Type
+.PARAMETER Ref
 No description available.
 .PARAMETER Comment
 No description available.
 .PARAMETER Name
 No description available.
-.PARAMETER Ref
+.PARAMETER Type
+No description available.
+.PARAMETER Scope
 No description available.
 .OUTPUTS
 
@@ -35,11 +35,7 @@ function Initialize-PVEClusterFirewallRefsInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Scope},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("alias", "ipset")]
-        [String]
-        ${Type},
+        ${Ref},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment},
@@ -47,8 +43,12 @@ function Initialize-PVEClusterFirewallRefsInner {
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("alias", "ipset")]
         [String]
-        ${Ref}
+        ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Scope}
     )
 
     Process {
@@ -57,13 +57,13 @@ function Initialize-PVEClusterFirewallRefsInner {
 
 
 		 $DisplayNameMapping =@{
-			"Scope"="scope"; "Type"="type"; "Comment"="comment"; "Name"="name"; "Ref"="ref"
+			"Ref"="ref"; "Comment"="comment"; "Name"="name"; "Type"="type"; "Scope"="scope"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -103,23 +103,17 @@ function ConvertFrom-PVEJsonToClusterFirewallRefsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterFirewallRefsInner
-        $AllProperties = ("scope", "type", "comment", "name", "ref")
+        $AllProperties = ("ref", "comment", "name", "type", "scope")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scope"))) { #optional property not found
-            $Scope = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ref"))) { #optional property not found
+            $Ref = $null
         } else {
-            $Scope = $JsonParameters.PSobject.Properties["scope"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Ref = $JsonParameters.PSobject.Properties["ref"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -134,18 +128,24 @@ function ConvertFrom-PVEJsonToClusterFirewallRefsInner {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ref"))) { #optional property not found
-            $Ref = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
         } else {
-            $Ref = $JsonParameters.PSobject.Properties["ref"].value
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scope"))) { #optional property not found
+            $Scope = $null
+        } else {
+            $Scope = $JsonParameters.PSobject.Properties["scope"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "scope" = ${Scope}
-            "type" = ${Type}
+            "ref" = ${Ref}
             "comment" = ${Comment}
             "name" = ${Name}
-            "ref" = ${Ref}
+            "type" = ${Type}
+            "scope" = ${Scope}
         }
 
         return $PSO

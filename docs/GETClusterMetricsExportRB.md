@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LocalOnly** | **Int32** |  | [optional] 
+**History** | **Boolean** |  | [optional] 
+**LocalOnly** | **Boolean** |  | [optional] 
 **StartTime** | **Int32** |  | [optional] 
-**History** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETClusterMetricsExportRB = Initialize-PVEGETClusterMetricsExportRB  -LocalOnly null `
- -StartTime null `
- -History null
+$GETClusterMetricsExportRB = Initialize-PVEGETClusterMetricsExportRB  -History null `
+ -LocalOnly null `
+ -StartTime null
 ```
 
 - Convert the resource to JSON

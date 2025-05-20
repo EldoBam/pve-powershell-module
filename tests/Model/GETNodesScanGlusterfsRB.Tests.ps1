@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesScanGlusterfsRB' {
     Context 'PVEGETNodesScanGlusterfsRB' {
         It 'Initialize-PVEGETNodesScanGlusterfsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesScanGlusterfsRB -Server "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesScanGlusterfsRB -Server "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesScanGlusterfsRB
             #$NewObject.property | Should -Be 0
         }

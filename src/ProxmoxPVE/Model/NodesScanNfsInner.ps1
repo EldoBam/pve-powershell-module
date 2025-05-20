@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Path
-No description available.
 .PARAMETER Options
+No description available.
+.PARAMETER Path
 No description available.
 .OUTPUTS
 
@@ -29,10 +29,10 @@ function Initialize-PVENodesScanNfsInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Path},
+        ${Options},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Options}
+        ${Path}
     )
 
     Process {
@@ -41,13 +41,13 @@ function Initialize-PVENodesScanNfsInner {
 
 
 		 $DisplayNameMapping =@{
-			"Path"="path"; "Options"="options"
+			"Options"="options"; "Path"="path"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToNodesScanNfsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesScanNfsInner
-        $AllProperties = ("path", "options")
+        $AllProperties = ("options", "path")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
-            $Path = $null
-        } else {
-            $Path = $JsonParameters.PSobject.Properties["path"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "options"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToNodesScanNfsInner {
             $Options = $JsonParameters.PSobject.Properties["options"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
+            $Path = $null
+        } else {
+            $Path = $JsonParameters.PSobject.Properties["path"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "path" = ${Path}
             "options" = ${Options}
+            "path" = ${Path}
         }
 
         return $PSO

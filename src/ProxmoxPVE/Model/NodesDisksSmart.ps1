@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Health
-No description available.
-.PARAMETER Type
-No description available.
 .PARAMETER Attributes
 No description available.
 .PARAMETER Text
+No description available.
+.PARAMETER Type
+No description available.
+.PARAMETER Health
 No description available.
 .OUTPUTS
 
@@ -32,17 +32,17 @@ function Initialize-PVENodesDisksSmart {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Health},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${Attributes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Text}
+        ${Text},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Health}
     )
 
     Process {
@@ -51,13 +51,13 @@ function Initialize-PVENodesDisksSmart {
 
 
 		 $DisplayNameMapping =@{
-			"Health"="health"; "Type"="type"; "Attributes"="attributes"; "Text"="text"
+			"Attributes"="attributes"; "Text"="text"; "Type"="type"; "Health"="health"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -97,23 +97,11 @@ function ConvertFrom-PVEJsonToNodesDisksSmart {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesDisksSmart
-        $AllProperties = ("health", "type", "attributes", "text")
+        $AllProperties = ("attributes", "text", "type", "health")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "health"))) { #optional property not found
-            $Health = $null
-        } else {
-            $Health = $JsonParameters.PSobject.Properties["health"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "attributes"))) { #optional property not found
@@ -128,11 +116,23 @@ function ConvertFrom-PVEJsonToNodesDisksSmart {
             $Text = $JsonParameters.PSobject.Properties["text"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "health"))) { #optional property not found
+            $Health = $null
+        } else {
+            $Health = $JsonParameters.PSobject.Properties["health"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "health" = ${Health}
-            "type" = ${Type}
             "attributes" = ${Attributes}
             "text" = ${Text}
+            "type" = ${Type}
+            "health" = ${Health}
         }
 
         return $PSO

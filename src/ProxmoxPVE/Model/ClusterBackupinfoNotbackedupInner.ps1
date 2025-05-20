@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Type
+.PARAMETER Vmid
 No description available.
 .PARAMETER Name
 No description available.
-.PARAMETER Vmid
+.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -30,15 +30,15 @@ function Initialize-PVEClusterBackupinfoNotbackedupInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("qemu", "lxc")]
-        [String]
-        ${Type},
+        [System.Nullable[Int32]]
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid}
+        [ValidateSet("qemu", "lxc")]
+        [String]
+        ${Type}
     )
 
     Process {
@@ -47,13 +47,13 @@ function Initialize-PVEClusterBackupinfoNotbackedupInner {
 
 
 		 $DisplayNameMapping =@{
-			"Type"="type"; "Name"="name"; "Vmid"="vmid"
+			"Vmid"="vmid"; "Name"="name"; "Type"="type"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -93,23 +93,11 @@ function ConvertFrom-PVEJsonToClusterBackupinfoNotbackedupInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterBackupinfoNotbackedupInner
-        $AllProperties = ("type", "name", "vmid")
+        $AllProperties = ("vmid", "name", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
@@ -118,10 +106,22 @@ function ConvertFrom-PVEJsonToClusterBackupinfoNotbackedupInner {
             $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "name" = ${Name}
             "vmid" = ${Vmid}
+            "name" = ${Name}
+            "type" = ${Type}
         }
 
         return $PSO

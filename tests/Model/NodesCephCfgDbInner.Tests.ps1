@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesCephCfgDbInner' {
     Context 'PVENodesCephCfgDbInner' {
         It 'Initialize-PVENodesCephCfgDbInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesCephCfgDbInner -Value "TEST_VALUE" -CanUpdateAtRuntime "TEST_VALUE" -Section "TEST_VALUE" -Mask "TEST_VALUE" -Level "TEST_VALUE" -Name "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesCephCfgDbInner -Name "TEST_VALUE" -Level "TEST_VALUE" -Mask "TEST_VALUE" -CanUpdateAtRuntime "TEST_VALUE" -Section "TEST_VALUE" -Value "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesCephCfgDbInner
             #$NewObject.property | Should -Be 0
         }

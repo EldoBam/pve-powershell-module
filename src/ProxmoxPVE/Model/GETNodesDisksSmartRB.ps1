@@ -15,11 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Healthonly
-No description available.
 .PARAMETER Disk
 No description available.
-.PARAMETER Node
+.PARAMETER Healthonly
 No description available.
 .OUTPUTS
 
@@ -30,38 +28,27 @@ function Initialize-PVEGETNodesDisksSmartRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Healthonly},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("^/dev/[a-zA-Z0-9/]+$")]
         [String]
         ${Disk},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Boolean]]
+        ${Healthonly}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETNodesDisksSmartRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Healthonly -and $Healthonly -gt 1) {
-          throw "invalid value for 'Healthonly', must be smaller than or equal to 1."
-        }
-
-        if ($Healthonly -and $Healthonly -lt 0) {
-          throw "invalid value for 'Healthonly', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Healthonly"="healthonly"; "Disk"="disk"; "Node"="node"
+			"Disk"="disk"; "Healthonly"="healthonly"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -101,17 +88,11 @@ function ConvertFrom-PVEJsonToGETNodesDisksSmartRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesDisksSmartRB
-        $AllProperties = ("healthonly", "disk", "node")
+        $AllProperties = ("disk", "healthonly")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "healthonly"))) { #optional property not found
-            $Healthonly = $null
-        } else {
-            $Healthonly = $JsonParameters.PSobject.Properties["healthonly"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "disk"))) { #optional property not found
@@ -120,16 +101,15 @@ function ConvertFrom-PVEJsonToGETNodesDisksSmartRB {
             $Disk = $JsonParameters.PSobject.Properties["disk"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "healthonly"))) { #optional property not found
+            $Healthonly = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Healthonly = $JsonParameters.PSobject.Properties["healthonly"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "healthonly" = ${Healthonly}
             "disk" = ${Disk}
-            "node" = ${Node}
+            "healthonly" = ${Healthonly}
         }
 
         return $PSO

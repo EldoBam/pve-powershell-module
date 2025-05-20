@@ -3,83 +3,81 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**All** | **Int32** |  | [optional] 
+**Lockwait** | **Int32** |  | [optional] 
+**Mode** | **String** |  | [optional] 
+**Quiet** | **Boolean** |  | [optional] 
+**Mailnotification** | **String** |  | [optional] 
+**ExcludePath** | **String[]** |  | [optional] 
+**JobId** | **String** |  | [optional] 
+**Tmpdir** | **String** |  | [optional] 
+**Stdexcludes** | **Boolean** |  | [optional] 
+**Maxfiles** | **Int32** |  | [optional] 
+**Vmid** | **String** |  | [optional] 
 **NotificationMode** | **String** |  | [optional] 
-**Stopwait** | **Int32** |  | [optional] 
+**Exclude** | **String** |  | [optional] 
+**Fleecing** | **String** |  | [optional] 
 **Pigz** | **Int32** |  | [optional] 
 **Storage** | **String** |  | [optional] 
-**Script** | **String** |  | [optional] 
-**PbsChangeDetectionMode** | **String** |  | [optional] 
-**Stdexcludes** | **Int32** |  | [optional] 
-**Ionice** | **Int32** |  | [optional] 
-**Dumpdir** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Mode** | **String** |  | [optional] 
-**Stop** | **Int32** |  | [optional] 
-**Zstd** | **Int32** |  | [optional] 
-**Compress** | **String** |  | [optional] 
-**Mailnotification** | **String** |  | [optional] 
 **NotesTemplate** | **String** |  | [optional] 
-**Mailto** | **String** |  | [optional] 
-**Bwlimit** | **Int32** |  | [optional] 
-**Vmid** | **String** |  | [optional] 
-**Fleecing** | **String** |  | [optional] 
-**ExcludePath** | **String[]** |  | [optional] 
-**NotificationTarget** | **String** |  | [optional] 
-**Lockwait** | **Int32** |  | [optional] 
-**NotificationPolicy** | **String** |  | [optional] 
-**JobId** | **String** |  | [optional] 
-**Stdout** | **Int32** |  | [optional] 
-**Protected** | **Int32** |  | [optional] 
-**Exclude** | **String** |  | [optional] 
-**Quiet** | **Int32** |  | [optional] 
-**Remove** | **Int32** |  | [optional] 
-**PruneBackups** | **String** |  | [optional] 
 **Performance** | **String** |  | [optional] 
-**Tmpdir** | **String** |  | [optional] 
+**NotificationTarget** | **String** |  | [optional] 
+**Remove** | **Boolean** |  | [optional] 
+**Bwlimit** | **Int32** |  | [optional] 
+**Compress** | **String** |  | [optional] 
+**Script** | **String** |  | [optional] 
+**Dumpdir** | **String** |  | [optional] 
+**Mailto** | **String** |  | [optional] 
 **Pool** | **String** |  | [optional] 
-**Maxfiles** | **Int32** |  | [optional] 
+**Stopwait** | **Int32** |  | [optional] 
+**Stdout** | **Boolean** |  | [optional] 
+**PruneBackups** | **String** |  | [optional] 
+**Stop** | **Boolean** |  | [optional] 
+**Protected** | **Boolean** |  | [optional] 
+**Ionice** | **Int32** |  | [optional] 
+**All** | **Boolean** |  | [optional] 
+**PbsChangeDetectionMode** | **String** |  | [optional] 
+**NotificationPolicy** | **String** |  | [optional] 
+**Zstd** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesVzdumpRB = Initialize-PVEPOSTNodesVzdumpRB  -All null `
+$POSTNodesVzdumpRB = Initialize-PVEPOSTNodesVzdumpRB  -Lockwait null `
+ -Mode null `
+ -Quiet null `
+ -Mailnotification null `
+ -ExcludePath null `
+ -JobId null `
+ -Tmpdir null `
+ -Stdexcludes null `
+ -Maxfiles null `
+ -Vmid null `
  -NotificationMode null `
- -Stopwait null `
+ -Exclude null `
+ -Fleecing null `
  -Pigz null `
  -Storage null `
- -Script null `
- -PbsChangeDetectionMode null `
- -Stdexcludes null `
- -Ionice null `
- -Dumpdir null `
- -Node null `
- -Mode null `
- -Stop null `
- -Zstd null `
- -Compress null `
- -Mailnotification null `
  -NotesTemplate null `
- -Mailto null `
- -Bwlimit null `
- -Vmid null `
- -Fleecing null `
- -ExcludePath null `
- -NotificationTarget null `
- -Lockwait null `
- -NotificationPolicy null `
- -JobId null `
- -Stdout null `
- -Protected null `
- -Exclude null `
- -Quiet null `
- -Remove null `
- -PruneBackups null `
  -Performance null `
- -Tmpdir null `
+ -NotificationTarget null `
+ -Remove null `
+ -Bwlimit null `
+ -Compress null `
+ -Script null `
+ -Dumpdir null `
+ -Mailto null `
  -Pool null `
- -Maxfiles null
+ -Stopwait null `
+ -Stdout null `
+ -PruneBackups null `
+ -Stop null `
+ -Protected null `
+ -Ionice null `
+ -All null `
+ -PbsChangeDetectionMode null `
+ -NotificationPolicy null `
+ -Zstd null
 ```
 
 - Convert the resource to JSON

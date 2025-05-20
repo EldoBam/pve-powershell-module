@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesVncshellRB' {
     Context 'PVEPOSTNodesVncshellRB' {
         It 'Initialize-PVEPOSTNodesVncshellRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesVncshellRB -Width "TEST_VALUE" -Cmd "TEST_VALUE" -Height "TEST_VALUE" -CmdOpts "TEST_VALUE" -Websocket "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesVncshellRB -Cmd "TEST_VALUE" -CmdOpts "TEST_VALUE" -Websocket "TEST_VALUE" -Width "TEST_VALUE" -Height "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesVncshellRB
             #$NewObject.property | Should -Be 0
         }

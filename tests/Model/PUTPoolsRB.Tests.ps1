@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTPoolsRB' {
     Context 'PVEPUTPoolsRB' {
         It 'Initialize-PVEPUTPoolsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTPoolsRB -Vms "TEST_VALUE" -Comment "TEST_VALUE" -Storage "TEST_VALUE" -Delete "TEST_VALUE" -Poolid "TEST_VALUE" -AllowMove "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTPoolsRB -Comment "TEST_VALUE" -Delete "TEST_VALUE" -Vms "TEST_VALUE" -AllowMove "TEST_VALUE" -Storage "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTPoolsRB
             #$NewObject.property | Should -Be 0
         }

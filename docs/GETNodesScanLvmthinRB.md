@@ -4,14 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vg** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesScanLvmthinRB = Initialize-PVEGETNodesScanLvmthinRB  -Vg null `
- -Node null
+$GETNodesScanLvmthinRB = Initialize-PVEGETNodesScanLvmthinRB  -Vg null
 ```
 
 - Convert the resource to JSON

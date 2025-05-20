@@ -15,8 +15,6 @@ No summary available.
 
 No description available.
 
-.PARAMETER Sid
-No description available.
 .PARAMETER Node
 No description available.
 .OUTPUTS
@@ -29,9 +27,6 @@ function Initialize-PVEPOSTClusterHaResourcesMigrateRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Sid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Node}
     )
 
@@ -41,13 +36,13 @@ function Initialize-PVEPOSTClusterHaResourcesMigrateRB {
 
 
 		 $DisplayNameMapping =@{
-			"Sid"="sid"; "Node"="node"
+			"Node"="node"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -87,17 +82,11 @@ function ConvertFrom-PVEJsonToPOSTClusterHaResourcesMigrateRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterHaResourcesMigrateRB
-        $AllProperties = ("sid", "node")
+        $AllProperties = ("node")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sid"))) { #optional property not found
-            $Sid = $null
-        } else {
-            $Sid = $JsonParameters.PSobject.Properties["sid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
@@ -107,7 +96,6 @@ function ConvertFrom-PVEJsonToPOSTClusterHaResourcesMigrateRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "sid" = ${Sid}
             "node" = ${Node}
         }
 

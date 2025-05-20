@@ -15,13 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Vmid
-No description available.
-.PARAMETER Current
-No description available.
 .PARAMETER Snapshot
 No description available.
-.PARAMETER Node
+.PARAMETER Current
 No description available.
 .OUTPUTS
 
@@ -32,38 +28,16 @@ function Initialize-PVEGETNodesQemuConfigRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Current},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Snapshot},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Boolean]]
+        ${Current}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETNodesQemuConfigRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
-        if ($Current -and $Current -gt 1) {
-          throw "invalid value for 'Current', must be smaller than or equal to 1."
-        }
-
-        if ($Current -and $Current -lt 0) {
-          throw "invalid value for 'Current', must be greater than or equal to 0."
-        }
 
         if (!$Snapshot -and $Snapshot.length -gt 40) {
             throw "invalid value for 'Snapshot', the character length must be smaller than or equal to 40."
@@ -71,13 +45,13 @@ function Initialize-PVEGETNodesQemuConfigRB {
 
 
 		 $DisplayNameMapping =@{
-			"Vmid"="vmid"; "Current"="current"; "Snapshot"="snapshot"; "Node"="node"
+			"Snapshot"="snapshot"; "Current"="current"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -117,23 +91,11 @@ function ConvertFrom-PVEJsonToGETNodesQemuConfigRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesQemuConfigRB
-        $AllProperties = ("vmid", "current", "snapshot", "node")
+        $AllProperties = ("snapshot", "current")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "current"))) { #optional property not found
-            $Current = $null
-        } else {
-            $Current = $JsonParameters.PSobject.Properties["current"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "snapshot"))) { #optional property not found
@@ -142,17 +104,15 @@ function ConvertFrom-PVEJsonToGETNodesQemuConfigRB {
             $Snapshot = $JsonParameters.PSobject.Properties["snapshot"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "current"))) { #optional property not found
+            $Current = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Current = $JsonParameters.PSobject.Properties["current"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "vmid" = ${Vmid}
-            "current" = ${Current}
             "snapshot" = ${Snapshot}
-            "node" = ${Node}
+            "current" = ${Current}
         }
 
         return $PSO

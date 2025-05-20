@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesDisksSmartRB' {
     Context 'PVEGETNodesDisksSmartRB' {
         It 'Initialize-PVEGETNodesDisksSmartRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesDisksSmartRB -Healthonly "TEST_VALUE" -Disk "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesDisksSmartRB -Disk "TEST_VALUE" -Healthonly "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesDisksSmartRB
             #$NewObject.property | Should -Be 0
         }

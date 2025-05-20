@@ -15,23 +15,21 @@ No summary available.
 
 No description available.
 
-.PARAMETER Wakeonlan
-No description available.
 .PARAMETER AcmedomainN
-No description available.
-.PARAMETER StartallOnbootDelay
-No description available.
-.PARAMETER BallooningTarget
-No description available.
-.PARAMETER Acme
 No description available.
 .PARAMETER Delete
 No description available.
 .PARAMETER Description
 No description available.
+.PARAMETER Wakeonlan
+No description available.
+.PARAMETER Acme
+No description available.
+.PARAMETER StartallOnbootDelay
+No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Node
+.PARAMETER BallooningTarget
 No description available.
 .OUTPUTS
 
@@ -43,19 +41,7 @@ function Initialize-PVEPUTNodesConfigRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Wakeonlan},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${AcmedomainN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${StartallOnbootDelay},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${BallooningTarget},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Acme},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Delete},
@@ -64,41 +50,50 @@ function Initialize-PVEPUTNodesConfigRB {
         ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest},
+        ${Wakeonlan},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${Acme},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${StartallOnbootDelay},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${BallooningTarget}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTNodesConfigRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($StartallOnbootDelay -and $StartallOnbootDelay -gt 300) {
-          throw "invalid value for 'StartallOnbootDelay', must be smaller than or equal to 300."
-        }
-
-        if ($BallooningTarget -and $BallooningTarget -gt 100) {
-          throw "invalid value for 'BallooningTarget', must be smaller than or equal to 100."
-        }
-
         if (!$Description -and $Description.length -gt 65536) {
             throw "invalid value for 'Description', the character length must be smaller than or equal to 65536."
+        }
+
+        if ($StartallOnbootDelay -and $StartallOnbootDelay -gt 300) {
+          throw "invalid value for 'StartallOnbootDelay', must be smaller than or equal to 300."
         }
 
         if (!$Digest -and $Digest.length -gt 40) {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 40."
         }
 
+        if ($BallooningTarget -and $BallooningTarget -gt 100) {
+          throw "invalid value for 'BallooningTarget', must be smaller than or equal to 100."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Wakeonlan"="wakeonlan"; "AcmedomainN"="acmedomain[n]"; "StartallOnbootDelay"="startall-onboot-delay"; "BallooningTarget"="ballooning-target"; "Acme"="acme"; "Delete"="delete"; "Description"="description"; "Digest"="digest"; "Node"="node"
+			"AcmedomainN"="acmedomain[n]"; "Delete"="delete"; "Description"="description"; "Wakeonlan"="wakeonlan"; "Acme"="acme"; "StartallOnbootDelay"="startall-onboot-delay"; "Digest"="digest"; "BallooningTarget"="ballooning-target"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -138,41 +133,17 @@ function ConvertFrom-PVEJsonToPUTNodesConfigRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTNodesConfigRB
-        $AllProperties = ("wakeonlan", "acmedomain[n]", "startall-onboot-delay", "ballooning-target", "acme", "delete", "description", "digest", "node")
+        $AllProperties = ("acmedomain[n]", "delete", "description", "wakeonlan", "acme", "startall-onboot-delay", "digest", "ballooning-target")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wakeonlan"))) { #optional property not found
-            $Wakeonlan = $null
-        } else {
-            $Wakeonlan = $JsonParameters.PSobject.Properties["wakeonlan"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "acmedomain[n]"))) { #optional property not found
             $AcmedomainN = $null
         } else {
             $AcmedomainN = $JsonParameters.PSobject.Properties["acmedomain[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "startall-onboot-delay"))) { #optional property not found
-            $StartallOnbootDelay = $null
-        } else {
-            $StartallOnbootDelay = $JsonParameters.PSobject.Properties["startall-onboot-delay"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ballooning-target"))) { #optional property not found
-            $BallooningTarget = $null
-        } else {
-            $BallooningTarget = $JsonParameters.PSobject.Properties["ballooning-target"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "acme"))) { #optional property not found
-            $Acme = $null
-        } else {
-            $Acme = $JsonParameters.PSobject.Properties["acme"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
@@ -187,28 +158,45 @@ function ConvertFrom-PVEJsonToPUTNodesConfigRB {
             $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wakeonlan"))) { #optional property not found
+            $Wakeonlan = $null
+        } else {
+            $Wakeonlan = $JsonParameters.PSobject.Properties["wakeonlan"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "acme"))) { #optional property not found
+            $Acme = $null
+        } else {
+            $Acme = $JsonParameters.PSobject.Properties["acme"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "startall-onboot-delay"))) { #optional property not found
+            $StartallOnbootDelay = $null
+        } else {
+            $StartallOnbootDelay = $JsonParameters.PSobject.Properties["startall-onboot-delay"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ballooning-target"))) { #optional property not found
+            $BallooningTarget = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $BallooningTarget = $JsonParameters.PSobject.Properties["ballooning-target"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "wakeonlan" = ${Wakeonlan}
             "acmedomain[n]" = ${AcmedomainN}
-            "startall-onboot-delay" = ${StartallOnbootDelay}
-            "ballooning-target" = ${BallooningTarget}
-            "acme" = ${Acme}
             "delete" = ${Delete}
             "description" = ${Description}
+            "wakeonlan" = ${Wakeonlan}
+            "acme" = ${Acme}
+            "startall-onboot-delay" = ${StartallOnbootDelay}
             "digest" = ${Digest}
-            "node" = ${Node}
+            "ballooning-target" = ${BallooningTarget}
         }
 
         return $PSO

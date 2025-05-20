@@ -19,11 +19,9 @@ No description available.
 No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Index
-No description available.
 .PARAMETER Enabled
 No description available.
-.PARAMETER Node
+.PARAMETER Index
 No description available.
 .OUTPUTS
 
@@ -40,14 +38,11 @@ function Initialize-PVEPOSTNodesAptRepositoriesRB {
         [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Index},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Enabled},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Int32]]
+        ${Index}
     )
 
     Process {
@@ -58,23 +53,15 @@ function Initialize-PVEPOSTNodesAptRepositoriesRB {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 80."
         }
 
-        if ($Enabled -and $Enabled -gt 1) {
-          throw "invalid value for 'Enabled', must be smaller than or equal to 1."
-        }
-
-        if ($Enabled -and $Enabled -lt 0) {
-          throw "invalid value for 'Enabled', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Path"="path"; "Digest"="digest"; "Index"="index"; "Enabled"="enabled"; "Node"="node"
+			"Path"="path"; "Digest"="digest"; "Enabled"="enabled"; "Index"="index"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -114,7 +101,7 @@ function ConvertFrom-PVEJsonToPOSTNodesAptRepositoriesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesAptRepositoriesRB
-        $AllProperties = ("path", "digest", "index", "enabled", "node")
+        $AllProperties = ("path", "digest", "enabled", "index")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -133,30 +120,23 @@ function ConvertFrom-PVEJsonToPOSTNodesAptRepositoriesRB {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "index"))) { #optional property not found
-            $Index = $null
-        } else {
-            $Index = $JsonParameters.PSobject.Properties["index"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
             $Enabled = $null
         } else {
             $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "index"))) { #optional property not found
+            $Index = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Index = $JsonParameters.PSobject.Properties["index"].value
         }
 
         $PSO = [PSCustomObject]@{
             "path" = ${Path}
             "digest" = ${Digest}
-            "index" = ${Index}
             "enabled" = ${Enabled}
-            "node" = ${Node}
+            "index" = ${Index}
         }
 
         return $PSO

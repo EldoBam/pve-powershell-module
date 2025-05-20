@@ -3,15 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Multiple** | **Int32** |  | [optional] 
-**Userid** | **String** |  | [optional] 
+**Multiple** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETAccessUsersTfaRB = Initialize-PVEGETAccessUsersTfaRB  -Multiple null `
- -Userid null
+$GETAccessUsersTfaRB = Initialize-PVEGETAccessUsersTfaRB  -Multiple null
 ```
 
 - Convert the resource to JSON

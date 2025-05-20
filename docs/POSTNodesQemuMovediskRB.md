@@ -3,33 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Storage** | **String** |  | [optional] 
-**Disk** | **String** |  | [optional] 
-**TargetDisk** | **String** |  | [optional] 
-**Format** | **String** |  | [optional] 
-**TargetVmid** | **Int32** |  | [optional] 
-**Bwlimit** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Delete** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
+**Delete** | **Boolean** |  | [optional] 
 **TargetDigest** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**TargetDisk** | **String** |  | [optional] 
+**Bwlimit** | **Int32** |  | [optional] 
+**Disk** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**Format** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**TargetVmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuMovediskRB = Initialize-PVEPOSTNodesQemuMovediskRB  -Storage null `
- -Disk null `
- -TargetDisk null `
- -Format null `
- -TargetVmid null `
- -Bwlimit null `
- -Vmid null `
- -Delete null `
- -Digest null `
+$POSTNodesQemuMovediskRB = Initialize-PVEPOSTNodesQemuMovediskRB  -Delete null `
  -TargetDigest null `
- -Node null
+ -TargetDisk null `
+ -Bwlimit null `
+ -Disk null `
+ -Storage null `
+ -Format null `
+ -Digest null `
+ -TargetVmid null
 ```
 
 - Convert the resource to JSON

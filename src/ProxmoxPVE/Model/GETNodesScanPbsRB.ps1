@@ -15,17 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Password
-No description available.
-.PARAMETER Username
-No description available.
 .PARAMETER Server
 No description available.
 .PARAMETER Fingerprint
 No description available.
+.PARAMETER Password
+No description available.
 .PARAMETER Port
 No description available.
-.PARAMETER Node
+.PARAMETER Username
 No description available.
 .OUTPUTS
 
@@ -37,23 +35,20 @@ function Initialize-PVEGETNodesScanPbsRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Password},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Username},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Server},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}")]
         [String]
         ${Fingerprint},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Password},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Port},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${Username}
     )
 
     Process {
@@ -70,13 +65,13 @@ function Initialize-PVEGETNodesScanPbsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Password"="password"; "Username"="username"; "Server"="server"; "Fingerprint"="fingerprint"; "Port"="port"; "Node"="node"
+			"Server"="server"; "Fingerprint"="fingerprint"; "Password"="password"; "Port"="port"; "Username"="username"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -116,23 +111,11 @@ function ConvertFrom-PVEJsonToGETNodesScanPbsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesScanPbsRB
-        $AllProperties = ("password", "username", "server", "fingerprint", "port", "node")
+        $AllProperties = ("server", "fingerprint", "password", "port", "username")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
-            $Password = $null
-        } else {
-            $Password = $JsonParameters.PSobject.Properties["password"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
-            $Username = $null
-        } else {
-            $Username = $JsonParameters.PSobject.Properties["username"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
@@ -147,25 +130,30 @@ function ConvertFrom-PVEJsonToGETNodesScanPbsRB {
             $Fingerprint = $JsonParameters.PSobject.Properties["fingerprint"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
+            $Password = $null
+        } else {
+            $Password = $JsonParameters.PSobject.Properties["password"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
             $Port = $null
         } else {
             $Port = $JsonParameters.PSobject.Properties["port"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
+            $Username = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Username = $JsonParameters.PSobject.Properties["username"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "password" = ${Password}
-            "username" = ${Username}
             "server" = ${Server}
             "fingerprint" = ${Fingerprint}
+            "password" = ${Password}
             "port" = ${Port}
-            "node" = ${Node}
+            "username" = ${Username}
         }
 
         return $PSO

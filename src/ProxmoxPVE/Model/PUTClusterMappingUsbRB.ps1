@@ -15,15 +15,13 @@ No summary available.
 
 No description available.
 
+.PARAMETER Delete
+No description available.
+.PARAMETER Map
+No description available.
 .PARAMETER Description
 No description available.
 .PARAMETER Digest
-No description available.
-.PARAMETER Delete
-No description available.
-.PARAMETER Id
-No description available.
-.PARAMETER Map
 No description available.
 .OUTPUTS
 
@@ -35,24 +33,25 @@ function Initialize-PVEPUTClusterMappingUsbRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Delete},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${Map},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Map}
+        ${Digest}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterMappingUsbRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if (!$Delete -and $Delete.length -gt 4096) {
+            throw "invalid value for 'Delete', the character length must be smaller than or equal to 4096."
+        }
 
         if (!$Description -and $Description.length -gt 4096) {
             throw "invalid value for 'Description', the character length must be smaller than or equal to 4096."
@@ -62,19 +61,15 @@ function Initialize-PVEPUTClusterMappingUsbRB {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
         }
 
-        if (!$Delete -and $Delete.length -gt 4096) {
-            throw "invalid value for 'Delete', the character length must be smaller than or equal to 4096."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Description"="description"; "Digest"="digest"; "Delete"="delete"; "Id"="id"; "Map"="map"
+			"Delete"="delete"; "Map"="map"; "Description"="description"; "Digest"="digest"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -114,11 +109,23 @@ function ConvertFrom-PVEJsonToPUTClusterMappingUsbRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterMappingUsbRB
-        $AllProperties = ("description", "digest", "delete", "id", "map")
+        $AllProperties = ("delete", "map", "description", "digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "map"))) { #optional property not found
+            $Map = $null
+        } else {
+            $Map = $JsonParameters.PSobject.Properties["map"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
@@ -133,30 +140,11 @@ function ConvertFrom-PVEJsonToPUTClusterMappingUsbRB {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "map"))) { #optional property not found
-            $Map = $null
-        } else {
-            $Map = $JsonParameters.PSobject.Properties["map"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "delete" = ${Delete}
+            "map" = ${Map}
             "description" = ${Description}
             "digest" = ${Digest}
-            "delete" = ${Delete}
-            "id" = ${Id}
-            "map" = ${Map}
         }
 
         return $PSO

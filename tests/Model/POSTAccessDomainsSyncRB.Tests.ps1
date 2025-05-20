@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTAccessDomainsSyncRB' {
     Context 'PVEPOSTAccessDomainsSyncRB' {
         It 'Initialize-PVEPOSTAccessDomainsSyncRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTAccessDomainsSyncRB -Realm "TEST_VALUE" -Full "TEST_VALUE" -RemoveVanished "TEST_VALUE" -EnableNew "TEST_VALUE" -Scope "TEST_VALUE" -Purge "TEST_VALUE" -DryRun "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTAccessDomainsSyncRB -Purge "TEST_VALUE" -Scope "TEST_VALUE" -RemoveVanished "TEST_VALUE" -EnableNew "TEST_VALUE" -DryRun "TEST_VALUE" -Full "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTAccessDomainsSyncRB
             #$NewObject.property | Should -Be 0
         }

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterMappingDirInner' {
     Context 'PVEClusterMappingDirInner' {
         It 'Initialize-PVEClusterMappingDirInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterMappingDirInner -Checks "TEST_VALUE" -Id "TEST_VALUE" -Description "TEST_VALUE" -Map "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterMappingDirInner -Checks "TEST_VALUE" -Map "TEST_VALUE" -Description "TEST_VALUE" -Id "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterMappingDirInner
             #$NewObject.property | Should -Be 0
         }

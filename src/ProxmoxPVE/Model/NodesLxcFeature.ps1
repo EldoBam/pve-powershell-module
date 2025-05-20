@@ -26,21 +26,13 @@ function Initialize-PVENodesLxcFeature {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${HasFeature}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesLxcFeature' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($HasFeature -and $HasFeature -gt 1) {
-          throw "invalid value for 'HasFeature', must be smaller than or equal to 1."
-        }
-
-        if ($HasFeature -and $HasFeature -lt 0) {
-          throw "invalid value for 'HasFeature', must be greater than or equal to 0."
-        }
 
 
 		 $DisplayNameMapping =@{
@@ -50,7 +42,7 @@ function Initialize-PVENodesLxcFeature {
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ

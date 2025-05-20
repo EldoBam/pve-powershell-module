@@ -4,16 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **String** |  | [optional] 
-**Osdid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesCephOsdLvinfoRB = Initialize-PVEGETNodesCephOsdLvinfoRB  -Type null `
- -Osdid null `
- -Node null
+$GETNodesCephOsdLvinfoRB = Initialize-PVEGETNodesCephOsdLvinfoRB  -Type null
 ```
 
 - Convert the resource to JSON

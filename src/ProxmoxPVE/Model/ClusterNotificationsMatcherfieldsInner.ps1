@@ -19,10 +19,10 @@ No description available.
 No description available.
 .OUTPUTS
 
-NodesCephRulesInner<PSCustomObject>
+ClusterNotificationsMatcherfieldsInner<PSCustomObject>
 #>
 
-function Initialize-PVENodesCephRulesInner {
+function Initialize-PVEClusterNotificationsMatcherfieldsInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
@@ -31,7 +31,7 @@ function Initialize-PVENodesCephRulesInner {
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVENodesCephRulesInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVEClusterNotificationsMatcherfieldsInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -42,7 +42,7 @@ function Initialize-PVENodesCephRulesInner {
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -55,11 +55,11 @@ function Initialize-PVENodesCephRulesInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to NodesCephRulesInner<PSCustomObject>
+Convert from JSON to ClusterNotificationsMatcherfieldsInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to NodesCephRulesInner<PSCustomObject>
+Convert from JSON to ClusterNotificationsMatcherfieldsInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -67,21 +67,21 @@ Json object
 
 .OUTPUTS
 
-NodesCephRulesInner<PSCustomObject>
+ClusterNotificationsMatcherfieldsInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToNodesCephRulesInner {
+function ConvertFrom-PVEJsonToClusterNotificationsMatcherfieldsInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesCephRulesInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVEClusterNotificationsMatcherfieldsInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVENodesCephRulesInner
+        # check if Json contains properties not defined in PVEClusterNotificationsMatcherfieldsInner
         $AllProperties = ("name")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

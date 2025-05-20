@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Id
+.PARAMETER Map
 No description available.
 .PARAMETER Description
 No description available.
-.PARAMETER Map
+.PARAMETER Id
 No description available.
 .OUTPUTS
 
@@ -30,14 +30,14 @@ function Initialize-PVEPOSTClusterMappingDirRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
+        [String[]]
+        ${Map},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Map}
+        [String]
+        ${Id}
     )
 
     Process {
@@ -50,13 +50,13 @@ function Initialize-PVEPOSTClusterMappingDirRB {
 
 
 		 $DisplayNameMapping =@{
-			"Id"="id"; "Description"="description"; "Map"="map"
+			"Map"="map"; "Description"="description"; "Id"="id"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -96,23 +96,11 @@ function ConvertFrom-PVEJsonToPOSTClusterMappingDirRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterMappingDirRB
-        $AllProperties = ("id", "description", "map")
+        $AllProperties = ("map", "description", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "map"))) { #optional property not found
@@ -121,10 +109,22 @@ function ConvertFrom-PVEJsonToPOSTClusterMappingDirRB {
             $Map = $JsonParameters.PSobject.Properties["map"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "description" = ${Description}
             "map" = ${Map}
+            "description" = ${Description}
+            "id" = ${Id}
         }
 
         return $PSO

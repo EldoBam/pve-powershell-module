@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CorosyncConf** | **String** |  | [optional] 
 **CorosyncAuthkey** | **String** |  | [optional] 
+**CorosyncConf** | **String** |  | [optional] 
 **Warnings** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterConfigNodes = Initialize-PVEClusterConfigNodes  -CorosyncConf null `
- -CorosyncAuthkey null `
+$ClusterConfigNodes = Initialize-PVEClusterConfigNodes  -CorosyncAuthkey null `
+ -CorosyncConf null `
  -Warnings null
 ```
 

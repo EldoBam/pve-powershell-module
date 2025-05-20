@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Available
-No description available.
-.PARAMETER Type
-No description available.
 .PARAMETER Name
 No description available.
 .PARAMETER Description
+No description available.
+.PARAMETER Type
+No description available.
+.PARAMETER Available
 No description available.
 .OUTPUTS
 
@@ -32,17 +32,17 @@ function Initialize-PVENodesHardwarePciMdevInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Available},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description}
+        ${Description},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Available}
     )
 
     Process {
@@ -51,13 +51,13 @@ function Initialize-PVENodesHardwarePciMdevInner {
 
 
 		 $DisplayNameMapping =@{
-			"Available"="available"; "Type"="type"; "Name"="name"; "Description"="description"
+			"Name"="name"; "Description"="description"; "Type"="type"; "Available"="available"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -97,23 +97,11 @@ function ConvertFrom-PVEJsonToNodesHardwarePciMdevInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesHardwarePciMdevInner
-        $AllProperties = ("available", "type", "name", "description")
+        $AllProperties = ("name", "description", "type", "available")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "available"))) { #optional property not found
-            $Available = $null
-        } else {
-            $Available = $JsonParameters.PSobject.Properties["available"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -128,11 +116,23 @@ function ConvertFrom-PVEJsonToNodesHardwarePciMdevInner {
             $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "available"))) { #optional property not found
+            $Available = $null
+        } else {
+            $Available = $JsonParameters.PSobject.Properties["available"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "available" = ${Available}
-            "type" = ${Type}
             "name" = ${Name}
             "description" = ${Description}
+            "type" = ${Type}
+            "available" = ${Available}
         }
 
         return $PSO

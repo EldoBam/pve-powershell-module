@@ -4,18 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Digest** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesLxcFirewallAliasesRB = Initialize-PVEDELETENodesLxcFirewallAliasesRB  -Digest null `
- -Name null `
- -Vmid null `
- -Node null
+$DELETENodesLxcFirewallAliasesRB = Initialize-PVEDELETENodesLxcFirewallAliasesRB  -Digest null
 ```
 
 - Convert the resource to JSON

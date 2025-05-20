@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Comment
+No description available.
 .PARAMETER Expire
 No description available.
 .PARAMETER Privsep
-No description available.
-.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -30,37 +30,29 @@ function Initialize-PVEAccessUsersToken {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Expire},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Privsep},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment}
+        [System.Nullable[Boolean]]
+        ${Privsep}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEAccessUsersToken' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Privsep -and $Privsep -gt 1) {
-          throw "invalid value for 'Privsep', must be smaller than or equal to 1."
-        }
-
-        if ($Privsep -and $Privsep -lt 0) {
-          throw "invalid value for 'Privsep', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Expire"="expire"; "Privsep"="privsep"; "Comment"="comment"
+			"Comment"="comment"; "Expire"="expire"; "Privsep"="privsep"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -100,11 +92,17 @@ function ConvertFrom-PVEJsonToAccessUsersToken {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessUsersToken
-        $AllProperties = ("expire", "privsep", "comment")
+        $AllProperties = ("comment", "expire", "privsep")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "expire"))) { #optional property not found
@@ -119,16 +117,10 @@ function ConvertFrom-PVEJsonToAccessUsersToken {
             $Privsep = $JsonParameters.PSobject.Properties["privsep"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "comment" = ${Comment}
             "expire" = ${Expire}
             "privsep" = ${Privsep}
-            "comment" = ${Comment}
         }
 
         return $PSO

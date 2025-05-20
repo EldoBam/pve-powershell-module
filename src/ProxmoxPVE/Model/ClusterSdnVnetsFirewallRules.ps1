@@ -17,33 +17,33 @@ No description available.
 
 .PARAMETER Macro
 No description available.
+.PARAMETER Iface
+No description available.
 .PARAMETER Action
-No description available.
-.PARAMETER Proto
-No description available.
-.PARAMETER Log
 No description available.
 .PARAMETER Pos
 No description available.
-.PARAMETER Dest
-No description available.
 .PARAMETER Type
 No description available.
-.PARAMETER Comment
-No description available.
-.PARAMETER Dport
+.PARAMETER Log
 No description available.
 .PARAMETER Enable
 No description available.
-.PARAMETER Ipversion
+.PARAMETER IcmpType
+No description available.
+.PARAMETER Dport
+No description available.
+.PARAMETER Proto
+No description available.
+.PARAMETER Dest
+No description available.
+.PARAMETER Sport
 No description available.
 .PARAMETER Source
 No description available.
-.PARAMETER Iface
+.PARAMETER Ipversion
 No description available.
-.PARAMETER IcmpType
-No description available.
-.PARAMETER Sport
+.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -58,47 +58,47 @@ function Initialize-PVEClusterSdnVnetsFirewallRules {
         ${Macro},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Action},
+        ${Iface},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Proto},
+        ${Action},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Pos},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
         [String]
         ${Log},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Pos},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Dest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Dport},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${Enable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Ipversion},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Source},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Iface},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${IcmpType},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Sport}
+        ${Dport},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Proto},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Dest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Sport},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Source},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Ipversion},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Comment}
     )
 
     Process {
@@ -107,13 +107,13 @@ function Initialize-PVEClusterSdnVnetsFirewallRules {
 
 
 		 $DisplayNameMapping =@{
-			"Macro"="macro"; "Action"="action"; "Proto"="proto"; "Log"="log"; "Pos"="pos"; "Dest"="dest"; "Type"="type"; "Comment"="comment"; "Dport"="dport"; "Enable"="enable"; "Ipversion"="ipversion"; "Source"="source"; "Iface"="iface"; "IcmpType"="icmp-type"; "Sport"="sport"
+			"Macro"="macro"; "Iface"="iface"; "Action"="action"; "Pos"="pos"; "Type"="type"; "Log"="log"; "Enable"="enable"; "IcmpType"="icmp-type"; "Dport"="dport"; "Proto"="proto"; "Dest"="dest"; "Sport"="sport"; "Source"="source"; "Ipversion"="ipversion"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -153,7 +153,7 @@ function ConvertFrom-PVEJsonToClusterSdnVnetsFirewallRules {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterSdnVnetsFirewallRules
-        $AllProperties = ("macro", "action", "proto", "log", "pos", "dest", "type", "comment", "dport", "enable", "ipversion", "source", "iface", "icmp-type", "sport")
+        $AllProperties = ("macro", "iface", "action", "pos", "type", "log", "enable", "icmp-type", "dport", "proto", "dest", "sport", "source", "ipversion", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -166,22 +166,16 @@ function ConvertFrom-PVEJsonToClusterSdnVnetsFirewallRules {
             $Macro = $JsonParameters.PSobject.Properties["macro"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "iface"))) { #optional property not found
+            $Iface = $null
+        } else {
+            $Iface = $JsonParameters.PSobject.Properties["iface"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "action"))) { #optional property not found
             $Action = $null
         } else {
             $Action = $JsonParameters.PSobject.Properties["action"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "proto"))) { #optional property not found
-            $Proto = $null
-        } else {
-            $Proto = $JsonParameters.PSobject.Properties["proto"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log"))) { #optional property not found
-            $Log = $null
-        } else {
-            $Log = $JsonParameters.PSobject.Properties["log"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
@@ -190,28 +184,16 @@ function ConvertFrom-PVEJsonToClusterSdnVnetsFirewallRules {
             $Pos = $JsonParameters.PSobject.Properties["pos"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dest"))) { #optional property not found
-            $Dest = $null
-        } else {
-            $Dest = $JsonParameters.PSobject.Properties["dest"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
             $Type = $null
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log"))) { #optional property not found
+            $Log = $null
         } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dport"))) { #optional property not found
-            $Dport = $null
-        } else {
-            $Dport = $JsonParameters.PSobject.Properties["dport"].value
+            $Log = $JsonParameters.PSobject.Properties["log"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
@@ -220,28 +202,28 @@ function ConvertFrom-PVEJsonToClusterSdnVnetsFirewallRules {
             $Enable = $JsonParameters.PSobject.Properties["enable"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipversion"))) { #optional property not found
-            $Ipversion = $null
-        } else {
-            $Ipversion = $JsonParameters.PSobject.Properties["ipversion"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
-            $Source = $null
-        } else {
-            $Source = $JsonParameters.PSobject.Properties["source"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "iface"))) { #optional property not found
-            $Iface = $null
-        } else {
-            $Iface = $JsonParameters.PSobject.Properties["iface"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "icmp-type"))) { #optional property not found
             $IcmpType = $null
         } else {
             $IcmpType = $JsonParameters.PSobject.Properties["icmp-type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dport"))) { #optional property not found
+            $Dport = $null
+        } else {
+            $Dport = $JsonParameters.PSobject.Properties["dport"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "proto"))) { #optional property not found
+            $Proto = $null
+        } else {
+            $Proto = $JsonParameters.PSobject.Properties["proto"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dest"))) { #optional property not found
+            $Dest = $null
+        } else {
+            $Dest = $JsonParameters.PSobject.Properties["dest"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "sport"))) { #optional property not found
@@ -250,22 +232,40 @@ function ConvertFrom-PVEJsonToClusterSdnVnetsFirewallRules {
             $Sport = $JsonParameters.PSobject.Properties["sport"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
+            $Source = $null
+        } else {
+            $Source = $JsonParameters.PSobject.Properties["source"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipversion"))) { #optional property not found
+            $Ipversion = $null
+        } else {
+            $Ipversion = $JsonParameters.PSobject.Properties["ipversion"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "macro" = ${Macro}
-            "action" = ${Action}
-            "proto" = ${Proto}
-            "log" = ${Log}
-            "pos" = ${Pos}
-            "dest" = ${Dest}
-            "type" = ${Type}
-            "comment" = ${Comment}
-            "dport" = ${Dport}
-            "enable" = ${Enable}
-            "ipversion" = ${Ipversion}
-            "source" = ${Source}
             "iface" = ${Iface}
+            "action" = ${Action}
+            "pos" = ${Pos}
+            "type" = ${Type}
+            "log" = ${Log}
+            "enable" = ${Enable}
             "icmp-type" = ${IcmpType}
+            "dport" = ${Dport}
+            "proto" = ${Proto}
+            "dest" = ${Dest}
             "sport" = ${Sport}
+            "source" = ${Source}
+            "ipversion" = ${Ipversion}
+            "comment" = ${Comment}
         }
 
         return $PSO

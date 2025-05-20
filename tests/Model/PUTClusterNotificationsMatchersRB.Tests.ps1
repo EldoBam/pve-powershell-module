@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterNotificationsMatchersRB' {
     Context 'PVEPUTClusterNotificationsMatchersRB' {
         It 'Initialize-PVEPUTClusterNotificationsMatchersRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterNotificationsMatchersRB -MatchSeverity "TEST_VALUE" -InvertMatch "TEST_VALUE" -Comment "TEST_VALUE" -Disable "TEST_VALUE" -MatchCalendar "TEST_VALUE" -Delete "TEST_VALUE" -MatchField "TEST_VALUE" -Digest "TEST_VALUE" -Target "TEST_VALUE" -Name "TEST_VALUE" -Mode "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterNotificationsMatchersRB -Mode "TEST_VALUE" -Delete "TEST_VALUE" -MatchField "TEST_VALUE" -Target "TEST_VALUE" -Comment "TEST_VALUE" -InvertMatch "TEST_VALUE" -Disable "TEST_VALUE" -MatchCalendar "TEST_VALUE" -Digest "TEST_VALUE" -MatchSeverity "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterNotificationsMatchersRB
             #$NewObject.property | Should -Be 0
         }

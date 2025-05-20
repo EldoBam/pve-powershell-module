@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Full** | **Int32** |  | [optional] 
-**Enabled** | **Int32** |  | [optional] 
+**Full** | **Boolean** |  | [optional] 
+**Enabled** | **Boolean** |  | [optional] 
 
 ## Examples
 

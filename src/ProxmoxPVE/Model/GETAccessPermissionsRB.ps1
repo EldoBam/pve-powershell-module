@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Path
-No description available.
 .PARAMETER Userid
+No description available.
+.PARAMETER Path
 No description available.
 .OUTPUTS
 
@@ -28,12 +28,12 @@ function Initialize-PVEGETAccessPermissionsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Path},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("(?^:^(?^:[^\s:/]+)\@(?^:[A-Za-z][A-Za-z0-9\.\-_]+)(?:!(?^:[A-Za-z][A-Za-z0-9\.\-_]+))?$)")]
         [String]
-        ${Userid}
+        ${Userid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Path}
     )
 
     Process {
@@ -42,13 +42,13 @@ function Initialize-PVEGETAccessPermissionsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Path"="path"; "Userid"="userid"
+			"Userid"="userid"; "Path"="path"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -88,17 +88,11 @@ function ConvertFrom-PVEJsonToGETAccessPermissionsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETAccessPermissionsRB
-        $AllProperties = ("path", "userid")
+        $AllProperties = ("userid", "path")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
-            $Path = $null
-        } else {
-            $Path = $JsonParameters.PSobject.Properties["path"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "userid"))) { #optional property not found
@@ -107,9 +101,15 @@ function ConvertFrom-PVEJsonToGETAccessPermissionsRB {
             $Userid = $JsonParameters.PSobject.Properties["userid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
+            $Path = $null
+        } else {
+            $Path = $JsonParameters.PSobject.Properties["path"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "path" = ${Path}
             "userid" = ${Userid}
+            "path" = ${Path}
         }
 
         return $PSO

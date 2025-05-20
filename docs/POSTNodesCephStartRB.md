@@ -4,14 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Service** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephStartRB = Initialize-PVEPOSTNodesCephStartRB  -Service null `
- -Node null
+$POSTNodesCephStartRB = Initialize-PVEPOSTNodesCephStartRB  -Service null
 ```
 
 - Convert the resource to JSON

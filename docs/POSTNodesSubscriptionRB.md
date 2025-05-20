@@ -3,15 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
-**Force** | **Int32** |  | [optional] 
+**Force** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesSubscriptionRB = Initialize-PVEPOSTNodesSubscriptionRB  -Node null `
- -Force null
+$POSTNodesSubscriptionRB = Initialize-PVEPOSTNodesSubscriptionRB  -Force null
 ```
 
 - Convert the resource to JSON

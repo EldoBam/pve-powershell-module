@@ -4,14 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConfigKeys** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesCephCfgValueRB = Initialize-PVEGETNodesCephCfgValueRB  -ConfigKeys null `
- -Node null
+$GETNodesCephCfgValueRB = Initialize-PVEGETNodesCephCfgValueRB  -ConfigKeys null
 ```
 
 - Convert the resource to JSON

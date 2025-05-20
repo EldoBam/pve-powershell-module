@@ -3,25 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Realm** | **String** |  | [optional] 
-**Full** | **Int32** |  | [optional] 
-**RemoveVanished** | **String** |  | [optional] 
-**EnableNew** | **Int32** |  | [optional] 
+**Purge** | **Boolean** |  | [optional] 
 **Scope** | **String** |  | [optional] 
-**Purge** | **Int32** |  | [optional] 
-**DryRun** | **Int32** |  | [optional] 
+**RemoveVanished** | **String** |  | [optional] 
+**EnableNew** | **Boolean** |  | [optional] 
+**DryRun** | **Boolean** |  | [optional] 
+**Full** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTAccessDomainsSyncRB = Initialize-PVEPOSTAccessDomainsSyncRB  -Realm null `
- -Full null `
+$POSTAccessDomainsSyncRB = Initialize-PVEPOSTAccessDomainsSyncRB  -Purge null `
+ -Scope null `
  -RemoveVanished null `
  -EnableNew null `
- -Scope null `
- -Purge null `
- -DryRun null
+ -DryRun null `
+ -Full null
 ```
 
 - Convert the resource to JSON

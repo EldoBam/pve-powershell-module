@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Expire
-No description available.
-.PARAMETER Privsep
+.PARAMETER Tokenid
 No description available.
 .PARAMETER Comment
 No description available.
-.PARAMETER Tokenid
+.PARAMETER Expire
+No description available.
+.PARAMETER Privsep
 No description available.
 .OUTPUTS
 
@@ -32,41 +32,33 @@ function Initialize-PVEAccessUsersTokenGETInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Expire},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Privsep},
+        [ValidatePattern("(?^:[A-Za-z][A-Za-z0-9\.\-_]+)")]
+        [String]
+        ${Tokenid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(?^:[A-Za-z][A-Za-z0-9\.\-_]+)")]
-        [String]
-        ${Tokenid}
+        [System.Nullable[Int32]]
+        ${Expire},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Privsep}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEAccessUsersTokenGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Privsep -and $Privsep -gt 1) {
-          throw "invalid value for 'Privsep', must be smaller than or equal to 1."
-        }
-
-        if ($Privsep -and $Privsep -lt 0) {
-          throw "invalid value for 'Privsep', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Expire"="expire"; "Privsep"="privsep"; "Comment"="comment"; "Tokenid"="tokenid"
+			"Tokenid"="tokenid"; "Comment"="comment"; "Expire"="expire"; "Privsep"="privsep"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -106,11 +98,23 @@ function ConvertFrom-PVEJsonToAccessUsersTokenGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessUsersTokenGETInner
-        $AllProperties = ("expire", "privsep", "comment", "tokenid")
+        $AllProperties = ("tokenid", "comment", "expire", "privsep")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tokenid"))) { #optional property not found
+            $Tokenid = $null
+        } else {
+            $Tokenid = $JsonParameters.PSobject.Properties["tokenid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "expire"))) { #optional property not found
@@ -125,23 +129,11 @@ function ConvertFrom-PVEJsonToAccessUsersTokenGETInner {
             $Privsep = $JsonParameters.PSobject.Properties["privsep"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tokenid"))) { #optional property not found
-            $Tokenid = $null
-        } else {
-            $Tokenid = $JsonParameters.PSobject.Properties["tokenid"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "tokenid" = ${Tokenid}
+            "comment" = ${Comment}
             "expire" = ${Expire}
             "privsep" = ${Privsep}
-            "comment" = ${Comment}
-            "tokenid" = ${Tokenid}
         }
 
         return $PSO

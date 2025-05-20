@@ -15,21 +15,19 @@ No summary available.
 
 No description available.
 
-.PARAMETER Realm
+.PARAMETER Enabled
 No description available.
 .PARAMETER Scope
 No description available.
 .PARAMETER RemoveVanished
 No description available.
-.PARAMETER Comment
-No description available.
 .PARAMETER EnableNew
 No description available.
-.PARAMETER Id
-No description available.
-.PARAMETER Enabled
+.PARAMETER Realm
 No description available.
 .PARAMETER Schedule
+No description available.
+.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -40,8 +38,8 @@ function Initialize-PVEPOSTClusterJobsRealmsyncRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Realm},
+        [System.Nullable[Boolean]]
+        ${Enabled},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("users", "groups", "both")]
         [String]
@@ -51,20 +49,17 @@ function Initialize-PVEPOSTClusterJobsRealmsyncRB {
         [String]
         ${RemoveVanished},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${EnableNew},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enabled},
+        ${Realm},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Schedule}
+        ${Schedule},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Comment}
     )
 
     Process {
@@ -75,43 +70,23 @@ function Initialize-PVEPOSTClusterJobsRealmsyncRB {
             throw "invalid value for 'Realm', the character length must be smaller than or equal to 32."
         }
 
-        if (!$Comment -and $Comment.length -gt 512) {
-            throw "invalid value for 'Comment', the character length must be smaller than or equal to 512."
-        }
-
-        if ($EnableNew -and $EnableNew -gt 1) {
-          throw "invalid value for 'EnableNew', must be smaller than or equal to 1."
-        }
-
-        if ($EnableNew -and $EnableNew -lt 0) {
-          throw "invalid value for 'EnableNew', must be greater than or equal to 0."
-        }
-
-        if (!$Id -and $Id.length -gt 64) {
-            throw "invalid value for 'Id', the character length must be smaller than or equal to 64."
-        }
-
-        if ($Enabled -and $Enabled -gt 1) {
-          throw "invalid value for 'Enabled', must be smaller than or equal to 1."
-        }
-
-        if ($Enabled -and $Enabled -lt 0) {
-          throw "invalid value for 'Enabled', must be greater than or equal to 0."
-        }
-
         if (!$Schedule -and $Schedule.length -gt 128) {
             throw "invalid value for 'Schedule', the character length must be smaller than or equal to 128."
         }
 
+        if (!$Comment -and $Comment.length -gt 512) {
+            throw "invalid value for 'Comment', the character length must be smaller than or equal to 512."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Realm"="realm"; "Scope"="scope"; "RemoveVanished"="remove-vanished"; "Comment"="comment"; "EnableNew"="enable-new"; "Id"="id"; "Enabled"="enabled"; "Schedule"="schedule"
+			"Enabled"="enabled"; "Scope"="scope"; "RemoveVanished"="remove-vanished"; "EnableNew"="enable-new"; "Realm"="realm"; "Schedule"="schedule"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -151,17 +126,17 @@ function ConvertFrom-PVEJsonToPOSTClusterJobsRealmsyncRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterJobsRealmsyncRB
-        $AllProperties = ("realm", "scope", "remove-vanished", "comment", "enable-new", "id", "enabled", "schedule")
+        $AllProperties = ("enabled", "scope", "remove-vanished", "enable-new", "realm", "schedule", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
-            $Realm = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
+            $Enabled = $null
         } else {
-            $Realm = $JsonParameters.PSobject.Properties["realm"].value
+            $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "scope"))) { #optional property not found
@@ -176,28 +151,16 @@ function ConvertFrom-PVEJsonToPOSTClusterJobsRealmsyncRB {
             $RemoveVanished = $JsonParameters.PSobject.Properties["remove-vanished"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable-new"))) { #optional property not found
             $EnableNew = $null
         } else {
             $EnableNew = $JsonParameters.PSobject.Properties["enable-new"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
+            $Realm = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enabled"))) { #optional property not found
-            $Enabled = $null
-        } else {
-            $Enabled = $JsonParameters.PSobject.Properties["enabled"].value
+            $Realm = $JsonParameters.PSobject.Properties["realm"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "schedule"))) { #optional property not found
@@ -206,15 +169,20 @@ function ConvertFrom-PVEJsonToPOSTClusterJobsRealmsyncRB {
             $Schedule = $JsonParameters.PSobject.Properties["schedule"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "realm" = ${Realm}
+            "enabled" = ${Enabled}
             "scope" = ${Scope}
             "remove-vanished" = ${RemoveVanished}
-            "comment" = ${Comment}
             "enable-new" = ${EnableNew}
-            "id" = ${Id}
-            "enabled" = ${Enabled}
+            "realm" = ${Realm}
             "schedule" = ${Schedule}
+            "comment" = ${Comment}
         }
 
         return $PSO

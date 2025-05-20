@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConfigDigest** | **String** |  | [optional] 
 **Nodelist** | [**ClusterConfigJoinNodelistInner[]**](ClusterConfigJoinNodelistInner.md) |  | [optional] 
 **PreferredNode** | **String** |  | [optional] 
 **Totem** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**ConfigDigest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterConfigJoin = Initialize-PVEClusterConfigJoin  -ConfigDigest null `
- -Nodelist null `
+$ClusterConfigJoin = Initialize-PVEClusterConfigJoin  -Nodelist null `
  -PreferredNode null `
- -Totem null
+ -Totem null `
+ -ConfigDigest null
 ```
 
 - Convert the resource to JSON

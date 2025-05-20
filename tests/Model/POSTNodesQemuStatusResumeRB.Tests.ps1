@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesQemuStatusResumeRB' {
     Context 'PVEPOSTNodesQemuStatusResumeRB' {
         It 'Initialize-PVEPOSTNodesQemuStatusResumeRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesQemuStatusResumeRB -Vmid "TEST_VALUE" -Nocheck "TEST_VALUE" -Skiplock "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesQemuStatusResumeRB -Nocheck "TEST_VALUE" -Skiplock "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesQemuStatusResumeRB
             #$NewObject.property | Should -Be 0
         }

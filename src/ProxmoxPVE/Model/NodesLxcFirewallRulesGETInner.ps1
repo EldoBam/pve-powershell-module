@@ -19,10 +19,10 @@ No description available.
 No description available.
 .OUTPUTS
 
-ClusterSdnVnetsFirewallRulesGETInner<PSCustomObject>
+NodesLxcFirewallRulesGETInner<PSCustomObject>
 #>
 
-function Initialize-PVEClusterSdnVnetsFirewallRulesGETInner {
+function Initialize-PVENodesLxcFirewallRulesGETInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
@@ -31,7 +31,7 @@ function Initialize-PVEClusterSdnVnetsFirewallRulesGETInner {
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVEClusterSdnVnetsFirewallRulesGETInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVENodesLxcFirewallRulesGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -42,7 +42,7 @@ function Initialize-PVEClusterSdnVnetsFirewallRulesGETInner {
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -55,11 +55,11 @@ function Initialize-PVEClusterSdnVnetsFirewallRulesGETInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to ClusterSdnVnetsFirewallRulesGETInner<PSCustomObject>
+Convert from JSON to NodesLxcFirewallRulesGETInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to ClusterSdnVnetsFirewallRulesGETInner<PSCustomObject>
+Convert from JSON to NodesLxcFirewallRulesGETInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -67,21 +67,21 @@ Json object
 
 .OUTPUTS
 
-ClusterSdnVnetsFirewallRulesGETInner<PSCustomObject>
+NodesLxcFirewallRulesGETInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToClusterSdnVnetsFirewallRulesGETInner {
+function ConvertFrom-PVEJsonToNodesLxcFirewallRulesGETInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVEClusterSdnVnetsFirewallRulesGETInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesLxcFirewallRulesGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVEClusterSdnVnetsFirewallRulesGETInner
+        # check if Json contains properties not defined in PVENodesLxcFirewallRulesGETInner
         $AllProperties = ("pos")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

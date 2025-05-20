@@ -15,19 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Totp
-No description available.
-.PARAMETER Password
-No description available.
-.PARAMETER Value
-No description available.
-.PARAMETER Challenge
+.PARAMETER Type
 No description available.
 .PARAMETER Description
 No description available.
-.PARAMETER Userid
+.PARAMETER Challenge
 No description available.
-.PARAMETER Type
+.PARAMETER Totp
+No description available.
+.PARAMETER Value
+No description available.
+.PARAMETER Password
 No description available.
 .OUTPUTS
 
@@ -38,32 +36,33 @@ function Initialize-PVEPOSTAccessTfaRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("totp", "u2f", "webauthn", "recovery", "yubico")]
         [String]
-        ${Totp},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Password},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Value},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Challenge},
+        ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Userid},
+        ${Challenge},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("totp", "u2f", "webauthn", "recovery", "yubico")]
         [String]
-        ${Type}
+        ${Totp},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Value},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Password}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTAccessTfaRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if (!$Description -and $Description.length -gt 255) {
+            throw "invalid value for 'Description', the character length must be smaller than or equal to 255."
+        }
 
         if (!$Password -and $Password.length -gt 64) {
             throw "invalid value for 'Password', the character length must be smaller than or equal to 64."
@@ -73,23 +72,15 @@ function Initialize-PVEPOSTAccessTfaRB {
             throw "invalid value for 'Password', the character length must be great than or equal to 5."
         }
 
-        if (!$Description -and $Description.length -gt 255) {
-            throw "invalid value for 'Description', the character length must be smaller than or equal to 255."
-        }
-
-        if (!$Userid -and $Userid.length -gt 64) {
-            throw "invalid value for 'Userid', the character length must be smaller than or equal to 64."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Totp"="totp"; "Password"="password"; "Value"="value"; "Challenge"="challenge"; "Description"="description"; "Userid"="userid"; "Type"="type"
+			"Type"="type"; "Description"="description"; "Challenge"="challenge"; "Totp"="totp"; "Value"="value"; "Password"="password"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -129,47 +120,11 @@ function ConvertFrom-PVEJsonToPOSTAccessTfaRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTAccessTfaRB
-        $AllProperties = ("totp", "password", "value", "challenge", "description", "userid", "type")
+        $AllProperties = ("type", "description", "challenge", "totp", "value", "password")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "totp"))) { #optional property not found
-            $Totp = $null
-        } else {
-            $Totp = $JsonParameters.PSobject.Properties["totp"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
-            $Password = $null
-        } else {
-            $Password = $JsonParameters.PSobject.Properties["password"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
-            $Value = $null
-        } else {
-            $Value = $JsonParameters.PSobject.Properties["value"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "challenge"))) { #optional property not found
-            $Challenge = $null
-        } else {
-            $Challenge = $JsonParameters.PSobject.Properties["challenge"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "userid"))) { #optional property not found
-            $Userid = $null
-        } else {
-            $Userid = $JsonParameters.PSobject.Properties["userid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
@@ -178,14 +133,43 @@ function ConvertFrom-PVEJsonToPOSTAccessTfaRB {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "challenge"))) { #optional property not found
+            $Challenge = $null
+        } else {
+            $Challenge = $JsonParameters.PSobject.Properties["challenge"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "totp"))) { #optional property not found
+            $Totp = $null
+        } else {
+            $Totp = $JsonParameters.PSobject.Properties["totp"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
+            $Value = $null
+        } else {
+            $Value = $JsonParameters.PSobject.Properties["value"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
+            $Password = $null
+        } else {
+            $Password = $JsonParameters.PSobject.Properties["password"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "totp" = ${Totp}
-            "password" = ${Password}
-            "value" = ${Value}
-            "challenge" = ${Challenge}
-            "description" = ${Description}
-            "userid" = ${Userid}
             "type" = ${Type}
+            "description" = ${Description}
+            "challenge" = ${Challenge}
+            "totp" = ${Totp}
+            "value" = ${Value}
+            "password" = ${Password}
         }
 
         return $PSO

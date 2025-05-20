@@ -17,21 +17,21 @@ No description available.
 
 .PARAMETER Header
 No description available.
-.PARAMETER Origin
-No description available.
-.PARAMETER Body
+.PARAMETER Method
 No description available.
 .PARAMETER Comment
 No description available.
-.PARAMETER Method
-No description available.
-.PARAMETER Disable
+.PARAMETER Origin
 No description available.
 .PARAMETER Secret
 No description available.
-.PARAMETER Url
+.PARAMETER Disable
 No description available.
 .PARAMETER Name
+No description available.
+.PARAMETER Url
+No description available.
+.PARAMETER Body
 No description available.
 .OUTPUTS
 
@@ -45,54 +45,46 @@ function Initialize-PVEClusterNotificationsEndpointsWebhookGETInner {
         [String[]]
         ${Header},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("user-created", "builtin", "modified-builtin")]
-        [String]
-        ${Origin},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Body},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("post", "put", "get")]
         [String]
         ${Method},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable},
+        [String]
+        ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("user-created", "builtin", "modified-builtin")]
+        [String]
+        ${Origin},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${Secret},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Disable},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Url},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name}
+        ${Body}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEClusterNotificationsEndpointsWebhookGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Disable -and $Disable -gt 1) {
-          throw "invalid value for 'Disable', must be smaller than or equal to 1."
-        }
-
-        if ($Disable -and $Disable -lt 0) {
-          throw "invalid value for 'Disable', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Header"="header"; "Origin"="origin"; "Body"="body"; "Comment"="comment"; "Method"="method"; "Disable"="disable"; "Secret"="secret"; "Url"="url"; "Name"="name"
+			"Header"="header"; "Method"="method"; "Comment"="comment"; "Origin"="origin"; "Secret"="secret"; "Disable"="disable"; "Name"="name"; "Url"="url"; "Body"="body"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -132,7 +124,7 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsWebhookGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterNotificationsEndpointsWebhookGETInner
-        $AllProperties = ("header", "origin", "body", "comment", "method", "disable", "secret", "url", "name")
+        $AllProperties = ("header", "method", "comment", "origin", "secret", "disable", "name", "url", "body")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -145,16 +137,10 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsWebhookGETInner {
             $Header = $JsonParameters.PSobject.Properties["header"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "origin"))) { #optional property not found
-            $Origin = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method"))) { #optional property not found
+            $Method = $null
         } else {
-            $Origin = $JsonParameters.PSobject.Properties["origin"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "body"))) { #optional property not found
-            $Body = $null
-        } else {
-            $Body = $JsonParameters.PSobject.Properties["body"].value
+            $Method = $JsonParameters.PSobject.Properties["method"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -163,16 +149,10 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsWebhookGETInner {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method"))) { #optional property not found
-            $Method = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "origin"))) { #optional property not found
+            $Origin = $null
         } else {
-            $Method = $JsonParameters.PSobject.Properties["method"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
-        } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
+            $Origin = $JsonParameters.PSobject.Properties["origin"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "secret"))) { #optional property not found
@@ -181,10 +161,10 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsWebhookGETInner {
             $Secret = $JsonParameters.PSobject.Properties["secret"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
-            $Url = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
         } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -193,16 +173,28 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsWebhookGETInner {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
+            $Url = $null
+        } else {
+            $Url = $JsonParameters.PSobject.Properties["url"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "body"))) { #optional property not found
+            $Body = $null
+        } else {
+            $Body = $JsonParameters.PSobject.Properties["body"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "header" = ${Header}
-            "origin" = ${Origin}
-            "body" = ${Body}
-            "comment" = ${Comment}
             "method" = ${Method}
-            "disable" = ${Disable}
+            "comment" = ${Comment}
+            "origin" = ${Origin}
             "secret" = ${Secret}
-            "url" = ${Url}
+            "disable" = ${Disable}
             "name" = ${Name}
+            "url" = ${Url}
+            "body" = ${Body}
         }
 
         return $PSO

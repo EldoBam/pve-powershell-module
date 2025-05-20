@@ -15,13 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Vmid
-No description available.
-.PARAMETER Bridges
-No description available.
 .PARAMETER Storages
 No description available.
-.PARAMETER Node
+.PARAMETER Bridges
 No description available.
 .OUTPUTS
 
@@ -32,40 +28,26 @@ function Initialize-PVEPOSTNodesQemuMtunnelRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Bridges},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Storages},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${Bridges}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesQemuMtunnelRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Vmid"="vmid"; "Bridges"="bridges"; "Storages"="storages"; "Node"="node"
+			"Storages"="storages"; "Bridges"="bridges"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -105,23 +87,11 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuMtunnelRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuMtunnelRB
-        $AllProperties = ("vmid", "bridges", "storages", "node")
+        $AllProperties = ("storages", "bridges")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridges"))) { #optional property not found
-            $Bridges = $null
-        } else {
-            $Bridges = $JsonParameters.PSobject.Properties["bridges"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "storages"))) { #optional property not found
@@ -130,17 +100,15 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuMtunnelRB {
             $Storages = $JsonParameters.PSobject.Properties["storages"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridges"))) { #optional property not found
+            $Bridges = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Bridges = $JsonParameters.PSobject.Properties["bridges"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "vmid" = ${Vmid}
-            "bridges" = ${Bridges}
             "storages" = ${Storages}
-            "node" = ${Node}
+            "bridges" = ${Bridges}
         }
 
         return $PSO

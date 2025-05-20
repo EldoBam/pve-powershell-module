@@ -17,8 +17,6 @@ No description available.
 
 .PARAMETER Command
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 POSTNodesStatusRB<PSCustomObject>
@@ -30,10 +28,7 @@ function Initialize-PVEPOSTNodesStatusRB {
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("reboot", "shutdown")]
         [String]
-        ${Command},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Command}
     )
 
     Process {
@@ -42,13 +37,13 @@ function Initialize-PVEPOSTNodesStatusRB {
 
 
 		 $DisplayNameMapping =@{
-			"Command"="command"; "Node"="node"
+			"Command"="command"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -88,7 +83,7 @@ function ConvertFrom-PVEJsonToPOSTNodesStatusRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesStatusRB
-        $AllProperties = ("command", "node")
+        $AllProperties = ("command")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -101,15 +96,8 @@ function ConvertFrom-PVEJsonToPOSTNodesStatusRB {
             $Command = $JsonParameters.PSobject.Properties["command"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "command" = ${Command}
-            "node" = ${Node}
         }
 
         return $PSO

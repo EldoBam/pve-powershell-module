@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Realm** | **String** |  | [optional] 
 **Tfa** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$AccessDomainsInner = Initialize-PVEAccessDomainsInner  -Type null `
- -Comment null `
+$AccessDomainsInner = Initialize-PVEAccessDomainsInner  -Comment null `
+ -Type null `
  -Realm null `
  -Tfa null
 ```

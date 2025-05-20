@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEDELETENodesLxcSnapshotRB' {
     Context 'PVEDELETENodesLxcSnapshotRB' {
         It 'Initialize-PVEDELETENodesLxcSnapshotRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEDELETENodesLxcSnapshotRB -Snapname "TEST_VALUE" -Node "TEST_VALUE" -Vmid "TEST_VALUE" -Force "TEST_VALUE"
+            #$NewObject = Initialize-PVEDELETENodesLxcSnapshotRB -Force "TEST_VALUE"
             #$NewObject | Should -BeOfType DELETENodesLxcSnapshotRB
             #$NewObject.property | Should -Be 0
         }

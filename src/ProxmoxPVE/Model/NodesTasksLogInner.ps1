@@ -15,39 +15,39 @@ No summary available.
 
 No description available.
 
-.PARAMETER N
-No description available.
 .PARAMETER T
+No description available.
+.PARAMETER N
 No description available.
 .OUTPUTS
 
-NodesLxcFirewallLogInner<PSCustomObject>
+NodesTasksLogInner<PSCustomObject>
 #>
 
-function Initialize-PVENodesLxcFirewallLogInner {
+function Initialize-PVENodesTasksLogInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${N},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${T}
+        ${T},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${N}
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVENodesLxcFirewallLogInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVENodesTasksLogInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
 		 $DisplayNameMapping =@{
-			"N"="n"; "T"="t"
+			"T"="t"; "N"="n"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -60,11 +60,11 @@ function Initialize-PVENodesLxcFirewallLogInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to NodesLxcFirewallLogInner<PSCustomObject>
+Convert from JSON to NodesTasksLogInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to NodesLxcFirewallLogInner<PSCustomObject>
+Convert from JSON to NodesTasksLogInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -72,32 +72,26 @@ Json object
 
 .OUTPUTS
 
-NodesLxcFirewallLogInner<PSCustomObject>
+NodesTasksLogInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToNodesLxcFirewallLogInner {
+function ConvertFrom-PVEJsonToNodesTasksLogInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesLxcFirewallLogInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesTasksLogInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVENodesLxcFirewallLogInner
-        $AllProperties = ("n", "t")
+        # check if Json contains properties not defined in PVENodesTasksLogInner
+        $AllProperties = ("t", "n")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "n"))) { #optional property not found
-            $N = $null
-        } else {
-            $N = $JsonParameters.PSobject.Properties["n"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "t"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToNodesLxcFirewallLogInner {
             $T = $JsonParameters.PSobject.Properties["t"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "n"))) { #optional property not found
+            $N = $null
+        } else {
+            $N = $JsonParameters.PSobject.Properties["n"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "n" = ${N}
             "t" = ${T}
+            "n" = ${N}
         }
 
         return $PSO

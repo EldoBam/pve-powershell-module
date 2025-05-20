@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Release
-No description available.
 .PARAMETER Repoid
 No description available.
 .PARAMETER Console
 No description available.
 .PARAMETER Version
+No description available.
+.PARAMETER Release
 No description available.
 .OUTPUTS
 
@@ -32,9 +32,6 @@ function Initialize-PVEVersion {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Release},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[0-9a-fA-F]{8,64}")]
         [String]
         ${Repoid},
@@ -44,7 +41,10 @@ function Initialize-PVEVersion {
         ${Console},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Version}
+        ${Version},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Release}
     )
 
     Process {
@@ -53,13 +53,13 @@ function Initialize-PVEVersion {
 
 
 		 $DisplayNameMapping =@{
-			"Release"="release"; "Repoid"="repoid"; "Console"="console"; "Version"="version"
+			"Repoid"="repoid"; "Console"="console"; "Version"="version"; "Release"="release"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -99,17 +99,11 @@ function ConvertFrom-PVEJsonToVersion {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEVersion
-        $AllProperties = ("release", "repoid", "console", "version")
+        $AllProperties = ("repoid", "console", "version", "release")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "release"))) { #optional property not found
-            $Release = $null
-        } else {
-            $Release = $JsonParameters.PSobject.Properties["release"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "repoid"))) { #optional property not found
@@ -130,11 +124,17 @@ function ConvertFrom-PVEJsonToVersion {
             $Version = $JsonParameters.PSobject.Properties["version"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "release"))) { #optional property not found
+            $Release = $null
+        } else {
+            $Release = $JsonParameters.PSobject.Properties["release"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "release" = ${Release}
             "repoid" = ${Repoid}
             "console" = ${Console}
             "version" = ${Version}
+            "release" = ${Release}
         }
 
         return $PSO

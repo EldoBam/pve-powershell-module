@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTNodesLxcFirewallOptionsRB' {
     Context 'PVEPUTNodesLxcFirewallOptionsRB' {
         It 'Initialize-PVEPUTNodesLxcFirewallOptionsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTNodesLxcFirewallOptionsRB -Node "TEST_VALUE" -LogLevelIn "TEST_VALUE" -Ndp "TEST_VALUE" -Vmid "TEST_VALUE" -LogLevelOut "TEST_VALUE" -PolicyOut "TEST_VALUE" -Radv "TEST_VALUE" -Ipfilter "TEST_VALUE" -Digest "TEST_VALUE" -Enable "TEST_VALUE" -Delete "TEST_VALUE" -Dhcp "TEST_VALUE" -Macfilter "TEST_VALUE" -PolicyIn "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTNodesLxcFirewallOptionsRB -LogLevelOut "TEST_VALUE" -Delete "TEST_VALUE" -PolicyOut "TEST_VALUE" -LogLevelIn "TEST_VALUE" -Ndp "TEST_VALUE" -Ipfilter "TEST_VALUE" -Dhcp "TEST_VALUE" -Radv "TEST_VALUE" -Macfilter "TEST_VALUE" -PolicyIn "TEST_VALUE" -Digest "TEST_VALUE" -Enable "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTNodesLxcFirewallOptionsRB
             #$NewObject.property | Should -Be 0
         }

@@ -4,16 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Timeout** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuStatusRebootRB = Initialize-PVEPOSTNodesQemuStatusRebootRB  -Timeout null `
- -Vmid null `
- -Node null
+$POSTNodesQemuStatusRebootRB = Initialize-PVEPOSTNodesQemuStatusRebootRB  -Timeout null
 ```
 
 - Convert the resource to JSON

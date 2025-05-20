@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesQemuAgentExecRB' {
     Context 'PVEPOSTNodesQemuAgentExecRB' {
         It 'Initialize-PVEPOSTNodesQemuAgentExecRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesQemuAgentExecRB -Command "TEST_VALUE" -InputData "TEST_VALUE" -Vmid "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesQemuAgentExecRB -Command "TEST_VALUE" -InputData "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesQemuAgentExecRB
             #$NewObject.property | Should -Be 0
         }

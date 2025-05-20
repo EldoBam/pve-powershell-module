@@ -15,19 +15,19 @@ No summary available.
 
 No description available.
 
-.PARAMETER Tag
-No description available.
-.PARAMETER Zone
-No description available.
-.PARAMETER IsolatePorts
-No description available.
-.PARAMETER Vlanaware
-No description available.
-.PARAMETER Alias
+.PARAMETER Vnet
 No description available.
 .PARAMETER Type
 No description available.
-.PARAMETER Vnet
+.PARAMETER Zone
+No description available.
+.PARAMETER Vlanaware
+No description available.
+.PARAMETER Tag
+No description available.
+.PARAMETER Alias
+No description available.
+.PARAMETER IsolatePorts
 No description available.
 .OUTPUTS
 
@@ -38,49 +38,33 @@ function Initialize-PVEPOSTClusterSdnVnetsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Tag},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Zone},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${IsolatePorts},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vlanaware},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(?^i:[\(\)-_.\w\d\s]{0,256})")]
-        [String]
-        ${Alias},
+        ${Vnet},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("vnet")]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vnet}
+        ${Zone},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Vlanaware},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Tag},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("(?^i:[\(\)-_.\w\d\s]{0,256})")]
+        [String]
+        ${Alias},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${IsolatePorts}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTClusterSdnVnetsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($IsolatePorts -and $IsolatePorts -gt 1) {
-          throw "invalid value for 'IsolatePorts', must be smaller than or equal to 1."
-        }
-
-        if ($IsolatePorts -and $IsolatePorts -lt 0) {
-          throw "invalid value for 'IsolatePorts', must be greater than or equal to 0."
-        }
-
-        if ($Vlanaware -and $Vlanaware -gt 1) {
-          throw "invalid value for 'Vlanaware', must be smaller than or equal to 1."
-        }
-
-        if ($Vlanaware -and $Vlanaware -lt 0) {
-          throw "invalid value for 'Vlanaware', must be greater than or equal to 0."
-        }
 
         if (!$Alias -and $Alias.length -gt 256) {
             throw "invalid value for 'Alias', the character length must be smaller than or equal to 256."
@@ -88,13 +72,13 @@ function Initialize-PVEPOSTClusterSdnVnetsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Tag"="tag"; "Zone"="zone"; "IsolatePorts"="isolate-ports"; "Vlanaware"="vlanaware"; "Alias"="alias"; "Type"="type"; "Vnet"="vnet"
+			"Vnet"="vnet"; "Type"="type"; "Zone"="zone"; "Vlanaware"="vlanaware"; "Tag"="tag"; "Alias"="alias"; "IsolatePorts"="isolate-ports"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -134,47 +118,11 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnVnetsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterSdnVnetsRB
-        $AllProperties = ("tag", "zone", "isolate-ports", "vlanaware", "alias", "type", "vnet")
+        $AllProperties = ("vnet", "type", "zone", "vlanaware", "tag", "alias", "isolate-ports")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tag"))) { #optional property not found
-            $Tag = $null
-        } else {
-            $Tag = $JsonParameters.PSobject.Properties["tag"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
-            $Zone = $null
-        } else {
-            $Zone = $JsonParameters.PSobject.Properties["zone"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "isolate-ports"))) { #optional property not found
-            $IsolatePorts = $null
-        } else {
-            $IsolatePorts = $JsonParameters.PSobject.Properties["isolate-ports"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vlanaware"))) { #optional property not found
-            $Vlanaware = $null
-        } else {
-            $Vlanaware = $JsonParameters.PSobject.Properties["vlanaware"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "alias"))) { #optional property not found
-            $Alias = $null
-        } else {
-            $Alias = $JsonParameters.PSobject.Properties["alias"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
@@ -183,14 +131,50 @@ function ConvertFrom-PVEJsonToPOSTClusterSdnVnetsRB {
             $Vnet = $JsonParameters.PSobject.Properties["vnet"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "zone"))) { #optional property not found
+            $Zone = $null
+        } else {
+            $Zone = $JsonParameters.PSobject.Properties["zone"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vlanaware"))) { #optional property not found
+            $Vlanaware = $null
+        } else {
+            $Vlanaware = $JsonParameters.PSobject.Properties["vlanaware"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tag"))) { #optional property not found
+            $Tag = $null
+        } else {
+            $Tag = $JsonParameters.PSobject.Properties["tag"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "alias"))) { #optional property not found
+            $Alias = $null
+        } else {
+            $Alias = $JsonParameters.PSobject.Properties["alias"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "isolate-ports"))) { #optional property not found
+            $IsolatePorts = $null
+        } else {
+            $IsolatePorts = $JsonParameters.PSobject.Properties["isolate-ports"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "tag" = ${Tag}
-            "zone" = ${Zone}
-            "isolate-ports" = ${IsolatePorts}
-            "vlanaware" = ${Vlanaware}
-            "alias" = ${Alias}
-            "type" = ${Type}
             "vnet" = ${Vnet}
+            "type" = ${Type}
+            "zone" = ${Zone}
+            "vlanaware" = ${Vlanaware}
+            "tag" = ${Tag}
+            "alias" = ${Alias}
+            "isolate-ports" = ${IsolatePorts}
         }
 
         return $PSO

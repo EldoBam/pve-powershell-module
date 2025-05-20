@@ -17,17 +17,11 @@ No description available.
 
 .PARAMETER Comment
 No description available.
-.PARAMETER Cidr
-No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Name
-No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Node
-No description available.
 .PARAMETER Rename
+No description available.
+.PARAMETER Cidr
 No description available.
 .OUTPUTS
 
@@ -42,45 +36,19 @@ function Initialize-PVEPUTNodesLxcFirewallAliasesRB {
         ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Cidr},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
-        [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
         [String]
-        ${Rename}
+        ${Rename},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Cidr}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTNodesLxcFirewallAliasesRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
-        if (!$Name -and $Name.length -gt 64) {
-            throw "invalid value for 'Name', the character length must be smaller than or equal to 64."
-        }
-
-        if (!$Name -and $Name.length -lt 2) {
-            throw "invalid value for 'Name', the character length must be great than or equal to 2."
-        }
 
         if (!$Digest -and $Digest.length -gt 64) {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
@@ -96,13 +64,13 @@ function Initialize-PVEPUTNodesLxcFirewallAliasesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Comment"="comment"; "Cidr"="cidr"; "Vmid"="vmid"; "Name"="name"; "Digest"="digest"; "Node"="node"; "Rename"="rename"
+			"Comment"="comment"; "Digest"="digest"; "Rename"="rename"; "Cidr"="cidr"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -142,7 +110,7 @@ function ConvertFrom-PVEJsonToPUTNodesLxcFirewallAliasesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTNodesLxcFirewallAliasesRB
-        $AllProperties = ("comment", "cidr", "vmid", "name", "digest", "node", "rename")
+        $AllProperties = ("comment", "digest", "rename", "cidr")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -155,34 +123,10 @@ function ConvertFrom-PVEJsonToPUTNodesLxcFirewallAliasesRB {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
-            $Cidr = $null
-        } else {
-            $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "rename"))) { #optional property not found
@@ -191,14 +135,17 @@ function ConvertFrom-PVEJsonToPUTNodesLxcFirewallAliasesRB {
             $Rename = $JsonParameters.PSobject.Properties["rename"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
+            $Cidr = $null
+        } else {
+            $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "comment" = ${Comment}
-            "cidr" = ${Cidr}
-            "vmid" = ${Vmid}
-            "name" = ${Name}
             "digest" = ${Digest}
-            "node" = ${Node}
             "rename" = ${Rename}
+            "cidr" = ${Cidr}
         }
 
         return $PSO

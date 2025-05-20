@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LvName** | **String** |  | [optional] 
-**LvPath** | **String** |  | [optional] 
 **VgName** | **String** |  | [optional] 
+**LvName** | **String** |  | [optional] 
 **LvUuid** | **String** |  | [optional] 
-**LvSize** | **Int32** |  | [optional] 
+**LvPath** | **String** |  | [optional] 
 **CreationTime** | **String** |  | [optional] 
+**LvSize** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephOsdLvinfo = Initialize-PVENodesCephOsdLvinfo  -LvName null `
- -LvPath null `
- -VgName null `
+$NodesCephOsdLvinfo = Initialize-PVENodesCephOsdLvinfo  -VgName null `
+ -LvName null `
  -LvUuid null `
- -LvSize null `
- -CreationTime null
+ -LvPath null `
+ -CreationTime null `
+ -LvSize null
 ```
 
 - Convert the resource to JSON

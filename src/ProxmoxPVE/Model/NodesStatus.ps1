@@ -15,21 +15,21 @@ No summary available.
 
 No description available.
 
-.PARAMETER Rootfs
-No description available.
 .PARAMETER Cpu
 No description available.
-.PARAMETER BootInfo
-No description available.
-.PARAMETER Loadavg
+.PARAMETER Rootfs
 No description available.
 .PARAMETER Memory
 No description available.
 .PARAMETER CurrentKernel
 No description available.
-.PARAMETER Pveversion
+.PARAMETER Loadavg
 No description available.
 .PARAMETER Cpuinfo
+No description available.
+.PARAMETER BootInfo
+No description available.
+.PARAMETER Pveversion
 No description available.
 .OUTPUTS
 
@@ -40,17 +40,11 @@ function Initialize-PVENodesStatus {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Rootfs},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Decimal]]
         ${Cpu},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
-        ${BootInfo},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Loadavg},
+        ${Rootfs},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${Memory},
@@ -58,11 +52,17 @@ function Initialize-PVENodesStatus {
         [PSCustomObject]
         ${CurrentKernel},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Pveversion},
+        [String[]]
+        ${Loadavg},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
-        ${Cpuinfo}
+        ${Cpuinfo},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${BootInfo},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Pveversion}
     )
 
     Process {
@@ -71,13 +71,13 @@ function Initialize-PVENodesStatus {
 
 
 		 $DisplayNameMapping =@{
-			"Rootfs"="rootfs"; "Cpu"="cpu"; "BootInfo"="boot-info"; "Loadavg"="loadavg"; "Memory"="memory"; "CurrentKernel"="current-kernel"; "Pveversion"="pveversion"; "Cpuinfo"="cpuinfo"
+			"Cpu"="cpu"; "Rootfs"="rootfs"; "Memory"="memory"; "CurrentKernel"="current-kernel"; "Loadavg"="loadavg"; "Cpuinfo"="cpuinfo"; "BootInfo"="boot-info"; "Pveversion"="pveversion"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -117,17 +117,11 @@ function ConvertFrom-PVEJsonToNodesStatus {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesStatus
-        $AllProperties = ("rootfs", "cpu", "boot-info", "loadavg", "memory", "current-kernel", "pveversion", "cpuinfo")
+        $AllProperties = ("cpu", "rootfs", "memory", "current-kernel", "loadavg", "cpuinfo", "boot-info", "pveversion")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rootfs"))) { #optional property not found
-            $Rootfs = $null
-        } else {
-            $Rootfs = $JsonParameters.PSobject.Properties["rootfs"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpu"))) { #optional property not found
@@ -136,16 +130,10 @@ function ConvertFrom-PVEJsonToNodesStatus {
             $Cpu = $JsonParameters.PSobject.Properties["cpu"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "boot-info"))) { #optional property not found
-            $BootInfo = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rootfs"))) { #optional property not found
+            $Rootfs = $null
         } else {
-            $BootInfo = $JsonParameters.PSobject.Properties["boot-info"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "loadavg"))) { #optional property not found
-            $Loadavg = $null
-        } else {
-            $Loadavg = $JsonParameters.PSobject.Properties["loadavg"].value
+            $Rootfs = $JsonParameters.PSobject.Properties["rootfs"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "memory"))) { #optional property not found
@@ -160,10 +148,10 @@ function ConvertFrom-PVEJsonToNodesStatus {
             $CurrentKernel = $JsonParameters.PSobject.Properties["current-kernel"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pveversion"))) { #optional property not found
-            $Pveversion = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "loadavg"))) { #optional property not found
+            $Loadavg = $null
         } else {
-            $Pveversion = $JsonParameters.PSobject.Properties["pveversion"].value
+            $Loadavg = $JsonParameters.PSobject.Properties["loadavg"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpuinfo"))) { #optional property not found
@@ -172,15 +160,27 @@ function ConvertFrom-PVEJsonToNodesStatus {
             $Cpuinfo = $JsonParameters.PSobject.Properties["cpuinfo"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "boot-info"))) { #optional property not found
+            $BootInfo = $null
+        } else {
+            $BootInfo = $JsonParameters.PSobject.Properties["boot-info"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pveversion"))) { #optional property not found
+            $Pveversion = $null
+        } else {
+            $Pveversion = $JsonParameters.PSobject.Properties["pveversion"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "rootfs" = ${Rootfs}
             "cpu" = ${Cpu}
-            "boot-info" = ${BootInfo}
-            "loadavg" = ${Loadavg}
+            "rootfs" = ${Rootfs}
             "memory" = ${Memory}
             "current-kernel" = ${CurrentKernel}
-            "pveversion" = ${Pveversion}
+            "loadavg" = ${Loadavg}
             "cpuinfo" = ${Cpuinfo}
+            "boot-info" = ${BootInfo}
+            "pveversion" = ${Pveversion}
         }
 
         return $PSO

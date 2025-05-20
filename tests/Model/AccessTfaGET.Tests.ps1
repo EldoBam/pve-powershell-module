@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEAccessTfaGET' {
     Context 'PVEAccessTfaGET' {
         It 'Initialize-PVEAccessTfaGET' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEAccessTfaGET -Created "TEST_VALUE" -Description "TEST_VALUE" -Enable "TEST_VALUE" -Id "TEST_VALUE" -Type "TEST_VALUE"
+            #$NewObject = Initialize-PVEAccessTfaGET -Id "TEST_VALUE" -Enable "TEST_VALUE" -Description "TEST_VALUE" -Type "TEST_VALUE" -Created "TEST_VALUE"
             #$NewObject | Should -BeOfType AccessTfaGET
             #$NewObject.property | Should -Be 0
         }

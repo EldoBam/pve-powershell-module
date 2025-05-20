@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesDisksLvm' {
     Context 'PVENodesDisksLvm' {
         It 'Initialize-PVENodesDisksLvm' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesDisksLvm -Children "TEST_VALUE" -Leaf "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesDisksLvm -Leaf "TEST_VALUE" -Children "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesDisksLvm
             #$NewObject.property | Should -Be 0
         }

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTClusterSdnVnetsFirewallRulesRB' {
     Context 'PVEPOSTClusterSdnVnetsFirewallRulesRB' {
         It 'Initialize-PVEPOSTClusterSdnVnetsFirewallRulesRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTClusterSdnVnetsFirewallRulesRB -Macro "TEST_VALUE" -Action "TEST_VALUE" -Proto "TEST_VALUE" -Log "TEST_VALUE" -Pos "TEST_VALUE" -Dest "TEST_VALUE" -Type "TEST_VALUE" -Comment "TEST_VALUE" -Dport "TEST_VALUE" -Vnet "TEST_VALUE" -Digest "TEST_VALUE" -Enable "TEST_VALUE" -Source "TEST_VALUE" -Iface "TEST_VALUE" -IcmpType "TEST_VALUE" -Sport "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTClusterSdnVnetsFirewallRulesRB -Macro "TEST_VALUE" -Iface "TEST_VALUE" -Action "TEST_VALUE" -Pos "TEST_VALUE" -Type "TEST_VALUE" -Log "TEST_VALUE" -Enable "TEST_VALUE" -IcmpType "TEST_VALUE" -Dport "TEST_VALUE" -Proto "TEST_VALUE" -Dest "TEST_VALUE" -Digest "TEST_VALUE" -Sport "TEST_VALUE" -Source "TEST_VALUE" -Comment "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTClusterSdnVnetsFirewallRulesRB
             #$NewObject.property | Should -Be 0
         }

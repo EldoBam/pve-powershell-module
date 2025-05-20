@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Name
-No description available.
 .PARAMETER Comment
 No description available.
 .PARAMETER Digest
+No description available.
+.PARAMETER Name
 No description available.
 .PARAMETER Cidr
 No description available.
@@ -33,13 +33,13 @@ function Initialize-PVENodesLxcFirewallAliasesInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Cidr}
@@ -55,13 +55,13 @@ function Initialize-PVENodesLxcFirewallAliasesInner {
 
 
 		 $DisplayNameMapping =@{
-			"Name"="name"; "Comment"="comment"; "Digest"="digest"; "Cidr"="cidr"
+			"Comment"="comment"; "Digest"="digest"; "Name"="name"; "Cidr"="cidr"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -101,17 +101,11 @@ function ConvertFrom-PVEJsonToNodesLxcFirewallAliasesInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesLxcFirewallAliasesInner
-        $AllProperties = ("name", "comment", "digest", "cidr")
+        $AllProperties = ("comment", "digest", "name", "cidr")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -126,6 +120,12 @@ function ConvertFrom-PVEJsonToNodesLxcFirewallAliasesInner {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
             $Cidr = $null
         } else {
@@ -133,9 +133,9 @@ function ConvertFrom-PVEJsonToNodesLxcFirewallAliasesInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "name" = ${Name}
             "comment" = ${Comment}
             "digest" = ${Digest}
+            "name" = ${Name}
             "cidr" = ${Cidr}
         }
 

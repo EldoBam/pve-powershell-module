@@ -15,43 +15,43 @@ No summary available.
 
 No description available.
 
-.PARAMETER ProtectionSynfloodRate
+.PARAMETER NfConntrackTcpTimeoutEstablished
 No description available.
-.PARAMETER LogLevelForward
-No description available.
-.PARAMETER Tcpflags
-No description available.
-.PARAMETER ProtectionSynflood
-No description available.
-.PARAMETER LogLevelIn
-No description available.
-.PARAMETER NfConntrackHelpers
-No description available.
-.PARAMETER Nftables
-No description available.
-.PARAMETER SmurfLogLevel
-No description available.
-.PARAMETER LogLevelOut
-No description available.
-.PARAMETER ProtectionSynfloodBurst
-No description available.
-.PARAMETER TcpFlagsLogLevel
+.PARAMETER NfConntrackTcpTimeoutSynRecv
 No description available.
 .PARAMETER Nosmurfs
 No description available.
-.PARAMETER LogNfConntrack
+.PARAMETER LogLevelOut
 No description available.
-.PARAMETER Ndp
+.PARAMETER ProtectionSynfloodRate
 No description available.
-.PARAMETER NfConntrackTcpTimeoutEstablished
-No description available.
-.PARAMETER Enable
+.PARAMETER SmurfLogLevel
 No description available.
 .PARAMETER NfConntrackMax
 No description available.
+.PARAMETER Tcpflags
+No description available.
+.PARAMETER Nftables
+No description available.
+.PARAMETER NfConntrackHelpers
+No description available.
+.PARAMETER ProtectionSynflood
+No description available.
+.PARAMETER Enable
+No description available.
+.PARAMETER TcpFlagsLogLevel
+No description available.
+.PARAMETER Ndp
+No description available.
+.PARAMETER ProtectionSynfloodBurst
+No description available.
+.PARAMETER LogLevelForward
+No description available.
+.PARAMETER LogLevelIn
+No description available.
 .PARAMETER NfConntrackAllowInvalid
 No description available.
-.PARAMETER NfConntrackTcpTimeoutSynRecv
+.PARAMETER LogNfConntrack
 No description available.
 .OUTPUTS
 
@@ -63,142 +63,74 @@ function Initialize-PVENodesFirewallOptions {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${ProtectionSynfloodRate},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
-        [String]
-        ${LogLevelForward},
+        ${NfConntrackTcpTimeoutEstablished},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Tcpflags},
+        ${NfConntrackTcpTimeoutSynRecv},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${ProtectionSynflood},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
-        [String]
-        ${LogLevelIn},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${NfConntrackHelpers},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Nftables},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
-        [String]
-        ${SmurfLogLevel},
+        [System.Nullable[Boolean]]
+        ${Nosmurfs},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
         [String]
         ${LogLevelOut},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${ProtectionSynfloodBurst},
+        ${ProtectionSynfloodRate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
+        [String]
+        ${SmurfLogLevel},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${NfConntrackMax},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Tcpflags},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Nftables},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${NfConntrackHelpers},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${ProtectionSynflood},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Enable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
         [String]
         ${TcpFlagsLogLevel},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Nosmurfs},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${LogNfConntrack},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Ndp},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${NfConntrackTcpTimeoutEstablished},
+        ${ProtectionSynfloodBurst},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enable},
+        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
+        [String]
+        ${LogLevelForward},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${NfConntrackMax},
+        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
+        [String]
+        ${LogLevelIn},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${NfConntrackAllowInvalid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${NfConntrackTcpTimeoutSynRecv}
+        [System.Nullable[Boolean]]
+        ${LogNfConntrack}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesFirewallOptions' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Tcpflags -and $Tcpflags -gt 1) {
-          throw "invalid value for 'Tcpflags', must be smaller than or equal to 1."
-        }
-
-        if ($Tcpflags -and $Tcpflags -lt 0) {
-          throw "invalid value for 'Tcpflags', must be greater than or equal to 0."
-        }
-
-        if ($ProtectionSynflood -and $ProtectionSynflood -gt 1) {
-          throw "invalid value for 'ProtectionSynflood', must be smaller than or equal to 1."
-        }
-
-        if ($ProtectionSynflood -and $ProtectionSynflood -lt 0) {
-          throw "invalid value for 'ProtectionSynflood', must be greater than or equal to 0."
-        }
-
-        if ($Nftables -and $Nftables -gt 1) {
-          throw "invalid value for 'Nftables', must be smaller than or equal to 1."
-        }
-
-        if ($Nftables -and $Nftables -lt 0) {
-          throw "invalid value for 'Nftables', must be greater than or equal to 0."
-        }
-
-        if ($Nosmurfs -and $Nosmurfs -gt 1) {
-          throw "invalid value for 'Nosmurfs', must be smaller than or equal to 1."
-        }
-
-        if ($Nosmurfs -and $Nosmurfs -lt 0) {
-          throw "invalid value for 'Nosmurfs', must be greater than or equal to 0."
-        }
-
-        if ($LogNfConntrack -and $LogNfConntrack -gt 1) {
-          throw "invalid value for 'LogNfConntrack', must be smaller than or equal to 1."
-        }
-
-        if ($LogNfConntrack -and $LogNfConntrack -lt 0) {
-          throw "invalid value for 'LogNfConntrack', must be greater than or equal to 0."
-        }
-
-        if ($Ndp -and $Ndp -gt 1) {
-          throw "invalid value for 'Ndp', must be smaller than or equal to 1."
-        }
-
-        if ($Ndp -and $Ndp -lt 0) {
-          throw "invalid value for 'Ndp', must be greater than or equal to 0."
-        }
-
         if ($NfConntrackTcpTimeoutEstablished -and $NfConntrackTcpTimeoutEstablished -lt 7875) {
           throw "invalid value for 'NfConntrackTcpTimeoutEstablished', must be greater than or equal to 7875."
-        }
-
-        if ($Enable -and $Enable -gt 1) {
-          throw "invalid value for 'Enable', must be smaller than or equal to 1."
-        }
-
-        if ($Enable -and $Enable -lt 0) {
-          throw "invalid value for 'Enable', must be greater than or equal to 0."
-        }
-
-        if ($NfConntrackMax -and $NfConntrackMax -lt 32768) {
-          throw "invalid value for 'NfConntrackMax', must be greater than or equal to 32768."
-        }
-
-        if ($NfConntrackAllowInvalid -and $NfConntrackAllowInvalid -gt 1) {
-          throw "invalid value for 'NfConntrackAllowInvalid', must be smaller than or equal to 1."
-        }
-
-        if ($NfConntrackAllowInvalid -and $NfConntrackAllowInvalid -lt 0) {
-          throw "invalid value for 'NfConntrackAllowInvalid', must be greater than or equal to 0."
         }
 
         if ($NfConntrackTcpTimeoutSynRecv -and $NfConntrackTcpTimeoutSynRecv -gt 60) {
@@ -209,15 +141,19 @@ function Initialize-PVENodesFirewallOptions {
           throw "invalid value for 'NfConntrackTcpTimeoutSynRecv', must be greater than or equal to 30."
         }
 
+        if ($NfConntrackMax -and $NfConntrackMax -lt 32768) {
+          throw "invalid value for 'NfConntrackMax', must be greater than or equal to 32768."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"ProtectionSynfloodRate"="protection_synflood_rate"; "LogLevelForward"="log_level_forward"; "Tcpflags"="tcpflags"; "ProtectionSynflood"="protection_synflood"; "LogLevelIn"="log_level_in"; "NfConntrackHelpers"="nf_conntrack_helpers"; "Nftables"="nftables"; "SmurfLogLevel"="smurf_log_level"; "LogLevelOut"="log_level_out"; "ProtectionSynfloodBurst"="protection_synflood_burst"; "TcpFlagsLogLevel"="tcp_flags_log_level"; "Nosmurfs"="nosmurfs"; "LogNfConntrack"="log_nf_conntrack"; "Ndp"="ndp"; "NfConntrackTcpTimeoutEstablished"="nf_conntrack_tcp_timeout_established"; "Enable"="enable"; "NfConntrackMax"="nf_conntrack_max"; "NfConntrackAllowInvalid"="nf_conntrack_allow_invalid"; "NfConntrackTcpTimeoutSynRecv"="nf_conntrack_tcp_timeout_syn_recv"
+			"NfConntrackTcpTimeoutEstablished"="nf_conntrack_tcp_timeout_established"; "NfConntrackTcpTimeoutSynRecv"="nf_conntrack_tcp_timeout_syn_recv"; "Nosmurfs"="nosmurfs"; "LogLevelOut"="log_level_out"; "ProtectionSynfloodRate"="protection_synflood_rate"; "SmurfLogLevel"="smurf_log_level"; "NfConntrackMax"="nf_conntrack_max"; "Tcpflags"="tcpflags"; "Nftables"="nftables"; "NfConntrackHelpers"="nf_conntrack_helpers"; "ProtectionSynflood"="protection_synflood"; "Enable"="enable"; "TcpFlagsLogLevel"="tcp_flags_log_level"; "Ndp"="ndp"; "ProtectionSynfloodBurst"="protection_synflood_burst"; "LogLevelForward"="log_level_forward"; "LogLevelIn"="log_level_in"; "NfConntrackAllowInvalid"="nf_conntrack_allow_invalid"; "LogNfConntrack"="log_nf_conntrack"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -257,95 +193,11 @@ function ConvertFrom-PVEJsonToNodesFirewallOptions {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesFirewallOptions
-        $AllProperties = ("protection_synflood_rate", "log_level_forward", "tcpflags", "protection_synflood", "log_level_in", "nf_conntrack_helpers", "nftables", "smurf_log_level", "log_level_out", "protection_synflood_burst", "tcp_flags_log_level", "nosmurfs", "log_nf_conntrack", "ndp", "nf_conntrack_tcp_timeout_established", "enable", "nf_conntrack_max", "nf_conntrack_allow_invalid", "nf_conntrack_tcp_timeout_syn_recv")
+        $AllProperties = ("nf_conntrack_tcp_timeout_established", "nf_conntrack_tcp_timeout_syn_recv", "nosmurfs", "log_level_out", "protection_synflood_rate", "smurf_log_level", "nf_conntrack_max", "tcpflags", "nftables", "nf_conntrack_helpers", "protection_synflood", "enable", "tcp_flags_log_level", "ndp", "protection_synflood_burst", "log_level_forward", "log_level_in", "nf_conntrack_allow_invalid", "log_nf_conntrack")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protection_synflood_rate"))) { #optional property not found
-            $ProtectionSynfloodRate = $null
-        } else {
-            $ProtectionSynfloodRate = $JsonParameters.PSobject.Properties["protection_synflood_rate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_forward"))) { #optional property not found
-            $LogLevelForward = $null
-        } else {
-            $LogLevelForward = $JsonParameters.PSobject.Properties["log_level_forward"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tcpflags"))) { #optional property not found
-            $Tcpflags = $null
-        } else {
-            $Tcpflags = $JsonParameters.PSobject.Properties["tcpflags"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protection_synflood"))) { #optional property not found
-            $ProtectionSynflood = $null
-        } else {
-            $ProtectionSynflood = $JsonParameters.PSobject.Properties["protection_synflood"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_in"))) { #optional property not found
-            $LogLevelIn = $null
-        } else {
-            $LogLevelIn = $JsonParameters.PSobject.Properties["log_level_in"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nf_conntrack_helpers"))) { #optional property not found
-            $NfConntrackHelpers = $null
-        } else {
-            $NfConntrackHelpers = $JsonParameters.PSobject.Properties["nf_conntrack_helpers"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nftables"))) { #optional property not found
-            $Nftables = $null
-        } else {
-            $Nftables = $JsonParameters.PSobject.Properties["nftables"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "smurf_log_level"))) { #optional property not found
-            $SmurfLogLevel = $null
-        } else {
-            $SmurfLogLevel = $JsonParameters.PSobject.Properties["smurf_log_level"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_out"))) { #optional property not found
-            $LogLevelOut = $null
-        } else {
-            $LogLevelOut = $JsonParameters.PSobject.Properties["log_level_out"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protection_synflood_burst"))) { #optional property not found
-            $ProtectionSynfloodBurst = $null
-        } else {
-            $ProtectionSynfloodBurst = $JsonParameters.PSobject.Properties["protection_synflood_burst"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tcp_flags_log_level"))) { #optional property not found
-            $TcpFlagsLogLevel = $null
-        } else {
-            $TcpFlagsLogLevel = $JsonParameters.PSobject.Properties["tcp_flags_log_level"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nosmurfs"))) { #optional property not found
-            $Nosmurfs = $null
-        } else {
-            $Nosmurfs = $JsonParameters.PSobject.Properties["nosmurfs"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_nf_conntrack"))) { #optional property not found
-            $LogNfConntrack = $null
-        } else {
-            $LogNfConntrack = $JsonParameters.PSobject.Properties["log_nf_conntrack"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ndp"))) { #optional property not found
-            $Ndp = $null
-        } else {
-            $Ndp = $JsonParameters.PSobject.Properties["ndp"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "nf_conntrack_tcp_timeout_established"))) { #optional property not found
@@ -354,10 +206,34 @@ function ConvertFrom-PVEJsonToNodesFirewallOptions {
             $NfConntrackTcpTimeoutEstablished = $JsonParameters.PSobject.Properties["nf_conntrack_tcp_timeout_established"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
-            $Enable = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nf_conntrack_tcp_timeout_syn_recv"))) { #optional property not found
+            $NfConntrackTcpTimeoutSynRecv = $null
         } else {
-            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+            $NfConntrackTcpTimeoutSynRecv = $JsonParameters.PSobject.Properties["nf_conntrack_tcp_timeout_syn_recv"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nosmurfs"))) { #optional property not found
+            $Nosmurfs = $null
+        } else {
+            $Nosmurfs = $JsonParameters.PSobject.Properties["nosmurfs"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_out"))) { #optional property not found
+            $LogLevelOut = $null
+        } else {
+            $LogLevelOut = $JsonParameters.PSobject.Properties["log_level_out"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protection_synflood_rate"))) { #optional property not found
+            $ProtectionSynfloodRate = $null
+        } else {
+            $ProtectionSynfloodRate = $JsonParameters.PSobject.Properties["protection_synflood_rate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "smurf_log_level"))) { #optional property not found
+            $SmurfLogLevel = $null
+        } else {
+            $SmurfLogLevel = $JsonParameters.PSobject.Properties["smurf_log_level"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "nf_conntrack_max"))) { #optional property not found
@@ -366,38 +242,98 @@ function ConvertFrom-PVEJsonToNodesFirewallOptions {
             $NfConntrackMax = $JsonParameters.PSobject.Properties["nf_conntrack_max"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tcpflags"))) { #optional property not found
+            $Tcpflags = $null
+        } else {
+            $Tcpflags = $JsonParameters.PSobject.Properties["tcpflags"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nftables"))) { #optional property not found
+            $Nftables = $null
+        } else {
+            $Nftables = $JsonParameters.PSobject.Properties["nftables"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nf_conntrack_helpers"))) { #optional property not found
+            $NfConntrackHelpers = $null
+        } else {
+            $NfConntrackHelpers = $JsonParameters.PSobject.Properties["nf_conntrack_helpers"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protection_synflood"))) { #optional property not found
+            $ProtectionSynflood = $null
+        } else {
+            $ProtectionSynflood = $JsonParameters.PSobject.Properties["protection_synflood"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
+            $Enable = $null
+        } else {
+            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tcp_flags_log_level"))) { #optional property not found
+            $TcpFlagsLogLevel = $null
+        } else {
+            $TcpFlagsLogLevel = $JsonParameters.PSobject.Properties["tcp_flags_log_level"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ndp"))) { #optional property not found
+            $Ndp = $null
+        } else {
+            $Ndp = $JsonParameters.PSobject.Properties["ndp"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protection_synflood_burst"))) { #optional property not found
+            $ProtectionSynfloodBurst = $null
+        } else {
+            $ProtectionSynfloodBurst = $JsonParameters.PSobject.Properties["protection_synflood_burst"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_forward"))) { #optional property not found
+            $LogLevelForward = $null
+        } else {
+            $LogLevelForward = $JsonParameters.PSobject.Properties["log_level_forward"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_in"))) { #optional property not found
+            $LogLevelIn = $null
+        } else {
+            $LogLevelIn = $JsonParameters.PSobject.Properties["log_level_in"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "nf_conntrack_allow_invalid"))) { #optional property not found
             $NfConntrackAllowInvalid = $null
         } else {
             $NfConntrackAllowInvalid = $JsonParameters.PSobject.Properties["nf_conntrack_allow_invalid"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nf_conntrack_tcp_timeout_syn_recv"))) { #optional property not found
-            $NfConntrackTcpTimeoutSynRecv = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_nf_conntrack"))) { #optional property not found
+            $LogNfConntrack = $null
         } else {
-            $NfConntrackTcpTimeoutSynRecv = $JsonParameters.PSobject.Properties["nf_conntrack_tcp_timeout_syn_recv"].value
+            $LogNfConntrack = $JsonParameters.PSobject.Properties["log_nf_conntrack"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "protection_synflood_rate" = ${ProtectionSynfloodRate}
-            "log_level_forward" = ${LogLevelForward}
-            "tcpflags" = ${Tcpflags}
-            "protection_synflood" = ${ProtectionSynflood}
-            "log_level_in" = ${LogLevelIn}
-            "nf_conntrack_helpers" = ${NfConntrackHelpers}
-            "nftables" = ${Nftables}
-            "smurf_log_level" = ${SmurfLogLevel}
-            "log_level_out" = ${LogLevelOut}
-            "protection_synflood_burst" = ${ProtectionSynfloodBurst}
-            "tcp_flags_log_level" = ${TcpFlagsLogLevel}
-            "nosmurfs" = ${Nosmurfs}
-            "log_nf_conntrack" = ${LogNfConntrack}
-            "ndp" = ${Ndp}
             "nf_conntrack_tcp_timeout_established" = ${NfConntrackTcpTimeoutEstablished}
-            "enable" = ${Enable}
-            "nf_conntrack_max" = ${NfConntrackMax}
-            "nf_conntrack_allow_invalid" = ${NfConntrackAllowInvalid}
             "nf_conntrack_tcp_timeout_syn_recv" = ${NfConntrackTcpTimeoutSynRecv}
+            "nosmurfs" = ${Nosmurfs}
+            "log_level_out" = ${LogLevelOut}
+            "protection_synflood_rate" = ${ProtectionSynfloodRate}
+            "smurf_log_level" = ${SmurfLogLevel}
+            "nf_conntrack_max" = ${NfConntrackMax}
+            "tcpflags" = ${Tcpflags}
+            "nftables" = ${Nftables}
+            "nf_conntrack_helpers" = ${NfConntrackHelpers}
+            "protection_synflood" = ${ProtectionSynflood}
+            "enable" = ${Enable}
+            "tcp_flags_log_level" = ${TcpFlagsLogLevel}
+            "ndp" = ${Ndp}
+            "protection_synflood_burst" = ${ProtectionSynfloodBurst}
+            "log_level_forward" = ${LogLevelForward}
+            "log_level_in" = ${LogLevelIn}
+            "nf_conntrack_allow_invalid" = ${NfConntrackAllowInvalid}
+            "log_nf_conntrack" = ${LogNfConntrack}
         }
 
         return $PSO

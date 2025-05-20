@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesQemuMigrateRB' {
     Context 'PVEGETNodesQemuMigrateRB' {
         It 'Initialize-PVEGETNodesQemuMigrateRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesQemuMigrateRB -Target "TEST_VALUE" -Vmid "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesQemuMigrateRB -Target "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesQemuMigrateRB
             #$NewObject.property | Should -Be 0
         }

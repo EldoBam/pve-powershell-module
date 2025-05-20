@@ -15,23 +15,23 @@ No summary available.
 
 No description available.
 
-.PARAMETER Source
+.PARAMETER Type
+No description available.
+.PARAMETER Rate
 No description available.
 .PARAMETER RemoveJob
 No description available.
 .PARAMETER Comment
 No description available.
-.PARAMETER Disable
+.PARAMETER Schedule
 No description available.
 .PARAMETER Id
 No description available.
-.PARAMETER Schedule
+.PARAMETER Source
+No description available.
+.PARAMETER Disable
 No description available.
 .PARAMETER Target
-No description available.
-.PARAMETER Type
-No description available.
-.PARAMETER Rate
 No description available.
 .OUTPUTS
 
@@ -42,8 +42,12 @@ function Initialize-PVEPOSTClusterReplicationRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("local")]
         [String]
-        ${Source},
+        ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Decimal]]
+        ${Rate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("local", "full")]
         [String]
@@ -52,60 +56,48 @@ function Initialize-PVEPOSTClusterReplicationRB {
         [String]
         ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable},
+        [String]
+        ${Schedule},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[1-9][0-9]{2,8}-\d{1,9}")]
         [String]
         ${Id},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Schedule},
+        ${Source},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Disable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Target},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("local")]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${Rate}
+        ${Target}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTClusterReplicationRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
+        if ($Rate -and $Rate -lt 1) {
+          throw "invalid value for 'Rate', must be greater than or equal to 1."
+        }
+
         if (!$Comment -and $Comment.length -gt 4096) {
             throw "invalid value for 'Comment', the character length must be smaller than or equal to 4096."
-        }
-
-        if ($Disable -and $Disable -gt 1) {
-          throw "invalid value for 'Disable', must be smaller than or equal to 1."
-        }
-
-        if ($Disable -and $Disable -lt 0) {
-          throw "invalid value for 'Disable', must be greater than or equal to 0."
         }
 
         if (!$Schedule -and $Schedule.length -gt 128) {
             throw "invalid value for 'Schedule', the character length must be smaller than or equal to 128."
         }
 
-        if ($Rate -and $Rate -lt 1) {
-          throw "invalid value for 'Rate', must be greater than or equal to 1."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Source"="source"; "RemoveJob"="remove_job"; "Comment"="comment"; "Disable"="disable"; "Id"="id"; "Schedule"="schedule"; "Target"="target"; "Type"="type"; "Rate"="rate"
+			"Type"="type"; "Rate"="rate"; "RemoveJob"="remove_job"; "Comment"="comment"; "Schedule"="schedule"; "Id"="id"; "Source"="source"; "Disable"="disable"; "Target"="target"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -145,53 +137,11 @@ function ConvertFrom-PVEJsonToPOSTClusterReplicationRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterReplicationRB
-        $AllProperties = ("source", "remove_job", "comment", "disable", "id", "schedule", "target", "type", "rate")
+        $AllProperties = ("type", "rate", "remove_job", "comment", "schedule", "id", "source", "disable", "target")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
-            $Source = $null
-        } else {
-            $Source = $JsonParameters.PSobject.Properties["source"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove_job"))) { #optional property not found
-            $RemoveJob = $null
-        } else {
-            $RemoveJob = $JsonParameters.PSobject.Properties["remove_job"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
-        } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "schedule"))) { #optional property not found
-            $Schedule = $null
-        } else {
-            $Schedule = $JsonParameters.PSobject.Properties["schedule"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
-            $Target = $null
-        } else {
-            $Target = $JsonParameters.PSobject.Properties["target"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
@@ -206,16 +156,58 @@ function ConvertFrom-PVEJsonToPOSTClusterReplicationRB {
             $Rate = $JsonParameters.PSobject.Properties["rate"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "remove_job"))) { #optional property not found
+            $RemoveJob = $null
+        } else {
+            $RemoveJob = $JsonParameters.PSobject.Properties["remove_job"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "schedule"))) { #optional property not found
+            $Schedule = $null
+        } else {
+            $Schedule = $JsonParameters.PSobject.Properties["schedule"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
+            $Source = $null
+        } else {
+            $Source = $JsonParameters.PSobject.Properties["source"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
+        } else {
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
+            $Target = $null
+        } else {
+            $Target = $JsonParameters.PSobject.Properties["target"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "source" = ${Source}
-            "remove_job" = ${RemoveJob}
-            "comment" = ${Comment}
-            "disable" = ${Disable}
-            "id" = ${Id}
-            "schedule" = ${Schedule}
-            "target" = ${Target}
             "type" = ${Type}
             "rate" = ${Rate}
+            "remove_job" = ${RemoveJob}
+            "comment" = ${Comment}
+            "schedule" = ${Schedule}
+            "id" = ${Id}
+            "source" = ${Source}
+            "disable" = ${Disable}
+            "target" = ${Target}
         }
 
         return $PSO

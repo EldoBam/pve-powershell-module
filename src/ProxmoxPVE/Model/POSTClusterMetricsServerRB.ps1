@@ -15,37 +15,35 @@ No summary available.
 
 No description available.
 
-.PARAMETER Influxdbproto
-No description available.
-.PARAMETER Proto
+.PARAMETER Path
 No description available.
 .PARAMETER Timeout
 No description available.
-.PARAMETER Mtu
-No description available.
-.PARAMETER Path
-No description available.
-.PARAMETER ApiPathPrefix
-No description available.
 .PARAMETER Disable
-No description available.
-.PARAMETER VerifyCertificate
-No description available.
-.PARAMETER Port
-No description available.
-.PARAMETER Organization
-No description available.
-.PARAMETER Server
 No description available.
 .PARAMETER Bucket
 No description available.
-.PARAMETER Id
+.PARAMETER Mtu
+No description available.
+.PARAMETER Port
+No description available.
+.PARAMETER Server
+No description available.
+.PARAMETER Organization
+No description available.
+.PARAMETER Influxdbproto
+No description available.
+.PARAMETER Token
+No description available.
+.PARAMETER VerifyCertificate
 No description available.
 .PARAMETER MaxBodySize
 No description available.
-.PARAMETER Type
+.PARAMETER Proto
 No description available.
-.PARAMETER Token
+.PARAMETER ApiPathPrefix
+No description available.
+.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -56,56 +54,53 @@ function Initialize-PVEPOSTClusterMetricsServerRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("udp", "http", "https")]
         [String]
-        ${Influxdbproto},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("udp", "tcp")]
-        [String]
-        ${Proto},
+        ${Path},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Timeout},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Mtu},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Path},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${ApiPathPrefix},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Disable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Bucket},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VerifyCertificate},
+        ${Mtu},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Port},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Organization},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Server},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Bucket},
+        ${Organization},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("udp", "http", "https")]
+        [String]
+        ${Influxdbproto},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
+        ${Token},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${VerifyCertificate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${MaxBodySize},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("graphite", "influxdb")]
+        [ValidateSet("udp", "tcp")]
         [String]
-        ${Type},
+        ${Proto},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Token}
+        ${ApiPathPrefix},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("graphite", "influxdb")]
+        [String]
+        ${Type}
     )
 
     Process {
@@ -118,22 +113,6 @@ function Initialize-PVEPOSTClusterMetricsServerRB {
 
         if ($Mtu -and $Mtu -lt 512) {
           throw "invalid value for 'Mtu', must be greater than or equal to 512."
-        }
-
-        if ($Disable -and $Disable -gt 1) {
-          throw "invalid value for 'Disable', must be smaller than or equal to 1."
-        }
-
-        if ($Disable -and $Disable -lt 0) {
-          throw "invalid value for 'Disable', must be greater than or equal to 0."
-        }
-
-        if ($VerifyCertificate -and $VerifyCertificate -gt 1) {
-          throw "invalid value for 'VerifyCertificate', must be smaller than or equal to 1."
-        }
-
-        if ($VerifyCertificate -and $VerifyCertificate -lt 0) {
-          throw "invalid value for 'VerifyCertificate', must be greater than or equal to 0."
         }
 
         if ($Port -and $Port -gt 65536) {
@@ -150,13 +129,13 @@ function Initialize-PVEPOSTClusterMetricsServerRB {
 
 
 		 $DisplayNameMapping =@{
-			"Influxdbproto"="influxdbproto"; "Proto"="proto"; "Timeout"="timeout"; "Mtu"="mtu"; "Path"="path"; "ApiPathPrefix"="api-path-prefix"; "Disable"="disable"; "VerifyCertificate"="verify-certificate"; "Port"="port"; "Organization"="organization"; "Server"="server"; "Bucket"="bucket"; "Id"="id"; "MaxBodySize"="max-body-size"; "Type"="type"; "Token"="token"
+			"Path"="path"; "Timeout"="timeout"; "Disable"="disable"; "Bucket"="bucket"; "Mtu"="mtu"; "Port"="port"; "Server"="server"; "Organization"="organization"; "Influxdbproto"="influxdbproto"; "Token"="token"; "VerifyCertificate"="verify-certificate"; "MaxBodySize"="max-body-size"; "Proto"="proto"; "ApiPathPrefix"="api-path-prefix"; "Type"="type"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -196,35 +175,11 @@ function ConvertFrom-PVEJsonToPOSTClusterMetricsServerRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterMetricsServerRB
-        $AllProperties = ("influxdbproto", "proto", "timeout", "mtu", "path", "api-path-prefix", "disable", "verify-certificate", "port", "organization", "server", "bucket", "id", "max-body-size", "type", "token")
+        $AllProperties = ("path", "timeout", "disable", "bucket", "mtu", "port", "server", "organization", "influxdbproto", "token", "verify-certificate", "max-body-size", "proto", "api-path-prefix", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "influxdbproto"))) { #optional property not found
-            $Influxdbproto = $null
-        } else {
-            $Influxdbproto = $JsonParameters.PSobject.Properties["influxdbproto"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "proto"))) { #optional property not found
-            $Proto = $null
-        } else {
-            $Proto = $JsonParameters.PSobject.Properties["proto"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
-            $Timeout = $null
-        } else {
-            $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mtu"))) { #optional property not found
-            $Mtu = $null
-        } else {
-            $Mtu = $JsonParameters.PSobject.Properties["mtu"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
@@ -233,10 +188,10 @@ function ConvertFrom-PVEJsonToPOSTClusterMetricsServerRB {
             $Path = $JsonParameters.PSobject.Properties["path"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "api-path-prefix"))) { #optional property not found
-            $ApiPathPrefix = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
+            $Timeout = $null
         } else {
-            $ApiPathPrefix = $JsonParameters.PSobject.Properties["api-path-prefix"].value
+            $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
@@ -245,10 +200,16 @@ function ConvertFrom-PVEJsonToPOSTClusterMetricsServerRB {
             $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "verify-certificate"))) { #optional property not found
-            $VerifyCertificate = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bucket"))) { #optional property not found
+            $Bucket = $null
         } else {
-            $VerifyCertificate = $JsonParameters.PSobject.Properties["verify-certificate"].value
+            $Bucket = $JsonParameters.PSobject.Properties["bucket"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mtu"))) { #optional property not found
+            $Mtu = $null
+        } else {
+            $Mtu = $JsonParameters.PSobject.Properties["mtu"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
@@ -257,40 +218,22 @@ function ConvertFrom-PVEJsonToPOSTClusterMetricsServerRB {
             $Port = $JsonParameters.PSobject.Properties["port"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "organization"))) { #optional property not found
-            $Organization = $null
-        } else {
-            $Organization = $JsonParameters.PSobject.Properties["organization"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
             $Server = $null
         } else {
             $Server = $JsonParameters.PSobject.Properties["server"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bucket"))) { #optional property not found
-            $Bucket = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "organization"))) { #optional property not found
+            $Organization = $null
         } else {
-            $Bucket = $JsonParameters.PSobject.Properties["bucket"].value
+            $Organization = $JsonParameters.PSobject.Properties["organization"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "influxdbproto"))) { #optional property not found
+            $Influxdbproto = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max-body-size"))) { #optional property not found
-            $MaxBodySize = $null
-        } else {
-            $MaxBodySize = $JsonParameters.PSobject.Properties["max-body-size"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Influxdbproto = $JsonParameters.PSobject.Properties["influxdbproto"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "token"))) { #optional property not found
@@ -299,23 +242,52 @@ function ConvertFrom-PVEJsonToPOSTClusterMetricsServerRB {
             $Token = $JsonParameters.PSobject.Properties["token"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "verify-certificate"))) { #optional property not found
+            $VerifyCertificate = $null
+        } else {
+            $VerifyCertificate = $JsonParameters.PSobject.Properties["verify-certificate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max-body-size"))) { #optional property not found
+            $MaxBodySize = $null
+        } else {
+            $MaxBodySize = $JsonParameters.PSobject.Properties["max-body-size"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "proto"))) { #optional property not found
+            $Proto = $null
+        } else {
+            $Proto = $JsonParameters.PSobject.Properties["proto"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "api-path-prefix"))) { #optional property not found
+            $ApiPathPrefix = $null
+        } else {
+            $ApiPathPrefix = $JsonParameters.PSobject.Properties["api-path-prefix"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "influxdbproto" = ${Influxdbproto}
-            "proto" = ${Proto}
-            "timeout" = ${Timeout}
-            "mtu" = ${Mtu}
             "path" = ${Path}
-            "api-path-prefix" = ${ApiPathPrefix}
+            "timeout" = ${Timeout}
             "disable" = ${Disable}
-            "verify-certificate" = ${VerifyCertificate}
-            "port" = ${Port}
-            "organization" = ${Organization}
-            "server" = ${Server}
             "bucket" = ${Bucket}
-            "id" = ${Id}
-            "max-body-size" = ${MaxBodySize}
-            "type" = ${Type}
+            "mtu" = ${Mtu}
+            "port" = ${Port}
+            "server" = ${Server}
+            "organization" = ${Organization}
+            "influxdbproto" = ${Influxdbproto}
             "token" = ${Token}
+            "verify-certificate" = ${VerifyCertificate}
+            "max-body-size" = ${MaxBodySize}
+            "proto" = ${Proto}
+            "api-path-prefix" = ${ApiPathPrefix}
+            "type" = ${Type}
         }
 
         return $PSO

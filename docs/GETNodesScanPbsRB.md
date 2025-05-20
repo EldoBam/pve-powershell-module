@@ -3,23 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Password** | **String** |  | [optional] 
-**Username** | **String** |  | [optional] 
 **Server** | **String** |  | [optional] 
 **Fingerprint** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
 **Port** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Username** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesScanPbsRB = Initialize-PVEGETNodesScanPbsRB  -Password null `
- -Username null `
- -Server null `
+$GETNodesScanPbsRB = Initialize-PVEGETNodesScanPbsRB  -Server null `
  -Fingerprint null `
+ -Password null `
  -Port null `
- -Node null
+ -Username null
 ```
 
 - Convert the resource to JSON

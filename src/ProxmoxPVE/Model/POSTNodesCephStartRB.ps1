@@ -17,8 +17,6 @@ No description available.
 
 .PARAMETER Service
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 POSTNodesCephStartRB<PSCustomObject>
@@ -30,10 +28,7 @@ function Initialize-PVEPOSTNodesCephStartRB {
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("(ceph|mon|mds|osd|mgr)(\.[a-zA-Z0-9]([a-zA-Z0-9\-]*[a-zA-Z0-9])?)?")]
         [String]
-        ${Service},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Service}
     )
 
     Process {
@@ -42,13 +37,13 @@ function Initialize-PVEPOSTNodesCephStartRB {
 
 
 		 $DisplayNameMapping =@{
-			"Service"="service"; "Node"="node"
+			"Service"="service"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -88,7 +83,7 @@ function ConvertFrom-PVEJsonToPOSTNodesCephStartRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCephStartRB
-        $AllProperties = ("service", "node")
+        $AllProperties = ("service")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -101,15 +96,8 @@ function ConvertFrom-PVEJsonToPOSTNodesCephStartRB {
             $Service = $JsonParameters.PSobject.Properties["service"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "service" = ${Service}
-            "node" = ${Node}
         }
 
         return $PSO

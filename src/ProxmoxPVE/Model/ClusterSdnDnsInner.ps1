@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Dns
-No description available.
 .PARAMETER Type
+No description available.
+.PARAMETER Dns
 No description available.
 .OUTPUTS
 
@@ -29,10 +29,10 @@ function Initialize-PVEClusterSdnDnsInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Dns},
+        ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type}
+        ${Dns}
     )
 
     Process {
@@ -41,13 +41,13 @@ function Initialize-PVEClusterSdnDnsInner {
 
 
 		 $DisplayNameMapping =@{
-			"Dns"="dns"; "Type"="type"
+			"Type"="type"; "Dns"="dns"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToClusterSdnDnsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterSdnDnsInner
-        $AllProperties = ("dns", "type")
+        $AllProperties = ("type", "dns")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dns"))) { #optional property not found
-            $Dns = $null
-        } else {
-            $Dns = $JsonParameters.PSobject.Properties["dns"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToClusterSdnDnsInner {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dns"))) { #optional property not found
+            $Dns = $null
+        } else {
+            $Dns = $JsonParameters.PSobject.Properties["dns"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "dns" = ${Dns}
             "type" = ${Type}
+            "dns" = ${Dns}
         }
 
         return $PSO

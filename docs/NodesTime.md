@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timezone** | **String** |  | [optional] 
 **Time** | **Int32** |  | [optional] 
+**Timezone** | **String** |  | [optional] 
 **Localtime** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesTime = Initialize-PVENodesTime  -Timezone null `
- -Time null `
+$NodesTime = Initialize-PVENodesTime  -Time null `
+ -Timezone null `
  -Localtime null
 ```
 

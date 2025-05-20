@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesDisksDirectoryRB' {
     Context 'PVEPOSTNodesDisksDirectoryRB' {
         It 'Initialize-PVEPOSTNodesDisksDirectoryRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesDisksDirectoryRB -Device "TEST_VALUE" -AddStorage "TEST_VALUE" -Filesystem "TEST_VALUE" -Name "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesDisksDirectoryRB -Device "TEST_VALUE" -Name "TEST_VALUE" -AddStorage "TEST_VALUE" -Filesystem "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesDisksDirectoryRB
             #$NewObject.property | Should -Be 0
         }

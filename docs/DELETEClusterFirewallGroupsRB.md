@@ -3,17 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pos** | **Int32** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Group** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEClusterFirewallGroupsRB = Initialize-PVEDELETEClusterFirewallGroupsRB  -Pos null `
- -Digest null `
- -Group null
+$DELETEClusterFirewallGroupsRB = Initialize-PVEDELETEClusterFirewallGroupsRB  -Digest null
 ```
 
 - Convert the resource to JSON

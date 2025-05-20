@@ -15,15 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Storage
-No description available.
-.PARAMETER Filepath
-No description available.
 .PARAMETER Volume
 No description available.
 .PARAMETER Tar
 No description available.
-.PARAMETER Node
+.PARAMETER Filepath
 No description available.
 .OUTPUTS
 
@@ -35,42 +31,28 @@ function Initialize-PVEGETNodesStorageFilerestoreDownloadRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Storage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Filepath},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Volume},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Tar},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${Filepath}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETNodesStorageFilerestoreDownloadRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Tar -and $Tar -gt 1) {
-          throw "invalid value for 'Tar', must be smaller than or equal to 1."
-        }
-
-        if ($Tar -and $Tar -lt 0) {
-          throw "invalid value for 'Tar', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Storage"="storage"; "Filepath"="filepath"; "Volume"="volume"; "Tar"="tar"; "Node"="node"
+			"Volume"="volume"; "Tar"="tar"; "Filepath"="filepath"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -110,23 +92,11 @@ function ConvertFrom-PVEJsonToGETNodesStorageFilerestoreDownloadRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesStorageFilerestoreDownloadRB
-        $AllProperties = ("storage", "filepath", "volume", "tar", "node")
+        $AllProperties = ("volume", "tar", "filepath")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filepath"))) { #optional property not found
-            $Filepath = $null
-        } else {
-            $Filepath = $JsonParameters.PSobject.Properties["filepath"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "volume"))) { #optional property not found
@@ -141,18 +111,16 @@ function ConvertFrom-PVEJsonToGETNodesStorageFilerestoreDownloadRB {
             $Tar = $JsonParameters.PSobject.Properties["tar"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filepath"))) { #optional property not found
+            $Filepath = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Filepath = $JsonParameters.PSobject.Properties["filepath"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "storage" = ${Storage}
-            "filepath" = ${Filepath}
             "volume" = ${Volume}
             "tar" = ${Tar}
-            "node" = ${Node}
+            "filepath" = ${Filepath}
         }
 
         return $PSO

@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **State** | **String** |  | [optional] 
-**Children** | [**NodesDisksZfsChildrenInner[]**](NodesDisksZfsChildrenInner.md) |  | [optional] 
 **Status** | **String** |  | [optional] 
 **Errors** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
+**Children** | [**NodesDisksZfsChildrenInner[]**](NodesDisksZfsChildrenInner.md) |  | [optional] 
 **Scan** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesDisksZfs = Initialize-PVENodesDisksZfs  -Action null `
+$NodesDisksZfs = Initialize-PVENodesDisksZfs  -Name null `
  -State null `
- -Children null `
  -Status null `
  -Errors null `
- -Name null `
- -Scan null
+ -Children null `
+ -Scan null `
+ -Action null
 ```
 
 - Convert the resource to JSON

@@ -4,18 +4,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Limit** | **Int32** |  | [optional] 
-**Id** | **String** |  | [optional] 
 **Start** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesReplicationLogRB = Initialize-PVEGETNodesReplicationLogRB  -Limit null `
- -Id null `
- -Start null `
- -Node null
+ -Start null
 ```
 
 - Convert the resource to JSON

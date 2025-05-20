@@ -15,11 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Id
+.PARAMETER Force
 No description available.
 .PARAMETER Keep
-No description available.
-.PARAMETER Force
 No description available.
 .OUTPUTS
 
@@ -30,46 +28,26 @@ function Initialize-PVEDELETEClusterReplicationRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("[1-9][0-9]{2,8}-\d{1,9}")]
-        [String]
-        ${Id},
+        [System.Nullable[Boolean]]
+        ${Force},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Keep},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Force}
+        [System.Nullable[Boolean]]
+        ${Keep}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEDELETEClusterReplicationRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Keep -and $Keep -gt 1) {
-          throw "invalid value for 'Keep', must be smaller than or equal to 1."
-        }
-
-        if ($Keep -and $Keep -lt 0) {
-          throw "invalid value for 'Keep', must be greater than or equal to 0."
-        }
-
-        if ($Force -and $Force -gt 1) {
-          throw "invalid value for 'Force', must be smaller than or equal to 1."
-        }
-
-        if ($Force -and $Force -lt 0) {
-          throw "invalid value for 'Force', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Id"="id"; "Keep"="keep"; "Force"="force"
+			"Force"="force"; "Keep"="keep"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -109,23 +87,11 @@ function ConvertFrom-PVEJsonToDELETEClusterReplicationRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEClusterReplicationRB
-        $AllProperties = ("id", "keep", "force")
+        $AllProperties = ("force", "keep")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keep"))) { #optional property not found
-            $Keep = $null
-        } else {
-            $Keep = $JsonParameters.PSobject.Properties["keep"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
@@ -134,10 +100,15 @@ function ConvertFrom-PVEJsonToDELETEClusterReplicationRB {
             $Force = $JsonParameters.PSobject.Properties["force"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keep"))) { #optional property not found
+            $Keep = $null
+        } else {
+            $Keep = $JsonParameters.PSobject.Properties["keep"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "keep" = ${Keep}
             "force" = ${Force}
+            "keep" = ${Keep}
         }
 
         return $PSO

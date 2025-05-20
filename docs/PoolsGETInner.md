@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Poolid** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Members** | [**PoolsMembersInner[]**](PoolsMembersInner.md) |  | [optional] 
+**Members** | [**PoolsGETInnerMembersInner[]**](PoolsGETInnerMembersInner.md) |  | [optional] 
 
 ## Examples
 

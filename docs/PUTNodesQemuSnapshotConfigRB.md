@@ -3,19 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Snapname** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuSnapshotConfigRB = Initialize-PVEPUTNodesQemuSnapshotConfigRB  -Snapname null `
- -Description null `
- -Vmid null `
- -Node null
+$PUTNodesQemuSnapshotConfigRB = Initialize-PVEPUTNodesQemuSnapshotConfigRB  -Description null
 ```
 
 - Convert the resource to JSON

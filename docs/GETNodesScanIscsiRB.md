@@ -4,14 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Portal** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesScanIscsiRB = Initialize-PVEGETNodesScanIscsiRB  -Portal null `
- -Node null
+$GETNodesScanIscsiRB = Initialize-PVEGETNodesScanIscsiRB  -Portal null
 ```
 
 - Convert the resource to JSON

@@ -4,14 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Storage** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesVzdumpDefaultsRB = Initialize-PVEGETNodesVzdumpDefaultsRB  -Storage null `
- -Node null
+$GETNodesVzdumpDefaultsRB = Initialize-PVEGETNodesVzdumpDefaultsRB  -Storage null
 ```
 
 - Convert the resource to JSON

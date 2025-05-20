@@ -5,17 +5,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Port** | **Int32** |  | [optional] 
 **Vncticket** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesLxcVncwebsocketRB = Initialize-PVEGETNodesLxcVncwebsocketRB  -Port null `
- -Vncticket null `
- -Vmid null `
- -Node null
+ -Vncticket null
 ```
 
 - Convert the resource to JSON

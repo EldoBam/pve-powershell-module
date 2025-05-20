@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Restricted** | **Boolean** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Group** | **String** |  | [optional] 
+**Nofailback** | **Boolean** |  | [optional] 
 **Nodes** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Restricted** | **Int32** |  | [optional] 
-**Nofailback** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterHaGroupsRB = Initialize-PVEPOSTClusterHaGroupsRB  -Group null `
- -Nodes null `
- -Comment null `
- -Restricted null `
+$POSTClusterHaGroupsRB = Initialize-PVEPOSTClusterHaGroupsRB  -Restricted null `
+ -Type null `
+ -Group null `
  -Nofailback null `
- -Type null
+ -Nodes null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

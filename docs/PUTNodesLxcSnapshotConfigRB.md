@@ -3,19 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Snapname** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesLxcSnapshotConfigRB = Initialize-PVEPUTNodesLxcSnapshotConfigRB  -Snapname null `
- -Description null `
- -Vmid null `
- -Node null
+$PUTNodesLxcSnapshotConfigRB = Initialize-PVEPUTNodesLxcSnapshotConfigRB  -Description null
 ```
 
 - Convert the resource to JSON

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETAccessPermissionsRB' {
     Context 'PVEGETAccessPermissionsRB' {
         It 'Initialize-PVEGETAccessPermissionsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETAccessPermissionsRB -Path "TEST_VALUE" -Userid "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETAccessPermissionsRB -Userid "TEST_VALUE" -Path "TEST_VALUE"
             #$NewObject | Should -BeOfType GETAccessPermissionsRB
             #$NewObject.property | Should -Be 0
         }

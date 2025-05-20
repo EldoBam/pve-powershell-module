@@ -17,13 +17,13 @@ No description available.
 
 .PARAMETER Inet
 No description available.
-.PARAMETER Hwaddr
-No description available.
-.PARAMETER Name
-No description available.
 .PARAMETER HardwareAddress
 No description available.
+.PARAMETER Hwaddr
+No description available.
 .PARAMETER Inet6
+No description available.
+.PARAMETER Name
 No description available.
 .PARAMETER IpAddresses
 No description available.
@@ -40,16 +40,16 @@ function Initialize-PVENodesLxcInterfacesInner {
         ${Inet},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Hwaddr},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${HardwareAddress},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Hwaddr},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Inet6},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
         ${IpAddresses}
@@ -61,13 +61,13 @@ function Initialize-PVENodesLxcInterfacesInner {
 
 
 		 $DisplayNameMapping =@{
-			"Inet"="inet"; "Hwaddr"="hwaddr"; "Name"="name"; "HardwareAddress"="hardware-address"; "Inet6"="inet6"; "IpAddresses"="ip-addresses"
+			"Inet"="inet"; "HardwareAddress"="hardware-address"; "Hwaddr"="hwaddr"; "Inet6"="inet6"; "Name"="name"; "IpAddresses"="ip-addresses"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -107,7 +107,7 @@ function ConvertFrom-PVEJsonToNodesLxcInterfacesInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesLxcInterfacesInner
-        $AllProperties = ("inet", "hwaddr", "name", "hardware-address", "inet6", "ip-addresses")
+        $AllProperties = ("inet", "hardware-address", "hwaddr", "inet6", "name", "ip-addresses")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -120,28 +120,28 @@ function ConvertFrom-PVEJsonToNodesLxcInterfacesInner {
             $Inet = $JsonParameters.PSobject.Properties["inet"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hwaddr"))) { #optional property not found
-            $Hwaddr = $null
-        } else {
-            $Hwaddr = $JsonParameters.PSobject.Properties["hwaddr"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "hardware-address"))) { #optional property not found
             $HardwareAddress = $null
         } else {
             $HardwareAddress = $JsonParameters.PSobject.Properties["hardware-address"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hwaddr"))) { #optional property not found
+            $Hwaddr = $null
+        } else {
+            $Hwaddr = $JsonParameters.PSobject.Properties["hwaddr"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "inet6"))) { #optional property not found
             $Inet6 = $null
         } else {
             $Inet6 = $JsonParameters.PSobject.Properties["inet6"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "ip-addresses"))) { #optional property not found
@@ -152,10 +152,10 @@ function ConvertFrom-PVEJsonToNodesLxcInterfacesInner {
 
         $PSO = [PSCustomObject]@{
             "inet" = ${Inet}
-            "hwaddr" = ${Hwaddr}
-            "name" = ${Name}
             "hardware-address" = ${HardwareAddress}
+            "hwaddr" = ${Hwaddr}
             "inet6" = ${Inet6}
+            "name" = ${Name}
             "ip-addresses" = ${IpAddresses}
         }
 

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesLxcInner' {
     Context 'PVENodesLxcInner' {
         It 'Initialize-PVENodesLxcInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesLxcInner -Maxswap "TEST_VALUE" -Diskread "TEST_VALUE" -Maxdisk "TEST_VALUE" -Uptime "TEST_VALUE" -Cpu "TEST_VALUE" -Tags "TEST_VALUE" -Cpus "TEST_VALUE" -Disk "TEST_VALUE" -Vmid "TEST_VALUE" -Lock "TEST_VALUE" -Status "TEST_VALUE" -Netin "TEST_VALUE" -Mem "TEST_VALUE" -Netout "TEST_VALUE" -Diskwrite "TEST_VALUE" -Maxmem "TEST_VALUE" -Name "TEST_VALUE" -Template "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesLxcInner -Maxswap "TEST_VALUE" -Cpu "TEST_VALUE" -Template "TEST_VALUE" -Lock "TEST_VALUE" -Name "TEST_VALUE" -Mem "TEST_VALUE" -Uptime "TEST_VALUE" -Maxmem "TEST_VALUE" -Maxdisk "TEST_VALUE" -Cpus "TEST_VALUE" -Tags "TEST_VALUE" -Vmid "TEST_VALUE" -Status "TEST_VALUE" -Diskwrite "TEST_VALUE" -Diskread "TEST_VALUE" -Netout "TEST_VALUE" -Netin "TEST_VALUE" -Disk "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesLxcInner
             #$NewObject.property | Should -Be 0
         }

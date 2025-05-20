@@ -15,8 +15,6 @@ No summary available.
 
 No description available.
 
-.PARAMETER Flag
-No description available.
 .PARAMETER Value
 No description available.
 .OUTPUTS
@@ -28,11 +26,7 @@ function Initialize-PVEPUTClusterCephFlagsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("nobackfill", "nodeep-scrub", "nodown", "noin", "noout", "norebalance", "norecover", "noscrub", "notieragent", "noup", "pause")]
-        [String]
-        ${Flag},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Value}
     )
 
@@ -40,23 +34,15 @@ function Initialize-PVEPUTClusterCephFlagsRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterCephFlagsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Value -and $Value -gt 1) {
-          throw "invalid value for 'Value', must be smaller than or equal to 1."
-        }
-
-        if ($Value -and $Value -lt 0) {
-          throw "invalid value for 'Value', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Flag"="flag"; "Value"="value"
+			"Value"="value"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -96,17 +82,11 @@ function ConvertFrom-PVEJsonToPUTClusterCephFlagsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterCephFlagsRB
-        $AllProperties = ("flag", "value")
+        $AllProperties = ("value")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "flag"))) { #optional property not found
-            $Flag = $null
-        } else {
-            $Flag = $JsonParameters.PSobject.Properties["flag"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
@@ -116,7 +96,6 @@ function ConvertFrom-PVEJsonToPUTClusterCephFlagsRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "flag" = ${Flag}
             "value" = ${Value}
         }
 

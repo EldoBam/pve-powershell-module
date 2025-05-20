@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesDisksListRB' {
     Context 'PVEGETNodesDisksListRB' {
         It 'Initialize-PVEGETNodesDisksListRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesDisksListRB -IncludePartitions "TEST_VALUE" -Type "TEST_VALUE" -Skipsmart "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesDisksListRB -Skipsmart "TEST_VALUE" -IncludePartitions "TEST_VALUE" -Type "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesDisksListRB
             #$NewObject.property | Should -Be 0
         }

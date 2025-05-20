@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesStoragePrunebackupsInner' {
     Context 'PVENodesStoragePrunebackupsInner' {
         It 'Initialize-PVENodesStoragePrunebackupsInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesStoragePrunebackupsInner -Ctime "TEST_VALUE" -Mark "TEST_VALUE" -Vmid "TEST_VALUE" -Type "TEST_VALUE" -Volid "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesStoragePrunebackupsInner -Volid "TEST_VALUE" -Vmid "TEST_VALUE" -Ctime "TEST_VALUE" -Mark "TEST_VALUE" -Type "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesStoragePrunebackupsInner
             #$NewObject.property | Should -Be 0
         }

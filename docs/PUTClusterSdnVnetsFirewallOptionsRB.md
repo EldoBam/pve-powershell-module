@@ -3,23 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LogLevelForward** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
 **PolicyForward** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
+**Enable** | **Boolean** |  | [optional] 
+**LogLevelForward** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Vnet** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnVnetsFirewallOptionsRB = Initialize-PVEPUTClusterSdnVnetsFirewallOptionsRB  -LogLevelForward null `
- -Enable null `
- -PolicyForward null `
+$PUTClusterSdnVnetsFirewallOptionsRB = Initialize-PVEPUTClusterSdnVnetsFirewallOptionsRB  -PolicyForward null `
  -Delete null `
- -Digest null `
- -Vnet null
+ -Enable null `
+ -LogLevelForward null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

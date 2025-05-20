@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesStorageFilerestoreDownloadRB' {
     Context 'PVEGETNodesStorageFilerestoreDownloadRB' {
         It 'Initialize-PVEGETNodesStorageFilerestoreDownloadRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesStorageFilerestoreDownloadRB -Storage "TEST_VALUE" -Filepath "TEST_VALUE" -Volume "TEST_VALUE" -Tar "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesStorageFilerestoreDownloadRB -Volume "TEST_VALUE" -Tar "TEST_VALUE" -Filepath "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesStorageFilerestoreDownloadRB
             #$NewObject.property | Should -Be 0
         }

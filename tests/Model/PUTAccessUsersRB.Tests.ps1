@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTAccessUsersRB' {
     Context 'PVEPUTAccessUsersRB' {
         It 'Initialize-PVEPUTAccessUsersRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTAccessUsersRB -Append "TEST_VALUE" -Email "TEST_VALUE" -Comment "TEST_VALUE" -Enable "TEST_VALUE" -Groups "TEST_VALUE" -Firstname "TEST_VALUE" -Lastname "TEST_VALUE" -Userid "TEST_VALUE" -Expire "TEST_VALUE" -Keys "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTAccessUsersRB -Expire "TEST_VALUE" -Email "TEST_VALUE" -Keys "TEST_VALUE" -Firstname "TEST_VALUE" -Groups "TEST_VALUE" -Comment "TEST_VALUE" -Append "TEST_VALUE" -Enable "TEST_VALUE" -Lastname "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTAccessUsersRB
             #$NewObject.property | Should -Be 0
         }

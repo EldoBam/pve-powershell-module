@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterFirewallOptionsRB' {
     Context 'PVEPUTClusterFirewallOptionsRB' {
         It 'Initialize-PVEPUTClusterFirewallOptionsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterFirewallOptionsRB -Digest "TEST_VALUE" -Ebtables "TEST_VALUE" -PolicyIn "TEST_VALUE" -PolicyOut "TEST_VALUE" -Enable "TEST_VALUE" -PolicyForward "TEST_VALUE" -Delete "TEST_VALUE" -LogRatelimit "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterFirewallOptionsRB -PolicyOut "TEST_VALUE" -Delete "TEST_VALUE" -LogRatelimit "TEST_VALUE" -PolicyForward "TEST_VALUE" -PolicyIn "TEST_VALUE" -Ebtables "TEST_VALUE" -Digest "TEST_VALUE" -Enable "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterFirewallOptionsRB
             #$NewObject.property | Should -Be 0
         }

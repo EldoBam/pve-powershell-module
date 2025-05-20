@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesSuspendallRB' {
     Context 'PVEPOSTNodesSuspendallRB' {
         It 'Initialize-PVEPOSTNodesSuspendallRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesSuspendallRB -Vms "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesSuspendallRB -Vms "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesSuspendallRB
             #$NewObject.property | Should -Be 0
         }

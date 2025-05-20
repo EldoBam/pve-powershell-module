@@ -27,10 +27,10 @@ No description available.
 No description available.
 .OUTPUTS
 
-PoolsMembersInner<PSCustomObject>
+PoolsGETInnerMembersInner<PSCustomObject>
 #>
 
-function Initialize-PVEPoolsMembersInner {
+function Initialize-PVEPoolsGETInnerMembersInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
@@ -52,7 +52,7 @@ function Initialize-PVEPoolsMembersInner {
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVEPoolsMembersInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVEPoolsGETInnerMembersInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -63,7 +63,7 @@ function Initialize-PVEPoolsMembersInner {
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -76,11 +76,11 @@ function Initialize-PVEPoolsMembersInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to PoolsMembersInner<PSCustomObject>
+Convert from JSON to PoolsGETInnerMembersInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to PoolsMembersInner<PSCustomObject>
+Convert from JSON to PoolsGETInnerMembersInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -88,21 +88,21 @@ Json object
 
 .OUTPUTS
 
-PoolsMembersInner<PSCustomObject>
+PoolsGETInnerMembersInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToPoolsMembersInner {
+function ConvertFrom-PVEJsonToPoolsGETInnerMembersInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVEPoolsMembersInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVEPoolsGETInnerMembersInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVEPoolsMembersInner
+        # check if Json contains properties not defined in PVEPoolsGETInnerMembersInner
         $AllProperties = ("id", "node", "storage", "type", "vmid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

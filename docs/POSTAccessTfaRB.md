@@ -3,25 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Totp** | **String** |  | [optional] 
-**Password** | **String** |  | [optional] 
-**Value** | **String** |  | [optional] 
-**Challenge** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**Userid** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Challenge** | **String** |  | [optional] 
+**Totp** | **String** |  | [optional] 
+**Value** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTAccessTfaRB = Initialize-PVEPOSTAccessTfaRB  -Totp null `
- -Password null `
- -Value null `
- -Challenge null `
+$POSTAccessTfaRB = Initialize-PVEPOSTAccessTfaRB  -Type null `
  -Description null `
- -Userid null `
- -Type null
+ -Challenge null `
+ -Totp null `
+ -Value null `
+ -Password null
 ```
 
 - Convert the resource to JSON

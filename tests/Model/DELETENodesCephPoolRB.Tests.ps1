@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEDELETENodesCephPoolRB' {
     Context 'PVEDELETENodesCephPoolRB' {
         It 'Initialize-PVEDELETENodesCephPoolRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEDELETENodesCephPoolRB -RemoveEcprofile "TEST_VALUE" -Node "TEST_VALUE" -Name "TEST_VALUE" -RemoveStorages "TEST_VALUE" -Force "TEST_VALUE"
+            #$NewObject = Initialize-PVEDELETENodesCephPoolRB -RemoveStorages "TEST_VALUE" -RemoveEcprofile "TEST_VALUE" -Force "TEST_VALUE"
             #$NewObject | Should -BeOfType DELETENodesCephPoolRB
             #$NewObject.property | Should -Be 0
         }

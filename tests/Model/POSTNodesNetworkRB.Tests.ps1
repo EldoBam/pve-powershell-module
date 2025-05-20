@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesNetworkRB' {
     Context 'PVEPOSTNodesNetworkRB' {
         It 'Initialize-PVEPOSTNodesNetworkRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesNetworkRB -BridgeVlanAware "TEST_VALUE" -BondMode "TEST_VALUE" -BondPrimary "TEST_VALUE" -Gateway6 "TEST_VALUE" -Address "TEST_VALUE" -OvsPorts "TEST_VALUE" -OvsBridge "TEST_VALUE" -Netmask "TEST_VALUE" -Autostart "TEST_VALUE" -Node "TEST_VALUE" -VlanRawDevice "TEST_VALUE" -BridgeVids "TEST_VALUE" -Iface "TEST_VALUE" -BondXmitHashPolicy "TEST_VALUE" -Type "TEST_VALUE" -Gateway "TEST_VALUE" -Cidr "TEST_VALUE" -Slaves "TEST_VALUE" -OvsBonds "TEST_VALUE" -Mtu "TEST_VALUE" -Comments6 "TEST_VALUE" -Comments "TEST_VALUE" -OvsTag "TEST_VALUE" -Address6 "TEST_VALUE" -VlanId "TEST_VALUE" -Cidr6 "TEST_VALUE" -Netmask6 "TEST_VALUE" -BridgePorts "TEST_VALUE" -OvsOptions "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesNetworkRB -Gateway6 "TEST_VALUE" -Comments6 "TEST_VALUE" -Iface "TEST_VALUE" -Cidr "TEST_VALUE" -Cidr6 "TEST_VALUE" -Autostart "TEST_VALUE" -Mtu "TEST_VALUE" -BondMode "TEST_VALUE" -Slaves "TEST_VALUE" -BridgeVids "TEST_VALUE" -BridgePorts "TEST_VALUE" -Netmask6 "TEST_VALUE" -OvsOptions "TEST_VALUE" -Type "TEST_VALUE" -OvsTag "TEST_VALUE" -Gateway "TEST_VALUE" -Netmask "TEST_VALUE" -OvsPorts "TEST_VALUE" -Comments "TEST_VALUE" -BondXmitHashPolicy "TEST_VALUE" -Address "TEST_VALUE" -BridgeVlanAware "TEST_VALUE" -VlanRawDevice "TEST_VALUE" -BondPrimary "TEST_VALUE" -Address6 "TEST_VALUE" -VlanId "TEST_VALUE" -OvsBonds "TEST_VALUE" -OvsBridge "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesNetworkRB
             #$NewObject.property | Should -Be 0
         }

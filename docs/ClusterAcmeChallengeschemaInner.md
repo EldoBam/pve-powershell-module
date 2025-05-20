@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 **Schema** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterAcmeChallengeschemaInner = Initialize-PVEClusterAcmeChallengeschemaInner  -Id null `
+$ClusterAcmeChallengeschemaInner = Initialize-PVEClusterAcmeChallengeschemaInner  -Name null `
+ -Schema null `
  -Type null `
- -Name null `
- -Schema null
+ -Id null
 ```
 
 - Convert the resource to JSON

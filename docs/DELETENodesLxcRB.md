@@ -3,20 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Purge** | **Int32** |  | [optional] 
-**DestroyUnreferencedDisks** | **Int32** |  | [optional] 
-**Force** | **Int32** |  | [optional] 
+**DestroyUnreferencedDisks** | **Boolean** |  | [optional] 
+**Purge** | **Boolean** |  | [optional] 
+**Force** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesLxcRB = Initialize-PVEDELETENodesLxcRB  -Vmid null `
- -Node null `
+$DELETENodesLxcRB = Initialize-PVEDELETENodesLxcRB  -DestroyUnreferencedDisks null `
  -Purge null `
- -DestroyUnreferencedDisks null `
  -Force null
 ```
 

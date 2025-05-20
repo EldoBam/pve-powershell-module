@@ -3,19 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Snapname** | **String** |  | [optional] 
-**Start** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Start** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuSnapshotRollbackRB = Initialize-PVEPOSTNodesQemuSnapshotRollbackRB  -Snapname null `
- -Start null `
- -Vmid null `
- -Node null
+$POSTNodesQemuSnapshotRollbackRB = Initialize-PVEPOSTNodesQemuSnapshotRollbackRB  -Start null
 ```
 
 - Convert the resource to JSON

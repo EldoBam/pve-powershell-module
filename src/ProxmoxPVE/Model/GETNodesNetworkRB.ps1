@@ -17,8 +17,6 @@ No description available.
 
 .PARAMETER Type
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 GETNodesNetworkRB<PSCustomObject>
@@ -30,10 +28,7 @@ function Initialize-PVEGETNodesNetworkRB {
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("bridge", "bond", "eth", "alias", "vlan", "OVSBridge", "OVSBond", "OVSPort", "OVSIntPort", "vnet", "any_bridge", "any_local_bridge")]
         [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Type}
     )
 
     Process {
@@ -42,13 +37,13 @@ function Initialize-PVEGETNodesNetworkRB {
 
 
 		 $DisplayNameMapping =@{
-			"Type"="type"; "Node"="node"
+			"Type"="type"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -88,7 +83,7 @@ function ConvertFrom-PVEJsonToGETNodesNetworkRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesNetworkRB
-        $AllProperties = ("type", "node")
+        $AllProperties = ("type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -101,15 +96,8 @@ function ConvertFrom-PVEJsonToGETNodesNetworkRB {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "type" = ${Type}
-            "node" = ${Node}
         }
 
         return $PSO

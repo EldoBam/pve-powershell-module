@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesScanLvmthinRB' {
     Context 'PVEGETNodesScanLvmthinRB' {
         It 'Initialize-PVEGETNodesScanLvmthinRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesScanLvmthinRB -Vg "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesScanLvmthinRB -Vg "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesScanLvmthinRB
             #$NewObject.property | Should -Be 0
         }

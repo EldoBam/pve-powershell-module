@@ -15,23 +15,21 @@ No summary available.
 
 No description available.
 
+.PARAMETER Delete
+No description available.
 .PARAMETER Mailto
+No description available.
+.PARAMETER Comment
 No description available.
 .PARAMETER MailtoUser
 No description available.
-.PARAMETER Comment
+.PARAMETER FromAddress
 No description available.
 .PARAMETER Author
 No description available.
 .PARAMETER Disable
 No description available.
-.PARAMETER FromAddress
-No description available.
-.PARAMETER Delete
-No description available.
 .PARAMETER Digest
-No description available.
-.PARAMETER Name
 No description available.
 .OUTPUTS
 
@@ -43,44 +41,33 @@ function Initialize-PVEPUTClusterNotificationsEndpointsSendmailRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
+        ${Delete},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
         ${Mailto},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${MailtoUser},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comment},
+        ${FromAddress},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Author},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Disable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${FromAddress},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name}
+        ${Digest}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterNotificationsEndpointsSendmailRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Disable -and $Disable -gt 1) {
-          throw "invalid value for 'Disable', must be smaller than or equal to 1."
-        }
-
-        if ($Disable -and $Disable -lt 0) {
-          throw "invalid value for 'Disable', must be greater than or equal to 0."
-        }
 
         if (!$Digest -and $Digest.length -gt 64) {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
@@ -88,13 +75,13 @@ function Initialize-PVEPUTClusterNotificationsEndpointsSendmailRB {
 
 
 		 $DisplayNameMapping =@{
-			"Mailto"="mailto"; "MailtoUser"="mailto-user"; "Comment"="comment"; "Author"="author"; "Disable"="disable"; "FromAddress"="from-address"; "Delete"="delete"; "Digest"="digest"; "Name"="name"
+			"Delete"="delete"; "Mailto"="mailto"; "Comment"="comment"; "MailtoUser"="mailto-user"; "FromAddress"="from-address"; "Author"="author"; "Disable"="disable"; "Digest"="digest"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -134,11 +121,17 @@ function ConvertFrom-PVEJsonToPUTClusterNotificationsEndpointsSendmailRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterNotificationsEndpointsSendmailRB
-        $AllProperties = ("mailto", "mailto-user", "comment", "author", "disable", "from-address", "delete", "digest", "name")
+        $AllProperties = ("delete", "mailto", "comment", "mailto-user", "from-address", "author", "disable", "digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "mailto"))) { #optional property not found
@@ -147,16 +140,22 @@ function ConvertFrom-PVEJsonToPUTClusterNotificationsEndpointsSendmailRB {
             $Mailto = $JsonParameters.PSobject.Properties["mailto"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "mailto-user"))) { #optional property not found
             $MailtoUser = $null
         } else {
             $MailtoUser = $JsonParameters.PSobject.Properties["mailto-user"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "from-address"))) { #optional property not found
+            $FromAddress = $null
         } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+            $FromAddress = $JsonParameters.PSobject.Properties["from-address"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "author"))) { #optional property not found
@@ -171,40 +170,21 @@ function ConvertFrom-PVEJsonToPUTClusterNotificationsEndpointsSendmailRB {
             $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "from-address"))) { #optional property not found
-            $FromAddress = $null
-        } else {
-            $FromAddress = $JsonParameters.PSobject.Properties["from-address"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "delete" = ${Delete}
             "mailto" = ${Mailto}
-            "mailto-user" = ${MailtoUser}
             "comment" = ${Comment}
+            "mailto-user" = ${MailtoUser}
+            "from-address" = ${FromAddress}
             "author" = ${Author}
             "disable" = ${Disable}
-            "from-address" = ${FromAddress}
-            "delete" = ${Delete}
             "digest" = ${Digest}
-            "name" = ${Name}
         }
 
         return $PSO

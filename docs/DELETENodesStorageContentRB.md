@@ -3,19 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Storage** | **String** |  | [optional] 
 **Delay** | **Int32** |  | [optional] 
-**Volume** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesStorageContentRB = Initialize-PVEDELETENodesStorageContentRB  -Storage null `
- -Delay null `
- -Volume null `
- -Node null
+$DELETENodesStorageContentRB = Initialize-PVEDELETENodesStorageContentRB  -Delay null
 ```
 
 - Convert the resource to JSON

@@ -1,26 +1,20 @@
-# NodesLxcPendingInner
+# NodesLxcFirewallRulesGETInner
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | **String** |  | [optional] 
-**Key** | **String** |  | [optional] 
-**Delete** | **Int32** |  | [optional] 
-**Pending** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcPendingInner = Initialize-PVENodesLxcPendingInner  -Value null `
- -Key null `
- -Delete null `
- -Pending null
+$NodesLxcFirewallRulesGETInner = Initialize-PVENodesLxcFirewallRulesGETInner  -Pos null
 ```
 
 - Convert the resource to JSON
 ```powershell
-$NodesLxcPendingInner | ConvertTo-JSON
+$NodesLxcFirewallRulesGETInner | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

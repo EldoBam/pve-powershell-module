@@ -17,10 +17,6 @@ No description available.
 
 .PARAMETER Disk
 No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 POSTNodesQemuTemplateRB<PSCustomObject>
@@ -32,36 +28,22 @@ function Initialize-PVEPOSTNodesQemuTemplateRB {
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ide0", "ide1", "ide2", "ide3", "scsi0", "scsi1", "scsi2", "scsi3", "scsi4", "scsi5", "scsi6", "scsi7", "scsi8", "scsi9", "scsi10", "scsi11", "scsi12", "scsi13", "scsi14", "scsi15", "scsi16", "scsi17", "scsi18", "scsi19", "scsi20", "scsi21", "scsi22", "scsi23", "scsi24", "scsi25", "scsi26", "scsi27", "scsi28", "scsi29", "scsi30", "virtio0", "virtio1", "virtio2", "virtio3", "virtio4", "virtio5", "virtio6", "virtio7", "virtio8", "virtio9", "virtio10", "virtio11", "virtio12", "virtio13", "virtio14", "virtio15", "sata0", "sata1", "sata2", "sata3", "sata4", "sata5", "efidisk0", "tpmstate0")]
         [String]
-        ${Disk},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Disk}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesQemuTemplateRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Disk"="disk"; "Vmid"="vmid"; "Node"="node"
+			"Disk"="disk"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -101,7 +83,7 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuTemplateRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuTemplateRB
-        $AllProperties = ("disk", "vmid", "node")
+        $AllProperties = ("disk")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -114,22 +96,8 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuTemplateRB {
             $Disk = $JsonParameters.PSobject.Properties["disk"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "disk" = ${Disk}
-            "vmid" = ${Vmid}
-            "node" = ${Node}
         }
 
         return $PSO

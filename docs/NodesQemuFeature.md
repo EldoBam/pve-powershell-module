@@ -3,7 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasFeature** | **Int32** |  | [optional] 
+**HasFeature** | **Boolean** |  | [optional] 
 **Nodes** | **String[]** |  | [optional] 
 
 ## Examples

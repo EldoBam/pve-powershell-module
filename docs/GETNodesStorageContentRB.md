@@ -4,18 +4,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Content** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesStorageContentRB = Initialize-PVEGETNodesStorageContentRB  -Content null `
- -Storage null `
- -Vmid null `
- -Node null
+ -Vmid null
 ```
 
 - Convert the resource to JSON

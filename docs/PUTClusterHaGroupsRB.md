@@ -3,24 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Group** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Restricted** | **Boolean** |  | [optional] 
+**Nofailback** | **Boolean** |  | [optional] 
 **Nodes** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Nofailback** | **Int32** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Restricted** | **Int32** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterHaGroupsRB = Initialize-PVEPUTClusterHaGroupsRB  -Group null `
+$PUTClusterHaGroupsRB = Initialize-PVEPUTClusterHaGroupsRB  -Delete null `
+ -Restricted null `
+ -Nofailback null `
  -Nodes null `
  -Comment null `
- -Nofailback null `
- -Delete null `
- -Restricted null `
  -Digest null
 ```
 

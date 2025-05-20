@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterHaGroupsRB' {
     Context 'PVEPUTClusterHaGroupsRB' {
         It 'Initialize-PVEPUTClusterHaGroupsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterHaGroupsRB -Group "TEST_VALUE" -Nodes "TEST_VALUE" -Comment "TEST_VALUE" -Nofailback "TEST_VALUE" -Delete "TEST_VALUE" -Restricted "TEST_VALUE" -Digest "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterHaGroupsRB -Delete "TEST_VALUE" -Restricted "TEST_VALUE" -Nofailback "TEST_VALUE" -Nodes "TEST_VALUE" -Comment "TEST_VALUE" -Digest "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterHaGroupsRB
             #$NewObject.property | Should -Be 0
         }

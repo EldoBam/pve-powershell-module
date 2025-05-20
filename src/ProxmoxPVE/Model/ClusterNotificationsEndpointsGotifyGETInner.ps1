@@ -17,13 +17,13 @@ No description available.
 
 .PARAMETER Server
 No description available.
-.PARAMETER Origin
-No description available.
 .PARAMETER Comment
+No description available.
+.PARAMETER Disable
 No description available.
 .PARAMETER Name
 No description available.
-.PARAMETER Disable
+.PARAMETER Origin
 No description available.
 .OUTPUTS
 
@@ -37,41 +37,33 @@ function Initialize-PVEClusterNotificationsEndpointsGotifyGETInner {
         [String]
         ${Server},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("user-created", "builtin", "modified-builtin")]
-        [String]
-        ${Origin},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Disable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable}
+        [ValidateSet("user-created", "builtin", "modified-builtin")]
+        [String]
+        ${Origin}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEClusterNotificationsEndpointsGotifyGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Disable -and $Disable -gt 1) {
-          throw "invalid value for 'Disable', must be smaller than or equal to 1."
-        }
-
-        if ($Disable -and $Disable -lt 0) {
-          throw "invalid value for 'Disable', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Server"="server"; "Origin"="origin"; "Comment"="comment"; "Name"="name"; "Disable"="disable"
+			"Server"="server"; "Comment"="comment"; "Disable"="disable"; "Name"="name"; "Origin"="origin"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -111,7 +103,7 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsGotifyGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterNotificationsEndpointsGotifyGETInner
-        $AllProperties = ("server", "origin", "comment", "name", "disable")
+        $AllProperties = ("server", "comment", "disable", "name", "origin")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -124,22 +116,10 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsGotifyGETInner {
             $Server = $JsonParameters.PSobject.Properties["server"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "origin"))) { #optional property not found
-            $Origin = $null
-        } else {
-            $Origin = $JsonParameters.PSobject.Properties["origin"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
             $Comment = $null
         } else {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
@@ -148,12 +128,24 @@ function ConvertFrom-PVEJsonToClusterNotificationsEndpointsGotifyGETInner {
             $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "origin"))) { #optional property not found
+            $Origin = $null
+        } else {
+            $Origin = $JsonParameters.PSobject.Properties["origin"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "server" = ${Server}
-            "origin" = ${Origin}
             "comment" = ${Comment}
-            "name" = ${Name}
             "disable" = ${Disable}
+            "name" = ${Name}
+            "origin" = ${Origin}
         }
 
         return $PSO

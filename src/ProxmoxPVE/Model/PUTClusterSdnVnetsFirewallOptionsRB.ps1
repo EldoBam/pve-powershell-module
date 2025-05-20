@@ -15,17 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER LogLevelForward
-No description available.
-.PARAMETER Enable
-No description available.
 .PARAMETER PolicyForward
 No description available.
 .PARAMETER Delete
 No description available.
-.PARAMETER Digest
+.PARAMETER Enable
 No description available.
-.PARAMETER Vnet
+.PARAMETER LogLevelForward
+No description available.
+.PARAMETER Digest
 No description available.
 .OUTPUTS
 
@@ -36,13 +34,6 @@ function Initialize-PVEPUTClusterSdnVnetsFirewallOptionsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
-        [String]
-        ${LogLevelForward},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ACCEPT", "DROP")]
         [String]
         ${PolicyForward},
@@ -50,24 +41,20 @@ function Initialize-PVEPUTClusterSdnVnetsFirewallOptionsRB {
         [String]
         ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Enable},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
         [String]
-        ${Digest},
+        ${LogLevelForward},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vnet}
+        ${Digest}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterSdnVnetsFirewallOptionsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Enable -and $Enable -gt 1) {
-          throw "invalid value for 'Enable', must be smaller than or equal to 1."
-        }
-
-        if ($Enable -and $Enable -lt 0) {
-          throw "invalid value for 'Enable', must be greater than or equal to 0."
-        }
 
         if (!$Digest -and $Digest.length -gt 64) {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
@@ -75,13 +62,13 @@ function Initialize-PVEPUTClusterSdnVnetsFirewallOptionsRB {
 
 
 		 $DisplayNameMapping =@{
-			"LogLevelForward"="log_level_forward"; "Enable"="enable"; "PolicyForward"="policy_forward"; "Delete"="delete"; "Digest"="digest"; "Vnet"="vnet"
+			"PolicyForward"="policy_forward"; "Delete"="delete"; "Enable"="enable"; "LogLevelForward"="log_level_forward"; "Digest"="digest"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -121,23 +108,11 @@ function ConvertFrom-PVEJsonToPUTClusterSdnVnetsFirewallOptionsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterSdnVnetsFirewallOptionsRB
-        $AllProperties = ("log_level_forward", "enable", "policy_forward", "delete", "digest", "vnet")
+        $AllProperties = ("policy_forward", "delete", "enable", "log_level_forward", "digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_forward"))) { #optional property not found
-            $LogLevelForward = $null
-        } else {
-            $LogLevelForward = $JsonParameters.PSobject.Properties["log_level_forward"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
-            $Enable = $null
-        } else {
-            $Enable = $JsonParameters.PSobject.Properties["enable"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_forward"))) { #optional property not found
@@ -152,25 +127,30 @@ function ConvertFrom-PVEJsonToPUTClusterSdnVnetsFirewallOptionsRB {
             $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
+            $Enable = $null
+        } else {
+            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "log_level_forward"))) { #optional property not found
+            $LogLevelForward = $null
+        } else {
+            $LogLevelForward = $JsonParameters.PSobject.Properties["log_level_forward"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
-            $Vnet = $null
-        } else {
-            $Vnet = $JsonParameters.PSobject.Properties["vnet"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "log_level_forward" = ${LogLevelForward}
-            "enable" = ${Enable}
             "policy_forward" = ${PolicyForward}
             "delete" = ${Delete}
+            "enable" = ${Enable}
+            "log_level_forward" = ${LogLevelForward}
             "digest" = ${Digest}
-            "vnet" = ${Vnet}
         }
 
         return $PSO

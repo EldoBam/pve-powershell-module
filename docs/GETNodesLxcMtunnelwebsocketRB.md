@@ -3,19 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ticket** | **String** |  | [optional] 
 **Socket** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Ticket** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesLxcMtunnelwebsocketRB = Initialize-PVEGETNodesLxcMtunnelwebsocketRB  -Ticket null `
- -Socket null `
- -Vmid null `
- -Node null
+$GETNodesLxcMtunnelwebsocketRB = Initialize-PVEGETNodesLxcMtunnelwebsocketRB  -Socket null `
+ -Ticket null
 ```
 
 - Convert the resource to JSON

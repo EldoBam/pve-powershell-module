@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesQemuStatusCurrent' {
     Context 'PVENodesQemuStatusCurrent' {
         It 'Initialize-PVENodesQemuStatusCurrent' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesQemuStatusCurrent -Diskread "TEST_VALUE" -Uptime "TEST_VALUE" -Cpus "TEST_VALUE" -Maxdisk "TEST_VALUE" -Qmpstatus "TEST_VALUE" -Cpu "TEST_VALUE" -Tags "TEST_VALUE" -Status "TEST_VALUE" -VarPid "TEST_VALUE" -Vmid "TEST_VALUE" -Lock "TEST_VALUE" -Spice "TEST_VALUE" -RunningQemu "TEST_VALUE" -Clipboard "TEST_VALUE" -Ha "TEST_VALUE" -Serial "TEST_VALUE" -Netin "TEST_VALUE" -Mem "TEST_VALUE" -Netout "TEST_VALUE" -Diskwrite "TEST_VALUE" -Maxmem "TEST_VALUE" -Name "TEST_VALUE" -Agent "TEST_VALUE" -RunningMachine "TEST_VALUE" -Template "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesQemuStatusCurrent -Agent "TEST_VALUE" -Template "TEST_VALUE" -Status "TEST_VALUE" -Cpu "TEST_VALUE" -Serial "TEST_VALUE" -Lock "TEST_VALUE" -Clipboard "TEST_VALUE" -Name "TEST_VALUE" -Mem "TEST_VALUE" -RunningQemu "TEST_VALUE" -Maxmem "TEST_VALUE" -Spice "TEST_VALUE" -Maxdisk "TEST_VALUE" -VarPid "TEST_VALUE" -Cpus "TEST_VALUE" -Qmpstatus "TEST_VALUE" -Tags "TEST_VALUE" -Uptime "TEST_VALUE" -Vmid "TEST_VALUE" -RunningMachine "TEST_VALUE" -Diskwrite "TEST_VALUE" -Diskread "TEST_VALUE" -Ha "TEST_VALUE" -Netin "TEST_VALUE" -Netout "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesQemuStatusCurrent
             #$NewObject.property | Should -Be 0
         }

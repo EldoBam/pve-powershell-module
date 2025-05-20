@@ -15,17 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Vms
-No description available.
 .PARAMETER Comment
-No description available.
-.PARAMETER Storage
 No description available.
 .PARAMETER Delete
 No description available.
-.PARAMETER Poolid
+.PARAMETER Vms
 No description available.
 .PARAMETER AllowMove
+No description available.
+.PARAMETER Storage
 No description available.
 .OUTPUTS
 
@@ -37,53 +35,34 @@ function Initialize-PVEPUTPoolsRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vms},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Storage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Poolid},
+        ${Vms},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${AllowMove}
+        [System.Nullable[Boolean]]
+        ${AllowMove},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Storage}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTPoolsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Delete -and $Delete -gt 1) {
-          throw "invalid value for 'Delete', must be smaller than or equal to 1."
-        }
-
-        if ($Delete -and $Delete -lt 0) {
-          throw "invalid value for 'Delete', must be greater than or equal to 0."
-        }
-
-        if ($AllowMove -and $AllowMove -gt 1) {
-          throw "invalid value for 'AllowMove', must be smaller than or equal to 1."
-        }
-
-        if ($AllowMove -and $AllowMove -lt 0) {
-          throw "invalid value for 'AllowMove', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Vms"="vms"; "Comment"="comment"; "Storage"="storage"; "Delete"="delete"; "Poolid"="poolid"; "AllowMove"="allow-move"
+			"Comment"="comment"; "Delete"="delete"; "Vms"="vms"; "AllowMove"="allow-move"; "Storage"="storage"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -123,17 +102,11 @@ function ConvertFrom-PVEJsonToPUTPoolsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTPoolsRB
-        $AllProperties = ("vms", "comment", "storage", "delete", "poolid", "allow-move")
+        $AllProperties = ("comment", "delete", "vms", "allow-move", "storage")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vms"))) { #optional property not found
-            $Vms = $null
-        } else {
-            $Vms = $JsonParameters.PSobject.Properties["vms"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -142,22 +115,16 @@ function ConvertFrom-PVEJsonToPUTPoolsRB {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
             $Delete = $null
         } else {
             $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "poolid"))) { #optional property not found
-            $Poolid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vms"))) { #optional property not found
+            $Vms = $null
         } else {
-            $Poolid = $JsonParameters.PSobject.Properties["poolid"].value
+            $Vms = $JsonParameters.PSobject.Properties["vms"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "allow-move"))) { #optional property not found
@@ -166,13 +133,18 @@ function ConvertFrom-PVEJsonToPUTPoolsRB {
             $AllowMove = $JsonParameters.PSobject.Properties["allow-move"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
+            $Storage = $null
+        } else {
+            $Storage = $JsonParameters.PSobject.Properties["storage"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "vms" = ${Vms}
             "comment" = ${Comment}
-            "storage" = ${Storage}
             "delete" = ${Delete}
-            "poolid" = ${Poolid}
+            "vms" = ${Vms}
             "allow-move" = ${AllowMove}
+            "storage" = ${Storage}
         }
 
         return $PSO

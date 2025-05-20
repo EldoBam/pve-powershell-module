@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesCephOsdRB' {
     Context 'PVEPOSTNodesCephOsdRB' {
         It 'Initialize-PVEPOSTNodesCephOsdRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesCephOsdRB -WalDevSize "TEST_VALUE" -WalDev "TEST_VALUE" -DbDevSize "TEST_VALUE" -Dev "TEST_VALUE" -OsdsPerDevice "TEST_VALUE" -DbDev "TEST_VALUE" -Encrypted "TEST_VALUE" -Node "TEST_VALUE" -CrushDeviceClass "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesCephOsdRB -CrushDeviceClass "TEST_VALUE" -DbDevSize "TEST_VALUE" -DbDev "TEST_VALUE" -WalDevSize "TEST_VALUE" -Encrypted "TEST_VALUE" -OsdsPerDevice "TEST_VALUE" -WalDev "TEST_VALUE" -Dev "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesCephOsdRB
             #$NewObject.property | Should -Be 0
         }

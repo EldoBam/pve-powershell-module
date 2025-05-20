@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Path** | **String** |  | [optional] 
 **Device** | **String** |  | [optional] 
 **Options** | **String** |  | [optional] 
 **Unitfile** | **String** |  | [optional] 
+**Path** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesDisksDirectoryInner = Initialize-PVENodesDisksDirectoryInner  -Path null `
- -Device null `
+$NodesDisksDirectoryInner = Initialize-PVENodesDisksDirectoryInner  -Device null `
  -Options null `
  -Unitfile null `
+ -Path null `
  -Type null
 ```
 

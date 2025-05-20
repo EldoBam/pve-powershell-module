@@ -3,24 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MinSize** | **Int32** |  | [optional] 
-**ClusterNetwork** | **String** |  | [optional] 
-**PgBits** | **Int32** |  | [optional] 
-**Network** | **String** |  | [optional] 
 **Size** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**DisableCephx** | **Int32** |  | [optional] 
+**PgBits** | **Int32** |  | [optional] 
+**MinSize** | **Int32** |  | [optional] 
+**Network** | **String** |  | [optional] 
+**ClusterNetwork** | **String** |  | [optional] 
+**DisableCephx** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephInitRB = Initialize-PVEPOSTNodesCephInitRB  -MinSize null `
- -ClusterNetwork null `
+$POSTNodesCephInitRB = Initialize-PVEPOSTNodesCephInitRB  -Size null `
  -PgBits null `
+ -MinSize null `
  -Network null `
- -Size null `
- -Node null `
+ -ClusterNetwork null `
  -DisableCephx null
 ```
 

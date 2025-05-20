@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesStatus' {
     Context 'PVENodesStatus' {
         It 'Initialize-PVENodesStatus' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesStatus -Rootfs "TEST_VALUE" -Cpu "TEST_VALUE" -BootInfo "TEST_VALUE" -Loadavg "TEST_VALUE" -Memory "TEST_VALUE" -CurrentKernel "TEST_VALUE" -Pveversion "TEST_VALUE" -Cpuinfo "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesStatus -Cpu "TEST_VALUE" -Rootfs "TEST_VALUE" -Memory "TEST_VALUE" -CurrentKernel "TEST_VALUE" -Loadavg "TEST_VALUE" -Cpuinfo "TEST_VALUE" -BootInfo "TEST_VALUE" -Pveversion "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesStatus
             #$NewObject.property | Should -Be 0
         }

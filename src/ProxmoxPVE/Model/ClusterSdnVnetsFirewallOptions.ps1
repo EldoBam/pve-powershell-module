@@ -34,7 +34,7 @@ function Initialize-PVEClusterSdnVnetsFirewallOptions {
         [String]
         ${PolicyForward},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Enable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug", "nolog")]
@@ -46,14 +46,6 @@ function Initialize-PVEClusterSdnVnetsFirewallOptions {
         'Creating PSCustomObject: ProxmoxPVE => PVEClusterSdnVnetsFirewallOptions' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Enable -and $Enable -gt 1) {
-          throw "invalid value for 'Enable', must be smaller than or equal to 1."
-        }
-
-        if ($Enable -and $Enable -lt 0) {
-          throw "invalid value for 'Enable', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
 			"PolicyForward"="policy_forward"; "Enable"="enable"; "LogLevelForward"="log_level_forward"
@@ -62,7 +54,7 @@ function Initialize-PVEClusterSdnVnetsFirewallOptions {
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ

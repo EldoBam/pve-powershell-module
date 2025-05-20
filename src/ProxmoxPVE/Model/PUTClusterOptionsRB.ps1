@@ -15,51 +15,51 @@ No summary available.
 
 No description available.
 
-.PARAMETER Crs
-No description available.
-.PARAMETER Language
-No description available.
-.PARAMETER ConsentText
-No description available.
-.PARAMETER Keyboard
-No description available.
 .PARAMETER TagStyle
-No description available.
-.PARAMETER MigrationUnsecure
-No description available.
-.PARAMETER MacPrefix
-No description available.
-.PARAMETER RegisteredTags
-No description available.
-.PARAMETER Migration
-No description available.
-.PARAMETER NextId
-No description available.
-.PARAMETER Description
-No description available.
-.PARAMETER Ha
-No description available.
-.PARAMETER UserTagAccess
-No description available.
-.PARAMETER Console
-No description available.
-.PARAMETER U2f
 No description available.
 .PARAMETER MaxWorkers
 No description available.
-.PARAMETER EmailFrom
+.PARAMETER Migration
 No description available.
-.PARAMETER Delete
+.PARAMETER Webauthn
 No description available.
-.PARAMETER Fencing
-No description available.
-.PARAMETER Bwlimit
-No description available.
-.PARAMETER Notify
+.PARAMETER Language
 No description available.
 .PARAMETER HttpProxy
 No description available.
-.PARAMETER Webauthn
+.PARAMETER Notify
+No description available.
+.PARAMETER MigrationUnsecure
+No description available.
+.PARAMETER Keyboard
+No description available.
+.PARAMETER Bwlimit
+No description available.
+.PARAMETER Crs
+No description available.
+.PARAMETER MacPrefix
+No description available.
+.PARAMETER UserTagAccess
+No description available.
+.PARAMETER Ha
+No description available.
+.PARAMETER Description
+No description available.
+.PARAMETER ConsentText
+No description available.
+.PARAMETER NextId
+No description available.
+.PARAMETER Delete
+No description available.
+.PARAMETER Console
+No description available.
+.PARAMETER Fencing
+No description available.
+.PARAMETER U2f
+No description available.
+.PARAMETER RegisteredTags
+No description available.
+.PARAMETER EmailFrom
 No description available.
 .OUTPUTS
 
@@ -71,114 +71,106 @@ function Initialize-PVEPUTClusterOptionsRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Crs},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("ar", "ca", "da", "de", "en", "es", "eu", "fa", "fr", "hr", "he", "it", "ja", "ka", "kr", "nb", "nl", "nn", "pl", "pt_BR", "ru", "sl", "sv", "tr", "ukr", "zh_CN", "zh_TW")]
-        [String]
-        ${Language},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${ConsentText},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("de", "de-ch", "da", "en-gb", "en-us", "es", "fi", "fr", "fr-be", "fr-ca", "fr-ch", "hu", "is", "it", "ja", "lt", "mk", "nl", "no", "pl", "pt", "pt-br", "sv", "sl", "tr")]
-        [String]
-        ${Keyboard},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${TagStyle},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${MigrationUnsecure},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${MacPrefix},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(?:(?^i:[a-z0-9_][a-z0-9_\-\+\.]*);)*(?^i:[a-z0-9_][a-z0-9_\-\+\.]*)")]
-        [String]
-        ${RegisteredTags},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Migration},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${NextId},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Description},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Ha},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${UserTagAccess},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("applet", "vv", "html5", "xtermjs")]
-        [String]
-        ${Console},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${U2f},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${MaxWorkers},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${EmailFrom},
+        ${Migration},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Delete},
+        ${Webauthn},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("watchdog", "hardware", "both")]
+        [ValidateSet("ar", "ca", "da", "de", "en", "es", "eu", "fa", "fr", "hr", "he", "it", "ja", "ka", "kr", "nb", "nl", "nn", "pl", "pt_BR", "ru", "sl", "sv", "tr", "ukr", "zh_CN", "zh_TW")]
         [String]
-        ${Fencing},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Bwlimit},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Notify},
+        ${Language},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("http://.*")]
         [String]
         ${HttpProxy},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Webauthn}
+        ${Notify},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${MigrationUnsecure},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("de", "de-ch", "da", "en-gb", "en-us", "es", "fi", "fr", "fr-be", "fr-ca", "fr-ch", "hu", "is", "it", "ja", "lt", "mk", "nl", "no", "pl", "pt", "pt-br", "sv", "sl", "tr")]
+        [String]
+        ${Keyboard},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Bwlimit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Crs},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${MacPrefix},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${UserTagAccess},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Ha},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Description},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${ConsentText},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${NextId},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Delete},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("applet", "vv", "html5", "xtermjs")]
+        [String]
+        ${Console},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("watchdog", "hardware", "both")]
+        [String]
+        ${Fencing},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${U2f},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("(?:(?^i:[a-z0-9_][a-z0-9_\-\+\.]*);)*(?^i:[a-z0-9_][a-z0-9_\-\+\.]*)")]
+        [String]
+        ${RegisteredTags},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${EmailFrom}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterOptionsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if (!$ConsentText -and $ConsentText.length -gt 65536) {
-            throw "invalid value for 'ConsentText', the character length must be smaller than or equal to 65536."
-        }
-
-        if ($MigrationUnsecure -and $MigrationUnsecure -gt 1) {
-          throw "invalid value for 'MigrationUnsecure', must be smaller than or equal to 1."
-        }
-
-        if ($MigrationUnsecure -and $MigrationUnsecure -lt 0) {
-          throw "invalid value for 'MigrationUnsecure', must be greater than or equal to 0."
+        if ($MaxWorkers -and $MaxWorkers -lt 1) {
+          throw "invalid value for 'MaxWorkers', must be greater than or equal to 1."
         }
 
         if (!$Description -and $Description.length -gt 65536) {
             throw "invalid value for 'Description', the character length must be smaller than or equal to 65536."
         }
 
-        if ($MaxWorkers -and $MaxWorkers -lt 1) {
-          throw "invalid value for 'MaxWorkers', must be greater than or equal to 1."
+        if (!$ConsentText -and $ConsentText.length -gt 65536) {
+            throw "invalid value for 'ConsentText', the character length must be smaller than or equal to 65536."
         }
 
 
 		 $DisplayNameMapping =@{
-			"Crs"="crs"; "Language"="language"; "ConsentText"="consent-text"; "Keyboard"="keyboard"; "TagStyle"="tag-style"; "MigrationUnsecure"="migration_unsecure"; "MacPrefix"="mac_prefix"; "RegisteredTags"="registered-tags"; "Migration"="migration"; "NextId"="next-id"; "Description"="description"; "Ha"="ha"; "UserTagAccess"="user-tag-access"; "Console"="console"; "U2f"="u2f"; "MaxWorkers"="max_workers"; "EmailFrom"="email_from"; "Delete"="delete"; "Fencing"="fencing"; "Bwlimit"="bwlimit"; "Notify"="notify"; "HttpProxy"="http_proxy"; "Webauthn"="webauthn"
+			"TagStyle"="tag-style"; "MaxWorkers"="max_workers"; "Migration"="migration"; "Webauthn"="webauthn"; "Language"="language"; "HttpProxy"="http_proxy"; "Notify"="notify"; "MigrationUnsecure"="migration_unsecure"; "Keyboard"="keyboard"; "Bwlimit"="bwlimit"; "Crs"="crs"; "MacPrefix"="mac_prefix"; "UserTagAccess"="user-tag-access"; "Ha"="ha"; "Description"="description"; "ConsentText"="consent-text"; "NextId"="next-id"; "Delete"="delete"; "Console"="console"; "Fencing"="fencing"; "U2f"="u2f"; "RegisteredTags"="registered-tags"; "EmailFrom"="email_from"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -218,35 +210,11 @@ function ConvertFrom-PVEJsonToPUTClusterOptionsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterOptionsRB
-        $AllProperties = ("crs", "language", "consent-text", "keyboard", "tag-style", "migration_unsecure", "mac_prefix", "registered-tags", "migration", "next-id", "description", "ha", "user-tag-access", "console", "u2f", "max_workers", "email_from", "delete", "fencing", "bwlimit", "notify", "http_proxy", "webauthn")
+        $AllProperties = ("tag-style", "max_workers", "migration", "webauthn", "language", "http_proxy", "notify", "migration_unsecure", "keyboard", "bwlimit", "crs", "mac_prefix", "user-tag-access", "ha", "description", "consent-text", "next-id", "delete", "console", "fencing", "u2f", "registered-tags", "email_from")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "crs"))) { #optional property not found
-            $Crs = $null
-        } else {
-            $Crs = $JsonParameters.PSobject.Properties["crs"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "language"))) { #optional property not found
-            $Language = $null
-        } else {
-            $Language = $JsonParameters.PSobject.Properties["language"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "consent-text"))) { #optional property not found
-            $ConsentText = $null
-        } else {
-            $ConsentText = $JsonParameters.PSobject.Properties["consent-text"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keyboard"))) { #optional property not found
-            $Keyboard = $null
-        } else {
-            $Keyboard = $JsonParameters.PSobject.Properties["keyboard"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "tag-style"))) { #optional property not found
@@ -255,22 +223,10 @@ function ConvertFrom-PVEJsonToPUTClusterOptionsRB {
             $TagStyle = $JsonParameters.PSobject.Properties["tag-style"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "migration_unsecure"))) { #optional property not found
-            $MigrationUnsecure = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_workers"))) { #optional property not found
+            $MaxWorkers = $null
         } else {
-            $MigrationUnsecure = $JsonParameters.PSobject.Properties["migration_unsecure"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mac_prefix"))) { #optional property not found
-            $MacPrefix = $null
-        } else {
-            $MacPrefix = $JsonParameters.PSobject.Properties["mac_prefix"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "registered-tags"))) { #optional property not found
-            $RegisteredTags = $null
-        } else {
-            $RegisteredTags = $JsonParameters.PSobject.Properties["registered-tags"].value
+            $MaxWorkers = $JsonParameters.PSobject.Properties["max_workers"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "migration"))) { #optional property not found
@@ -279,76 +235,16 @@ function ConvertFrom-PVEJsonToPUTClusterOptionsRB {
             $Migration = $JsonParameters.PSobject.Properties["migration"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "next-id"))) { #optional property not found
-            $NextId = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "webauthn"))) { #optional property not found
+            $Webauthn = $null
         } else {
-            $NextId = $JsonParameters.PSobject.Properties["next-id"].value
+            $Webauthn = $JsonParameters.PSobject.Properties["webauthn"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "language"))) { #optional property not found
+            $Language = $null
         } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ha"))) { #optional property not found
-            $Ha = $null
-        } else {
-            $Ha = $JsonParameters.PSobject.Properties["ha"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user-tag-access"))) { #optional property not found
-            $UserTagAccess = $null
-        } else {
-            $UserTagAccess = $JsonParameters.PSobject.Properties["user-tag-access"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "console"))) { #optional property not found
-            $Console = $null
-        } else {
-            $Console = $JsonParameters.PSobject.Properties["console"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "u2f"))) { #optional property not found
-            $U2f = $null
-        } else {
-            $U2f = $JsonParameters.PSobject.Properties["u2f"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_workers"))) { #optional property not found
-            $MaxWorkers = $null
-        } else {
-            $MaxWorkers = $JsonParameters.PSobject.Properties["max_workers"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "email_from"))) { #optional property not found
-            $EmailFrom = $null
-        } else {
-            $EmailFrom = $JsonParameters.PSobject.Properties["email_from"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fencing"))) { #optional property not found
-            $Fencing = $null
-        } else {
-            $Fencing = $JsonParameters.PSobject.Properties["fencing"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
-            $Bwlimit = $null
-        } else {
-            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notify"))) { #optional property not found
-            $Notify = $null
-        } else {
-            $Notify = $JsonParameters.PSobject.Properties["notify"].value
+            $Language = $JsonParameters.PSobject.Properties["language"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "http_proxy"))) { #optional property not found
@@ -357,36 +253,132 @@ function ConvertFrom-PVEJsonToPUTClusterOptionsRB {
             $HttpProxy = $JsonParameters.PSobject.Properties["http_proxy"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "webauthn"))) { #optional property not found
-            $Webauthn = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notify"))) { #optional property not found
+            $Notify = $null
         } else {
-            $Webauthn = $JsonParameters.PSobject.Properties["webauthn"].value
+            $Notify = $JsonParameters.PSobject.Properties["notify"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "migration_unsecure"))) { #optional property not found
+            $MigrationUnsecure = $null
+        } else {
+            $MigrationUnsecure = $JsonParameters.PSobject.Properties["migration_unsecure"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keyboard"))) { #optional property not found
+            $Keyboard = $null
+        } else {
+            $Keyboard = $JsonParameters.PSobject.Properties["keyboard"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
+            $Bwlimit = $null
+        } else {
+            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "crs"))) { #optional property not found
+            $Crs = $null
+        } else {
+            $Crs = $JsonParameters.PSobject.Properties["crs"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mac_prefix"))) { #optional property not found
+            $MacPrefix = $null
+        } else {
+            $MacPrefix = $JsonParameters.PSobject.Properties["mac_prefix"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user-tag-access"))) { #optional property not found
+            $UserTagAccess = $null
+        } else {
+            $UserTagAccess = $JsonParameters.PSobject.Properties["user-tag-access"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ha"))) { #optional property not found
+            $Ha = $null
+        } else {
+            $Ha = $JsonParameters.PSobject.Properties["ha"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "consent-text"))) { #optional property not found
+            $ConsentText = $null
+        } else {
+            $ConsentText = $JsonParameters.PSobject.Properties["consent-text"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "next-id"))) { #optional property not found
+            $NextId = $null
+        } else {
+            $NextId = $JsonParameters.PSobject.Properties["next-id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "console"))) { #optional property not found
+            $Console = $null
+        } else {
+            $Console = $JsonParameters.PSobject.Properties["console"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fencing"))) { #optional property not found
+            $Fencing = $null
+        } else {
+            $Fencing = $JsonParameters.PSobject.Properties["fencing"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "u2f"))) { #optional property not found
+            $U2f = $null
+        } else {
+            $U2f = $JsonParameters.PSobject.Properties["u2f"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "registered-tags"))) { #optional property not found
+            $RegisteredTags = $null
+        } else {
+            $RegisteredTags = $JsonParameters.PSobject.Properties["registered-tags"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "email_from"))) { #optional property not found
+            $EmailFrom = $null
+        } else {
+            $EmailFrom = $JsonParameters.PSobject.Properties["email_from"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "crs" = ${Crs}
-            "language" = ${Language}
-            "consent-text" = ${ConsentText}
-            "keyboard" = ${Keyboard}
             "tag-style" = ${TagStyle}
-            "migration_unsecure" = ${MigrationUnsecure}
-            "mac_prefix" = ${MacPrefix}
-            "registered-tags" = ${RegisteredTags}
-            "migration" = ${Migration}
-            "next-id" = ${NextId}
-            "description" = ${Description}
-            "ha" = ${Ha}
-            "user-tag-access" = ${UserTagAccess}
-            "console" = ${Console}
-            "u2f" = ${U2f}
             "max_workers" = ${MaxWorkers}
-            "email_from" = ${EmailFrom}
-            "delete" = ${Delete}
-            "fencing" = ${Fencing}
-            "bwlimit" = ${Bwlimit}
-            "notify" = ${Notify}
-            "http_proxy" = ${HttpProxy}
+            "migration" = ${Migration}
             "webauthn" = ${Webauthn}
+            "language" = ${Language}
+            "http_proxy" = ${HttpProxy}
+            "notify" = ${Notify}
+            "migration_unsecure" = ${MigrationUnsecure}
+            "keyboard" = ${Keyboard}
+            "bwlimit" = ${Bwlimit}
+            "crs" = ${Crs}
+            "mac_prefix" = ${MacPrefix}
+            "user-tag-access" = ${UserTagAccess}
+            "ha" = ${Ha}
+            "description" = ${Description}
+            "consent-text" = ${ConsentText}
+            "next-id" = ${NextId}
+            "delete" = ${Delete}
+            "console" = ${Console}
+            "fencing" = ${Fencing}
+            "u2f" = ${U2f}
+            "registered-tags" = ${RegisteredTags}
+            "email_from" = ${EmailFrom}
         }
 
         return $PSO

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesCephPoolStatusRB' {
     Context 'PVEGETNodesCephPoolStatusRB' {
         It 'Initialize-PVEGETNodesCephPoolStatusRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesCephPoolStatusRB -Verbose "TEST_VALUE" -Name "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesCephPoolStatusRB -Verbose "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesCephPoolStatusRB
             #$NewObject.property | Should -Be 0
         }

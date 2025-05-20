@@ -15,8 +15,6 @@ No summary available.
 
 No description available.
 
-.PARAMETER Poolid
-No description available.
 .PARAMETER Type
 No description available.
 .OUTPUTS
@@ -27,9 +25,6 @@ GETPoolsRB<PSCustomObject>
 function Initialize-PVEGETPoolsRB {
     [CmdletBinding()]
     Param (
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Poolid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("qemu", "lxc", "storage")]
         [String]
@@ -42,13 +37,13 @@ function Initialize-PVEGETPoolsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Poolid"="poolid"; "Type"="type"
+			"Type"="type"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -88,17 +83,11 @@ function ConvertFrom-PVEJsonToGETPoolsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETPoolsRB
-        $AllProperties = ("poolid", "type")
+        $AllProperties = ("type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "poolid"))) { #optional property not found
-            $Poolid = $null
-        } else {
-            $Poolid = $JsonParameters.PSobject.Properties["poolid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
@@ -108,7 +97,6 @@ function ConvertFrom-PVEJsonToGETPoolsRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "poolid" = ${Poolid}
             "type" = ${Type}
         }
 

@@ -17,8 +17,6 @@ No description available.
 
 .PARAMETER ConfigKeys
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 GETNodesCephCfgValueRB<PSCustomObject>
@@ -30,10 +28,7 @@ function Initialize-PVEGETNodesCephCfgValueRB {
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("(?^:^(:?(?^i:[0-9a-z\-_\.]+:[0-9a-zA-Z\-_]+))(:?[;, ](?^i:[0-9a-z\-_\.]+:[0-9a-zA-Z\-_]+))*$)")]
         [String]
-        ${ConfigKeys},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${ConfigKeys}
     )
 
     Process {
@@ -42,13 +37,13 @@ function Initialize-PVEGETNodesCephCfgValueRB {
 
 
 		 $DisplayNameMapping =@{
-			"ConfigKeys"="config-keys"; "Node"="node"
+			"ConfigKeys"="config-keys"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -88,7 +83,7 @@ function ConvertFrom-PVEJsonToGETNodesCephCfgValueRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesCephCfgValueRB
-        $AllProperties = ("config-keys", "node")
+        $AllProperties = ("config-keys")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -101,15 +96,8 @@ function ConvertFrom-PVEJsonToGETNodesCephCfgValueRB {
             $ConfigKeys = $JsonParameters.PSobject.Properties["config-keys"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "config-keys" = ${ConfigKeys}
-            "node" = ${Node}
         }
 
         return $PSO

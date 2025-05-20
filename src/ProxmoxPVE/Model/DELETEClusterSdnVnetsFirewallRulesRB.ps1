@@ -15,10 +15,6 @@ No summary available.
 
 No description available.
 
-.PARAMETER Pos
-No description available.
-.PARAMETER Vnet
-No description available.
 .PARAMETER Digest
 No description available.
 .OUTPUTS
@@ -29,12 +25,6 @@ DELETEClusterSdnVnetsFirewallRulesRB<PSCustomObject>
 function Initialize-PVEDELETEClusterSdnVnetsFirewallRulesRB {
     [CmdletBinding()]
     Param (
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Pos},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Vnet},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest}
@@ -50,13 +40,13 @@ function Initialize-PVEDELETEClusterSdnVnetsFirewallRulesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Pos"="pos"; "Vnet"="vnet"; "Digest"="digest"
+			"Digest"="digest"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -96,23 +86,11 @@ function ConvertFrom-PVEJsonToDELETEClusterSdnVnetsFirewallRulesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEClusterSdnVnetsFirewallRulesRB
-        $AllProperties = ("pos", "vnet", "digest")
+        $AllProperties = ("digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
-            $Pos = $null
-        } else {
-            $Pos = $JsonParameters.PSobject.Properties["pos"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
-            $Vnet = $null
-        } else {
-            $Vnet = $JsonParameters.PSobject.Properties["vnet"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -122,8 +100,6 @@ function ConvertFrom-PVEJsonToDELETEClusterSdnVnetsFirewallRulesRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "pos" = ${Pos}
-            "vnet" = ${Vnet}
             "digest" = ${Digest}
         }
 

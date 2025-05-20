@@ -15,11 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER CmdOpts
-No description available.
-.PARAMETER Node
-No description available.
 .PARAMETER Cmd
+No description available.
+.PARAMETER CmdOpts
 No description available.
 .OUTPUTS
 
@@ -30,15 +28,12 @@ function Initialize-PVEPOSTNodesTermproxyRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${CmdOpts},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ceph_install", "upgrade", "login")]
         [String]
-        ${Cmd}
+        ${Cmd},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${CmdOpts}
     )
 
     Process {
@@ -47,13 +42,13 @@ function Initialize-PVEPOSTNodesTermproxyRB {
 
 
 		 $DisplayNameMapping =@{
-			"CmdOpts"="cmd-opts"; "Node"="node"; "Cmd"="cmd"
+			"Cmd"="cmd"; "CmdOpts"="cmd-opts"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -93,23 +88,11 @@ function ConvertFrom-PVEJsonToPOSTNodesTermproxyRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesTermproxyRB
-        $AllProperties = ("cmd-opts", "node", "cmd")
+        $AllProperties = ("cmd", "cmd-opts")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cmd-opts"))) { #optional property not found
-            $CmdOpts = $null
-        } else {
-            $CmdOpts = $JsonParameters.PSobject.Properties["cmd-opts"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cmd"))) { #optional property not found
@@ -118,10 +101,15 @@ function ConvertFrom-PVEJsonToPOSTNodesTermproxyRB {
             $Cmd = $JsonParameters.PSobject.Properties["cmd"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cmd-opts"))) { #optional property not found
+            $CmdOpts = $null
+        } else {
+            $CmdOpts = $JsonParameters.PSobject.Properties["cmd-opts"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "cmd-opts" = ${CmdOpts}
-            "node" = ${Node}
             "cmd" = ${Cmd}
+            "cmd-opts" = ${CmdOpts}
         }
 
         return $PSO

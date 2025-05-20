@@ -15,129 +15,129 @@ No summary available.
 
 No description available.
 
+.PARAMETER ContentDirs
+No description available.
 .PARAMETER Server2
-No description available.
-.PARAMETER DataPool
-No description available.
-.PARAMETER Nowritecache
-No description available.
-.PARAMETER Username
-No description available.
-.PARAMETER EncryptionKey
-No description available.
-.PARAMETER Storage
-No description available.
-.PARAMETER Sparse
-No description available.
-.PARAMETER ComstarTg
-No description available.
-.PARAMETER SkipCertVerification
-No description available.
-.PARAMETER ComstarHg
-No description available.
-.PARAMETER TaggedOnly
-No description available.
-.PARAMETER Disable
-No description available.
-.PARAMETER Saferemove
-No description available.
-.PARAMETER Transport
-No description available.
-.PARAMETER Authsupported
-No description available.
-.PARAMETER Krbd
-No description available.
-.PARAMETER Iscsiprovider
-No description available.
-.PARAMETER Fuse
 No description available.
 .PARAMETER Namespace
 No description available.
-.PARAMETER ContentDirs
-No description available.
-.PARAMETER Port
-No description available.
-.PARAMETER Mkdir
-No description available.
-.PARAMETER SaferemoveThroughput
-No description available.
-.PARAMETER Nodes
-No description available.
-.PARAMETER Target
-No description available.
-.PARAMETER Datastore
+.PARAMETER Username
 No description available.
 .PARAMETER Path
-No description available.
-.PARAMETER Bwlimit
-No description available.
-.PARAMETER Nocow
-No description available.
-.PARAMETER Content
-No description available.
-.PARAMETER IsMountpoint
-No description available.
-.PARAMETER Thinpool
-No description available.
-.PARAMETER Fingerprint
-No description available.
-.PARAMETER Base
-No description available.
-.PARAMETER Domain
-No description available.
-.PARAMETER Format
-No description available.
-.PARAMETER Keyring
-No description available.
-.PARAMETER Smbversion
-No description available.
-.PARAMETER Subdir
 No description available.
 .PARAMETER Password
 No description available.
 .PARAMETER Blocksize
 No description available.
-.PARAMETER Shared
+.PARAMETER Disable
 No description available.
-.PARAMETER Volume
+.PARAMETER IsMountpoint
 No description available.
-.PARAMETER Share
+.PARAMETER Transport
 No description available.
-.PARAMETER FsName
-No description available.
-.PARAMETER MaxProtectedBackups
-No description available.
-.PARAMETER Options
-No description available.
-.PARAMETER Portal
+.PARAMETER Sparse
 No description available.
 .PARAMETER MasterPubkey
 No description available.
-.PARAMETER Mountpoint
+.PARAMETER Saferemove
 No description available.
-.PARAMETER Preallocation
-No description available.
-.PARAMETER CreateSubdirs
-No description available.
-.PARAMETER PruneBackups
-No description available.
-.PARAMETER Pool
-No description available.
-.PARAMETER Vgname
-No description available.
-.PARAMETER Server
-No description available.
-.PARAMETER LioTpg
-No description available.
-.PARAMETER Maxfiles
+.PARAMETER Options
 No description available.
 .PARAMETER Export
 No description available.
-.PARAMETER Type
+.PARAMETER Iscsiprovider
+No description available.
+.PARAMETER Maxfiles
+No description available.
+.PARAMETER MaxProtectedBackups
+No description available.
+.PARAMETER Vgname
+No description available.
+.PARAMETER Nodes
 No description available.
 .PARAMETER Monhost
 No description available.
+.PARAMETER ComstarHg
+No description available.
+.PARAMETER DataPool
+No description available.
+.PARAMETER Volume
+No description available.
+.PARAMETER SkipCertVerification
+No description available.
+.PARAMETER Type
+No description available.
+.PARAMETER Fingerprint
+No description available.
+.PARAMETER TaggedOnly
+No description available.
+.PARAMETER Nowritecache
+No description available.
+.PARAMETER Storage
+No description available.
+.PARAMETER Server
+No description available.
+.PARAMETER ComstarTg
+No description available.
+.PARAMETER Share
+No description available.
+.PARAMETER Mountpoint
+No description available.
+.PARAMETER Portal
+No description available.
+.PARAMETER CreateSubdirs
+No description available.
+.PARAMETER Krbd
+No description available.
+.PARAMETER FsName
+No description available.
+.PARAMETER Datastore
+No description available.
+.PARAMETER Bwlimit
+No description available.
+.PARAMETER Format
+No description available.
+.PARAMETER Preallocation
+No description available.
+.PARAMETER Base
+No description available.
+.PARAMETER SaferemoveThroughput
+No description available.
+.PARAMETER Pool
+No description available.
+.PARAMETER Shared
+No description available.
+.PARAMETER PruneBackups
+No description available.
 .PARAMETER CreateBasePath
+No description available.
+.PARAMETER Thinpool
+No description available.
+.PARAMETER EncryptionKey
+No description available.
+.PARAMETER Mkdir
+No description available.
+.PARAMETER Content
+No description available.
+.PARAMETER Target
+No description available.
+.PARAMETER Domain
+No description available.
+.PARAMETER Port
+No description available.
+.PARAMETER Fuse
+No description available.
+.PARAMETER Subdir
+No description available.
+.PARAMETER Authsupported
+No description available.
+.PARAMETER LioTpg
+No description available.
+.PARAMETER Smbversion
+No description available.
+.PARAMETER Nocow
+No description available.
+.PARAMETER Keyring
 No description available.
 .OUTPUTS
 
@@ -149,125 +149,19 @@ function Initialize-PVEPOSTStorageRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${ContentDirs},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Server2},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${DataPool},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Nowritecache},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Username},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${EncryptionKey},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Storage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Sparse},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${ComstarTg},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${SkipCertVerification},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${ComstarHg},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${TaggedOnly},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Saferemove},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("tcp", "rdma", "unix")]
-        [String]
-        ${Transport},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Authsupported},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Krbd},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Iscsiprovider},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Fuse},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Namespace},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ContentDirs},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Port},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Mkdir},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${SaferemoveThroughput},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Nodes},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Target},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Datastore},
+        ${Username},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Path},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Bwlimit},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Nocow},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Content},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${IsMountpoint},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Thinpool},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}")]
-        [String]
-        ${Fingerprint},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Base},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Domain},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("raw", "qcow2", "subvol", "vmdk")]
-        [String]
-        ${Format},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Keyring},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("default", "2.0", "2.1", "3", "3.0", "3.11")]
-        [String]
-        ${Smbversion},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Subdir},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Password},
@@ -275,138 +169,192 @@ function Initialize-PVEPOSTStorageRB {
         [String]
         ${Blocksize},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Shared},
+        [System.Nullable[Boolean]]
+        ${Disable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Volume},
+        ${IsMountpoint},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("tcp", "rdma", "unix")]
+        [String]
+        ${Transport},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Sparse},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Share},
+        ${MasterPubkey},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${FsName},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${MaxProtectedBackups},
+        [System.Nullable[Boolean]]
+        ${Saferemove},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Options},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Portal},
+        ${Export},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${MasterPubkey},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Mountpoint},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("off", "metadata", "falloc", "full")]
-        [String]
-        ${Preallocation},
+        ${Iscsiprovider},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${CreateSubdirs},
+        ${Maxfiles},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${PruneBackups},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Pool},
+        [System.Nullable[Int32]]
+        ${MaxProtectedBackups},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Vgname},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Server},
+        ${Nodes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${LioTpg},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Maxfiles},
+        ${Monhost},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Export},
+        ${ComstarHg},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${DataPool},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Volume},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${SkipCertVerification},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("btrfs", "cephfs", "cifs", "dir", "esxi", "glusterfs", "iscsi", "iscsidirect", "lvm", "lvmthin", "nfs", "pbs", "rbd", "zfs", "zfspool")]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}")]
         [String]
-        ${Monhost},
+        ${Fingerprint},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${TaggedOnly},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Nowritecache},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Storage},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Server},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${ComstarTg},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Share},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Mountpoint},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Portal},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${CreateSubdirs},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Krbd},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${FsName},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Datastore},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Bwlimit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("raw", "qcow2", "subvol", "vmdk")]
+        [String]
+        ${Format},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("off", "metadata", "falloc", "full")]
+        [String]
+        ${Preallocation},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Base},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${SaferemoveThroughput},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Pool},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Shared},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${PruneBackups},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${CreateBasePath},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Thinpool},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${EncryptionKey},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Mkdir},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Content},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Target},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Domain},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${CreateBasePath}
+        ${Port},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Fuse},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Subdir},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Authsupported},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${LioTpg},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("default", "2.0", "2.1", "3", "3.0", "3.11")]
+        [String]
+        ${Smbversion},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Nocow},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Keyring}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTStorageRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Nowritecache -and $Nowritecache -gt 1) {
-          throw "invalid value for 'Nowritecache', must be smaller than or equal to 1."
+        if (!$Password -and $Password.length -gt 256) {
+            throw "invalid value for 'Password', the character length must be smaller than or equal to 256."
         }
 
-        if ($Nowritecache -and $Nowritecache -lt 0) {
-          throw "invalid value for 'Nowritecache', must be greater than or equal to 0."
+        if ($MaxProtectedBackups -and $MaxProtectedBackups -lt -1) {
+          throw "invalid value for 'MaxProtectedBackups', must be greater than or equal to -1."
         }
 
-        if ($Sparse -and $Sparse -gt 1) {
-          throw "invalid value for 'Sparse', must be smaller than or equal to 1."
-        }
-
-        if ($Sparse -and $Sparse -lt 0) {
-          throw "invalid value for 'Sparse', must be greater than or equal to 0."
-        }
-
-        if ($SkipCertVerification -and $SkipCertVerification -gt 1) {
-          throw "invalid value for 'SkipCertVerification', must be smaller than or equal to 1."
-        }
-
-        if ($SkipCertVerification -and $SkipCertVerification -lt 0) {
-          throw "invalid value for 'SkipCertVerification', must be greater than or equal to 0."
-        }
-
-        if ($TaggedOnly -and $TaggedOnly -gt 1) {
-          throw "invalid value for 'TaggedOnly', must be smaller than or equal to 1."
-        }
-
-        if ($TaggedOnly -and $TaggedOnly -lt 0) {
-          throw "invalid value for 'TaggedOnly', must be greater than or equal to 0."
-        }
-
-        if ($Disable -and $Disable -gt 1) {
-          throw "invalid value for 'Disable', must be smaller than or equal to 1."
-        }
-
-        if ($Disable -and $Disable -lt 0) {
-          throw "invalid value for 'Disable', must be greater than or equal to 0."
-        }
-
-        if ($Saferemove -and $Saferemove -gt 1) {
-          throw "invalid value for 'Saferemove', must be smaller than or equal to 1."
-        }
-
-        if ($Saferemove -and $Saferemove -lt 0) {
-          throw "invalid value for 'Saferemove', must be greater than or equal to 0."
-        }
-
-        if ($Krbd -and $Krbd -gt 1) {
-          throw "invalid value for 'Krbd', must be smaller than or equal to 1."
-        }
-
-        if ($Krbd -and $Krbd -lt 0) {
-          throw "invalid value for 'Krbd', must be greater than or equal to 0."
-        }
-
-        if ($Fuse -and $Fuse -gt 1) {
-          throw "invalid value for 'Fuse', must be smaller than or equal to 1."
-        }
-
-        if ($Fuse -and $Fuse -lt 0) {
-          throw "invalid value for 'Fuse', must be greater than or equal to 0."
+        if (!$Domain -and $Domain.length -gt 256) {
+            throw "invalid value for 'Domain', the character length must be smaller than or equal to 256."
         }
 
         if ($Port -and $Port -gt 65535) {
@@ -417,67 +365,15 @@ function Initialize-PVEPOSTStorageRB {
           throw "invalid value for 'Port', must be greater than or equal to 1."
         }
 
-        if ($Mkdir -and $Mkdir -gt 1) {
-          throw "invalid value for 'Mkdir', must be smaller than or equal to 1."
-        }
-
-        if ($Mkdir -and $Mkdir -lt 0) {
-          throw "invalid value for 'Mkdir', must be greater than or equal to 0."
-        }
-
-        if ($Nocow -and $Nocow -gt 1) {
-          throw "invalid value for 'Nocow', must be smaller than or equal to 1."
-        }
-
-        if ($Nocow -and $Nocow -lt 0) {
-          throw "invalid value for 'Nocow', must be greater than or equal to 0."
-        }
-
-        if (!$Domain -and $Domain.length -gt 256) {
-            throw "invalid value for 'Domain', the character length must be smaller than or equal to 256."
-        }
-
-        if (!$Password -and $Password.length -gt 256) {
-            throw "invalid value for 'Password', the character length must be smaller than or equal to 256."
-        }
-
-        if ($Shared -and $Shared -gt 1) {
-          throw "invalid value for 'Shared', must be smaller than or equal to 1."
-        }
-
-        if ($Shared -and $Shared -lt 0) {
-          throw "invalid value for 'Shared', must be greater than or equal to 0."
-        }
-
-        if ($MaxProtectedBackups -and $MaxProtectedBackups -lt -1) {
-          throw "invalid value for 'MaxProtectedBackups', must be greater than or equal to -1."
-        }
-
-        if ($CreateSubdirs -and $CreateSubdirs -gt 1) {
-          throw "invalid value for 'CreateSubdirs', must be smaller than or equal to 1."
-        }
-
-        if ($CreateSubdirs -and $CreateSubdirs -lt 0) {
-          throw "invalid value for 'CreateSubdirs', must be greater than or equal to 0."
-        }
-
-        if ($CreateBasePath -and $CreateBasePath -gt 1) {
-          throw "invalid value for 'CreateBasePath', must be smaller than or equal to 1."
-        }
-
-        if ($CreateBasePath -and $CreateBasePath -lt 0) {
-          throw "invalid value for 'CreateBasePath', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Server2"="server2"; "DataPool"="data-pool"; "Nowritecache"="nowritecache"; "Username"="username"; "EncryptionKey"="encryption-key"; "Storage"="storage"; "Sparse"="sparse"; "ComstarTg"="comstar_tg"; "SkipCertVerification"="skip-cert-verification"; "ComstarHg"="comstar_hg"; "TaggedOnly"="tagged_only"; "Disable"="disable"; "Saferemove"="saferemove"; "Transport"="transport"; "Authsupported"="authsupported"; "Krbd"="krbd"; "Iscsiprovider"="iscsiprovider"; "Fuse"="fuse"; "Namespace"="namespace"; "ContentDirs"="content-dirs"; "Port"="port"; "Mkdir"="mkdir"; "SaferemoveThroughput"="saferemove_throughput"; "Nodes"="nodes"; "Target"="target"; "Datastore"="datastore"; "Path"="path"; "Bwlimit"="bwlimit"; "Nocow"="nocow"; "Content"="content"; "IsMountpoint"="is_mountpoint"; "Thinpool"="thinpool"; "Fingerprint"="fingerprint"; "Base"="base"; "Domain"="domain"; "Format"="format"; "Keyring"="keyring"; "Smbversion"="smbversion"; "Subdir"="subdir"; "Password"="password"; "Blocksize"="blocksize"; "Shared"="shared"; "Volume"="volume"; "Share"="share"; "FsName"="fs-name"; "MaxProtectedBackups"="max-protected-backups"; "Options"="options"; "Portal"="portal"; "MasterPubkey"="master-pubkey"; "Mountpoint"="mountpoint"; "Preallocation"="preallocation"; "CreateSubdirs"="create-subdirs"; "PruneBackups"="prune-backups"; "Pool"="pool"; "Vgname"="vgname"; "Server"="server"; "LioTpg"="lio_tpg"; "Maxfiles"="maxfiles"; "Export"="export"; "Type"="type"; "Monhost"="monhost"; "CreateBasePath"="create-base-path"
+			"ContentDirs"="content-dirs"; "Server2"="server2"; "Namespace"="namespace"; "Username"="username"; "Path"="path"; "Password"="password"; "Blocksize"="blocksize"; "Disable"="disable"; "IsMountpoint"="is_mountpoint"; "Transport"="transport"; "Sparse"="sparse"; "MasterPubkey"="master-pubkey"; "Saferemove"="saferemove"; "Options"="options"; "Export"="export"; "Iscsiprovider"="iscsiprovider"; "Maxfiles"="maxfiles"; "MaxProtectedBackups"="max-protected-backups"; "Vgname"="vgname"; "Nodes"="nodes"; "Monhost"="monhost"; "ComstarHg"="comstar_hg"; "DataPool"="data-pool"; "Volume"="volume"; "SkipCertVerification"="skip-cert-verification"; "Type"="type"; "Fingerprint"="fingerprint"; "TaggedOnly"="tagged_only"; "Nowritecache"="nowritecache"; "Storage"="storage"; "Server"="server"; "ComstarTg"="comstar_tg"; "Share"="share"; "Mountpoint"="mountpoint"; "Portal"="portal"; "CreateSubdirs"="create-subdirs"; "Krbd"="krbd"; "FsName"="fs-name"; "Datastore"="datastore"; "Bwlimit"="bwlimit"; "Format"="format"; "Preallocation"="preallocation"; "Base"="base"; "SaferemoveThroughput"="saferemove_throughput"; "Pool"="pool"; "Shared"="shared"; "PruneBackups"="prune-backups"; "CreateBasePath"="create-base-path"; "Thinpool"="thinpool"; "EncryptionKey"="encryption-key"; "Mkdir"="mkdir"; "Content"="content"; "Target"="target"; "Domain"="domain"; "Port"="port"; "Fuse"="fuse"; "Subdir"="subdir"; "Authsupported"="authsupported"; "LioTpg"="lio_tpg"; "Smbversion"="smbversion"; "Nocow"="nocow"; "Keyring"="keyring"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -517,125 +413,11 @@ function ConvertFrom-PVEJsonToPOSTStorageRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTStorageRB
-        $AllProperties = ("server2", "data-pool", "nowritecache", "username", "encryption-key", "storage", "sparse", "comstar_tg", "skip-cert-verification", "comstar_hg", "tagged_only", "disable", "saferemove", "transport", "authsupported", "krbd", "iscsiprovider", "fuse", "namespace", "content-dirs", "port", "mkdir", "saferemove_throughput", "nodes", "target", "datastore", "path", "bwlimit", "nocow", "content", "is_mountpoint", "thinpool", "fingerprint", "base", "domain", "format", "keyring", "smbversion", "subdir", "password", "blocksize", "shared", "volume", "share", "fs-name", "max-protected-backups", "options", "portal", "master-pubkey", "mountpoint", "preallocation", "create-subdirs", "prune-backups", "pool", "vgname", "server", "lio_tpg", "maxfiles", "export", "type", "monhost", "create-base-path")
+        $AllProperties = ("content-dirs", "server2", "namespace", "username", "path", "password", "blocksize", "disable", "is_mountpoint", "transport", "sparse", "master-pubkey", "saferemove", "options", "export", "iscsiprovider", "maxfiles", "max-protected-backups", "vgname", "nodes", "monhost", "comstar_hg", "data-pool", "volume", "skip-cert-verification", "type", "fingerprint", "tagged_only", "nowritecache", "storage", "server", "comstar_tg", "share", "mountpoint", "portal", "create-subdirs", "krbd", "fs-name", "datastore", "bwlimit", "format", "preallocation", "base", "saferemove_throughput", "pool", "shared", "prune-backups", "create-base-path", "thinpool", "encryption-key", "mkdir", "content", "target", "domain", "port", "fuse", "subdir", "authsupported", "lio_tpg", "smbversion", "nocow", "keyring")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server2"))) { #optional property not found
-            $Server2 = $null
-        } else {
-            $Server2 = $JsonParameters.PSobject.Properties["server2"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data-pool"))) { #optional property not found
-            $DataPool = $null
-        } else {
-            $DataPool = $JsonParameters.PSobject.Properties["data-pool"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nowritecache"))) { #optional property not found
-            $Nowritecache = $null
-        } else {
-            $Nowritecache = $JsonParameters.PSobject.Properties["nowritecache"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
-            $Username = $null
-        } else {
-            $Username = $JsonParameters.PSobject.Properties["username"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "encryption-key"))) { #optional property not found
-            $EncryptionKey = $null
-        } else {
-            $EncryptionKey = $JsonParameters.PSobject.Properties["encryption-key"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sparse"))) { #optional property not found
-            $Sparse = $null
-        } else {
-            $Sparse = $JsonParameters.PSobject.Properties["sparse"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comstar_tg"))) { #optional property not found
-            $ComstarTg = $null
-        } else {
-            $ComstarTg = $JsonParameters.PSobject.Properties["comstar_tg"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skip-cert-verification"))) { #optional property not found
-            $SkipCertVerification = $null
-        } else {
-            $SkipCertVerification = $JsonParameters.PSobject.Properties["skip-cert-verification"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comstar_hg"))) { #optional property not found
-            $ComstarHg = $null
-        } else {
-            $ComstarHg = $JsonParameters.PSobject.Properties["comstar_hg"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tagged_only"))) { #optional property not found
-            $TaggedOnly = $null
-        } else {
-            $TaggedOnly = $JsonParameters.PSobject.Properties["tagged_only"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
-        } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "saferemove"))) { #optional property not found
-            $Saferemove = $null
-        } else {
-            $Saferemove = $JsonParameters.PSobject.Properties["saferemove"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "transport"))) { #optional property not found
-            $Transport = $null
-        } else {
-            $Transport = $JsonParameters.PSobject.Properties["transport"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "authsupported"))) { #optional property not found
-            $Authsupported = $null
-        } else {
-            $Authsupported = $JsonParameters.PSobject.Properties["authsupported"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "krbd"))) { #optional property not found
-            $Krbd = $null
-        } else {
-            $Krbd = $JsonParameters.PSobject.Properties["krbd"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "iscsiprovider"))) { #optional property not found
-            $Iscsiprovider = $null
-        } else {
-            $Iscsiprovider = $JsonParameters.PSobject.Properties["iscsiprovider"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fuse"))) { #optional property not found
-            $Fuse = $null
-        } else {
-            $Fuse = $JsonParameters.PSobject.Properties["fuse"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "namespace"))) { #optional property not found
-            $Namespace = $null
-        } else {
-            $Namespace = $JsonParameters.PSobject.Properties["namespace"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "content-dirs"))) { #optional property not found
@@ -644,118 +426,28 @@ function ConvertFrom-PVEJsonToPOSTStorageRB {
             $ContentDirs = $JsonParameters.PSobject.Properties["content-dirs"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
-            $Port = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server2"))) { #optional property not found
+            $Server2 = $null
         } else {
-            $Port = $JsonParameters.PSobject.Properties["port"].value
+            $Server2 = $JsonParameters.PSobject.Properties["server2"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mkdir"))) { #optional property not found
-            $Mkdir = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "namespace"))) { #optional property not found
+            $Namespace = $null
         } else {
-            $Mkdir = $JsonParameters.PSobject.Properties["mkdir"].value
+            $Namespace = $JsonParameters.PSobject.Properties["namespace"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "saferemove_throughput"))) { #optional property not found
-            $SaferemoveThroughput = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username"))) { #optional property not found
+            $Username = $null
         } else {
-            $SaferemoveThroughput = $JsonParameters.PSobject.Properties["saferemove_throughput"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
-            $Nodes = $null
-        } else {
-            $Nodes = $JsonParameters.PSobject.Properties["nodes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
-            $Target = $null
-        } else {
-            $Target = $JsonParameters.PSobject.Properties["target"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "datastore"))) { #optional property not found
-            $Datastore = $null
-        } else {
-            $Datastore = $JsonParameters.PSobject.Properties["datastore"].value
+            $Username = $JsonParameters.PSobject.Properties["username"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
             $Path = $null
         } else {
             $Path = $JsonParameters.PSobject.Properties["path"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
-            $Bwlimit = $null
-        } else {
-            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nocow"))) { #optional property not found
-            $Nocow = $null
-        } else {
-            $Nocow = $JsonParameters.PSobject.Properties["nocow"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
-            $Content = $null
-        } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "is_mountpoint"))) { #optional property not found
-            $IsMountpoint = $null
-        } else {
-            $IsMountpoint = $JsonParameters.PSobject.Properties["is_mountpoint"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "thinpool"))) { #optional property not found
-            $Thinpool = $null
-        } else {
-            $Thinpool = $JsonParameters.PSobject.Properties["thinpool"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fingerprint"))) { #optional property not found
-            $Fingerprint = $null
-        } else {
-            $Fingerprint = $JsonParameters.PSobject.Properties["fingerprint"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "base"))) { #optional property not found
-            $Base = $null
-        } else {
-            $Base = $JsonParameters.PSobject.Properties["base"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "domain"))) { #optional property not found
-            $Domain = $null
-        } else {
-            $Domain = $JsonParameters.PSobject.Properties["domain"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "format"))) { #optional property not found
-            $Format = $null
-        } else {
-            $Format = $JsonParameters.PSobject.Properties["format"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keyring"))) { #optional property not found
-            $Keyring = $null
-        } else {
-            $Keyring = $JsonParameters.PSobject.Properties["keyring"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "smbversion"))) { #optional property not found
-            $Smbversion = $null
-        } else {
-            $Smbversion = $JsonParameters.PSobject.Properties["smbversion"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subdir"))) { #optional property not found
-            $Subdir = $null
-        } else {
-            $Subdir = $JsonParameters.PSobject.Properties["subdir"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
@@ -770,46 +462,28 @@ function ConvertFrom-PVEJsonToPOSTStorageRB {
             $Blocksize = $JsonParameters.PSobject.Properties["blocksize"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "shared"))) { #optional property not found
-            $Shared = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
         } else {
-            $Shared = $JsonParameters.PSobject.Properties["shared"].value
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volume"))) { #optional property not found
-            $Volume = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "is_mountpoint"))) { #optional property not found
+            $IsMountpoint = $null
         } else {
-            $Volume = $JsonParameters.PSobject.Properties["volume"].value
+            $IsMountpoint = $JsonParameters.PSobject.Properties["is_mountpoint"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "share"))) { #optional property not found
-            $Share = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "transport"))) { #optional property not found
+            $Transport = $null
         } else {
-            $Share = $JsonParameters.PSobject.Properties["share"].value
+            $Transport = $JsonParameters.PSobject.Properties["transport"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fs-name"))) { #optional property not found
-            $FsName = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sparse"))) { #optional property not found
+            $Sparse = $null
         } else {
-            $FsName = $JsonParameters.PSobject.Properties["fs-name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max-protected-backups"))) { #optional property not found
-            $MaxProtectedBackups = $null
-        } else {
-            $MaxProtectedBackups = $JsonParameters.PSobject.Properties["max-protected-backups"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "options"))) { #optional property not found
-            $Options = $null
-        } else {
-            $Options = $JsonParameters.PSobject.Properties["options"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "portal"))) { #optional property not found
-            $Portal = $null
-        } else {
-            $Portal = $JsonParameters.PSobject.Properties["portal"].value
+            $Sparse = $JsonParameters.PSobject.Properties["sparse"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "master-pubkey"))) { #optional property not found
@@ -818,58 +492,16 @@ function ConvertFrom-PVEJsonToPOSTStorageRB {
             $MasterPubkey = $JsonParameters.PSobject.Properties["master-pubkey"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mountpoint"))) { #optional property not found
-            $Mountpoint = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "saferemove"))) { #optional property not found
+            $Saferemove = $null
         } else {
-            $Mountpoint = $JsonParameters.PSobject.Properties["mountpoint"].value
+            $Saferemove = $JsonParameters.PSobject.Properties["saferemove"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "preallocation"))) { #optional property not found
-            $Preallocation = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "options"))) { #optional property not found
+            $Options = $null
         } else {
-            $Preallocation = $JsonParameters.PSobject.Properties["preallocation"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "create-subdirs"))) { #optional property not found
-            $CreateSubdirs = $null
-        } else {
-            $CreateSubdirs = $JsonParameters.PSobject.Properties["create-subdirs"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prune-backups"))) { #optional property not found
-            $PruneBackups = $null
-        } else {
-            $PruneBackups = $JsonParameters.PSobject.Properties["prune-backups"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool"))) { #optional property not found
-            $Pool = $null
-        } else {
-            $Pool = $JsonParameters.PSobject.Properties["pool"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vgname"))) { #optional property not found
-            $Vgname = $null
-        } else {
-            $Vgname = $JsonParameters.PSobject.Properties["vgname"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
-            $Server = $null
-        } else {
-            $Server = $JsonParameters.PSobject.Properties["server"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lio_tpg"))) { #optional property not found
-            $LioTpg = $null
-        } else {
-            $LioTpg = $JsonParameters.PSobject.Properties["lio_tpg"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxfiles"))) { #optional property not found
-            $Maxfiles = $null
-        } else {
-            $Maxfiles = $JsonParameters.PSobject.Properties["maxfiles"].value
+            $Options = $JsonParameters.PSobject.Properties["options"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "export"))) { #optional property not found
@@ -878,10 +510,34 @@ function ConvertFrom-PVEJsonToPOSTStorageRB {
             $Export = $JsonParameters.PSobject.Properties["export"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "iscsiprovider"))) { #optional property not found
+            $Iscsiprovider = $null
         } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
+            $Iscsiprovider = $JsonParameters.PSobject.Properties["iscsiprovider"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxfiles"))) { #optional property not found
+            $Maxfiles = $null
+        } else {
+            $Maxfiles = $JsonParameters.PSobject.Properties["maxfiles"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max-protected-backups"))) { #optional property not found
+            $MaxProtectedBackups = $null
+        } else {
+            $MaxProtectedBackups = $JsonParameters.PSobject.Properties["max-protected-backups"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vgname"))) { #optional property not found
+            $Vgname = $null
+        } else {
+            $Vgname = $JsonParameters.PSobject.Properties["vgname"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
+            $Nodes = $null
+        } else {
+            $Nodes = $JsonParameters.PSobject.Properties["nodes"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "monhost"))) { #optional property not found
@@ -890,75 +546,315 @@ function ConvertFrom-PVEJsonToPOSTStorageRB {
             $Monhost = $JsonParameters.PSobject.Properties["monhost"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comstar_hg"))) { #optional property not found
+            $ComstarHg = $null
+        } else {
+            $ComstarHg = $JsonParameters.PSobject.Properties["comstar_hg"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data-pool"))) { #optional property not found
+            $DataPool = $null
+        } else {
+            $DataPool = $JsonParameters.PSobject.Properties["data-pool"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volume"))) { #optional property not found
+            $Volume = $null
+        } else {
+            $Volume = $JsonParameters.PSobject.Properties["volume"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skip-cert-verification"))) { #optional property not found
+            $SkipCertVerification = $null
+        } else {
+            $SkipCertVerification = $JsonParameters.PSobject.Properties["skip-cert-verification"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fingerprint"))) { #optional property not found
+            $Fingerprint = $null
+        } else {
+            $Fingerprint = $JsonParameters.PSobject.Properties["fingerprint"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tagged_only"))) { #optional property not found
+            $TaggedOnly = $null
+        } else {
+            $TaggedOnly = $JsonParameters.PSobject.Properties["tagged_only"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nowritecache"))) { #optional property not found
+            $Nowritecache = $null
+        } else {
+            $Nowritecache = $JsonParameters.PSobject.Properties["nowritecache"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
+            $Storage = $null
+        } else {
+            $Storage = $JsonParameters.PSobject.Properties["storage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server"))) { #optional property not found
+            $Server = $null
+        } else {
+            $Server = $JsonParameters.PSobject.Properties["server"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comstar_tg"))) { #optional property not found
+            $ComstarTg = $null
+        } else {
+            $ComstarTg = $JsonParameters.PSobject.Properties["comstar_tg"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "share"))) { #optional property not found
+            $Share = $null
+        } else {
+            $Share = $JsonParameters.PSobject.Properties["share"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mountpoint"))) { #optional property not found
+            $Mountpoint = $null
+        } else {
+            $Mountpoint = $JsonParameters.PSobject.Properties["mountpoint"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "portal"))) { #optional property not found
+            $Portal = $null
+        } else {
+            $Portal = $JsonParameters.PSobject.Properties["portal"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "create-subdirs"))) { #optional property not found
+            $CreateSubdirs = $null
+        } else {
+            $CreateSubdirs = $JsonParameters.PSobject.Properties["create-subdirs"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "krbd"))) { #optional property not found
+            $Krbd = $null
+        } else {
+            $Krbd = $JsonParameters.PSobject.Properties["krbd"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fs-name"))) { #optional property not found
+            $FsName = $null
+        } else {
+            $FsName = $JsonParameters.PSobject.Properties["fs-name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "datastore"))) { #optional property not found
+            $Datastore = $null
+        } else {
+            $Datastore = $JsonParameters.PSobject.Properties["datastore"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
+            $Bwlimit = $null
+        } else {
+            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "format"))) { #optional property not found
+            $Format = $null
+        } else {
+            $Format = $JsonParameters.PSobject.Properties["format"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "preallocation"))) { #optional property not found
+            $Preallocation = $null
+        } else {
+            $Preallocation = $JsonParameters.PSobject.Properties["preallocation"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "base"))) { #optional property not found
+            $Base = $null
+        } else {
+            $Base = $JsonParameters.PSobject.Properties["base"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "saferemove_throughput"))) { #optional property not found
+            $SaferemoveThroughput = $null
+        } else {
+            $SaferemoveThroughput = $JsonParameters.PSobject.Properties["saferemove_throughput"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool"))) { #optional property not found
+            $Pool = $null
+        } else {
+            $Pool = $JsonParameters.PSobject.Properties["pool"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "shared"))) { #optional property not found
+            $Shared = $null
+        } else {
+            $Shared = $JsonParameters.PSobject.Properties["shared"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prune-backups"))) { #optional property not found
+            $PruneBackups = $null
+        } else {
+            $PruneBackups = $JsonParameters.PSobject.Properties["prune-backups"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "create-base-path"))) { #optional property not found
             $CreateBasePath = $null
         } else {
             $CreateBasePath = $JsonParameters.PSobject.Properties["create-base-path"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "thinpool"))) { #optional property not found
+            $Thinpool = $null
+        } else {
+            $Thinpool = $JsonParameters.PSobject.Properties["thinpool"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "encryption-key"))) { #optional property not found
+            $EncryptionKey = $null
+        } else {
+            $EncryptionKey = $JsonParameters.PSobject.Properties["encryption-key"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mkdir"))) { #optional property not found
+            $Mkdir = $null
+        } else {
+            $Mkdir = $JsonParameters.PSobject.Properties["mkdir"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
+            $Content = $null
+        } else {
+            $Content = $JsonParameters.PSobject.Properties["content"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
+            $Target = $null
+        } else {
+            $Target = $JsonParameters.PSobject.Properties["target"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "domain"))) { #optional property not found
+            $Domain = $null
+        } else {
+            $Domain = $JsonParameters.PSobject.Properties["domain"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
+            $Port = $null
+        } else {
+            $Port = $JsonParameters.PSobject.Properties["port"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fuse"))) { #optional property not found
+            $Fuse = $null
+        } else {
+            $Fuse = $JsonParameters.PSobject.Properties["fuse"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subdir"))) { #optional property not found
+            $Subdir = $null
+        } else {
+            $Subdir = $JsonParameters.PSobject.Properties["subdir"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "authsupported"))) { #optional property not found
+            $Authsupported = $null
+        } else {
+            $Authsupported = $JsonParameters.PSobject.Properties["authsupported"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lio_tpg"))) { #optional property not found
+            $LioTpg = $null
+        } else {
+            $LioTpg = $JsonParameters.PSobject.Properties["lio_tpg"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "smbversion"))) { #optional property not found
+            $Smbversion = $null
+        } else {
+            $Smbversion = $JsonParameters.PSobject.Properties["smbversion"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nocow"))) { #optional property not found
+            $Nocow = $null
+        } else {
+            $Nocow = $JsonParameters.PSobject.Properties["nocow"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keyring"))) { #optional property not found
+            $Keyring = $null
+        } else {
+            $Keyring = $JsonParameters.PSobject.Properties["keyring"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "server2" = ${Server2}
-            "data-pool" = ${DataPool}
-            "nowritecache" = ${Nowritecache}
-            "username" = ${Username}
-            "encryption-key" = ${EncryptionKey}
-            "storage" = ${Storage}
-            "sparse" = ${Sparse}
-            "comstar_tg" = ${ComstarTg}
-            "skip-cert-verification" = ${SkipCertVerification}
-            "comstar_hg" = ${ComstarHg}
-            "tagged_only" = ${TaggedOnly}
-            "disable" = ${Disable}
-            "saferemove" = ${Saferemove}
-            "transport" = ${Transport}
-            "authsupported" = ${Authsupported}
-            "krbd" = ${Krbd}
-            "iscsiprovider" = ${Iscsiprovider}
-            "fuse" = ${Fuse}
-            "namespace" = ${Namespace}
             "content-dirs" = ${ContentDirs}
-            "port" = ${Port}
-            "mkdir" = ${Mkdir}
-            "saferemove_throughput" = ${SaferemoveThroughput}
-            "nodes" = ${Nodes}
-            "target" = ${Target}
-            "datastore" = ${Datastore}
+            "server2" = ${Server2}
+            "namespace" = ${Namespace}
+            "username" = ${Username}
             "path" = ${Path}
-            "bwlimit" = ${Bwlimit}
-            "nocow" = ${Nocow}
-            "content" = ${Content}
-            "is_mountpoint" = ${IsMountpoint}
-            "thinpool" = ${Thinpool}
-            "fingerprint" = ${Fingerprint}
-            "base" = ${Base}
-            "domain" = ${Domain}
-            "format" = ${Format}
-            "keyring" = ${Keyring}
-            "smbversion" = ${Smbversion}
-            "subdir" = ${Subdir}
             "password" = ${Password}
             "blocksize" = ${Blocksize}
-            "shared" = ${Shared}
-            "volume" = ${Volume}
-            "share" = ${Share}
-            "fs-name" = ${FsName}
-            "max-protected-backups" = ${MaxProtectedBackups}
-            "options" = ${Options}
-            "portal" = ${Portal}
+            "disable" = ${Disable}
+            "is_mountpoint" = ${IsMountpoint}
+            "transport" = ${Transport}
+            "sparse" = ${Sparse}
             "master-pubkey" = ${MasterPubkey}
-            "mountpoint" = ${Mountpoint}
-            "preallocation" = ${Preallocation}
-            "create-subdirs" = ${CreateSubdirs}
-            "prune-backups" = ${PruneBackups}
-            "pool" = ${Pool}
-            "vgname" = ${Vgname}
-            "server" = ${Server}
-            "lio_tpg" = ${LioTpg}
-            "maxfiles" = ${Maxfiles}
+            "saferemove" = ${Saferemove}
+            "options" = ${Options}
             "export" = ${Export}
-            "type" = ${Type}
+            "iscsiprovider" = ${Iscsiprovider}
+            "maxfiles" = ${Maxfiles}
+            "max-protected-backups" = ${MaxProtectedBackups}
+            "vgname" = ${Vgname}
+            "nodes" = ${Nodes}
             "monhost" = ${Monhost}
+            "comstar_hg" = ${ComstarHg}
+            "data-pool" = ${DataPool}
+            "volume" = ${Volume}
+            "skip-cert-verification" = ${SkipCertVerification}
+            "type" = ${Type}
+            "fingerprint" = ${Fingerprint}
+            "tagged_only" = ${TaggedOnly}
+            "nowritecache" = ${Nowritecache}
+            "storage" = ${Storage}
+            "server" = ${Server}
+            "comstar_tg" = ${ComstarTg}
+            "share" = ${Share}
+            "mountpoint" = ${Mountpoint}
+            "portal" = ${Portal}
+            "create-subdirs" = ${CreateSubdirs}
+            "krbd" = ${Krbd}
+            "fs-name" = ${FsName}
+            "datastore" = ${Datastore}
+            "bwlimit" = ${Bwlimit}
+            "format" = ${Format}
+            "preallocation" = ${Preallocation}
+            "base" = ${Base}
+            "saferemove_throughput" = ${SaferemoveThroughput}
+            "pool" = ${Pool}
+            "shared" = ${Shared}
+            "prune-backups" = ${PruneBackups}
             "create-base-path" = ${CreateBasePath}
+            "thinpool" = ${Thinpool}
+            "encryption-key" = ${EncryptionKey}
+            "mkdir" = ${Mkdir}
+            "content" = ${Content}
+            "target" = ${Target}
+            "domain" = ${Domain}
+            "port" = ${Port}
+            "fuse" = ${Fuse}
+            "subdir" = ${Subdir}
+            "authsupported" = ${Authsupported}
+            "lio_tpg" = ${LioTpg}
+            "smbversion" = ${Smbversion}
+            "nocow" = ${Nocow}
+            "keyring" = ${Keyring}
         }
 
         return $PSO

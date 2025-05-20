@@ -3,45 +3,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Influxdbproto** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Timeout** | **Int32** |  | [optional] 
-**Mtu** | **Int32** |  | [optional] 
 **Path** | **String** |  | [optional] 
-**ApiPathPrefix** | **String** |  | [optional] 
-**Disable** | **Int32** |  | [optional] 
-**VerifyCertificate** | **Int32** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Bucket** | **String** |  | [optional] 
+**Mtu** | **Int32** |  | [optional] 
 **Port** | **Int32** |  | [optional] 
 **Server** | **String** |  | [optional] 
 **Organization** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Bucket** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**MaxBodySize** | **Int32** |  | [optional] 
+**Influxdbproto** | **String** |  | [optional] 
+**VerifyCertificate** | **Boolean** |  | [optional] 
 **Token** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**MaxBodySize** | **Int32** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**ApiPathPrefix** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterMetricsServerRB = Initialize-PVEPUTClusterMetricsServerRB  -Influxdbproto null `
- -Proto null `
+$PUTClusterMetricsServerRB = Initialize-PVEPUTClusterMetricsServerRB  -Path null `
  -Timeout null `
- -Mtu null `
- -Path null `
- -ApiPathPrefix null `
  -Disable null `
- -VerifyCertificate null `
+ -Bucket null `
+ -Mtu null `
  -Port null `
  -Server null `
  -Organization null `
- -Digest null `
- -Bucket null `
+ -Influxdbproto null `
+ -VerifyCertificate null `
+ -Token null `
  -Delete null `
- -Id null `
  -MaxBodySize null `
- -Token null
+ -Proto null `
+ -Digest null `
+ -ApiPathPrefix null
 ```
 
 - Convert the resource to JSON

@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER State
-No description available.
 .PARAMETER RedirectUrl
 No description available.
 .PARAMETER Code
+No description available.
+.PARAMETER State
 No description available.
 .OUTPUTS
 
@@ -31,22 +31,18 @@ function Initialize-PVEPOSTAccessOpenidLoginRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${State},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${RedirectUrl},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Code}
+        ${Code},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${State}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTAccessOpenidLoginRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if (!$State -and $State.length -gt 1024) {
-            throw "invalid value for 'State', the character length must be smaller than or equal to 1024."
-        }
 
         if (!$RedirectUrl -and $RedirectUrl.length -gt 255) {
             throw "invalid value for 'RedirectUrl', the character length must be smaller than or equal to 255."
@@ -56,15 +52,19 @@ function Initialize-PVEPOSTAccessOpenidLoginRB {
             throw "invalid value for 'Code', the character length must be smaller than or equal to 4096."
         }
 
+        if (!$State -and $State.length -gt 1024) {
+            throw "invalid value for 'State', the character length must be smaller than or equal to 1024."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"State"="state"; "RedirectUrl"="redirect-url"; "Code"="code"
+			"RedirectUrl"="redirect-url"; "Code"="code"; "State"="state"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -104,17 +104,11 @@ function ConvertFrom-PVEJsonToPOSTAccessOpenidLoginRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTAccessOpenidLoginRB
-        $AllProperties = ("state", "redirect-url", "code")
+        $AllProperties = ("redirect-url", "code", "state")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
-            $State = $null
-        } else {
-            $State = $JsonParameters.PSobject.Properties["state"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "redirect-url"))) { #optional property not found
@@ -129,10 +123,16 @@ function ConvertFrom-PVEJsonToPOSTAccessOpenidLoginRB {
             $Code = $JsonParameters.PSobject.Properties["code"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
+            $State = $null
+        } else {
+            $State = $JsonParameters.PSobject.Properties["state"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "state" = ${State}
             "redirect-url" = ${RedirectUrl}
             "code" = ${Code}
+            "state" = ${State}
         }
 
         return $PSO

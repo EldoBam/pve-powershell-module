@@ -36,21 +36,13 @@ function Initialize-PVEAccessRolesGETInner {
         [String]
         ${Privs},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Special}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEAccessRolesGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Special -and $Special -gt 1) {
-          throw "invalid value for 'Special', must be smaller than or equal to 1."
-        }
-
-        if ($Special -and $Special -lt 0) {
-          throw "invalid value for 'Special', must be greater than or equal to 0."
-        }
 
 
 		 $DisplayNameMapping =@{
@@ -60,7 +52,7 @@ function Initialize-PVEAccessRolesGETInner {
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ

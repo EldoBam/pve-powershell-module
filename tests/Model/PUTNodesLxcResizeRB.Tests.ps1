@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTNodesLxcResizeRB' {
     Context 'PVEPUTNodesLxcResizeRB' {
         It 'Initialize-PVEPUTNodesLxcResizeRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTNodesLxcResizeRB -Size "TEST_VALUE" -Disk "TEST_VALUE" -Digest "TEST_VALUE" -Vmid "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTNodesLxcResizeRB -Size "TEST_VALUE" -Digest "TEST_VALUE" -Disk "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTNodesLxcResizeRB
             #$NewObject.property | Should -Be 0
         }

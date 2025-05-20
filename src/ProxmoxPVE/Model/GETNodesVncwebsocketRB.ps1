@@ -19,8 +19,6 @@ No description available.
 No description available.
 .PARAMETER Vncticket
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 GETNodesVncwebsocketRB<PSCustomObject>
@@ -34,10 +32,7 @@ function Initialize-PVEGETNodesVncwebsocketRB {
         ${Port},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vncticket},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Vncticket}
     )
 
     Process {
@@ -58,13 +53,13 @@ function Initialize-PVEGETNodesVncwebsocketRB {
 
 
 		 $DisplayNameMapping =@{
-			"Port"="port"; "Vncticket"="vncticket"; "Node"="node"
+			"Port"="port"; "Vncticket"="vncticket"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -104,7 +99,7 @@ function ConvertFrom-PVEJsonToGETNodesVncwebsocketRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesVncwebsocketRB
-        $AllProperties = ("port", "vncticket", "node")
+        $AllProperties = ("port", "vncticket")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -123,16 +118,9 @@ function ConvertFrom-PVEJsonToGETNodesVncwebsocketRB {
             $Vncticket = $JsonParameters.PSobject.Properties["vncticket"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "port" = ${Port}
             "vncticket" = ${Vncticket}
-            "node" = ${Node}
         }
 
         return $PSO

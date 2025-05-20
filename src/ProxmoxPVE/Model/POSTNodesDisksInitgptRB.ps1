@@ -15,11 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Uuid
-No description available.
 .PARAMETER Disk
 No description available.
-.PARAMETER Node
+.PARAMETER Uuid
 No description available.
 .OUTPUTS
 
@@ -30,16 +28,13 @@ function Initialize-PVEPOSTNodesDisksInitgptRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("[a-fA-F0-9\-]+")]
-        [String]
-        ${Uuid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("^/dev/[a-zA-Z0-9/]+$")]
         [String]
         ${Disk},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("[a-fA-F0-9\-]+")]
         [String]
-        ${Node}
+        ${Uuid}
     )
 
     Process {
@@ -52,13 +47,13 @@ function Initialize-PVEPOSTNodesDisksInitgptRB {
 
 
 		 $DisplayNameMapping =@{
-			"Uuid"="uuid"; "Disk"="disk"; "Node"="node"
+			"Disk"="disk"; "Uuid"="uuid"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -98,17 +93,11 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksInitgptRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesDisksInitgptRB
-        $AllProperties = ("uuid", "disk", "node")
+        $AllProperties = ("disk", "uuid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "uuid"))) { #optional property not found
-            $Uuid = $null
-        } else {
-            $Uuid = $JsonParameters.PSobject.Properties["uuid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "disk"))) { #optional property not found
@@ -117,16 +106,15 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksInitgptRB {
             $Disk = $JsonParameters.PSobject.Properties["disk"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "uuid"))) { #optional property not found
+            $Uuid = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Uuid = $JsonParameters.PSobject.Properties["uuid"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "uuid" = ${Uuid}
             "disk" = ${Disk}
-            "node" = ${Node}
+            "uuid" = ${Uuid}
         }
 
         return $PSO

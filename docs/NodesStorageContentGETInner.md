@@ -3,33 +3,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ctime** | **Int32** |  | [optional] 
-**Notes** | **String** |  | [optional] 
-**Format** | **String** |  | [optional] 
-**Protected** | **Int32** |  | [optional] 
-**Volid** | **String** |  | [optional] 
-**Verification** | [**NodesStorageContentGETInnerVerification**](NodesStorageContentGETInnerVerification.md) |  | [optional] 
+**Size** | **Int32** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
 **Parent** | **String** |  | [optional] 
 **Encrypted** | **String** |  | [optional] 
+**Protected** | **Boolean** |  | [optional] 
+**Format** | **String** |  | [optional] 
+**Ctime** | **Int32** |  | [optional] 
+**Volid** | **String** |  | [optional] 
 **Used** | **Int32** |  | [optional] 
-**Size** | **Int32** |  | [optional] 
+**Verification** | [**NodesStorageContentGETInnerVerification**](NodesStorageContentGETInnerVerification.md) |  | [optional] 
+**Notes** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStorageContentGETInner = Initialize-PVENodesStorageContentGETInner  -Ctime null `
- -Notes null `
- -Format null `
- -Protected null `
- -Volid null `
- -Verification null `
+$NodesStorageContentGETInner = Initialize-PVENodesStorageContentGETInner  -Size null `
  -Vmid null `
  -Parent null `
  -Encrypted null `
+ -Protected null `
+ -Format null `
+ -Ctime null `
+ -Volid null `
  -Used null `
- -Size null
+ -Verification null `
+ -Notes null
 ```
 
 - Convert the resource to JSON

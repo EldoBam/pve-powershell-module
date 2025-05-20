@@ -28,7 +28,7 @@ function Initialize-PVENodesQemuAgentFileread {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Truncated},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
@@ -39,14 +39,6 @@ function Initialize-PVENodesQemuAgentFileread {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesQemuAgentFileread' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Truncated -and $Truncated -gt 1) {
-          throw "invalid value for 'Truncated', must be smaller than or equal to 1."
-        }
-
-        if ($Truncated -and $Truncated -lt 0) {
-          throw "invalid value for 'Truncated', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
 			"Truncated"="truncated"; "Content"="content"
@@ -55,7 +47,7 @@ function Initialize-PVENodesQemuAgentFileread {
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ

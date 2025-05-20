@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterSdnVnetsSubnetsRB' {
     Context 'PVEPUTClusterSdnVnetsSubnetsRB' {
         It 'Initialize-PVEPUTClusterSdnVnetsSubnetsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterSdnVnetsSubnetsRB -Delete "TEST_VALUE" -DhcpDnsServer "TEST_VALUE" -Gateway "TEST_VALUE" -Vnet "TEST_VALUE" -DhcpRange "TEST_VALUE" -Subnet "TEST_VALUE" -Dnszoneprefix "TEST_VALUE" -Digest "TEST_VALUE" -Snat "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterSdnVnetsSubnetsRB -Delete "TEST_VALUE" -DhcpRange "TEST_VALUE" -DhcpDnsServer "TEST_VALUE" -Dnszoneprefix "TEST_VALUE" -Snat "TEST_VALUE" -Digest "TEST_VALUE" -Gateway "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterSdnVnetsSubnetsRB
             #$NewObject.property | Should -Be 0
         }

@@ -15,19 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Ipam
+.PARAMETER Delete
 No description available.
 .PARAMETER Token
 No description available.
 .PARAMETER Section
 No description available.
-.PARAMETER Url
-No description available.
-.PARAMETER Delete
+.PARAMETER Fingerprint
 No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Fingerprint
+.PARAMETER Url
 No description available.
 .OUTPUTS
 
@@ -39,7 +37,7 @@ function Initialize-PVEPUTClusterSdnIpamsRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Ipam},
+        ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Token},
@@ -47,18 +45,15 @@ function Initialize-PVEPUTClusterSdnIpamsRB {
         [System.Nullable[Int32]]
         ${Section},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}")]
         [String]
-        ${Url},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Delete},
+        ${Fingerprint},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}")]
         [String]
-        ${Fingerprint}
+        ${Url}
     )
 
     Process {
@@ -75,13 +70,13 @@ function Initialize-PVEPUTClusterSdnIpamsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Ipam"="ipam"; "Token"="token"; "Section"="section"; "Url"="url"; "Delete"="delete"; "Digest"="digest"; "Fingerprint"="fingerprint"
+			"Delete"="delete"; "Token"="token"; "Section"="section"; "Fingerprint"="fingerprint"; "Digest"="digest"; "Url"="url"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -121,17 +116,17 @@ function ConvertFrom-PVEJsonToPUTClusterSdnIpamsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterSdnIpamsRB
-        $AllProperties = ("ipam", "token", "section", "url", "delete", "digest", "fingerprint")
+        $AllProperties = ("delete", "token", "section", "fingerprint", "digest", "url")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipam"))) { #optional property not found
-            $Ipam = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
         } else {
-            $Ipam = $JsonParameters.PSobject.Properties["ipam"].value
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "token"))) { #optional property not found
@@ -146,16 +141,10 @@ function ConvertFrom-PVEJsonToPUTClusterSdnIpamsRB {
             $Section = $JsonParameters.PSobject.Properties["section"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
-            $Url = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fingerprint"))) { #optional property not found
+            $Fingerprint = $null
         } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+            $Fingerprint = $JsonParameters.PSobject.Properties["fingerprint"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -164,20 +153,19 @@ function ConvertFrom-PVEJsonToPUTClusterSdnIpamsRB {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fingerprint"))) { #optional property not found
-            $Fingerprint = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
+            $Url = $null
         } else {
-            $Fingerprint = $JsonParameters.PSobject.Properties["fingerprint"].value
+            $Url = $JsonParameters.PSobject.Properties["url"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "ipam" = ${Ipam}
+            "delete" = ${Delete}
             "token" = ${Token}
             "section" = ${Section}
-            "url" = ${Url}
-            "delete" = ${Delete}
-            "digest" = ${Digest}
             "fingerprint" = ${Fingerprint}
+            "digest" = ${Digest}
+            "url" = ${Url}
         }
 
         return $PSO

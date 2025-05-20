@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTClusterHaResourcesMigrateRB' {
     Context 'PVEPOSTClusterHaResourcesMigrateRB' {
         It 'Initialize-PVEPOSTClusterHaResourcesMigrateRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTClusterHaResourcesMigrateRB -Sid "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTClusterHaResourcesMigrateRB -Node "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTClusterHaResourcesMigrateRB
             #$NewObject.property | Should -Be 0
         }

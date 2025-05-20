@@ -15,19 +15,19 @@ No summary available.
 
 No description available.
 
-.PARAMETER Path
-No description available.
-.PARAMETER Propagate
+.PARAMETER Delete
 No description available.
 .PARAMETER Users
 No description available.
-.PARAMETER Roles
+.PARAMETER Propagate
+No description available.
+.PARAMETER Path
+No description available.
+.PARAMETER Tokens
 No description available.
 .PARAMETER Groups
 No description available.
-.PARAMETER Delete
-No description available.
-.PARAMETER Tokens
+.PARAMETER Roles
 No description available.
 .OUTPUTS
 
@@ -38,57 +38,41 @@ function Initialize-PVEPUTAccessAclRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Path},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Propagate},
+        [System.Nullable[Boolean]]
+        ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Users},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Propagate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Roles},
+        ${Path},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Tokens},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Groups},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Tokens}
+        ${Roles}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTAccessAclRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Propagate -and $Propagate -gt 1) {
-          throw "invalid value for 'Propagate', must be smaller than or equal to 1."
-        }
-
-        if ($Propagate -and $Propagate -lt 0) {
-          throw "invalid value for 'Propagate', must be greater than or equal to 0."
-        }
-
-        if ($Delete -and $Delete -gt 1) {
-          throw "invalid value for 'Delete', must be smaller than or equal to 1."
-        }
-
-        if ($Delete -and $Delete -lt 0) {
-          throw "invalid value for 'Delete', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Path"="path"; "Propagate"="propagate"; "Users"="users"; "Roles"="roles"; "Groups"="groups"; "Delete"="delete"; "Tokens"="tokens"
+			"Delete"="delete"; "Users"="users"; "Propagate"="propagate"; "Path"="path"; "Tokens"="tokens"; "Groups"="groups"; "Roles"="roles"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -128,41 +112,11 @@ function ConvertFrom-PVEJsonToPUTAccessAclRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTAccessAclRB
-        $AllProperties = ("path", "propagate", "users", "roles", "groups", "delete", "tokens")
+        $AllProperties = ("delete", "users", "propagate", "path", "tokens", "groups", "roles")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
-            $Path = $null
-        } else {
-            $Path = $JsonParameters.PSobject.Properties["path"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "propagate"))) { #optional property not found
-            $Propagate = $null
-        } else {
-            $Propagate = $JsonParameters.PSobject.Properties["propagate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "users"))) { #optional property not found
-            $Users = $null
-        } else {
-            $Users = $JsonParameters.PSobject.Properties["users"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "roles"))) { #optional property not found
-            $Roles = $null
-        } else {
-            $Roles = $JsonParameters.PSobject.Properties["roles"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "groups"))) { #optional property not found
-            $Groups = $null
-        } else {
-            $Groups = $JsonParameters.PSobject.Properties["groups"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
@@ -171,20 +125,50 @@ function ConvertFrom-PVEJsonToPUTAccessAclRB {
             $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "users"))) { #optional property not found
+            $Users = $null
+        } else {
+            $Users = $JsonParameters.PSobject.Properties["users"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "propagate"))) { #optional property not found
+            $Propagate = $null
+        } else {
+            $Propagate = $JsonParameters.PSobject.Properties["propagate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
+            $Path = $null
+        } else {
+            $Path = $JsonParameters.PSobject.Properties["path"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "tokens"))) { #optional property not found
             $Tokens = $null
         } else {
             $Tokens = $JsonParameters.PSobject.Properties["tokens"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "groups"))) { #optional property not found
+            $Groups = $null
+        } else {
+            $Groups = $JsonParameters.PSobject.Properties["groups"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "roles"))) { #optional property not found
+            $Roles = $null
+        } else {
+            $Roles = $JsonParameters.PSobject.Properties["roles"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "path" = ${Path}
-            "propagate" = ${Propagate}
-            "users" = ${Users}
-            "roles" = ${Roles}
-            "groups" = ${Groups}
             "delete" = ${Delete}
+            "users" = ${Users}
+            "propagate" = ${Propagate}
+            "path" = ${Path}
             "tokens" = ${Tokens}
+            "groups" = ${Groups}
+            "roles" = ${Roles}
         }
 
         return $PSO

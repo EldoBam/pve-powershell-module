@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesQemuMtunnelwebsocketRB' {
     Context 'PVEGETNodesQemuMtunnelwebsocketRB' {
         It 'Initialize-PVEGETNodesQemuMtunnelwebsocketRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesQemuMtunnelwebsocketRB -Ticket "TEST_VALUE" -Socket "TEST_VALUE" -Vmid "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesQemuMtunnelwebsocketRB -Socket "TEST_VALUE" -Ticket "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesQemuMtunnelwebsocketRB
             #$NewObject.property | Should -Be 0
         }

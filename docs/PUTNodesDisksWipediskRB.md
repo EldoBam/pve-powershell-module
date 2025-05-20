@@ -4,14 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Disk** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesDisksWipediskRB = Initialize-PVEPUTNodesDisksWipediskRB  -Disk null `
- -Node null
+$PUTNodesDisksWipediskRB = Initialize-PVEPUTNodesDisksWipediskRB  -Disk null
 ```
 
 - Convert the resource to JSON

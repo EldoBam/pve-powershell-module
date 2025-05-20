@@ -15,17 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Width
-No description available.
 .PARAMETER Cmd
-No description available.
-.PARAMETER Height
 No description available.
 .PARAMETER CmdOpts
 No description available.
 .PARAMETER Websocket
 No description available.
-.PARAMETER Node
+.PARAMETER Width
+No description available.
+.PARAMETER Height
 No description available.
 .OUTPUTS
 
@@ -36,24 +34,21 @@ function Initialize-PVEPOSTNodesVncshellRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Width},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ceph_install", "upgrade", "login")]
         [String]
         ${Cmd},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Height},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${CmdOpts},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Websocket},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Int32]]
+        ${Width},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Height}
     )
 
     Process {
@@ -76,23 +71,15 @@ function Initialize-PVEPOSTNodesVncshellRB {
           throw "invalid value for 'Height', must be greater than or equal to 16."
         }
 
-        if ($Websocket -and $Websocket -gt 1) {
-          throw "invalid value for 'Websocket', must be smaller than or equal to 1."
-        }
-
-        if ($Websocket -and $Websocket -lt 0) {
-          throw "invalid value for 'Websocket', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Width"="width"; "Cmd"="cmd"; "Height"="height"; "CmdOpts"="cmd-opts"; "Websocket"="websocket"; "Node"="node"
+			"Cmd"="cmd"; "CmdOpts"="cmd-opts"; "Websocket"="websocket"; "Width"="width"; "Height"="height"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -132,29 +119,17 @@ function ConvertFrom-PVEJsonToPOSTNodesVncshellRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesVncshellRB
-        $AllProperties = ("width", "cmd", "height", "cmd-opts", "websocket", "node")
+        $AllProperties = ("cmd", "cmd-opts", "websocket", "width", "height")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "width"))) { #optional property not found
-            $Width = $null
-        } else {
-            $Width = $JsonParameters.PSobject.Properties["width"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cmd"))) { #optional property not found
             $Cmd = $null
         } else {
             $Cmd = $JsonParameters.PSobject.Properties["cmd"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "height"))) { #optional property not found
-            $Height = $null
-        } else {
-            $Height = $JsonParameters.PSobject.Properties["height"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cmd-opts"))) { #optional property not found
@@ -169,19 +144,24 @@ function ConvertFrom-PVEJsonToPOSTNodesVncshellRB {
             $Websocket = $JsonParameters.PSobject.Properties["websocket"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "width"))) { #optional property not found
+            $Width = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Width = $JsonParameters.PSobject.Properties["width"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "height"))) { #optional property not found
+            $Height = $null
+        } else {
+            $Height = $JsonParameters.PSobject.Properties["height"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "width" = ${Width}
             "cmd" = ${Cmd}
-            "height" = ${Height}
             "cmd-opts" = ${CmdOpts}
             "websocket" = ${Websocket}
-            "node" = ${Node}
+            "width" = ${Width}
+            "height" = ${Height}
         }
 
         return $PSO

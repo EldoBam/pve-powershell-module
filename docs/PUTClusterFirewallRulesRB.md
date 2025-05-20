@@ -4,44 +4,42 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Macro** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
 **Moveto** | **Int32** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Log** | **String** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
-**Dest** | **String** |  | [optional] 
 **Action** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Dport** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
 **Enable** | **Int32** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
+**Dest** | **String** |  | [optional] 
 **IcmpType** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 **Sport** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $PUTClusterFirewallRulesRB = Initialize-PVEPUTClusterFirewallRulesRB  -Macro null `
+ -Iface null `
  -Moveto null `
- -Proto null `
- -Log null `
- -Pos null `
- -Dest null `
  -Action null `
+ -Proto null `
  -Type null `
- -Comment null `
- -Dport null `
- -Digest null `
+ -Log null `
  -Enable null `
  -Delete null `
- -Iface null `
+ -Dport null `
+ -Dest null `
  -IcmpType null `
+ -Digest null `
+ -Sport null `
  -Source null `
- -Sport null
+ -Comment null
 ```
 
 - Convert the resource to JSON

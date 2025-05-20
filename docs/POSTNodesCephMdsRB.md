@@ -3,17 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
-**Hotstandby** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Hotstandby** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephMdsRB = Initialize-PVEPOSTNodesCephMdsRB  -Name null `
- -Hotstandby null `
- -Node null
+$POSTNodesCephMdsRB = Initialize-PVEPOSTNodesCephMdsRB  -Hotstandby null
 ```
 
 - Convert the resource to JSON

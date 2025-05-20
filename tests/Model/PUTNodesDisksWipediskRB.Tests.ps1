@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTNodesDisksWipediskRB' {
     Context 'PVEPUTNodesDisksWipediskRB' {
         It 'Initialize-PVEPUTNodesDisksWipediskRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTNodesDisksWipediskRB -Disk "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTNodesDisksWipediskRB -Disk "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTNodesDisksWipediskRB
             #$NewObject.property | Should -Be 0
         }

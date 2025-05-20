@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesLxcFirewallAliasesInner' {
     Context 'PVENodesLxcFirewallAliasesInner' {
         It 'Initialize-PVENodesLxcFirewallAliasesInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesLxcFirewallAliasesInner -Name "TEST_VALUE" -Comment "TEST_VALUE" -Digest "TEST_VALUE" -Cidr "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesLxcFirewallAliasesInner -Comment "TEST_VALUE" -Digest "TEST_VALUE" -Name "TEST_VALUE" -Cidr "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesLxcFirewallAliasesInner
             #$NewObject.property | Should -Be 0
         }

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterMappingUsbRB' {
     Context 'PVEPUTClusterMappingUsbRB' {
         It 'Initialize-PVEPUTClusterMappingUsbRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterMappingUsbRB -Description "TEST_VALUE" -Digest "TEST_VALUE" -Delete "TEST_VALUE" -Id "TEST_VALUE" -Map "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterMappingUsbRB -Delete "TEST_VALUE" -Map "TEST_VALUE" -Description "TEST_VALUE" -Digest "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterMappingUsbRB
             #$NewObject.property | Should -Be 0
         }

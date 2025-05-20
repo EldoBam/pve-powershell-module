@@ -15,15 +15,13 @@ No summary available.
 
 No description available.
 
+.PARAMETER Restart
+No description available.
+.PARAMETER Force
+No description available.
 .PARAMETER Certificates
 No description available.
 .PARAMETER Key
-No description available.
-.PARAMETER Restart
-No description available.
-.PARAMETER Node
-No description available.
-.PARAMETER Force
 No description available.
 .OUTPUTS
 
@@ -34,51 +32,32 @@ function Initialize-PVEPOSTNodesCertificatesCustomRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Restart},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Force},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Certificates},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Key},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Restart},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Force}
+        ${Key}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesCertificatesCustomRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Restart -and $Restart -gt 1) {
-          throw "invalid value for 'Restart', must be smaller than or equal to 1."
-        }
-
-        if ($Restart -and $Restart -lt 0) {
-          throw "invalid value for 'Restart', must be greater than or equal to 0."
-        }
-
-        if ($Force -and $Force -gt 1) {
-          throw "invalid value for 'Force', must be smaller than or equal to 1."
-        }
-
-        if ($Force -and $Force -lt 0) {
-          throw "invalid value for 'Force', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Certificates"="certificates"; "Key"="key"; "Restart"="restart"; "Node"="node"; "Force"="force"
+			"Restart"="restart"; "Force"="force"; "Certificates"="certificates"; "Key"="key"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -118,11 +97,23 @@ function ConvertFrom-PVEJsonToPOSTNodesCertificatesCustomRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCertificatesCustomRB
-        $AllProperties = ("certificates", "key", "restart", "node", "force")
+        $AllProperties = ("restart", "force", "certificates", "key")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "restart"))) { #optional property not found
+            $Restart = $null
+        } else {
+            $Restart = $JsonParameters.PSobject.Properties["restart"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
+            $Force = $null
+        } else {
+            $Force = $JsonParameters.PSobject.Properties["force"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "certificates"))) { #optional property not found
@@ -137,30 +128,11 @@ function ConvertFrom-PVEJsonToPOSTNodesCertificatesCustomRB {
             $Key = $JsonParameters.PSobject.Properties["key"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "restart"))) { #optional property not found
-            $Restart = $null
-        } else {
-            $Restart = $JsonParameters.PSobject.Properties["restart"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
-            $Force = $null
-        } else {
-            $Force = $JsonParameters.PSobject.Properties["force"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "restart" = ${Restart}
+            "force" = ${Force}
             "certificates" = ${Certificates}
             "key" = ${Key}
-            "restart" = ${Restart}
-            "node" = ${Node}
-            "force" = ${Force}
         }
 
         return $PSO

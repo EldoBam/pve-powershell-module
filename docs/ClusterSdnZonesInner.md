@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Mtu** | **Int32** |  | [optional] 
 **Dhcp** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**Mtu** | **Int32** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
-**Ipam** | **String** |  | [optional] 
-**State** | **String** |  | [optional] 
 **Dnszone** | **String** |  | [optional] 
 **Zone** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
+**Ipam** | **String** |  | [optional] 
 **Reversedns** | **String** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
 **Dns** | **String** |  | [optional] 
-**Pending** | **Int32** |  | [optional] 
+**Pending** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnZonesInner = Initialize-PVEClusterSdnZonesInner  -Dhcp null `
+$ClusterSdnZonesInner = Initialize-PVEClusterSdnZonesInner  -Mtu null `
+ -Dhcp null `
  -Type null `
- -Mtu null `
- -Nodes null `
- -Ipam null `
- -State null `
  -Dnszone null `
  -Zone null `
+ -State null `
+ -Ipam null `
  -Reversedns null `
+ -Nodes null `
  -Dns null `
  -Pending null
 ```

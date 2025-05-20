@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterSdnDnsRB' {
     Context 'PVEPUTClusterSdnDnsRB' {
         It 'Initialize-PVEPUTClusterSdnDnsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterSdnDnsRB -Ttl "TEST_VALUE" -Reversemaskv6 "TEST_VALUE" -Url "TEST_VALUE" -Delete "TEST_VALUE" -Digest "TEST_VALUE" -Fingerprint "TEST_VALUE" -Dns "TEST_VALUE" -Key "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterSdnDnsRB -Delete "TEST_VALUE" -Ttl "TEST_VALUE" -Key "TEST_VALUE" -Reversemaskv6 "TEST_VALUE" -Fingerprint "TEST_VALUE" -Digest "TEST_VALUE" -Url "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterSdnDnsRB
             #$NewObject.property | Should -Be 0
         }

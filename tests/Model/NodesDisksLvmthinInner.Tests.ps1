@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesDisksLvmthinInner' {
     Context 'PVENodesDisksLvmthinInner' {
         It 'Initialize-PVENodesDisksLvmthinInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesDisksLvmthinInner -MetadataUsed "TEST_VALUE" -Vg "TEST_VALUE" -LvSize "TEST_VALUE" -Used "TEST_VALUE" -MetadataSize "TEST_VALUE" -Lv "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesDisksLvmthinInner -Lv "TEST_VALUE" -MetadataSize "TEST_VALUE" -Vg "TEST_VALUE" -MetadataUsed "TEST_VALUE" -Used "TEST_VALUE" -LvSize "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesDisksLvmthinInner
             #$NewObject.property | Should -Be 0
         }

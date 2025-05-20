@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetadataUsed** | **Int32** |  | [optional] 
-**Vg** | **String** |  | [optional] 
-**LvSize** | **Int32** |  | [optional] 
-**Used** | **Int32** |  | [optional] 
-**MetadataSize** | **Int32** |  | [optional] 
 **Lv** | **String** |  | [optional] 
+**MetadataSize** | **Int32** |  | [optional] 
+**Vg** | **String** |  | [optional] 
+**MetadataUsed** | **Int32** |  | [optional] 
+**Used** | **Int32** |  | [optional] 
+**LvSize** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesDisksLvmthinInner = Initialize-PVENodesDisksLvmthinInner  -MetadataUsed null `
- -Vg null `
- -LvSize null `
- -Used null `
+$NodesDisksLvmthinInner = Initialize-PVENodesDisksLvmthinInner  -Lv null `
  -MetadataSize null `
- -Lv null
+ -Vg null `
+ -MetadataUsed null `
+ -Used null `
+ -LvSize null
 ```
 
 - Convert the resource to JSON

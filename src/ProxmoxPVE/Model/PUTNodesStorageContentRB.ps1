@@ -15,15 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Protected
-No description available.
-.PARAMETER Volume
-No description available.
-.PARAMETER Storage
-No description available.
 .PARAMETER Notes
 No description available.
-.PARAMETER Node
+.PARAMETER Protected
 No description available.
 .OUTPUTS
 
@@ -34,43 +28,26 @@ function Initialize-PVEPUTNodesStorageContentRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Protected},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Volume},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Storage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Notes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Boolean]]
+        ${Protected}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTNodesStorageContentRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Protected -and $Protected -gt 1) {
-          throw "invalid value for 'Protected', must be smaller than or equal to 1."
-        }
-
-        if ($Protected -and $Protected -lt 0) {
-          throw "invalid value for 'Protected', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Protected"="protected"; "Volume"="volume"; "Storage"="storage"; "Notes"="notes"; "Node"="node"
+			"Notes"="notes"; "Protected"="protected"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -110,29 +87,11 @@ function ConvertFrom-PVEJsonToPUTNodesStorageContentRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTNodesStorageContentRB
-        $AllProperties = ("protected", "volume", "storage", "notes", "node")
+        $AllProperties = ("notes", "protected")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protected"))) { #optional property not found
-            $Protected = $null
-        } else {
-            $Protected = $JsonParameters.PSobject.Properties["protected"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volume"))) { #optional property not found
-            $Volume = $null
-        } else {
-            $Volume = $JsonParameters.PSobject.Properties["volume"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "notes"))) { #optional property not found
@@ -141,18 +100,15 @@ function ConvertFrom-PVEJsonToPUTNodesStorageContentRB {
             $Notes = $JsonParameters.PSobject.Properties["notes"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protected"))) { #optional property not found
+            $Protected = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Protected = $JsonParameters.PSobject.Properties["protected"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "protected" = ${Protected}
-            "volume" = ${Volume}
-            "storage" = ${Storage}
             "notes" = ${Notes}
-            "node" = ${Node}
+            "protected" = ${Protected}
         }
 
         return $PSO

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEDELETENodesCertificatesCustomRB' {
     Context 'PVEDELETENodesCertificatesCustomRB' {
         It 'Initialize-PVEDELETENodesCertificatesCustomRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEDELETENodesCertificatesCustomRB -Restart "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEDELETENodesCertificatesCustomRB -Restart "TEST_VALUE"
             #$NewObject | Should -BeOfType DELETENodesCertificatesCustomRB
             #$NewObject.property | Should -Be 0
         }

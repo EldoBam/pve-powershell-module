@@ -3,95 +3,93 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**All** | **Int32** |  | [optional] 
-**NotificationMode** | **String** |  | [optional] 
-**Stopwait** | **Int32** |  | [optional] 
-**Pigz** | **Int32** |  | [optional] 
-**Storage** | **String** |  | [optional] 
-**Script** | **String** |  | [optional] 
-**Enabled** | **Int32** |  | [optional] 
-**Starttime** | **String** |  | [optional] 
-**PbsChangeDetectionMode** | **String** |  | [optional] 
-**Stdexcludes** | **Int32** |  | [optional] 
-**Schedule** | **String** |  | [optional] 
-**Ionice** | **Int32** |  | [optional] 
-**Dumpdir** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Mode** | **String** |  | [optional] 
-**Stop** | **Int32** |  | [optional] 
-**Zstd** | **Int32** |  | [optional] 
-**Compress** | **String** |  | [optional] 
-**Mailnotification** | **String** |  | [optional] 
-**NotesTemplate** | **String** |  | [optional] 
-**Mailto** | **String** |  | [optional] 
-**Bwlimit** | **Int32** |  | [optional] 
-**Vmid** | **String** |  | [optional] 
-**Fleecing** | **String** |  | [optional] 
-**ExcludePath** | **String[]** |  | [optional] 
-**RepeatMissed** | **Int32** |  | [optional] 
+**Enabled** | **Boolean** |  | [optional] 
 **Lockwait** | **Int32** |  | [optional] 
-**NotificationPolicy** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**NotificationTarget** | **String** |  | [optional] 
-**Tmpdir** | **String** |  | [optional] 
-**Protected** | **Int32** |  | [optional] 
-**Exclude** | **String** |  | [optional] 
-**Quiet** | **Int32** |  | [optional] 
-**Remove** | **Int32** |  | [optional] 
-**PruneBackups** | **String** |  | [optional] 
-**Performance** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Pool** | **String** |  | [optional] 
-**Maxfiles** | **Int32** |  | [optional] 
+**Starttime** | **String** |  | [optional] 
+**Mode** | **String** |  | [optional] 
+**Quiet** | **Boolean** |  | [optional] 
+**Mailnotification** | **String** |  | [optional] 
+**ExcludePath** | **String[]** |  | [optional] 
 **Dow** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Tmpdir** | **String** |  | [optional] 
+**Stdexcludes** | **Boolean** |  | [optional] 
+**Maxfiles** | **Int32** |  | [optional] 
+**Vmid** | **String** |  | [optional] 
+**NotificationMode** | **String** |  | [optional] 
+**Exclude** | **String** |  | [optional] 
+**Fleecing** | **String** |  | [optional] 
+**Mailto** | **String** |  | [optional] 
+**RepeatMissed** | **Boolean** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**NotesTemplate** | **String** |  | [optional] 
+**Performance** | **String** |  | [optional] 
+**NotificationTarget** | **String** |  | [optional] 
+**Remove** | **Boolean** |  | [optional] 
+**Bwlimit** | **Int32** |  | [optional] 
+**Compress** | **String** |  | [optional] 
+**Script** | **String** |  | [optional] 
+**Dumpdir** | **String** |  | [optional] 
+**Pool** | **String** |  | [optional] 
+**PruneBackups** | **String** |  | [optional] 
+**Stopwait** | **Int32** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Schedule** | **String** |  | [optional] 
+**Pigz** | **Int32** |  | [optional] 
+**Stop** | **Boolean** |  | [optional] 
+**Protected** | **Boolean** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**All** | **Boolean** |  | [optional] 
+**PbsChangeDetectionMode** | **String** |  | [optional] 
+**NotificationPolicy** | **String** |  | [optional] 
+**Zstd** | **Int32** |  | [optional] 
+**Ionice** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterBackupRB = Initialize-PVEPUTClusterBackupRB  -All null `
- -NotificationMode null `
- -Stopwait null `
- -Pigz null `
- -Storage null `
- -Script null `
- -Enabled null `
- -Starttime null `
- -PbsChangeDetectionMode null `
- -Stdexcludes null `
- -Schedule null `
- -Ionice null `
- -Dumpdir null `
- -Node null `
- -Delete null `
- -Mode null `
- -Stop null `
- -Zstd null `
- -Compress null `
- -Mailnotification null `
- -NotesTemplate null `
- -Mailto null `
- -Bwlimit null `
- -Vmid null `
- -Fleecing null `
- -ExcludePath null `
- -RepeatMissed null `
+$PUTClusterBackupRB = Initialize-PVEPUTClusterBackupRB  -Enabled null `
  -Lockwait null `
- -NotificationPolicy null `
- -Id null `
- -NotificationTarget null `
- -Tmpdir null `
- -Protected null `
- -Exclude null `
+ -Starttime null `
+ -Mode null `
  -Quiet null `
- -Remove null `
- -PruneBackups null `
- -Performance null `
- -Comment null `
- -Pool null `
+ -Mailnotification null `
+ -ExcludePath null `
+ -Dow null `
+ -Node null `
+ -Tmpdir null `
+ -Stdexcludes null `
  -Maxfiles null `
- -Dow null
+ -Vmid null `
+ -NotificationMode null `
+ -Exclude null `
+ -Fleecing null `
+ -Mailto null `
+ -RepeatMissed null `
+ -Storage null `
+ -NotesTemplate null `
+ -Performance null `
+ -NotificationTarget null `
+ -Remove null `
+ -Bwlimit null `
+ -Compress null `
+ -Script null `
+ -Dumpdir null `
+ -Pool null `
+ -PruneBackups null `
+ -Stopwait null `
+ -Delete null `
+ -Schedule null `
+ -Pigz null `
+ -Stop null `
+ -Protected null `
+ -Comment null `
+ -All null `
+ -PbsChangeDetectionMode null `
+ -NotificationPolicy null `
+ -Zstd null `
+ -Ionice null
 ```
 
 - Convert the resource to JSON

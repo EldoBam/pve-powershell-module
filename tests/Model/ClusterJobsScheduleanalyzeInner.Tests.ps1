@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterJobsScheduleanalyzeInner' {
     Context 'PVEClusterJobsScheduleanalyzeInner' {
         It 'Initialize-PVEClusterJobsScheduleanalyzeInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterJobsScheduleanalyzeInner -Utc "TEST_VALUE" -Timestamp "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterJobsScheduleanalyzeInner -Timestamp "TEST_VALUE" -Utc "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterJobsScheduleanalyzeInner
             #$NewObject.property | Should -Be 0
         }

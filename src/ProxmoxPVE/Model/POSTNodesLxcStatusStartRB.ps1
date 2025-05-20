@@ -15,13 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Vmid
-No description available.
 .PARAMETER Debug
 No description available.
 .PARAMETER Skiplock
-No description available.
-.PARAMETER Node
 No description available.
 .OUTPUTS
 
@@ -32,56 +28,26 @@ function Initialize-PVEPOSTNodesLxcStatusStartRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Debug},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Skiplock},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Boolean]]
+        ${Skiplock}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesLxcStatusStartRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
-        if ($Debug -and $Debug -gt 1) {
-          throw "invalid value for 'Debug', must be smaller than or equal to 1."
-        }
-
-        if ($Debug -and $Debug -lt 0) {
-          throw "invalid value for 'Debug', must be greater than or equal to 0."
-        }
-
-        if ($Skiplock -and $Skiplock -gt 1) {
-          throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
-        }
-
-        if ($Skiplock -and $Skiplock -lt 0) {
-          throw "invalid value for 'Skiplock', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Vmid"="vmid"; "Debug"="debug"; "Skiplock"="skiplock"; "Node"="node"
+			"Debug"="debug"; "Skiplock"="skiplock"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -121,17 +87,11 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcStatusStartRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesLxcStatusStartRB
-        $AllProperties = ("vmid", "debug", "skiplock", "node")
+        $AllProperties = ("debug", "skiplock")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "debug"))) { #optional property not found
@@ -146,17 +106,9 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcStatusStartRB {
             $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "vmid" = ${Vmid}
             "debug" = ${Debug}
             "skiplock" = ${Skiplock}
-            "node" = ${Node}
         }
 
         return $PSO

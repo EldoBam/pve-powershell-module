@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTClusterReplicationRB' {
     Context 'PVEPOSTClusterReplicationRB' {
         It 'Initialize-PVEPOSTClusterReplicationRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTClusterReplicationRB -Source "TEST_VALUE" -RemoveJob "TEST_VALUE" -Comment "TEST_VALUE" -Disable "TEST_VALUE" -Id "TEST_VALUE" -Schedule "TEST_VALUE" -Target "TEST_VALUE" -Type "TEST_VALUE" -Rate "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTClusterReplicationRB -Type "TEST_VALUE" -Rate "TEST_VALUE" -RemoveJob "TEST_VALUE" -Comment "TEST_VALUE" -Schedule "TEST_VALUE" -Id "TEST_VALUE" -Source "TEST_VALUE" -Disable "TEST_VALUE" -Target "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTClusterReplicationRB
             #$NewObject.property | Should -Be 0
         }

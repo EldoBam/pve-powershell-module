@@ -15,17 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Vmid
+.PARAMETER Limit
 No description available.
 .PARAMETER Start
 No description available.
-.PARAMETER VarUntil
-No description available.
-.PARAMETER Limit
-No description available.
 .PARAMETER Since
 No description available.
-.PARAMETER Node
+.PARAMETER VarUntil
 No description available.
 .OUTPUTS
 
@@ -37,45 +33,31 @@ function Initialize-PVEGETNodesLxcFirewallLogRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid},
+        ${Limit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Start},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VarUntil},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Limit},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${Since},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Int32]]
+        ${VarUntil}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETNodesLxcFirewallLogRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Vmid"="vmid"; "Start"="start"; "VarUntil"="until"; "Limit"="limit"; "Since"="since"; "Node"="node"
+			"Limit"="limit"; "Start"="start"; "Since"="since"; "VarUntil"="until"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -115,29 +97,11 @@ function ConvertFrom-PVEJsonToGETNodesLxcFirewallLogRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesLxcFirewallLogRB
-        $AllProperties = ("vmid", "start", "until", "limit", "since", "node")
+        $AllProperties = ("limit", "start", "since", "until")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) { #optional property not found
-            $Start = $null
-        } else {
-            $Start = $JsonParameters.PSobject.Properties["start"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
-            $VarUntil = $null
-        } else {
-            $VarUntil = $JsonParameters.PSobject.Properties["until"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "limit"))) { #optional property not found
@@ -146,25 +110,29 @@ function ConvertFrom-PVEJsonToGETNodesLxcFirewallLogRB {
             $Limit = $JsonParameters.PSobject.Properties["limit"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) { #optional property not found
+            $Start = $null
+        } else {
+            $Start = $JsonParameters.PSobject.Properties["start"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "since"))) { #optional property not found
             $Since = $null
         } else {
             $Since = $JsonParameters.PSobject.Properties["since"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
+            $VarUntil = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $VarUntil = $JsonParameters.PSobject.Properties["until"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "vmid" = ${Vmid}
-            "start" = ${Start}
-            "until" = ${VarUntil}
             "limit" = ${Limit}
+            "start" = ${Start}
             "since" = ${Since}
-            "node" = ${Node}
+            "until" = ${VarUntil}
         }
 
         return $PSO

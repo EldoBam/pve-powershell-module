@@ -337,7 +337,7 @@ Retrieve effective permissions of given user/token.
 
 ### Example
 ```powershell
-$GETAccessPermissionsRB = Initialize-GETAccessPermissionsRB -Path "MyPath" -Userid "MyUserid" # GETAccessPermissionsRB | Retrieve effective permissions of given user/token. (optional)
+$GETAccessPermissionsRB = Initialize-GETAccessPermissionsRB -Userid "MyUserid" -Path "MyPath" # GETAccessPermissionsRB | Retrieve effective permissions of given user/token. (optional)
 
 # Retrieve effective permissions of given user/token.
 try {
@@ -626,7 +626,7 @@ User index.
 
 ### Example
 ```powershell
-$GETAccessUsersRB = Initialize-GETAccessUsersRB -Full 0 -Enabled 0 # GETAccessUsersRB | User index. (optional)
+$GETAccessUsersRB = Initialize-GETAccessUsersRB -Full $false -Enabled $false # GETAccessUsersRB | User index. (optional)
 
 # User index.
 try {
@@ -714,7 +714,7 @@ Get user TFA types (Personal and Realm).
 ### Example
 ```powershell
 $Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
-$GETAccessUsersTfaRB = Initialize-GETAccessUsersTfaRB -Multiple 0 -Userid "MyUserid" # GETAccessUsersTfaRB | Get user TFA types (Personal and Realm). (optional)
+$GETAccessUsersTfaRB = Initialize-GETAccessUsersTfaRB -Multiple $false # GETAccessUsersTfaRB | Get user TFA types (Personal and Realm). (optional)
 
 # Get user TFA types (Personal and Realm).
 try {
@@ -847,7 +847,7 @@ Add an authentication server.
 
 ### Example
 ```powershell
-$POSTAccessDomainsRB = Initialize-POSTAccessDomainsRB -Server2 "MyServer2" -Cert "MyCert" -Server1 "MyServer1" -GroupNameAttr "MyGroupNameAttr" -Scopes "MyScopes" -Mode "ldap" -UsernameClaim "MyUsernameClaim" -Certkey "MyCertkey" -AcrValues "MyAcrValues" -IssuerUrl "MyIssuerUrl" -Default 0 -GroupsAutocreate 0 -Prompt "MyPrompt" -SyncAttributes "MySyncAttributes" -QueryUserinfo 0 -CaseSensitive 0 -Type "ad" -Sslversion "tlsv1" -ClientId "MyClientId" -GroupFilter "MyGroupFilter" -ClientKey "MyClientKey" -Domain "MyDomain" -Realm "MyRealm" -BaseDn "MyBaseDn" -Password "MyPassword" -VarFilter "MyVarFilter" -Autocreate 0 -SyncDefaultsOptions "MySyncDefaultsOptions" -Verify 0 -Secure 0 -CheckConnection 0 -UserAttr "MyUserAttr" -UserClasses "MyUserClasses" -GroupsClaim "MyGroupsClaim" -Port 0 -GroupClasses "MyGroupClasses" -Capath "MyCapath" -Comment "MyComment" -GroupsOverwrite 0 -GroupDn "MyGroupDn" -Tfa "MyTfa" -BindDn "MyBindDn" # POSTAccessDomainsRB | Add an authentication server. (optional)
+$POSTAccessDomainsRB = Initialize-POSTAccessDomainsRB -QueryUserinfo $false -ClientId "MyClientId" -Mode "ldap" -GroupsClaim "MyGroupsClaim" -GroupFilter "MyGroupFilter" -GroupsAutocreate $false -UserAttr "MyUserAttr" -GroupDn "MyGroupDn" -Cert "MyCert" -Scopes "MyScopes" -CheckConnection $false -SyncAttributes "MySyncAttributes" -Secure $false -Server1 "MyServer1" -Default $false -Capath "MyCapath" -UserClasses "MyUserClasses" -Domain "MyDomain" -Certkey "MyCertkey" -Password "MyPassword" -VarFilter "MyVarFilter" -ClientKey "MyClientKey" -Server2 "MyServer2" -Autocreate $false -SyncDefaultsOptions "MySyncDefaultsOptions" -AcrValues "MyAcrValues" -GroupNameAttr "MyGroupNameAttr" -IssuerUrl "MyIssuerUrl" -GroupsOverwrite $false -Realm "MyRealm" -Tfa "MyTfa" -BindDn "MyBindDn" -GroupClasses "MyGroupClasses" -Verify $false -BaseDn "MyBaseDn" -Sslversion "tlsv1" -UsernameClaim "MyUsernameClaim" -Comment "MyComment" -Port 0 -CaseSensitive $false -Prompt "MyPrompt" -Type "ad" # POSTAccessDomainsRB | Add an authentication server. (optional)
 
 # Add an authentication server.
 try {
@@ -892,7 +892,7 @@ Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced gro
 ### Example
 ```powershell
 $Realm = "MyRealm" # String | Authentication domain ID
-$POSTAccessDomainsSyncRB = Initialize-POSTAccessDomainsSyncRB -Realm "MyRealm" -Full 0 -RemoveVanished "MyRemoveVanished" -EnableNew 0 -Scope "users" -Purge 0 -DryRun 0 # POSTAccessDomainsSyncRB | Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting. (optional)
+$POSTAccessDomainsSyncRB = Initialize-POSTAccessDomainsSyncRB -Purge $false -Scope "users" -RemoveVanished "MyRemoveVanished" -EnableNew $false -DryRun $false -Full $false # POSTAccessDomainsSyncRB | Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting. (optional)
 
 # Syncs users and/or groups from the configured LDAP to user.cfg. NOTE: Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting.
 try {
@@ -936,7 +936,7 @@ Create new group.
 
 ### Example
 ```powershell
-$POSTAccessGroupsRB = Initialize-POSTAccessGroupsRB -Groupid "MyGroupid" -Comment "MyComment" # POSTAccessGroupsRB | Create new group. (optional)
+$POSTAccessGroupsRB = Initialize-POSTAccessGroupsRB -Comment "MyComment" -Groupid "MyGroupid" # POSTAccessGroupsRB | Create new group. (optional)
 
 # Create new group.
 try {
@@ -979,7 +979,7 @@ Get the OpenId Authorization Url for the specified realm.
 
 ### Example
 ```powershell
-$POSTAccessOpenidAuthurlRB = Initialize-POSTAccessOpenidAuthurlRB -Realm "MyRealm" -RedirectUrl "MyRedirectUrl" # POSTAccessOpenidAuthurlRB | Get the OpenId Authorization Url for the specified realm. (optional)
+$POSTAccessOpenidAuthurlRB = Initialize-POSTAccessOpenidAuthurlRB -RedirectUrl "MyRedirectUrl" -Realm "MyRealm" # POSTAccessOpenidAuthurlRB | Get the OpenId Authorization Url for the specified realm. (optional)
 
 # Get the OpenId Authorization Url for the specified realm.
 try {
@@ -1022,7 +1022,7 @@ No authorization required
 
 ### Example
 ```powershell
-$POSTAccessOpenidLoginRB = Initialize-POSTAccessOpenidLoginRB -State "MyState" -RedirectUrl "MyRedirectUrl" -Code "MyCode" # POSTAccessOpenidLoginRB |  Verify OpenID authorization code and create a ticket. (optional)
+$POSTAccessOpenidLoginRB = Initialize-POSTAccessOpenidLoginRB -RedirectUrl "MyRedirectUrl" -Code "MyCode" -State "MyState" # POSTAccessOpenidLoginRB |  Verify OpenID authorization code and create a ticket. (optional)
 
 #  Verify OpenID authorization code and create a ticket.
 try {
@@ -1110,7 +1110,7 @@ Add a TFA entry for a user.
 ### Example
 ```powershell
 $Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
-$POSTAccessTfaRB = Initialize-POSTAccessTfaRB -Totp "MyTotp" -Password "MyPassword" -Value "MyValue" -Challenge "MyChallenge" -Description "MyDescription" -Userid "MyUserid" -Type "totp" # POSTAccessTfaRB | Add a TFA entry for a user. (optional)
+$POSTAccessTfaRB = Initialize-POSTAccessTfaRB -Type "totp" -Description "MyDescription" -Challenge "MyChallenge" -Totp "MyTotp" -Value "MyValue" -Password "MyPassword" # POSTAccessTfaRB | Add a TFA entry for a user. (optional)
 
 # Add a TFA entry for a user.
 try {
@@ -1154,7 +1154,7 @@ Create or verify authentication ticket.
 
 ### Example
 ```powershell
-$POSTAccessTicketRB = Initialize-POSTAccessTicketRB -Realm "MyRealm" -NewFormat 0 -Path "MyPath" -Password "MyPassword" -Privs "MyPrivs" -Username "MyUsername" -TfaChallenge "MyTfaChallenge" -Otp "MyOtp" # POSTAccessTicketRB | Create or verify authentication ticket. (optional)
+$POSTAccessTicketRB = Initialize-POSTAccessTicketRB -Username "MyUsername" -Path "MyPath" -TfaChallenge "MyTfaChallenge" -Privs "MyPrivs" -Realm "MyRealm" -Otp "MyOtp" -NewFormat $false -Password "MyPassword" # POSTAccessTicketRB | Create or verify authentication ticket. (optional)
 
 # Create or verify authentication ticket.
 try {
@@ -1197,7 +1197,7 @@ Create new user.
 
 ### Example
 ```powershell
-$POSTAccessUsersRB = Initialize-POSTAccessUsersRB -Password "MyPassword" -Email "MyEmail" -Comment "MyComment" -Enable 0 -Groups "MyGroups" -Firstname "MyFirstname" -Lastname "MyLastname" -Userid "MyUserid" -Expire 0 -Keys "MyKeys" # POSTAccessUsersRB | Create new user. (optional)
+$POSTAccessUsersRB = Initialize-POSTAccessUsersRB -Expire 0 -Email "MyEmail" -Keys "MyKeys" -Userid "MyUserid" -Password "MyPassword" -Groups "MyGroups" -Comment "MyComment" -Firstname "MyFirstname" -Enable $false -Lastname "MyLastname" # POSTAccessUsersRB | Create new user. (optional)
 
 # Create new user.
 try {
@@ -1244,7 +1244,7 @@ Generate a new API token for a specific user. NOTE: returns API token value, whi
 ```powershell
 $Tokenid = "MyTokenid" # String | User-specific token identifier.
 $Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
-$POSTAccessUsersTokenRB = Initialize-POSTAccessUsersTokenRB -Expire 0 -Privsep 0 -Comment "MyComment" -Tokenid "MyTokenid" -Userid "MyUserid" # POSTAccessUsersTokenRB | Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards! (optional)
+$POSTAccessUsersTokenRB = Initialize-POSTAccessUsersTokenRB -Comment "MyComment" -Expire 0 -Privsep $false # POSTAccessUsersTokenRB | Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards! (optional)
 
 # Generate a new API token for a specific user. NOTE: returns API token value, which needs to be stored as it cannot be retrieved afterwards!
 try {
@@ -1422,7 +1422,7 @@ Delete a TFA entry by ID.
 ```powershell
 $Id = "MyId" # String | A TFA entry id.
 $Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
-$DELETEAccessTfaRB = Initialize-DELETEAccessTfaRB -Id "MyId" -Userid "MyUserid" -Password "MyPassword" # DELETEAccessTfaRB | Delete a TFA entry by ID. (optional)
+$DELETEAccessTfaRB = Initialize-DELETEAccessTfaRB -Password "MyPassword" # DELETEAccessTfaRB | Delete a TFA entry by ID. (optional)
 
 # Delete a TFA entry by ID.
 try {
@@ -1556,7 +1556,7 @@ Update Access Control List (add or remove permissions).
 
 ### Example
 ```powershell
-$PUTAccessAclRB = Initialize-PUTAccessAclRB -Path "MyPath" -Propagate 0 -Users "MyUsers" -Roles "MyRoles" -Groups "MyGroups" -Delete 0 -Tokens "MyTokens" # PUTAccessAclRB | Update Access Control List (add or remove permissions). (optional)
+$PUTAccessAclRB = Initialize-PUTAccessAclRB -Delete $false -Users "MyUsers" -Propagate $false -Path "MyPath" -Tokens "MyTokens" -Groups "MyGroups" -Roles "MyRoles" # PUTAccessAclRB | Update Access Control List (add or remove permissions). (optional)
 
 # Update Access Control List (add or remove permissions).
 try {
@@ -1601,7 +1601,7 @@ Update authentication server settings.
 ### Example
 ```powershell
 $Realm = "MyRealm" # String | Authentication domain ID
-$PUTAccessDomainsRB = Initialize-PUTAccessDomainsRB -Server2 "MyServer2" -Cert "MyCert" -Server1 "MyServer1" -Realm "MyRealm" -GroupNameAttr "MyGroupNameAttr" -Scopes "MyScopes" -Mode "ldap" -Delete "MyDelete" -Certkey "MyCertkey" -AcrValues "MyAcrValues" -IssuerUrl "MyIssuerUrl" -Default 0 -Prompt "MyPrompt" -SyncAttributes "MySyncAttributes" -QueryUserinfo 0 -CaseSensitive 0 -Sslversion "tlsv1" -ClientId "MyClientId" -GroupFilter "MyGroupFilter" -ClientKey "MyClientKey" -Domain "MyDomain" -Digest "MyDigest" -BaseDn "MyBaseDn" -GroupsAutocreate 0 -VarFilter "MyVarFilter" -Autocreate 0 -SyncDefaultsOptions "MySyncDefaultsOptions" -Verify 0 -Secure 0 -CheckConnection 0 -UserAttr "MyUserAttr" -UserClasses "MyUserClasses" -GroupsClaim "MyGroupsClaim" -Password "MyPassword" -Port 0 -GroupClasses "MyGroupClasses" -Capath "MyCapath" -Comment "MyComment" -GroupsOverwrite 0 -GroupDn "MyGroupDn" -Tfa "MyTfa" -BindDn "MyBindDn" # PUTAccessDomainsRB | Update authentication server settings. (optional)
+$PUTAccessDomainsRB = Initialize-PUTAccessDomainsRB -QueryUserinfo $false -ClientId "MyClientId" -Mode "ldap" -Port 0 -GroupsClaim "MyGroupsClaim" -GroupFilter "MyGroupFilter" -GroupsAutocreate $false -UserAttr "MyUserAttr" -GroupDn "MyGroupDn" -Cert "MyCert" -Scopes "MyScopes" -CheckConnection $false -BindDn "MyBindDn" -SyncAttributes "MySyncAttributes" -Secure $false -Server1 "MyServer1" -Default $false -Capath "MyCapath" -Domain "MyDomain" -Certkey "MyCertkey" -Password "MyPassword" -VarFilter "MyVarFilter" -ClientKey "MyClientKey" -Server2 "MyServer2" -Autocreate $false -SyncDefaultsOptions "MySyncDefaultsOptions" -AcrValues "MyAcrValues" -GroupNameAttr "MyGroupNameAttr" -IssuerUrl "MyIssuerUrl" -GroupsOverwrite $false -UserClasses "MyUserClasses" -Tfa "MyTfa" -Delete "MyDelete" -GroupClasses "MyGroupClasses" -Verify $false -BaseDn "MyBaseDn" -Sslversion "tlsv1" -Comment "MyComment" -Digest "MyDigest" -CaseSensitive $false -Prompt "MyPrompt" # PUTAccessDomainsRB | Update authentication server settings. (optional)
 
 # Update authentication server settings.
 try {
@@ -1647,7 +1647,7 @@ Update group data.
 ### Example
 ```powershell
 $Groupid = "MyGroupid" # String | 
-$PUTAccessGroupsRB = Initialize-PUTAccessGroupsRB -Groupid "MyGroupid" -Comment "MyComment" # PUTAccessGroupsRB | Update group data. (optional)
+$PUTAccessGroupsRB = Initialize-PUTAccessGroupsRB -Comment "MyComment" # PUTAccessGroupsRB | Update group data. (optional)
 
 # Update group data.
 try {
@@ -1691,7 +1691,7 @@ Change user password.
 
 ### Example
 ```powershell
-$PUTAccessPasswordRB = Initialize-PUTAccessPasswordRB -Userid "MyUserid" -ConfirmationPassword "MyConfirmationPassword" -Password "MyPassword" # PUTAccessPasswordRB | Change user password. (optional)
+$PUTAccessPasswordRB = Initialize-PUTAccessPasswordRB -Password "MyPassword" -Userid "MyUserid" -ConfirmationPassword "MyConfirmationPassword" # PUTAccessPasswordRB | Change user password. (optional)
 
 # Change user password.
 try {
@@ -1736,7 +1736,7 @@ Update an existing role.
 ### Example
 ```powershell
 $Roleid = "MyRoleid" # String | 
-$PUTAccessRolesRB = Initialize-PUTAccessRolesRB -Privs "MyPrivs" -Append 0 -Roleid "MyRoleid" # PUTAccessRolesRB | Update an existing role. (optional)
+$PUTAccessRolesRB = Initialize-PUTAccessRolesRB -Append $false -Privs "MyPrivs" # PUTAccessRolesRB | Update an existing role. (optional)
 
 # Update an existing role.
 try {
@@ -1784,7 +1784,7 @@ Add a TFA entry for a user.
 ```powershell
 $Id = "MyId" # String | A TFA entry id.
 $Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
-$PUTAccessTfaRB = Initialize-PUTAccessTfaRB -Description "MyDescription" -Enable 0 -Id "MyId" -Userid "MyUserid" -Password "MyPassword" # PUTAccessTfaRB | Add a TFA entry for a user. (optional)
+$PUTAccessTfaRB = Initialize-PUTAccessTfaRB -Description "MyDescription" -Password "MyPassword" -Enable $false # PUTAccessTfaRB | Add a TFA entry for a user. (optional)
 
 # Add a TFA entry for a user.
 try {
@@ -1831,7 +1831,7 @@ Update user configuration.
 ### Example
 ```powershell
 $Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
-$PUTAccessUsersRB = Initialize-PUTAccessUsersRB -Append 0 -Email "MyEmail" -Comment "MyComment" -Enable 0 -Groups "MyGroups" -Firstname "MyFirstname" -Lastname "MyLastname" -Userid "MyUserid" -Expire 0 -Keys "MyKeys" # PUTAccessUsersRB | Update user configuration. (optional)
+$PUTAccessUsersRB = Initialize-PUTAccessUsersRB -Expire 0 -Email "MyEmail" -Keys "MyKeys" -Firstname "MyFirstname" -Groups "MyGroups" -Comment "MyComment" -Append $false -Enable $false -Lastname "MyLastname" # PUTAccessUsersRB | Update user configuration. (optional)
 
 # Update user configuration.
 try {
@@ -1879,7 +1879,7 @@ Update API token for a specific user.
 ```powershell
 $Tokenid = "MyTokenid" # String | User-specific token identifier.
 $Userid = "MyUserid" # String | Full User ID, in the `name@realm` format.
-$PUTAccessUsersTokenRB = Initialize-PUTAccessUsersTokenRB -Expire 0 -Privsep 0 -Comment "MyComment" -Tokenid "MyTokenid" -Userid "MyUserid" # PUTAccessUsersTokenRB | Update API token for a specific user. (optional)
+$PUTAccessUsersTokenRB = Initialize-PUTAccessUsersTokenRB -Comment "MyComment" -Expire 0 -Privsep $false # PUTAccessUsersTokenRB | Update API token for a specific user. (optional)
 
 # Update API token for a specific user.
 try {

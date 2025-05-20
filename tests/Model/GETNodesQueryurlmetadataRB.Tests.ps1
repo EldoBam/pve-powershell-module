@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesQueryurlmetadataRB' {
     Context 'PVEGETNodesQueryurlmetadataRB' {
         It 'Initialize-PVEGETNodesQueryurlmetadataRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesQueryurlmetadataRB -Url "TEST_VALUE" -VerifyCertificates "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesQueryurlmetadataRB -Url "TEST_VALUE" -VerifyCertificates "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesQueryurlmetadataRB
             #$NewObject.property | Should -Be 0
         }

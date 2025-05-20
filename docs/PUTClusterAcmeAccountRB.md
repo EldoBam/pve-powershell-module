@@ -3,15 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
 **Contact** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterAcmeAccountRB = Initialize-PVEPUTClusterAcmeAccountRB  -Name null `
- -Contact null
+$PUTClusterAcmeAccountRB = Initialize-PVEPUTClusterAcmeAccountRB  -Contact null
 ```
 
 - Convert the resource to JSON

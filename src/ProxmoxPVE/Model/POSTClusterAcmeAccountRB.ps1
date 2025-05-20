@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
+.PARAMETER Name
+No description available.
+.PARAMETER EabKid
+No description available.
+.PARAMETER EabHmacKey
+No description available.
 .PARAMETER Directory
 No description available.
 .PARAMETER TosUrl
 No description available.
-.PARAMETER EabHmacKey
-No description available.
 .PARAMETER Contact
-No description available.
-.PARAMETER EabKid
-No description available.
-.PARAMETER Name
 No description available.
 .OUTPUTS
 
@@ -36,6 +36,15 @@ function Initialize-PVEPOSTClusterAcmeAccountRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${EabKid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${EabHmacKey},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("^https?://.*")]
         [String]
         ${Directory},
@@ -44,16 +53,7 @@ function Initialize-PVEPOSTClusterAcmeAccountRB {
         ${TosUrl},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${EabHmacKey},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Contact},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${EabKid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name}
+        ${Contact}
     )
 
     Process {
@@ -62,13 +62,13 @@ function Initialize-PVEPOSTClusterAcmeAccountRB {
 
 
 		 $DisplayNameMapping =@{
-			"Directory"="directory"; "TosUrl"="tos_url"; "EabHmacKey"="eab-hmac-key"; "Contact"="contact"; "EabKid"="eab-kid"; "Name"="name"
+			"Name"="name"; "EabKid"="eab-kid"; "EabHmacKey"="eab-hmac-key"; "Directory"="directory"; "TosUrl"="tos_url"; "Contact"="contact"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -108,11 +108,29 @@ function ConvertFrom-PVEJsonToPOSTClusterAcmeAccountRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterAcmeAccountRB
-        $AllProperties = ("directory", "tos_url", "eab-hmac-key", "contact", "eab-kid", "name")
+        $AllProperties = ("name", "eab-kid", "eab-hmac-key", "directory", "tos_url", "contact")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "eab-kid"))) { #optional property not found
+            $EabKid = $null
+        } else {
+            $EabKid = $JsonParameters.PSobject.Properties["eab-kid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "eab-hmac-key"))) { #optional property not found
+            $EabHmacKey = $null
+        } else {
+            $EabHmacKey = $JsonParameters.PSobject.Properties["eab-hmac-key"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "directory"))) { #optional property not found
@@ -127,37 +145,19 @@ function ConvertFrom-PVEJsonToPOSTClusterAcmeAccountRB {
             $TosUrl = $JsonParameters.PSobject.Properties["tos_url"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "eab-hmac-key"))) { #optional property not found
-            $EabHmacKey = $null
-        } else {
-            $EabHmacKey = $JsonParameters.PSobject.Properties["eab-hmac-key"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "contact"))) { #optional property not found
             $Contact = $null
         } else {
             $Contact = $JsonParameters.PSobject.Properties["contact"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "eab-kid"))) { #optional property not found
-            $EabKid = $null
-        } else {
-            $EabKid = $JsonParameters.PSobject.Properties["eab-kid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "name" = ${Name}
+            "eab-kid" = ${EabKid}
+            "eab-hmac-key" = ${EabHmacKey}
             "directory" = ${Directory}
             "tos_url" = ${TosUrl}
-            "eab-hmac-key" = ${EabHmacKey}
             "contact" = ${Contact}
-            "eab-kid" = ${EabKid}
-            "name" = ${Name}
         }
 
         return $PSO

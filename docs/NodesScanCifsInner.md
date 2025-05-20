@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Share** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
+**Share** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesScanCifsInner = Initialize-PVENodesScanCifsInner  -Share null `
- -Description null
+$NodesScanCifsInner = Initialize-PVENodesScanCifsInner  -Description null `
+ -Share null
 ```
 
 - Convert the resource to JSON

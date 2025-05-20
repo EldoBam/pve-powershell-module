@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterNotificationsEndpointsGotifyRB' {
     Context 'PVEPUTClusterNotificationsEndpointsGotifyRB' {
         It 'Initialize-PVEPUTClusterNotificationsEndpointsGotifyRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterNotificationsEndpointsGotifyRB -Comment "TEST_VALUE" -Token "TEST_VALUE" -Disable "TEST_VALUE" -Server "TEST_VALUE" -Delete "TEST_VALUE" -Digest "TEST_VALUE" -Name "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterNotificationsEndpointsGotifyRB -Delete "TEST_VALUE" -Token "TEST_VALUE" -Comment "TEST_VALUE" -Disable "TEST_VALUE" -Server "TEST_VALUE" -Digest "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterNotificationsEndpointsGotifyRB
             #$NewObject.property | Should -Be 0
         }

@@ -15,11 +15,7 @@ No summary available.
 
 No description available.
 
-.PARAMETER Pos
-No description available.
 .PARAMETER Digest
-No description available.
-.PARAMETER Group
 No description available.
 .OUTPUTS
 
@@ -30,15 +26,8 @@ function Initialize-PVEDELETEClusterFirewallGroupsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Pos},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("[A-Za-z][A-Za-z0-9\-\_]+")]
-        [String]
-        ${Group}
+        ${Digest}
     )
 
     Process {
@@ -49,23 +38,15 @@ function Initialize-PVEDELETEClusterFirewallGroupsRB {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
         }
 
-        if (!$Group -and $Group.length -gt 18) {
-            throw "invalid value for 'Group', the character length must be smaller than or equal to 18."
-        }
-
-        if (!$Group -and $Group.length -lt 2) {
-            throw "invalid value for 'Group', the character length must be great than or equal to 2."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Pos"="pos"; "Digest"="digest"; "Group"="group"
+			"Digest"="digest"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -105,17 +86,11 @@ function ConvertFrom-PVEJsonToDELETEClusterFirewallGroupsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEClusterFirewallGroupsRB
-        $AllProperties = ("pos", "digest", "group")
+        $AllProperties = ("digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
-            $Pos = $null
-        } else {
-            $Pos = $JsonParameters.PSobject.Properties["pos"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -124,16 +99,8 @@ function ConvertFrom-PVEJsonToDELETEClusterFirewallGroupsRB {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "group"))) { #optional property not found
-            $Group = $null
-        } else {
-            $Group = $JsonParameters.PSobject.Properties["group"].value
-        }
-
         $PSO = [PSCustomObject]@{
-            "pos" = ${Pos}
             "digest" = ${Digest}
-            "group" = ${Group}
         }
 
         return $PSO

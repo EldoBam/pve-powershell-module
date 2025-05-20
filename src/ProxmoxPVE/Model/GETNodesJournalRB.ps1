@@ -21,11 +21,9 @@ No description available.
 No description available.
 .PARAMETER Startcursor
 No description available.
-.PARAMETER VarUntil
-No description available.
 .PARAMETER Since
 No description available.
-.PARAMETER Node
+.PARAMETER VarUntil
 No description available.
 .OUTPUTS
 
@@ -46,13 +44,10 @@ function Initialize-PVEGETNodesJournalRB {
         ${Startcursor},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VarUntil},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${Since},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Int32]]
+        ${VarUntil}
     )
 
     Process {
@@ -61,13 +56,13 @@ function Initialize-PVEGETNodesJournalRB {
 
 
 		 $DisplayNameMapping =@{
-			"Lastentries"="lastentries"; "Endcursor"="endcursor"; "Startcursor"="startcursor"; "VarUntil"="until"; "Since"="since"; "Node"="node"
+			"Lastentries"="lastentries"; "Endcursor"="endcursor"; "Startcursor"="startcursor"; "Since"="since"; "VarUntil"="until"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -107,7 +102,7 @@ function ConvertFrom-PVEJsonToGETNodesJournalRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesJournalRB
-        $AllProperties = ("lastentries", "endcursor", "startcursor", "until", "since", "node")
+        $AllProperties = ("lastentries", "endcursor", "startcursor", "since", "until")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -132,31 +127,24 @@ function ConvertFrom-PVEJsonToGETNodesJournalRB {
             $Startcursor = $JsonParameters.PSobject.Properties["startcursor"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
-            $VarUntil = $null
-        } else {
-            $VarUntil = $JsonParameters.PSobject.Properties["until"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "since"))) { #optional property not found
             $Since = $null
         } else {
             $Since = $JsonParameters.PSobject.Properties["since"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
+            $VarUntil = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $VarUntil = $JsonParameters.PSobject.Properties["until"].value
         }
 
         $PSO = [PSCustomObject]@{
             "lastentries" = ${Lastentries}
             "endcursor" = ${Endcursor}
             "startcursor" = ${Startcursor}
-            "until" = ${VarUntil}
             "since" = ${Since}
-            "node" = ${Node}
+            "until" = ${VarUntil}
         }
 
         return $PSO

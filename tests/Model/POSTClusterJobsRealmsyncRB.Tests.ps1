@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTClusterJobsRealmsyncRB' {
     Context 'PVEPOSTClusterJobsRealmsyncRB' {
         It 'Initialize-PVEPOSTClusterJobsRealmsyncRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTClusterJobsRealmsyncRB -Realm "TEST_VALUE" -Scope "TEST_VALUE" -RemoveVanished "TEST_VALUE" -Comment "TEST_VALUE" -EnableNew "TEST_VALUE" -Id "TEST_VALUE" -Enabled "TEST_VALUE" -Schedule "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTClusterJobsRealmsyncRB -Enabled "TEST_VALUE" -Scope "TEST_VALUE" -RemoveVanished "TEST_VALUE" -EnableNew "TEST_VALUE" -Realm "TEST_VALUE" -Schedule "TEST_VALUE" -Comment "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTClusterJobsRealmsyncRB
             #$NewObject.property | Should -Be 0
         }

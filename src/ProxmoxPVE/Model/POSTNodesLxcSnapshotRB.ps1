@@ -15,13 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Snapname
-No description available.
 .PARAMETER Description
 No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Node
+.PARAMETER Snapname
 No description available.
 .OUTPUTS
 
@@ -33,16 +29,10 @@ function Initialize-PVEPOSTNodesLxcSnapshotRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Snapname},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${Snapname}
     )
 
     Process {
@@ -53,23 +43,15 @@ function Initialize-PVEPOSTNodesLxcSnapshotRB {
             throw "invalid value for 'Snapname', the character length must be smaller than or equal to 40."
         }
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Snapname"="snapname"; "Description"="description"; "Vmid"="vmid"; "Node"="node"
+			"Description"="description"; "Snapname"="snapname"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -109,17 +91,11 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcSnapshotRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesLxcSnapshotRB
-        $AllProperties = ("snapname", "description", "vmid", "node")
+        $AllProperties = ("description", "snapname")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snapname"))) { #optional property not found
-            $Snapname = $null
-        } else {
-            $Snapname = $JsonParameters.PSobject.Properties["snapname"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
@@ -128,23 +104,15 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcSnapshotRB {
             $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "snapname"))) { #optional property not found
+            $Snapname = $null
         } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Snapname = $JsonParameters.PSobject.Properties["snapname"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "snapname" = ${Snapname}
             "description" = ${Description}
-            "vmid" = ${Vmid}
-            "node" = ${Node}
+            "snapname" = ${Snapname}
         }
 
         return $PSO

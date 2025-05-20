@@ -15,15 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Skiplock
+No description available.
 .PARAMETER Todisk
 No description available.
 .PARAMETER Statestorage
-No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Skiplock
-No description available.
-.PARAMETER Node
 No description available.
 .OUTPUTS
 
@@ -34,59 +30,29 @@ function Initialize-PVEPOSTNodesQemuStatusSuspendRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
+        ${Skiplock},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
         ${Todisk},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Statestorage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Skiplock},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Statestorage}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesQemuStatusSuspendRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Todisk -and $Todisk -gt 1) {
-          throw "invalid value for 'Todisk', must be smaller than or equal to 1."
-        }
-
-        if ($Todisk -and $Todisk -lt 0) {
-          throw "invalid value for 'Todisk', must be greater than or equal to 0."
-        }
-
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
-        if ($Skiplock -and $Skiplock -gt 1) {
-          throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
-        }
-
-        if ($Skiplock -and $Skiplock -lt 0) {
-          throw "invalid value for 'Skiplock', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Todisk"="todisk"; "Statestorage"="statestorage"; "Vmid"="vmid"; "Skiplock"="skiplock"; "Node"="node"
+			"Skiplock"="skiplock"; "Todisk"="todisk"; "Statestorage"="statestorage"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -126,11 +92,17 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusSuspendRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuStatusSuspendRB
-        $AllProperties = ("todisk", "statestorage", "vmid", "skiplock", "node")
+        $AllProperties = ("skiplock", "todisk", "statestorage")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
+            $Skiplock = $null
+        } else {
+            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "todisk"))) { #optional property not found
@@ -145,30 +117,10 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuStatusSuspendRB {
             $Statestorage = $JsonParameters.PSobject.Properties["statestorage"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
-            $Skiplock = $null
-        } else {
-            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "skiplock" = ${Skiplock}
             "todisk" = ${Todisk}
             "statestorage" = ${Statestorage}
-            "vmid" = ${Vmid}
-            "skiplock" = ${Skiplock}
-            "node" = ${Node}
         }
 
         return $PSO

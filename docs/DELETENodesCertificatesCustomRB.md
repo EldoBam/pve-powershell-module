@@ -3,15 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Restart** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Restart** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesCertificatesCustomRB = Initialize-PVEDELETENodesCertificatesCustomRB  -Restart null `
- -Node null
+$DELETENodesCertificatesCustomRB = Initialize-PVEDELETENodesCertificatesCustomRB  -Restart null
 ```
 
 - Convert the resource to JSON

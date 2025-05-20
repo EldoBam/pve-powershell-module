@@ -17,8 +17,6 @@ No description available.
 
 .PARAMETER Digest
 No description available.
-.PARAMETER Pos
-No description available.
 .OUTPUTS
 
 DELETEClusterFirewallRulesRB<PSCustomObject>
@@ -29,10 +27,7 @@ function Initialize-PVEDELETEClusterFirewallRulesRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Pos}
+        ${Digest}
     )
 
     Process {
@@ -45,13 +40,13 @@ function Initialize-PVEDELETEClusterFirewallRulesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Digest"="digest"; "Pos"="pos"
+			"Digest"="digest"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -91,7 +86,7 @@ function ConvertFrom-PVEJsonToDELETEClusterFirewallRulesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEClusterFirewallRulesRB
-        $AllProperties = ("digest", "pos")
+        $AllProperties = ("digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -104,15 +99,8 @@ function ConvertFrom-PVEJsonToDELETEClusterFirewallRulesRB {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pos"))) { #optional property not found
-            $Pos = $null
-        } else {
-            $Pos = $JsonParameters.PSobject.Properties["pos"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "digest" = ${Digest}
-            "pos" = ${Pos}
         }
 
         return $PSO

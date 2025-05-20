@@ -3,19 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CleanupConfig** | **Int32** |  | [optional] 
-**CleanupDisks** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**CleanupConfig** | **Boolean** |  | [optional] 
+**CleanupDisks** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $DELETENodesDisksZfsRB = Initialize-PVEDELETENodesDisksZfsRB  -CleanupConfig null `
- -CleanupDisks null `
- -Name null `
- -Node null
+ -CleanupDisks null
 ```
 
 - Convert the resource to JSON

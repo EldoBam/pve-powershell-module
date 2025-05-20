@@ -15,101 +15,101 @@ No summary available.
 
 No description available.
 
-.PARAMETER BridgeVlanAware
-No description available.
-.PARAMETER BondMode
-No description available.
-.PARAMETER VxlanLocalTunnelip
-No description available.
-.PARAMETER BondPrimary
-No description available.
-.PARAMETER OvsBridge
-No description available.
-.PARAMETER Address
-No description available.
-.PARAMETER VlanProtocol
-No description available.
-.PARAMETER OvsPorts
-No description available.
-.PARAMETER VxlanSvcnodeip
-No description available.
-.PARAMETER BridgeLearning
-No description available.
-.PARAMETER Netmask
-No description available.
-.PARAMETER Autostart
-No description available.
-.PARAMETER BridgeArpNdSuppress
-No description available.
-.PARAMETER VlanRawDevice
-No description available.
-.PARAMETER BridgeVids
-No description available.
-.PARAMETER Iface
-No description available.
-.PARAMETER OvsOptions
-No description available.
-.PARAMETER BondXmitHashPolicy
+.PARAMETER Exists
 No description available.
 .PARAMETER Options6
 No description available.
-.PARAMETER Type
-No description available.
-.PARAMETER Gateway
+.PARAMETER Gateway6
 No description available.
 .PARAMETER VxlanId
 No description available.
-.PARAMETER Cidr
+.PARAMETER Comments6
 No description available.
-.PARAMETER LinkType
-No description available.
-.PARAMETER Families
+.PARAMETER Iface
 No description available.
 .PARAMETER Method
 No description available.
-.PARAMETER BridgeMulticastFlood
-No description available.
-.PARAMETER BridgeAccess
-No description available.
-.PARAMETER UplinkId
-No description available.
-.PARAMETER VxlanPhysdev
-No description available.
-.PARAMETER Slaves
-No description available.
-.PARAMETER Exists
+.PARAMETER Cidr
 No description available.
 .PARAMETER Cidr6
 No description available.
-.PARAMETER OvsBonds
+.PARAMETER Options
+No description available.
+.PARAMETER Autostart
 No description available.
 .PARAMETER Mtu
 No description available.
+.PARAMETER VxlanSvcnodeip
+No description available.
 .PARAMETER BridgeUnicastFlood
 No description available.
-.PARAMETER Method6
+.PARAMETER VxlanPhysdev
 No description available.
-.PARAMETER Options
+.PARAMETER Families
 No description available.
-.PARAMETER Comments6
+.PARAMETER BondMode
+No description available.
+.PARAMETER Slaves
+No description available.
+.PARAMETER BridgeVids
+No description available.
+.PARAMETER Active
+No description available.
+.PARAMETER BridgePorts
+No description available.
+.PARAMETER Netmask6
+No description available.
+.PARAMETER OvsBridge
+No description available.
+.PARAMETER VlanProtocol
+No description available.
+.PARAMETER BridgeAccess
+No description available.
+.PARAMETER OvsOptions
+No description available.
+.PARAMETER Type
+No description available.
+.PARAMETER OvsTag
+No description available.
+.PARAMETER Gateway
+No description available.
+.PARAMETER Netmask
+No description available.
+.PARAMETER OvsPorts
 No description available.
 .PARAMETER Comments
 No description available.
-.PARAMETER OvsTag
+.PARAMETER UplinkId
+No description available.
+.PARAMETER BondXmitHashPolicy
+No description available.
+.PARAMETER Address
+No description available.
+.PARAMETER BridgeArpNdSuppress
+No description available.
+.PARAMETER VxlanLocalTunnelip
+No description available.
+.PARAMETER BridgeVlanAware
+No description available.
+.PARAMETER VlanRawDevice
+No description available.
+.PARAMETER BridgeLearning
+No description available.
+.PARAMETER Method6
+No description available.
+.PARAMETER LinkType
+No description available.
+.PARAMETER Priority
+No description available.
+.PARAMETER BondPrimary
 No description available.
 .PARAMETER Address6
 No description available.
 .PARAMETER VlanId
 No description available.
-.PARAMETER Active
+.PARAMETER OvsBonds
 No description available.
-.PARAMETER Netmask6
-No description available.
-.PARAMETER BridgePorts
-No description available.
-.PARAMETER Gateway6
-No description available.
-.PARAMETER Priority
+.PARAMETER BridgeMulticastFlood
 No description available.
 .OUTPUTS
 
@@ -120,135 +120,144 @@ function Initialize-PVENodesNetworkGETInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Exists},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${Options6},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Gateway6},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${BridgeVlanAware},
+        ${VxlanId},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Comments6},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Iface},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("loopback", "dhcp", "manual", "static", "auto")]
+        [String]
+        ${Method},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Cidr},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Cidr6},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${Options},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Autostart},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Mtu},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${VxlanSvcnodeip},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${BridgeUnicastFlood},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${VxlanPhysdev},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("inet", "inet6")]
+        [String[]]
+        ${Families},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("balance-rr", "active-backup", "balance-xor", "broadcast", "802.3ad", "balance-tlb", "balance-alb", "balance-slb", "lacp-balance-slb", "lacp-balance-tcp")]
         [String]
         ${BondMode},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${VxlanLocalTunnelip},
+        ${Slaves},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${BondPrimary},
+        ${BridgeVids},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Active},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${BridgePorts},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Netmask6},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${OvsBridge},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Address},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("802.1ad", "802.1q")]
         [String]
         ${VlanProtocol},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${OvsPorts},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${VxlanSvcnodeip},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${BridgeLearning},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Netmask},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Autostart},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${BridgeArpNdSuppress},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${VlanRawDevice},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${BridgeVids},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Iface},
+        ${BridgeAccess},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${OvsOptions},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("layer2", "layer2+3", "layer3+4")]
-        [String]
-        ${BondXmitHashPolicy},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Options6},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("bridge", "bond", "eth", "alias", "vlan", "OVSBridge", "OVSBond", "OVSPort", "OVSIntPort", "vnet", "unknown")]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${OvsTag},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Gateway},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VxlanId},
+        [String]
+        ${Netmask},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Cidr},
+        ${OvsPorts},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${LinkType},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("inet", "inet6")]
-        [String[]]
-        ${Families},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("loopback", "dhcp", "manual", "static", "auto")]
-        [String]
-        ${Method},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${BridgeMulticastFlood},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${BridgeAccess},
+        ${Comments},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${UplinkId},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("layer2", "layer2+3", "layer3+4")]
         [String]
-        ${VxlanPhysdev},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Slaves},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Exists},
+        ${BondXmitHashPolicy},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Cidr6},
+        ${Address},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${BridgeArpNdSuppress},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${OvsBonds},
+        ${VxlanLocalTunnelip},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Mtu},
+        [System.Nullable[Boolean]]
+        ${BridgeVlanAware},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${BridgeUnicastFlood},
+        [String]
+        ${VlanRawDevice},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${BridgeLearning},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("loopback", "dhcp", "manual", "static", "auto")]
         [String]
         ${Method6},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Options},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comments6},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comments},
+        ${LinkType},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${OvsTag},
+        ${Priority},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${BondPrimary},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Address6},
@@ -256,57 +265,16 @@ function Initialize-PVENodesNetworkGETInner {
         [System.Nullable[Int32]]
         ${VlanId},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Active},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Netmask6},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${BridgePorts},
+        ${OvsBonds},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Gateway6},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Priority}
+        [System.Nullable[Boolean]]
+        ${BridgeMulticastFlood}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesNetworkGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($BridgeVlanAware -and $BridgeVlanAware -gt 1) {
-          throw "invalid value for 'BridgeVlanAware', must be smaller than or equal to 1."
-        }
-
-        if ($BridgeVlanAware -and $BridgeVlanAware -lt 0) {
-          throw "invalid value for 'BridgeVlanAware', must be greater than or equal to 0."
-        }
-
-        if ($BridgeLearning -and $BridgeLearning -gt 1) {
-          throw "invalid value for 'BridgeLearning', must be smaller than or equal to 1."
-        }
-
-        if ($BridgeLearning -and $BridgeLearning -lt 0) {
-          throw "invalid value for 'BridgeLearning', must be greater than or equal to 0."
-        }
-
-        if ($Autostart -and $Autostart -gt 1) {
-          throw "invalid value for 'Autostart', must be smaller than or equal to 1."
-        }
-
-        if ($Autostart -and $Autostart -lt 0) {
-          throw "invalid value for 'Autostart', must be greater than or equal to 0."
-        }
-
-        if ($BridgeArpNdSuppress -and $BridgeArpNdSuppress -gt 1) {
-          throw "invalid value for 'BridgeArpNdSuppress', must be smaller than or equal to 1."
-        }
-
-        if ($BridgeArpNdSuppress -and $BridgeArpNdSuppress -lt 0) {
-          throw "invalid value for 'BridgeArpNdSuppress', must be greater than or equal to 0."
-        }
 
         if (!$Iface -and $Iface.length -gt 20) {
             throw "invalid value for 'Iface', the character length must be smaller than or equal to 20."
@@ -314,26 +282,6 @@ function Initialize-PVENodesNetworkGETInner {
 
         if (!$Iface -and $Iface.length -lt 2) {
             throw "invalid value for 'Iface', the character length must be great than or equal to 2."
-        }
-
-        if (!$OvsOptions -and $OvsOptions.length -gt 1024) {
-            throw "invalid value for 'OvsOptions', the character length must be smaller than or equal to 1024."
-        }
-
-        if ($BridgeMulticastFlood -and $BridgeMulticastFlood -gt 1) {
-          throw "invalid value for 'BridgeMulticastFlood', must be smaller than or equal to 1."
-        }
-
-        if ($BridgeMulticastFlood -and $BridgeMulticastFlood -lt 0) {
-          throw "invalid value for 'BridgeMulticastFlood', must be greater than or equal to 0."
-        }
-
-        if ($Exists -and $Exists -gt 1) {
-          throw "invalid value for 'Exists', must be smaller than or equal to 1."
-        }
-
-        if ($Exists -and $Exists -lt 0) {
-          throw "invalid value for 'Exists', must be greater than or equal to 0."
         }
 
         if ($Mtu -and $Mtu -gt 65520) {
@@ -344,12 +292,12 @@ function Initialize-PVENodesNetworkGETInner {
           throw "invalid value for 'Mtu', must be greater than or equal to 1280."
         }
 
-        if ($BridgeUnicastFlood -and $BridgeUnicastFlood -gt 1) {
-          throw "invalid value for 'BridgeUnicastFlood', must be smaller than or equal to 1."
+        if ($Netmask6 -and $Netmask6 -gt 128) {
+          throw "invalid value for 'Netmask6', must be smaller than or equal to 128."
         }
 
-        if ($BridgeUnicastFlood -and $BridgeUnicastFlood -lt 0) {
-          throw "invalid value for 'BridgeUnicastFlood', must be greater than or equal to 0."
+        if (!$OvsOptions -and $OvsOptions.length -gt 1024) {
+            throw "invalid value for 'OvsOptions', the character length must be smaller than or equal to 1024."
         }
 
         if ($OvsTag -and $OvsTag -gt 4094) {
@@ -368,27 +316,15 @@ function Initialize-PVENodesNetworkGETInner {
           throw "invalid value for 'VlanId', must be greater than or equal to 1."
         }
 
-        if ($Active -and $Active -gt 1) {
-          throw "invalid value for 'Active', must be smaller than or equal to 1."
-        }
-
-        if ($Active -and $Active -lt 0) {
-          throw "invalid value for 'Active', must be greater than or equal to 0."
-        }
-
-        if ($Netmask6 -and $Netmask6 -gt 128) {
-          throw "invalid value for 'Netmask6', must be smaller than or equal to 128."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"BridgeVlanAware"="bridge_vlan_aware"; "BondMode"="bond_mode"; "VxlanLocalTunnelip"="vxlan-local-tunnelip"; "BondPrimary"="bond-primary"; "OvsBridge"="ovs_bridge"; "Address"="address"; "VlanProtocol"="vlan-protocol"; "OvsPorts"="ovs_ports"; "VxlanSvcnodeip"="vxlan-svcnodeip"; "BridgeLearning"="bridge-learning"; "Netmask"="netmask"; "Autostart"="autostart"; "BridgeArpNdSuppress"="bridge-arp-nd-suppress"; "VlanRawDevice"="vlan-raw-device"; "BridgeVids"="bridge_vids"; "Iface"="iface"; "OvsOptions"="ovs_options"; "BondXmitHashPolicy"="bond_xmit_hash_policy"; "Options6"="options6"; "Type"="type"; "Gateway"="gateway"; "VxlanId"="vxlan-id"; "Cidr"="cidr"; "LinkType"="link-type"; "Families"="families"; "Method"="method"; "BridgeMulticastFlood"="bridge-multicast-flood"; "BridgeAccess"="bridge-access"; "UplinkId"="uplink-id"; "VxlanPhysdev"="vxlan-physdev"; "Slaves"="slaves"; "Exists"="exists"; "Cidr6"="cidr6"; "OvsBonds"="ovs_bonds"; "Mtu"="mtu"; "BridgeUnicastFlood"="bridge-unicast-flood"; "Method6"="method6"; "Options"="options"; "Comments6"="comments6"; "Comments"="comments"; "OvsTag"="ovs_tag"; "Address6"="address6"; "VlanId"="vlan-id"; "Active"="active"; "Netmask6"="netmask6"; "BridgePorts"="bridge_ports"; "Gateway6"="gateway6"; "Priority"="priority"
+			"Exists"="exists"; "Options6"="options6"; "Gateway6"="gateway6"; "VxlanId"="vxlan-id"; "Comments6"="comments6"; "Iface"="iface"; "Method"="method"; "Cidr"="cidr"; "Cidr6"="cidr6"; "Options"="options"; "Autostart"="autostart"; "Mtu"="mtu"; "VxlanSvcnodeip"="vxlan-svcnodeip"; "BridgeUnicastFlood"="bridge-unicast-flood"; "VxlanPhysdev"="vxlan-physdev"; "Families"="families"; "BondMode"="bond_mode"; "Slaves"="slaves"; "BridgeVids"="bridge_vids"; "Active"="active"; "BridgePorts"="bridge_ports"; "Netmask6"="netmask6"; "OvsBridge"="ovs_bridge"; "VlanProtocol"="vlan-protocol"; "BridgeAccess"="bridge-access"; "OvsOptions"="ovs_options"; "Type"="type"; "OvsTag"="ovs_tag"; "Gateway"="gateway"; "Netmask"="netmask"; "OvsPorts"="ovs_ports"; "Comments"="comments"; "UplinkId"="uplink-id"; "BondXmitHashPolicy"="bond_xmit_hash_policy"; "Address"="address"; "BridgeArpNdSuppress"="bridge-arp-nd-suppress"; "VxlanLocalTunnelip"="vxlan-local-tunnelip"; "BridgeVlanAware"="bridge_vlan_aware"; "VlanRawDevice"="vlan-raw-device"; "BridgeLearning"="bridge-learning"; "Method6"="method6"; "LinkType"="link-type"; "Priority"="priority"; "BondPrimary"="bond-primary"; "Address6"="address6"; "VlanId"="vlan-id"; "OvsBonds"="ovs_bonds"; "BridgeMulticastFlood"="bridge-multicast-flood"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -428,197 +364,11 @@ function ConvertFrom-PVEJsonToNodesNetworkGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesNetworkGETInner
-        $AllProperties = ("bridge_vlan_aware", "bond_mode", "vxlan-local-tunnelip", "bond-primary", "ovs_bridge", "address", "vlan-protocol", "ovs_ports", "vxlan-svcnodeip", "bridge-learning", "netmask", "autostart", "bridge-arp-nd-suppress", "vlan-raw-device", "bridge_vids", "iface", "ovs_options", "bond_xmit_hash_policy", "options6", "type", "gateway", "vxlan-id", "cidr", "link-type", "families", "method", "bridge-multicast-flood", "bridge-access", "uplink-id", "vxlan-physdev", "slaves", "exists", "cidr6", "ovs_bonds", "mtu", "bridge-unicast-flood", "method6", "options", "comments6", "comments", "ovs_tag", "address6", "vlan-id", "active", "netmask6", "bridge_ports", "gateway6", "priority")
+        $AllProperties = ("exists", "options6", "gateway6", "vxlan-id", "comments6", "iface", "method", "cidr", "cidr6", "options", "autostart", "mtu", "vxlan-svcnodeip", "bridge-unicast-flood", "vxlan-physdev", "families", "bond_mode", "slaves", "bridge_vids", "active", "bridge_ports", "netmask6", "ovs_bridge", "vlan-protocol", "bridge-access", "ovs_options", "type", "ovs_tag", "gateway", "netmask", "ovs_ports", "comments", "uplink-id", "bond_xmit_hash_policy", "address", "bridge-arp-nd-suppress", "vxlan-local-tunnelip", "bridge_vlan_aware", "vlan-raw-device", "bridge-learning", "method6", "link-type", "priority", "bond-primary", "address6", "vlan-id", "ovs_bonds", "bridge-multicast-flood")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge_vlan_aware"))) { #optional property not found
-            $BridgeVlanAware = $null
-        } else {
-            $BridgeVlanAware = $JsonParameters.PSobject.Properties["bridge_vlan_aware"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bond_mode"))) { #optional property not found
-            $BondMode = $null
-        } else {
-            $BondMode = $JsonParameters.PSobject.Properties["bond_mode"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vxlan-local-tunnelip"))) { #optional property not found
-            $VxlanLocalTunnelip = $null
-        } else {
-            $VxlanLocalTunnelip = $JsonParameters.PSobject.Properties["vxlan-local-tunnelip"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bond-primary"))) { #optional property not found
-            $BondPrimary = $null
-        } else {
-            $BondPrimary = $JsonParameters.PSobject.Properties["bond-primary"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ovs_bridge"))) { #optional property not found
-            $OvsBridge = $null
-        } else {
-            $OvsBridge = $JsonParameters.PSobject.Properties["ovs_bridge"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "address"))) { #optional property not found
-            $Address = $null
-        } else {
-            $Address = $JsonParameters.PSobject.Properties["address"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vlan-protocol"))) { #optional property not found
-            $VlanProtocol = $null
-        } else {
-            $VlanProtocol = $JsonParameters.PSobject.Properties["vlan-protocol"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ovs_ports"))) { #optional property not found
-            $OvsPorts = $null
-        } else {
-            $OvsPorts = $JsonParameters.PSobject.Properties["ovs_ports"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vxlan-svcnodeip"))) { #optional property not found
-            $VxlanSvcnodeip = $null
-        } else {
-            $VxlanSvcnodeip = $JsonParameters.PSobject.Properties["vxlan-svcnodeip"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge-learning"))) { #optional property not found
-            $BridgeLearning = $null
-        } else {
-            $BridgeLearning = $JsonParameters.PSobject.Properties["bridge-learning"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "netmask"))) { #optional property not found
-            $Netmask = $null
-        } else {
-            $Netmask = $JsonParameters.PSobject.Properties["netmask"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "autostart"))) { #optional property not found
-            $Autostart = $null
-        } else {
-            $Autostart = $JsonParameters.PSobject.Properties["autostart"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge-arp-nd-suppress"))) { #optional property not found
-            $BridgeArpNdSuppress = $null
-        } else {
-            $BridgeArpNdSuppress = $JsonParameters.PSobject.Properties["bridge-arp-nd-suppress"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vlan-raw-device"))) { #optional property not found
-            $VlanRawDevice = $null
-        } else {
-            $VlanRawDevice = $JsonParameters.PSobject.Properties["vlan-raw-device"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge_vids"))) { #optional property not found
-            $BridgeVids = $null
-        } else {
-            $BridgeVids = $JsonParameters.PSobject.Properties["bridge_vids"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "iface"))) { #optional property not found
-            $Iface = $null
-        } else {
-            $Iface = $JsonParameters.PSobject.Properties["iface"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ovs_options"))) { #optional property not found
-            $OvsOptions = $null
-        } else {
-            $OvsOptions = $JsonParameters.PSobject.Properties["ovs_options"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bond_xmit_hash_policy"))) { #optional property not found
-            $BondXmitHashPolicy = $null
-        } else {
-            $BondXmitHashPolicy = $JsonParameters.PSobject.Properties["bond_xmit_hash_policy"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "options6"))) { #optional property not found
-            $Options6 = $null
-        } else {
-            $Options6 = $JsonParameters.PSobject.Properties["options6"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "gateway"))) { #optional property not found
-            $Gateway = $null
-        } else {
-            $Gateway = $JsonParameters.PSobject.Properties["gateway"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vxlan-id"))) { #optional property not found
-            $VxlanId = $null
-        } else {
-            $VxlanId = $JsonParameters.PSobject.Properties["vxlan-id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
-            $Cidr = $null
-        } else {
-            $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "link-type"))) { #optional property not found
-            $LinkType = $null
-        } else {
-            $LinkType = $JsonParameters.PSobject.Properties["link-type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "families"))) { #optional property not found
-            $Families = $null
-        } else {
-            $Families = $JsonParameters.PSobject.Properties["families"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method"))) { #optional property not found
-            $Method = $null
-        } else {
-            $Method = $JsonParameters.PSobject.Properties["method"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge-multicast-flood"))) { #optional property not found
-            $BridgeMulticastFlood = $null
-        } else {
-            $BridgeMulticastFlood = $JsonParameters.PSobject.Properties["bridge-multicast-flood"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge-access"))) { #optional property not found
-            $BridgeAccess = $null
-        } else {
-            $BridgeAccess = $JsonParameters.PSobject.Properties["bridge-access"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "uplink-id"))) { #optional property not found
-            $UplinkId = $null
-        } else {
-            $UplinkId = $JsonParameters.PSobject.Properties["uplink-id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vxlan-physdev"))) { #optional property not found
-            $VxlanPhysdev = $null
-        } else {
-            $VxlanPhysdev = $JsonParameters.PSobject.Properties["vxlan-physdev"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "slaves"))) { #optional property not found
-            $Slaves = $null
-        } else {
-            $Slaves = $JsonParameters.PSobject.Properties["slaves"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "exists"))) { #optional property not found
@@ -627,40 +377,22 @@ function ConvertFrom-PVEJsonToNodesNetworkGETInner {
             $Exists = $JsonParameters.PSobject.Properties["exists"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr6"))) { #optional property not found
-            $Cidr6 = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "options6"))) { #optional property not found
+            $Options6 = $null
         } else {
-            $Cidr6 = $JsonParameters.PSobject.Properties["cidr6"].value
+            $Options6 = $JsonParameters.PSobject.Properties["options6"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ovs_bonds"))) { #optional property not found
-            $OvsBonds = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "gateway6"))) { #optional property not found
+            $Gateway6 = $null
         } else {
-            $OvsBonds = $JsonParameters.PSobject.Properties["ovs_bonds"].value
+            $Gateway6 = $JsonParameters.PSobject.Properties["gateway6"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mtu"))) { #optional property not found
-            $Mtu = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vxlan-id"))) { #optional property not found
+            $VxlanId = $null
         } else {
-            $Mtu = $JsonParameters.PSobject.Properties["mtu"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge-unicast-flood"))) { #optional property not found
-            $BridgeUnicastFlood = $null
-        } else {
-            $BridgeUnicastFlood = $JsonParameters.PSobject.Properties["bridge-unicast-flood"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method6"))) { #optional property not found
-            $Method6 = $null
-        } else {
-            $Method6 = $JsonParameters.PSobject.Properties["method6"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "options"))) { #optional property not found
-            $Options = $null
-        } else {
-            $Options = $JsonParameters.PSobject.Properties["options"].value
+            $VxlanId = $JsonParameters.PSobject.Properties["vxlan-id"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comments6"))) { #optional property not found
@@ -669,16 +401,238 @@ function ConvertFrom-PVEJsonToNodesNetworkGETInner {
             $Comments6 = $JsonParameters.PSobject.Properties["comments6"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comments"))) { #optional property not found
-            $Comments = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "iface"))) { #optional property not found
+            $Iface = $null
         } else {
-            $Comments = $JsonParameters.PSobject.Properties["comments"].value
+            $Iface = $JsonParameters.PSobject.Properties["iface"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method"))) { #optional property not found
+            $Method = $null
+        } else {
+            $Method = $JsonParameters.PSobject.Properties["method"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr"))) { #optional property not found
+            $Cidr = $null
+        } else {
+            $Cidr = $JsonParameters.PSobject.Properties["cidr"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cidr6"))) { #optional property not found
+            $Cidr6 = $null
+        } else {
+            $Cidr6 = $JsonParameters.PSobject.Properties["cidr6"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "options"))) { #optional property not found
+            $Options = $null
+        } else {
+            $Options = $JsonParameters.PSobject.Properties["options"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "autostart"))) { #optional property not found
+            $Autostart = $null
+        } else {
+            $Autostart = $JsonParameters.PSobject.Properties["autostart"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mtu"))) { #optional property not found
+            $Mtu = $null
+        } else {
+            $Mtu = $JsonParameters.PSobject.Properties["mtu"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vxlan-svcnodeip"))) { #optional property not found
+            $VxlanSvcnodeip = $null
+        } else {
+            $VxlanSvcnodeip = $JsonParameters.PSobject.Properties["vxlan-svcnodeip"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge-unicast-flood"))) { #optional property not found
+            $BridgeUnicastFlood = $null
+        } else {
+            $BridgeUnicastFlood = $JsonParameters.PSobject.Properties["bridge-unicast-flood"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vxlan-physdev"))) { #optional property not found
+            $VxlanPhysdev = $null
+        } else {
+            $VxlanPhysdev = $JsonParameters.PSobject.Properties["vxlan-physdev"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "families"))) { #optional property not found
+            $Families = $null
+        } else {
+            $Families = $JsonParameters.PSobject.Properties["families"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bond_mode"))) { #optional property not found
+            $BondMode = $null
+        } else {
+            $BondMode = $JsonParameters.PSobject.Properties["bond_mode"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "slaves"))) { #optional property not found
+            $Slaves = $null
+        } else {
+            $Slaves = $JsonParameters.PSobject.Properties["slaves"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge_vids"))) { #optional property not found
+            $BridgeVids = $null
+        } else {
+            $BridgeVids = $JsonParameters.PSobject.Properties["bridge_vids"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "active"))) { #optional property not found
+            $Active = $null
+        } else {
+            $Active = $JsonParameters.PSobject.Properties["active"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge_ports"))) { #optional property not found
+            $BridgePorts = $null
+        } else {
+            $BridgePorts = $JsonParameters.PSobject.Properties["bridge_ports"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "netmask6"))) { #optional property not found
+            $Netmask6 = $null
+        } else {
+            $Netmask6 = $JsonParameters.PSobject.Properties["netmask6"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ovs_bridge"))) { #optional property not found
+            $OvsBridge = $null
+        } else {
+            $OvsBridge = $JsonParameters.PSobject.Properties["ovs_bridge"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vlan-protocol"))) { #optional property not found
+            $VlanProtocol = $null
+        } else {
+            $VlanProtocol = $JsonParameters.PSobject.Properties["vlan-protocol"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge-access"))) { #optional property not found
+            $BridgeAccess = $null
+        } else {
+            $BridgeAccess = $JsonParameters.PSobject.Properties["bridge-access"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ovs_options"))) { #optional property not found
+            $OvsOptions = $null
+        } else {
+            $OvsOptions = $JsonParameters.PSobject.Properties["ovs_options"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "ovs_tag"))) { #optional property not found
             $OvsTag = $null
         } else {
             $OvsTag = $JsonParameters.PSobject.Properties["ovs_tag"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "gateway"))) { #optional property not found
+            $Gateway = $null
+        } else {
+            $Gateway = $JsonParameters.PSobject.Properties["gateway"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "netmask"))) { #optional property not found
+            $Netmask = $null
+        } else {
+            $Netmask = $JsonParameters.PSobject.Properties["netmask"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ovs_ports"))) { #optional property not found
+            $OvsPorts = $null
+        } else {
+            $OvsPorts = $JsonParameters.PSobject.Properties["ovs_ports"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comments"))) { #optional property not found
+            $Comments = $null
+        } else {
+            $Comments = $JsonParameters.PSobject.Properties["comments"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "uplink-id"))) { #optional property not found
+            $UplinkId = $null
+        } else {
+            $UplinkId = $JsonParameters.PSobject.Properties["uplink-id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bond_xmit_hash_policy"))) { #optional property not found
+            $BondXmitHashPolicy = $null
+        } else {
+            $BondXmitHashPolicy = $JsonParameters.PSobject.Properties["bond_xmit_hash_policy"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "address"))) { #optional property not found
+            $Address = $null
+        } else {
+            $Address = $JsonParameters.PSobject.Properties["address"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge-arp-nd-suppress"))) { #optional property not found
+            $BridgeArpNdSuppress = $null
+        } else {
+            $BridgeArpNdSuppress = $JsonParameters.PSobject.Properties["bridge-arp-nd-suppress"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vxlan-local-tunnelip"))) { #optional property not found
+            $VxlanLocalTunnelip = $null
+        } else {
+            $VxlanLocalTunnelip = $JsonParameters.PSobject.Properties["vxlan-local-tunnelip"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge_vlan_aware"))) { #optional property not found
+            $BridgeVlanAware = $null
+        } else {
+            $BridgeVlanAware = $JsonParameters.PSobject.Properties["bridge_vlan_aware"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vlan-raw-device"))) { #optional property not found
+            $VlanRawDevice = $null
+        } else {
+            $VlanRawDevice = $JsonParameters.PSobject.Properties["vlan-raw-device"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge-learning"))) { #optional property not found
+            $BridgeLearning = $null
+        } else {
+            $BridgeLearning = $JsonParameters.PSobject.Properties["bridge-learning"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "method6"))) { #optional property not found
+            $Method6 = $null
+        } else {
+            $Method6 = $JsonParameters.PSobject.Properties["method6"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "link-type"))) { #optional property not found
+            $LinkType = $null
+        } else {
+            $LinkType = $JsonParameters.PSobject.Properties["link-type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "priority"))) { #optional property not found
+            $Priority = $null
+        } else {
+            $Priority = $JsonParameters.PSobject.Properties["priority"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bond-primary"))) { #optional property not found
+            $BondPrimary = $null
+        } else {
+            $BondPrimary = $JsonParameters.PSobject.Properties["bond-primary"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "address6"))) { #optional property not found
@@ -693,85 +647,67 @@ function ConvertFrom-PVEJsonToNodesNetworkGETInner {
             $VlanId = $JsonParameters.PSobject.Properties["vlan-id"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "active"))) { #optional property not found
-            $Active = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ovs_bonds"))) { #optional property not found
+            $OvsBonds = $null
         } else {
-            $Active = $JsonParameters.PSobject.Properties["active"].value
+            $OvsBonds = $JsonParameters.PSobject.Properties["ovs_bonds"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "netmask6"))) { #optional property not found
-            $Netmask6 = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge-multicast-flood"))) { #optional property not found
+            $BridgeMulticastFlood = $null
         } else {
-            $Netmask6 = $JsonParameters.PSobject.Properties["netmask6"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bridge_ports"))) { #optional property not found
-            $BridgePorts = $null
-        } else {
-            $BridgePorts = $JsonParameters.PSobject.Properties["bridge_ports"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "gateway6"))) { #optional property not found
-            $Gateway6 = $null
-        } else {
-            $Gateway6 = $JsonParameters.PSobject.Properties["gateway6"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "priority"))) { #optional property not found
-            $Priority = $null
-        } else {
-            $Priority = $JsonParameters.PSobject.Properties["priority"].value
+            $BridgeMulticastFlood = $JsonParameters.PSobject.Properties["bridge-multicast-flood"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "bridge_vlan_aware" = ${BridgeVlanAware}
-            "bond_mode" = ${BondMode}
-            "vxlan-local-tunnelip" = ${VxlanLocalTunnelip}
-            "bond-primary" = ${BondPrimary}
-            "ovs_bridge" = ${OvsBridge}
-            "address" = ${Address}
-            "vlan-protocol" = ${VlanProtocol}
-            "ovs_ports" = ${OvsPorts}
-            "vxlan-svcnodeip" = ${VxlanSvcnodeip}
-            "bridge-learning" = ${BridgeLearning}
-            "netmask" = ${Netmask}
-            "autostart" = ${Autostart}
-            "bridge-arp-nd-suppress" = ${BridgeArpNdSuppress}
-            "vlan-raw-device" = ${VlanRawDevice}
-            "bridge_vids" = ${BridgeVids}
-            "iface" = ${Iface}
-            "ovs_options" = ${OvsOptions}
-            "bond_xmit_hash_policy" = ${BondXmitHashPolicy}
-            "options6" = ${Options6}
-            "type" = ${Type}
-            "gateway" = ${Gateway}
-            "vxlan-id" = ${VxlanId}
-            "cidr" = ${Cidr}
-            "link-type" = ${LinkType}
-            "families" = ${Families}
-            "method" = ${Method}
-            "bridge-multicast-flood" = ${BridgeMulticastFlood}
-            "bridge-access" = ${BridgeAccess}
-            "uplink-id" = ${UplinkId}
-            "vxlan-physdev" = ${VxlanPhysdev}
-            "slaves" = ${Slaves}
             "exists" = ${Exists}
-            "cidr6" = ${Cidr6}
-            "ovs_bonds" = ${OvsBonds}
-            "mtu" = ${Mtu}
-            "bridge-unicast-flood" = ${BridgeUnicastFlood}
-            "method6" = ${Method6}
-            "options" = ${Options}
+            "options6" = ${Options6}
+            "gateway6" = ${Gateway6}
+            "vxlan-id" = ${VxlanId}
             "comments6" = ${Comments6}
-            "comments" = ${Comments}
+            "iface" = ${Iface}
+            "method" = ${Method}
+            "cidr" = ${Cidr}
+            "cidr6" = ${Cidr6}
+            "options" = ${Options}
+            "autostart" = ${Autostart}
+            "mtu" = ${Mtu}
+            "vxlan-svcnodeip" = ${VxlanSvcnodeip}
+            "bridge-unicast-flood" = ${BridgeUnicastFlood}
+            "vxlan-physdev" = ${VxlanPhysdev}
+            "families" = ${Families}
+            "bond_mode" = ${BondMode}
+            "slaves" = ${Slaves}
+            "bridge_vids" = ${BridgeVids}
+            "active" = ${Active}
+            "bridge_ports" = ${BridgePorts}
+            "netmask6" = ${Netmask6}
+            "ovs_bridge" = ${OvsBridge}
+            "vlan-protocol" = ${VlanProtocol}
+            "bridge-access" = ${BridgeAccess}
+            "ovs_options" = ${OvsOptions}
+            "type" = ${Type}
             "ovs_tag" = ${OvsTag}
+            "gateway" = ${Gateway}
+            "netmask" = ${Netmask}
+            "ovs_ports" = ${OvsPorts}
+            "comments" = ${Comments}
+            "uplink-id" = ${UplinkId}
+            "bond_xmit_hash_policy" = ${BondXmitHashPolicy}
+            "address" = ${Address}
+            "bridge-arp-nd-suppress" = ${BridgeArpNdSuppress}
+            "vxlan-local-tunnelip" = ${VxlanLocalTunnelip}
+            "bridge_vlan_aware" = ${BridgeVlanAware}
+            "vlan-raw-device" = ${VlanRawDevice}
+            "bridge-learning" = ${BridgeLearning}
+            "method6" = ${Method6}
+            "link-type" = ${LinkType}
+            "priority" = ${Priority}
+            "bond-primary" = ${BondPrimary}
             "address6" = ${Address6}
             "vlan-id" = ${VlanId}
-            "active" = ${Active}
-            "netmask6" = ${Netmask6}
-            "bridge_ports" = ${BridgePorts}
-            "gateway6" = ${Gateway6}
-            "priority" = ${Priority}
+            "ovs_bonds" = ${OvsBonds}
+            "bridge-multicast-flood" = ${BridgeMulticastFlood}
         }
 
         return $PSO

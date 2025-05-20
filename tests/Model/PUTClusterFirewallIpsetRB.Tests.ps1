@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterFirewallIpsetRB' {
     Context 'PVEPUTClusterFirewallIpsetRB' {
         It 'Initialize-PVEPUTClusterFirewallIpsetRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterFirewallIpsetRB -Name "TEST_VALUE" -Nomatch "TEST_VALUE" -Comment "TEST_VALUE" -Digest "TEST_VALUE" -Cidr "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterFirewallIpsetRB -Comment "TEST_VALUE" -Digest "TEST_VALUE" -Nomatch "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterFirewallIpsetRB
             #$NewObject.property | Should -Be 0
         }

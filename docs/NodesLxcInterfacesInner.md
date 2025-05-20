@@ -4,10 +4,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Inet** | **String** |  | [optional] 
-**Hwaddr** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **HardwareAddress** | **String** |  | [optional] 
+**Hwaddr** | **String** |  | [optional] 
 **Inet6** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **IpAddresses** | [**NodesLxcInterfacesInnerIpAddressesInner[]**](NodesLxcInterfacesInnerIpAddressesInner.md) |  | [optional] 
 
 ## Examples
@@ -15,10 +15,10 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $NodesLxcInterfacesInner = Initialize-PVENodesLxcInterfacesInner  -Inet null `
- -Hwaddr null `
- -Name null `
  -HardwareAddress null `
+ -Hwaddr null `
  -Inet6 null `
+ -Name null `
  -IpAddresses null
 ```
 

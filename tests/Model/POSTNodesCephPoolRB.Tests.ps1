@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesCephPoolRB' {
     Context 'PVEPOSTNodesCephPoolRB' {
         It 'Initialize-PVEPOSTNodesCephPoolRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesCephPoolRB -Node "TEST_VALUE" -PgNumMin "TEST_VALUE" -TargetSize "TEST_VALUE" -MinSize "TEST_VALUE" -PgAutoscaleMode "TEST_VALUE" -ErasureCoding "TEST_VALUE" -CrushRule "TEST_VALUE" -Application "TEST_VALUE" -Size "TEST_VALUE" -AddStorages "TEST_VALUE" -PgNum "TEST_VALUE" -Name "TEST_VALUE" -TargetSizeRatio "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesCephPoolRB -Name "TEST_VALUE" -AddStorages "TEST_VALUE" -TargetSizeRatio "TEST_VALUE" -Application "TEST_VALUE" -CrushRule "TEST_VALUE" -TargetSize "TEST_VALUE" -MinSize "TEST_VALUE" -PgAutoscaleMode "TEST_VALUE" -PgNum "TEST_VALUE" -Size "TEST_VALUE" -ErasureCoding "TEST_VALUE" -PgNumMin "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesCephPoolRB
             #$NewObject.property | Should -Be 0
         }

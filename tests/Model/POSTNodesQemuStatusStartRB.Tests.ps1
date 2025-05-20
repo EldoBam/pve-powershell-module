@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesQemuStatusStartRB' {
     Context 'PVEPOSTNodesQemuStatusStartRB' {
         It 'Initialize-PVEPOSTNodesQemuStatusStartRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesQemuStatusStartRB -MigrationType "TEST_VALUE" -Targetstorage "TEST_VALUE" -ForceCpu "TEST_VALUE" -Stateuri "TEST_VALUE" -Vmid "TEST_VALUE" -MigrationNetwork "TEST_VALUE" -Skiplock "TEST_VALUE" -Migratedfrom "TEST_VALUE" -Timeout "TEST_VALUE" -Machine "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesQemuStatusStartRB -Machine "TEST_VALUE" -Stateuri "TEST_VALUE" -Skiplock "TEST_VALUE" -MigrationType "TEST_VALUE" -MigrationNetwork "TEST_VALUE" -ForceCpu "TEST_VALUE" -Timeout "TEST_VALUE" -Migratedfrom "TEST_VALUE" -Targetstorage "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesQemuStatusStartRB
             #$NewObject.property | Should -Be 0
         }

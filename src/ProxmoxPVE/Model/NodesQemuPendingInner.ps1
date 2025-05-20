@@ -15,38 +15,38 @@ No summary available.
 
 No description available.
 
-.PARAMETER Value
-No description available.
-.PARAMETER Key
-No description available.
 .PARAMETER Delete
 No description available.
 .PARAMETER Pending
 No description available.
+.PARAMETER Value
+No description available.
+.PARAMETER Key
+No description available.
 .OUTPUTS
 
-NodesLxcPendingInner<PSCustomObject>
+NodesQemuPendingInner<PSCustomObject>
 #>
 
-function Initialize-PVENodesLxcPendingInner {
+function Initialize-PVENodesQemuPendingInner {
     [CmdletBinding()]
     Param (
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Value},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Key},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Pending}
+        ${Pending},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Value},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Key}
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVENodesLxcPendingInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVENodesQemuPendingInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         if ($Delete -and $Delete -gt 2) {
@@ -55,13 +55,13 @@ function Initialize-PVENodesLxcPendingInner {
 
 
 		 $DisplayNameMapping =@{
-			"Value"="value"; "Key"="key"; "Delete"="delete"; "Pending"="pending"
+			"Delete"="delete"; "Pending"="pending"; "Value"="value"; "Key"="key"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -74,11 +74,11 @@ function Initialize-PVENodesLxcPendingInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to NodesLxcPendingInner<PSCustomObject>
+Convert from JSON to NodesQemuPendingInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to NodesLxcPendingInner<PSCustomObject>
+Convert from JSON to NodesQemuPendingInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -86,38 +86,26 @@ Json object
 
 .OUTPUTS
 
-NodesLxcPendingInner<PSCustomObject>
+NodesQemuPendingInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToNodesLxcPendingInner {
+function ConvertFrom-PVEJsonToNodesQemuPendingInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesLxcPendingInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVENodesQemuPendingInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVENodesLxcPendingInner
-        $AllProperties = ("value", "key", "delete", "pending")
+        # check if Json contains properties not defined in PVENodesQemuPendingInner
+        $AllProperties = ("delete", "pending", "value", "key")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
-            $Value = $null
-        } else {
-            $Value = $JsonParameters.PSobject.Properties["value"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
-            $Key = $null
-        } else {
-            $Key = $JsonParameters.PSobject.Properties["key"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
@@ -132,11 +120,23 @@ function ConvertFrom-PVEJsonToNodesLxcPendingInner {
             $Pending = $JsonParameters.PSobject.Properties["pending"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "value"))) { #optional property not found
+            $Value = $null
+        } else {
+            $Value = $JsonParameters.PSobject.Properties["value"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
+            $Key = $null
+        } else {
+            $Key = $JsonParameters.PSobject.Properties["key"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "value" = ${Value}
-            "key" = ${Key}
             "delete" = ${Delete}
             "pending" = ${Pending}
+            "value" = ${Value}
+            "key" = ${Key}
         }
 
         return $PSO

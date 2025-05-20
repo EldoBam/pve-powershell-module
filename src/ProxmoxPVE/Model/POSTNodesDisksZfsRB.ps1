@@ -15,21 +15,19 @@ No summary available.
 
 No description available.
 
+.PARAMETER Name
+No description available.
 .PARAMETER AddStorage
 No description available.
 .PARAMETER Compression
 No description available.
-.PARAMETER Raidlevel
-No description available.
-.PARAMETER Node
+.PARAMETER DraidConfig
 No description available.
 .PARAMETER Devices
 No description available.
-.PARAMETER Name
+.PARAMETER Raidlevel
 No description available.
 .PARAMETER Ashift
-No description available.
-.PARAMETER DraidConfig
 No description available.
 .OUTPUTS
 
@@ -40,44 +38,33 @@ function Initialize-PVEPOSTNodesDisksZfsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [String]
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
         ${AddStorage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("on", "off", "gzip", "lz4", "lzjb", "zle", "zstd")]
         [String]
         ${Compression},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("single", "mirror", "raid10", "raidz", "raidz2", "raidz3", "draid", "draid2", "draid3")]
         [String]
-        ${Raidlevel},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
+        ${DraidConfig},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Devices},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("single", "mirror", "raid10", "raidz", "raidz2", "raidz3", "draid", "draid2", "draid3")]
         [String]
-        ${Name},
+        ${Raidlevel},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Ashift},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${DraidConfig}
+        ${Ashift}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesDisksZfsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($AddStorage -and $AddStorage -gt 1) {
-          throw "invalid value for 'AddStorage', must be smaller than or equal to 1."
-        }
-
-        if ($AddStorage -and $AddStorage -lt 0) {
-          throw "invalid value for 'AddStorage', must be greater than or equal to 0."
-        }
 
         if ($Ashift -and $Ashift -gt 16) {
           throw "invalid value for 'Ashift', must be smaller than or equal to 16."
@@ -89,13 +76,13 @@ function Initialize-PVEPOSTNodesDisksZfsRB {
 
 
 		 $DisplayNameMapping =@{
-			"AddStorage"="add_storage"; "Compression"="compression"; "Raidlevel"="raidlevel"; "Node"="node"; "Devices"="devices"; "Name"="name"; "Ashift"="ashift"; "DraidConfig"="draid-config"
+			"Name"="name"; "AddStorage"="add_storage"; "Compression"="compression"; "DraidConfig"="draid-config"; "Devices"="devices"; "Raidlevel"="raidlevel"; "Ashift"="ashift"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -135,11 +122,17 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksZfsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesDisksZfsRB
-        $AllProperties = ("add_storage", "compression", "raidlevel", "node", "devices", "name", "ashift", "draid-config")
+        $AllProperties = ("name", "add_storage", "compression", "draid-config", "devices", "raidlevel", "ashift")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "add_storage"))) { #optional property not found
@@ -154,16 +147,10 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksZfsRB {
             $Compression = $JsonParameters.PSobject.Properties["compression"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "raidlevel"))) { #optional property not found
-            $Raidlevel = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "draid-config"))) { #optional property not found
+            $DraidConfig = $null
         } else {
-            $Raidlevel = $JsonParameters.PSobject.Properties["raidlevel"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $DraidConfig = $JsonParameters.PSobject.Properties["draid-config"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "devices"))) { #optional property not found
@@ -172,10 +159,10 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksZfsRB {
             $Devices = $JsonParameters.PSobject.Properties["devices"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "raidlevel"))) { #optional property not found
+            $Raidlevel = $null
         } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $Raidlevel = $JsonParameters.PSobject.Properties["raidlevel"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "ashift"))) { #optional property not found
@@ -184,21 +171,14 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksZfsRB {
             $Ashift = $JsonParameters.PSobject.Properties["ashift"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "draid-config"))) { #optional property not found
-            $DraidConfig = $null
-        } else {
-            $DraidConfig = $JsonParameters.PSobject.Properties["draid-config"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "name" = ${Name}
             "add_storage" = ${AddStorage}
             "compression" = ${Compression}
-            "raidlevel" = ${Raidlevel}
-            "node" = ${Node}
-            "devices" = ${Devices}
-            "name" = ${Name}
-            "ashift" = ${Ashift}
             "draid-config" = ${DraidConfig}
+            "devices" = ${Devices}
+            "raidlevel" = ${Raidlevel}
+            "ashift" = ${Ashift}
         }
 
         return $PSO

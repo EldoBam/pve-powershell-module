@@ -15,27 +15,23 @@ No summary available.
 
 No description available.
 
-.PARAMETER TargetBridge
-No description available.
-.PARAMETER Restart
-No description available.
-.PARAMETER TargetStorage
-No description available.
-.PARAMETER TargetVmid
-No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Online
-No description available.
-.PARAMETER Bwlimit
-No description available.
-.PARAMETER TargetEndpoint
+.PARAMETER Timeout
 No description available.
 .PARAMETER Delete
 No description available.
-.PARAMETER Timeout
+.PARAMETER TargetStorage
 No description available.
-.PARAMETER Node
+.PARAMETER TargetEndpoint
+No description available.
+.PARAMETER Bwlimit
+No description available.
+.PARAMETER Online
+No description available.
+.PARAMETER Restart
+No description available.
+.PARAMETER TargetBridge
+No description available.
+.PARAMETER TargetVmid
 No description available.
 .OUTPUTS
 
@@ -46,51 +42,37 @@ function Initialize-PVEPOSTNodesLxcRemotemigrateRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${TargetBridge},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Restart},
+        ${Timeout},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${TargetStorage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${TargetVmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Online},
+        [String]
+        ${TargetEndpoint},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Decimal]]
         ${Bwlimit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${TargetEndpoint},
+        [System.Nullable[Boolean]]
+        ${Online},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Timeout},
+        [System.Nullable[Boolean]]
+        ${Restart},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${TargetBridge},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${TargetVmid}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesLxcRemotemigrateRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Restart -and $Restart -gt 1) {
-          throw "invalid value for 'Restart', must be smaller than or equal to 1."
-        }
-
-        if ($Restart -and $Restart -lt 0) {
-          throw "invalid value for 'Restart', must be greater than or equal to 0."
-        }
 
         if ($TargetVmid -and $TargetVmid -gt 999999999) {
           throw "invalid value for 'TargetVmid', must be smaller than or equal to 999999999."
@@ -100,39 +82,15 @@ function Initialize-PVEPOSTNodesLxcRemotemigrateRB {
           throw "invalid value for 'TargetVmid', must be greater than or equal to 100."
         }
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
-        if ($Online -and $Online -gt 1) {
-          throw "invalid value for 'Online', must be smaller than or equal to 1."
-        }
-
-        if ($Online -and $Online -lt 0) {
-          throw "invalid value for 'Online', must be greater than or equal to 0."
-        }
-
-        if ($Delete -and $Delete -gt 1) {
-          throw "invalid value for 'Delete', must be smaller than or equal to 1."
-        }
-
-        if ($Delete -and $Delete -lt 0) {
-          throw "invalid value for 'Delete', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"TargetBridge"="target-bridge"; "Restart"="restart"; "TargetStorage"="target-storage"; "TargetVmid"="target-vmid"; "Vmid"="vmid"; "Online"="online"; "Bwlimit"="bwlimit"; "TargetEndpoint"="target-endpoint"; "Delete"="delete"; "Timeout"="timeout"; "Node"="node"
+			"Timeout"="timeout"; "Delete"="delete"; "TargetStorage"="target-storage"; "TargetEndpoint"="target-endpoint"; "Bwlimit"="bwlimit"; "Online"="online"; "Restart"="restart"; "TargetBridge"="target-bridge"; "TargetVmid"="target-vmid"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -172,65 +130,11 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcRemotemigrateRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesLxcRemotemigrateRB
-        $AllProperties = ("target-bridge", "restart", "target-storage", "target-vmid", "vmid", "online", "bwlimit", "target-endpoint", "delete", "timeout", "node")
+        $AllProperties = ("timeout", "delete", "target-storage", "target-endpoint", "bwlimit", "online", "restart", "target-bridge", "target-vmid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-bridge"))) { #optional property not found
-            $TargetBridge = $null
-        } else {
-            $TargetBridge = $JsonParameters.PSobject.Properties["target-bridge"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "restart"))) { #optional property not found
-            $Restart = $null
-        } else {
-            $Restart = $JsonParameters.PSobject.Properties["restart"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-storage"))) { #optional property not found
-            $TargetStorage = $null
-        } else {
-            $TargetStorage = $JsonParameters.PSobject.Properties["target-storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-vmid"))) { #optional property not found
-            $TargetVmid = $null
-        } else {
-            $TargetVmid = $JsonParameters.PSobject.Properties["target-vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "online"))) { #optional property not found
-            $Online = $null
-        } else {
-            $Online = $JsonParameters.PSobject.Properties["online"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
-            $Bwlimit = $null
-        } else {
-            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-endpoint"))) { #optional property not found
-            $TargetEndpoint = $null
-        } else {
-            $TargetEndpoint = $JsonParameters.PSobject.Properties["target-endpoint"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
@@ -239,24 +143,64 @@ function ConvertFrom-PVEJsonToPOSTNodesLxcRemotemigrateRB {
             $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-storage"))) { #optional property not found
+            $TargetStorage = $null
+        } else {
+            $TargetStorage = $JsonParameters.PSobject.Properties["target-storage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-endpoint"))) { #optional property not found
+            $TargetEndpoint = $null
+        } else {
+            $TargetEndpoint = $JsonParameters.PSobject.Properties["target-endpoint"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bwlimit"))) { #optional property not found
+            $Bwlimit = $null
+        } else {
+            $Bwlimit = $JsonParameters.PSobject.Properties["bwlimit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "online"))) { #optional property not found
+            $Online = $null
+        } else {
+            $Online = $JsonParameters.PSobject.Properties["online"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "restart"))) { #optional property not found
+            $Restart = $null
+        } else {
+            $Restart = $JsonParameters.PSobject.Properties["restart"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-bridge"))) { #optional property not found
+            $TargetBridge = $null
+        } else {
+            $TargetBridge = $JsonParameters.PSobject.Properties["target-bridge"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target-vmid"))) { #optional property not found
+            $TargetVmid = $null
+        } else {
+            $TargetVmid = $JsonParameters.PSobject.Properties["target-vmid"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "target-bridge" = ${TargetBridge}
-            "restart" = ${Restart}
-            "target-storage" = ${TargetStorage}
-            "target-vmid" = ${TargetVmid}
-            "vmid" = ${Vmid}
-            "online" = ${Online}
-            "bwlimit" = ${Bwlimit}
-            "target-endpoint" = ${TargetEndpoint}
-            "delete" = ${Delete}
             "timeout" = ${Timeout}
-            "node" = ${Node}
+            "delete" = ${Delete}
+            "target-storage" = ${TargetStorage}
+            "target-endpoint" = ${TargetEndpoint}
+            "bwlimit" = ${Bwlimit}
+            "online" = ${Online}
+            "restart" = ${Restart}
+            "target-bridge" = ${TargetBridge}
+            "target-vmid" = ${TargetVmid}
         }
 
         return $PSO

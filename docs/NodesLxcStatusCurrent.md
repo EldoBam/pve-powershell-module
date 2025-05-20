@@ -4,48 +4,48 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Maxswap** | **Int32** |  | [optional] 
-**Diskread** | **Int32** |  | [optional] 
-**Cpus** | **Decimal** |  | [optional] 
-**Maxdisk** | **Int32** |  | [optional] 
-**Uptime** | **Int32** |  | [optional] 
-**Cpu** | **Decimal** |  | [optional] 
-**Tags** | **String** |  | [optional] 
 **Status** | **String** |  | [optional] 
-**Disk** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
+**Cpu** | **Decimal** |  | [optional] 
+**Template** | **Boolean** |  | [optional] 
 **Lock** | **String** |  | [optional] 
-**Ha** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**Netin** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Mem** | **Int32** |  | [optional] 
+**Uptime** | **Int32** |  | [optional] 
+**Maxmem** | **Int32** |  | [optional] 
+**Maxdisk** | **Int32** |  | [optional] 
+**Cpus** | **Decimal** |  | [optional] 
+**Tags** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 **Netout** | **Int32** |  | [optional] 
 **Diskwrite** | **Int32** |  | [optional] 
-**Maxmem** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Template** | **Int32** |  | [optional] 
+**Diskread** | **Int32** |  | [optional] 
+**Ha** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**Netin** | **Int32** |  | [optional] 
+**Disk** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $NodesLxcStatusCurrent = Initialize-PVENodesLxcStatusCurrent  -Maxswap null `
- -Diskread null `
- -Cpus null `
- -Maxdisk null `
- -Uptime null `
- -Cpu null `
- -Tags null `
  -Status null `
- -Disk null `
- -Vmid null `
+ -Cpu null `
+ -Template null `
  -Lock null `
- -Ha null `
- -Netin null `
+ -Name null `
  -Mem null `
+ -Uptime null `
+ -Maxmem null `
+ -Maxdisk null `
+ -Cpus null `
+ -Tags null `
+ -Vmid null `
  -Netout null `
  -Diskwrite null `
- -Maxmem null `
- -Name null `
- -Template null
+ -Diskread null `
+ -Ha null `
+ -Netin null `
+ -Disk null
 ```
 
 - Convert the resource to JSON

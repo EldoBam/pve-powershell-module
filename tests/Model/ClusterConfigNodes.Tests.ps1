@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterConfigNodes' {
     Context 'PVEClusterConfigNodes' {
         It 'Initialize-PVEClusterConfigNodes' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterConfigNodes -CorosyncConf "TEST_VALUE" -CorosyncAuthkey "TEST_VALUE" -Warnings "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterConfigNodes -CorosyncAuthkey "TEST_VALUE" -CorosyncConf "TEST_VALUE" -Warnings "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterConfigNodes
             #$NewObject.property | Should -Be 0
         }

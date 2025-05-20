@@ -15,29 +15,29 @@ No summary available.
 
 No description available.
 
-.PARAMETER Vendid
-No description available.
-.PARAMETER Usbpath
-No description available.
-.PARAMETER Devnum
-No description available.
-.PARAMETER Product
-No description available.
-.PARAMETER Manufacturer
-No description available.
-.PARAMETER Busnum
-No description available.
-.PARAMETER Serial
-No description available.
-.PARAMETER Speed
+.PARAMETER Prodid
 No description available.
 .PARAMETER Level
 No description available.
-.PARAMETER Class
+.PARAMETER Vendid
 No description available.
 .PARAMETER Port
 No description available.
-.PARAMETER Prodid
+.PARAMETER Devnum
+No description available.
+.PARAMETER Serial
+No description available.
+.PARAMETER Usbpath
+No description available.
+.PARAMETER Manufacturer
+No description available.
+.PARAMETER Class
+No description available.
+.PARAMETER Busnum
+No description available.
+.PARAMETER Speed
+No description available.
+.PARAMETER Product
 No description available.
 .OUTPUTS
 
@@ -49,40 +49,40 @@ function Initialize-PVENodesHardwareUsbInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vendid},
+        ${Prodid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Level},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Usbpath},
+        ${Vendid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Port},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Devnum},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Product},
+        ${Serial},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Usbpath},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Manufacturer},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Busnum},
+        ${Class},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Serial},
+        [System.Nullable[Int32]]
+        ${Busnum},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Speed},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Level},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Class},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Port},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Prodid}
+        ${Product}
     )
 
     Process {
@@ -91,13 +91,13 @@ function Initialize-PVENodesHardwareUsbInner {
 
 
 		 $DisplayNameMapping =@{
-			"Vendid"="vendid"; "Usbpath"="usbpath"; "Devnum"="devnum"; "Product"="product"; "Manufacturer"="manufacturer"; "Busnum"="busnum"; "Serial"="serial"; "Speed"="speed"; "Level"="level"; "Class"="class"; "Port"="port"; "Prodid"="prodid"
+			"Prodid"="prodid"; "Level"="level"; "Vendid"="vendid"; "Port"="port"; "Devnum"="devnum"; "Serial"="serial"; "Usbpath"="usbpath"; "Manufacturer"="manufacturer"; "Class"="class"; "Busnum"="busnum"; "Speed"="speed"; "Product"="product"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -137,77 +137,11 @@ function ConvertFrom-PVEJsonToNodesHardwareUsbInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesHardwareUsbInner
-        $AllProperties = ("vendid", "usbpath", "devnum", "product", "manufacturer", "busnum", "serial", "speed", "level", "class", "port", "prodid")
+        $AllProperties = ("prodid", "level", "vendid", "port", "devnum", "serial", "usbpath", "manufacturer", "class", "busnum", "speed", "product")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vendid"))) { #optional property not found
-            $Vendid = $null
-        } else {
-            $Vendid = $JsonParameters.PSobject.Properties["vendid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "usbpath"))) { #optional property not found
-            $Usbpath = $null
-        } else {
-            $Usbpath = $JsonParameters.PSobject.Properties["usbpath"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "devnum"))) { #optional property not found
-            $Devnum = $null
-        } else {
-            $Devnum = $JsonParameters.PSobject.Properties["devnum"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "product"))) { #optional property not found
-            $Product = $null
-        } else {
-            $Product = $JsonParameters.PSobject.Properties["product"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "manufacturer"))) { #optional property not found
-            $Manufacturer = $null
-        } else {
-            $Manufacturer = $JsonParameters.PSobject.Properties["manufacturer"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "busnum"))) { #optional property not found
-            $Busnum = $null
-        } else {
-            $Busnum = $JsonParameters.PSobject.Properties["busnum"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "serial"))) { #optional property not found
-            $Serial = $null
-        } else {
-            $Serial = $JsonParameters.PSobject.Properties["serial"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "speed"))) { #optional property not found
-            $Speed = $null
-        } else {
-            $Speed = $JsonParameters.PSobject.Properties["speed"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "level"))) { #optional property not found
-            $Level = $null
-        } else {
-            $Level = $JsonParameters.PSobject.Properties["level"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "class"))) { #optional property not found
-            $Class = $null
-        } else {
-            $Class = $JsonParameters.PSobject.Properties["class"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
-            $Port = $null
-        } else {
-            $Port = $JsonParameters.PSobject.Properties["port"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "prodid"))) { #optional property not found
@@ -216,19 +150,85 @@ function ConvertFrom-PVEJsonToNodesHardwareUsbInner {
             $Prodid = $JsonParameters.PSobject.Properties["prodid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "level"))) { #optional property not found
+            $Level = $null
+        } else {
+            $Level = $JsonParameters.PSobject.Properties["level"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vendid"))) { #optional property not found
+            $Vendid = $null
+        } else {
+            $Vendid = $JsonParameters.PSobject.Properties["vendid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
+            $Port = $null
+        } else {
+            $Port = $JsonParameters.PSobject.Properties["port"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "devnum"))) { #optional property not found
+            $Devnum = $null
+        } else {
+            $Devnum = $JsonParameters.PSobject.Properties["devnum"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "serial"))) { #optional property not found
+            $Serial = $null
+        } else {
+            $Serial = $JsonParameters.PSobject.Properties["serial"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "usbpath"))) { #optional property not found
+            $Usbpath = $null
+        } else {
+            $Usbpath = $JsonParameters.PSobject.Properties["usbpath"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "manufacturer"))) { #optional property not found
+            $Manufacturer = $null
+        } else {
+            $Manufacturer = $JsonParameters.PSobject.Properties["manufacturer"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "class"))) { #optional property not found
+            $Class = $null
+        } else {
+            $Class = $JsonParameters.PSobject.Properties["class"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "busnum"))) { #optional property not found
+            $Busnum = $null
+        } else {
+            $Busnum = $JsonParameters.PSobject.Properties["busnum"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "speed"))) { #optional property not found
+            $Speed = $null
+        } else {
+            $Speed = $JsonParameters.PSobject.Properties["speed"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "product"))) { #optional property not found
+            $Product = $null
+        } else {
+            $Product = $JsonParameters.PSobject.Properties["product"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "vendid" = ${Vendid}
-            "usbpath" = ${Usbpath}
-            "devnum" = ${Devnum}
-            "product" = ${Product}
-            "manufacturer" = ${Manufacturer}
-            "busnum" = ${Busnum}
-            "serial" = ${Serial}
-            "speed" = ${Speed}
-            "level" = ${Level}
-            "class" = ${Class}
-            "port" = ${Port}
             "prodid" = ${Prodid}
+            "level" = ${Level}
+            "vendid" = ${Vendid}
+            "port" = ${Port}
+            "devnum" = ${Devnum}
+            "serial" = ${Serial}
+            "usbpath" = ${Usbpath}
+            "manufacturer" = ${Manufacturer}
+            "class" = ${Class}
+            "busnum" = ${Busnum}
+            "speed" = ${Speed}
+            "product" = ${Product}
         }
 
         return $PSO

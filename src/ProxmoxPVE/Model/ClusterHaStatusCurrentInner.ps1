@@ -15,29 +15,29 @@ No summary available.
 
 No description available.
 
-.PARAMETER Type
-No description available.
-.PARAMETER RequestState
-No description available.
-.PARAMETER MaxRelocate
-No description available.
-.PARAMETER State
-No description available.
-.PARAMETER MaxRestart
-No description available.
-.PARAMETER Id
-No description available.
 .PARAMETER Timestamp
-No description available.
-.PARAMETER CrmState
-No description available.
-.PARAMETER Status
-No description available.
-.PARAMETER Sid
 No description available.
 .PARAMETER Node
 No description available.
+.PARAMETER Type
+No description available.
+.PARAMETER CrmState
+No description available.
+.PARAMETER MaxRestart
+No description available.
+.PARAMETER State
+No description available.
+.PARAMETER Status
+No description available.
+.PARAMETER Id
+No description available.
+.PARAMETER Sid
+No description available.
+.PARAMETER MaxRelocate
+No description available.
 .PARAMETER Quorate
+No description available.
+.PARAMETER RequestState
 No description available.
 .OUTPUTS
 
@@ -48,65 +48,57 @@ function Initialize-PVEClusterHaStatusCurrentInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Timestamp},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("quorum", "master", "lrm", "service")]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${RequestState},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${MaxRelocate},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${State},
+        ${CrmState},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${MaxRestart},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Timestamp},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${CrmState},
+        ${State},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Status},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Sid},
+        ${Id},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
+        ${Sid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Quorate}
+        ${MaxRelocate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Quorate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${RequestState}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEClusterHaStatusCurrentInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Quorate -and $Quorate -gt 1) {
-          throw "invalid value for 'Quorate', must be smaller than or equal to 1."
-        }
-
-        if ($Quorate -and $Quorate -lt 0) {
-          throw "invalid value for 'Quorate', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Type"="type"; "RequestState"="request_state"; "MaxRelocate"="max_relocate"; "State"="state"; "MaxRestart"="max_restart"; "Id"="id"; "Timestamp"="timestamp"; "CrmState"="crm_state"; "Status"="status"; "Sid"="sid"; "Node"="node"; "Quorate"="quorate"
+			"Timestamp"="timestamp"; "Node"="node"; "Type"="type"; "CrmState"="crm_state"; "MaxRestart"="max_restart"; "State"="state"; "Status"="status"; "Id"="id"; "Sid"="sid"; "MaxRelocate"="max_relocate"; "Quorate"="quorate"; "RequestState"="request_state"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -146,47 +138,11 @@ function ConvertFrom-PVEJsonToClusterHaStatusCurrentInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterHaStatusCurrentInner
-        $AllProperties = ("type", "request_state", "max_relocate", "state", "max_restart", "id", "timestamp", "crm_state", "status", "sid", "node", "quorate")
+        $AllProperties = ("timestamp", "node", "type", "crm_state", "max_restart", "state", "status", "id", "sid", "max_relocate", "quorate", "request_state")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "request_state"))) { #optional property not found
-            $RequestState = $null
-        } else {
-            $RequestState = $JsonParameters.PSobject.Properties["request_state"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_relocate"))) { #optional property not found
-            $MaxRelocate = $null
-        } else {
-            $MaxRelocate = $JsonParameters.PSobject.Properties["max_relocate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
-            $State = $null
-        } else {
-            $State = $JsonParameters.PSobject.Properties["state"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_restart"))) { #optional property not found
-            $MaxRestart = $null
-        } else {
-            $MaxRestart = $JsonParameters.PSobject.Properties["max_restart"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "timestamp"))) { #optional property not found
@@ -195,10 +151,34 @@ function ConvertFrom-PVEJsonToClusterHaStatusCurrentInner {
             $Timestamp = $JsonParameters.PSobject.Properties["timestamp"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "crm_state"))) { #optional property not found
             $CrmState = $null
         } else {
             $CrmState = $JsonParameters.PSobject.Properties["crm_state"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_restart"))) { #optional property not found
+            $MaxRestart = $null
+        } else {
+            $MaxRestart = $JsonParameters.PSobject.Properties["max_restart"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
+            $State = $null
+        } else {
+            $State = $JsonParameters.PSobject.Properties["state"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
@@ -207,16 +187,22 @@ function ConvertFrom-PVEJsonToClusterHaStatusCurrentInner {
             $Status = $JsonParameters.PSobject.Properties["status"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "sid"))) { #optional property not found
             $Sid = $null
         } else {
             $Sid = $JsonParameters.PSobject.Properties["sid"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_relocate"))) { #optional property not found
+            $MaxRelocate = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $MaxRelocate = $JsonParameters.PSobject.Properties["max_relocate"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "quorate"))) { #optional property not found
@@ -225,19 +211,25 @@ function ConvertFrom-PVEJsonToClusterHaStatusCurrentInner {
             $Quorate = $JsonParameters.PSobject.Properties["quorate"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "request_state"))) { #optional property not found
+            $RequestState = $null
+        } else {
+            $RequestState = $JsonParameters.PSobject.Properties["request_state"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "type" = ${Type}
-            "request_state" = ${RequestState}
-            "max_relocate" = ${MaxRelocate}
-            "state" = ${State}
-            "max_restart" = ${MaxRestart}
-            "id" = ${Id}
             "timestamp" = ${Timestamp}
-            "crm_state" = ${CrmState}
-            "status" = ${Status}
-            "sid" = ${Sid}
             "node" = ${Node}
+            "type" = ${Type}
+            "crm_state" = ${CrmState}
+            "max_restart" = ${MaxRestart}
+            "state" = ${State}
+            "status" = ${Status}
+            "id" = ${Id}
+            "sid" = ${Sid}
+            "max_relocate" = ${MaxRelocate}
             "quorate" = ${Quorate}
+            "request_state" = ${RequestState}
         }
 
         return $PSO

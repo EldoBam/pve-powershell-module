@@ -3,18 +3,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Idlist** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Force** | **Int32** |  | [optional] 
+**Force** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuUnlinkRB = Initialize-PVEPUTNodesQemuUnlinkRB  -Node null `
- -Idlist null `
- -Vmid null `
+$PUTNodesQemuUnlinkRB = Initialize-PVEPUTNodesQemuUnlinkRB  -Idlist null `
  -Force null
 ```
 

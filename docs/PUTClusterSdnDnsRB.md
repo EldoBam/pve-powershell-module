@@ -3,27 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ttl** | **Int32** |  | [optional] 
-**Reversemaskv6** | **Int32** |  | [optional] 
-**Url** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Fingerprint** | **String** |  | [optional] 
-**Dns** | **String** |  | [optional] 
+**Ttl** | **Int32** |  | [optional] 
 **Key** | **String** |  | [optional] 
+**Reversemaskv6** | **Int32** |  | [optional] 
+**Fingerprint** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Url** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnDnsRB = Initialize-PVEPUTClusterSdnDnsRB  -Ttl null `
+$PUTClusterSdnDnsRB = Initialize-PVEPUTClusterSdnDnsRB  -Delete null `
+ -Ttl null `
+ -Key null `
  -Reversemaskv6 null `
- -Url null `
- -Delete null `
- -Digest null `
  -Fingerprint null `
- -Dns null `
- -Key null
+ -Digest null `
+ -Url null
 ```
 
 - Convert the resource to JSON

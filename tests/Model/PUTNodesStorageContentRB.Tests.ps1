@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTNodesStorageContentRB' {
     Context 'PVEPUTNodesStorageContentRB' {
         It 'Initialize-PVEPUTNodesStorageContentRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTNodesStorageContentRB -Protected "TEST_VALUE" -Volume "TEST_VALUE" -Storage "TEST_VALUE" -Notes "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTNodesStorageContentRB -Notes "TEST_VALUE" -Protected "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTNodesStorageContentRB
             #$NewObject.property | Should -Be 0
         }

@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Id
-No description available.
 .PARAMETER Recovery
 No description available.
 .PARAMETER Challenge
+No description available.
+.PARAMETER Id
 No description available.
 .OUTPUTS
 
@@ -30,14 +30,14 @@ function Initialize-PVEAccessTfa {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${Recovery},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Challenge}
+        ${Challenge},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Id}
     )
 
     Process {
@@ -46,13 +46,13 @@ function Initialize-PVEAccessTfa {
 
 
 		 $DisplayNameMapping =@{
-			"Id"="id"; "Recovery"="recovery"; "Challenge"="challenge"
+			"Recovery"="recovery"; "Challenge"="challenge"; "Id"="id"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -92,17 +92,11 @@ function ConvertFrom-PVEJsonToAccessTfa {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessTfa
-        $AllProperties = ("id", "recovery", "challenge")
+        $AllProperties = ("recovery", "challenge", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "recovery"))) { #optional property not found
@@ -117,10 +111,16 @@ function ConvertFrom-PVEJsonToAccessTfa {
             $Challenge = $JsonParameters.PSobject.Properties["challenge"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
             "recovery" = ${Recovery}
             "challenge" = ${Challenge}
+            "id" = ${Id}
         }
 
         return $PSO

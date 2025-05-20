@@ -4,16 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Command** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuAgentRB = Initialize-PVEPOSTNodesQemuAgentRB  -Command null `
- -Vmid null `
- -Node null
+$POSTNodesQemuAgentRB = Initialize-PVEPOSTNodesQemuAgentRB  -Command null
 ```
 
 - Convert the resource to JSON

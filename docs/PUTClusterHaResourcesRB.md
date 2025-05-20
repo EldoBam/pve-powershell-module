@@ -3,26 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Delete** | **String** |  | [optional] 
 **Group** | **String** |  | [optional] 
 **State** | **String** |  | [optional] 
+**MaxRelocate** | **Int32** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **MaxRestart** | **Int32** |  | [optional] 
-**MaxRelocate** | **Int32** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Sid** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterHaResourcesRB = Initialize-PVEPUTClusterHaResourcesRB  -Group null `
+$PUTClusterHaResourcesRB = Initialize-PVEPUTClusterHaResourcesRB  -Delete null `
+ -Group null `
  -State null `
+ -MaxRelocate null `
  -Comment null `
  -MaxRestart null `
- -MaxRelocate null `
- -Delete null `
- -Sid null `
  -Digest null
 ```
 

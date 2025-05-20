@@ -15,11 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER VarData
-No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Node
+.PARAMETER VarData
 No description available.
 .OUTPUTS
 
@@ -31,13 +29,10 @@ function Initialize-PVEPOSTNodesHostsRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${VarData},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node}
+        ${VarData}
     )
 
     Process {
@@ -50,13 +45,13 @@ function Initialize-PVEPOSTNodesHostsRB {
 
 
 		 $DisplayNameMapping =@{
-			"VarData"="data"; "Digest"="digest"; "Node"="node"
+			"Digest"="digest"; "VarData"="data"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -96,17 +91,11 @@ function ConvertFrom-PVEJsonToPOSTNodesHostsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesHostsRB
-        $AllProperties = ("data", "digest", "node")
+        $AllProperties = ("digest", "data")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) { #optional property not found
-            $VarData = $null
-        } else {
-            $VarData = $JsonParameters.PSobject.Properties["data"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -115,16 +104,15 @@ function ConvertFrom-PVEJsonToPOSTNodesHostsRB {
             $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) { #optional property not found
+            $VarData = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $VarData = $JsonParameters.PSobject.Properties["data"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "data" = ${VarData}
             "digest" = ${Digest}
-            "node" = ${Node}
+            "data" = ${VarData}
         }
 
         return $PSO

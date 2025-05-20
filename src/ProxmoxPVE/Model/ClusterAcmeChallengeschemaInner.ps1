@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Id
-No description available.
-.PARAMETER Type
-No description available.
 .PARAMETER Name
 No description available.
 .PARAMETER Schema
+No description available.
+.PARAMETER Type
+No description available.
+.PARAMETER Id
 No description available.
 .OUTPUTS
 
@@ -33,16 +33,16 @@ function Initialize-PVEClusterAcmeChallengeschemaInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${Schema},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Schema}
+        ${Id}
     )
 
     Process {
@@ -51,13 +51,13 @@ function Initialize-PVEClusterAcmeChallengeschemaInner {
 
 
 		 $DisplayNameMapping =@{
-			"Id"="id"; "Type"="type"; "Name"="name"; "Schema"="schema"
+			"Name"="name"; "Schema"="schema"; "Type"="type"; "Id"="id"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -97,23 +97,11 @@ function ConvertFrom-PVEJsonToClusterAcmeChallengeschemaInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterAcmeChallengeschemaInner
-        $AllProperties = ("id", "type", "name", "schema")
+        $AllProperties = ("name", "schema", "type", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -128,11 +116,23 @@ function ConvertFrom-PVEJsonToClusterAcmeChallengeschemaInner {
             $Schema = $JsonParameters.PSobject.Properties["schema"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "type" = ${Type}
             "name" = ${Name}
             "schema" = ${Schema}
+            "type" = ${Type}
+            "id" = ${Id}
         }
 
         return $PSO

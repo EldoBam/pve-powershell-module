@@ -4,16 +4,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **String** |  | [optional] 
-**VerifyCertificates** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**VerifyCertificates** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesQueryurlmetadataRB = Initialize-PVEGETNodesQueryurlmetadataRB  -Url null `
- -VerifyCertificates null `
- -Node null
+ -VerifyCertificates null
 ```
 
 - Convert the resource to JSON

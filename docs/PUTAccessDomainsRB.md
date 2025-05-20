@@ -3,95 +3,93 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Server2** | **String** |  | [optional] 
-**Cert** | **String** |  | [optional] 
-**Server1** | **String** |  | [optional] 
-**Realm** | **String** |  | [optional] 
-**GroupNameAttr** | **String** |  | [optional] 
-**Scopes** | **String** |  | [optional] 
-**Mode** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Certkey** | **String** |  | [optional] 
-**AcrValues** | **String** |  | [optional] 
-**IssuerUrl** | **String** |  | [optional] 
-**Default** | **Int32** |  | [optional] 
-**Prompt** | **String** |  | [optional] 
-**SyncAttributes** | **String** |  | [optional] 
-**QueryUserinfo** | **Int32** |  | [optional] 
-**CaseSensitive** | **Int32** |  | [optional] 
-**Sslversion** | **String** |  | [optional] 
+**QueryUserinfo** | **Boolean** |  | [optional] 
 **ClientId** | **String** |  | [optional] 
-**GroupFilter** | **String** |  | [optional] 
-**ClientKey** | **String** |  | [optional] 
-**Domain** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**BaseDn** | **String** |  | [optional] 
-**GroupsAutocreate** | **Int32** |  | [optional] 
-**VarFilter** | **String** |  | [optional] 
-**Autocreate** | **Int32** |  | [optional] 
-**SyncDefaultsOptions** | **String** |  | [optional] 
-**Verify** | **Int32** |  | [optional] 
-**Secure** | **Int32** |  | [optional] 
-**CheckConnection** | **Int32** |  | [optional] 
-**UserAttr** | **String** |  | [optional] 
-**UserClasses** | **String** |  | [optional] 
-**GroupsClaim** | **String** |  | [optional] 
-**Password** | **String** |  | [optional] 
+**Mode** | **String** |  | [optional] 
 **Port** | **Int32** |  | [optional] 
-**GroupClasses** | **String** |  | [optional] 
-**Capath** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**GroupsOverwrite** | **Int32** |  | [optional] 
+**GroupsClaim** | **String** |  | [optional] 
+**GroupFilter** | **String** |  | [optional] 
+**GroupsAutocreate** | **Boolean** |  | [optional] 
+**UserAttr** | **String** |  | [optional] 
 **GroupDn** | **String** |  | [optional] 
-**Tfa** | **String** |  | [optional] 
+**Cert** | **String** |  | [optional] 
+**Scopes** | **String** |  | [optional] 
+**CheckConnection** | **Boolean** |  | [optional] 
 **BindDn** | **String** |  | [optional] 
+**SyncAttributes** | **String** |  | [optional] 
+**Secure** | **Boolean** |  | [optional] 
+**Server1** | **String** |  | [optional] 
+**Default** | **Boolean** |  | [optional] 
+**Capath** | **String** |  | [optional] 
+**Domain** | **String** |  | [optional] 
+**Certkey** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
+**VarFilter** | **String** |  | [optional] 
+**ClientKey** | **String** |  | [optional] 
+**Server2** | **String** |  | [optional] 
+**Autocreate** | **Boolean** |  | [optional] 
+**SyncDefaultsOptions** | **String** |  | [optional] 
+**AcrValues** | **String** |  | [optional] 
+**GroupNameAttr** | **String** |  | [optional] 
+**IssuerUrl** | **String** |  | [optional] 
+**GroupsOverwrite** | **Boolean** |  | [optional] 
+**UserClasses** | **String** |  | [optional] 
+**Tfa** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**GroupClasses** | **String** |  | [optional] 
+**Verify** | **Boolean** |  | [optional] 
+**BaseDn** | **String** |  | [optional] 
+**Sslversion** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**CaseSensitive** | **Boolean** |  | [optional] 
+**Prompt** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTAccessDomainsRB = Initialize-PVEPUTAccessDomainsRB  -Server2 null `
- -Cert null `
- -Server1 null `
- -Realm null `
- -GroupNameAttr null `
- -Scopes null `
- -Mode null `
- -Delete null `
- -Certkey null `
- -AcrValues null `
- -IssuerUrl null `
- -Default null `
- -Prompt null `
- -SyncAttributes null `
- -QueryUserinfo null `
- -CaseSensitive null `
- -Sslversion null `
+$PUTAccessDomainsRB = Initialize-PVEPUTAccessDomainsRB  -QueryUserinfo null `
  -ClientId null `
+ -Mode null `
+ -Port null `
+ -GroupsClaim null `
  -GroupFilter null `
- -ClientKey null `
- -Domain null `
- -Digest null `
- -BaseDn null `
  -GroupsAutocreate null `
+ -UserAttr null `
+ -GroupDn null `
+ -Cert null `
+ -Scopes null `
+ -CheckConnection null `
+ -BindDn null `
+ -SyncAttributes null `
+ -Secure null `
+ -Server1 null `
+ -Default null `
+ -Capath null `
+ -Domain null `
+ -Certkey null `
+ -Password null `
  -VarFilter null `
+ -ClientKey null `
+ -Server2 null `
  -Autocreate null `
  -SyncDefaultsOptions null `
- -Verify null `
- -Secure null `
- -CheckConnection null `
- -UserAttr null `
- -UserClasses null `
- -GroupsClaim null `
- -Password null `
- -Port null `
- -GroupClasses null `
- -Capath null `
- -Comment null `
+ -AcrValues null `
+ -GroupNameAttr null `
+ -IssuerUrl null `
  -GroupsOverwrite null `
- -GroupDn null `
+ -UserClasses null `
  -Tfa null `
- -BindDn null
+ -Delete null `
+ -GroupClasses null `
+ -Verify null `
+ -BaseDn null `
+ -Sslversion null `
+ -Comment null `
+ -Digest null `
+ -CaseSensitive null `
+ -Prompt null
 ```
 
 - Convert the resource to JSON

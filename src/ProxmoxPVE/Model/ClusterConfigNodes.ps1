@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER CorosyncConf
-No description available.
 .PARAMETER CorosyncAuthkey
+No description available.
+.PARAMETER CorosyncConf
 No description available.
 .PARAMETER Warnings
 No description available.
@@ -31,10 +31,10 @@ function Initialize-PVEClusterConfigNodes {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${CorosyncConf},
+        ${CorosyncAuthkey},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${CorosyncAuthkey},
+        ${CorosyncConf},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
         ${Warnings}
@@ -46,13 +46,13 @@ function Initialize-PVEClusterConfigNodes {
 
 
 		 $DisplayNameMapping =@{
-			"CorosyncConf"="corosync_conf"; "CorosyncAuthkey"="corosync_authkey"; "Warnings"="warnings"
+			"CorosyncAuthkey"="corosync_authkey"; "CorosyncConf"="corosync_conf"; "Warnings"="warnings"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -92,23 +92,23 @@ function ConvertFrom-PVEJsonToClusterConfigNodes {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterConfigNodes
-        $AllProperties = ("corosync_conf", "corosync_authkey", "warnings")
+        $AllProperties = ("corosync_authkey", "corosync_conf", "warnings")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "corosync_conf"))) { #optional property not found
-            $CorosyncConf = $null
-        } else {
-            $CorosyncConf = $JsonParameters.PSobject.Properties["corosync_conf"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "corosync_authkey"))) { #optional property not found
             $CorosyncAuthkey = $null
         } else {
             $CorosyncAuthkey = $JsonParameters.PSobject.Properties["corosync_authkey"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "corosync_conf"))) { #optional property not found
+            $CorosyncConf = $null
+        } else {
+            $CorosyncConf = $JsonParameters.PSobject.Properties["corosync_conf"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "warnings"))) { #optional property not found
@@ -118,8 +118,8 @@ function ConvertFrom-PVEJsonToClusterConfigNodes {
         }
 
         $PSO = [PSCustomObject]@{
-            "corosync_conf" = ${CorosyncConf}
             "corosync_authkey" = ${CorosyncAuthkey}
+            "corosync_conf" = ${CorosyncConf}
             "warnings" = ${Warnings}
         }
 

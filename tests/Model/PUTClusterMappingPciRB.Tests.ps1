@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterMappingPciRB' {
     Context 'PVEPUTClusterMappingPciRB' {
         It 'Initialize-PVEPUTClusterMappingPciRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterMappingPciRB -LiveMigrationCapable "TEST_VALUE" -Id "TEST_VALUE" -Mdev "TEST_VALUE" -Delete "TEST_VALUE" -Description "TEST_VALUE" -Digest "TEST_VALUE" -Map "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterMappingPciRB -Delete "TEST_VALUE" -Map "TEST_VALUE" -LiveMigrationCapable "TEST_VALUE" -Description "TEST_VALUE" -Mdev "TEST_VALUE" -Digest "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterMappingPciRB
             #$NewObject.property | Should -Be 0
         }

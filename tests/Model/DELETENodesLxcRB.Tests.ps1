@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEDELETENodesLxcRB' {
     Context 'PVEDELETENodesLxcRB' {
         It 'Initialize-PVEDELETENodesLxcRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEDELETENodesLxcRB -Vmid "TEST_VALUE" -Node "TEST_VALUE" -Purge "TEST_VALUE" -DestroyUnreferencedDisks "TEST_VALUE" -Force "TEST_VALUE"
+            #$NewObject = Initialize-PVEDELETENodesLxcRB -DestroyUnreferencedDisks "TEST_VALUE" -Purge "TEST_VALUE" -Force "TEST_VALUE"
             #$NewObject | Should -BeOfType DELETENodesLxcRB
             #$NewObject.property | Should -Be 0
         }

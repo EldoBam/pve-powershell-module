@@ -15,17 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Content
-No description available.
 .PARAMETER Checksum
-No description available.
-.PARAMETER Filename
-No description available.
-.PARAMETER Storage
 No description available.
 .PARAMETER Tmpfilename
 No description available.
-.PARAMETER Node
+.PARAMETER Content
+No description available.
+.PARAMETER Filename
 No description available.
 .PARAMETER ChecksumAlgorithm
 No description available.
@@ -38,25 +34,19 @@ function Initialize-PVEPOSTNodesStorageUploadRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("iso", "vztmpl", "import")]
-        [String]
-        ${Content},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Checksum},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Filename},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Storage},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("/var/tmp/pveupload-[0-9a-f]+")]
         [String]
         ${Tmpfilename},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("iso", "vztmpl", "import")]
         [String]
-        ${Node},
+        ${Content},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Filename},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("md5", "sha1", "sha224", "sha256", "sha384", "sha512")]
         [String]
@@ -73,13 +63,13 @@ function Initialize-PVEPOSTNodesStorageUploadRB {
 
 
 		 $DisplayNameMapping =@{
-			"Content"="content"; "Checksum"="checksum"; "Filename"="filename"; "Storage"="storage"; "Tmpfilename"="tmpfilename"; "Node"="node"; "ChecksumAlgorithm"="checksum-algorithm"
+			"Checksum"="checksum"; "Tmpfilename"="tmpfilename"; "Content"="content"; "Filename"="filename"; "ChecksumAlgorithm"="checksum-algorithm"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -119,17 +109,11 @@ function ConvertFrom-PVEJsonToPOSTNodesStorageUploadRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesStorageUploadRB
-        $AllProperties = ("content", "checksum", "filename", "storage", "tmpfilename", "node", "checksum-algorithm")
+        $AllProperties = ("checksum", "tmpfilename", "content", "filename", "checksum-algorithm")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
-            $Content = $null
-        } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "checksum"))) { #optional property not found
@@ -138,28 +122,22 @@ function ConvertFrom-PVEJsonToPOSTNodesStorageUploadRB {
             $Checksum = $JsonParameters.PSobject.Properties["checksum"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filename"))) { #optional property not found
-            $Filename = $null
-        } else {
-            $Filename = $JsonParameters.PSobject.Properties["filename"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "tmpfilename"))) { #optional property not found
             $Tmpfilename = $null
         } else {
             $Tmpfilename = $JsonParameters.PSobject.Properties["tmpfilename"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
+            $Content = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Content = $JsonParameters.PSobject.Properties["content"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "filename"))) { #optional property not found
+            $Filename = $null
+        } else {
+            $Filename = $JsonParameters.PSobject.Properties["filename"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "checksum-algorithm"))) { #optional property not found
@@ -169,12 +147,10 @@ function ConvertFrom-PVEJsonToPOSTNodesStorageUploadRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "content" = ${Content}
             "checksum" = ${Checksum}
-            "filename" = ${Filename}
-            "storage" = ${Storage}
             "tmpfilename" = ${Tmpfilename}
-            "node" = ${Node}
+            "content" = ${Content}
+            "filename" = ${Filename}
             "checksum-algorithm" = ${ChecksumAlgorithm}
         }
 

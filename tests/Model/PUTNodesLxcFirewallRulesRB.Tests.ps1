@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTNodesLxcFirewallRulesRB' {
     Context 'PVEPUTNodesLxcFirewallRulesRB' {
         It 'Initialize-PVEPUTNodesLxcFirewallRulesRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTNodesLxcFirewallRulesRB -Node "TEST_VALUE" -Macro "TEST_VALUE" -Moveto "TEST_VALUE" -Vmid "TEST_VALUE" -Proto "TEST_VALUE" -Log "TEST_VALUE" -Pos "TEST_VALUE" -Dest "TEST_VALUE" -Action "TEST_VALUE" -Type "TEST_VALUE" -Comment "TEST_VALUE" -Dport "TEST_VALUE" -Digest "TEST_VALUE" -Enable "TEST_VALUE" -Delete "TEST_VALUE" -Iface "TEST_VALUE" -IcmpType "TEST_VALUE" -Source "TEST_VALUE" -Sport "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTNodesLxcFirewallRulesRB -Macro "TEST_VALUE" -Iface "TEST_VALUE" -Moveto "TEST_VALUE" -Action "TEST_VALUE" -Proto "TEST_VALUE" -Type "TEST_VALUE" -Log "TEST_VALUE" -Enable "TEST_VALUE" -Delete "TEST_VALUE" -Dport "TEST_VALUE" -Dest "TEST_VALUE" -IcmpType "TEST_VALUE" -Digest "TEST_VALUE" -Sport "TEST_VALUE" -Source "TEST_VALUE" -Comment "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTNodesLxcFirewallRulesRB
             #$NewObject.property | Should -Be 0
         }

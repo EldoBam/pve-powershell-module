@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Running** | **Int32** |  | [optional] 
-**NotAllowedNodes** | [**NodesQemuMigrateNotAllowedNodes**](NodesQemuMigrateNotAllowedNodes.md) |  | [optional] 
-**LocalResources** | **String[]** |  | [optional] 
 **LocalDisks** | [**NodesQemuMigrateLocalDisksInner[]**](NodesQemuMigrateLocalDisksInner.md) |  | [optional] 
 **AllowedNodes** | **String[]** |  | [optional] 
 **MappedResources** | **String[]** |  | [optional] 
+**LocalResources** | **String[]** |  | [optional] 
+**Running** | **Boolean** |  | [optional] 
+**NotAllowedNodes** | [**NodesQemuMigrateNotAllowedNodes**](NodesQemuMigrateNotAllowedNodes.md) |  | [optional] 
 **MappedResourceInfo** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuMigrate = Initialize-PVENodesQemuMigrate  -Running null `
- -NotAllowedNodes null `
- -LocalResources null `
- -LocalDisks null `
+$NodesQemuMigrate = Initialize-PVENodesQemuMigrate  -LocalDisks null `
  -AllowedNodes null `
  -MappedResources null `
+ -LocalResources null `
+ -Running null `
+ -NotAllowedNodes null `
  -MappedResourceInfo null
 ```
 

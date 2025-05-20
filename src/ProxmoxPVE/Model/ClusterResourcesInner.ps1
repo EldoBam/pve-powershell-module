@@ -15,59 +15,59 @@ No summary available.
 
 No description available.
 
-.PARAMETER Status
-No description available.
-.PARAMETER Storage
-No description available.
-.PARAMETER Name
-No description available.
 .PARAMETER Disk
-No description available.
-.PARAMETER Hastate
-No description available.
-.PARAMETER Node
-No description available.
-.PARAMETER Tags
-No description available.
-.PARAMETER Plugintype
-No description available.
-.PARAMETER Netout
-No description available.
-.PARAMETER Uptime
-No description available.
-.PARAMETER Lock
-No description available.
-.PARAMETER Type
-No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Netin
-No description available.
-.PARAMETER Diskread
-No description available.
-.PARAMETER Maxdisk
-No description available.
-.PARAMETER Id
-No description available.
-.PARAMETER Content
-No description available.
-.PARAMETER CgroupMode
-No description available.
-.PARAMETER Cpu
-No description available.
-.PARAMETER Mem
-No description available.
-.PARAMETER Template
-No description available.
-.PARAMETER Pool
 No description available.
 .PARAMETER Maxcpu
 No description available.
+.PARAMETER Maxdisk
+No description available.
+.PARAMETER Hastate
+No description available.
+.PARAMETER Status
+No description available.
+.PARAMETER Cpu
+No description available.
+.PARAMETER Node
+No description available.
+.PARAMETER Mem
+No description available.
+.PARAMETER Vmid
+No description available.
+.PARAMETER Tags
+No description available.
 .PARAMETER Diskwrite
+No description available.
+.PARAMETER CgroupMode
+No description available.
+.PARAMETER Lock
+No description available.
+.PARAMETER Storage
+No description available.
+.PARAMETER Diskread
+No description available.
+.PARAMETER Type
+No description available.
+.PARAMETER Uptime
 No description available.
 .PARAMETER Maxmem
 No description available.
+.PARAMETER Netout
+No description available.
+.PARAMETER Pool
+No description available.
+.PARAMETER Plugintype
+No description available.
+.PARAMETER Content
+No description available.
 .PARAMETER Level
+No description available.
+.PARAMETER Netin
+No description available.
+.PARAMETER Name
+No description available.
+.PARAMETER Template
+No description available.
+.PARAMETER Id
 No description available.
 .OUTPUTS
 
@@ -78,87 +78,87 @@ function Initialize-PVEClusterResourcesInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Status},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Storage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Disk},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Decimal]]
+        ${Maxcpu},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Maxdisk},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Hastate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Status},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Decimal]]
+        ${Cpu},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Node},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Mem},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Tags},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Plugintype},
+        [System.Nullable[Int32]]
+        ${Diskwrite},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Netout},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Uptime},
+        ${CgroupMode},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Lock},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Storage},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Diskread},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("node", "storage", "pool", "qemu", "lxc", "openvz", "sdn")]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Netin},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Diskread},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Maxdisk},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Content},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${CgroupMode},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${Cpu},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Mem},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Template},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Pool},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${Maxcpu},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Diskwrite},
+        ${Uptime},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Maxmem},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Netout},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Level}
+        ${Pool},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Plugintype},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Content},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Level},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Netin},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Template},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Id}
     )
 
     Process {
@@ -173,23 +173,15 @@ function Initialize-PVEClusterResourcesInner {
           throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
-        if ($Template -and $Template -gt 1) {
-          throw "invalid value for 'Template', must be smaller than or equal to 1."
-        }
-
-        if ($Template -and $Template -lt 0) {
-          throw "invalid value for 'Template', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Status"="status"; "Storage"="storage"; "Name"="name"; "Disk"="disk"; "Hastate"="hastate"; "Node"="node"; "Tags"="tags"; "Plugintype"="plugintype"; "Netout"="netout"; "Uptime"="uptime"; "Lock"="lock"; "Type"="type"; "Vmid"="vmid"; "Netin"="netin"; "Diskread"="diskread"; "Maxdisk"="maxdisk"; "Id"="id"; "Content"="content"; "CgroupMode"="cgroup-mode"; "Cpu"="cpu"; "Mem"="mem"; "Template"="template"; "Pool"="pool"; "Maxcpu"="maxcpu"; "Diskwrite"="diskwrite"; "Maxmem"="maxmem"; "Level"="level"
+			"Disk"="disk"; "Maxcpu"="maxcpu"; "Maxdisk"="maxdisk"; "Hastate"="hastate"; "Status"="status"; "Cpu"="cpu"; "Node"="node"; "Mem"="mem"; "Vmid"="vmid"; "Tags"="tags"; "Diskwrite"="diskwrite"; "CgroupMode"="cgroup-mode"; "Lock"="lock"; "Storage"="storage"; "Diskread"="diskread"; "Type"="type"; "Uptime"="uptime"; "Maxmem"="maxmem"; "Netout"="netout"; "Pool"="pool"; "Plugintype"="plugintype"; "Content"="content"; "Level"="level"; "Netin"="netin"; "Name"="name"; "Template"="template"; "Id"="id"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -229,29 +221,11 @@ function ConvertFrom-PVEJsonToClusterResourcesInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterResourcesInner
-        $AllProperties = ("status", "storage", "name", "disk", "hastate", "node", "tags", "plugintype", "netout", "uptime", "lock", "type", "vmid", "netin", "diskread", "maxdisk", "id", "content", "cgroup-mode", "cpu", "mem", "template", "pool", "maxcpu", "diskwrite", "maxmem", "level")
+        $AllProperties = ("disk", "maxcpu", "maxdisk", "hastate", "status", "cpu", "node", "mem", "vmid", "tags", "diskwrite", "cgroup-mode", "lock", "storage", "diskread", "type", "uptime", "maxmem", "netout", "pool", "plugintype", "content", "level", "netin", "name", "template", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
-            $Status = $null
-        } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "disk"))) { #optional property not found
@@ -260,70 +234,10 @@ function ConvertFrom-PVEJsonToClusterResourcesInner {
             $Disk = $JsonParameters.PSobject.Properties["disk"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hastate"))) { #optional property not found
-            $Hastate = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxcpu"))) { #optional property not found
+            $Maxcpu = $null
         } else {
-            $Hastate = $JsonParameters.PSobject.Properties["hastate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tags"))) { #optional property not found
-            $Tags = $null
-        } else {
-            $Tags = $JsonParameters.PSobject.Properties["tags"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "plugintype"))) { #optional property not found
-            $Plugintype = $null
-        } else {
-            $Plugintype = $JsonParameters.PSobject.Properties["plugintype"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "netout"))) { #optional property not found
-            $Netout = $null
-        } else {
-            $Netout = $JsonParameters.PSobject.Properties["netout"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "uptime"))) { #optional property not found
-            $Uptime = $null
-        } else {
-            $Uptime = $JsonParameters.PSobject.Properties["uptime"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lock"))) { #optional property not found
-            $Lock = $null
-        } else {
-            $Lock = $JsonParameters.PSobject.Properties["lock"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "netin"))) { #optional property not found
-            $Netin = $null
-        } else {
-            $Netin = $JsonParameters.PSobject.Properties["netin"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "diskread"))) { #optional property not found
-            $Diskread = $null
-        } else {
-            $Diskread = $JsonParameters.PSobject.Properties["diskread"].value
+            $Maxcpu = $JsonParameters.PSobject.Properties["maxcpu"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxdisk"))) { #optional property not found
@@ -332,22 +246,16 @@ function ConvertFrom-PVEJsonToClusterResourcesInner {
             $Maxdisk = $JsonParameters.PSobject.Properties["maxdisk"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hastate"))) { #optional property not found
+            $Hastate = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Hastate = $JsonParameters.PSobject.Properties["hastate"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
-            $Content = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
+            $Status = $null
         } else {
-            $Content = $JsonParameters.PSobject.Properties["content"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cgroup-mode"))) { #optional property not found
-            $CgroupMode = $null
-        } else {
-            $CgroupMode = $JsonParameters.PSobject.Properties["cgroup-mode"].value
+            $Status = $JsonParameters.PSobject.Properties["status"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpu"))) { #optional property not found
@@ -356,28 +264,28 @@ function ConvertFrom-PVEJsonToClusterResourcesInner {
             $Cpu = $JsonParameters.PSobject.Properties["cpu"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "mem"))) { #optional property not found
             $Mem = $null
         } else {
             $Mem = $JsonParameters.PSobject.Properties["mem"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "template"))) { #optional property not found
-            $Template = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
         } else {
-            $Template = $JsonParameters.PSobject.Properties["template"].value
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool"))) { #optional property not found
-            $Pool = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tags"))) { #optional property not found
+            $Tags = $null
         } else {
-            $Pool = $JsonParameters.PSobject.Properties["pool"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxcpu"))) { #optional property not found
-            $Maxcpu = $null
-        } else {
-            $Maxcpu = $JsonParameters.PSobject.Properties["maxcpu"].value
+            $Tags = $JsonParameters.PSobject.Properties["tags"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "diskwrite"))) { #optional property not found
@@ -386,10 +294,70 @@ function ConvertFrom-PVEJsonToClusterResourcesInner {
             $Diskwrite = $JsonParameters.PSobject.Properties["diskwrite"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cgroup-mode"))) { #optional property not found
+            $CgroupMode = $null
+        } else {
+            $CgroupMode = $JsonParameters.PSobject.Properties["cgroup-mode"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lock"))) { #optional property not found
+            $Lock = $null
+        } else {
+            $Lock = $JsonParameters.PSobject.Properties["lock"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
+            $Storage = $null
+        } else {
+            $Storage = $JsonParameters.PSobject.Properties["storage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "diskread"))) { #optional property not found
+            $Diskread = $null
+        } else {
+            $Diskread = $JsonParameters.PSobject.Properties["diskread"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "uptime"))) { #optional property not found
+            $Uptime = $null
+        } else {
+            $Uptime = $JsonParameters.PSobject.Properties["uptime"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxmem"))) { #optional property not found
             $Maxmem = $null
         } else {
             $Maxmem = $JsonParameters.PSobject.Properties["maxmem"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "netout"))) { #optional property not found
+            $Netout = $null
+        } else {
+            $Netout = $JsonParameters.PSobject.Properties["netout"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pool"))) { #optional property not found
+            $Pool = $null
+        } else {
+            $Pool = $JsonParameters.PSobject.Properties["pool"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "plugintype"))) { #optional property not found
+            $Plugintype = $null
+        } else {
+            $Plugintype = $JsonParameters.PSobject.Properties["plugintype"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "content"))) { #optional property not found
+            $Content = $null
+        } else {
+            $Content = $JsonParameters.PSobject.Properties["content"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "level"))) { #optional property not found
@@ -398,34 +366,58 @@ function ConvertFrom-PVEJsonToClusterResourcesInner {
             $Level = $JsonParameters.PSobject.Properties["level"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "netin"))) { #optional property not found
+            $Netin = $null
+        } else {
+            $Netin = $JsonParameters.PSobject.Properties["netin"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "template"))) { #optional property not found
+            $Template = $null
+        } else {
+            $Template = $JsonParameters.PSobject.Properties["template"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "status" = ${Status}
-            "storage" = ${Storage}
-            "name" = ${Name}
             "disk" = ${Disk}
-            "hastate" = ${Hastate}
-            "node" = ${Node}
-            "tags" = ${Tags}
-            "plugintype" = ${Plugintype}
-            "netout" = ${Netout}
-            "uptime" = ${Uptime}
-            "lock" = ${Lock}
-            "type" = ${Type}
-            "vmid" = ${Vmid}
-            "netin" = ${Netin}
-            "diskread" = ${Diskread}
-            "maxdisk" = ${Maxdisk}
-            "id" = ${Id}
-            "content" = ${Content}
-            "cgroup-mode" = ${CgroupMode}
-            "cpu" = ${Cpu}
-            "mem" = ${Mem}
-            "template" = ${Template}
-            "pool" = ${Pool}
             "maxcpu" = ${Maxcpu}
+            "maxdisk" = ${Maxdisk}
+            "hastate" = ${Hastate}
+            "status" = ${Status}
+            "cpu" = ${Cpu}
+            "node" = ${Node}
+            "mem" = ${Mem}
+            "vmid" = ${Vmid}
+            "tags" = ${Tags}
             "diskwrite" = ${Diskwrite}
+            "cgroup-mode" = ${CgroupMode}
+            "lock" = ${Lock}
+            "storage" = ${Storage}
+            "diskread" = ${Diskread}
+            "type" = ${Type}
+            "uptime" = ${Uptime}
             "maxmem" = ${Maxmem}
+            "netout" = ${Netout}
+            "pool" = ${Pool}
+            "plugintype" = ${Plugintype}
+            "content" = ${Content}
             "level" = ${Level}
+            "netin" = ${Netin}
+            "name" = ${Name}
+            "template" = ${Template}
+            "id" = ${Id}
         }
 
         return $PSO

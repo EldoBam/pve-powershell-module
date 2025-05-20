@@ -2005,7 +2005,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterSdnVnetsFirewallRulesGETInner[]
+NodesLxcFirewallRulesGETInner[]
 #>
 function Get-PVEClusterFirewallGroupsByGroup {
     [CmdletBinding()]
@@ -2049,7 +2049,7 @@ function Get-PVEClusterFirewallGroupsByGroup {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterSdnVnetsFirewallRulesGETInner[]" `
+                                -ReturnType "NodesLxcFirewallRulesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2158,7 +2158,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterFirewallIpsetInner[]
+NodesQemuFirewallIpsetInner[]
 #>
 function Get-PVEClusterFirewallIpset {
     [CmdletBinding()]
@@ -2195,7 +2195,7 @@ function Get-PVEClusterFirewallIpset {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterFirewallIpsetInner[]" `
+                                -ReturnType "NodesQemuFirewallIpsetInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2224,7 +2224,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesQemuFirewallIpsetGETInner[]
+ClusterFirewallIpsetGETInner[]
 #>
 function Get-PVEClusterFirewallIpsetByName {
     [CmdletBinding()]
@@ -2268,7 +2268,7 @@ function Get-PVEClusterFirewallIpsetByName {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesQemuFirewallIpsetGETInner[]" `
+                                -ReturnType "ClusterFirewallIpsetGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2574,7 +2574,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterSdnVnetsFirewallRulesGETInner[]
+NodesLxcFirewallRulesGETInner[]
 #>
 function Get-PVEClusterFirewallRules {
     [CmdletBinding()]
@@ -2611,7 +2611,7 @@ function Get-PVEClusterFirewallRules {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterSdnVnetsFirewallRulesGETInner[]" `
+                                -ReturnType "NodesLxcFirewallRulesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -2710,7 +2710,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterHaInner[]
+ClusterSdnInner[]
 #>
 function Get-PVEClusterHa {
     [CmdletBinding()]
@@ -2747,7 +2747,7 @@ function Get-PVEClusterHa {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterHaInner[]" `
+                                -ReturnType "ClusterSdnInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -5086,7 +5086,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-NodesCephRulesInner[]
+ClusterNotificationsMatcherfieldsInner[]
 #>
 function Get-PVEClusterNotificationsMatcherfields {
     [CmdletBinding()]
@@ -5123,7 +5123,7 @@ function Get-PVEClusterNotificationsMatcherfields {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "NodesCephRulesInner[]" `
+                                -ReturnType "ClusterNotificationsMatcherfieldsInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -5678,7 +5678,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterHaInner[]
+ClusterSdnInner[]
 #>
 function Get-PVEClusterSdn {
     [CmdletBinding()]
@@ -5715,7 +5715,7 @@ function Get-PVEClusterSdn {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterHaInner[]" `
+                                -ReturnType "ClusterSdnInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -6558,7 +6558,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 .OUTPUTS
 
-ClusterSdnVnetsFirewallRulesGETInner[]
+NodesLxcFirewallRulesGETInner[]
 #>
 function Get-PVEClusterSdnVnetsFirewallRulesByVnet {
     [CmdletBinding()]
@@ -6602,7 +6602,7 @@ function Get-PVEClusterSdnVnetsFirewallRulesByVnet {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "ClusterSdnVnetsFirewallRulesGETInner[]" `
+                                -ReturnType "NodesLxcFirewallRulesGETInner[]" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {

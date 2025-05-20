@@ -17,13 +17,13 @@ No description available.
 
 .PARAMETER Server
 No description available.
-.PARAMETER Id
+.PARAMETER Disable
 No description available.
 .PARAMETER Port
 No description available.
-.PARAMETER Disable
-No description available.
 .PARAMETER Type
+No description available.
+.PARAMETER Id
 No description available.
 .OUTPUTS
 
@@ -37,40 +37,32 @@ function Initialize-PVEClusterMetricsServerInner {
         [String]
         ${Server},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
+        [System.Nullable[Boolean]]
+        ${Disable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Port},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable},
+        [String]
+        ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type}
+        ${Id}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEClusterMetricsServerInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Disable -and $Disable -gt 1) {
-          throw "invalid value for 'Disable', must be smaller than or equal to 1."
-        }
-
-        if ($Disable -and $Disable -lt 0) {
-          throw "invalid value for 'Disable', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Server"="server"; "Id"="id"; "Port"="port"; "Disable"="disable"; "Type"="type"
+			"Server"="server"; "Disable"="disable"; "Port"="port"; "Type"="type"; "Id"="id"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -110,7 +102,7 @@ function ConvertFrom-PVEJsonToClusterMetricsServerInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterMetricsServerInner
-        $AllProperties = ("server", "id", "port", "disable", "type")
+        $AllProperties = ("server", "disable", "port", "type", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -123,10 +115,10 @@ function ConvertFrom-PVEJsonToClusterMetricsServerInner {
             $Server = $JsonParameters.PSobject.Properties["server"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
@@ -135,24 +127,24 @@ function ConvertFrom-PVEJsonToClusterMetricsServerInner {
             $Port = $JsonParameters.PSobject.Properties["port"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
-        } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
             $Type = $null
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "server" = ${Server}
-            "id" = ${Id}
-            "port" = ${Port}
             "disable" = ${Disable}
+            "port" = ${Port}
             "type" = ${Type}
+            "id" = ${Id}
         }
 
         return $PSO

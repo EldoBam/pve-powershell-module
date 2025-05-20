@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Iterations
+.PARAMETER Schedule
 No description available.
 .PARAMETER Starttime
 No description available.
-.PARAMETER Schedule
+.PARAMETER Iterations
 No description available.
 .OUTPUTS
 
@@ -30,19 +30,23 @@ function Initialize-PVEGETClusterJobsScheduleanalyzeRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Iterations},
+        [String]
+        ${Schedule},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Starttime},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Schedule}
+        [System.Nullable[Int32]]
+        ${Iterations}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETClusterJobsScheduleanalyzeRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
+
+        if (!$Schedule -and $Schedule.length -gt 128) {
+            throw "invalid value for 'Schedule', the character length must be smaller than or equal to 128."
+        }
 
         if ($Iterations -and $Iterations -gt 100) {
           throw "invalid value for 'Iterations', must be smaller than or equal to 100."
@@ -52,19 +56,15 @@ function Initialize-PVEGETClusterJobsScheduleanalyzeRB {
           throw "invalid value for 'Iterations', must be greater than or equal to 1."
         }
 
-        if (!$Schedule -and $Schedule.length -gt 128) {
-            throw "invalid value for 'Schedule', the character length must be smaller than or equal to 128."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Iterations"="iterations"; "Starttime"="starttime"; "Schedule"="schedule"
+			"Schedule"="schedule"; "Starttime"="starttime"; "Iterations"="iterations"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -104,23 +104,11 @@ function ConvertFrom-PVEJsonToGETClusterJobsScheduleanalyzeRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETClusterJobsScheduleanalyzeRB
-        $AllProperties = ("iterations", "starttime", "schedule")
+        $AllProperties = ("schedule", "starttime", "iterations")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "iterations"))) { #optional property not found
-            $Iterations = $null
-        } else {
-            $Iterations = $JsonParameters.PSobject.Properties["iterations"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "starttime"))) { #optional property not found
-            $Starttime = $null
-        } else {
-            $Starttime = $JsonParameters.PSobject.Properties["starttime"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "schedule"))) { #optional property not found
@@ -129,10 +117,22 @@ function ConvertFrom-PVEJsonToGETClusterJobsScheduleanalyzeRB {
             $Schedule = $JsonParameters.PSobject.Properties["schedule"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "starttime"))) { #optional property not found
+            $Starttime = $null
+        } else {
+            $Starttime = $JsonParameters.PSobject.Properties["starttime"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "iterations"))) { #optional property not found
+            $Iterations = $null
+        } else {
+            $Iterations = $JsonParameters.PSobject.Properties["iterations"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "iterations" = ${Iterations}
-            "starttime" = ${Starttime}
             "schedule" = ${Schedule}
+            "starttime" = ${Starttime}
+            "iterations" = ${Iterations}
         }
 
         return $PSO

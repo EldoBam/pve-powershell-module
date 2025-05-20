@@ -3,21 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TargetNode** | **String** |  | [optional] 
 **Target** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
-**Volume** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**TargetNode** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesStorageContentRB = Initialize-PVEPOSTNodesStorageContentRB  -TargetNode null `
- -Target null `
- -Storage null `
- -Volume null `
- -Node null
+$POSTNodesStorageContentRB = Initialize-PVEPOSTNodesStorageContentRB  -Target null `
+ -TargetNode null
 ```
 
 - Convert the resource to JSON

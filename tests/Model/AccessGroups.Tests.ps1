@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEAccessGroups' {
     Context 'PVEAccessGroups' {
         It 'Initialize-PVEAccessGroups' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEAccessGroups -Members "TEST_VALUE" -Comment "TEST_VALUE"
+            #$NewObject = Initialize-PVEAccessGroups -Comment "TEST_VALUE" -Members "TEST_VALUE"
             #$NewObject | Should -BeOfType AccessGroups
             #$NewObject.property | Should -Be 0
         }

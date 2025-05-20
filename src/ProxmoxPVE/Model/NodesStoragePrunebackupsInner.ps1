@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
+.PARAMETER Volid
+No description available.
+.PARAMETER Vmid
+No description available.
 .PARAMETER Ctime
 No description available.
 .PARAMETER Mark
 No description available.
-.PARAMETER Vmid
-No description available.
 .PARAMETER Type
-No description available.
-.PARAMETER Volid
 No description available.
 .OUTPUTS
 
@@ -34,6 +34,12 @@ function Initialize-PVENodesStoragePrunebackupsInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Volid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Ctime},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
@@ -41,14 +47,8 @@ function Initialize-PVENodesStoragePrunebackupsInner {
         [String]
         ${Mark},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Volid}
+        ${Type}
     )
 
     Process {
@@ -57,13 +57,13 @@ function Initialize-PVENodesStoragePrunebackupsInner {
 
 
 		 $DisplayNameMapping =@{
-			"Ctime"="ctime"; "Mark"="mark"; "Vmid"="vmid"; "Type"="type"; "Volid"="volid"
+			"Volid"="volid"; "Vmid"="vmid"; "Ctime"="ctime"; "Mark"="mark"; "Type"="type"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -103,11 +103,23 @@ function ConvertFrom-PVEJsonToNodesStoragePrunebackupsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesStoragePrunebackupsInner
-        $AllProperties = ("ctime", "mark", "vmid", "type", "volid")
+        $AllProperties = ("volid", "vmid", "ctime", "mark", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volid"))) { #optional property not found
+            $Volid = $null
+        } else {
+            $Volid = $JsonParameters.PSobject.Properties["volid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
+        } else {
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "ctime"))) { #optional property not found
@@ -122,30 +134,18 @@ function ConvertFrom-PVEJsonToNodesStoragePrunebackupsInner {
             $Mark = $JsonParameters.PSobject.Properties["mark"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
             $Type = $null
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volid"))) { #optional property not found
-            $Volid = $null
-        } else {
-            $Volid = $JsonParameters.PSobject.Properties["volid"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "volid" = ${Volid}
+            "vmid" = ${Vmid}
             "ctime" = ${Ctime}
             "mark" = ${Mark}
-            "vmid" = ${Vmid}
             "type" = ${Type}
-            "volid" = ${Volid}
         }
 
         return $PSO

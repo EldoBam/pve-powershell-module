@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesStopallRB' {
     Context 'PVEPOSTNodesStopallRB' {
         It 'Initialize-PVEPOSTNodesStopallRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesStopallRB -ForceStop "TEST_VALUE" -Timeout "TEST_VALUE" -Vms "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesStopallRB -Vms "TEST_VALUE" -Timeout "TEST_VALUE" -ForceStop "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesStopallRB
             #$NewObject.property | Should -Be 0
         }

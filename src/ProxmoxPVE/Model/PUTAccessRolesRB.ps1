@@ -15,11 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Privs
-No description available.
 .PARAMETER Append
 No description available.
-.PARAMETER Roleid
+.PARAMETER Privs
 No description available.
 .OUTPUTS
 
@@ -30,37 +28,26 @@ function Initialize-PVEPUTAccessRolesRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Privs},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Append},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Roleid}
+        ${Privs}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTAccessRolesRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Append -and $Append -gt 1) {
-          throw "invalid value for 'Append', must be smaller than or equal to 1."
-        }
-
-        if ($Append -and $Append -lt 0) {
-          throw "invalid value for 'Append', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Privs"="privs"; "Append"="append"; "Roleid"="roleid"
+			"Append"="append"; "Privs"="privs"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -100,17 +87,11 @@ function ConvertFrom-PVEJsonToPUTAccessRolesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTAccessRolesRB
-        $AllProperties = ("privs", "append", "roleid")
+        $AllProperties = ("append", "privs")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "privs"))) { #optional property not found
-            $Privs = $null
-        } else {
-            $Privs = $JsonParameters.PSobject.Properties["privs"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "append"))) { #optional property not found
@@ -119,16 +100,15 @@ function ConvertFrom-PVEJsonToPUTAccessRolesRB {
             $Append = $JsonParameters.PSobject.Properties["append"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "roleid"))) { #optional property not found
-            $Roleid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "privs"))) { #optional property not found
+            $Privs = $null
         } else {
-            $Roleid = $JsonParameters.PSobject.Properties["roleid"].value
+            $Privs = $JsonParameters.PSobject.Properties["privs"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "privs" = ${Privs}
             "append" = ${Append}
-            "roleid" = ${Roleid}
+            "privs" = ${Privs}
         }
 
         return $PSO

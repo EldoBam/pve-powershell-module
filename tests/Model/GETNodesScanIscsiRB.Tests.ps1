@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesScanIscsiRB' {
     Context 'PVEGETNodesScanIscsiRB' {
         It 'Initialize-PVEGETNodesScanIscsiRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesScanIscsiRB -Portal "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesScanIscsiRB -Portal "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesScanIscsiRB
             #$NewObject.property | Should -Be 0
         }

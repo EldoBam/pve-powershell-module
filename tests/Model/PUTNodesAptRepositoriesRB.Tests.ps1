@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTNodesAptRepositoriesRB' {
     Context 'PVEPUTNodesAptRepositoriesRB' {
         It 'Initialize-PVEPUTNodesAptRepositoriesRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTNodesAptRepositoriesRB -Node "TEST_VALUE" -Digest "TEST_VALUE" -Handle "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTNodesAptRepositoriesRB -Digest "TEST_VALUE" -Handle "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTNodesAptRepositoriesRB
             #$NewObject.property | Should -Be 0
         }

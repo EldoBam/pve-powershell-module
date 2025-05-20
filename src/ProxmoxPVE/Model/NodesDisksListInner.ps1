@@ -15,23 +15,17 @@ No summary available.
 
 No description available.
 
+.PARAMETER Osdid
+No description available.
+.PARAMETER Model
+No description available.
+.PARAMETER Serial
+No description available.
 .PARAMETER Devpath
 No description available.
 .PARAMETER Gpt
 No description available.
-.PARAMETER Serial
-No description available.
-.PARAMETER OsdidList
-No description available.
-.PARAMETER Vendor
-No description available.
 .PARAMETER Health
-No description available.
-.PARAMETER Used
-No description available.
-.PARAMETER Model
-No description available.
-.PARAMETER Osdid
 No description available.
 .PARAMETER Parent
 No description available.
@@ -40,6 +34,12 @@ No description available.
 .PARAMETER Mounted
 No description available.
 .PARAMETER Wwn
+No description available.
+.PARAMETER OsdidList
+No description available.
+.PARAMETER Vendor
+No description available.
+.PARAMETER Used
 No description available.
 .OUTPUTS
 
@@ -50,14 +50,35 @@ function Initialize-PVENodesDisksListInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Devpath},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Gpt},
+        ${Osdid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Model},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Serial},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Devpath},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Gpt},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Health},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Parent},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Size},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Mounted},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Wwn},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [Int32[]]
         ${OsdidList},
@@ -66,59 +87,22 @@ function Initialize-PVENodesDisksListInner {
         ${Vendor},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Health},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Used},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Model},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Osdid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Parent},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Size},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Mounted},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Wwn}
+        ${Used}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesDisksListInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Gpt -and $Gpt -gt 1) {
-          throw "invalid value for 'Gpt', must be smaller than or equal to 1."
-        }
-
-        if ($Gpt -and $Gpt -lt 0) {
-          throw "invalid value for 'Gpt', must be greater than or equal to 0."
-        }
-
-        if ($Mounted -and $Mounted -gt 1) {
-          throw "invalid value for 'Mounted', must be smaller than or equal to 1."
-        }
-
-        if ($Mounted -and $Mounted -lt 0) {
-          throw "invalid value for 'Mounted', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Devpath"="devpath"; "Gpt"="gpt"; "Serial"="serial"; "OsdidList"="osdid-list"; "Vendor"="vendor"; "Health"="health"; "Used"="used"; "Model"="model"; "Osdid"="osdid"; "Parent"="parent"; "Size"="size"; "Mounted"="mounted"; "Wwn"="wwn"
+			"Osdid"="osdid"; "Model"="model"; "Serial"="serial"; "Devpath"="devpath"; "Gpt"="gpt"; "Health"="health"; "Parent"="parent"; "Size"="size"; "Mounted"="mounted"; "Wwn"="wwn"; "OsdidList"="osdid-list"; "Vendor"="vendor"; "Used"="used"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -158,11 +142,29 @@ function ConvertFrom-PVEJsonToNodesDisksListInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesDisksListInner
-        $AllProperties = ("devpath", "gpt", "serial", "osdid-list", "vendor", "health", "used", "model", "osdid", "parent", "size", "mounted", "wwn")
+        $AllProperties = ("osdid", "model", "serial", "devpath", "gpt", "health", "parent", "size", "mounted", "wwn", "osdid-list", "vendor", "used")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osdid"))) { #optional property not found
+            $Osdid = $null
+        } else {
+            $Osdid = $JsonParameters.PSobject.Properties["osdid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) { #optional property not found
+            $Model = $null
+        } else {
+            $Model = $JsonParameters.PSobject.Properties["model"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "serial"))) { #optional property not found
+            $Serial = $null
+        } else {
+            $Serial = $JsonParameters.PSobject.Properties["serial"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "devpath"))) { #optional property not found
@@ -177,46 +179,10 @@ function ConvertFrom-PVEJsonToNodesDisksListInner {
             $Gpt = $JsonParameters.PSobject.Properties["gpt"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "serial"))) { #optional property not found
-            $Serial = $null
-        } else {
-            $Serial = $JsonParameters.PSobject.Properties["serial"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osdid-list"))) { #optional property not found
-            $OsdidList = $null
-        } else {
-            $OsdidList = $JsonParameters.PSobject.Properties["osdid-list"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vendor"))) { #optional property not found
-            $Vendor = $null
-        } else {
-            $Vendor = $JsonParameters.PSobject.Properties["vendor"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "health"))) { #optional property not found
             $Health = $null
         } else {
             $Health = $JsonParameters.PSobject.Properties["health"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "used"))) { #optional property not found
-            $Used = $null
-        } else {
-            $Used = $JsonParameters.PSobject.Properties["used"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "model"))) { #optional property not found
-            $Model = $null
-        } else {
-            $Model = $JsonParameters.PSobject.Properties["model"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osdid"))) { #optional property not found
-            $Osdid = $null
-        } else {
-            $Osdid = $JsonParameters.PSobject.Properties["osdid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "parent"))) { #optional property not found
@@ -243,20 +209,38 @@ function ConvertFrom-PVEJsonToNodesDisksListInner {
             $Wwn = $JsonParameters.PSobject.Properties["wwn"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osdid-list"))) { #optional property not found
+            $OsdidList = $null
+        } else {
+            $OsdidList = $JsonParameters.PSobject.Properties["osdid-list"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vendor"))) { #optional property not found
+            $Vendor = $null
+        } else {
+            $Vendor = $JsonParameters.PSobject.Properties["vendor"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "used"))) { #optional property not found
+            $Used = $null
+        } else {
+            $Used = $JsonParameters.PSobject.Properties["used"].value
+        }
+
         $PSO = [PSCustomObject]@{
+            "osdid" = ${Osdid}
+            "model" = ${Model}
+            "serial" = ${Serial}
             "devpath" = ${Devpath}
             "gpt" = ${Gpt}
-            "serial" = ${Serial}
-            "osdid-list" = ${OsdidList}
-            "vendor" = ${Vendor}
             "health" = ${Health}
-            "used" = ${Used}
-            "model" = ${Model}
-            "osdid" = ${Osdid}
             "parent" = ${Parent}
             "size" = ${Size}
             "mounted" = ${Mounted}
             "wwn" = ${Wwn}
+            "osdid-list" = ${OsdidList}
+            "vendor" = ${Vendor}
+            "used" = ${Used}
         }
 
         return $PSO

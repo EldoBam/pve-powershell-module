@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Id
+.PARAMETER LiveMigrationCapable
+No description available.
+.PARAMETER Map
 No description available.
 .PARAMETER Mdev
 No description available.
-.PARAMETER LiveMigrationCapable
-No description available.
 .PARAMETER Description
 No description available.
-.PARAMETER Map
+.PARAMETER Id
 No description available.
 .OUTPUTS
 
@@ -34,41 +34,25 @@ function Initialize-PVEPOSTClusterMappingPciRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Mdev},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${LiveMigrationCapable},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${Map},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Mdev},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${Map}
+        [String]
+        ${Id}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTClusterMappingPciRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($Mdev -and $Mdev -gt 1) {
-          throw "invalid value for 'Mdev', must be smaller than or equal to 1."
-        }
-
-        if ($Mdev -and $Mdev -lt 0) {
-          throw "invalid value for 'Mdev', must be greater than or equal to 0."
-        }
-
-        if ($LiveMigrationCapable -and $LiveMigrationCapable -gt 1) {
-          throw "invalid value for 'LiveMigrationCapable', must be smaller than or equal to 1."
-        }
-
-        if ($LiveMigrationCapable -and $LiveMigrationCapable -lt 0) {
-          throw "invalid value for 'LiveMigrationCapable', must be greater than or equal to 0."
-        }
 
         if (!$Description -and $Description.length -gt 4096) {
             throw "invalid value for 'Description', the character length must be smaller than or equal to 4096."
@@ -76,13 +60,13 @@ function Initialize-PVEPOSTClusterMappingPciRB {
 
 
 		 $DisplayNameMapping =@{
-			"Id"="id"; "Mdev"="mdev"; "LiveMigrationCapable"="live-migration-capable"; "Description"="description"; "Map"="map"
+			"LiveMigrationCapable"="live-migration-capable"; "Map"="map"; "Mdev"="mdev"; "Description"="description"; "Id"="id"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -122,23 +106,11 @@ function ConvertFrom-PVEJsonToPOSTClusterMappingPciRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterMappingPciRB
-        $AllProperties = ("id", "mdev", "live-migration-capable", "description", "map")
+        $AllProperties = ("live-migration-capable", "map", "mdev", "description", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mdev"))) { #optional property not found
-            $Mdev = $null
-        } else {
-            $Mdev = $JsonParameters.PSobject.Properties["mdev"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "live-migration-capable"))) { #optional property not found
@@ -147,24 +119,36 @@ function ConvertFrom-PVEJsonToPOSTClusterMappingPciRB {
             $LiveMigrationCapable = $JsonParameters.PSobject.Properties["live-migration-capable"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "map"))) { #optional property not found
             $Map = $null
         } else {
             $Map = $JsonParameters.PSobject.Properties["map"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mdev"))) { #optional property not found
+            $Mdev = $null
+        } else {
+            $Mdev = $JsonParameters.PSobject.Properties["mdev"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "mdev" = ${Mdev}
             "live-migration-capable" = ${LiveMigrationCapable}
-            "description" = ${Description}
             "map" = ${Map}
+            "mdev" = ${Mdev}
+            "description" = ${Description}
+            "id" = ${Id}
         }
 
         return $PSO

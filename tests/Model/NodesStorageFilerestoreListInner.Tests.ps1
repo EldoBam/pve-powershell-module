@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesStorageFilerestoreListInner' {
     Context 'PVENodesStorageFilerestoreListInner' {
         It 'Initialize-PVENodesStorageFilerestoreListInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesStorageFilerestoreListInner -Filepath "TEST_VALUE" -Text "TEST_VALUE" -Leaf "TEST_VALUE" -Mtime "TEST_VALUE" -Type "TEST_VALUE" -Size "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesStorageFilerestoreListInner -Size "TEST_VALUE" -Text "TEST_VALUE" -Type "TEST_VALUE" -Filepath "TEST_VALUE" -Mtime "TEST_VALUE" -Leaf "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesStorageFilerestoreListInner
             #$NewObject.property | Should -Be 0
         }

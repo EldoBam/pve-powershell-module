@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesQemuCloneRB' {
     Context 'PVEPOSTNodesQemuCloneRB' {
         It 'Initialize-PVEPOSTNodesQemuCloneRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesQemuCloneRB -Vmid "TEST_VALUE" -Full "TEST_VALUE" -Newid "TEST_VALUE" -Format "TEST_VALUE" -Target "TEST_VALUE" -Bwlimit "TEST_VALUE" -Snapname "TEST_VALUE" -Pool "TEST_VALUE" -Description "TEST_VALUE" -Storage "TEST_VALUE" -Node "TEST_VALUE" -Name "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesQemuCloneRB -Name "TEST_VALUE" -Newid "TEST_VALUE" -Description "TEST_VALUE" -Bwlimit "TEST_VALUE" -Snapname "TEST_VALUE" -Pool "TEST_VALUE" -Format "TEST_VALUE" -Target "TEST_VALUE" -Full "TEST_VALUE" -Storage "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesQemuCloneRB
             #$NewObject.property | Should -Be 0
         }

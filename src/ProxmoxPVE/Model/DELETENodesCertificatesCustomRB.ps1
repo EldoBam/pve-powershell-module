@@ -17,8 +17,6 @@ No description available.
 
 .PARAMETER Restart
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 DELETENodesCertificatesCustomRB<PSCustomObject>
@@ -28,34 +26,23 @@ function Initialize-PVEDELETENodesCertificatesCustomRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Restart},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Boolean]]
+        ${Restart}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEDELETENodesCertificatesCustomRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Restart -and $Restart -gt 1) {
-          throw "invalid value for 'Restart', must be smaller than or equal to 1."
-        }
-
-        if ($Restart -and $Restart -lt 0) {
-          throw "invalid value for 'Restart', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Restart"="restart"; "Node"="node"
+			"Restart"="restart"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -95,7 +82,7 @@ function ConvertFrom-PVEJsonToDELETENodesCertificatesCustomRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesCertificatesCustomRB
-        $AllProperties = ("restart", "node")
+        $AllProperties = ("restart")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -108,15 +95,8 @@ function ConvertFrom-PVEJsonToDELETENodesCertificatesCustomRB {
             $Restart = $JsonParameters.PSobject.Properties["restart"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "restart" = ${Restart}
-            "node" = ${Node}
         }
 
         return $PSO

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesHardwareUsbInner' {
     Context 'PVENodesHardwareUsbInner' {
         It 'Initialize-PVENodesHardwareUsbInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesHardwareUsbInner -Vendid "TEST_VALUE" -Usbpath "TEST_VALUE" -Devnum "TEST_VALUE" -Product "TEST_VALUE" -Manufacturer "TEST_VALUE" -Busnum "TEST_VALUE" -Serial "TEST_VALUE" -Speed "TEST_VALUE" -Level "TEST_VALUE" -Class "TEST_VALUE" -Port "TEST_VALUE" -Prodid "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesHardwareUsbInner -Prodid "TEST_VALUE" -Level "TEST_VALUE" -Vendid "TEST_VALUE" -Port "TEST_VALUE" -Devnum "TEST_VALUE" -Serial "TEST_VALUE" -Usbpath "TEST_VALUE" -Manufacturer "TEST_VALUE" -Class "TEST_VALUE" -Busnum "TEST_VALUE" -Speed "TEST_VALUE" -Product "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesHardwareUsbInner
             #$NewObject.property | Should -Be 0
         }

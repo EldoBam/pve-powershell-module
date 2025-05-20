@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Osd
-No description available.
 .PARAMETER Devices
+No description available.
+.PARAMETER Osd
 No description available.
 .OUTPUTS
 
@@ -28,11 +28,11 @@ function Initialize-PVENodesCephOsdMetadata {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Osd},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${Devices}
+        ${Devices},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${Osd}
     )
 
     Process {
@@ -41,13 +41,13 @@ function Initialize-PVENodesCephOsdMetadata {
 
 
 		 $DisplayNameMapping =@{
-			"Osd"="osd"; "Devices"="devices"
+			"Devices"="devices"; "Osd"="osd"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToNodesCephOsdMetadata {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCephOsdMetadata
-        $AllProperties = ("osd", "devices")
+        $AllProperties = ("devices", "osd")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osd"))) { #optional property not found
-            $Osd = $null
-        } else {
-            $Osd = $JsonParameters.PSobject.Properties["osd"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "devices"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToNodesCephOsdMetadata {
             $Devices = $JsonParameters.PSobject.Properties["devices"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osd"))) { #optional property not found
+            $Osd = $null
+        } else {
+            $Osd = $JsonParameters.PSobject.Properties["osd"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "osd" = ${Osd}
             "devices" = ${Devices}
+            "osd" = ${Osd}
         }
 
         return $PSO

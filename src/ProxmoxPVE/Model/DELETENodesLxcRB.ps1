@@ -15,13 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Vmid
-No description available.
-.PARAMETER Node
+.PARAMETER DestroyUnreferencedDisks
 No description available.
 .PARAMETER Purge
-No description available.
-.PARAMETER DestroyUnreferencedDisks
 No description available.
 .PARAMETER Force
 No description available.
@@ -34,19 +30,13 @@ function Initialize-PVEDELETENodesLxcRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Purge},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${DestroyUnreferencedDisks},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
+        ${Purge},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
         ${Force}
     )
 
@@ -54,47 +44,15 @@ function Initialize-PVEDELETENodesLxcRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEDELETENodesLxcRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
-        if ($Purge -and $Purge -gt 1) {
-          throw "invalid value for 'Purge', must be smaller than or equal to 1."
-        }
-
-        if ($Purge -and $Purge -lt 0) {
-          throw "invalid value for 'Purge', must be greater than or equal to 0."
-        }
-
-        if ($DestroyUnreferencedDisks -and $DestroyUnreferencedDisks -gt 1) {
-          throw "invalid value for 'DestroyUnreferencedDisks', must be smaller than or equal to 1."
-        }
-
-        if ($DestroyUnreferencedDisks -and $DestroyUnreferencedDisks -lt 0) {
-          throw "invalid value for 'DestroyUnreferencedDisks', must be greater than or equal to 0."
-        }
-
-        if ($Force -and $Force -gt 1) {
-          throw "invalid value for 'Force', must be smaller than or equal to 1."
-        }
-
-        if ($Force -and $Force -lt 0) {
-          throw "invalid value for 'Force', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Vmid"="vmid"; "Node"="node"; "Purge"="purge"; "DestroyUnreferencedDisks"="destroy-unreferenced-disks"; "Force"="force"
+			"DestroyUnreferencedDisks"="destroy-unreferenced-disks"; "Purge"="purge"; "Force"="force"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -134,35 +92,23 @@ function ConvertFrom-PVEJsonToDELETENodesLxcRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesLxcRB
-        $AllProperties = ("vmid", "node", "purge", "destroy-unreferenced-disks", "force")
+        $AllProperties = ("destroy-unreferenced-disks", "purge", "force")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "destroy-unreferenced-disks"))) { #optional property not found
+            $DestroyUnreferencedDisks = $null
         } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $DestroyUnreferencedDisks = $JsonParameters.PSobject.Properties["destroy-unreferenced-disks"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "purge"))) { #optional property not found
             $Purge = $null
         } else {
             $Purge = $JsonParameters.PSobject.Properties["purge"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "destroy-unreferenced-disks"))) { #optional property not found
-            $DestroyUnreferencedDisks = $null
-        } else {
-            $DestroyUnreferencedDisks = $JsonParameters.PSobject.Properties["destroy-unreferenced-disks"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
@@ -172,10 +118,8 @@ function ConvertFrom-PVEJsonToDELETENodesLxcRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "vmid" = ${Vmid}
-            "node" = ${Node}
-            "purge" = ${Purge}
             "destroy-unreferenced-disks" = ${DestroyUnreferencedDisks}
+            "purge" = ${Purge}
             "force" = ${Force}
         }
 

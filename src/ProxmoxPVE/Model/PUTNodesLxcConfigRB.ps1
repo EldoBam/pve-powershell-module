@@ -17,73 +17,69 @@ No description available.
 
 .PARAMETER Cpulimit
 No description available.
-.PARAMETER Memory
+.PARAMETER Searchdomain
 No description available.
 .PARAMETER Cpuunits
 No description available.
-.PARAMETER Vmid
+.PARAMETER Protection
 No description available.
-.PARAMETER Rootfs
-No description available.
-.PARAMETER Searchdomain
-No description available.
-.PARAMETER Unprivileged
+.PARAMETER MpN
 No description available.
 .PARAMETER Swap
 No description available.
-.PARAMETER Debug
-No description available.
-.PARAMETER Node
-No description available.
-.PARAMETER Delete
-No description available.
-.PARAMETER Nameserver
-No description available.
-.PARAMETER Startup
-No description available.
-.PARAMETER Tty
-No description available.
-.PARAMETER Lock
-No description available.
-.PARAMETER DevN
-No description available.
-.PARAMETER Hookscript
-No description available.
-.PARAMETER Onboot
+.PARAMETER Cores
 No description available.
 .PARAMETER Arch
 No description available.
 .PARAMETER Hostname
 No description available.
-.PARAMETER Cmode
-No description available.
-.PARAMETER Description
-No description available.
 .PARAMETER Revert
 No description available.
-.PARAMETER Cores
+.PARAMETER Debug
+No description available.
+.PARAMETER Tags
 No description available.
 .PARAMETER NetN
 No description available.
-.PARAMETER Protection
+.PARAMETER Rootfs
 No description available.
-.PARAMETER Timezone
+.PARAMETER Onboot
 No description available.
-.PARAMETER UnusedN
+.PARAMETER Lock
 No description available.
-.PARAMETER MpN
+.PARAMETER Unprivileged
 No description available.
 .PARAMETER Ostype
 No description available.
+.PARAMETER Startup
+No description available.
+.PARAMETER Cmode
+No description available.
 .PARAMETER Console
+No description available.
+.PARAMETER Timezone
+No description available.
+.PARAMETER DevN
+No description available.
+.PARAMETER Description
+No description available.
+.PARAMETER Memory
+No description available.
+.PARAMETER Delete
 No description available.
 .PARAMETER Template
 No description available.
+.PARAMETER Tty
+No description available.
 .PARAMETER Digest
+No description available.
+.PARAMETER Hookscript
 No description available.
 .PARAMETER Features
 No description available.
-.PARAMETER Tags
+.PARAMETER UnusedN
+No description available.
+.PARAMETER Nameserver
 No description available.
 .OUTPUTS
 
@@ -97,57 +93,23 @@ function Initialize-PVEPUTNodesLxcConfigRB {
         [System.Nullable[Decimal]]
         ${Cpulimit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Memory},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Cpuunits},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Rootfs},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Searchdomain},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Unprivileged},
+        ${Cpuunits},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Protection},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${MpN},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Swap},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Debug},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Nameserver},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Startup},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Tty},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("backup", "create", "destroyed", "disk", "fstrim", "migrate", "mounted", "rollback", "snapshot", "snapshot-delete")]
-        [String]
-        ${Lock},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${DevN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Hookscript},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Onboot},
+        ${Cores},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("amd64", "i386", "arm64", "armhf", "riscv32", "riscv64")]
         [String]
@@ -156,52 +118,80 @@ function Initialize-PVEPUTNodesLxcConfigRB {
         [String]
         ${Hostname},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("shell", "console", "tty")]
-        [String]
-        ${Cmode},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Description},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Revert},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Cores},
+        [System.Nullable[Boolean]]
+        ${Debug},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Tags},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${NetN},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Protection},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Timezone},
+        ${Rootfs},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${UnusedN},
+        [System.Nullable[Boolean]]
+        ${Onboot},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("backup", "create", "destroyed", "disk", "fstrim", "migrate", "mounted", "rollback", "snapshot", "snapshot-delete")]
         [String]
-        ${MpN},
+        ${Lock},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Unprivileged},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("debian", "devuan", "ubuntu", "centos", "fedora", "opensuse", "archlinux", "alpine", "gentoo", "nixos", "unmanaged")]
         [String]
         ${Ostype},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [String]
+        ${Startup},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("shell", "console", "tty")]
+        [String]
+        ${Cmode},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
         ${Console},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Timezone},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${DevN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Description},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
+        ${Memory},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Delete},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
         ${Template},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Tty},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Hookscript},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Features},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Tags}
+        ${UnusedN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Nameserver}
     )
 
     Process {
@@ -212,56 +202,8 @@ function Initialize-PVEPUTNodesLxcConfigRB {
           throw "invalid value for 'Cpulimit', must be smaller than or equal to 8192."
         }
 
-        if ($Memory -and $Memory -lt 16) {
-          throw "invalid value for 'Memory', must be greater than or equal to 16."
-        }
-
         if ($Cpuunits -and $Cpuunits -gt 500000) {
           throw "invalid value for 'Cpuunits', must be smaller than or equal to 500000."
-        }
-
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
-        if ($Unprivileged -and $Unprivileged -gt 1) {
-          throw "invalid value for 'Unprivileged', must be smaller than or equal to 1."
-        }
-
-        if ($Unprivileged -and $Unprivileged -lt 0) {
-          throw "invalid value for 'Unprivileged', must be greater than or equal to 0."
-        }
-
-        if ($Debug -and $Debug -gt 1) {
-          throw "invalid value for 'Debug', must be smaller than or equal to 1."
-        }
-
-        if ($Debug -and $Debug -lt 0) {
-          throw "invalid value for 'Debug', must be greater than or equal to 0."
-        }
-
-        if ($Tty -and $Tty -gt 6) {
-          throw "invalid value for 'Tty', must be smaller than or equal to 6."
-        }
-
-        if ($Onboot -and $Onboot -gt 1) {
-          throw "invalid value for 'Onboot', must be smaller than or equal to 1."
-        }
-
-        if ($Onboot -and $Onboot -lt 0) {
-          throw "invalid value for 'Onboot', must be greater than or equal to 0."
-        }
-
-        if (!$Hostname -and $Hostname.length -gt 255) {
-            throw "invalid value for 'Hostname', the character length must be smaller than or equal to 255."
-        }
-
-        if (!$Description -and $Description.length -gt 8192) {
-            throw "invalid value for 'Description', the character length must be smaller than or equal to 8192."
         }
 
         if ($Cores -and $Cores -gt 8192) {
@@ -272,28 +214,20 @@ function Initialize-PVEPUTNodesLxcConfigRB {
           throw "invalid value for 'Cores', must be greater than or equal to 1."
         }
 
-        if ($Protection -and $Protection -gt 1) {
-          throw "invalid value for 'Protection', must be smaller than or equal to 1."
+        if (!$Hostname -and $Hostname.length -gt 255) {
+            throw "invalid value for 'Hostname', the character length must be smaller than or equal to 255."
         }
 
-        if ($Protection -and $Protection -lt 0) {
-          throw "invalid value for 'Protection', must be greater than or equal to 0."
+        if (!$Description -and $Description.length -gt 8192) {
+            throw "invalid value for 'Description', the character length must be smaller than or equal to 8192."
         }
 
-        if ($Console -and $Console -gt 1) {
-          throw "invalid value for 'Console', must be smaller than or equal to 1."
+        if ($Memory -and $Memory -lt 16) {
+          throw "invalid value for 'Memory', must be greater than or equal to 16."
         }
 
-        if ($Console -and $Console -lt 0) {
-          throw "invalid value for 'Console', must be greater than or equal to 0."
-        }
-
-        if ($Template -and $Template -gt 1) {
-          throw "invalid value for 'Template', must be smaller than or equal to 1."
-        }
-
-        if ($Template -and $Template -lt 0) {
-          throw "invalid value for 'Template', must be greater than or equal to 0."
+        if ($Tty -and $Tty -gt 6) {
+          throw "invalid value for 'Tty', must be smaller than or equal to 6."
         }
 
         if (!$Digest -and $Digest.length -gt 40) {
@@ -302,13 +236,13 @@ function Initialize-PVEPUTNodesLxcConfigRB {
 
 
 		 $DisplayNameMapping =@{
-			"Cpulimit"="cpulimit"; "Memory"="memory"; "Cpuunits"="cpuunits"; "Vmid"="vmid"; "Rootfs"="rootfs"; "Searchdomain"="searchdomain"; "Unprivileged"="unprivileged"; "Swap"="swap"; "Debug"="debug"; "Node"="node"; "Delete"="delete"; "Nameserver"="nameserver"; "Startup"="startup"; "Tty"="tty"; "Lock"="lock"; "DevN"="dev[n]"; "Hookscript"="hookscript"; "Onboot"="onboot"; "Arch"="arch"; "Hostname"="hostname"; "Cmode"="cmode"; "Description"="description"; "Revert"="revert"; "Cores"="cores"; "NetN"="net[n]"; "Protection"="protection"; "Timezone"="timezone"; "UnusedN"="unused[n]"; "MpN"="mp[n]"; "Ostype"="ostype"; "Console"="console"; "Template"="template"; "Digest"="digest"; "Features"="features"; "Tags"="tags"
+			"Cpulimit"="cpulimit"; "Searchdomain"="searchdomain"; "Cpuunits"="cpuunits"; "Protection"="protection"; "MpN"="mp[n]"; "Swap"="swap"; "Cores"="cores"; "Arch"="arch"; "Hostname"="hostname"; "Revert"="revert"; "Debug"="debug"; "Tags"="tags"; "NetN"="net[n]"; "Rootfs"="rootfs"; "Onboot"="onboot"; "Lock"="lock"; "Unprivileged"="unprivileged"; "Ostype"="ostype"; "Startup"="startup"; "Cmode"="cmode"; "Console"="console"; "Timezone"="timezone"; "DevN"="dev[n]"; "Description"="description"; "Memory"="memory"; "Delete"="delete"; "Template"="template"; "Tty"="tty"; "Digest"="digest"; "Hookscript"="hookscript"; "Features"="features"; "UnusedN"="unused[n]"; "Nameserver"="nameserver"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -348,7 +282,7 @@ function ConvertFrom-PVEJsonToPUTNodesLxcConfigRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTNodesLxcConfigRB
-        $AllProperties = ("cpulimit", "memory", "cpuunits", "vmid", "rootfs", "searchdomain", "unprivileged", "swap", "debug", "node", "delete", "nameserver", "startup", "tty", "lock", "dev[n]", "hookscript", "onboot", "arch", "hostname", "cmode", "description", "revert", "cores", "net[n]", "protection", "timezone", "unused[n]", "mp[n]", "ostype", "console", "template", "digest", "features", "tags")
+        $AllProperties = ("cpulimit", "searchdomain", "cpuunits", "protection", "mp[n]", "swap", "cores", "arch", "hostname", "revert", "debug", "tags", "net[n]", "rootfs", "onboot", "lock", "unprivileged", "ostype", "startup", "cmode", "console", "timezone", "dev[n]", "description", "memory", "delete", "template", "tty", "digest", "hookscript", "features", "unused[n]", "nameserver")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -361,10 +295,10 @@ function ConvertFrom-PVEJsonToPUTNodesLxcConfigRB {
             $Cpulimit = $JsonParameters.PSobject.Properties["cpulimit"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "memory"))) { #optional property not found
-            $Memory = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "searchdomain"))) { #optional property not found
+            $Searchdomain = $null
         } else {
-            $Memory = $JsonParameters.PSobject.Properties["memory"].value
+            $Searchdomain = $JsonParameters.PSobject.Properties["searchdomain"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpuunits"))) { #optional property not found
@@ -373,28 +307,16 @@ function ConvertFrom-PVEJsonToPUTNodesLxcConfigRB {
             $Cpuunits = $JsonParameters.PSobject.Properties["cpuunits"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protection"))) { #optional property not found
+            $Protection = $null
         } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
+            $Protection = $JsonParameters.PSobject.Properties["protection"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rootfs"))) { #optional property not found
-            $Rootfs = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mp[n]"))) { #optional property not found
+            $MpN = $null
         } else {
-            $Rootfs = $JsonParameters.PSobject.Properties["rootfs"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "searchdomain"))) { #optional property not found
-            $Searchdomain = $null
-        } else {
-            $Searchdomain = $JsonParameters.PSobject.Properties["searchdomain"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "unprivileged"))) { #optional property not found
-            $Unprivileged = $null
-        } else {
-            $Unprivileged = $JsonParameters.PSobject.Properties["unprivileged"].value
+            $MpN = $JsonParameters.PSobject.Properties["mp[n]"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "swap"))) { #optional property not found
@@ -403,64 +325,10 @@ function ConvertFrom-PVEJsonToPUTNodesLxcConfigRB {
             $Swap = $JsonParameters.PSobject.Properties["swap"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "debug"))) { #optional property not found
-            $Debug = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cores"))) { #optional property not found
+            $Cores = $null
         } else {
-            $Debug = $JsonParameters.PSobject.Properties["debug"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nameserver"))) { #optional property not found
-            $Nameserver = $null
-        } else {
-            $Nameserver = $JsonParameters.PSobject.Properties["nameserver"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "startup"))) { #optional property not found
-            $Startup = $null
-        } else {
-            $Startup = $JsonParameters.PSobject.Properties["startup"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tty"))) { #optional property not found
-            $Tty = $null
-        } else {
-            $Tty = $JsonParameters.PSobject.Properties["tty"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lock"))) { #optional property not found
-            $Lock = $null
-        } else {
-            $Lock = $JsonParameters.PSobject.Properties["lock"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dev[n]"))) { #optional property not found
-            $DevN = $null
-        } else {
-            $DevN = $JsonParameters.PSobject.Properties["dev[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hookscript"))) { #optional property not found
-            $Hookscript = $null
-        } else {
-            $Hookscript = $JsonParameters.PSobject.Properties["hookscript"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "onboot"))) { #optional property not found
-            $Onboot = $null
-        } else {
-            $Onboot = $JsonParameters.PSobject.Properties["onboot"].value
+            $Cores = $JsonParameters.PSobject.Properties["cores"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "arch"))) { #optional property not found
@@ -475,88 +343,16 @@ function ConvertFrom-PVEJsonToPUTNodesLxcConfigRB {
             $Hostname = $JsonParameters.PSobject.Properties["hostname"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cmode"))) { #optional property not found
-            $Cmode = $null
-        } else {
-            $Cmode = $JsonParameters.PSobject.Properties["cmode"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "revert"))) { #optional property not found
             $Revert = $null
         } else {
             $Revert = $JsonParameters.PSobject.Properties["revert"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cores"))) { #optional property not found
-            $Cores = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "debug"))) { #optional property not found
+            $Debug = $null
         } else {
-            $Cores = $JsonParameters.PSobject.Properties["cores"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "net[n]"))) { #optional property not found
-            $NetN = $null
-        } else {
-            $NetN = $JsonParameters.PSobject.Properties["net[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protection"))) { #optional property not found
-            $Protection = $null
-        } else {
-            $Protection = $JsonParameters.PSobject.Properties["protection"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timezone"))) { #optional property not found
-            $Timezone = $null
-        } else {
-            $Timezone = $JsonParameters.PSobject.Properties["timezone"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "unused[n]"))) { #optional property not found
-            $UnusedN = $null
-        } else {
-            $UnusedN = $JsonParameters.PSobject.Properties["unused[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mp[n]"))) { #optional property not found
-            $MpN = $null
-        } else {
-            $MpN = $JsonParameters.PSobject.Properties["mp[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ostype"))) { #optional property not found
-            $Ostype = $null
-        } else {
-            $Ostype = $JsonParameters.PSobject.Properties["ostype"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "console"))) { #optional property not found
-            $Console = $null
-        } else {
-            $Console = $JsonParameters.PSobject.Properties["console"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "template"))) { #optional property not found
-            $Template = $null
-        } else {
-            $Template = $JsonParameters.PSobject.Properties["template"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "features"))) { #optional property not found
-            $Features = $null
-        } else {
-            $Features = $JsonParameters.PSobject.Properties["features"].value
+            $Debug = $JsonParameters.PSobject.Properties["debug"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "tags"))) { #optional property not found
@@ -565,42 +361,166 @@ function ConvertFrom-PVEJsonToPUTNodesLxcConfigRB {
             $Tags = $JsonParameters.PSobject.Properties["tags"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "net[n]"))) { #optional property not found
+            $NetN = $null
+        } else {
+            $NetN = $JsonParameters.PSobject.Properties["net[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rootfs"))) { #optional property not found
+            $Rootfs = $null
+        } else {
+            $Rootfs = $JsonParameters.PSobject.Properties["rootfs"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "onboot"))) { #optional property not found
+            $Onboot = $null
+        } else {
+            $Onboot = $JsonParameters.PSobject.Properties["onboot"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lock"))) { #optional property not found
+            $Lock = $null
+        } else {
+            $Lock = $JsonParameters.PSobject.Properties["lock"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "unprivileged"))) { #optional property not found
+            $Unprivileged = $null
+        } else {
+            $Unprivileged = $JsonParameters.PSobject.Properties["unprivileged"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ostype"))) { #optional property not found
+            $Ostype = $null
+        } else {
+            $Ostype = $JsonParameters.PSobject.Properties["ostype"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "startup"))) { #optional property not found
+            $Startup = $null
+        } else {
+            $Startup = $JsonParameters.PSobject.Properties["startup"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cmode"))) { #optional property not found
+            $Cmode = $null
+        } else {
+            $Cmode = $JsonParameters.PSobject.Properties["cmode"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "console"))) { #optional property not found
+            $Console = $null
+        } else {
+            $Console = $JsonParameters.PSobject.Properties["console"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timezone"))) { #optional property not found
+            $Timezone = $null
+        } else {
+            $Timezone = $JsonParameters.PSobject.Properties["timezone"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dev[n]"))) { #optional property not found
+            $DevN = $null
+        } else {
+            $DevN = $JsonParameters.PSobject.Properties["dev[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "memory"))) { #optional property not found
+            $Memory = $null
+        } else {
+            $Memory = $JsonParameters.PSobject.Properties["memory"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "template"))) { #optional property not found
+            $Template = $null
+        } else {
+            $Template = $JsonParameters.PSobject.Properties["template"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tty"))) { #optional property not found
+            $Tty = $null
+        } else {
+            $Tty = $JsonParameters.PSobject.Properties["tty"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hookscript"))) { #optional property not found
+            $Hookscript = $null
+        } else {
+            $Hookscript = $JsonParameters.PSobject.Properties["hookscript"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "features"))) { #optional property not found
+            $Features = $null
+        } else {
+            $Features = $JsonParameters.PSobject.Properties["features"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "unused[n]"))) { #optional property not found
+            $UnusedN = $null
+        } else {
+            $UnusedN = $JsonParameters.PSobject.Properties["unused[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nameserver"))) { #optional property not found
+            $Nameserver = $null
+        } else {
+            $Nameserver = $JsonParameters.PSobject.Properties["nameserver"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "cpulimit" = ${Cpulimit}
-            "memory" = ${Memory}
-            "cpuunits" = ${Cpuunits}
-            "vmid" = ${Vmid}
-            "rootfs" = ${Rootfs}
             "searchdomain" = ${Searchdomain}
-            "unprivileged" = ${Unprivileged}
+            "cpuunits" = ${Cpuunits}
+            "protection" = ${Protection}
+            "mp[n]" = ${MpN}
             "swap" = ${Swap}
-            "debug" = ${Debug}
-            "node" = ${Node}
-            "delete" = ${Delete}
-            "nameserver" = ${Nameserver}
-            "startup" = ${Startup}
-            "tty" = ${Tty}
-            "lock" = ${Lock}
-            "dev[n]" = ${DevN}
-            "hookscript" = ${Hookscript}
-            "onboot" = ${Onboot}
+            "cores" = ${Cores}
             "arch" = ${Arch}
             "hostname" = ${Hostname}
-            "cmode" = ${Cmode}
-            "description" = ${Description}
             "revert" = ${Revert}
-            "cores" = ${Cores}
-            "net[n]" = ${NetN}
-            "protection" = ${Protection}
-            "timezone" = ${Timezone}
-            "unused[n]" = ${UnusedN}
-            "mp[n]" = ${MpN}
-            "ostype" = ${Ostype}
-            "console" = ${Console}
-            "template" = ${Template}
-            "digest" = ${Digest}
-            "features" = ${Features}
+            "debug" = ${Debug}
             "tags" = ${Tags}
+            "net[n]" = ${NetN}
+            "rootfs" = ${Rootfs}
+            "onboot" = ${Onboot}
+            "lock" = ${Lock}
+            "unprivileged" = ${Unprivileged}
+            "ostype" = ${Ostype}
+            "startup" = ${Startup}
+            "cmode" = ${Cmode}
+            "console" = ${Console}
+            "timezone" = ${Timezone}
+            "dev[n]" = ${DevN}
+            "description" = ${Description}
+            "memory" = ${Memory}
+            "delete" = ${Delete}
+            "template" = ${Template}
+            "tty" = ${Tty}
+            "digest" = ${Digest}
+            "hookscript" = ${Hookscript}
+            "features" = ${Features}
+            "unused[n]" = ${UnusedN}
+            "nameserver" = ${Nameserver}
         }
 
         return $PSO

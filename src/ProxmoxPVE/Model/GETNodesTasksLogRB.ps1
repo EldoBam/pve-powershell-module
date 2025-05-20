@@ -15,15 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Limit
+.PARAMETER Download
 No description available.
 .PARAMETER Start
 No description available.
-.PARAMETER Download
-No description available.
-.PARAMETER Upid
-No description available.
-.PARAMETER Node
+.PARAMETER Limit
 No description available.
 .OUTPUTS
 
@@ -34,43 +30,29 @@ function Initialize-PVEGETNodesTasksLogRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Limit},
+        [System.Nullable[Boolean]]
+        ${Download},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Start},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Download},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Upid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Limit}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETNodesTasksLogRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Download -and $Download -gt 1) {
-          throw "invalid value for 'Download', must be smaller than or equal to 1."
-        }
-
-        if ($Download -and $Download -lt 0) {
-          throw "invalid value for 'Download', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Limit"="limit"; "Start"="start"; "Download"="download"; "Upid"="upid"; "Node"="node"
+			"Download"="download"; "Start"="start"; "Limit"="limit"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -110,23 +92,11 @@ function ConvertFrom-PVEJsonToGETNodesTasksLogRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesTasksLogRB
-        $AllProperties = ("limit", "start", "download", "upid", "node")
+        $AllProperties = ("download", "start", "limit")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "limit"))) { #optional property not found
-            $Limit = $null
-        } else {
-            $Limit = $JsonParameters.PSobject.Properties["limit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) { #optional property not found
-            $Start = $null
-        } else {
-            $Start = $JsonParameters.PSobject.Properties["start"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "download"))) { #optional property not found
@@ -135,24 +105,22 @@ function ConvertFrom-PVEJsonToGETNodesTasksLogRB {
             $Download = $JsonParameters.PSobject.Properties["download"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "upid"))) { #optional property not found
-            $Upid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) { #optional property not found
+            $Start = $null
         } else {
-            $Upid = $JsonParameters.PSobject.Properties["upid"].value
+            $Start = $JsonParameters.PSobject.Properties["start"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "limit"))) { #optional property not found
+            $Limit = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Limit = $JsonParameters.PSobject.Properties["limit"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "limit" = ${Limit}
-            "start" = ${Start}
             "download" = ${Download}
-            "upid" = ${Upid}
-            "node" = ${Node}
+            "start" = ${Start}
+            "limit" = ${Limit}
         }
 
         return $PSO

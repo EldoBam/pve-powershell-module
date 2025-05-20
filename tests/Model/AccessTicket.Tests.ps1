@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEAccessTicket' {
     Context 'PVEAccessTicket' {
         It 'Initialize-PVEAccessTicket' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEAccessTicket -Username "TEST_VALUE" -Ticket "TEST_VALUE" -CSRFPreventionToken "TEST_VALUE" -Clustername "TEST_VALUE"
+            #$NewObject = Initialize-PVEAccessTicket -Ticket "TEST_VALUE" -Clustername "TEST_VALUE" -CSRFPreventionToken "TEST_VALUE" -Username "TEST_VALUE"
             #$NewObject | Should -BeOfType AccessTicket
             #$NewObject.property | Should -Be 0
         }

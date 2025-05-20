@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesQemuRemotemigrateRB' {
     Context 'PVEPOSTNodesQemuRemotemigrateRB' {
         It 'Initialize-PVEPOSTNodesQemuRemotemigrateRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesQemuRemotemigrateRB -TargetBridge "TEST_VALUE" -TargetStorage "TEST_VALUE" -TargetVmid "TEST_VALUE" -Online "TEST_VALUE" -Bwlimit "TEST_VALUE" -TargetEndpoint "TEST_VALUE" -Delete "TEST_VALUE" -Vmid "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesQemuRemotemigrateRB -Delete "TEST_VALUE" -TargetStorage "TEST_VALUE" -TargetEndpoint "TEST_VALUE" -Bwlimit "TEST_VALUE" -Online "TEST_VALUE" -TargetBridge "TEST_VALUE" -TargetVmid "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesQemuRemotemigrateRB
             #$NewObject.property | Should -Be 0
         }

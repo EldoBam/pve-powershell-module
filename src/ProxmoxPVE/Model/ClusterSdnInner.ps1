@@ -19,10 +19,10 @@ No description available.
 No description available.
 .OUTPUTS
 
-ClusterHaInner<PSCustomObject>
+ClusterSdnInner<PSCustomObject>
 #>
 
-function Initialize-PVEClusterHaInner {
+function Initialize-PVEClusterSdnInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
@@ -31,7 +31,7 @@ function Initialize-PVEClusterHaInner {
     )
 
     Process {
-        'Creating PSCustomObject: ProxmoxPVE => PVEClusterHaInner' | Write-Debug
+        'Creating PSCustomObject: ProxmoxPVE => PVEClusterSdnInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
 
@@ -42,7 +42,7 @@ function Initialize-PVEClusterHaInner {
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -55,11 +55,11 @@ function Initialize-PVEClusterHaInner {
 <#
 .SYNOPSIS
 
-Convert from JSON to ClusterHaInner<PSCustomObject>
+Convert from JSON to ClusterSdnInner<PSCustomObject>
 
 .DESCRIPTION
 
-Convert from JSON to ClusterHaInner<PSCustomObject>
+Convert from JSON to ClusterSdnInner<PSCustomObject>
 
 .PARAMETER Json
 
@@ -67,21 +67,21 @@ Json object
 
 .OUTPUTS
 
-ClusterHaInner<PSCustomObject>
+ClusterSdnInner<PSCustomObject>
 #>
-function ConvertFrom-PVEJsonToClusterHaInner {
+function ConvertFrom-PVEJsonToClusterSdnInner {
     Param(
         [AllowEmptyString()]
         [string]$Json
     )
 
     Process {
-        'Converting JSON to PSCustomObject: ProxmoxPVE => PVEClusterHaInner' | Write-Debug
+        'Converting JSON to PSCustomObject: ProxmoxPVE => PVEClusterSdnInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
-        # check if Json contains properties not defined in PVEClusterHaInner
+        # check if Json contains properties not defined in PVEClusterSdnInner
         $AllProperties = ("id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {

@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Wakeonlan
+.PARAMETER BallooningTarget
 No description available.
 .PARAMETER AcmedomainN
 No description available.
 .PARAMETER StartallOnbootDelay
 No description available.
-.PARAMETER BallooningTarget
+.PARAMETER Description
 No description available.
 .PARAMETER Acme
 No description available.
-.PARAMETER Description
+.PARAMETER Wakeonlan
 No description available.
 .PARAMETER Digest
 No description available.
@@ -38,8 +38,8 @@ function Initialize-PVENodesConfig {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Wakeonlan},
+        [System.Nullable[Int32]]
+        ${BallooningTarget},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${AcmedomainN},
@@ -47,14 +47,14 @@ function Initialize-PVENodesConfig {
         [System.Nullable[Int32]]
         ${StartallOnbootDelay},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${BallooningTarget},
+        [String]
+        ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Acme},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description},
+        ${Wakeonlan},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest}
@@ -64,12 +64,12 @@ function Initialize-PVENodesConfig {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesConfig' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($StartallOnbootDelay -and $StartallOnbootDelay -gt 300) {
-          throw "invalid value for 'StartallOnbootDelay', must be smaller than or equal to 300."
-        }
-
         if ($BallooningTarget -and $BallooningTarget -gt 100) {
           throw "invalid value for 'BallooningTarget', must be smaller than or equal to 100."
+        }
+
+        if ($StartallOnbootDelay -and $StartallOnbootDelay -gt 300) {
+          throw "invalid value for 'StartallOnbootDelay', must be smaller than or equal to 300."
         }
 
         if (!$Description -and $Description.length -gt 65536) {
@@ -82,13 +82,13 @@ function Initialize-PVENodesConfig {
 
 
 		 $DisplayNameMapping =@{
-			"Wakeonlan"="wakeonlan"; "AcmedomainN"="acmedomain[n]"; "StartallOnbootDelay"="startall-onboot-delay"; "BallooningTarget"="ballooning-target"; "Acme"="acme"; "Description"="description"; "Digest"="digest"
+			"BallooningTarget"="ballooning-target"; "AcmedomainN"="acmedomain[n]"; "StartallOnbootDelay"="startall-onboot-delay"; "Description"="description"; "Acme"="acme"; "Wakeonlan"="wakeonlan"; "Digest"="digest"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -128,17 +128,17 @@ function ConvertFrom-PVEJsonToNodesConfig {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesConfig
-        $AllProperties = ("wakeonlan", "acmedomain[n]", "startall-onboot-delay", "ballooning-target", "acme", "description", "digest")
+        $AllProperties = ("ballooning-target", "acmedomain[n]", "startall-onboot-delay", "description", "acme", "wakeonlan", "digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wakeonlan"))) { #optional property not found
-            $Wakeonlan = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ballooning-target"))) { #optional property not found
+            $BallooningTarget = $null
         } else {
-            $Wakeonlan = $JsonParameters.PSobject.Properties["wakeonlan"].value
+            $BallooningTarget = $JsonParameters.PSobject.Properties["ballooning-target"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "acmedomain[n]"))) { #optional property not found
@@ -153,10 +153,10 @@ function ConvertFrom-PVEJsonToNodesConfig {
             $StartallOnbootDelay = $JsonParameters.PSobject.Properties["startall-onboot-delay"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ballooning-target"))) { #optional property not found
-            $BallooningTarget = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
         } else {
-            $BallooningTarget = $JsonParameters.PSobject.Properties["ballooning-target"].value
+            $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "acme"))) { #optional property not found
@@ -165,10 +165,10 @@ function ConvertFrom-PVEJsonToNodesConfig {
             $Acme = $JsonParameters.PSobject.Properties["acme"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wakeonlan"))) { #optional property not found
+            $Wakeonlan = $null
         } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
+            $Wakeonlan = $JsonParameters.PSobject.Properties["wakeonlan"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
@@ -178,12 +178,12 @@ function ConvertFrom-PVEJsonToNodesConfig {
         }
 
         $PSO = [PSCustomObject]@{
-            "wakeonlan" = ${Wakeonlan}
+            "ballooning-target" = ${BallooningTarget}
             "acmedomain[n]" = ${AcmedomainN}
             "startall-onboot-delay" = ${StartallOnbootDelay}
-            "ballooning-target" = ${BallooningTarget}
-            "acme" = ${Acme}
             "description" = ${Description}
+            "acme" = ${Acme}
+            "wakeonlan" = ${Wakeonlan}
             "digest" = ${Digest}
         }
 

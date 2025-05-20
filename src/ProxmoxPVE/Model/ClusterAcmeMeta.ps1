@@ -19,9 +19,9 @@ No description available.
 No description available.
 .PARAMETER ExternalAccountRequired
 No description available.
-.PARAMETER CaaIdentities
-No description available.
 .PARAMETER Website
+No description available.
+.PARAMETER CaaIdentities
 No description available.
 .OUTPUTS
 
@@ -35,37 +35,29 @@ function Initialize-PVEClusterAcmeMeta {
         [String]
         ${TermsOfService},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${ExternalAccountRequired},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String[]]
-        ${CaaIdentities},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Website}
+        ${Website},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String[]]
+        ${CaaIdentities}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEClusterAcmeMeta' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($ExternalAccountRequired -and $ExternalAccountRequired -gt 1) {
-          throw "invalid value for 'ExternalAccountRequired', must be smaller than or equal to 1."
-        }
-
-        if ($ExternalAccountRequired -and $ExternalAccountRequired -lt 0) {
-          throw "invalid value for 'ExternalAccountRequired', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"TermsOfService"="termsOfService"; "ExternalAccountRequired"="externalAccountRequired"; "CaaIdentities"="caaIdentities"; "Website"="website"
+			"TermsOfService"="termsOfService"; "ExternalAccountRequired"="externalAccountRequired"; "Website"="website"; "CaaIdentities"="caaIdentities"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -105,7 +97,7 @@ function ConvertFrom-PVEJsonToClusterAcmeMeta {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterAcmeMeta
-        $AllProperties = ("termsOfService", "externalAccountRequired", "caaIdentities", "website")
+        $AllProperties = ("termsOfService", "externalAccountRequired", "website", "caaIdentities")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -124,23 +116,23 @@ function ConvertFrom-PVEJsonToClusterAcmeMeta {
             $ExternalAccountRequired = $JsonParameters.PSobject.Properties["externalAccountRequired"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "caaIdentities"))) { #optional property not found
-            $CaaIdentities = $null
-        } else {
-            $CaaIdentities = $JsonParameters.PSobject.Properties["caaIdentities"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "website"))) { #optional property not found
             $Website = $null
         } else {
             $Website = $JsonParameters.PSobject.Properties["website"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "caaIdentities"))) { #optional property not found
+            $CaaIdentities = $null
+        } else {
+            $CaaIdentities = $JsonParameters.PSobject.Properties["caaIdentities"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "termsOfService" = ${TermsOfService}
             "externalAccountRequired" = ${ExternalAccountRequired}
-            "caaIdentities" = ${CaaIdentities}
             "website" = ${Website}
+            "caaIdentities" = ${CaaIdentities}
         }
 
         return $PSO

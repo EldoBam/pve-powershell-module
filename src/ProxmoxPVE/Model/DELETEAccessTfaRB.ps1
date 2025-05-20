@@ -15,10 +15,6 @@ No summary available.
 
 No description available.
 
-.PARAMETER Id
-No description available.
-.PARAMETER Userid
-No description available.
 .PARAMETER Password
 No description available.
 .OUTPUTS
@@ -31,22 +27,12 @@ function Initialize-PVEDELETEAccessTfaRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Userid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Password}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEDELETEAccessTfaRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if (!$Userid -and $Userid.length -gt 64) {
-            throw "invalid value for 'Userid', the character length must be smaller than or equal to 64."
-        }
 
         if (!$Password -and $Password.length -gt 64) {
             throw "invalid value for 'Password', the character length must be smaller than or equal to 64."
@@ -58,13 +44,13 @@ function Initialize-PVEDELETEAccessTfaRB {
 
 
 		 $DisplayNameMapping =@{
-			"Id"="id"; "Userid"="userid"; "Password"="password"
+			"Password"="password"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -104,23 +90,11 @@ function ConvertFrom-PVEJsonToDELETEAccessTfaRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETEAccessTfaRB
-        $AllProperties = ("id", "userid", "password")
+        $AllProperties = ("password")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "userid"))) { #optional property not found
-            $Userid = $null
-        } else {
-            $Userid = $JsonParameters.PSobject.Properties["userid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
@@ -130,8 +104,6 @@ function ConvertFrom-PVEJsonToDELETEAccessTfaRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "id" = ${Id}
-            "userid" = ${Userid}
             "password" = ${Password}
         }
 

@@ -15,17 +15,15 @@ No summary available.
 
 No description available.
 
+.PARAMETER Service
+No description available.
 .PARAMETER Start
-No description available.
-.PARAMETER VarUntil
-No description available.
-.PARAMETER Limit
 No description available.
 .PARAMETER Since
 No description available.
-.PARAMETER Node
+.PARAMETER Limit
 No description available.
-.PARAMETER Service
+.PARAMETER VarUntil
 No description available.
 .OUTPUTS
 
@@ -36,25 +34,22 @@ function Initialize-PVEGETNodesSyslogRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Service},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Start},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("^\d{4}-\d{2}-\d{2}( \d{2}:\d{2}(:\d{2})?)?$")]
         [String]
-        ${VarUntil},
+        ${Since},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Limit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("^\d{4}-\d{2}-\d{2}( \d{2}:\d{2}(:\d{2})?)?$")]
         [String]
-        ${Since},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Service}
+        ${VarUntil}
     )
 
     Process {
@@ -67,13 +62,13 @@ function Initialize-PVEGETNodesSyslogRB {
 
 
 		 $DisplayNameMapping =@{
-			"Start"="start"; "VarUntil"="until"; "Limit"="limit"; "Since"="since"; "Node"="node"; "Service"="service"
+			"Service"="service"; "Start"="start"; "Since"="since"; "Limit"="limit"; "VarUntil"="until"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -113,41 +108,11 @@ function ConvertFrom-PVEJsonToGETNodesSyslogRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesSyslogRB
-        $AllProperties = ("start", "until", "limit", "since", "node", "service")
+        $AllProperties = ("service", "start", "since", "limit", "until")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) { #optional property not found
-            $Start = $null
-        } else {
-            $Start = $JsonParameters.PSobject.Properties["start"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
-            $VarUntil = $null
-        } else {
-            $VarUntil = $JsonParameters.PSobject.Properties["until"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "limit"))) { #optional property not found
-            $Limit = $null
-        } else {
-            $Limit = $JsonParameters.PSobject.Properties["limit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "since"))) { #optional property not found
-            $Since = $null
-        } else {
-            $Since = $JsonParameters.PSobject.Properties["since"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "service"))) { #optional property not found
@@ -156,13 +121,36 @@ function ConvertFrom-PVEJsonToGETNodesSyslogRB {
             $Service = $JsonParameters.PSobject.Properties["service"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) { #optional property not found
+            $Start = $null
+        } else {
+            $Start = $JsonParameters.PSobject.Properties["start"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "since"))) { #optional property not found
+            $Since = $null
+        } else {
+            $Since = $JsonParameters.PSobject.Properties["since"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "limit"))) { #optional property not found
+            $Limit = $null
+        } else {
+            $Limit = $JsonParameters.PSobject.Properties["limit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "until"))) { #optional property not found
+            $VarUntil = $null
+        } else {
+            $VarUntil = $JsonParameters.PSobject.Properties["until"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "start" = ${Start}
-            "until" = ${VarUntil}
-            "limit" = ${Limit}
-            "since" = ${Since}
-            "node" = ${Node}
             "service" = ${Service}
+            "start" = ${Start}
+            "since" = ${Since}
+            "limit" = ${Limit}
+            "until" = ${VarUntil}
         }
 
         return $PSO

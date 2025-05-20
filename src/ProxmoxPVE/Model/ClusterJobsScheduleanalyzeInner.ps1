@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Utc
-No description available.
 .PARAMETER Timestamp
+No description available.
+.PARAMETER Utc
 No description available.
 .OUTPUTS
 
@@ -28,11 +28,11 @@ function Initialize-PVEClusterJobsScheduleanalyzeInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Utc},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Timestamp}
+        ${Timestamp},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Utc}
     )
 
     Process {
@@ -41,13 +41,13 @@ function Initialize-PVEClusterJobsScheduleanalyzeInner {
 
 
 		 $DisplayNameMapping =@{
-			"Utc"="utc"; "Timestamp"="timestamp"
+			"Timestamp"="timestamp"; "Utc"="utc"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToClusterJobsScheduleanalyzeInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterJobsScheduleanalyzeInner
-        $AllProperties = ("utc", "timestamp")
+        $AllProperties = ("timestamp", "utc")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "utc"))) { #optional property not found
-            $Utc = $null
-        } else {
-            $Utc = $JsonParameters.PSobject.Properties["utc"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "timestamp"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToClusterJobsScheduleanalyzeInner {
             $Timestamp = $JsonParameters.PSobject.Properties["timestamp"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "utc"))) { #optional property not found
+            $Utc = $null
+        } else {
+            $Utc = $JsonParameters.PSobject.Properties["utc"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "utc" = ${Utc}
             "timestamp" = ${Timestamp}
+            "utc" = ${Utc}
         }
 
         return $PSO

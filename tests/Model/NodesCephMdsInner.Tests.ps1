@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesCephMdsInner' {
     Context 'PVENodesCephMdsInner' {
         It 'Initialize-PVENodesCephMdsInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesCephMdsInner -StandbyReplay "TEST_VALUE" -Rank "TEST_VALUE" -VarHost "TEST_VALUE" -State "TEST_VALUE" -Addr "TEST_VALUE" -Name "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesCephMdsInner -Name "TEST_VALUE" -Addr "TEST_VALUE" -State "TEST_VALUE" -Rank "TEST_VALUE" -VarHost "TEST_VALUE" -StandbyReplay "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesCephMdsInner
             #$NewObject.property | Should -Be 0
         }

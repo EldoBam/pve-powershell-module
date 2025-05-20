@@ -4,14 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Command** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesStatusRB = Initialize-PVEPOSTNodesStatusRB  -Command null `
- -Node null
+$POSTNodesStatusRB = Initialize-PVEPOSTNodesStatusRB  -Command null
 ```
 
 - Convert the resource to JSON

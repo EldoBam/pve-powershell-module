@@ -15,17 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Group
+.PARAMETER Delete
+No description available.
+.PARAMETER Restricted
+No description available.
+.PARAMETER Nofailback
 No description available.
 .PARAMETER Nodes
 No description available.
 .PARAMETER Comment
-No description available.
-.PARAMETER Nofailback
-No description available.
-.PARAMETER Delete
-No description available.
-.PARAMETER Restricted
 No description available.
 .PARAMETER Digest
 No description available.
@@ -39,22 +37,19 @@ function Initialize-PVEPUTClusterHaGroupsRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Group},
+        ${Delete},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Restricted},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Nofailback},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Nodes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Nofailback},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Restricted},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest}
@@ -64,28 +59,12 @@ function Initialize-PVEPUTClusterHaGroupsRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterHaGroupsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if (!$Comment -and $Comment.length -gt 4096) {
-            throw "invalid value for 'Comment', the character length must be smaller than or equal to 4096."
-        }
-
-        if ($Nofailback -and $Nofailback -gt 1) {
-          throw "invalid value for 'Nofailback', must be smaller than or equal to 1."
-        }
-
-        if ($Nofailback -and $Nofailback -lt 0) {
-          throw "invalid value for 'Nofailback', must be greater than or equal to 0."
-        }
-
         if (!$Delete -and $Delete.length -gt 4096) {
             throw "invalid value for 'Delete', the character length must be smaller than or equal to 4096."
         }
 
-        if ($Restricted -and $Restricted -gt 1) {
-          throw "invalid value for 'Restricted', must be smaller than or equal to 1."
-        }
-
-        if ($Restricted -and $Restricted -lt 0) {
-          throw "invalid value for 'Restricted', must be greater than or equal to 0."
+        if (!$Comment -and $Comment.length -gt 4096) {
+            throw "invalid value for 'Comment', the character length must be smaller than or equal to 4096."
         }
 
         if (!$Digest -and $Digest.length -gt 64) {
@@ -94,13 +73,13 @@ function Initialize-PVEPUTClusterHaGroupsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Group"="group"; "Nodes"="nodes"; "Comment"="comment"; "Nofailback"="nofailback"; "Delete"="delete"; "Restricted"="restricted"; "Digest"="digest"
+			"Delete"="delete"; "Restricted"="restricted"; "Nofailback"="nofailback"; "Nodes"="nodes"; "Comment"="comment"; "Digest"="digest"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -140,35 +119,11 @@ function ConvertFrom-PVEJsonToPUTClusterHaGroupsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterHaGroupsRB
-        $AllProperties = ("group", "nodes", "comment", "nofailback", "delete", "restricted", "digest")
+        $AllProperties = ("delete", "restricted", "nofailback", "nodes", "comment", "digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "group"))) { #optional property not found
-            $Group = $null
-        } else {
-            $Group = $JsonParameters.PSobject.Properties["group"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
-            $Nodes = $null
-        } else {
-            $Nodes = $JsonParameters.PSobject.Properties["nodes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nofailback"))) { #optional property not found
-            $Nofailback = $null
-        } else {
-            $Nofailback = $JsonParameters.PSobject.Properties["nofailback"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
@@ -183,6 +138,24 @@ function ConvertFrom-PVEJsonToPUTClusterHaGroupsRB {
             $Restricted = $JsonParameters.PSobject.Properties["restricted"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nofailback"))) { #optional property not found
+            $Nofailback = $null
+        } else {
+            $Nofailback = $JsonParameters.PSobject.Properties["nofailback"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
+            $Nodes = $null
+        } else {
+            $Nodes = $JsonParameters.PSobject.Properties["nodes"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
@@ -190,12 +163,11 @@ function ConvertFrom-PVEJsonToPUTClusterHaGroupsRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "group" = ${Group}
-            "nodes" = ${Nodes}
-            "comment" = ${Comment}
-            "nofailback" = ${Nofailback}
             "delete" = ${Delete}
             "restricted" = ${Restricted}
+            "nofailback" = ${Nofailback}
+            "nodes" = ${Nodes}
+            "comment" = ${Comment}
             "digest" = ${Digest}
         }
 

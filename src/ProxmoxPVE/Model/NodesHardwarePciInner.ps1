@@ -15,29 +15,29 @@ No summary available.
 
 No description available.
 
+.PARAMETER Mdev
+No description available.
 .PARAMETER Vendor
 No description available.
-.PARAMETER SubsystemVendor
-No description available.
-.PARAMETER SubsystemDeviceName
-No description available.
 .PARAMETER DeviceName
+No description available.
+.PARAMETER Iommugroup
+No description available.
+.PARAMETER Device
 No description available.
 .PARAMETER Id
 No description available.
 .PARAMETER VendorName
 No description available.
-.PARAMETER Mdev
-No description available.
-.PARAMETER Device
-No description available.
-.PARAMETER Iommugroup
+.PARAMETER SubsystemDevice
 No description available.
 .PARAMETER Class
 No description available.
-.PARAMETER SubsystemDevice
-No description available.
 .PARAMETER SubsystemVendorName
+No description available.
+.PARAMETER SubsystemDeviceName
+No description available.
+.PARAMETER SubsystemVendor
 No description available.
 .OUTPUTS
 
@@ -48,17 +48,20 @@ function Initialize-PVENodesHardwarePciInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Mdev},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Vendor},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${SubsystemVendor},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${SubsystemDeviceName},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${DeviceName},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Iommugroup},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Device},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Id},
@@ -66,46 +69,35 @@ function Initialize-PVENodesHardwarePciInner {
         [String]
         ${VendorName},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Mdev},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Device},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Iommugroup},
+        ${SubsystemDevice},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Class},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${SubsystemDevice},
+        ${SubsystemVendorName},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${SubsystemVendorName}
+        ${SubsystemDeviceName},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${SubsystemVendor}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesHardwarePciInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Mdev -and $Mdev -gt 1) {
-          throw "invalid value for 'Mdev', must be smaller than or equal to 1."
-        }
-
-        if ($Mdev -and $Mdev -lt 0) {
-          throw "invalid value for 'Mdev', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Vendor"="vendor"; "SubsystemVendor"="subsystem_vendor"; "SubsystemDeviceName"="subsystem_device_name"; "DeviceName"="device_name"; "Id"="id"; "VendorName"="vendor_name"; "Mdev"="mdev"; "Device"="device"; "Iommugroup"="iommugroup"; "Class"="class"; "SubsystemDevice"="subsystem_device"; "SubsystemVendorName"="subsystem_vendor_name"
+			"Mdev"="mdev"; "Vendor"="vendor"; "DeviceName"="device_name"; "Iommugroup"="iommugroup"; "Device"="device"; "Id"="id"; "VendorName"="vendor_name"; "SubsystemDevice"="subsystem_device"; "Class"="class"; "SubsystemVendorName"="subsystem_vendor_name"; "SubsystemDeviceName"="subsystem_device_name"; "SubsystemVendor"="subsystem_vendor"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -145,11 +137,17 @@ function ConvertFrom-PVEJsonToNodesHardwarePciInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesHardwarePciInner
-        $AllProperties = ("vendor", "subsystem_vendor", "subsystem_device_name", "device_name", "id", "vendor_name", "mdev", "device", "iommugroup", "class", "subsystem_device", "subsystem_vendor_name")
+        $AllProperties = ("mdev", "vendor", "device_name", "iommugroup", "device", "id", "vendor_name", "subsystem_device", "class", "subsystem_vendor_name", "subsystem_device_name", "subsystem_vendor")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mdev"))) { #optional property not found
+            $Mdev = $null
+        } else {
+            $Mdev = $JsonParameters.PSobject.Properties["mdev"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vendor"))) { #optional property not found
@@ -158,22 +156,22 @@ function ConvertFrom-PVEJsonToNodesHardwarePciInner {
             $Vendor = $JsonParameters.PSobject.Properties["vendor"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subsystem_vendor"))) { #optional property not found
-            $SubsystemVendor = $null
-        } else {
-            $SubsystemVendor = $JsonParameters.PSobject.Properties["subsystem_vendor"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subsystem_device_name"))) { #optional property not found
-            $SubsystemDeviceName = $null
-        } else {
-            $SubsystemDeviceName = $JsonParameters.PSobject.Properties["subsystem_device_name"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "device_name"))) { #optional property not found
             $DeviceName = $null
         } else {
             $DeviceName = $JsonParameters.PSobject.Properties["device_name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "iommugroup"))) { #optional property not found
+            $Iommugroup = $null
+        } else {
+            $Iommugroup = $JsonParameters.PSobject.Properties["iommugroup"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "device"))) { #optional property not found
+            $Device = $null
+        } else {
+            $Device = $JsonParameters.PSobject.Properties["device"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -188,22 +186,10 @@ function ConvertFrom-PVEJsonToNodesHardwarePciInner {
             $VendorName = $JsonParameters.PSobject.Properties["vendor_name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mdev"))) { #optional property not found
-            $Mdev = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subsystem_device"))) { #optional property not found
+            $SubsystemDevice = $null
         } else {
-            $Mdev = $JsonParameters.PSobject.Properties["mdev"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "device"))) { #optional property not found
-            $Device = $null
-        } else {
-            $Device = $JsonParameters.PSobject.Properties["device"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "iommugroup"))) { #optional property not found
-            $Iommugroup = $null
-        } else {
-            $Iommugroup = $JsonParameters.PSobject.Properties["iommugroup"].value
+            $SubsystemDevice = $JsonParameters.PSobject.Properties["subsystem_device"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "class"))) { #optional property not found
@@ -212,31 +198,37 @@ function ConvertFrom-PVEJsonToNodesHardwarePciInner {
             $Class = $JsonParameters.PSobject.Properties["class"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subsystem_device"))) { #optional property not found
-            $SubsystemDevice = $null
-        } else {
-            $SubsystemDevice = $JsonParameters.PSobject.Properties["subsystem_device"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "subsystem_vendor_name"))) { #optional property not found
             $SubsystemVendorName = $null
         } else {
             $SubsystemVendorName = $JsonParameters.PSobject.Properties["subsystem_vendor_name"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subsystem_device_name"))) { #optional property not found
+            $SubsystemDeviceName = $null
+        } else {
+            $SubsystemDeviceName = $JsonParameters.PSobject.Properties["subsystem_device_name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subsystem_vendor"))) { #optional property not found
+            $SubsystemVendor = $null
+        } else {
+            $SubsystemVendor = $JsonParameters.PSobject.Properties["subsystem_vendor"].value
+        }
+
         $PSO = [PSCustomObject]@{
+            "mdev" = ${Mdev}
             "vendor" = ${Vendor}
-            "subsystem_vendor" = ${SubsystemVendor}
-            "subsystem_device_name" = ${SubsystemDeviceName}
             "device_name" = ${DeviceName}
+            "iommugroup" = ${Iommugroup}
+            "device" = ${Device}
             "id" = ${Id}
             "vendor_name" = ${VendorName}
-            "mdev" = ${Mdev}
-            "device" = ${Device}
-            "iommugroup" = ${Iommugroup}
-            "class" = ${Class}
             "subsystem_device" = ${SubsystemDevice}
+            "class" = ${Class}
             "subsystem_vendor_name" = ${SubsystemVendorName}
+            "subsystem_device_name" = ${SubsystemDeviceName}
+            "subsystem_vendor" = ${SubsystemVendor}
         }
 
         return $PSO

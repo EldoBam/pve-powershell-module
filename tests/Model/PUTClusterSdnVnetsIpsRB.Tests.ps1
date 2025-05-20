@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterSdnVnetsIpsRB' {
     Context 'PVEPUTClusterSdnVnetsIpsRB' {
         It 'Initialize-PVEPUTClusterSdnVnetsIpsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterSdnVnetsIpsRB -Zone "TEST_VALUE" -Vnet "TEST_VALUE" -Ip "TEST_VALUE" -Vmid "TEST_VALUE" -Mac "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterSdnVnetsIpsRB -Zone "TEST_VALUE" -Vmid "TEST_VALUE" -Mac "TEST_VALUE" -Ip "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterSdnVnetsIpsRB
             #$NewObject.property | Should -Be 0
         }

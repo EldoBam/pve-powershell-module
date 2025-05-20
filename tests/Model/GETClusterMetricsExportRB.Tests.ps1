@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETClusterMetricsExportRB' {
     Context 'PVEGETClusterMetricsExportRB' {
         It 'Initialize-PVEGETClusterMetricsExportRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETClusterMetricsExportRB -LocalOnly "TEST_VALUE" -StartTime "TEST_VALUE" -History "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETClusterMetricsExportRB -History "TEST_VALUE" -LocalOnly "TEST_VALUE" -StartTime "TEST_VALUE"
             #$NewObject | Should -BeOfType GETClusterMetricsExportRB
             #$NewObject.property | Should -Be 0
         }

@@ -17,8 +17,6 @@ No description available.
 
 .PARAMETER Volume
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 GETNodesVzdumpExtractconfigRB<PSCustomObject>
@@ -29,10 +27,7 @@ function Initialize-PVEGETNodesVzdumpExtractconfigRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Volume},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Volume}
     )
 
     Process {
@@ -41,13 +36,13 @@ function Initialize-PVEGETNodesVzdumpExtractconfigRB {
 
 
 		 $DisplayNameMapping =@{
-			"Volume"="volume"; "Node"="node"
+			"Volume"="volume"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -87,7 +82,7 @@ function ConvertFrom-PVEJsonToGETNodesVzdumpExtractconfigRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesVzdumpExtractconfigRB
-        $AllProperties = ("volume", "node")
+        $AllProperties = ("volume")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,15 +95,8 @@ function ConvertFrom-PVEJsonToGETNodesVzdumpExtractconfigRB {
             $Volume = $JsonParameters.PSobject.Properties["volume"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "volume" = ${Volume}
-            "node" = ${Node}
         }
 
         return $PSO

@@ -17,10 +17,6 @@ No description available.
 
 .PARAMETER VarPid
 No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 GETNodesQemuAgentExecstatusRB<PSCustomObject>
@@ -31,36 +27,22 @@ function Initialize-PVEGETNodesQemuAgentExecstatusRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VarPid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${VarPid}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETNodesQemuAgentExecstatusRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"VarPid"="pid"; "Vmid"="vmid"; "Node"="node"
+			"VarPid"="pid"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -100,7 +82,7 @@ function ConvertFrom-PVEJsonToGETNodesQemuAgentExecstatusRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesQemuAgentExecstatusRB
-        $AllProperties = ("pid", "vmid", "node")
+        $AllProperties = ("pid")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -113,22 +95,8 @@ function ConvertFrom-PVEJsonToGETNodesQemuAgentExecstatusRB {
             $VarPid = $JsonParameters.PSobject.Properties["pid"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "pid" = ${VarPid}
-            "vmid" = ${Vmid}
-            "node" = ${Node}
         }
 
         return $PSO

@@ -15,21 +15,21 @@ No summary available.
 
 No description available.
 
-.PARAMETER Digest
-No description available.
-.PARAMETER Ebtables
-No description available.
-.PARAMETER PolicyIn
-No description available.
 .PARAMETER PolicyOut
-No description available.
-.PARAMETER Enable
-No description available.
-.PARAMETER PolicyForward
 No description available.
 .PARAMETER Delete
 No description available.
 .PARAMETER LogRatelimit
+No description available.
+.PARAMETER PolicyForward
+No description available.
+.PARAMETER PolicyIn
+No description available.
+.PARAMETER Ebtables
+No description available.
+.PARAMETER Digest
+No description available.
+.PARAMETER Enable
 No description available.
 .OUTPUTS
 
@@ -40,32 +40,32 @@ function Initialize-PVEPUTClusterFirewallOptionsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Ebtables},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("ACCEPT", "REJECT", "DROP")]
-        [String]
-        ${PolicyIn},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ACCEPT", "REJECT", "DROP")]
         [String]
         ${PolicyOut},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("ACCEPT", "DROP")]
-        [String]
-        ${PolicyForward},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${LogRatelimit}
+        ${LogRatelimit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("ACCEPT", "DROP")]
+        [String]
+        ${PolicyForward},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("ACCEPT", "REJECT", "DROP")]
+        [String]
+        ${PolicyIn},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Ebtables},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Enable}
     )
 
     Process {
@@ -76,23 +76,15 @@ function Initialize-PVEPUTClusterFirewallOptionsRB {
             throw "invalid value for 'Digest', the character length must be smaller than or equal to 64."
         }
 
-        if ($Ebtables -and $Ebtables -gt 1) {
-          throw "invalid value for 'Ebtables', must be smaller than or equal to 1."
-        }
-
-        if ($Ebtables -and $Ebtables -lt 0) {
-          throw "invalid value for 'Ebtables', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Digest"="digest"; "Ebtables"="ebtables"; "PolicyIn"="policy_in"; "PolicyOut"="policy_out"; "Enable"="enable"; "PolicyForward"="policy_forward"; "Delete"="delete"; "LogRatelimit"="log_ratelimit"
+			"PolicyOut"="policy_out"; "Delete"="delete"; "LogRatelimit"="log_ratelimit"; "PolicyForward"="policy_forward"; "PolicyIn"="policy_in"; "Ebtables"="ebtables"; "Digest"="digest"; "Enable"="enable"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -132,47 +124,17 @@ function ConvertFrom-PVEJsonToPUTClusterFirewallOptionsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterFirewallOptionsRB
-        $AllProperties = ("digest", "ebtables", "policy_in", "policy_out", "enable", "policy_forward", "delete", "log_ratelimit")
+        $AllProperties = ("policy_out", "delete", "log_ratelimit", "policy_forward", "policy_in", "ebtables", "digest", "enable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ebtables"))) { #optional property not found
-            $Ebtables = $null
-        } else {
-            $Ebtables = $JsonParameters.PSobject.Properties["ebtables"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_in"))) { #optional property not found
-            $PolicyIn = $null
-        } else {
-            $PolicyIn = $JsonParameters.PSobject.Properties["policy_in"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_out"))) { #optional property not found
             $PolicyOut = $null
         } else {
             $PolicyOut = $JsonParameters.PSobject.Properties["policy_out"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
-            $Enable = $null
-        } else {
-            $Enable = $JsonParameters.PSobject.Properties["enable"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_forward"))) { #optional property not found
-            $PolicyForward = $null
-        } else {
-            $PolicyForward = $JsonParameters.PSobject.Properties["policy_forward"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
@@ -187,15 +149,45 @@ function ConvertFrom-PVEJsonToPUTClusterFirewallOptionsRB {
             $LogRatelimit = $JsonParameters.PSobject.Properties["log_ratelimit"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_forward"))) { #optional property not found
+            $PolicyForward = $null
+        } else {
+            $PolicyForward = $JsonParameters.PSobject.Properties["policy_forward"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "policy_in"))) { #optional property not found
+            $PolicyIn = $null
+        } else {
+            $PolicyIn = $JsonParameters.PSobject.Properties["policy_in"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ebtables"))) { #optional property not found
+            $Ebtables = $null
+        } else {
+            $Ebtables = $JsonParameters.PSobject.Properties["ebtables"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
+            $Enable = $null
+        } else {
+            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "digest" = ${Digest}
-            "ebtables" = ${Ebtables}
-            "policy_in" = ${PolicyIn}
             "policy_out" = ${PolicyOut}
-            "enable" = ${Enable}
-            "policy_forward" = ${PolicyForward}
             "delete" = ${Delete}
             "log_ratelimit" = ${LogRatelimit}
+            "policy_forward" = ${PolicyForward}
+            "policy_in" = ${PolicyIn}
+            "ebtables" = ${Ebtables}
+            "digest" = ${Digest}
+            "enable" = ${Enable}
         }
 
         return $PSO

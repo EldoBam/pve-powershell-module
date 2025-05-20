@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesJournalRB' {
     Context 'PVEGETNodesJournalRB' {
         It 'Initialize-PVEGETNodesJournalRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesJournalRB -Lastentries "TEST_VALUE" -Endcursor "TEST_VALUE" -Startcursor "TEST_VALUE" -VarUntil "TEST_VALUE" -Since "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesJournalRB -Lastentries "TEST_VALUE" -Endcursor "TEST_VALUE" -Startcursor "TEST_VALUE" -Since "TEST_VALUE" -VarUntil "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesJournalRB
             #$NewObject.property | Should -Be 0
         }

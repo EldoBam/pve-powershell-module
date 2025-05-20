@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterAcmeAccountRB' {
     Context 'PVEPUTClusterAcmeAccountRB' {
         It 'Initialize-PVEPUTClusterAcmeAccountRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterAcmeAccountRB -Name "TEST_VALUE" -Contact "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterAcmeAccountRB -Contact "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterAcmeAccountRB
             #$NewObject.property | Should -Be 0
         }

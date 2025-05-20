@@ -4,14 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesNetworkRB = Initialize-PVEGETNodesNetworkRB  -Type null `
- -Node null
+$GETNodesNetworkRB = Initialize-PVEGETNodesNetworkRB  -Type null
 ```
 
 - Convert the resource to JSON

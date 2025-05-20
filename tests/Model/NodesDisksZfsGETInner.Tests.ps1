@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesDisksZfsGETInner' {
     Context 'PVENodesDisksZfsGETInner' {
         It 'Initialize-PVENodesDisksZfsGETInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesDisksZfsGETInner -Frag "TEST_VALUE" -Health "TEST_VALUE" -Alloc "TEST_VALUE" -Dedup "TEST_VALUE" -Free "TEST_VALUE" -Name "TEST_VALUE" -Size "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesDisksZfsGETInner -Name "TEST_VALUE" -Dedup "TEST_VALUE" -Size "TEST_VALUE" -Frag "TEST_VALUE" -Free "TEST_VALUE" -Health "TEST_VALUE" -Alloc "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesDisksZfsGETInner
             #$NewObject.property | Should -Be 0
         }

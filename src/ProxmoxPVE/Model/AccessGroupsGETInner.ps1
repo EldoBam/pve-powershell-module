@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Groupid
-No description available.
 .PARAMETER Comment
+No description available.
+.PARAMETER Groupid
 No description available.
 .PARAMETER Users
 No description available.
@@ -31,10 +31,10 @@ function Initialize-PVEAccessGroupsGETInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Groupid},
+        ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comment},
+        ${Groupid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Users}
@@ -46,13 +46,13 @@ function Initialize-PVEAccessGroupsGETInner {
 
 
 		 $DisplayNameMapping =@{
-			"Groupid"="groupid"; "Comment"="comment"; "Users"="users"
+			"Comment"="comment"; "Groupid"="groupid"; "Users"="users"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -92,23 +92,23 @@ function ConvertFrom-PVEJsonToAccessGroupsGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessGroupsGETInner
-        $AllProperties = ("groupid", "comment", "users")
+        $AllProperties = ("comment", "groupid", "users")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "groupid"))) { #optional property not found
-            $Groupid = $null
-        } else {
-            $Groupid = $JsonParameters.PSobject.Properties["groupid"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
             $Comment = $null
         } else {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "groupid"))) { #optional property not found
+            $Groupid = $null
+        } else {
+            $Groupid = $JsonParameters.PSobject.Properties["groupid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "users"))) { #optional property not found
@@ -118,8 +118,8 @@ function ConvertFrom-PVEJsonToAccessGroupsGETInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "groupid" = ${Groupid}
             "comment" = ${Comment}
+            "groupid" = ${Groupid}
             "users" = ${Users}
         }
 

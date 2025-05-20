@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Created
-No description available.
-.PARAMETER Description
+.PARAMETER Id
 No description available.
 .PARAMETER Enable
 No description available.
-.PARAMETER Id
+.PARAMETER Description
 No description available.
 .PARAMETER Type
+No description available.
+.PARAMETER Created
 No description available.
 .OUTPUTS
 
@@ -34,44 +34,36 @@ function Initialize-PVEAccessTfaGET {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Created},
+        [String]
+        ${Id},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Enable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("totp", "u2f", "webauthn", "recovery", "yubico")]
         [String]
-        ${Type}
+        ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Created}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEAccessTfaGET' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Enable -and $Enable -gt 1) {
-          throw "invalid value for 'Enable', must be smaller than or equal to 1."
-        }
-
-        if ($Enable -and $Enable -lt 0) {
-          throw "invalid value for 'Enable', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Created"="created"; "Description"="description"; "Enable"="enable"; "Id"="id"; "Type"="type"
+			"Id"="id"; "Enable"="enable"; "Description"="description"; "Type"="type"; "Created"="created"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -111,29 +103,11 @@ function ConvertFrom-PVEJsonToAccessTfaGET {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessTfaGET
-        $AllProperties = ("created", "description", "enable", "id", "type")
+        $AllProperties = ("id", "enable", "description", "type", "created")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created"))) { #optional property not found
-            $Created = $null
-        } else {
-            $Created = $JsonParameters.PSobject.Properties["created"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
-            $Enable = $null
-        } else {
-            $Enable = $JsonParameters.PSobject.Properties["enable"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
@@ -142,18 +116,36 @@ function ConvertFrom-PVEJsonToAccessTfaGET {
             $Id = $JsonParameters.PSobject.Properties["id"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
+            $Enable = $null
+        } else {
+            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
             $Type = $null
         } else {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "created"))) { #optional property not found
+            $Created = $null
+        } else {
+            $Created = $JsonParameters.PSobject.Properties["created"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "created" = ${Created}
-            "description" = ${Description}
-            "enable" = ${Enable}
             "id" = ${Id}
+            "enable" = ${Enable}
+            "description" = ${Description}
             "type" = ${Type}
+            "created" = ${Created}
         }
 
         return $PSO

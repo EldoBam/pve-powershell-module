@@ -3,30 +3,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Starttime** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Upid** | **String** |  | [optional] 
-**VarPid** | **Int32** |  | [optional] 
-**Pstart** | **Int32** |  | [optional] 
-**Status** | **String** |  | [optional] 
-**User** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Pstart** | **Int32** |  | [optional] 
+**User** | **String** |  | [optional] 
+**Status** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**VarPid** | **Int32** |  | [optional] 
+**Starttime** | **Int32** |  | [optional] 
 **Endtime** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesTasksInner = Initialize-PVENodesTasksInner  -Starttime null `
- -Type null `
- -Upid null `
- -VarPid null `
- -Pstart null `
- -Status null `
- -User null `
- -Id null `
+$NodesTasksInner = Initialize-PVENodesTasksInner  -Upid null `
  -Node null `
+ -Type null `
+ -Pstart null `
+ -User null `
+ -Status null `
+ -Id null `
+ -VarPid null `
+ -Starttime null `
  -Endtime null
 ```
 

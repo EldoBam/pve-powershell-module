@@ -4,14 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Server** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesScanGlusterfsRB = Initialize-PVEGETNodesScanGlusterfsRB  -Server null `
- -Node null
+$GETNodesScanGlusterfsRB = Initialize-PVEGETNodesScanGlusterfsRB  -Server null
 ```
 
 - Convert the resource to JSON

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTAccessTicketRB' {
     Context 'PVEPOSTAccessTicketRB' {
         It 'Initialize-PVEPOSTAccessTicketRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTAccessTicketRB -Realm "TEST_VALUE" -NewFormat "TEST_VALUE" -Path "TEST_VALUE" -Password "TEST_VALUE" -Privs "TEST_VALUE" -Username "TEST_VALUE" -TfaChallenge "TEST_VALUE" -Otp "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTAccessTicketRB -Username "TEST_VALUE" -Path "TEST_VALUE" -TfaChallenge "TEST_VALUE" -Privs "TEST_VALUE" -Realm "TEST_VALUE" -Otp "TEST_VALUE" -NewFormat "TEST_VALUE" -Password "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTAccessTicketRB
             #$NewObject.property | Should -Be 0
         }

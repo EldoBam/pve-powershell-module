@@ -3,25 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LiveMigrationCapable** | **Int32** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Mdev** | **Int32** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Map** | **String[]** |  | [optional] 
+**LiveMigrationCapable** | **Boolean** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Mdev** | **Boolean** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterMappingPciRB = Initialize-PVEPUTClusterMappingPciRB  -LiveMigrationCapable null `
- -Id null `
- -Mdev null `
- -Delete null `
+$PUTClusterMappingPciRB = Initialize-PVEPUTClusterMappingPciRB  -Delete null `
+ -Map null `
+ -LiveMigrationCapable null `
  -Description null `
- -Digest null `
- -Map null
+ -Mdev null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

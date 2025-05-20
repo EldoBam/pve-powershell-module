@@ -15,15 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER Comment
+No description available.
 .PARAMETER Expire
 No description available.
 .PARAMETER Privsep
-No description available.
-.PARAMETER Comment
-No description available.
-.PARAMETER Tokenid
-No description available.
-.PARAMETER Userid
 No description available.
 .OUTPUTS
 
@@ -34,48 +30,29 @@ function Initialize-PVEPUTAccessUsersTokenRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Expire},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Privsep},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(?^:[A-Za-z][A-Za-z0-9\.\-_]+)")]
-        [String]
-        ${Tokenid},
+        [System.Nullable[Int32]]
+        ${Expire},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Userid}
+        [System.Nullable[Boolean]]
+        ${Privsep}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTAccessUsersTokenRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Privsep -and $Privsep -gt 1) {
-          throw "invalid value for 'Privsep', must be smaller than or equal to 1."
-        }
-
-        if ($Privsep -and $Privsep -lt 0) {
-          throw "invalid value for 'Privsep', must be greater than or equal to 0."
-        }
-
-        if (!$Userid -and $Userid.length -gt 64) {
-            throw "invalid value for 'Userid', the character length must be smaller than or equal to 64."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Expire"="expire"; "Privsep"="privsep"; "Comment"="comment"; "Tokenid"="tokenid"; "Userid"="userid"
+			"Comment"="comment"; "Expire"="expire"; "Privsep"="privsep"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -115,11 +92,17 @@ function ConvertFrom-PVEJsonToPUTAccessUsersTokenRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTAccessUsersTokenRB
-        $AllProperties = ("expire", "privsep", "comment", "tokenid", "userid")
+        $AllProperties = ("comment", "expire", "privsep")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "expire"))) { #optional property not found
@@ -134,30 +117,10 @@ function ConvertFrom-PVEJsonToPUTAccessUsersTokenRB {
             $Privsep = $JsonParameters.PSobject.Properties["privsep"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tokenid"))) { #optional property not found
-            $Tokenid = $null
-        } else {
-            $Tokenid = $JsonParameters.PSobject.Properties["tokenid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "userid"))) { #optional property not found
-            $Userid = $null
-        } else {
-            $Userid = $JsonParameters.PSobject.Properties["userid"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "comment" = ${Comment}
             "expire" = ${Expire}
             "privsep" = ${Privsep}
-            "comment" = ${Comment}
-            "tokenid" = ${Tokenid}
-            "userid" = ${Userid}
         }
 
         return $PSO

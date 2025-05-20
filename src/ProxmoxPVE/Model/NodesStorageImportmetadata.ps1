@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Source
-No description available.
 .PARAMETER Net
-No description available.
-.PARAMETER CreateArgs
-No description available.
-.PARAMETER Disks
 No description available.
 .PARAMETER Type
 No description available.
+.PARAMETER Disks
+No description available.
 .PARAMETER Warnings
+No description available.
+.PARAMETER Source
+No description available.
+.PARAMETER CreateArgs
 No description available.
 .OUTPUTS
 
@@ -36,25 +36,25 @@ function Initialize-PVENodesStorageImportmetadata {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("esxi")]
-        [String]
-        ${Source},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${Net},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${CreateArgs},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Disks},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("vm")]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${Disks},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${Warnings}
+        ${Warnings},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("esxi")]
+        [String]
+        ${Source},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject]
+        ${CreateArgs}
     )
 
     Process {
@@ -63,13 +63,13 @@ function Initialize-PVENodesStorageImportmetadata {
 
 
 		 $DisplayNameMapping =@{
-			"Source"="source"; "Net"="net"; "CreateArgs"="create-args"; "Disks"="disks"; "Type"="type"; "Warnings"="warnings"
+			"Net"="net"; "Type"="type"; "Disks"="disks"; "Warnings"="warnings"; "Source"="source"; "CreateArgs"="create-args"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -109,17 +109,11 @@ function ConvertFrom-PVEJsonToNodesStorageImportmetadata {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesStorageImportmetadata
-        $AllProperties = ("source", "net", "create-args", "disks", "type", "warnings")
+        $AllProperties = ("net", "type", "disks", "warnings", "source", "create-args")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
-            $Source = $null
-        } else {
-            $Source = $JsonParameters.PSobject.Properties["source"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "net"))) { #optional property not found
@@ -128,10 +122,10 @@ function ConvertFrom-PVEJsonToNodesStorageImportmetadata {
             $Net = $JsonParameters.PSobject.Properties["net"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "create-args"))) { #optional property not found
-            $CreateArgs = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
         } else {
-            $CreateArgs = $JsonParameters.PSobject.Properties["create-args"].value
+            $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "disks"))) { #optional property not found
@@ -140,25 +134,31 @@ function ConvertFrom-PVEJsonToNodesStorageImportmetadata {
             $Disks = $JsonParameters.PSobject.Properties["disks"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "warnings"))) { #optional property not found
             $Warnings = $null
         } else {
             $Warnings = $JsonParameters.PSobject.Properties["warnings"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "source"))) { #optional property not found
+            $Source = $null
+        } else {
+            $Source = $JsonParameters.PSobject.Properties["source"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "create-args"))) { #optional property not found
+            $CreateArgs = $null
+        } else {
+            $CreateArgs = $JsonParameters.PSobject.Properties["create-args"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "source" = ${Source}
             "net" = ${Net}
-            "create-args" = ${CreateArgs}
-            "disks" = ${Disks}
             "type" = ${Type}
+            "disks" = ${Disks}
             "warnings" = ${Warnings}
+            "source" = ${Source}
+            "create-args" = ${CreateArgs}
         }
 
         return $PSO

@@ -3,25 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NewNodeIp** | **String** |  | [optional] 
 **Votes** | **Int32** |  | [optional] 
-**Nodeid** | **Int32** |  | [optional] 
-**Force** | **Int32** |  | [optional] 
 **Apiversion** | **Int32** |  | [optional] 
 **LinkN** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Nodeid** | **Int32** |  | [optional] 
+**NewNodeIp** | **String** |  | [optional] 
+**Force** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterConfigNodesRB = Initialize-PVEPOSTClusterConfigNodesRB  -NewNodeIp null `
- -Votes null `
- -Nodeid null `
- -Force null `
+$POSTClusterConfigNodesRB = Initialize-PVEPOSTClusterConfigNodesRB  -Votes null `
  -Apiversion null `
  -LinkN null `
- -Node null
+ -Nodeid null `
+ -NewNodeIp null `
+ -Force null
 ```
 
 - Convert the resource to JSON

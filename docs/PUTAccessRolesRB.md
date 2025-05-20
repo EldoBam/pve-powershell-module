@@ -3,17 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Append** | **Boolean** |  | [optional] 
 **Privs** | **String** |  | [optional] 
-**Append** | **Int32** |  | [optional] 
-**Roleid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTAccessRolesRB = Initialize-PVEPUTAccessRolesRB  -Privs null `
- -Append null `
- -Roleid null
+$PUTAccessRolesRB = Initialize-PVEPUTAccessRolesRB  -Append null `
+ -Privs null
 ```
 
 - Convert the resource to JSON

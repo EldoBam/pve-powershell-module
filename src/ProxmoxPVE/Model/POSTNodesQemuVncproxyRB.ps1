@@ -15,13 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER GeneratePassword
-No description available.
 .PARAMETER Websocket
 No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Node
+.PARAMETER GeneratePassword
 No description available.
 .OUTPUTS
 
@@ -32,56 +28,26 @@ function Initialize-PVEPOSTNodesQemuVncproxyRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${GeneratePassword},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Websocket},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Boolean]]
+        ${GeneratePassword}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesQemuVncproxyRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($GeneratePassword -and $GeneratePassword -gt 1) {
-          throw "invalid value for 'GeneratePassword', must be smaller than or equal to 1."
-        }
-
-        if ($GeneratePassword -and $GeneratePassword -lt 0) {
-          throw "invalid value for 'GeneratePassword', must be greater than or equal to 0."
-        }
-
-        if ($Websocket -and $Websocket -gt 1) {
-          throw "invalid value for 'Websocket', must be smaller than or equal to 1."
-        }
-
-        if ($Websocket -and $Websocket -lt 0) {
-          throw "invalid value for 'Websocket', must be greater than or equal to 0."
-        }
-
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"GeneratePassword"="generate-password"; "Websocket"="websocket"; "Vmid"="vmid"; "Node"="node"
+			"Websocket"="websocket"; "GeneratePassword"="generate-password"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -121,17 +87,11 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuVncproxyRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuVncproxyRB
-        $AllProperties = ("generate-password", "websocket", "vmid", "node")
+        $AllProperties = ("websocket", "generate-password")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "generate-password"))) { #optional property not found
-            $GeneratePassword = $null
-        } else {
-            $GeneratePassword = $JsonParameters.PSobject.Properties["generate-password"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "websocket"))) { #optional property not found
@@ -140,23 +100,15 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuVncproxyRB {
             $Websocket = $JsonParameters.PSobject.Properties["websocket"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "generate-password"))) { #optional property not found
+            $GeneratePassword = $null
         } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $GeneratePassword = $JsonParameters.PSobject.Properties["generate-password"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "generate-password" = ${GeneratePassword}
             "websocket" = ${Websocket}
-            "vmid" = ${Vmid}
-            "node" = ${Node}
+            "generate-password" = ${GeneratePassword}
         }
 
         return $PSO

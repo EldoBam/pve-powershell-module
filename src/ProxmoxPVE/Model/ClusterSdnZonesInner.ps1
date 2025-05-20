@@ -15,23 +15,23 @@ No summary available.
 
 No description available.
 
+.PARAMETER Mtu
+No description available.
 .PARAMETER Dhcp
 No description available.
 .PARAMETER Type
-No description available.
-.PARAMETER Mtu
-No description available.
-.PARAMETER Nodes
-No description available.
-.PARAMETER Ipam
-No description available.
-.PARAMETER State
 No description available.
 .PARAMETER Dnszone
 No description available.
 .PARAMETER Zone
 No description available.
+.PARAMETER State
+No description available.
+.PARAMETER Ipam
+No description available.
 .PARAMETER Reversedns
+No description available.
+.PARAMETER Nodes
 No description available.
 .PARAMETER Dns
 No description available.
@@ -46,23 +46,14 @@ function Initialize-PVEClusterSdnZonesInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Mtu},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Dhcp},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Mtu},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Nodes},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Ipam},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${State},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Dnszone},
@@ -71,12 +62,21 @@ function Initialize-PVEClusterSdnZonesInner {
         ${Zone},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${State},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Ipam},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Reversedns},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Nodes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Dns},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${Pending}
     )
 
@@ -84,23 +84,15 @@ function Initialize-PVEClusterSdnZonesInner {
         'Creating PSCustomObject: ProxmoxPVE => PVEClusterSdnZonesInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Pending -and $Pending -gt 1) {
-          throw "invalid value for 'Pending', must be smaller than or equal to 1."
-        }
-
-        if ($Pending -and $Pending -lt 0) {
-          throw "invalid value for 'Pending', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Dhcp"="dhcp"; "Type"="type"; "Mtu"="mtu"; "Nodes"="nodes"; "Ipam"="ipam"; "State"="state"; "Dnszone"="dnszone"; "Zone"="zone"; "Reversedns"="reversedns"; "Dns"="dns"; "Pending"="pending"
+			"Mtu"="mtu"; "Dhcp"="dhcp"; "Type"="type"; "Dnszone"="dnszone"; "Zone"="zone"; "State"="state"; "Ipam"="ipam"; "Reversedns"="reversedns"; "Nodes"="nodes"; "Dns"="dns"; "Pending"="pending"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -140,11 +132,17 @@ function ConvertFrom-PVEJsonToClusterSdnZonesInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterSdnZonesInner
-        $AllProperties = ("dhcp", "type", "mtu", "nodes", "ipam", "state", "dnszone", "zone", "reversedns", "dns", "pending")
+        $AllProperties = ("mtu", "dhcp", "type", "dnszone", "zone", "state", "ipam", "reversedns", "nodes", "dns", "pending")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mtu"))) { #optional property not found
+            $Mtu = $null
+        } else {
+            $Mtu = $JsonParameters.PSobject.Properties["mtu"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dhcp"))) { #optional property not found
@@ -159,30 +157,6 @@ function ConvertFrom-PVEJsonToClusterSdnZonesInner {
             $Type = $JsonParameters.PSobject.Properties["type"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mtu"))) { #optional property not found
-            $Mtu = $null
-        } else {
-            $Mtu = $JsonParameters.PSobject.Properties["mtu"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
-            $Nodes = $null
-        } else {
-            $Nodes = $JsonParameters.PSobject.Properties["nodes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipam"))) { #optional property not found
-            $Ipam = $null
-        } else {
-            $Ipam = $JsonParameters.PSobject.Properties["ipam"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
-            $State = $null
-        } else {
-            $State = $JsonParameters.PSobject.Properties["state"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dnszone"))) { #optional property not found
             $Dnszone = $null
         } else {
@@ -195,10 +169,28 @@ function ConvertFrom-PVEJsonToClusterSdnZonesInner {
             $Zone = $JsonParameters.PSobject.Properties["zone"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
+            $State = $null
+        } else {
+            $State = $JsonParameters.PSobject.Properties["state"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipam"))) { #optional property not found
+            $Ipam = $null
+        } else {
+            $Ipam = $JsonParameters.PSobject.Properties["ipam"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "reversedns"))) { #optional property not found
             $Reversedns = $null
         } else {
             $Reversedns = $JsonParameters.PSobject.Properties["reversedns"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
+            $Nodes = $null
+        } else {
+            $Nodes = $JsonParameters.PSobject.Properties["nodes"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "dns"))) { #optional property not found
@@ -214,15 +206,15 @@ function ConvertFrom-PVEJsonToClusterSdnZonesInner {
         }
 
         $PSO = [PSCustomObject]@{
+            "mtu" = ${Mtu}
             "dhcp" = ${Dhcp}
             "type" = ${Type}
-            "mtu" = ${Mtu}
-            "nodes" = ${Nodes}
-            "ipam" = ${Ipam}
-            "state" = ${State}
             "dnszone" = ${Dnszone}
             "zone" = ${Zone}
+            "state" = ${State}
+            "ipam" = ${Ipam}
             "reversedns" = ${Reversedns}
+            "nodes" = ${Nodes}
             "dns" = ${Dns}
             "pending" = ${Pending}
         }

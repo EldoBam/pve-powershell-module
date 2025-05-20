@@ -6,9 +6,8 @@ Name | Type | Description | Notes
 **Lastentries** | **Int32** |  | [optional] 
 **Endcursor** | **String** |  | [optional] 
 **Startcursor** | **String** |  | [optional] 
-**VarUntil** | **Int32** |  | [optional] 
 **Since** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**VarUntil** | **Int32** |  | [optional] 
 
 ## Examples
 
@@ -17,9 +16,8 @@ Name | Type | Description | Notes
 $GETNodesJournalRB = Initialize-PVEGETNodesJournalRB  -Lastentries null `
  -Endcursor null `
  -Startcursor null `
- -VarUntil null `
  -Since null `
- -Node null
+ -VarUntil null
 ```
 
 - Convert the resource to JSON

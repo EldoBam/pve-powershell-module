@@ -3,15 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Poolid** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETPoolsRB = Initialize-PVEGETPoolsRB  -Poolid null `
- -Type null
+$GETPoolsRB = Initialize-PVEGETPoolsRB  -Type null
 ```
 
 - Convert the resource to JSON

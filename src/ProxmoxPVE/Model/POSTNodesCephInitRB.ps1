@@ -15,17 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER MinSize
-No description available.
-.PARAMETER ClusterNetwork
+.PARAMETER Size
 No description available.
 .PARAMETER PgBits
 No description available.
+.PARAMETER MinSize
+No description available.
 .PARAMETER Network
 No description available.
-.PARAMETER Size
-No description available.
-.PARAMETER Node
+.PARAMETER ClusterNetwork
 No description available.
 .PARAMETER DisableCephx
 No description available.
@@ -39,24 +37,21 @@ function Initialize-PVEPOSTNodesCephInitRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${MinSize},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${ClusterNetwork},
+        ${Size},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${PgBits},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${MinSize},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Network},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Size},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
+        ${ClusterNetwork},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${DisableCephx}
     )
 
@@ -64,16 +59,12 @@ function Initialize-PVEPOSTNodesCephInitRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesCephInitRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($MinSize -and $MinSize -gt 7) {
-          throw "invalid value for 'MinSize', must be smaller than or equal to 7."
+        if ($Size -and $Size -gt 7) {
+          throw "invalid value for 'Size', must be smaller than or equal to 7."
         }
 
-        if ($MinSize -and $MinSize -lt 1) {
-          throw "invalid value for 'MinSize', must be greater than or equal to 1."
-        }
-
-        if (!$ClusterNetwork -and $ClusterNetwork.length -gt 128) {
-            throw "invalid value for 'ClusterNetwork', the character length must be smaller than or equal to 128."
+        if ($Size -and $Size -lt 1) {
+          throw "invalid value for 'Size', must be greater than or equal to 1."
         }
 
         if ($PgBits -and $PgBits -gt 14) {
@@ -84,35 +75,31 @@ function Initialize-PVEPOSTNodesCephInitRB {
           throw "invalid value for 'PgBits', must be greater than or equal to 6."
         }
 
+        if ($MinSize -and $MinSize -gt 7) {
+          throw "invalid value for 'MinSize', must be smaller than or equal to 7."
+        }
+
+        if ($MinSize -and $MinSize -lt 1) {
+          throw "invalid value for 'MinSize', must be greater than or equal to 1."
+        }
+
         if (!$Network -and $Network.length -gt 128) {
             throw "invalid value for 'Network', the character length must be smaller than or equal to 128."
         }
 
-        if ($Size -and $Size -gt 7) {
-          throw "invalid value for 'Size', must be smaller than or equal to 7."
-        }
-
-        if ($Size -and $Size -lt 1) {
-          throw "invalid value for 'Size', must be greater than or equal to 1."
-        }
-
-        if ($DisableCephx -and $DisableCephx -gt 1) {
-          throw "invalid value for 'DisableCephx', must be smaller than or equal to 1."
-        }
-
-        if ($DisableCephx -and $DisableCephx -lt 0) {
-          throw "invalid value for 'DisableCephx', must be greater than or equal to 0."
+        if (!$ClusterNetwork -and $ClusterNetwork.length -gt 128) {
+            throw "invalid value for 'ClusterNetwork', the character length must be smaller than or equal to 128."
         }
 
 
 		 $DisplayNameMapping =@{
-			"MinSize"="min_size"; "ClusterNetwork"="cluster-network"; "PgBits"="pg_bits"; "Network"="network"; "Size"="size"; "Node"="node"; "DisableCephx"="disable_cephx"
+			"Size"="size"; "PgBits"="pg_bits"; "MinSize"="min_size"; "Network"="network"; "ClusterNetwork"="cluster-network"; "DisableCephx"="disable_cephx"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -152,35 +139,11 @@ function ConvertFrom-PVEJsonToPOSTNodesCephInitRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCephInitRB
-        $AllProperties = ("min_size", "cluster-network", "pg_bits", "network", "size", "node", "disable_cephx")
+        $AllProperties = ("size", "pg_bits", "min_size", "network", "cluster-network", "disable_cephx")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "min_size"))) { #optional property not found
-            $MinSize = $null
-        } else {
-            $MinSize = $JsonParameters.PSobject.Properties["min_size"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cluster-network"))) { #optional property not found
-            $ClusterNetwork = $null
-        } else {
-            $ClusterNetwork = $JsonParameters.PSobject.Properties["cluster-network"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_bits"))) { #optional property not found
-            $PgBits = $null
-        } else {
-            $PgBits = $JsonParameters.PSobject.Properties["pg_bits"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "network"))) { #optional property not found
-            $Network = $null
-        } else {
-            $Network = $JsonParameters.PSobject.Properties["network"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
@@ -189,10 +152,28 @@ function ConvertFrom-PVEJsonToPOSTNodesCephInitRB {
             $Size = $JsonParameters.PSobject.Properties["size"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_bits"))) { #optional property not found
+            $PgBits = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $PgBits = $JsonParameters.PSobject.Properties["pg_bits"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "min_size"))) { #optional property not found
+            $MinSize = $null
+        } else {
+            $MinSize = $JsonParameters.PSobject.Properties["min_size"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "network"))) { #optional property not found
+            $Network = $null
+        } else {
+            $Network = $JsonParameters.PSobject.Properties["network"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cluster-network"))) { #optional property not found
+            $ClusterNetwork = $null
+        } else {
+            $ClusterNetwork = $JsonParameters.PSobject.Properties["cluster-network"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable_cephx"))) { #optional property not found
@@ -202,12 +183,11 @@ function ConvertFrom-PVEJsonToPOSTNodesCephInitRB {
         }
 
         $PSO = [PSCustomObject]@{
-            "min_size" = ${MinSize}
-            "cluster-network" = ${ClusterNetwork}
-            "pg_bits" = ${PgBits}
-            "network" = ${Network}
             "size" = ${Size}
-            "node" = ${Node}
+            "pg_bits" = ${PgBits}
+            "min_size" = ${MinSize}
+            "network" = ${Network}
+            "cluster-network" = ${ClusterNetwork}
             "disable_cephx" = ${DisableCephx}
         }
 

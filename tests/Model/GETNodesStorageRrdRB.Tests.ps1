@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesStorageRrdRB' {
     Context 'PVEGETNodesStorageRrdRB' {
         It 'Initialize-PVEGETNodesStorageRrdRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesStorageRrdRB -Ds "TEST_VALUE" -Timeframe "TEST_VALUE" -Cf "TEST_VALUE" -Storage "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesStorageRrdRB -Timeframe "TEST_VALUE" -Ds "TEST_VALUE" -Cf "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesStorageRrdRB
             #$NewObject.property | Should -Be 0
         }

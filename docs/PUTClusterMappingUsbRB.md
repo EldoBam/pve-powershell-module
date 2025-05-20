@@ -3,21 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Delete** | **String** |  | [optional] 
+**Map** | **String[]** |  | [optional] 
 **Description** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Map** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterMappingUsbRB = Initialize-PVEPUTClusterMappingUsbRB  -Description null `
- -Digest null `
- -Delete null `
- -Id null `
- -Map null
+$PUTClusterMappingUsbRB = Initialize-PVEPUTClusterMappingUsbRB  -Delete null `
+ -Map null `
+ -Description null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

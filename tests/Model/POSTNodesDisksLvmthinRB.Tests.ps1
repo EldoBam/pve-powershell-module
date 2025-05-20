@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesDisksLvmthinRB' {
     Context 'PVEPOSTNodesDisksLvmthinRB' {
         It 'Initialize-PVEPOSTNodesDisksLvmthinRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesDisksLvmthinRB -Device "TEST_VALUE" -AddStorage "TEST_VALUE" -Name "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesDisksLvmthinRB -Device "TEST_VALUE" -Name "TEST_VALUE" -AddStorage "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesDisksLvmthinRB
             #$NewObject.property | Should -Be 0
         }

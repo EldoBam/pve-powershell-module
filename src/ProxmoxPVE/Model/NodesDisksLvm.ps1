@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Children
-No description available.
 .PARAMETER Leaf
+No description available.
+.PARAMETER Children
 No description available.
 .OUTPUTS
 
@@ -28,34 +28,26 @@ function Initialize-PVENodesDisksLvm {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Children},
+        [System.Nullable[Boolean]]
+        ${Leaf},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Leaf}
+        [PSCustomObject[]]
+        ${Children}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesDisksLvm' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Leaf -and $Leaf -gt 1) {
-          throw "invalid value for 'Leaf', must be smaller than or equal to 1."
-        }
-
-        if ($Leaf -and $Leaf -lt 0) {
-          throw "invalid value for 'Leaf', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Children"="children"; "Leaf"="leaf"
+			"Leaf"="leaf"; "Children"="children"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -95,17 +87,11 @@ function ConvertFrom-PVEJsonToNodesDisksLvm {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesDisksLvm
-        $AllProperties = ("children", "leaf")
+        $AllProperties = ("leaf", "children")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "children"))) { #optional property not found
-            $Children = $null
-        } else {
-            $Children = $JsonParameters.PSobject.Properties["children"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "leaf"))) { #optional property not found
@@ -114,9 +100,15 @@ function ConvertFrom-PVEJsonToNodesDisksLvm {
             $Leaf = $JsonParameters.PSobject.Properties["leaf"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "children"))) { #optional property not found
+            $Children = $null
+        } else {
+            $Children = $JsonParameters.PSobject.Properties["children"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "children" = ${Children}
             "leaf" = ${Leaf}
+            "children" = ${Children}
         }
 
         return $PSO

@@ -3,95 +3,95 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DatastoreAllocateSpace** | **Int32** |  | [optional] 
-**RealmAllocate** | **Int32** |  | [optional] 
-**MappingModify** | **Int32** |  | [optional] 
-**PoolAllocate** | **Int32** |  | [optional] 
-**VMConfigCDROM** | **Int32** |  | [optional] 
-**MappingUse** | **Int32** |  | [optional] 
-**DatastoreAudit** | **Int32** |  | [optional] 
-**PermissionsModify** | **Int32** |  | [optional] 
-**DatastoreAllocateTemplate** | **Int32** |  | [optional] 
-**VMMonitor** | **Int32** |  | [optional] 
-**VMConfigHWType** | **Int32** |  | [optional] 
-**VMConfigMemory** | **Int32** |  | [optional] 
-**SysSyslog** | **Int32** |  | [optional] 
-**VMAudit** | **Int32** |  | [optional] 
-**SDNUse** | **Int32** |  | [optional] 
-**MappingAudit** | **Int32** |  | [optional] 
-**SysConsole** | **Int32** |  | [optional] 
-**VMConfigDisk** | **Int32** |  | [optional] 
-**VMMigrate** | **Int32** |  | [optional] 
-**SysPowerMgmt** | **Int32** |  | [optional] 
-**GroupAllocate** | **Int32** |  | [optional] 
-**PoolAudit** | **Int32** |  | [optional] 
-**VMSnapshotRollback** | **Int32** |  | [optional] 
-**VMBackup** | **Int32** |  | [optional] 
-**DatastoreAllocate** | **Int32** |  | [optional] 
-**UserModify** | **Int32** |  | [optional] 
-**VMClone** | **Int32** |  | [optional] 
-**SysAudit** | **Int32** |  | [optional] 
-**VMSnapshot** | **Int32** |  | [optional] 
-**SDNAllocate** | **Int32** |  | [optional] 
-**VMAllocate** | **Int32** |  | [optional] 
-**SysAccessNetwork** | **Int32** |  | [optional] 
-**VMConsole** | **Int32** |  | [optional] 
-**SysIncoming** | **Int32** |  | [optional] 
-**SDNAudit** | **Int32** |  | [optional] 
-**VMConfigOptions** | **Int32** |  | [optional] 
-**SysModify** | **Int32** |  | [optional] 
-**VMConfigCloudinit** | **Int32** |  | [optional] 
-**VMPowerMgmt** | **Int32** |  | [optional] 
-**VMConfigCPU** | **Int32** |  | [optional] 
-**RealmAllocateUser** | **Int32** |  | [optional] 
-**VMConfigNetwork** | **Int32** |  | [optional] 
+**RealmAllocateUser** | **Boolean** |  | [optional] 
+**MappingAudit** | **Boolean** |  | [optional] 
+**VMAllocate** | **Boolean** |  | [optional] 
+**VMConfigOptions** | **Boolean** |  | [optional] 
+**SDNUse** | **Boolean** |  | [optional] 
+**PermissionsModify** | **Boolean** |  | [optional] 
+**SysAccessNetwork** | **Boolean** |  | [optional] 
+**VMClone** | **Boolean** |  | [optional] 
+**VMConfigHWType** | **Boolean** |  | [optional] 
+**PoolAudit** | **Boolean** |  | [optional] 
+**SysIncoming** | **Boolean** |  | [optional] 
+**VMConsole** | **Boolean** |  | [optional] 
+**VMSnapshotRollback** | **Boolean** |  | [optional] 
+**UserModify** | **Boolean** |  | [optional] 
+**MappingModify** | **Boolean** |  | [optional] 
+**SysAudit** | **Boolean** |  | [optional] 
+**RealmAllocate** | **Boolean** |  | [optional] 
+**SDNAllocate** | **Boolean** |  | [optional] 
+**SysSyslog** | **Boolean** |  | [optional] 
+**SysModify** | **Boolean** |  | [optional] 
+**VMMigrate** | **Boolean** |  | [optional] 
+**MappingUse** | **Boolean** |  | [optional] 
+**SysPowerMgmt** | **Boolean** |  | [optional] 
+**VMConfigCPU** | **Boolean** |  | [optional] 
+**VMConfigCDROM** | **Boolean** |  | [optional] 
+**DatastoreAllocateTemplate** | **Boolean** |  | [optional] 
+**DatastoreAudit** | **Boolean** |  | [optional] 
+**VMPowerMgmt** | **Boolean** |  | [optional] 
+**DatastoreAllocateSpace** | **Boolean** |  | [optional] 
+**VMConfigMemory** | **Boolean** |  | [optional] 
+**VMConfigDisk** | **Boolean** |  | [optional] 
+**VMConfigCloudinit** | **Boolean** |  | [optional] 
+**VMConfigNetwork** | **Boolean** |  | [optional] 
+**VMBackup** | **Boolean** |  | [optional] 
+**VMMonitor** | **Boolean** |  | [optional] 
+**VMAudit** | **Boolean** |  | [optional] 
+**GroupAllocate** | **Boolean** |  | [optional] 
+**DatastoreAllocate** | **Boolean** |  | [optional] 
+**PoolAllocate** | **Boolean** |  | [optional] 
+**VMSnapshot** | **Boolean** |  | [optional] 
+**SysConsole** | **Boolean** |  | [optional] 
+**SDNAudit** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessRoles = Initialize-PVEAccessRoles  -DatastoreAllocateSpace null `
- -RealmAllocate null `
- -MappingModify null `
- -PoolAllocate null `
- -VMConfigCDROM null `
- -MappingUse null `
- -DatastoreAudit null `
- -PermissionsModify null `
- -DatastoreAllocateTemplate null `
- -VMMonitor null `
- -VMConfigHWType null `
- -VMConfigMemory null `
- -SysSyslog null `
- -VMAudit null `
- -SDNUse null `
+$AccessRoles = Initialize-PVEAccessRoles  -RealmAllocateUser null `
  -MappingAudit null `
- -SysConsole null `
- -VMConfigDisk null `
- -VMMigrate null `
- -SysPowerMgmt null `
- -GroupAllocate null `
- -PoolAudit null `
- -VMSnapshotRollback null `
- -VMBackup null `
- -DatastoreAllocate null `
- -UserModify null `
- -VMClone null `
- -SysAudit null `
- -VMSnapshot null `
- -SDNAllocate null `
  -VMAllocate null `
- -SysAccessNetwork null `
- -VMConsole null `
- -SysIncoming null `
- -SDNAudit null `
  -VMConfigOptions null `
+ -SDNUse null `
+ -PermissionsModify null `
+ -SysAccessNetwork null `
+ -VMClone null `
+ -VMConfigHWType null `
+ -PoolAudit null `
+ -SysIncoming null `
+ -VMConsole null `
+ -VMSnapshotRollback null `
+ -UserModify null `
+ -MappingModify null `
+ -SysAudit null `
+ -RealmAllocate null `
+ -SDNAllocate null `
+ -SysSyslog null `
  -SysModify null `
- -VMConfigCloudinit null `
- -VMPowerMgmt null `
+ -VMMigrate null `
+ -MappingUse null `
+ -SysPowerMgmt null `
  -VMConfigCPU null `
- -RealmAllocateUser null `
- -VMConfigNetwork null
+ -VMConfigCDROM null `
+ -DatastoreAllocateTemplate null `
+ -DatastoreAudit null `
+ -VMPowerMgmt null `
+ -DatastoreAllocateSpace null `
+ -VMConfigMemory null `
+ -VMConfigDisk null `
+ -VMConfigCloudinit null `
+ -VMConfigNetwork null `
+ -VMBackup null `
+ -VMMonitor null `
+ -VMAudit null `
+ -GroupAllocate null `
+ -DatastoreAllocate null `
+ -PoolAllocate null `
+ -VMSnapshot null `
+ -SysConsole null `
+ -SDNAudit null
 ```
 
 - Convert the resource to JSON

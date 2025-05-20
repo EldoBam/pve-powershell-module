@@ -15,25 +15,25 @@ No summary available.
 
 No description available.
 
-.PARAMETER Exitstatus
-No description available.
-.PARAMETER Type
-No description available.
-.PARAMETER User
-No description available.
-.PARAMETER Starttime
-No description available.
-.PARAMETER Id
-No description available.
-.PARAMETER Status
-No description available.
-.PARAMETER Pstart
-No description available.
-.PARAMETER VarPid
+.PARAMETER Upid
 No description available.
 .PARAMETER Node
 No description available.
-.PARAMETER Upid
+.PARAMETER Type
+No description available.
+.PARAMETER Pstart
+No description available.
+.PARAMETER User
+No description available.
+.PARAMETER Status
+No description available.
+.PARAMETER Id
+No description available.
+.PARAMETER VarPid
+No description available.
+.PARAMETER Starttime
+No description available.
+.PARAMETER Exitstatus
 No description available.
 .OUTPUTS
 
@@ -45,35 +45,35 @@ function Initialize-PVENodesTasksStatus {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Exitstatus},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${User},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Starttime},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("running", "stopped")]
-        [String]
-        ${Status},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Pstart},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VarPid},
+        ${Upid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Node},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Upid}
+        ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Pstart},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${User},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("running", "stopped")]
+        [String]
+        ${Status},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Id},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${VarPid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Starttime},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Exitstatus}
     )
 
     Process {
@@ -82,13 +82,13 @@ function Initialize-PVENodesTasksStatus {
 
 
 		 $DisplayNameMapping =@{
-			"Exitstatus"="exitstatus"; "Type"="type"; "User"="user"; "Starttime"="starttime"; "Id"="id"; "Status"="status"; "Pstart"="pstart"; "VarPid"="pid"; "Node"="node"; "Upid"="upid"
+			"Upid"="upid"; "Node"="node"; "Type"="type"; "Pstart"="pstart"; "User"="user"; "Status"="status"; "Id"="id"; "VarPid"="pid"; "Starttime"="starttime"; "Exitstatus"="exitstatus"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -128,65 +128,11 @@ function ConvertFrom-PVEJsonToNodesTasksStatus {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesTasksStatus
-        $AllProperties = ("exitstatus", "type", "user", "starttime", "id", "status", "pstart", "pid", "node", "upid")
+        $AllProperties = ("upid", "node", "type", "pstart", "user", "status", "id", "pid", "starttime", "exitstatus")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exitstatus"))) { #optional property not found
-            $Exitstatus = $null
-        } else {
-            $Exitstatus = $JsonParameters.PSobject.Properties["exitstatus"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user"))) { #optional property not found
-            $User = $null
-        } else {
-            $User = $JsonParameters.PSobject.Properties["user"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "starttime"))) { #optional property not found
-            $Starttime = $null
-        } else {
-            $Starttime = $JsonParameters.PSobject.Properties["starttime"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
-            $Status = $null
-        } else {
-            $Status = $JsonParameters.PSobject.Properties["status"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pstart"))) { #optional property not found
-            $Pstart = $null
-        } else {
-            $Pstart = $JsonParameters.PSobject.Properties["pstart"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pid"))) { #optional property not found
-            $VarPid = $null
-        } else {
-            $VarPid = $JsonParameters.PSobject.Properties["pid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "upid"))) { #optional property not found
@@ -195,17 +141,71 @@ function ConvertFrom-PVEJsonToNodesTasksStatus {
             $Upid = $JsonParameters.PSobject.Properties["upid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
+            $Node = $null
+        } else {
+            $Node = $JsonParameters.PSobject.Properties["node"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pstart"))) { #optional property not found
+            $Pstart = $null
+        } else {
+            $Pstart = $JsonParameters.PSobject.Properties["pstart"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user"))) { #optional property not found
+            $User = $null
+        } else {
+            $User = $JsonParameters.PSobject.Properties["user"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
+            $Status = $null
+        } else {
+            $Status = $JsonParameters.PSobject.Properties["status"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pid"))) { #optional property not found
+            $VarPid = $null
+        } else {
+            $VarPid = $JsonParameters.PSobject.Properties["pid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "starttime"))) { #optional property not found
+            $Starttime = $null
+        } else {
+            $Starttime = $JsonParameters.PSobject.Properties["starttime"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "exitstatus"))) { #optional property not found
+            $Exitstatus = $null
+        } else {
+            $Exitstatus = $JsonParameters.PSobject.Properties["exitstatus"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "exitstatus" = ${Exitstatus}
-            "type" = ${Type}
-            "user" = ${User}
-            "starttime" = ${Starttime}
-            "id" = ${Id}
-            "status" = ${Status}
-            "pstart" = ${Pstart}
-            "pid" = ${VarPid}
-            "node" = ${Node}
             "upid" = ${Upid}
+            "node" = ${Node}
+            "type" = ${Type}
+            "pstart" = ${Pstart}
+            "user" = ${User}
+            "status" = ${Status}
+            "id" = ${Id}
+            "pid" = ${VarPid}
+            "starttime" = ${Starttime}
+            "exitstatus" = ${Exitstatus}
         }
 
         return $PSO

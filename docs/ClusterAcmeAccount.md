@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Directory** | **String** |  | [optional] 
 **Account** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 **Tos** | **String** |  | [optional] 
-**Directory** | **String** |  | [optional] 
 **Location** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterAcmeAccount = Initialize-PVEClusterAcmeAccount  -Account null `
+$ClusterAcmeAccount = Initialize-PVEClusterAcmeAccount  -Directory null `
+ -Account null `
  -Tos null `
- -Directory null `
  -Location null
 ```
 

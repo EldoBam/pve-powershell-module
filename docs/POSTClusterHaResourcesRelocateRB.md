@@ -3,15 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Sid** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterHaResourcesRelocateRB = Initialize-PVEPOSTClusterHaResourcesRelocateRB  -Sid null `
- -Node null
+$POSTClusterHaResourcesRelocateRB = Initialize-PVEPOSTClusterHaResourcesRelocateRB  -Node null
 ```
 
 - Convert the resource to JSON

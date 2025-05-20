@@ -3,20 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RemoveEcprofile** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**RemoveStorages** | **Int32** |  | [optional] 
-**Force** | **Int32** |  | [optional] 
+**RemoveStorages** | **Boolean** |  | [optional] 
+**RemoveEcprofile** | **Boolean** |  | [optional] 
+**Force** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesCephPoolRB = Initialize-PVEDELETENodesCephPoolRB  -RemoveEcprofile null `
- -Node null `
- -Name null `
- -RemoveStorages null `
+$DELETENodesCephPoolRB = Initialize-PVEDELETENodesCephPoolRB  -RemoveStorages null `
+ -RemoveEcprofile null `
  -Force null
 ```
 

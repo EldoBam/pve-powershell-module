@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER StandbyReplay
+.PARAMETER Name
+No description available.
+.PARAMETER Addr
+No description available.
+.PARAMETER State
 No description available.
 .PARAMETER Rank
 No description available.
 .PARAMETER VarHost
 No description available.
-.PARAMETER State
-No description available.
-.PARAMETER Addr
-No description available.
-.PARAMETER Name
+.PARAMETER StandbyReplay
 No description available.
 .OUTPUTS
 
@@ -36,8 +36,14 @@ function Initialize-PVENodesCephMdsInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${StandbyReplay},
+        [PSCustomObject]
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Addr},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${State},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Rank},
@@ -45,37 +51,23 @@ function Initialize-PVENodesCephMdsInner {
         [String]
         ${VarHost},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${State},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Addr},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Name}
+        [System.Nullable[Boolean]]
+        ${StandbyReplay}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesCephMdsInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($StandbyReplay -and $StandbyReplay -gt 1) {
-          throw "invalid value for 'StandbyReplay', must be smaller than or equal to 1."
-        }
-
-        if ($StandbyReplay -and $StandbyReplay -lt 0) {
-          throw "invalid value for 'StandbyReplay', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"StandbyReplay"="standby_replay"; "Rank"="rank"; "VarHost"="host"; "State"="state"; "Addr"="addr"; "Name"="name"
+			"Name"="name"; "Addr"="addr"; "State"="state"; "Rank"="rank"; "VarHost"="host"; "StandbyReplay"="standby_replay"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -115,17 +107,29 @@ function ConvertFrom-PVEJsonToNodesCephMdsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesCephMdsInner
-        $AllProperties = ("standby_replay", "rank", "host", "state", "addr", "name")
+        $AllProperties = ("name", "addr", "state", "rank", "host", "standby_replay")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "standby_replay"))) { #optional property not found
-            $StandbyReplay = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
         } else {
-            $StandbyReplay = $JsonParameters.PSobject.Properties["standby_replay"].value
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "addr"))) { #optional property not found
+            $Addr = $null
+        } else {
+            $Addr = $JsonParameters.PSobject.Properties["addr"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
+            $State = $null
+        } else {
+            $State = $JsonParameters.PSobject.Properties["state"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "rank"))) { #optional property not found
@@ -140,31 +144,19 @@ function ConvertFrom-PVEJsonToNodesCephMdsInner {
             $VarHost = $JsonParameters.PSobject.Properties["host"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "state"))) { #optional property not found
-            $State = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "standby_replay"))) { #optional property not found
+            $StandbyReplay = $null
         } else {
-            $State = $JsonParameters.PSobject.Properties["state"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "addr"))) { #optional property not found
-            $Addr = $null
-        } else {
-            $Addr = $JsonParameters.PSobject.Properties["addr"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
+            $StandbyReplay = $JsonParameters.PSobject.Properties["standby_replay"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "standby_replay" = ${StandbyReplay}
+            "name" = ${Name}
+            "addr" = ${Addr}
+            "state" = ${State}
             "rank" = ${Rank}
             "host" = ${VarHost}
-            "state" = ${State}
-            "addr" = ${Addr}
-            "name" = ${Name}
+            "standby_replay" = ${StandbyReplay}
         }
 
         return $PSO

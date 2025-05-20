@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEAccessUsersTfa' {
     Context 'PVEAccessUsersTfa' {
         It 'Initialize-PVEAccessUsersTfa' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEAccessUsersTfa -User "TEST_VALUE" -Types "TEST_VALUE" -Realm "TEST_VALUE"
+            #$NewObject = Initialize-PVEAccessUsersTfa -Types "TEST_VALUE" -Realm "TEST_VALUE" -User "TEST_VALUE"
             #$NewObject | Should -BeOfType AccessUsersTfa
             #$NewObject.property | Should -Be 0
         }

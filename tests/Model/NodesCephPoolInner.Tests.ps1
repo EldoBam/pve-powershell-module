@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesCephPoolInner' {
     Context 'PVENodesCephPoolInner' {
         It 'Initialize-PVENodesCephPoolInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesCephPoolInner -PoolName "TEST_VALUE" -PgNumMin "TEST_VALUE" -TargetSize "TEST_VALUE" -PgNumFinal "TEST_VALUE" -PgAutoscaleMode "TEST_VALUE" -Type "TEST_VALUE" -CrushRule "TEST_VALUE" -CrushRuleName "TEST_VALUE" -ApplicationMetadata "TEST_VALUE" -BytesUsed "TEST_VALUE" -Pool "TEST_VALUE" -Size "TEST_VALUE" -PercentUsed "TEST_VALUE" -AutoscaleStatus "TEST_VALUE" -PgNum "TEST_VALUE" -MinSize "TEST_VALUE" -TargetSizeRatio "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesCephPoolInner -Type "TEST_VALUE" -PercentUsed "TEST_VALUE" -TargetSizeRatio "TEST_VALUE" -CrushRuleName "TEST_VALUE" -BytesUsed "TEST_VALUE" -Pool "TEST_VALUE" -PgNumMin "TEST_VALUE" -ApplicationMetadata "TEST_VALUE" -PgAutoscaleMode "TEST_VALUE" -PoolName "TEST_VALUE" -Size "TEST_VALUE" -AutoscaleStatus "TEST_VALUE" -PgNum "TEST_VALUE" -PgNumFinal "TEST_VALUE" -MinSize "TEST_VALUE" -CrushRule "TEST_VALUE" -TargetSize "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesCephPoolInner
             #$NewObject.property | Should -Be 0
         }

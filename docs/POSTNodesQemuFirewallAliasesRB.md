@@ -3,20 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Cidr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuFirewallAliasesRB = Initialize-PVEPOSTNodesQemuFirewallAliasesRB  -Node null `
- -Comment null `
+$POSTNodesQemuFirewallAliasesRB = Initialize-PVEPOSTNodesQemuFirewallAliasesRB  -Comment null `
  -Name null `
- -Vmid null `
  -Cidr null
 ```
 

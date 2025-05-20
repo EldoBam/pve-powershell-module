@@ -17,11 +17,7 @@ No description available.
 
 .PARAMETER Limit
 No description available.
-.PARAMETER Id
-No description available.
 .PARAMETER Start
-No description available.
-.PARAMETER Node
 No description available.
 .OUTPUTS
 
@@ -35,15 +31,8 @@ function Initialize-PVEGETNodesReplicationLogRB {
         [System.Nullable[Int32]]
         ${Limit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("[1-9][0-9]{2,8}-\d{1,9}")]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Start},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Start}
     )
 
     Process {
@@ -52,13 +41,13 @@ function Initialize-PVEGETNodesReplicationLogRB {
 
 
 		 $DisplayNameMapping =@{
-			"Limit"="limit"; "Id"="id"; "Start"="start"; "Node"="node"
+			"Limit"="limit"; "Start"="start"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -98,7 +87,7 @@ function ConvertFrom-PVEJsonToGETNodesReplicationLogRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesReplicationLogRB
-        $AllProperties = ("limit", "id", "start", "node")
+        $AllProperties = ("limit", "start")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -111,29 +100,15 @@ function ConvertFrom-PVEJsonToGETNodesReplicationLogRB {
             $Limit = $JsonParameters.PSobject.Properties["limit"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "start"))) { #optional property not found
             $Start = $null
         } else {
             $Start = $JsonParameters.PSobject.Properties["start"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "limit" = ${Limit}
-            "id" = ${Id}
             "start" = ${Start}
-            "node" = ${Node}
         }
 
         return $PSO

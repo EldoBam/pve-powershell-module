@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
+.PARAMETER Restricted
+No description available.
+.PARAMETER Type
+No description available.
 .PARAMETER Group
+No description available.
+.PARAMETER Nofailback
 No description available.
 .PARAMETER Nodes
 No description available.
 .PARAMETER Comment
-No description available.
-.PARAMETER Restricted
-No description available.
-.PARAMETER Nofailback
-No description available.
-.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -36,24 +36,24 @@ function Initialize-PVEPOSTClusterHaGroupsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Restricted},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("group")]
+        [String]
+        ${Type},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Group},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Nofailback},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Nodes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Restricted},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Nofailback},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("group")]
-        [String]
-        ${Type}
+        ${Comment}
     )
 
     Process {
@@ -64,31 +64,15 @@ function Initialize-PVEPOSTClusterHaGroupsRB {
             throw "invalid value for 'Comment', the character length must be smaller than or equal to 4096."
         }
 
-        if ($Restricted -and $Restricted -gt 1) {
-          throw "invalid value for 'Restricted', must be smaller than or equal to 1."
-        }
-
-        if ($Restricted -and $Restricted -lt 0) {
-          throw "invalid value for 'Restricted', must be greater than or equal to 0."
-        }
-
-        if ($Nofailback -and $Nofailback -gt 1) {
-          throw "invalid value for 'Nofailback', must be smaller than or equal to 1."
-        }
-
-        if ($Nofailback -and $Nofailback -lt 0) {
-          throw "invalid value for 'Nofailback', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Group"="group"; "Nodes"="nodes"; "Comment"="comment"; "Restricted"="restricted"; "Nofailback"="nofailback"; "Type"="type"
+			"Restricted"="restricted"; "Type"="type"; "Group"="group"; "Nofailback"="nofailback"; "Nodes"="nodes"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -128,17 +112,35 @@ function ConvertFrom-PVEJsonToPOSTClusterHaGroupsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTClusterHaGroupsRB
-        $AllProperties = ("group", "nodes", "comment", "restricted", "nofailback", "type")
+        $AllProperties = ("restricted", "type", "group", "nofailback", "nodes", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "restricted"))) { #optional property not found
+            $Restricted = $null
+        } else {
+            $Restricted = $JsonParameters.PSobject.Properties["restricted"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "group"))) { #optional property not found
             $Group = $null
         } else {
             $Group = $JsonParameters.PSobject.Properties["group"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nofailback"))) { #optional property not found
+            $Nofailback = $null
+        } else {
+            $Nofailback = $JsonParameters.PSobject.Properties["nofailback"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "nodes"))) { #optional property not found
@@ -153,31 +155,13 @@ function ConvertFrom-PVEJsonToPOSTClusterHaGroupsRB {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "restricted"))) { #optional property not found
-            $Restricted = $null
-        } else {
-            $Restricted = $JsonParameters.PSobject.Properties["restricted"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "nofailback"))) { #optional property not found
-            $Nofailback = $null
-        } else {
-            $Nofailback = $JsonParameters.PSobject.Properties["nofailback"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "restricted" = ${Restricted}
+            "type" = ${Type}
             "group" = ${Group}
+            "nofailback" = ${Nofailback}
             "nodes" = ${Nodes}
             "comment" = ${Comment}
-            "restricted" = ${Restricted}
-            "nofailback" = ${Nofailback}
-            "type" = ${Type}
         }
 
         return $PSO

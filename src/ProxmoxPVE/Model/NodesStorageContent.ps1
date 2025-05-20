@@ -15,17 +15,17 @@ No summary available.
 
 No description available.
 
-.PARAMETER Notes
-No description available.
-.PARAMETER Format
+.PARAMETER Size
 No description available.
 .PARAMETER Protected
 No description available.
-.PARAMETER Path
+.PARAMETER Format
 No description available.
 .PARAMETER Used
 No description available.
-.PARAMETER Size
+.PARAMETER Path
+No description available.
+.PARAMETER Notes
 No description available.
 .OUTPUTS
 
@@ -36,46 +36,38 @@ function Initialize-PVENodesStorageContent {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Notes},
+        [System.Nullable[Int32]]
+        ${Size},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Protected},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Format},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Protected},
+        ${Used},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Path},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Used},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Size}
+        [String]
+        ${Notes}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesStorageContent' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Protected -and $Protected -gt 1) {
-          throw "invalid value for 'Protected', must be smaller than or equal to 1."
-        }
-
-        if ($Protected -and $Protected -lt 0) {
-          throw "invalid value for 'Protected', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Notes"="notes"; "Format"="format"; "Protected"="protected"; "Path"="path"; "Used"="used"; "Size"="size"
+			"Size"="size"; "Protected"="protected"; "Format"="format"; "Used"="used"; "Path"="path"; "Notes"="notes"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -115,41 +107,11 @@ function ConvertFrom-PVEJsonToNodesStorageContent {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesStorageContent
-        $AllProperties = ("notes", "format", "protected", "path", "used", "size")
+        $AllProperties = ("size", "protected", "format", "used", "path", "notes")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notes"))) { #optional property not found
-            $Notes = $null
-        } else {
-            $Notes = $JsonParameters.PSobject.Properties["notes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "format"))) { #optional property not found
-            $Format = $null
-        } else {
-            $Format = $JsonParameters.PSobject.Properties["format"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protected"))) { #optional property not found
-            $Protected = $null
-        } else {
-            $Protected = $JsonParameters.PSobject.Properties["protected"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
-            $Path = $null
-        } else {
-            $Path = $JsonParameters.PSobject.Properties["path"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "used"))) { #optional property not found
-            $Used = $null
-        } else {
-            $Used = $JsonParameters.PSobject.Properties["used"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
@@ -158,13 +120,43 @@ function ConvertFrom-PVEJsonToNodesStorageContent {
             $Size = $JsonParameters.PSobject.Properties["size"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protected"))) { #optional property not found
+            $Protected = $null
+        } else {
+            $Protected = $JsonParameters.PSobject.Properties["protected"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "format"))) { #optional property not found
+            $Format = $null
+        } else {
+            $Format = $JsonParameters.PSobject.Properties["format"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "used"))) { #optional property not found
+            $Used = $null
+        } else {
+            $Used = $JsonParameters.PSobject.Properties["used"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
+            $Path = $null
+        } else {
+            $Path = $JsonParameters.PSobject.Properties["path"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notes"))) { #optional property not found
+            $Notes = $null
+        } else {
+            $Notes = $JsonParameters.PSobject.Properties["notes"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "notes" = ${Notes}
-            "format" = ${Format}
-            "protected" = ${Protected}
-            "path" = ${Path}
-            "used" = ${Used}
             "size" = ${Size}
+            "protected" = ${Protected}
+            "format" = ${Format}
+            "used" = ${Used}
+            "path" = ${Path}
+            "notes" = ${Notes}
         }
 
         return $PSO

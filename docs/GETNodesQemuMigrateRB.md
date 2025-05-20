@@ -4,16 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Target** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuMigrateRB = Initialize-PVEGETNodesQemuMigrateRB  -Target null `
- -Vmid null `
- -Node null
+$GETNodesQemuMigrateRB = Initialize-PVEGETNodesQemuMigrateRB  -Target null
 ```
 
 - Convert the resource to JSON

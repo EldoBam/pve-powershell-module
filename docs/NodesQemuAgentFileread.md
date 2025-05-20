@@ -3,7 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Truncated** | **Int32** |  | [optional] 
+**Truncated** | **Boolean** |  | [optional] 
 **Content** | **String** |  | [optional] 
 
 ## Examples

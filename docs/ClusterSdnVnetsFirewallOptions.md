@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PolicyForward** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
+**Enable** | **Boolean** |  | [optional] 
 **LogLevelForward** | **String** |  | [optional] 
 
 ## Examples

@@ -4,14 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Volume** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesVzdumpExtractconfigRB = Initialize-PVEGETNodesVzdumpExtractconfigRB  -Volume null `
- -Node null
+$GETNodesVzdumpExtractconfigRB = Initialize-PVEGETNodesVzdumpExtractconfigRB  -Volume null
 ```
 
 - Convert the resource to JSON

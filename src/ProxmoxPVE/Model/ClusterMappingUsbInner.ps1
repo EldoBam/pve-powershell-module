@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Description
-No description available.
 .PARAMETER VarError
 No description available.
-.PARAMETER Id
-No description available.
 .PARAMETER Map
+No description available.
+.PARAMETER Description
+No description available.
+.PARAMETER Id
 No description available.
 .OUTPUTS
 
@@ -32,17 +32,17 @@ function Initialize-PVEClusterMappingUsbInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Description},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject]
         ${VarError},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Id},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String[]]
-        ${Map}
+        ${Map},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Description},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Id}
     )
 
     Process {
@@ -51,13 +51,13 @@ function Initialize-PVEClusterMappingUsbInner {
 
 
 		 $DisplayNameMapping =@{
-			"Description"="description"; "VarError"="error"; "Id"="id"; "Map"="map"
+			"VarError"="error"; "Map"="map"; "Description"="description"; "Id"="id"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -97,17 +97,11 @@ function ConvertFrom-PVEJsonToClusterMappingUsbInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterMappingUsbInner
-        $AllProperties = ("description", "error", "id", "map")
+        $AllProperties = ("error", "map", "description", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "error"))) { #optional property not found
@@ -116,23 +110,29 @@ function ConvertFrom-PVEJsonToClusterMappingUsbInner {
             $VarError = $JsonParameters.PSobject.Properties["error"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "map"))) { #optional property not found
             $Map = $null
         } else {
             $Map = $JsonParameters.PSobject.Properties["map"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "description" = ${Description}
             "error" = ${VarError}
-            "id" = ${Id}
             "map" = ${Map}
+            "description" = ${Description}
+            "id" = ${Id}
         }
 
         return $PSO

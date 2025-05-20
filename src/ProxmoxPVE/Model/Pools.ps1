@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Members
-No description available.
 .PARAMETER Comment
+No description available.
+.PARAMETER Members
 No description available.
 .OUTPUTS
 
@@ -28,11 +28,11 @@ function Initialize-PVEPools {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Members},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comment}
+        ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
+        ${Members}
     )
 
     Process {
@@ -41,13 +41,13 @@ function Initialize-PVEPools {
 
 
 		 $DisplayNameMapping =@{
-			"Members"="members"; "Comment"="comment"
+			"Comment"="comment"; "Members"="members"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToPools {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPools
-        $AllProperties = ("members", "comment")
+        $AllProperties = ("comment", "members")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "members"))) { #optional property not found
-            $Members = $null
-        } else {
-            $Members = $JsonParameters.PSobject.Properties["members"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToPools {
             $Comment = $JsonParameters.PSobject.Properties["comment"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "members"))) { #optional property not found
+            $Members = $null
+        } else {
+            $Members = $JsonParameters.PSobject.Properties["members"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "members" = ${Members}
             "comment" = ${Comment}
+            "members" = ${Members}
         }
 
         return $PSO

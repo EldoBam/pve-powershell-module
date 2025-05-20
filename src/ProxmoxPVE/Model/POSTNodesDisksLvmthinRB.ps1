@@ -17,11 +17,9 @@ No description available.
 
 .PARAMETER Device
 No description available.
-.PARAMETER AddStorage
-No description available.
 .PARAMETER Name
 No description available.
-.PARAMETER Node
+.PARAMETER AddStorage
 No description available.
 .OUTPUTS
 
@@ -35,37 +33,26 @@ function Initialize-PVEPOSTNodesDisksLvmthinRB {
         [String]
         ${Device},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${AddStorage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Boolean]]
+        ${AddStorage}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesDisksLvmthinRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($AddStorage -and $AddStorage -gt 1) {
-          throw "invalid value for 'AddStorage', must be smaller than or equal to 1."
-        }
-
-        if ($AddStorage -and $AddStorage -lt 0) {
-          throw "invalid value for 'AddStorage', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Device"="device"; "AddStorage"="add_storage"; "Name"="name"; "Node"="node"
+			"Device"="device"; "Name"="name"; "AddStorage"="add_storage"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -105,7 +92,7 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksLvmthinRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesDisksLvmthinRB
-        $AllProperties = ("device", "add_storage", "name", "node")
+        $AllProperties = ("device", "name", "add_storage")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -118,29 +105,22 @@ function ConvertFrom-PVEJsonToPOSTNodesDisksLvmthinRB {
             $Device = $JsonParameters.PSobject.Properties["device"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "add_storage"))) { #optional property not found
-            $AddStorage = $null
-        } else {
-            $AddStorage = $JsonParameters.PSobject.Properties["add_storage"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
             $Name = $null
         } else {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "add_storage"))) { #optional property not found
+            $AddStorage = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $AddStorage = $JsonParameters.PSobject.Properties["add_storage"].value
         }
 
         $PSO = [PSCustomObject]@{
             "device" = ${Device}
-            "add_storage" = ${AddStorage}
             "name" = ${Name}
-            "node" = ${Node}
+            "add_storage" = ${AddStorage}
         }
 
         return $PSO

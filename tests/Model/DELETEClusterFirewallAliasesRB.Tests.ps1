@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEDELETEClusterFirewallAliasesRB' {
     Context 'PVEDELETEClusterFirewallAliasesRB' {
         It 'Initialize-PVEDELETEClusterFirewallAliasesRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEDELETEClusterFirewallAliasesRB -Digest "TEST_VALUE" -Name "TEST_VALUE"
+            #$NewObject = Initialize-PVEDELETEClusterFirewallAliasesRB -Digest "TEST_VALUE"
             #$NewObject | Should -BeOfType DELETEClusterFirewallAliasesRB
             #$NewObject.property | Should -Be 0
         }

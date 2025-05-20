@@ -17,13 +17,11 @@ No description available.
 
 .PARAMETER Zone
 No description available.
-.PARAMETER Vnet
-No description available.
-.PARAMETER Ip
-No description available.
 .PARAMETER Vmid
 No description available.
 .PARAMETER Mac
+No description available.
+.PARAMETER Ip
 No description available.
 .OUTPUTS
 
@@ -37,17 +35,14 @@ function Initialize-PVEPUTClusterSdnVnetsIpsRB {
         [String]
         ${Zone},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Vnet},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Ip},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Mac}
+        ${Mac},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Ip}
     )
 
     Process {
@@ -64,13 +59,13 @@ function Initialize-PVEPUTClusterSdnVnetsIpsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Zone"="zone"; "Vnet"="vnet"; "Ip"="ip"; "Vmid"="vmid"; "Mac"="mac"
+			"Zone"="zone"; "Vmid"="vmid"; "Mac"="mac"; "Ip"="ip"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -110,7 +105,7 @@ function ConvertFrom-PVEJsonToPUTClusterSdnVnetsIpsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterSdnVnetsIpsRB
-        $AllProperties = ("zone", "vnet", "ip", "vmid", "mac")
+        $AllProperties = ("zone", "vmid", "mac", "ip")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -121,18 +116,6 @@ function ConvertFrom-PVEJsonToPUTClusterSdnVnetsIpsRB {
             $Zone = $null
         } else {
             $Zone = $JsonParameters.PSobject.Properties["zone"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vnet"))) { #optional property not found
-            $Vnet = $null
-        } else {
-            $Vnet = $JsonParameters.PSobject.Properties["vnet"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ip"))) { #optional property not found
-            $Ip = $null
-        } else {
-            $Ip = $JsonParameters.PSobject.Properties["ip"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
@@ -147,12 +130,17 @@ function ConvertFrom-PVEJsonToPUTClusterSdnVnetsIpsRB {
             $Mac = $JsonParameters.PSobject.Properties["mac"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ip"))) { #optional property not found
+            $Ip = $null
+        } else {
+            $Ip = $JsonParameters.PSobject.Properties["ip"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "zone" = ${Zone}
-            "vnet" = ${Vnet}
-            "ip" = ${Ip}
             "vmid" = ${Vmid}
             "mac" = ${Mac}
+            "ip" = ${Ip}
         }
 
         return $PSO

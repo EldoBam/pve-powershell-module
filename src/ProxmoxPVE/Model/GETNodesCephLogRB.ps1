@@ -19,8 +19,6 @@ No description available.
 No description available.
 .PARAMETER Start
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 GETNodesCephLogRB<PSCustomObject>
@@ -34,10 +32,7 @@ function Initialize-PVEGETNodesCephLogRB {
         ${Limit},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Start},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Start}
     )
 
     Process {
@@ -46,13 +41,13 @@ function Initialize-PVEGETNodesCephLogRB {
 
 
 		 $DisplayNameMapping =@{
-			"Limit"="limit"; "Start"="start"; "Node"="node"
+			"Limit"="limit"; "Start"="start"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -92,7 +87,7 @@ function ConvertFrom-PVEJsonToGETNodesCephLogRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesCephLogRB
-        $AllProperties = ("limit", "start", "node")
+        $AllProperties = ("limit", "start")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -111,16 +106,9 @@ function ConvertFrom-PVEJsonToGETNodesCephLogRB {
             $Start = $JsonParameters.PSobject.Properties["start"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "limit" = ${Limit}
             "start" = ${Start}
-            "node" = ${Node}
         }
 
         return $PSO

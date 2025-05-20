@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Cidr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcFirewallAliasesInner = Initialize-PVENodesLxcFirewallAliasesInner  -Name null `
- -Comment null `
+$NodesLxcFirewallAliasesInner = Initialize-PVENodesLxcFirewallAliasesInner  -Comment null `
  -Digest null `
+ -Name null `
  -Cidr null
 ```
 

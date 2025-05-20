@@ -15,13 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Path
-No description available.
 .PARAMETER Device
 No description available.
 .PARAMETER Options
 No description available.
 .PARAMETER Unitfile
+No description available.
+.PARAMETER Path
 No description available.
 .PARAMETER Type
 No description available.
@@ -35,9 +35,6 @@ function Initialize-PVENodesDisksDirectoryInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Path},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Device},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
@@ -45,6 +42,9 @@ function Initialize-PVENodesDisksDirectoryInner {
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Unitfile},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Path},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Type}
@@ -56,13 +56,13 @@ function Initialize-PVENodesDisksDirectoryInner {
 
 
 		 $DisplayNameMapping =@{
-			"Path"="path"; "Device"="device"; "Options"="options"; "Unitfile"="unitfile"; "Type"="type"
+			"Device"="device"; "Options"="options"; "Unitfile"="unitfile"; "Path"="path"; "Type"="type"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -102,17 +102,11 @@ function ConvertFrom-PVEJsonToNodesDisksDirectoryInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesDisksDirectoryInner
-        $AllProperties = ("path", "device", "options", "unitfile", "type")
+        $AllProperties = ("device", "options", "unitfile", "path", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
-            $Path = $null
-        } else {
-            $Path = $JsonParameters.PSobject.Properties["path"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "device"))) { #optional property not found
@@ -133,6 +127,12 @@ function ConvertFrom-PVEJsonToNodesDisksDirectoryInner {
             $Unitfile = $JsonParameters.PSobject.Properties["unitfile"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "path"))) { #optional property not found
+            $Path = $null
+        } else {
+            $Path = $JsonParameters.PSobject.Properties["path"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
             $Type = $null
         } else {
@@ -140,10 +140,10 @@ function ConvertFrom-PVEJsonToNodesDisksDirectoryInner {
         }
 
         $PSO = [PSCustomObject]@{
-            "path" = ${Path}
             "device" = ${Device}
             "options" = ${Options}
             "unitfile" = ${Unitfile}
+            "path" = ${Path}
             "type" = ${Type}
         }
 

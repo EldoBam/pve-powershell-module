@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Groupid** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Groupid** | **String** |  | [optional] 
 **Users** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessGroupsGETInner = Initialize-PVEAccessGroupsGETInner  -Groupid null `
- -Comment null `
+$AccessGroupsGETInner = Initialize-PVEAccessGroupsGETInner  -Comment null `
+ -Groupid null `
  -Users null
 ```
 

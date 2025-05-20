@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesLxcInterfacesInner' {
     Context 'PVENodesLxcInterfacesInner' {
         It 'Initialize-PVENodesLxcInterfacesInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesLxcInterfacesInner -Inet "TEST_VALUE" -Hwaddr "TEST_VALUE" -Name "TEST_VALUE" -HardwareAddress "TEST_VALUE" -Inet6 "TEST_VALUE" -IpAddresses "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesLxcInterfacesInner -Inet "TEST_VALUE" -HardwareAddress "TEST_VALUE" -Hwaddr "TEST_VALUE" -Inet6 "TEST_VALUE" -Name "TEST_VALUE" -IpAddresses "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesLxcInterfacesInner
             #$NewObject.property | Should -Be 0
         }

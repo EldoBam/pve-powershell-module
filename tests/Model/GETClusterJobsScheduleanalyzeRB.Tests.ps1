@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETClusterJobsScheduleanalyzeRB' {
     Context 'PVEGETClusterJobsScheduleanalyzeRB' {
         It 'Initialize-PVEGETClusterJobsScheduleanalyzeRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETClusterJobsScheduleanalyzeRB -Iterations "TEST_VALUE" -Starttime "TEST_VALUE" -Schedule "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETClusterJobsScheduleanalyzeRB -Schedule "TEST_VALUE" -Starttime "TEST_VALUE" -Iterations "TEST_VALUE"
             #$NewObject | Should -BeOfType GETClusterJobsScheduleanalyzeRB
             #$NewObject.property | Should -Be 0
         }

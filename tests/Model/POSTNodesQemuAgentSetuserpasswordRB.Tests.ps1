@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesQemuAgentSetuserpasswordRB' {
     Context 'PVEPOSTNodesQemuAgentSetuserpasswordRB' {
         It 'Initialize-PVEPOSTNodesQemuAgentSetuserpasswordRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesQemuAgentSetuserpasswordRB -Username "TEST_VALUE" -Crypted "TEST_VALUE" -Vmid "TEST_VALUE" -Password "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesQemuAgentSetuserpasswordRB -Crypted "TEST_VALUE" -Password "TEST_VALUE" -Username "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesQemuAgentSetuserpasswordRB
             #$NewObject.property | Should -Be 0
         }

@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesHardwarePciRB' {
     Context 'PVEGETNodesHardwarePciRB' {
         It 'Initialize-PVEGETNodesHardwarePciRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesHardwarePciRB -PciClassBlacklist "TEST_VALUE" -Verbose "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesHardwarePciRB -Verbose "TEST_VALUE" -PciClassBlacklist "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesHardwarePciRB
             #$NewObject.property | Should -Be 0
         }

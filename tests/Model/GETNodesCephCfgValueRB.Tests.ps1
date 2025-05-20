@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesCephCfgValueRB' {
     Context 'PVEGETNodesCephCfgValueRB' {
         It 'Initialize-PVEGETNodesCephCfgValueRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesCephCfgValueRB -ConfigKeys "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesCephCfgValueRB -ConfigKeys "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesCephCfgValueRB
             #$NewObject.property | Should -Be 0
         }

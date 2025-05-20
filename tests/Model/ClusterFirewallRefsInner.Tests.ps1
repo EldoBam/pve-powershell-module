@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEClusterFirewallRefsInner' {
     Context 'PVEClusterFirewallRefsInner' {
         It 'Initialize-PVEClusterFirewallRefsInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEClusterFirewallRefsInner -Scope "TEST_VALUE" -Type "TEST_VALUE" -Comment "TEST_VALUE" -Name "TEST_VALUE" -Ref "TEST_VALUE"
+            #$NewObject = Initialize-PVEClusterFirewallRefsInner -Ref "TEST_VALUE" -Comment "TEST_VALUE" -Name "TEST_VALUE" -Type "TEST_VALUE" -Scope "TEST_VALUE"
             #$NewObject | Should -BeOfType ClusterFirewallRefsInner
             #$NewObject.property | Should -Be 0
         }

@@ -15,181 +15,177 @@ No summary available.
 
 No description available.
 
-.PARAMETER Balloon
-No description available.
-.PARAMETER Shares
-No description available.
-.PARAMETER Tdf
-No description available.
-.PARAMETER Tags
-No description available.
 .PARAMETER SpiceEnhancements
-No description available.
-.PARAMETER NetN
-No description available.
-.PARAMETER Protection
-No description available.
-.PARAMETER Onboot
-No description available.
-.PARAMETER Audio0
-No description available.
-.PARAMETER Bios
-No description available.
-.PARAMETER Keyboard
-No description available.
-.PARAMETER NumaN
-No description available.
-.PARAMETER Machine
-No description available.
-.PARAMETER BackgroundDelay
-No description available.
-.PARAMETER HostpciN
-No description available.
-.PARAMETER SerialN
-No description available.
-.PARAMETER Efidisk0
 No description available.
 .PARAMETER Lock
 No description available.
-.PARAMETER ImportWorkingStorage
-No description available.
-.PARAMETER VirtiofsN
-No description available.
-.PARAMETER Ostype
-No description available.
-.PARAMETER Smp
-No description available.
-.PARAMETER Startdate
-No description available.
-.PARAMETER Hugepages
-No description available.
-.PARAMETER Vcpus
-No description available.
-.PARAMETER Cpulimit
-No description available.
-.PARAMETER SataN
-No description available.
-.PARAMETER Freeze
-No description available.
-.PARAMETER Digest
-No description available.
-.PARAMETER Ciuser
-No description available.
-.PARAMETER Force
-No description available.
-.PARAMETER VirtioN
-No description available.
-.PARAMETER Watchdog
-No description available.
-.PARAMETER Node
-No description available.
-.PARAMETER AmdSev
-No description available.
-.PARAMETER Boot
-No description available.
-.PARAMETER MigrateSpeed
-No description available.
-.PARAMETER ScsiN
-No description available.
-.PARAMETER UsbN
-No description available.
-.PARAMETER Revert
-No description available.
-.PARAMETER Arch
-No description available.
-.PARAMETER Searchdomain
-No description available.
-.PARAMETER Reboot
-No description available.
-.PARAMETER Acpi
-No description available.
-.PARAMETER Cpu
-No description available.
-.PARAMETER IpconfigN
-No description available.
-.PARAMETER Memory
-No description available.
-.PARAMETER Localtime
-No description available.
-.PARAMETER Rng0
-No description available.
-.PARAMETER VarArgs
-No description available.
-.PARAMETER Keephugepages
-No description available.
-.PARAMETER ParallelN
-No description available.
-.PARAMETER Affinity
-No description available.
-.PARAMETER Vmstatestorage
-No description available.
-.PARAMETER Autostart
-No description available.
-.PARAMETER Startup
-No description available.
-.PARAMETER Hookscript
-No description available.
-.PARAMETER Cipassword
-No description available.
-.PARAMETER Kvm
-No description available.
-.PARAMETER Description
-No description available.
-.PARAMETER Tablet
-No description available.
-.PARAMETER Hotplug
-No description available.
-.PARAMETER Scsihw
-No description available.
-.PARAMETER Vmgenid
-No description available.
-.PARAMETER Name
-No description available.
-.PARAMETER Numa
-No description available.
-.PARAMETER Sockets
-No description available.
-.PARAMETER Agent
-No description available.
-.PARAMETER Ciupgrade
-No description available.
-.PARAMETER Tpmstate0
-No description available.
-.PARAMETER Sshkeys
+.PARAMETER Onboot
 No description available.
 .PARAMETER Cdrom
 No description available.
 .PARAMETER MigrateDowntime
 No description available.
+.PARAMETER Ciupgrade
+No description available.
+.PARAMETER Hookscript
+No description available.
+.PARAMETER Digest
+No description available.
+.PARAMETER Cpu
+No description available.
+.PARAMETER Rng0
+No description available.
+.PARAMETER Agent
+No description available.
+.PARAMETER Cpulimit
+No description available.
+.PARAMETER Scsihw
+No description available.
+.PARAMETER Boot
+No description available.
+.PARAMETER Vmgenid
+No description available.
+.PARAMETER ParallelN
+No description available.
+.PARAMETER NetN
+No description available.
 .PARAMETER Smbios1
 No description available.
-.PARAMETER Cores
+.PARAMETER SerialN
 No description available.
-.PARAMETER Cicustom
+.PARAMETER Tpmstate0
 No description available.
-.PARAMETER IdeN
+.PARAMETER Name
+No description available.
+.PARAMETER Bios
 No description available.
 .PARAMETER Vga
 No description available.
-.PARAMETER Skiplock
+.PARAMETER Sshkeys
 No description available.
-.PARAMETER Template
+.PARAMETER Nameserver
 No description available.
-.PARAMETER Bootdisk
+.PARAMETER Memory
 No description available.
-.PARAMETER UnusedN
+.PARAMETER IdeN
 No description available.
-.PARAMETER Citype
+.PARAMETER Kvm
 No description available.
-.PARAMETER Ivshmem
+.PARAMETER Efidisk0
+No description available.
+.PARAMETER Startdate
+No description available.
+.PARAMETER Vmstatestorage
+No description available.
+.PARAMETER Arch
 No description available.
 .PARAMETER Cpuunits
 No description available.
-.PARAMETER Vmid
+.PARAMETER Autostart
+No description available.
+.PARAMETER Localtime
+No description available.
+.PARAMETER Keyboard
+No description available.
+.PARAMETER Keephugepages
+No description available.
+.PARAMETER MigrateSpeed
+No description available.
+.PARAMETER Hotplug
+No description available.
+.PARAMETER Cipassword
+No description available.
+.PARAMETER Bootdisk
+No description available.
+.PARAMETER Description
+No description available.
+.PARAMETER Template
+No description available.
+.PARAMETER Cicustom
+No description available.
+.PARAMETER Machine
+No description available.
+.PARAMETER Affinity
+No description available.
+.PARAMETER Sockets
+No description available.
+.PARAMETER Smp
+No description available.
+.PARAMETER Tablet
+No description available.
+.PARAMETER IpconfigN
+No description available.
+.PARAMETER Numa
 No description available.
 .PARAMETER Delete
 No description available.
-.PARAMETER Nameserver
+.PARAMETER Startup
+No description available.
+.PARAMETER AmdSev
+No description available.
+.PARAMETER HostpciN
+No description available.
+.PARAMETER Cores
+No description available.
+.PARAMETER Ostype
+No description available.
+.PARAMETER Tags
+No description available.
+.PARAMETER Shares
+No description available.
+.PARAMETER Vcpus
+No description available.
+.PARAMETER VirtioN
+No description available.
+.PARAMETER Skiplock
+No description available.
+.PARAMETER Freeze
+No description available.
+.PARAMETER ScsiN
+No description available.
+.PARAMETER Force
+No description available.
+.PARAMETER SataN
+No description available.
+.PARAMETER Ivshmem
+No description available.
+.PARAMETER Watchdog
+No description available.
+.PARAMETER UnusedN
+No description available.
+.PARAMETER Protection
+No description available.
+.PARAMETER BackgroundDelay
+No description available.
+.PARAMETER Balloon
+No description available.
+.PARAMETER Hugepages
+No description available.
+.PARAMETER VarArgs
+No description available.
+.PARAMETER Revert
+No description available.
+.PARAMETER Acpi
+No description available.
+.PARAMETER NumaN
+No description available.
+.PARAMETER Searchdomain
+No description available.
+.PARAMETER Tdf
+No description available.
+.PARAMETER Ciuser
+No description available.
+.PARAMETER VirtiofsN
+No description available.
+.PARAMETER ImportWorkingStorage
+No description available.
+.PARAMETER UsbN
+No description available.
+.PARAMETER Reboot
+No description available.
+.PARAMETER Audio0
+No description available.
+.PARAMETER Citype
 No description available.
 .OUTPUTS
 
@@ -200,229 +196,15 @@ function Initialize-PVEPOSTNodesQemuConfigRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Balloon},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Shares},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Tdf},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Tags},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${SpiceEnhancements},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${NetN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Protection},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Onboot},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Audio0},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("seabios", "ovmf")]
-        [String]
-        ${Bios},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("de", "de-ch", "da", "en-gb", "en-us", "es", "fi", "fr", "fr-be", "fr-ca", "fr-ch", "hu", "is", "it", "ja", "lt", "mk", "nl", "no", "pl", "pt", "pt-br", "sv", "sl", "tr")]
-        [String]
-        ${Keyboard},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${NumaN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Machine},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${BackgroundDelay},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${HostpciN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(/dev/.+|socket)")]
-        [String]
-        ${SerialN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Efidisk0},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("backup", "clone", "create", "migrate", "rollback", "snapshot", "snapshot-delete", "suspending", "suspended")]
         [String]
         ${Lock},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${ImportWorkingStorage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${VirtiofsN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("other", "wxp", "w2k", "w2k3", "w2k8", "wvista", "win7", "win8", "win10", "win11", "l24", "l26", "solaris")]
-        [String]
-        ${Ostype},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Smp},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(now|\d{4}-\d{1,2}-\d{1,2}(T\d{1,2}:\d{1,2}:\d{1,2})?)")]
-        [String]
-        ${Startdate},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("any", "2", "1024")]
-        [String]
-        ${Hugepages},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vcpus},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${Cpulimit},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${SataN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Freeze},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Digest},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Ciuser},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Force},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${VirtioN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Watchdog},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${AmdSev},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Boot},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${MigrateSpeed},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${ScsiN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${UsbN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Revert},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("x86_64", "aarch64")]
-        [String]
-        ${Arch},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Searchdomain},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Reboot},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Acpi},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Cpu},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${IpconfigN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Memory},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Localtime},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Rng0},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${VarArgs},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Keephugepages},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("/dev/parport\d+|/dev/usb/lp\d+")]
-        [String]
-        ${ParallelN},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Affinity},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Vmstatestorage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Autostart},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Startup},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Hookscript},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Cipassword},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Kvm},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Description},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Tablet},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Hotplug},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("lsi", "lsi53c810", "virtio-scsi-pci", "virtio-scsi-single", "megasas", "pvscsi")]
-        [String]
-        ${Scsihw},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(?:[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}|[01])")]
-        [String]
-        ${Vmgenid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Numa},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Sockets},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Agent},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Ciupgrade},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Tpmstate0},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Sshkeys},
+        [System.Nullable[Boolean]]
+        ${Onboot},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Cdrom},
@@ -430,228 +212,276 @@ function Initialize-PVEPOSTNodesQemuConfigRB {
         [System.Nullable[Decimal]]
         ${MigrateDowntime},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Ciupgrade},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Hookscript},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Digest},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Cpu},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Rng0},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Agent},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Decimal]]
+        ${Cpulimit},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("lsi", "lsi53c810", "virtio-scsi-pci", "virtio-scsi-single", "megasas", "pvscsi")]
+        [String]
+        ${Scsihw},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Boot},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("(?:[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}|[01])")]
+        [String]
+        ${Vmgenid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("/dev/parport\d+|/dev/usb/lp\d+")]
+        [String]
+        ${ParallelN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${NetN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Smbios1},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Cores},
+        [ValidatePattern("(/dev/.+|socket)")]
+        [String]
+        ${SerialN},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Cicustom},
+        ${Tpmstate0},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${IdeN},
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("seabios", "ovmf")]
+        [String]
+        ${Bios},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Vga},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Skiplock},
+        [String]
+        ${Sshkeys},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Nameserver},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Memory},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${IdeN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Kvm},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Efidisk0},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("(now|\d{4}-\d{1,2}-\d{1,2}(T\d{1,2}:\d{1,2}:\d{1,2})?)")]
+        [String]
+        ${Startdate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Vmstatestorage},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("x86_64", "aarch64")]
+        [String]
+        ${Arch},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Template},
+        ${Cpuunits},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Autostart},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Localtime},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("de", "de-ch", "da", "en-gb", "en-us", "es", "fi", "fr", "fr-be", "fr-ca", "fr-ch", "hu", "is", "it", "ja", "lt", "mk", "nl", "no", "pl", "pt", "pt-br", "sv", "sl", "tr")]
+        [String]
+        ${Keyboard},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Keephugepages},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${MigrateSpeed},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Hotplug},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Cipassword},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("(ide|sata|scsi|virtio)\d+")]
         [String]
         ${Bootdisk},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${UnusedN},
+        ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("configdrive2", "nocloud", "opennebula")]
-        [String]
-        ${Citype},
+        [System.Nullable[Boolean]]
+        ${Template},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Ivshmem},
+        ${Cicustom},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Machine},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Affinity},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Cpuunits},
+        ${Sockets},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Vmid},
+        ${Smp},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Tablet},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${IpconfigN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Numa},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Nameserver}
+        ${Startup},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${AmdSev},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${HostpciN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Cores},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("other", "wxp", "w2k", "w2k3", "w2k8", "wvista", "win7", "win8", "win10", "win11", "l24", "l26", "solaris")]
+        [String]
+        ${Ostype},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Tags},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Shares},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vcpus},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${VirtioN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Skiplock},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Freeze},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${ScsiN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Force},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${SataN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Ivshmem},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Watchdog},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${UnusedN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Protection},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${BackgroundDelay},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Balloon},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("any", "2", "1024")]
+        [String]
+        ${Hugepages},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${VarArgs},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Revert},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Acpi},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${NumaN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Searchdomain},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Tdf},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Ciuser},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${VirtiofsN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${ImportWorkingStorage},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${UsbN},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Reboot},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Audio0},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("configdrive2", "nocloud", "opennebula")]
+        [String]
+        ${Citype}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesQemuConfigRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Shares -and $Shares -gt 50000) {
-          throw "invalid value for 'Shares', must be smaller than or equal to 50000."
-        }
-
-        if ($Tdf -and $Tdf -gt 1) {
-          throw "invalid value for 'Tdf', must be smaller than or equal to 1."
-        }
-
-        if ($Tdf -and $Tdf -lt 0) {
-          throw "invalid value for 'Tdf', must be greater than or equal to 0."
-        }
-
-        if ($Protection -and $Protection -gt 1) {
-          throw "invalid value for 'Protection', must be smaller than or equal to 1."
-        }
-
-        if ($Protection -and $Protection -lt 0) {
-          throw "invalid value for 'Protection', must be greater than or equal to 0."
-        }
-
-        if ($Onboot -and $Onboot -gt 1) {
-          throw "invalid value for 'Onboot', must be smaller than or equal to 1."
-        }
-
-        if ($Onboot -and $Onboot -lt 0) {
-          throw "invalid value for 'Onboot', must be greater than or equal to 0."
-        }
-
-        if ($BackgroundDelay -and $BackgroundDelay -gt 30) {
-          throw "invalid value for 'BackgroundDelay', must be smaller than or equal to 30."
-        }
-
-        if ($BackgroundDelay -and $BackgroundDelay -lt 1) {
-          throw "invalid value for 'BackgroundDelay', must be greater than or equal to 1."
-        }
-
-        if ($Smp -and $Smp -lt 1) {
-          throw "invalid value for 'Smp', must be greater than or equal to 1."
-        }
-
-        if ($Vcpus -and $Vcpus -lt 1) {
-          throw "invalid value for 'Vcpus', must be greater than or equal to 1."
+        if (!$Digest -and $Digest.length -gt 40) {
+            throw "invalid value for 'Digest', the character length must be smaller than or equal to 40."
         }
 
         if ($Cpulimit -and $Cpulimit -gt 128) {
           throw "invalid value for 'Cpulimit', must be smaller than or equal to 128."
         }
 
-        if ($Freeze -and $Freeze -gt 1) {
-          throw "invalid value for 'Freeze', must be smaller than or equal to 1."
-        }
-
-        if ($Freeze -and $Freeze -lt 0) {
-          throw "invalid value for 'Freeze', must be greater than or equal to 0."
-        }
-
-        if (!$Digest -and $Digest.length -gt 40) {
-            throw "invalid value for 'Digest', the character length must be smaller than or equal to 40."
-        }
-
-        if ($Force -and $Force -gt 1) {
-          throw "invalid value for 'Force', must be smaller than or equal to 1."
-        }
-
-        if ($Force -and $Force -lt 0) {
-          throw "invalid value for 'Force', must be greater than or equal to 0."
-        }
-
-        if ($Reboot -and $Reboot -gt 1) {
-          throw "invalid value for 'Reboot', must be smaller than or equal to 1."
-        }
-
-        if ($Reboot -and $Reboot -lt 0) {
-          throw "invalid value for 'Reboot', must be greater than or equal to 0."
-        }
-
-        if ($Acpi -and $Acpi -gt 1) {
-          throw "invalid value for 'Acpi', must be smaller than or equal to 1."
-        }
-
-        if ($Acpi -and $Acpi -lt 0) {
-          throw "invalid value for 'Acpi', must be greater than or equal to 0."
-        }
-
-        if ($Localtime -and $Localtime -gt 1) {
-          throw "invalid value for 'Localtime', must be smaller than or equal to 1."
-        }
-
-        if ($Localtime -and $Localtime -lt 0) {
-          throw "invalid value for 'Localtime', must be greater than or equal to 0."
-        }
-
-        if ($Keephugepages -and $Keephugepages -gt 1) {
-          throw "invalid value for 'Keephugepages', must be smaller than or equal to 1."
-        }
-
-        if ($Keephugepages -and $Keephugepages -lt 0) {
-          throw "invalid value for 'Keephugepages', must be greater than or equal to 0."
-        }
-
-        if ($Autostart -and $Autostart -gt 1) {
-          throw "invalid value for 'Autostart', must be smaller than or equal to 1."
-        }
-
-        if ($Autostart -and $Autostart -lt 0) {
-          throw "invalid value for 'Autostart', must be greater than or equal to 0."
-        }
-
-        if ($Kvm -and $Kvm -gt 1) {
-          throw "invalid value for 'Kvm', must be smaller than or equal to 1."
-        }
-
-        if ($Kvm -and $Kvm -lt 0) {
-          throw "invalid value for 'Kvm', must be greater than or equal to 0."
-        }
-
-        if (!$Description -and $Description.length -gt 8192) {
-            throw "invalid value for 'Description', the character length must be smaller than or equal to 8192."
-        }
-
-        if ($Tablet -and $Tablet -gt 1) {
-          throw "invalid value for 'Tablet', must be smaller than or equal to 1."
-        }
-
-        if ($Tablet -and $Tablet -lt 0) {
-          throw "invalid value for 'Tablet', must be greater than or equal to 0."
-        }
-
-        if ($Numa -and $Numa -gt 1) {
-          throw "invalid value for 'Numa', must be smaller than or equal to 1."
-        }
-
-        if ($Numa -and $Numa -lt 0) {
-          throw "invalid value for 'Numa', must be greater than or equal to 0."
-        }
-
-        if ($Sockets -and $Sockets -lt 1) {
-          throw "invalid value for 'Sockets', must be greater than or equal to 1."
-        }
-
-        if ($Ciupgrade -and $Ciupgrade -gt 1) {
-          throw "invalid value for 'Ciupgrade', must be smaller than or equal to 1."
-        }
-
-        if ($Ciupgrade -and $Ciupgrade -lt 0) {
-          throw "invalid value for 'Ciupgrade', must be greater than or equal to 0."
-        }
-
         if (!$Smbios1 -and $Smbios1.length -gt 512) {
             throw "invalid value for 'Smbios1', the character length must be smaller than or equal to 512."
-        }
-
-        if ($Cores -and $Cores -lt 1) {
-          throw "invalid value for 'Cores', must be greater than or equal to 1."
-        }
-
-        if ($Skiplock -and $Skiplock -gt 1) {
-          throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
-        }
-
-        if ($Skiplock -and $Skiplock -lt 0) {
-          throw "invalid value for 'Skiplock', must be greater than or equal to 0."
-        }
-
-        if ($Template -and $Template -gt 1) {
-          throw "invalid value for 'Template', must be smaller than or equal to 1."
-        }
-
-        if ($Template -and $Template -lt 0) {
-          throw "invalid value for 'Template', must be greater than or equal to 0."
         }
 
         if ($Cpuunits -and $Cpuunits -gt 262144) {
@@ -662,23 +492,47 @@ function Initialize-PVEPOSTNodesQemuConfigRB {
           throw "invalid value for 'Cpuunits', must be greater than or equal to 1."
         }
 
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
+        if (!$Description -and $Description.length -gt 8192) {
+            throw "invalid value for 'Description', the character length must be smaller than or equal to 8192."
         }
 
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
+        if ($Sockets -and $Sockets -lt 1) {
+          throw "invalid value for 'Sockets', must be greater than or equal to 1."
+        }
+
+        if ($Smp -and $Smp -lt 1) {
+          throw "invalid value for 'Smp', must be greater than or equal to 1."
+        }
+
+        if ($Cores -and $Cores -lt 1) {
+          throw "invalid value for 'Cores', must be greater than or equal to 1."
+        }
+
+        if ($Shares -and $Shares -gt 50000) {
+          throw "invalid value for 'Shares', must be smaller than or equal to 50000."
+        }
+
+        if ($Vcpus -and $Vcpus -lt 1) {
+          throw "invalid value for 'Vcpus', must be greater than or equal to 1."
+        }
+
+        if ($BackgroundDelay -and $BackgroundDelay -gt 30) {
+          throw "invalid value for 'BackgroundDelay', must be smaller than or equal to 30."
+        }
+
+        if ($BackgroundDelay -and $BackgroundDelay -lt 1) {
+          throw "invalid value for 'BackgroundDelay', must be greater than or equal to 1."
         }
 
 
 		 $DisplayNameMapping =@{
-			"Balloon"="balloon"; "Shares"="shares"; "Tdf"="tdf"; "Tags"="tags"; "SpiceEnhancements"="spice_enhancements"; "NetN"="net[n]"; "Protection"="protection"; "Onboot"="onboot"; "Audio0"="audio0"; "Bios"="bios"; "Keyboard"="keyboard"; "NumaN"="numa[n]"; "Machine"="machine"; "BackgroundDelay"="background_delay"; "HostpciN"="hostpci[n]"; "SerialN"="serial[n]"; "Efidisk0"="efidisk0"; "Lock"="lock"; "ImportWorkingStorage"="import-working-storage"; "VirtiofsN"="virtiofs[n]"; "Ostype"="ostype"; "Smp"="smp"; "Startdate"="startdate"; "Hugepages"="hugepages"; "Vcpus"="vcpus"; "Cpulimit"="cpulimit"; "SataN"="sata[n]"; "Freeze"="freeze"; "Digest"="digest"; "Ciuser"="ciuser"; "Force"="force"; "VirtioN"="virtio[n]"; "Watchdog"="watchdog"; "Node"="node"; "AmdSev"="amd-sev"; "Boot"="boot"; "MigrateSpeed"="migrate_speed"; "ScsiN"="scsi[n]"; "UsbN"="usb[n]"; "Revert"="revert"; "Arch"="arch"; "Searchdomain"="searchdomain"; "Reboot"="reboot"; "Acpi"="acpi"; "Cpu"="cpu"; "IpconfigN"="ipconfig[n]"; "Memory"="memory"; "Localtime"="localtime"; "Rng0"="rng0"; "VarArgs"="args"; "Keephugepages"="keephugepages"; "ParallelN"="parallel[n]"; "Affinity"="affinity"; "Vmstatestorage"="vmstatestorage"; "Autostart"="autostart"; "Startup"="startup"; "Hookscript"="hookscript"; "Cipassword"="cipassword"; "Kvm"="kvm"; "Description"="description"; "Tablet"="tablet"; "Hotplug"="hotplug"; "Scsihw"="scsihw"; "Vmgenid"="vmgenid"; "Name"="name"; "Numa"="numa"; "Sockets"="sockets"; "Agent"="agent"; "Ciupgrade"="ciupgrade"; "Tpmstate0"="tpmstate0"; "Sshkeys"="sshkeys"; "Cdrom"="cdrom"; "MigrateDowntime"="migrate_downtime"; "Smbios1"="smbios1"; "Cores"="cores"; "Cicustom"="cicustom"; "IdeN"="ide[n]"; "Vga"="vga"; "Skiplock"="skiplock"; "Template"="template"; "Bootdisk"="bootdisk"; "UnusedN"="unused[n]"; "Citype"="citype"; "Ivshmem"="ivshmem"; "Cpuunits"="cpuunits"; "Vmid"="vmid"; "Delete"="delete"; "Nameserver"="nameserver"
+			"SpiceEnhancements"="spice_enhancements"; "Lock"="lock"; "Onboot"="onboot"; "Cdrom"="cdrom"; "MigrateDowntime"="migrate_downtime"; "Ciupgrade"="ciupgrade"; "Hookscript"="hookscript"; "Digest"="digest"; "Cpu"="cpu"; "Rng0"="rng0"; "Agent"="agent"; "Cpulimit"="cpulimit"; "Scsihw"="scsihw"; "Boot"="boot"; "Vmgenid"="vmgenid"; "ParallelN"="parallel[n]"; "NetN"="net[n]"; "Smbios1"="smbios1"; "SerialN"="serial[n]"; "Tpmstate0"="tpmstate0"; "Name"="name"; "Bios"="bios"; "Vga"="vga"; "Sshkeys"="sshkeys"; "Nameserver"="nameserver"; "Memory"="memory"; "IdeN"="ide[n]"; "Kvm"="kvm"; "Efidisk0"="efidisk0"; "Startdate"="startdate"; "Vmstatestorage"="vmstatestorage"; "Arch"="arch"; "Cpuunits"="cpuunits"; "Autostart"="autostart"; "Localtime"="localtime"; "Keyboard"="keyboard"; "Keephugepages"="keephugepages"; "MigrateSpeed"="migrate_speed"; "Hotplug"="hotplug"; "Cipassword"="cipassword"; "Bootdisk"="bootdisk"; "Description"="description"; "Template"="template"; "Cicustom"="cicustom"; "Machine"="machine"; "Affinity"="affinity"; "Sockets"="sockets"; "Smp"="smp"; "Tablet"="tablet"; "IpconfigN"="ipconfig[n]"; "Numa"="numa"; "Delete"="delete"; "Startup"="startup"; "AmdSev"="amd-sev"; "HostpciN"="hostpci[n]"; "Cores"="cores"; "Ostype"="ostype"; "Tags"="tags"; "Shares"="shares"; "Vcpus"="vcpus"; "VirtioN"="virtio[n]"; "Skiplock"="skiplock"; "Freeze"="freeze"; "ScsiN"="scsi[n]"; "Force"="force"; "SataN"="sata[n]"; "Ivshmem"="ivshmem"; "Watchdog"="watchdog"; "UnusedN"="unused[n]"; "Protection"="protection"; "BackgroundDelay"="background_delay"; "Balloon"="balloon"; "Hugepages"="hugepages"; "VarArgs"="args"; "Revert"="revert"; "Acpi"="acpi"; "NumaN"="numa[n]"; "Searchdomain"="searchdomain"; "Tdf"="tdf"; "Ciuser"="ciuser"; "VirtiofsN"="virtiofs[n]"; "ImportWorkingStorage"="import-working-storage"; "UsbN"="usb[n]"; "Reboot"="reboot"; "Audio0"="audio0"; "Citype"="citype"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -718,35 +572,11 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuConfigRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesQemuConfigRB
-        $AllProperties = ("balloon", "shares", "tdf", "tags", "spice_enhancements", "net[n]", "protection", "onboot", "audio0", "bios", "keyboard", "numa[n]", "machine", "background_delay", "hostpci[n]", "serial[n]", "efidisk0", "lock", "import-working-storage", "virtiofs[n]", "ostype", "smp", "startdate", "hugepages", "vcpus", "cpulimit", "sata[n]", "freeze", "digest", "ciuser", "force", "virtio[n]", "watchdog", "node", "amd-sev", "boot", "migrate_speed", "scsi[n]", "usb[n]", "revert", "arch", "searchdomain", "reboot", "acpi", "cpu", "ipconfig[n]", "memory", "localtime", "rng0", "args", "keephugepages", "parallel[n]", "affinity", "vmstatestorage", "autostart", "startup", "hookscript", "cipassword", "kvm", "description", "tablet", "hotplug", "scsihw", "vmgenid", "name", "numa", "sockets", "agent", "ciupgrade", "tpmstate0", "sshkeys", "cdrom", "migrate_downtime", "smbios1", "cores", "cicustom", "ide[n]", "vga", "skiplock", "template", "bootdisk", "unused[n]", "citype", "ivshmem", "cpuunits", "vmid", "delete", "nameserver")
+        $AllProperties = ("spice_enhancements", "lock", "onboot", "cdrom", "migrate_downtime", "ciupgrade", "hookscript", "digest", "cpu", "rng0", "agent", "cpulimit", "scsihw", "boot", "vmgenid", "parallel[n]", "net[n]", "smbios1", "serial[n]", "tpmstate0", "name", "bios", "vga", "sshkeys", "nameserver", "memory", "ide[n]", "kvm", "efidisk0", "startdate", "vmstatestorage", "arch", "cpuunits", "autostart", "localtime", "keyboard", "keephugepages", "migrate_speed", "hotplug", "cipassword", "bootdisk", "description", "template", "cicustom", "machine", "affinity", "sockets", "smp", "tablet", "ipconfig[n]", "numa", "delete", "startup", "amd-sev", "hostpci[n]", "cores", "ostype", "tags", "shares", "vcpus", "virtio[n]", "skiplock", "freeze", "scsi[n]", "force", "sata[n]", "ivshmem", "watchdog", "unused[n]", "protection", "background_delay", "balloon", "hugepages", "args", "revert", "acpi", "numa[n]", "searchdomain", "tdf", "ciuser", "virtiofs[n]", "import-working-storage", "usb[n]", "reboot", "audio0", "citype")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "balloon"))) { #optional property not found
-            $Balloon = $null
-        } else {
-            $Balloon = $JsonParameters.PSobject.Properties["balloon"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "shares"))) { #optional property not found
-            $Shares = $null
-        } else {
-            $Shares = $JsonParameters.PSobject.Properties["shares"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tdf"))) { #optional property not found
-            $Tdf = $null
-        } else {
-            $Tdf = $JsonParameters.PSobject.Properties["tdf"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tags"))) { #optional property not found
-            $Tags = $null
-        } else {
-            $Tags = $JsonParameters.PSobject.Properties["tags"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "spice_enhancements"))) { #optional property not found
@@ -755,400 +585,16 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuConfigRB {
             $SpiceEnhancements = $JsonParameters.PSobject.Properties["spice_enhancements"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "net[n]"))) { #optional property not found
-            $NetN = $null
-        } else {
-            $NetN = $JsonParameters.PSobject.Properties["net[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protection"))) { #optional property not found
-            $Protection = $null
-        } else {
-            $Protection = $JsonParameters.PSobject.Properties["protection"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "onboot"))) { #optional property not found
-            $Onboot = $null
-        } else {
-            $Onboot = $JsonParameters.PSobject.Properties["onboot"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "audio0"))) { #optional property not found
-            $Audio0 = $null
-        } else {
-            $Audio0 = $JsonParameters.PSobject.Properties["audio0"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bios"))) { #optional property not found
-            $Bios = $null
-        } else {
-            $Bios = $JsonParameters.PSobject.Properties["bios"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keyboard"))) { #optional property not found
-            $Keyboard = $null
-        } else {
-            $Keyboard = $JsonParameters.PSobject.Properties["keyboard"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "numa[n]"))) { #optional property not found
-            $NumaN = $null
-        } else {
-            $NumaN = $JsonParameters.PSobject.Properties["numa[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "machine"))) { #optional property not found
-            $Machine = $null
-        } else {
-            $Machine = $JsonParameters.PSobject.Properties["machine"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "background_delay"))) { #optional property not found
-            $BackgroundDelay = $null
-        } else {
-            $BackgroundDelay = $JsonParameters.PSobject.Properties["background_delay"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hostpci[n]"))) { #optional property not found
-            $HostpciN = $null
-        } else {
-            $HostpciN = $JsonParameters.PSobject.Properties["hostpci[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "serial[n]"))) { #optional property not found
-            $SerialN = $null
-        } else {
-            $SerialN = $JsonParameters.PSobject.Properties["serial[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "efidisk0"))) { #optional property not found
-            $Efidisk0 = $null
-        } else {
-            $Efidisk0 = $JsonParameters.PSobject.Properties["efidisk0"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "lock"))) { #optional property not found
             $Lock = $null
         } else {
             $Lock = $JsonParameters.PSobject.Properties["lock"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "import-working-storage"))) { #optional property not found
-            $ImportWorkingStorage = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "onboot"))) { #optional property not found
+            $Onboot = $null
         } else {
-            $ImportWorkingStorage = $JsonParameters.PSobject.Properties["import-working-storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "virtiofs[n]"))) { #optional property not found
-            $VirtiofsN = $null
-        } else {
-            $VirtiofsN = $JsonParameters.PSobject.Properties["virtiofs[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ostype"))) { #optional property not found
-            $Ostype = $null
-        } else {
-            $Ostype = $JsonParameters.PSobject.Properties["ostype"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "smp"))) { #optional property not found
-            $Smp = $null
-        } else {
-            $Smp = $JsonParameters.PSobject.Properties["smp"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "startdate"))) { #optional property not found
-            $Startdate = $null
-        } else {
-            $Startdate = $JsonParameters.PSobject.Properties["startdate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hugepages"))) { #optional property not found
-            $Hugepages = $null
-        } else {
-            $Hugepages = $JsonParameters.PSobject.Properties["hugepages"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vcpus"))) { #optional property not found
-            $Vcpus = $null
-        } else {
-            $Vcpus = $JsonParameters.PSobject.Properties["vcpus"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpulimit"))) { #optional property not found
-            $Cpulimit = $null
-        } else {
-            $Cpulimit = $JsonParameters.PSobject.Properties["cpulimit"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sata[n]"))) { #optional property not found
-            $SataN = $null
-        } else {
-            $SataN = $JsonParameters.PSobject.Properties["sata[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "freeze"))) { #optional property not found
-            $Freeze = $null
-        } else {
-            $Freeze = $JsonParameters.PSobject.Properties["freeze"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ciuser"))) { #optional property not found
-            $Ciuser = $null
-        } else {
-            $Ciuser = $JsonParameters.PSobject.Properties["ciuser"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
-            $Force = $null
-        } else {
-            $Force = $JsonParameters.PSobject.Properties["force"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "virtio[n]"))) { #optional property not found
-            $VirtioN = $null
-        } else {
-            $VirtioN = $JsonParameters.PSobject.Properties["virtio[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "watchdog"))) { #optional property not found
-            $Watchdog = $null
-        } else {
-            $Watchdog = $JsonParameters.PSobject.Properties["watchdog"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "amd-sev"))) { #optional property not found
-            $AmdSev = $null
-        } else {
-            $AmdSev = $JsonParameters.PSobject.Properties["amd-sev"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "boot"))) { #optional property not found
-            $Boot = $null
-        } else {
-            $Boot = $JsonParameters.PSobject.Properties["boot"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "migrate_speed"))) { #optional property not found
-            $MigrateSpeed = $null
-        } else {
-            $MigrateSpeed = $JsonParameters.PSobject.Properties["migrate_speed"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scsi[n]"))) { #optional property not found
-            $ScsiN = $null
-        } else {
-            $ScsiN = $JsonParameters.PSobject.Properties["scsi[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "usb[n]"))) { #optional property not found
-            $UsbN = $null
-        } else {
-            $UsbN = $JsonParameters.PSobject.Properties["usb[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "revert"))) { #optional property not found
-            $Revert = $null
-        } else {
-            $Revert = $JsonParameters.PSobject.Properties["revert"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "arch"))) { #optional property not found
-            $Arch = $null
-        } else {
-            $Arch = $JsonParameters.PSobject.Properties["arch"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "searchdomain"))) { #optional property not found
-            $Searchdomain = $null
-        } else {
-            $Searchdomain = $JsonParameters.PSobject.Properties["searchdomain"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "reboot"))) { #optional property not found
-            $Reboot = $null
-        } else {
-            $Reboot = $JsonParameters.PSobject.Properties["reboot"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "acpi"))) { #optional property not found
-            $Acpi = $null
-        } else {
-            $Acpi = $JsonParameters.PSobject.Properties["acpi"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpu"))) { #optional property not found
-            $Cpu = $null
-        } else {
-            $Cpu = $JsonParameters.PSobject.Properties["cpu"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipconfig[n]"))) { #optional property not found
-            $IpconfigN = $null
-        } else {
-            $IpconfigN = $JsonParameters.PSobject.Properties["ipconfig[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "memory"))) { #optional property not found
-            $Memory = $null
-        } else {
-            $Memory = $JsonParameters.PSobject.Properties["memory"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "localtime"))) { #optional property not found
-            $Localtime = $null
-        } else {
-            $Localtime = $JsonParameters.PSobject.Properties["localtime"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rng0"))) { #optional property not found
-            $Rng0 = $null
-        } else {
-            $Rng0 = $JsonParameters.PSobject.Properties["rng0"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "args"))) { #optional property not found
-            $VarArgs = $null
-        } else {
-            $VarArgs = $JsonParameters.PSobject.Properties["args"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keephugepages"))) { #optional property not found
-            $Keephugepages = $null
-        } else {
-            $Keephugepages = $JsonParameters.PSobject.Properties["keephugepages"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "parallel[n]"))) { #optional property not found
-            $ParallelN = $null
-        } else {
-            $ParallelN = $JsonParameters.PSobject.Properties["parallel[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "affinity"))) { #optional property not found
-            $Affinity = $null
-        } else {
-            $Affinity = $JsonParameters.PSobject.Properties["affinity"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmstatestorage"))) { #optional property not found
-            $Vmstatestorage = $null
-        } else {
-            $Vmstatestorage = $JsonParameters.PSobject.Properties["vmstatestorage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "autostart"))) { #optional property not found
-            $Autostart = $null
-        } else {
-            $Autostart = $JsonParameters.PSobject.Properties["autostart"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "startup"))) { #optional property not found
-            $Startup = $null
-        } else {
-            $Startup = $JsonParameters.PSobject.Properties["startup"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hookscript"))) { #optional property not found
-            $Hookscript = $null
-        } else {
-            $Hookscript = $JsonParameters.PSobject.Properties["hookscript"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cipassword"))) { #optional property not found
-            $Cipassword = $null
-        } else {
-            $Cipassword = $JsonParameters.PSobject.Properties["cipassword"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "kvm"))) { #optional property not found
-            $Kvm = $null
-        } else {
-            $Kvm = $JsonParameters.PSobject.Properties["kvm"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
-            $Description = $null
-        } else {
-            $Description = $JsonParameters.PSobject.Properties["description"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tablet"))) { #optional property not found
-            $Tablet = $null
-        } else {
-            $Tablet = $JsonParameters.PSobject.Properties["tablet"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hotplug"))) { #optional property not found
-            $Hotplug = $null
-        } else {
-            $Hotplug = $JsonParameters.PSobject.Properties["hotplug"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scsihw"))) { #optional property not found
-            $Scsihw = $null
-        } else {
-            $Scsihw = $JsonParameters.PSobject.Properties["scsihw"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmgenid"))) { #optional property not found
-            $Vmgenid = $null
-        } else {
-            $Vmgenid = $JsonParameters.PSobject.Properties["vmgenid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "numa"))) { #optional property not found
-            $Numa = $null
-        } else {
-            $Numa = $JsonParameters.PSobject.Properties["numa"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sockets"))) { #optional property not found
-            $Sockets = $null
-        } else {
-            $Sockets = $JsonParameters.PSobject.Properties["sockets"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "agent"))) { #optional property not found
-            $Agent = $null
-        } else {
-            $Agent = $JsonParameters.PSobject.Properties["agent"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ciupgrade"))) { #optional property not found
-            $Ciupgrade = $null
-        } else {
-            $Ciupgrade = $JsonParameters.PSobject.Properties["ciupgrade"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tpmstate0"))) { #optional property not found
-            $Tpmstate0 = $null
-        } else {
-            $Tpmstate0 = $JsonParameters.PSobject.Properties["tpmstate0"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sshkeys"))) { #optional property not found
-            $Sshkeys = $null
-        } else {
-            $Sshkeys = $JsonParameters.PSobject.Properties["sshkeys"].value
+            $Onboot = $JsonParameters.PSobject.Properties["onboot"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "cdrom"))) { #optional property not found
@@ -1163,28 +609,106 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuConfigRB {
             $MigrateDowntime = $JsonParameters.PSobject.Properties["migrate_downtime"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ciupgrade"))) { #optional property not found
+            $Ciupgrade = $null
+        } else {
+            $Ciupgrade = $JsonParameters.PSobject.Properties["ciupgrade"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hookscript"))) { #optional property not found
+            $Hookscript = $null
+        } else {
+            $Hookscript = $JsonParameters.PSobject.Properties["hookscript"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpu"))) { #optional property not found
+            $Cpu = $null
+        } else {
+            $Cpu = $JsonParameters.PSobject.Properties["cpu"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "rng0"))) { #optional property not found
+            $Rng0 = $null
+        } else {
+            $Rng0 = $JsonParameters.PSobject.Properties["rng0"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "agent"))) { #optional property not found
+            $Agent = $null
+        } else {
+            $Agent = $JsonParameters.PSobject.Properties["agent"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpulimit"))) { #optional property not found
+            $Cpulimit = $null
+        } else {
+            $Cpulimit = $JsonParameters.PSobject.Properties["cpulimit"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scsihw"))) { #optional property not found
+            $Scsihw = $null
+        } else {
+            $Scsihw = $JsonParameters.PSobject.Properties["scsihw"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "boot"))) { #optional property not found
+            $Boot = $null
+        } else {
+            $Boot = $JsonParameters.PSobject.Properties["boot"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmgenid"))) { #optional property not found
+            $Vmgenid = $null
+        } else {
+            $Vmgenid = $JsonParameters.PSobject.Properties["vmgenid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "parallel[n]"))) { #optional property not found
+            $ParallelN = $null
+        } else {
+            $ParallelN = $JsonParameters.PSobject.Properties["parallel[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "net[n]"))) { #optional property not found
+            $NetN = $null
+        } else {
+            $NetN = $JsonParameters.PSobject.Properties["net[n]"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "smbios1"))) { #optional property not found
             $Smbios1 = $null
         } else {
             $Smbios1 = $JsonParameters.PSobject.Properties["smbios1"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cores"))) { #optional property not found
-            $Cores = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "serial[n]"))) { #optional property not found
+            $SerialN = $null
         } else {
-            $Cores = $JsonParameters.PSobject.Properties["cores"].value
+            $SerialN = $JsonParameters.PSobject.Properties["serial[n]"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cicustom"))) { #optional property not found
-            $Cicustom = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tpmstate0"))) { #optional property not found
+            $Tpmstate0 = $null
         } else {
-            $Cicustom = $JsonParameters.PSobject.Properties["cicustom"].value
+            $Tpmstate0 = $JsonParameters.PSobject.Properties["tpmstate0"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ide[n]"))) { #optional property not found
-            $IdeN = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
         } else {
-            $IdeN = $JsonParameters.PSobject.Properties["ide[n]"].value
+            $Name = $JsonParameters.PSobject.Properties["name"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bios"))) { #optional property not found
+            $Bios = $null
+        } else {
+            $Bios = $JsonParameters.PSobject.Properties["bios"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vga"))) { #optional property not found
@@ -1193,58 +717,10 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuConfigRB {
             $Vga = $JsonParameters.PSobject.Properties["vga"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
-            $Skiplock = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sshkeys"))) { #optional property not found
+            $Sshkeys = $null
         } else {
-            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "template"))) { #optional property not found
-            $Template = $null
-        } else {
-            $Template = $JsonParameters.PSobject.Properties["template"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bootdisk"))) { #optional property not found
-            $Bootdisk = $null
-        } else {
-            $Bootdisk = $JsonParameters.PSobject.Properties["bootdisk"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "unused[n]"))) { #optional property not found
-            $UnusedN = $null
-        } else {
-            $UnusedN = $JsonParameters.PSobject.Properties["unused[n]"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "citype"))) { #optional property not found
-            $Citype = $null
-        } else {
-            $Citype = $JsonParameters.PSobject.Properties["citype"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ivshmem"))) { #optional property not found
-            $Ivshmem = $null
-        } else {
-            $Ivshmem = $JsonParameters.PSobject.Properties["ivshmem"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpuunits"))) { #optional property not found
-            $Cpuunits = $null
-        } else {
-            $Cpuunits = $JsonParameters.PSobject.Properties["cpuunits"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+            $Sshkeys = $JsonParameters.PSobject.Properties["sshkeys"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "nameserver"))) { #optional property not found
@@ -1253,95 +729,459 @@ function ConvertFrom-PVEJsonToPOSTNodesQemuConfigRB {
             $Nameserver = $JsonParameters.PSobject.Properties["nameserver"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "memory"))) { #optional property not found
+            $Memory = $null
+        } else {
+            $Memory = $JsonParameters.PSobject.Properties["memory"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ide[n]"))) { #optional property not found
+            $IdeN = $null
+        } else {
+            $IdeN = $JsonParameters.PSobject.Properties["ide[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "kvm"))) { #optional property not found
+            $Kvm = $null
+        } else {
+            $Kvm = $JsonParameters.PSobject.Properties["kvm"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "efidisk0"))) { #optional property not found
+            $Efidisk0 = $null
+        } else {
+            $Efidisk0 = $JsonParameters.PSobject.Properties["efidisk0"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "startdate"))) { #optional property not found
+            $Startdate = $null
+        } else {
+            $Startdate = $JsonParameters.PSobject.Properties["startdate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmstatestorage"))) { #optional property not found
+            $Vmstatestorage = $null
+        } else {
+            $Vmstatestorage = $JsonParameters.PSobject.Properties["vmstatestorage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "arch"))) { #optional property not found
+            $Arch = $null
+        } else {
+            $Arch = $JsonParameters.PSobject.Properties["arch"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpuunits"))) { #optional property not found
+            $Cpuunits = $null
+        } else {
+            $Cpuunits = $JsonParameters.PSobject.Properties["cpuunits"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "autostart"))) { #optional property not found
+            $Autostart = $null
+        } else {
+            $Autostart = $JsonParameters.PSobject.Properties["autostart"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "localtime"))) { #optional property not found
+            $Localtime = $null
+        } else {
+            $Localtime = $JsonParameters.PSobject.Properties["localtime"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keyboard"))) { #optional property not found
+            $Keyboard = $null
+        } else {
+            $Keyboard = $JsonParameters.PSobject.Properties["keyboard"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keephugepages"))) { #optional property not found
+            $Keephugepages = $null
+        } else {
+            $Keephugepages = $JsonParameters.PSobject.Properties["keephugepages"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "migrate_speed"))) { #optional property not found
+            $MigrateSpeed = $null
+        } else {
+            $MigrateSpeed = $JsonParameters.PSobject.Properties["migrate_speed"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hotplug"))) { #optional property not found
+            $Hotplug = $null
+        } else {
+            $Hotplug = $JsonParameters.PSobject.Properties["hotplug"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cipassword"))) { #optional property not found
+            $Cipassword = $null
+        } else {
+            $Cipassword = $JsonParameters.PSobject.Properties["cipassword"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bootdisk"))) { #optional property not found
+            $Bootdisk = $null
+        } else {
+            $Bootdisk = $JsonParameters.PSobject.Properties["bootdisk"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
+            $Description = $null
+        } else {
+            $Description = $JsonParameters.PSobject.Properties["description"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "template"))) { #optional property not found
+            $Template = $null
+        } else {
+            $Template = $JsonParameters.PSobject.Properties["template"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cicustom"))) { #optional property not found
+            $Cicustom = $null
+        } else {
+            $Cicustom = $JsonParameters.PSobject.Properties["cicustom"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "machine"))) { #optional property not found
+            $Machine = $null
+        } else {
+            $Machine = $JsonParameters.PSobject.Properties["machine"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "affinity"))) { #optional property not found
+            $Affinity = $null
+        } else {
+            $Affinity = $JsonParameters.PSobject.Properties["affinity"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sockets"))) { #optional property not found
+            $Sockets = $null
+        } else {
+            $Sockets = $JsonParameters.PSobject.Properties["sockets"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "smp"))) { #optional property not found
+            $Smp = $null
+        } else {
+            $Smp = $JsonParameters.PSobject.Properties["smp"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tablet"))) { #optional property not found
+            $Tablet = $null
+        } else {
+            $Tablet = $JsonParameters.PSobject.Properties["tablet"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ipconfig[n]"))) { #optional property not found
+            $IpconfigN = $null
+        } else {
+            $IpconfigN = $JsonParameters.PSobject.Properties["ipconfig[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "numa"))) { #optional property not found
+            $Numa = $null
+        } else {
+            $Numa = $JsonParameters.PSobject.Properties["numa"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "startup"))) { #optional property not found
+            $Startup = $null
+        } else {
+            $Startup = $JsonParameters.PSobject.Properties["startup"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "amd-sev"))) { #optional property not found
+            $AmdSev = $null
+        } else {
+            $AmdSev = $JsonParameters.PSobject.Properties["amd-sev"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hostpci[n]"))) { #optional property not found
+            $HostpciN = $null
+        } else {
+            $HostpciN = $JsonParameters.PSobject.Properties["hostpci[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cores"))) { #optional property not found
+            $Cores = $null
+        } else {
+            $Cores = $JsonParameters.PSobject.Properties["cores"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ostype"))) { #optional property not found
+            $Ostype = $null
+        } else {
+            $Ostype = $JsonParameters.PSobject.Properties["ostype"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tags"))) { #optional property not found
+            $Tags = $null
+        } else {
+            $Tags = $JsonParameters.PSobject.Properties["tags"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "shares"))) { #optional property not found
+            $Shares = $null
+        } else {
+            $Shares = $JsonParameters.PSobject.Properties["shares"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vcpus"))) { #optional property not found
+            $Vcpus = $null
+        } else {
+            $Vcpus = $JsonParameters.PSobject.Properties["vcpus"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "virtio[n]"))) { #optional property not found
+            $VirtioN = $null
+        } else {
+            $VirtioN = $JsonParameters.PSobject.Properties["virtio[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
+            $Skiplock = $null
+        } else {
+            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "freeze"))) { #optional property not found
+            $Freeze = $null
+        } else {
+            $Freeze = $JsonParameters.PSobject.Properties["freeze"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scsi[n]"))) { #optional property not found
+            $ScsiN = $null
+        } else {
+            $ScsiN = $JsonParameters.PSobject.Properties["scsi[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force"))) { #optional property not found
+            $Force = $null
+        } else {
+            $Force = $JsonParameters.PSobject.Properties["force"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sata[n]"))) { #optional property not found
+            $SataN = $null
+        } else {
+            $SataN = $JsonParameters.PSobject.Properties["sata[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ivshmem"))) { #optional property not found
+            $Ivshmem = $null
+        } else {
+            $Ivshmem = $JsonParameters.PSobject.Properties["ivshmem"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "watchdog"))) { #optional property not found
+            $Watchdog = $null
+        } else {
+            $Watchdog = $JsonParameters.PSobject.Properties["watchdog"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "unused[n]"))) { #optional property not found
+            $UnusedN = $null
+        } else {
+            $UnusedN = $JsonParameters.PSobject.Properties["unused[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protection"))) { #optional property not found
+            $Protection = $null
+        } else {
+            $Protection = $JsonParameters.PSobject.Properties["protection"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "background_delay"))) { #optional property not found
+            $BackgroundDelay = $null
+        } else {
+            $BackgroundDelay = $JsonParameters.PSobject.Properties["background_delay"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "balloon"))) { #optional property not found
+            $Balloon = $null
+        } else {
+            $Balloon = $JsonParameters.PSobject.Properties["balloon"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "hugepages"))) { #optional property not found
+            $Hugepages = $null
+        } else {
+            $Hugepages = $JsonParameters.PSobject.Properties["hugepages"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "args"))) { #optional property not found
+            $VarArgs = $null
+        } else {
+            $VarArgs = $JsonParameters.PSobject.Properties["args"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "revert"))) { #optional property not found
+            $Revert = $null
+        } else {
+            $Revert = $JsonParameters.PSobject.Properties["revert"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "acpi"))) { #optional property not found
+            $Acpi = $null
+        } else {
+            $Acpi = $JsonParameters.PSobject.Properties["acpi"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "numa[n]"))) { #optional property not found
+            $NumaN = $null
+        } else {
+            $NumaN = $JsonParameters.PSobject.Properties["numa[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "searchdomain"))) { #optional property not found
+            $Searchdomain = $null
+        } else {
+            $Searchdomain = $JsonParameters.PSobject.Properties["searchdomain"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tdf"))) { #optional property not found
+            $Tdf = $null
+        } else {
+            $Tdf = $JsonParameters.PSobject.Properties["tdf"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ciuser"))) { #optional property not found
+            $Ciuser = $null
+        } else {
+            $Ciuser = $JsonParameters.PSobject.Properties["ciuser"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "virtiofs[n]"))) { #optional property not found
+            $VirtiofsN = $null
+        } else {
+            $VirtiofsN = $JsonParameters.PSobject.Properties["virtiofs[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "import-working-storage"))) { #optional property not found
+            $ImportWorkingStorage = $null
+        } else {
+            $ImportWorkingStorage = $JsonParameters.PSobject.Properties["import-working-storage"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "usb[n]"))) { #optional property not found
+            $UsbN = $null
+        } else {
+            $UsbN = $JsonParameters.PSobject.Properties["usb[n]"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "reboot"))) { #optional property not found
+            $Reboot = $null
+        } else {
+            $Reboot = $JsonParameters.PSobject.Properties["reboot"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "audio0"))) { #optional property not found
+            $Audio0 = $null
+        } else {
+            $Audio0 = $JsonParameters.PSobject.Properties["audio0"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "citype"))) { #optional property not found
+            $Citype = $null
+        } else {
+            $Citype = $JsonParameters.PSobject.Properties["citype"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "balloon" = ${Balloon}
-            "shares" = ${Shares}
-            "tdf" = ${Tdf}
-            "tags" = ${Tags}
             "spice_enhancements" = ${SpiceEnhancements}
-            "net[n]" = ${NetN}
-            "protection" = ${Protection}
-            "onboot" = ${Onboot}
-            "audio0" = ${Audio0}
-            "bios" = ${Bios}
-            "keyboard" = ${Keyboard}
-            "numa[n]" = ${NumaN}
-            "machine" = ${Machine}
-            "background_delay" = ${BackgroundDelay}
-            "hostpci[n]" = ${HostpciN}
-            "serial[n]" = ${SerialN}
-            "efidisk0" = ${Efidisk0}
             "lock" = ${Lock}
-            "import-working-storage" = ${ImportWorkingStorage}
-            "virtiofs[n]" = ${VirtiofsN}
-            "ostype" = ${Ostype}
-            "smp" = ${Smp}
-            "startdate" = ${Startdate}
-            "hugepages" = ${Hugepages}
-            "vcpus" = ${Vcpus}
-            "cpulimit" = ${Cpulimit}
-            "sata[n]" = ${SataN}
-            "freeze" = ${Freeze}
-            "digest" = ${Digest}
-            "ciuser" = ${Ciuser}
-            "force" = ${Force}
-            "virtio[n]" = ${VirtioN}
-            "watchdog" = ${Watchdog}
-            "node" = ${Node}
-            "amd-sev" = ${AmdSev}
-            "boot" = ${Boot}
-            "migrate_speed" = ${MigrateSpeed}
-            "scsi[n]" = ${ScsiN}
-            "usb[n]" = ${UsbN}
-            "revert" = ${Revert}
-            "arch" = ${Arch}
-            "searchdomain" = ${Searchdomain}
-            "reboot" = ${Reboot}
-            "acpi" = ${Acpi}
-            "cpu" = ${Cpu}
-            "ipconfig[n]" = ${IpconfigN}
-            "memory" = ${Memory}
-            "localtime" = ${Localtime}
-            "rng0" = ${Rng0}
-            "args" = ${VarArgs}
-            "keephugepages" = ${Keephugepages}
-            "parallel[n]" = ${ParallelN}
-            "affinity" = ${Affinity}
-            "vmstatestorage" = ${Vmstatestorage}
-            "autostart" = ${Autostart}
-            "startup" = ${Startup}
-            "hookscript" = ${Hookscript}
-            "cipassword" = ${Cipassword}
-            "kvm" = ${Kvm}
-            "description" = ${Description}
-            "tablet" = ${Tablet}
-            "hotplug" = ${Hotplug}
-            "scsihw" = ${Scsihw}
-            "vmgenid" = ${Vmgenid}
-            "name" = ${Name}
-            "numa" = ${Numa}
-            "sockets" = ${Sockets}
-            "agent" = ${Agent}
-            "ciupgrade" = ${Ciupgrade}
-            "tpmstate0" = ${Tpmstate0}
-            "sshkeys" = ${Sshkeys}
+            "onboot" = ${Onboot}
             "cdrom" = ${Cdrom}
             "migrate_downtime" = ${MigrateDowntime}
+            "ciupgrade" = ${Ciupgrade}
+            "hookscript" = ${Hookscript}
+            "digest" = ${Digest}
+            "cpu" = ${Cpu}
+            "rng0" = ${Rng0}
+            "agent" = ${Agent}
+            "cpulimit" = ${Cpulimit}
+            "scsihw" = ${Scsihw}
+            "boot" = ${Boot}
+            "vmgenid" = ${Vmgenid}
+            "parallel[n]" = ${ParallelN}
+            "net[n]" = ${NetN}
             "smbios1" = ${Smbios1}
-            "cores" = ${Cores}
-            "cicustom" = ${Cicustom}
-            "ide[n]" = ${IdeN}
+            "serial[n]" = ${SerialN}
+            "tpmstate0" = ${Tpmstate0}
+            "name" = ${Name}
+            "bios" = ${Bios}
             "vga" = ${Vga}
-            "skiplock" = ${Skiplock}
-            "template" = ${Template}
-            "bootdisk" = ${Bootdisk}
-            "unused[n]" = ${UnusedN}
-            "citype" = ${Citype}
-            "ivshmem" = ${Ivshmem}
-            "cpuunits" = ${Cpuunits}
-            "vmid" = ${Vmid}
-            "delete" = ${Delete}
+            "sshkeys" = ${Sshkeys}
             "nameserver" = ${Nameserver}
+            "memory" = ${Memory}
+            "ide[n]" = ${IdeN}
+            "kvm" = ${Kvm}
+            "efidisk0" = ${Efidisk0}
+            "startdate" = ${Startdate}
+            "vmstatestorage" = ${Vmstatestorage}
+            "arch" = ${Arch}
+            "cpuunits" = ${Cpuunits}
+            "autostart" = ${Autostart}
+            "localtime" = ${Localtime}
+            "keyboard" = ${Keyboard}
+            "keephugepages" = ${Keephugepages}
+            "migrate_speed" = ${MigrateSpeed}
+            "hotplug" = ${Hotplug}
+            "cipassword" = ${Cipassword}
+            "bootdisk" = ${Bootdisk}
+            "description" = ${Description}
+            "template" = ${Template}
+            "cicustom" = ${Cicustom}
+            "machine" = ${Machine}
+            "affinity" = ${Affinity}
+            "sockets" = ${Sockets}
+            "smp" = ${Smp}
+            "tablet" = ${Tablet}
+            "ipconfig[n]" = ${IpconfigN}
+            "numa" = ${Numa}
+            "delete" = ${Delete}
+            "startup" = ${Startup}
+            "amd-sev" = ${AmdSev}
+            "hostpci[n]" = ${HostpciN}
+            "cores" = ${Cores}
+            "ostype" = ${Ostype}
+            "tags" = ${Tags}
+            "shares" = ${Shares}
+            "vcpus" = ${Vcpus}
+            "virtio[n]" = ${VirtioN}
+            "skiplock" = ${Skiplock}
+            "freeze" = ${Freeze}
+            "scsi[n]" = ${ScsiN}
+            "force" = ${Force}
+            "sata[n]" = ${SataN}
+            "ivshmem" = ${Ivshmem}
+            "watchdog" = ${Watchdog}
+            "unused[n]" = ${UnusedN}
+            "protection" = ${Protection}
+            "background_delay" = ${BackgroundDelay}
+            "balloon" = ${Balloon}
+            "hugepages" = ${Hugepages}
+            "args" = ${VarArgs}
+            "revert" = ${Revert}
+            "acpi" = ${Acpi}
+            "numa[n]" = ${NumaN}
+            "searchdomain" = ${Searchdomain}
+            "tdf" = ${Tdf}
+            "ciuser" = ${Ciuser}
+            "virtiofs[n]" = ${VirtiofsN}
+            "import-working-storage" = ${ImportWorkingStorage}
+            "usb[n]" = ${UsbN}
+            "reboot" = ${Reboot}
+            "audio0" = ${Audio0}
+            "citype" = ${Citype}
         }
 
         return $PSO

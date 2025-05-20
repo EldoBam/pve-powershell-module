@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesCephOsdMetadata' {
     Context 'PVENodesCephOsdMetadata' {
         It 'Initialize-PVENodesCephOsdMetadata' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesCephOsdMetadata -Osd "TEST_VALUE" -Devices "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesCephOsdMetadata -Devices "TEST_VALUE" -Osd "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesCephOsdMetadata
             #$NewObject.property | Should -Be 0
         }

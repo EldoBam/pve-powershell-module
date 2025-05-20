@@ -15,9 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Node
+.PARAMETER Name
 No description available.
-.PARAMETER PgNumMin
+.PARAMETER AddStorages
+No description available.
+.PARAMETER TargetSizeRatio
+No description available.
+.PARAMETER Application
+No description available.
+.PARAMETER CrushRule
 No description available.
 .PARAMETER TargetSize
 No description available.
@@ -25,21 +31,13 @@ No description available.
 No description available.
 .PARAMETER PgAutoscaleMode
 No description available.
-.PARAMETER ErasureCoding
-No description available.
-.PARAMETER CrushRule
-No description available.
-.PARAMETER Application
+.PARAMETER PgNum
 No description available.
 .PARAMETER Size
 No description available.
-.PARAMETER AddStorages
+.PARAMETER ErasureCoding
 No description available.
-.PARAMETER PgNum
-No description available.
-.PARAMETER Name
-No description available.
-.PARAMETER TargetSizeRatio
+.PARAMETER PgNumMin
 No description available.
 .OUTPUTS
 
@@ -50,11 +48,22 @@ function Initialize-PVEPOSTNodesCephPoolRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("(?^:^[^:/\s]+$)")]
         [String]
-        ${Node},
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${PgNumMin},
+        [System.Nullable[Boolean]]
+        ${AddStorages},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Decimal]]
+        ${TargetSizeRatio},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("rbd", "cephfs", "rgw")]
+        [String]
+        ${Application},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${CrushRule},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("^(\d+(\.\d+)?)([KMGT])?$")]
         [String]
@@ -67,40 +76,22 @@ function Initialize-PVEPOSTNodesCephPoolRB {
         [String]
         ${PgAutoscaleMode},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${ErasureCoding},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${CrushRule},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("rbd", "cephfs", "rgw")]
-        [String]
-        ${Application},
+        [System.Nullable[Int32]]
+        ${PgNum},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Size},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${AddStorages},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${PgNum},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(?^:^[^:/\s]+$)")]
         [String]
-        ${Name},
+        ${ErasureCoding},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${TargetSizeRatio}
+        [System.Nullable[Int32]]
+        ${PgNumMin}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesCephPoolRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($PgNumMin -and $PgNumMin -gt 32768) {
-          throw "invalid value for 'PgNumMin', must be smaller than or equal to 32768."
-        }
 
         if ($MinSize -and $MinSize -gt 7) {
           throw "invalid value for 'MinSize', must be smaller than or equal to 7."
@@ -108,22 +99,6 @@ function Initialize-PVEPOSTNodesCephPoolRB {
 
         if ($MinSize -and $MinSize -lt 1) {
           throw "invalid value for 'MinSize', must be greater than or equal to 1."
-        }
-
-        if ($Size -and $Size -gt 7) {
-          throw "invalid value for 'Size', must be smaller than or equal to 7."
-        }
-
-        if ($Size -and $Size -lt 1) {
-          throw "invalid value for 'Size', must be greater than or equal to 1."
-        }
-
-        if ($AddStorages -and $AddStorages -gt 1) {
-          throw "invalid value for 'AddStorages', must be smaller than or equal to 1."
-        }
-
-        if ($AddStorages -and $AddStorages -lt 0) {
-          throw "invalid value for 'AddStorages', must be greater than or equal to 0."
         }
 
         if ($PgNum -and $PgNum -gt 32768) {
@@ -134,15 +109,27 @@ function Initialize-PVEPOSTNodesCephPoolRB {
           throw "invalid value for 'PgNum', must be greater than or equal to 1."
         }
 
+        if ($Size -and $Size -gt 7) {
+          throw "invalid value for 'Size', must be smaller than or equal to 7."
+        }
+
+        if ($Size -and $Size -lt 1) {
+          throw "invalid value for 'Size', must be greater than or equal to 1."
+        }
+
+        if ($PgNumMin -and $PgNumMin -gt 32768) {
+          throw "invalid value for 'PgNumMin', must be smaller than or equal to 32768."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Node"="node"; "PgNumMin"="pg_num_min"; "TargetSize"="target_size"; "MinSize"="min_size"; "PgAutoscaleMode"="pg_autoscale_mode"; "ErasureCoding"="erasure-coding"; "CrushRule"="crush_rule"; "Application"="application"; "Size"="size"; "AddStorages"="add_storages"; "PgNum"="pg_num"; "Name"="name"; "TargetSizeRatio"="target_size_ratio"
+			"Name"="name"; "AddStorages"="add_storages"; "TargetSizeRatio"="target_size_ratio"; "Application"="application"; "CrushRule"="crush_rule"; "TargetSize"="target_size"; "MinSize"="min_size"; "PgAutoscaleMode"="pg_autoscale_mode"; "PgNum"="pg_num"; "Size"="size"; "ErasureCoding"="erasure-coding"; "PgNumMin"="pg_num_min"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -182,23 +169,41 @@ function ConvertFrom-PVEJsonToPOSTNodesCephPoolRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCephPoolRB
-        $AllProperties = ("node", "pg_num_min", "target_size", "min_size", "pg_autoscale_mode", "erasure-coding", "crush_rule", "application", "size", "add_storages", "pg_num", "name", "target_size_ratio")
+        $AllProperties = ("name", "add_storages", "target_size_ratio", "application", "crush_rule", "target_size", "min_size", "pg_autoscale_mode", "pg_num", "size", "erasure-coding", "pg_num_min")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num_min"))) { #optional property not found
-            $PgNumMin = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "add_storages"))) { #optional property not found
+            $AddStorages = $null
         } else {
-            $PgNumMin = $JsonParameters.PSobject.Properties["pg_num_min"].value
+            $AddStorages = $JsonParameters.PSobject.Properties["add_storages"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target_size_ratio"))) { #optional property not found
+            $TargetSizeRatio = $null
+        } else {
+            $TargetSizeRatio = $JsonParameters.PSobject.Properties["target_size_ratio"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "application"))) { #optional property not found
+            $Application = $null
+        } else {
+            $Application = $JsonParameters.PSobject.Properties["application"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "crush_rule"))) { #optional property not found
+            $CrushRule = $null
+        } else {
+            $CrushRule = $JsonParameters.PSobject.Properties["crush_rule"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "target_size"))) { #optional property not found
@@ -219,22 +224,10 @@ function ConvertFrom-PVEJsonToPOSTNodesCephPoolRB {
             $PgAutoscaleMode = $JsonParameters.PSobject.Properties["pg_autoscale_mode"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "erasure-coding"))) { #optional property not found
-            $ErasureCoding = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num"))) { #optional property not found
+            $PgNum = $null
         } else {
-            $ErasureCoding = $JsonParameters.PSobject.Properties["erasure-coding"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "crush_rule"))) { #optional property not found
-            $CrushRule = $null
-        } else {
-            $CrushRule = $JsonParameters.PSobject.Properties["crush_rule"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "application"))) { #optional property not found
-            $Application = $null
-        } else {
-            $Application = $JsonParameters.PSobject.Properties["application"].value
+            $PgNum = $JsonParameters.PSobject.Properties["pg_num"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
@@ -243,44 +236,31 @@ function ConvertFrom-PVEJsonToPOSTNodesCephPoolRB {
             $Size = $JsonParameters.PSobject.Properties["size"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "add_storages"))) { #optional property not found
-            $AddStorages = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "erasure-coding"))) { #optional property not found
+            $ErasureCoding = $null
         } else {
-            $AddStorages = $JsonParameters.PSobject.Properties["add_storages"].value
+            $ErasureCoding = $JsonParameters.PSobject.Properties["erasure-coding"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num"))) { #optional property not found
-            $PgNum = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num_min"))) { #optional property not found
+            $PgNumMin = $null
         } else {
-            $PgNum = $JsonParameters.PSobject.Properties["pg_num"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "target_size_ratio"))) { #optional property not found
-            $TargetSizeRatio = $null
-        } else {
-            $TargetSizeRatio = $JsonParameters.PSobject.Properties["target_size_ratio"].value
+            $PgNumMin = $JsonParameters.PSobject.Properties["pg_num_min"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "node" = ${Node}
-            "pg_num_min" = ${PgNumMin}
+            "name" = ${Name}
+            "add_storages" = ${AddStorages}
+            "target_size_ratio" = ${TargetSizeRatio}
+            "application" = ${Application}
+            "crush_rule" = ${CrushRule}
             "target_size" = ${TargetSize}
             "min_size" = ${MinSize}
             "pg_autoscale_mode" = ${PgAutoscaleMode}
-            "erasure-coding" = ${ErasureCoding}
-            "crush_rule" = ${CrushRule}
-            "application" = ${Application}
-            "size" = ${Size}
-            "add_storages" = ${AddStorages}
             "pg_num" = ${PgNum}
-            "name" = ${Name}
-            "target_size_ratio" = ${TargetSizeRatio}
+            "size" = ${Size}
+            "erasure-coding" = ${ErasureCoding}
+            "pg_num_min" = ${PgNumMin}
         }
 
         return $PSO

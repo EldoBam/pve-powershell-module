@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesCephOsdScrubRB' {
     Context 'PVEPOSTNodesCephOsdScrubRB' {
         It 'Initialize-PVEPOSTNodesCephOsdScrubRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesCephOsdScrubRB -Deep "TEST_VALUE" -Osdid "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesCephOsdScrubRB -Deep "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesCephOsdScrubRB
             #$NewObject.property | Should -Be 0
         }

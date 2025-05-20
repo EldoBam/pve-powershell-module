@@ -15,15 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER Skiplock
-No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Purge
-No description available.
 .PARAMETER DestroyUnreferencedDisks
 No description available.
-.PARAMETER Node
+.PARAMETER Skiplock
+No description available.
+.PARAMETER Purge
 No description available.
 .OUTPUTS
 
@@ -34,67 +30,29 @@ function Initialize-PVEDELETENodesQemuRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Skiplock},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Purge},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${DestroyUnreferencedDisks},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Boolean]]
+        ${Skiplock},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Purge}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEDELETENodesQemuRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Skiplock -and $Skiplock -gt 1) {
-          throw "invalid value for 'Skiplock', must be smaller than or equal to 1."
-        }
-
-        if ($Skiplock -and $Skiplock -lt 0) {
-          throw "invalid value for 'Skiplock', must be greater than or equal to 0."
-        }
-
-        if ($Vmid -and $Vmid -gt 999999999) {
-          throw "invalid value for 'Vmid', must be smaller than or equal to 999999999."
-        }
-
-        if ($Vmid -and $Vmid -lt 100) {
-          throw "invalid value for 'Vmid', must be greater than or equal to 100."
-        }
-
-        if ($Purge -and $Purge -gt 1) {
-          throw "invalid value for 'Purge', must be smaller than or equal to 1."
-        }
-
-        if ($Purge -and $Purge -lt 0) {
-          throw "invalid value for 'Purge', must be greater than or equal to 0."
-        }
-
-        if ($DestroyUnreferencedDisks -and $DestroyUnreferencedDisks -gt 1) {
-          throw "invalid value for 'DestroyUnreferencedDisks', must be smaller than or equal to 1."
-        }
-
-        if ($DestroyUnreferencedDisks -and $DestroyUnreferencedDisks -lt 0) {
-          throw "invalid value for 'DestroyUnreferencedDisks', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Skiplock"="skiplock"; "Vmid"="vmid"; "Purge"="purge"; "DestroyUnreferencedDisks"="destroy-unreferenced-disks"; "Node"="node"
+			"DestroyUnreferencedDisks"="destroy-unreferenced-disks"; "Skiplock"="skiplock"; "Purge"="purge"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -134,29 +92,11 @@ function ConvertFrom-PVEJsonToDELETENodesQemuRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEDELETENodesQemuRB
-        $AllProperties = ("skiplock", "vmid", "purge", "destroy-unreferenced-disks", "node")
+        $AllProperties = ("destroy-unreferenced-disks", "skiplock", "purge")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
-            $Skiplock = $null
-        } else {
-            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "purge"))) { #optional property not found
-            $Purge = $null
-        } else {
-            $Purge = $JsonParameters.PSobject.Properties["purge"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "destroy-unreferenced-disks"))) { #optional property not found
@@ -165,18 +105,22 @@ function ConvertFrom-PVEJsonToDELETENodesQemuRB {
             $DestroyUnreferencedDisks = $JsonParameters.PSobject.Properties["destroy-unreferenced-disks"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "skiplock"))) { #optional property not found
+            $Skiplock = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Skiplock = $JsonParameters.PSobject.Properties["skiplock"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "purge"))) { #optional property not found
+            $Purge = $null
+        } else {
+            $Purge = $JsonParameters.PSobject.Properties["purge"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "skiplock" = ${Skiplock}
-            "vmid" = ${Vmid}
-            "purge" = ${Purge}
             "destroy-unreferenced-disks" = ${DestroyUnreferencedDisks}
-            "node" = ${Node}
+            "skiplock" = ${Skiplock}
+            "purge" = ${Purge}
         }
 
         return $PSO

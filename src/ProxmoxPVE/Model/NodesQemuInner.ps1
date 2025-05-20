@@ -15,47 +15,47 @@ No summary available.
 
 No description available.
 
-.PARAMETER Diskread
-No description available.
-.PARAMETER Uptime
-No description available.
-.PARAMETER Cpus
-No description available.
-.PARAMETER Maxdisk
-No description available.
 .PARAMETER Qmpstatus
-No description available.
-.PARAMETER Cpu
-No description available.
-.PARAMETER Tags
-No description available.
-.PARAMETER Status
-No description available.
-.PARAMETER VarPid
-No description available.
-.PARAMETER Vmid
-No description available.
-.PARAMETER Lock
 No description available.
 .PARAMETER Template
 No description available.
+.PARAMETER Status
+No description available.
+.PARAMETER Cpu
+No description available.
 .PARAMETER Serial
 No description available.
-.PARAMETER Netin
-No description available.
-.PARAMETER Mem
-No description available.
-.PARAMETER Netout
-No description available.
-.PARAMETER Diskwrite
-No description available.
-.PARAMETER Maxmem
+.PARAMETER Lock
 No description available.
 .PARAMETER Name
 No description available.
+.PARAMETER Mem
+No description available.
 .PARAMETER RunningQemu
 No description available.
+.PARAMETER Diskwrite
+No description available.
+.PARAMETER Maxdisk
+No description available.
+.PARAMETER VarPid
+No description available.
+.PARAMETER Cpus
+No description available.
+.PARAMETER Maxmem
+No description available.
+.PARAMETER Tags
+No description available.
+.PARAMETER Uptime
+No description available.
+.PARAMETER Vmid
+No description available.
 .PARAMETER RunningMachine
+No description available.
+.PARAMETER Diskread
+No description available.
+.PARAMETER Netin
+No description available.
+.PARAMETER Netout
 No description available.
 .OUTPUTS
 
@@ -66,69 +66,69 @@ function Initialize-PVENodesQemuInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Diskread},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Uptime},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${Cpus},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Maxdisk},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Qmpstatus},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${Cpu},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Tags},
+        [System.Nullable[Boolean]]
+        ${Template},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("stopped", "running")]
         [String]
         ${Status},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VarPid},
+        [System.Nullable[Decimal]]
+        ${Cpu},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Vmid},
+        [System.Nullable[Boolean]]
+        ${Serial},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Lock},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Template},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Serial},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Netin},
+        [String]
+        ${Name},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Mem},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Netout},
+        [String]
+        ${RunningQemu},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Diskwrite},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
+        ${Maxdisk},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${VarPid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Decimal]]
+        ${Cpus},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
         ${Maxmem},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Name},
+        ${Tags},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Uptime},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Vmid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${RunningQemu},
+        ${RunningMachine},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${RunningMachine}
+        [System.Nullable[Int32]]
+        ${Diskread},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Netin},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Netout}
     )
 
     Process {
@@ -143,31 +143,15 @@ function Initialize-PVENodesQemuInner {
           throw "invalid value for 'Vmid', must be greater than or equal to 100."
         }
 
-        if ($Template -and $Template -gt 1) {
-          throw "invalid value for 'Template', must be smaller than or equal to 1."
-        }
-
-        if ($Template -and $Template -lt 0) {
-          throw "invalid value for 'Template', must be greater than or equal to 0."
-        }
-
-        if ($Serial -and $Serial -gt 1) {
-          throw "invalid value for 'Serial', must be smaller than or equal to 1."
-        }
-
-        if ($Serial -and $Serial -lt 0) {
-          throw "invalid value for 'Serial', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Diskread"="diskread"; "Uptime"="uptime"; "Cpus"="cpus"; "Maxdisk"="maxdisk"; "Qmpstatus"="qmpstatus"; "Cpu"="cpu"; "Tags"="tags"; "Status"="status"; "VarPid"="pid"; "Vmid"="vmid"; "Lock"="lock"; "Template"="template"; "Serial"="serial"; "Netin"="netin"; "Mem"="mem"; "Netout"="netout"; "Diskwrite"="diskwrite"; "Maxmem"="maxmem"; "Name"="name"; "RunningQemu"="running-qemu"; "RunningMachine"="running-machine"
+			"Qmpstatus"="qmpstatus"; "Template"="template"; "Status"="status"; "Cpu"="cpu"; "Serial"="serial"; "Lock"="lock"; "Name"="name"; "Mem"="mem"; "RunningQemu"="running-qemu"; "Diskwrite"="diskwrite"; "Maxdisk"="maxdisk"; "VarPid"="pid"; "Cpus"="cpus"; "Maxmem"="maxmem"; "Tags"="tags"; "Uptime"="uptime"; "Vmid"="vmid"; "RunningMachine"="running-machine"; "Diskread"="diskread"; "Netin"="netin"; "Netout"="netout"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -207,35 +191,11 @@ function ConvertFrom-PVEJsonToNodesQemuInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesQemuInner
-        $AllProperties = ("diskread", "uptime", "cpus", "maxdisk", "qmpstatus", "cpu", "tags", "status", "pid", "vmid", "lock", "template", "serial", "netin", "mem", "netout", "diskwrite", "maxmem", "name", "running-qemu", "running-machine")
+        $AllProperties = ("qmpstatus", "template", "status", "cpu", "serial", "lock", "name", "mem", "running-qemu", "diskwrite", "maxdisk", "pid", "cpus", "maxmem", "tags", "uptime", "vmid", "running-machine", "diskread", "netin", "netout")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "diskread"))) { #optional property not found
-            $Diskread = $null
-        } else {
-            $Diskread = $JsonParameters.PSobject.Properties["diskread"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "uptime"))) { #optional property not found
-            $Uptime = $null
-        } else {
-            $Uptime = $JsonParameters.PSobject.Properties["uptime"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpus"))) { #optional property not found
-            $Cpus = $null
-        } else {
-            $Cpus = $JsonParameters.PSobject.Properties["cpus"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxdisk"))) { #optional property not found
-            $Maxdisk = $null
-        } else {
-            $Maxdisk = $JsonParameters.PSobject.Properties["maxdisk"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "qmpstatus"))) { #optional property not found
@@ -244,16 +204,10 @@ function ConvertFrom-PVEJsonToNodesQemuInner {
             $Qmpstatus = $JsonParameters.PSobject.Properties["qmpstatus"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpu"))) { #optional property not found
-            $Cpu = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "template"))) { #optional property not found
+            $Template = $null
         } else {
-            $Cpu = $JsonParameters.PSobject.Properties["cpu"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tags"))) { #optional property not found
-            $Tags = $null
-        } else {
-            $Tags = $JsonParameters.PSobject.Properties["tags"].value
+            $Template = $JsonParameters.PSobject.Properties["template"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "status"))) { #optional property not found
@@ -262,28 +216,10 @@ function ConvertFrom-PVEJsonToNodesQemuInner {
             $Status = $JsonParameters.PSobject.Properties["status"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pid"))) { #optional property not found
-            $VarPid = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpu"))) { #optional property not found
+            $Cpu = $null
         } else {
-            $VarPid = $JsonParameters.PSobject.Properties["pid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
-            $Vmid = $null
-        } else {
-            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lock"))) { #optional property not found
-            $Lock = $null
-        } else {
-            $Lock = $JsonParameters.PSobject.Properties["lock"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "template"))) { #optional property not found
-            $Template = $null
-        } else {
-            $Template = $JsonParameters.PSobject.Properties["template"].value
+            $Cpu = $JsonParameters.PSobject.Properties["cpu"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "serial"))) { #optional property not found
@@ -292,34 +228,10 @@ function ConvertFrom-PVEJsonToNodesQemuInner {
             $Serial = $JsonParameters.PSobject.Properties["serial"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "netin"))) { #optional property not found
-            $Netin = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "lock"))) { #optional property not found
+            $Lock = $null
         } else {
-            $Netin = $JsonParameters.PSobject.Properties["netin"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mem"))) { #optional property not found
-            $Mem = $null
-        } else {
-            $Mem = $JsonParameters.PSobject.Properties["mem"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "netout"))) { #optional property not found
-            $Netout = $null
-        } else {
-            $Netout = $JsonParameters.PSobject.Properties["netout"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "diskwrite"))) { #optional property not found
-            $Diskwrite = $null
-        } else {
-            $Diskwrite = $JsonParameters.PSobject.Properties["diskwrite"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxmem"))) { #optional property not found
-            $Maxmem = $null
-        } else {
-            $Maxmem = $JsonParameters.PSobject.Properties["maxmem"].value
+            $Lock = $JsonParameters.PSobject.Properties["lock"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
@@ -328,10 +240,64 @@ function ConvertFrom-PVEJsonToNodesQemuInner {
             $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mem"))) { #optional property not found
+            $Mem = $null
+        } else {
+            $Mem = $JsonParameters.PSobject.Properties["mem"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "running-qemu"))) { #optional property not found
             $RunningQemu = $null
         } else {
             $RunningQemu = $JsonParameters.PSobject.Properties["running-qemu"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "diskwrite"))) { #optional property not found
+            $Diskwrite = $null
+        } else {
+            $Diskwrite = $JsonParameters.PSobject.Properties["diskwrite"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxdisk"))) { #optional property not found
+            $Maxdisk = $null
+        } else {
+            $Maxdisk = $JsonParameters.PSobject.Properties["maxdisk"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "pid"))) { #optional property not found
+            $VarPid = $null
+        } else {
+            $VarPid = $JsonParameters.PSobject.Properties["pid"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cpus"))) { #optional property not found
+            $Cpus = $null
+        } else {
+            $Cpus = $JsonParameters.PSobject.Properties["cpus"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxmem"))) { #optional property not found
+            $Maxmem = $null
+        } else {
+            $Maxmem = $JsonParameters.PSobject.Properties["maxmem"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tags"))) { #optional property not found
+            $Tags = $null
+        } else {
+            $Tags = $JsonParameters.PSobject.Properties["tags"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "uptime"))) { #optional property not found
+            $Uptime = $null
+        } else {
+            $Uptime = $JsonParameters.PSobject.Properties["uptime"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
+            $Vmid = $null
+        } else {
+            $Vmid = $JsonParameters.PSobject.Properties["vmid"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "running-machine"))) { #optional property not found
@@ -340,28 +306,46 @@ function ConvertFrom-PVEJsonToNodesQemuInner {
             $RunningMachine = $JsonParameters.PSobject.Properties["running-machine"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "diskread"))) { #optional property not found
+            $Diskread = $null
+        } else {
+            $Diskread = $JsonParameters.PSobject.Properties["diskread"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "netin"))) { #optional property not found
+            $Netin = $null
+        } else {
+            $Netin = $JsonParameters.PSobject.Properties["netin"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "netout"))) { #optional property not found
+            $Netout = $null
+        } else {
+            $Netout = $JsonParameters.PSobject.Properties["netout"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "diskread" = ${Diskread}
-            "uptime" = ${Uptime}
-            "cpus" = ${Cpus}
-            "maxdisk" = ${Maxdisk}
             "qmpstatus" = ${Qmpstatus}
-            "cpu" = ${Cpu}
-            "tags" = ${Tags}
-            "status" = ${Status}
-            "pid" = ${VarPid}
-            "vmid" = ${Vmid}
-            "lock" = ${Lock}
             "template" = ${Template}
+            "status" = ${Status}
+            "cpu" = ${Cpu}
             "serial" = ${Serial}
-            "netin" = ${Netin}
-            "mem" = ${Mem}
-            "netout" = ${Netout}
-            "diskwrite" = ${Diskwrite}
-            "maxmem" = ${Maxmem}
+            "lock" = ${Lock}
             "name" = ${Name}
+            "mem" = ${Mem}
             "running-qemu" = ${RunningQemu}
+            "diskwrite" = ${Diskwrite}
+            "maxdisk" = ${Maxdisk}
+            "pid" = ${VarPid}
+            "cpus" = ${Cpus}
+            "maxmem" = ${Maxmem}
+            "tags" = ${Tags}
+            "uptime" = ${Uptime}
+            "vmid" = ${Vmid}
             "running-machine" = ${RunningMachine}
+            "diskread" = ${Diskread}
+            "netin" = ${Netin}
+            "netout" = ${Netout}
         }
 
         return $PSO

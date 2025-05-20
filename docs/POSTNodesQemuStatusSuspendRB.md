@@ -3,21 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Todisk** | **Int32** |  | [optional] 
+**Skiplock** | **Boolean** |  | [optional] 
+**Todisk** | **Boolean** |  | [optional] 
 **Statestorage** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Skiplock** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuStatusSuspendRB = Initialize-PVEPOSTNodesQemuStatusSuspendRB  -Todisk null `
- -Statestorage null `
- -Vmid null `
- -Skiplock null `
- -Node null
+$POSTNodesQemuStatusSuspendRB = Initialize-PVEPOSTNodesQemuStatusSuspendRB  -Skiplock null `
+ -Todisk null `
+ -Statestorage null
 ```
 
 - Convert the resource to JSON

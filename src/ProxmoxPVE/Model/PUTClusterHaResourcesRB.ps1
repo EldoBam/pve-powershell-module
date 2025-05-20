@@ -15,19 +15,17 @@ No summary available.
 
 No description available.
 
+.PARAMETER Delete
+No description available.
 .PARAMETER Group
 No description available.
 .PARAMETER State
 No description available.
+.PARAMETER MaxRelocate
+No description available.
 .PARAMETER Comment
 No description available.
 .PARAMETER MaxRestart
-No description available.
-.PARAMETER MaxRelocate
-No description available.
-.PARAMETER Delete
-No description available.
-.PARAMETER Sid
 No description available.
 .PARAMETER Digest
 No description available.
@@ -41,26 +39,23 @@ function Initialize-PVEPUTClusterHaResourcesRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
+        ${Delete},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
         ${Group},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("started", "stopped", "enabled", "disabled", "ignored")]
         [String]
         ${State},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${MaxRelocate},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Comment},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${MaxRestart},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${MaxRelocate},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Delete},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Sid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest}
@@ -70,12 +65,12 @@ function Initialize-PVEPUTClusterHaResourcesRB {
         'Creating PSCustomObject: ProxmoxPVE => PVEPUTClusterHaResourcesRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if (!$Comment -and $Comment.length -gt 4096) {
-            throw "invalid value for 'Comment', the character length must be smaller than or equal to 4096."
-        }
-
         if (!$Delete -and $Delete.length -gt 4096) {
             throw "invalid value for 'Delete', the character length must be smaller than or equal to 4096."
+        }
+
+        if (!$Comment -and $Comment.length -gt 4096) {
+            throw "invalid value for 'Comment', the character length must be smaller than or equal to 4096."
         }
 
         if (!$Digest -and $Digest.length -gt 64) {
@@ -84,13 +79,13 @@ function Initialize-PVEPUTClusterHaResourcesRB {
 
 
 		 $DisplayNameMapping =@{
-			"Group"="group"; "State"="state"; "Comment"="comment"; "MaxRestart"="max_restart"; "MaxRelocate"="max_relocate"; "Delete"="delete"; "Sid"="sid"; "Digest"="digest"
+			"Delete"="delete"; "Group"="group"; "State"="state"; "MaxRelocate"="max_relocate"; "Comment"="comment"; "MaxRestart"="max_restart"; "Digest"="digest"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -130,11 +125,17 @@ function ConvertFrom-PVEJsonToPUTClusterHaResourcesRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterHaResourcesRB
-        $AllProperties = ("group", "state", "comment", "max_restart", "max_relocate", "delete", "sid", "digest")
+        $AllProperties = ("delete", "group", "state", "max_relocate", "comment", "max_restart", "digest")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
+            $Delete = $null
+        } else {
+            $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "group"))) { #optional property not found
@@ -149,6 +150,12 @@ function ConvertFrom-PVEJsonToPUTClusterHaResourcesRB {
             $State = $JsonParameters.PSobject.Properties["state"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_relocate"))) { #optional property not found
+            $MaxRelocate = $null
+        } else {
+            $MaxRelocate = $JsonParameters.PSobject.Properties["max_relocate"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
             $Comment = $null
         } else {
@@ -161,24 +168,6 @@ function ConvertFrom-PVEJsonToPUTClusterHaResourcesRB {
             $MaxRestart = $JsonParameters.PSobject.Properties["max_restart"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "max_relocate"))) { #optional property not found
-            $MaxRelocate = $null
-        } else {
-            $MaxRelocate = $JsonParameters.PSobject.Properties["max_relocate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
-            $Delete = $null
-        } else {
-            $Delete = $JsonParameters.PSobject.Properties["delete"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sid"))) { #optional property not found
-            $Sid = $null
-        } else {
-            $Sid = $JsonParameters.PSobject.Properties["sid"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
             $Digest = $null
         } else {
@@ -186,13 +175,12 @@ function ConvertFrom-PVEJsonToPUTClusterHaResourcesRB {
         }
 
         $PSO = [PSCustomObject]@{
+            "delete" = ${Delete}
             "group" = ${Group}
             "state" = ${State}
+            "max_relocate" = ${MaxRelocate}
             "comment" = ${Comment}
             "max_restart" = ${MaxRestart}
-            "max_relocate" = ${MaxRelocate}
-            "delete" = ${Delete}
-            "sid" = ${Sid}
             "digest" = ${Digest}
         }
 

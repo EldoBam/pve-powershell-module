@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTClusterSdnZonesRB' {
     Context 'PVEPOSTClusterSdnZonesRB' {
         It 'Initialize-PVEPOSTClusterSdnZonesRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTClusterSdnZonesRB -ExitnodesPrimary "TEST_VALUE" -ExitnodesLocalRouting "TEST_VALUE" -Dns "TEST_VALUE" -RtImport "TEST_VALUE" -Ipam "TEST_VALUE" -Mac "TEST_VALUE" -Bridge "TEST_VALUE" -Mtu "TEST_VALUE" -Exitnodes "TEST_VALUE" -Zone "TEST_VALUE" -Type "TEST_VALUE" -VrfVxlan "TEST_VALUE" -Nodes "TEST_VALUE" -AdvertiseSubnets "TEST_VALUE" -Reversedns "TEST_VALUE" -BridgeDisableMacLearning "TEST_VALUE" -VlanProtocol "TEST_VALUE" -DisableArpNdSuppression "TEST_VALUE" -DpId "TEST_VALUE" -Dhcp "TEST_VALUE" -Tag "TEST_VALUE" -Controller "TEST_VALUE" -VxlanPort "TEST_VALUE" -Peers "TEST_VALUE" -Dnszone "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTClusterSdnZonesRB -Dnszone "TEST_VALUE" -Dhcp "TEST_VALUE" -Dns "TEST_VALUE" -Reversedns "TEST_VALUE" -DisableArpNdSuppression "TEST_VALUE" -Mtu "TEST_VALUE" -Nodes "TEST_VALUE" -AdvertiseSubnets "TEST_VALUE" -Bridge "TEST_VALUE" -VrfVxlan "TEST_VALUE" -BridgeDisableMacLearning "TEST_VALUE" -Tag "TEST_VALUE" -Exitnodes "TEST_VALUE" -ExitnodesLocalRouting "TEST_VALUE" -Controller "TEST_VALUE" -Zone "TEST_VALUE" -VxlanPort "TEST_VALUE" -VlanProtocol "TEST_VALUE" -Type "TEST_VALUE" -DpId "TEST_VALUE" -Ipam "TEST_VALUE" -RtImport "TEST_VALUE" -Peers "TEST_VALUE" -Mac "TEST_VALUE" -ExitnodesPrimary "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTClusterSdnZonesRB
             #$NewObject.property | Should -Be 0
         }

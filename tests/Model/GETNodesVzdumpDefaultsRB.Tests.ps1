@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesVzdumpDefaultsRB' {
     Context 'PVEGETNodesVzdumpDefaultsRB' {
         It 'Initialize-PVEGETNodesVzdumpDefaultsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesVzdumpDefaultsRB -Storage "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesVzdumpDefaultsRB -Storage "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesVzdumpDefaultsRB
             #$NewObject.property | Should -Be 0
         }

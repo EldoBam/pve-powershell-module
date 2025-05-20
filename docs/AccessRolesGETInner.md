@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Roleid** | **String** |  | [optional] 
 **Privs** | **String** |  | [optional] 
-**Special** | **Int32** |  | [optional] 
+**Special** | **Boolean** |  | [optional] 
 
 ## Examples
 

@@ -15,21 +15,19 @@ No summary available.
 
 No description available.
 
+.PARAMETER Delete
+No description available.
 .PARAMETER Ttl
+No description available.
+.PARAMETER Key
 No description available.
 .PARAMETER Reversemaskv6
 No description available.
-.PARAMETER Url
-No description available.
-.PARAMETER Delete
+.PARAMETER Fingerprint
 No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Fingerprint
-No description available.
-.PARAMETER Dns
-No description available.
-.PARAMETER Key
+.PARAMETER Url
 No description available.
 .OUTPUTS
 
@@ -40,30 +38,27 @@ function Initialize-PVEPUTClusterSdnDnsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Ttl},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Reversemaskv6},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Url},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Delete},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Ttl},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Digest},
+        ${Key},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Reversemaskv6},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}")]
         [String]
         ${Fingerprint},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Dns},
+        ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Key}
+        ${Url}
     )
 
     Process {
@@ -80,13 +75,13 @@ function Initialize-PVEPUTClusterSdnDnsRB {
 
 
 		 $DisplayNameMapping =@{
-			"Ttl"="ttl"; "Reversemaskv6"="reversemaskv6"; "Url"="url"; "Delete"="delete"; "Digest"="digest"; "Fingerprint"="fingerprint"; "Dns"="dns"; "Key"="key"
+			"Delete"="delete"; "Ttl"="ttl"; "Key"="key"; "Reversemaskv6"="reversemaskv6"; "Fingerprint"="fingerprint"; "Digest"="digest"; "Url"="url"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -126,29 +121,11 @@ function ConvertFrom-PVEJsonToPUTClusterSdnDnsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTClusterSdnDnsRB
-        $AllProperties = ("ttl", "reversemaskv6", "url", "delete", "digest", "fingerprint", "dns", "key")
+        $AllProperties = ("delete", "ttl", "key", "reversemaskv6", "fingerprint", "digest", "url")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ttl"))) { #optional property not found
-            $Ttl = $null
-        } else {
-            $Ttl = $JsonParameters.PSobject.Properties["ttl"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "reversemaskv6"))) { #optional property not found
-            $Reversemaskv6 = $null
-        } else {
-            $Reversemaskv6 = $JsonParameters.PSobject.Properties["reversemaskv6"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
-            $Url = $null
-        } else {
-            $Url = $JsonParameters.PSobject.Properties["url"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "delete"))) { #optional property not found
@@ -157,22 +134,10 @@ function ConvertFrom-PVEJsonToPUTClusterSdnDnsRB {
             $Delete = $JsonParameters.PSobject.Properties["delete"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ttl"))) { #optional property not found
+            $Ttl = $null
         } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fingerprint"))) { #optional property not found
-            $Fingerprint = $null
-        } else {
-            $Fingerprint = $JsonParameters.PSobject.Properties["fingerprint"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dns"))) { #optional property not found
-            $Dns = $null
-        } else {
-            $Dns = $JsonParameters.PSobject.Properties["dns"].value
+            $Ttl = $JsonParameters.PSobject.Properties["ttl"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "key"))) { #optional property not found
@@ -181,15 +146,38 @@ function ConvertFrom-PVEJsonToPUTClusterSdnDnsRB {
             $Key = $JsonParameters.PSobject.Properties["key"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "reversemaskv6"))) { #optional property not found
+            $Reversemaskv6 = $null
+        } else {
+            $Reversemaskv6 = $JsonParameters.PSobject.Properties["reversemaskv6"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "fingerprint"))) { #optional property not found
+            $Fingerprint = $null
+        } else {
+            $Fingerprint = $JsonParameters.PSobject.Properties["fingerprint"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "url"))) { #optional property not found
+            $Url = $null
+        } else {
+            $Url = $JsonParameters.PSobject.Properties["url"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "ttl" = ${Ttl}
-            "reversemaskv6" = ${Reversemaskv6}
-            "url" = ${Url}
             "delete" = ${Delete}
-            "digest" = ${Digest}
-            "fingerprint" = ${Fingerprint}
-            "dns" = ${Dns}
+            "ttl" = ${Ttl}
             "key" = ${Key}
+            "reversemaskv6" = ${Reversemaskv6}
+            "fingerprint" = ${Fingerprint}
+            "digest" = ${Digest}
+            "url" = ${Url}
         }
 
         return $PSO

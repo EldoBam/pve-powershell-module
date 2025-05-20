@@ -17,8 +17,6 @@ No description available.
 
 .PARAMETER Timezone
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 PUTNodesTimeRB<PSCustomObject>
@@ -29,10 +27,7 @@ function Initialize-PVEPUTNodesTimeRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Timezone},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Timezone}
     )
 
     Process {
@@ -41,13 +36,13 @@ function Initialize-PVEPUTNodesTimeRB {
 
 
 		 $DisplayNameMapping =@{
-			"Timezone"="timezone"; "Node"="node"
+			"Timezone"="timezone"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -87,7 +82,7 @@ function ConvertFrom-PVEJsonToPUTNodesTimeRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTNodesTimeRB
-        $AllProperties = ("timezone", "node")
+        $AllProperties = ("timezone")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -100,15 +95,8 @@ function ConvertFrom-PVEJsonToPUTNodesTimeRB {
             $Timezone = $JsonParameters.PSobject.Properties["timezone"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "timezone" = ${Timezone}
-            "node" = ${Node}
         }
 
         return $PSO

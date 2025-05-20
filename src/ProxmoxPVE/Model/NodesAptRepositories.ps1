@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Infos
-No description available.
-.PARAMETER Errors
+.PARAMETER Files
 No description available.
 .PARAMETER Digest
 No description available.
-.PARAMETER Files
+.PARAMETER Infos
 No description available.
 .PARAMETER StandardRepos
+No description available.
+.PARAMETER Errors
 No description available.
 .OUTPUTS
 
@@ -35,19 +35,19 @@ function Initialize-PVENodesAptRepositories {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${Infos},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Errors},
+        ${Files},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Digest},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${Files},
+        ${Infos},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]
-        ${StandardRepos}
+        ${StandardRepos},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
+        ${Errors}
     )
 
     Process {
@@ -56,13 +56,13 @@ function Initialize-PVENodesAptRepositories {
 
 
 		 $DisplayNameMapping =@{
-			"Infos"="infos"; "Errors"="errors"; "Digest"="digest"; "Files"="files"; "StandardRepos"="standard-repos"
+			"Files"="files"; "Digest"="digest"; "Infos"="infos"; "StandardRepos"="standard-repos"; "Errors"="errors"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -102,29 +102,11 @@ function ConvertFrom-PVEJsonToNodesAptRepositories {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesAptRepositories
-        $AllProperties = ("infos", "errors", "digest", "files", "standard-repos")
+        $AllProperties = ("files", "digest", "infos", "standard-repos", "errors")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "infos"))) { #optional property not found
-            $Infos = $null
-        } else {
-            $Infos = $JsonParameters.PSobject.Properties["infos"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "errors"))) { #optional property not found
-            $Errors = $null
-        } else {
-            $Errors = $JsonParameters.PSobject.Properties["errors"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
-            $Digest = $null
-        } else {
-            $Digest = $JsonParameters.PSobject.Properties["digest"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "files"))) { #optional property not found
@@ -133,18 +115,36 @@ function ConvertFrom-PVEJsonToNodesAptRepositories {
             $Files = $JsonParameters.PSobject.Properties["files"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "digest"))) { #optional property not found
+            $Digest = $null
+        } else {
+            $Digest = $JsonParameters.PSobject.Properties["digest"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "infos"))) { #optional property not found
+            $Infos = $null
+        } else {
+            $Infos = $JsonParameters.PSobject.Properties["infos"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "standard-repos"))) { #optional property not found
             $StandardRepos = $null
         } else {
             $StandardRepos = $JsonParameters.PSobject.Properties["standard-repos"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "errors"))) { #optional property not found
+            $Errors = $null
+        } else {
+            $Errors = $JsonParameters.PSobject.Properties["errors"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "infos" = ${Infos}
-            "errors" = ${Errors}
-            "digest" = ${Digest}
             "files" = ${Files}
+            "digest" = ${Digest}
+            "infos" = ${Infos}
             "standard-repos" = ${StandardRepos}
+            "errors" = ${Errors}
         }
 
         return $PSO

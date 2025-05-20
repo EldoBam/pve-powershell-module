@@ -4,18 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Action** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
 **Service** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesCephCmdsafetyRB = Initialize-PVEGETNodesCephCmdsafetyRB  -Action null `
- -Id null `
  -Service null `
- -Node null
+ -Id null
 ```
 
 - Convert the resource to JSON

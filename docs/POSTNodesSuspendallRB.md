@@ -4,14 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vms** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesSuspendallRB = Initialize-PVEPOSTNodesSuspendallRB  -Vms null `
- -Node null
+$POSTNodesSuspendallRB = Initialize-PVEPOSTNodesSuspendallRB  -Vms null
 ```
 
 - Convert the resource to JSON

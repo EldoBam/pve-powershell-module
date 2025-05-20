@@ -15,17 +15,7 @@ No summary available.
 
 No description available.
 
-.PARAMETER Ctime
-No description available.
-.PARAMETER Notes
-No description available.
-.PARAMETER Format
-No description available.
-.PARAMETER Protected
-No description available.
-.PARAMETER Volid
-No description available.
-.PARAMETER Verification
+.PARAMETER Size
 No description available.
 .PARAMETER Vmid
 No description available.
@@ -33,9 +23,19 @@ No description available.
 No description available.
 .PARAMETER Encrypted
 No description available.
+.PARAMETER Protected
+No description available.
+.PARAMETER Format
+No description available.
+.PARAMETER Ctime
+No description available.
+.PARAMETER Volid
+No description available.
 .PARAMETER Used
 No description available.
-.PARAMETER Size
+.PARAMETER Verification
+No description available.
+.PARAMETER Notes
 No description available.
 .OUTPUTS
 
@@ -47,22 +47,7 @@ function Initialize-PVENodesStorageContentGETInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${Ctime},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Notes},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Format},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Protected},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Volid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
-        ${Verification},
+        ${Size},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Vmid},
@@ -73,34 +58,41 @@ function Initialize-PVENodesStorageContentGETInner {
         [String]
         ${Encrypted},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Protected},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Format},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Ctime},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Volid},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Used},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Size}
+        [PSCustomObject]
+        ${Verification},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Notes}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVENodesStorageContentGETInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Protected -and $Protected -gt 1) {
-          throw "invalid value for 'Protected', must be smaller than or equal to 1."
-        }
-
-        if ($Protected -and $Protected -lt 0) {
-          throw "invalid value for 'Protected', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Ctime"="ctime"; "Notes"="notes"; "Format"="format"; "Protected"="protected"; "Volid"="volid"; "Verification"="verification"; "Vmid"="vmid"; "Parent"="parent"; "Encrypted"="encrypted"; "Used"="used"; "Size"="size"
+			"Size"="size"; "Vmid"="vmid"; "Parent"="parent"; "Encrypted"="encrypted"; "Protected"="protected"; "Format"="format"; "Ctime"="ctime"; "Volid"="volid"; "Used"="used"; "Verification"="verification"; "Notes"="notes"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -140,47 +132,17 @@ function ConvertFrom-PVEJsonToNodesStorageContentGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesStorageContentGETInner
-        $AllProperties = ("ctime", "notes", "format", "protected", "volid", "verification", "vmid", "parent", "encrypted", "used", "size")
+        $AllProperties = ("size", "vmid", "parent", "encrypted", "protected", "format", "ctime", "volid", "used", "verification", "notes")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ctime"))) { #optional property not found
-            $Ctime = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
+            $Size = $null
         } else {
-            $Ctime = $JsonParameters.PSobject.Properties["ctime"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notes"))) { #optional property not found
-            $Notes = $null
-        } else {
-            $Notes = $JsonParameters.PSobject.Properties["notes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "format"))) { #optional property not found
-            $Format = $null
-        } else {
-            $Format = $JsonParameters.PSobject.Properties["format"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protected"))) { #optional property not found
-            $Protected = $null
-        } else {
-            $Protected = $JsonParameters.PSobject.Properties["protected"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volid"))) { #optional property not found
-            $Volid = $null
-        } else {
-            $Volid = $JsonParameters.PSobject.Properties["volid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "verification"))) { #optional property not found
-            $Verification = $null
-        } else {
-            $Verification = $JsonParameters.PSobject.Properties["verification"].value
+            $Size = $JsonParameters.PSobject.Properties["size"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vmid"))) { #optional property not found
@@ -201,30 +163,60 @@ function ConvertFrom-PVEJsonToNodesStorageContentGETInner {
             $Encrypted = $JsonParameters.PSobject.Properties["encrypted"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "protected"))) { #optional property not found
+            $Protected = $null
+        } else {
+            $Protected = $JsonParameters.PSobject.Properties["protected"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "format"))) { #optional property not found
+            $Format = $null
+        } else {
+            $Format = $JsonParameters.PSobject.Properties["format"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "ctime"))) { #optional property not found
+            $Ctime = $null
+        } else {
+            $Ctime = $JsonParameters.PSobject.Properties["ctime"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "volid"))) { #optional property not found
+            $Volid = $null
+        } else {
+            $Volid = $JsonParameters.PSobject.Properties["volid"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "used"))) { #optional property not found
             $Used = $null
         } else {
             $Used = $JsonParameters.PSobject.Properties["used"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "size"))) { #optional property not found
-            $Size = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "verification"))) { #optional property not found
+            $Verification = $null
         } else {
-            $Size = $JsonParameters.PSobject.Properties["size"].value
+            $Verification = $JsonParameters.PSobject.Properties["verification"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "notes"))) { #optional property not found
+            $Notes = $null
+        } else {
+            $Notes = $JsonParameters.PSobject.Properties["notes"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "ctime" = ${Ctime}
-            "notes" = ${Notes}
-            "format" = ${Format}
-            "protected" = ${Protected}
-            "volid" = ${Volid}
-            "verification" = ${Verification}
+            "size" = ${Size}
             "vmid" = ${Vmid}
             "parent" = ${Parent}
             "encrypted" = ${Encrypted}
+            "protected" = ${Protected}
+            "format" = ${Format}
+            "ctime" = ${Ctime}
+            "volid" = ${Volid}
             "used" = ${Used}
-            "size" = ${Size}
+            "verification" = ${Verification}
+            "notes" = ${Notes}
         }
 
         return $PSO

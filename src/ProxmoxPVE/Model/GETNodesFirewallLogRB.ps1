@@ -23,8 +23,6 @@ No description available.
 No description available.
 .PARAMETER VarUntil
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 GETNodesFirewallLogRB<PSCustomObject>
@@ -44,10 +42,7 @@ function Initialize-PVEGETNodesFirewallLogRB {
         ${Since},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${VarUntil},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${VarUntil}
     )
 
     Process {
@@ -56,13 +51,13 @@ function Initialize-PVEGETNodesFirewallLogRB {
 
 
 		 $DisplayNameMapping =@{
-			"Limit"="limit"; "Start"="start"; "Since"="since"; "VarUntil"="until"; "Node"="node"
+			"Limit"="limit"; "Start"="start"; "Since"="since"; "VarUntil"="until"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -102,7 +97,7 @@ function ConvertFrom-PVEJsonToGETNodesFirewallLogRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesFirewallLogRB
-        $AllProperties = ("limit", "start", "since", "until", "node")
+        $AllProperties = ("limit", "start", "since", "until")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -133,18 +128,11 @@ function ConvertFrom-PVEJsonToGETNodesFirewallLogRB {
             $VarUntil = $JsonParameters.PSobject.Properties["until"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "limit" = ${Limit}
             "start" = ${Start}
             "since" = ${Since}
             "until" = ${VarUntil}
-            "node" = ${Node}
         }
 
         return $PSO

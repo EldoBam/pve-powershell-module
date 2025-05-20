@@ -3,19 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Subnet** | **String** |  | [optional] 
-**Vnet** | **String** |  | [optional] 
-**Pending** | **Int32** |  | [optional] 
-**Running** | **Int32** |  | [optional] 
+**Running** | **Boolean** |  | [optional] 
+**Pending** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETClusterSdnVnetsSubnetsRB = Initialize-PVEGETClusterSdnVnetsSubnetsRB  -Subnet null `
- -Vnet null `
- -Pending null `
- -Running null
+$GETClusterSdnVnetsSubnetsRB = Initialize-PVEGETClusterSdnVnetsSubnetsRB  -Running null `
+ -Pending null
 ```
 
 - Convert the resource to JSON

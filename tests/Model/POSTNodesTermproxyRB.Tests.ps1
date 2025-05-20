@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPOSTNodesTermproxyRB' {
     Context 'PVEPOSTNodesTermproxyRB' {
         It 'Initialize-PVEPOSTNodesTermproxyRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPOSTNodesTermproxyRB -CmdOpts "TEST_VALUE" -Node "TEST_VALUE" -Cmd "TEST_VALUE"
+            #$NewObject = Initialize-PVEPOSTNodesTermproxyRB -Cmd "TEST_VALUE" -CmdOpts "TEST_VALUE"
             #$NewObject | Should -BeOfType POSTNodesTermproxyRB
             #$NewObject.property | Should -Be 0
         }

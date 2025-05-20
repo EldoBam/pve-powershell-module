@@ -19,8 +19,6 @@ No description available.
 No description available.
 .PARAMETER VerifyCertificates
 No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 GETNodesQueryurlmetadataRB<PSCustomObject>
@@ -34,34 +32,23 @@ function Initialize-PVEGETNodesQueryurlmetadataRB {
         [String]
         ${Url},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${VerifyCertificates},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Boolean]]
+        ${VerifyCertificates}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETNodesQueryurlmetadataRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($VerifyCertificates -and $VerifyCertificates -gt 1) {
-          throw "invalid value for 'VerifyCertificates', must be smaller than or equal to 1."
-        }
-
-        if ($VerifyCertificates -and $VerifyCertificates -lt 0) {
-          throw "invalid value for 'VerifyCertificates', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Url"="url"; "VerifyCertificates"="verify-certificates"; "Node"="node"
+			"Url"="url"; "VerifyCertificates"="verify-certificates"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -101,7 +88,7 @@ function ConvertFrom-PVEJsonToGETNodesQueryurlmetadataRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesQueryurlmetadataRB
-        $AllProperties = ("url", "verify-certificates", "node")
+        $AllProperties = ("url", "verify-certificates")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -120,16 +107,9 @@ function ConvertFrom-PVEJsonToGETNodesQueryurlmetadataRB {
             $VerifyCertificates = $JsonParameters.PSobject.Properties["verify-certificates"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "url" = ${Url}
             "verify-certificates" = ${VerifyCertificates}
-            "node" = ${Node}
         }
 
         return $PSO

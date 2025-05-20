@@ -15,15 +15,13 @@ No summary available.
 
 No description available.
 
-.PARAMETER Vms
-No description available.
-.PARAMETER Maxworkers
-No description available.
 .PARAMETER Target
+No description available.
+.PARAMETER Vms
 No description available.
 .PARAMETER WithLocalDisks
 No description available.
-.PARAMETER Node
+.PARAMETER Maxworkers
 No description available.
 .OUTPUTS
 
@@ -35,19 +33,16 @@ function Initialize-PVEPOSTNodesMigrateallRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Vms},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Maxworkers},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
         ${Target},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [String]
+        ${Vms},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
         ${WithLocalDisks},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Int32]]
+        ${Maxworkers}
     )
 
     Process {
@@ -58,23 +53,15 @@ function Initialize-PVEPOSTNodesMigrateallRB {
           throw "invalid value for 'Maxworkers', must be greater than or equal to 1."
         }
 
-        if ($WithLocalDisks -and $WithLocalDisks -gt 1) {
-          throw "invalid value for 'WithLocalDisks', must be smaller than or equal to 1."
-        }
-
-        if ($WithLocalDisks -and $WithLocalDisks -lt 0) {
-          throw "invalid value for 'WithLocalDisks', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Vms"="vms"; "Maxworkers"="maxworkers"; "Target"="target"; "WithLocalDisks"="with-local-disks"; "Node"="node"
+			"Target"="target"; "Vms"="vms"; "WithLocalDisks"="with-local-disks"; "Maxworkers"="maxworkers"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -114,23 +101,11 @@ function ConvertFrom-PVEJsonToPOSTNodesMigrateallRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesMigrateallRB
-        $AllProperties = ("vms", "maxworkers", "target", "with-local-disks", "node")
+        $AllProperties = ("target", "vms", "with-local-disks", "maxworkers")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vms"))) { #optional property not found
-            $Vms = $null
-        } else {
-            $Vms = $JsonParameters.PSobject.Properties["vms"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxworkers"))) { #optional property not found
-            $Maxworkers = $null
-        } else {
-            $Maxworkers = $JsonParameters.PSobject.Properties["maxworkers"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "target"))) { #optional property not found
@@ -139,24 +114,29 @@ function ConvertFrom-PVEJsonToPOSTNodesMigrateallRB {
             $Target = $JsonParameters.PSobject.Properties["target"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "vms"))) { #optional property not found
+            $Vms = $null
+        } else {
+            $Vms = $JsonParameters.PSobject.Properties["vms"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "with-local-disks"))) { #optional property not found
             $WithLocalDisks = $null
         } else {
             $WithLocalDisks = $JsonParameters.PSobject.Properties["with-local-disks"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "maxworkers"))) { #optional property not found
+            $Maxworkers = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Maxworkers = $JsonParameters.PSobject.Properties["maxworkers"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "vms" = ${Vms}
-            "maxworkers" = ${Maxworkers}
             "target" = ${Target}
+            "vms" = ${Vms}
             "with-local-disks" = ${WithLocalDisks}
-            "node" = ${Node}
+            "maxworkers" = ${Maxworkers}
         }
 
         return $PSO

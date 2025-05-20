@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterAcmePluginsRB' {
     Context 'PVEPUTClusterAcmePluginsRB' {
         It 'Initialize-PVEPUTClusterAcmePluginsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterAcmePluginsRB -ValidationDelay "TEST_VALUE" -Nodes "TEST_VALUE" -Api "TEST_VALUE" -Disable "TEST_VALUE" -Delete "TEST_VALUE" -Id "TEST_VALUE" -Digest "TEST_VALUE" -VarData "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterAcmePluginsRB -Delete "TEST_VALUE" -Api "TEST_VALUE" -Nodes "TEST_VALUE" -VarData "TEST_VALUE" -Disable "TEST_VALUE" -ValidationDelay "TEST_VALUE" -Digest "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterAcmePluginsRB
             #$NewObject.property | Should -Be 0
         }

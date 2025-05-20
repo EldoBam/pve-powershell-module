@@ -15,9 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER Share
-No description available.
 .PARAMETER Description
+No description available.
+.PARAMETER Share
 No description available.
 .OUTPUTS
 
@@ -29,10 +29,10 @@ function Initialize-PVENodesScanCifsInner {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Share},
+        ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Description}
+        ${Share}
     )
 
     Process {
@@ -41,13 +41,13 @@ function Initialize-PVENodesScanCifsInner {
 
 
 		 $DisplayNameMapping =@{
-			"Share"="share"; "Description"="description"
+			"Description"="description"; "Share"="share"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -87,17 +87,11 @@ function ConvertFrom-PVEJsonToNodesScanCifsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVENodesScanCifsInner
-        $AllProperties = ("share", "description")
+        $AllProperties = ("description", "share")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "share"))) { #optional property not found
-            $Share = $null
-        } else {
-            $Share = $JsonParameters.PSobject.Properties["share"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "description"))) { #optional property not found
@@ -106,9 +100,15 @@ function ConvertFrom-PVEJsonToNodesScanCifsInner {
             $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "share"))) { #optional property not found
+            $Share = $null
+        } else {
+            $Share = $JsonParameters.PSobject.Properties["share"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "share" = ${Share}
             "description" = ${Description}
+            "share" = ${Share}
         }
 
         return $PSO

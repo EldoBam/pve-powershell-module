@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesQemuInner' {
     Context 'PVENodesQemuInner' {
         It 'Initialize-PVENodesQemuInner' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesQemuInner -Diskread "TEST_VALUE" -Uptime "TEST_VALUE" -Cpus "TEST_VALUE" -Maxdisk "TEST_VALUE" -Qmpstatus "TEST_VALUE" -Cpu "TEST_VALUE" -Tags "TEST_VALUE" -Status "TEST_VALUE" -VarPid "TEST_VALUE" -Vmid "TEST_VALUE" -Lock "TEST_VALUE" -Template "TEST_VALUE" -Serial "TEST_VALUE" -Netin "TEST_VALUE" -Mem "TEST_VALUE" -Netout "TEST_VALUE" -Diskwrite "TEST_VALUE" -Maxmem "TEST_VALUE" -Name "TEST_VALUE" -RunningQemu "TEST_VALUE" -RunningMachine "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesQemuInner -Qmpstatus "TEST_VALUE" -Template "TEST_VALUE" -Status "TEST_VALUE" -Cpu "TEST_VALUE" -Serial "TEST_VALUE" -Lock "TEST_VALUE" -Name "TEST_VALUE" -Mem "TEST_VALUE" -RunningQemu "TEST_VALUE" -Diskwrite "TEST_VALUE" -Maxdisk "TEST_VALUE" -VarPid "TEST_VALUE" -Cpus "TEST_VALUE" -Maxmem "TEST_VALUE" -Tags "TEST_VALUE" -Uptime "TEST_VALUE" -Vmid "TEST_VALUE" -RunningMachine "TEST_VALUE" -Diskread "TEST_VALUE" -Netin "TEST_VALUE" -Netout "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesQemuInner
             #$NewObject.property | Should -Be 0
         }

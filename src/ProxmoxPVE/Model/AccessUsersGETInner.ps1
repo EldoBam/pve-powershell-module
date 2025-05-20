@@ -15,31 +15,31 @@ No summary available.
 
 No description available.
 
+.PARAMETER TfaLockedUntil
+No description available.
 .PARAMETER RealmType
 No description available.
 .PARAMETER Lastname
 No description available.
-.PARAMETER TfaLockedUntil
-No description available.
-.PARAMETER Comment
-No description available.
-.PARAMETER Keys
-No description available.
-.PARAMETER TotpLocked
-No description available.
-.PARAMETER Expire
+.PARAMETER Firstname
 No description available.
 .PARAMETER Tokens
 No description available.
+.PARAMETER Enable
+No description available.
+.PARAMETER TotpLocked
+No description available.
 .PARAMETER Groups
 No description available.
-.PARAMETER Enable
+.PARAMETER Keys
+No description available.
+.PARAMETER Expire
 No description available.
 .PARAMETER Email
 No description available.
-.PARAMETER Firstname
-No description available.
 .PARAMETER Userid
+No description available.
+.PARAMETER Comment
 No description available.
 .OUTPUTS
 
@@ -50,45 +50,45 @@ function Initialize-PVEAccessUsersGETInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${TfaLockedUntil},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${RealmType},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Lastname},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${TfaLockedUntil},
+        [String]
+        ${Firstname},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [PSCustomObject[]]
+        ${Tokens},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Enable},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${TotpLocked},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Comment},
+        ${Groups},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("[0-9a-zA-Z!=]{0,4096}")]
         [String]
         ${Keys},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${TotpLocked},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${Expire},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Tokens},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Groups},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enable},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Email},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Firstname},
+        ${Userid},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Userid}
+        ${Comment}
     )
 
     Process {
@@ -99,47 +99,31 @@ function Initialize-PVEAccessUsersGETInner {
             throw "invalid value for 'Lastname', the character length must be smaller than or equal to 1024."
         }
 
-        if (!$Comment -and $Comment.length -gt 2048) {
-            throw "invalid value for 'Comment', the character length must be smaller than or equal to 2048."
-        }
-
-        if ($TotpLocked -and $TotpLocked -gt 1) {
-          throw "invalid value for 'TotpLocked', must be smaller than or equal to 1."
-        }
-
-        if ($TotpLocked -and $TotpLocked -lt 0) {
-          throw "invalid value for 'TotpLocked', must be greater than or equal to 0."
-        }
-
-        if ($Enable -and $Enable -gt 1) {
-          throw "invalid value for 'Enable', must be smaller than or equal to 1."
-        }
-
-        if ($Enable -and $Enable -lt 0) {
-          throw "invalid value for 'Enable', must be greater than or equal to 0."
+        if (!$Firstname -and $Firstname.length -gt 1024) {
+            throw "invalid value for 'Firstname', the character length must be smaller than or equal to 1024."
         }
 
         if (!$Email -and $Email.length -gt 254) {
             throw "invalid value for 'Email', the character length must be smaller than or equal to 254."
         }
 
-        if (!$Firstname -and $Firstname.length -gt 1024) {
-            throw "invalid value for 'Firstname', the character length must be smaller than or equal to 1024."
-        }
-
         if (!$Userid -and $Userid.length -gt 64) {
             throw "invalid value for 'Userid', the character length must be smaller than or equal to 64."
         }
 
+        if (!$Comment -and $Comment.length -gt 2048) {
+            throw "invalid value for 'Comment', the character length must be smaller than or equal to 2048."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"RealmType"="realm-type"; "Lastname"="lastname"; "TfaLockedUntil"="tfa-locked-until"; "Comment"="comment"; "Keys"="keys"; "TotpLocked"="totp-locked"; "Expire"="expire"; "Tokens"="tokens"; "Groups"="groups"; "Enable"="enable"; "Email"="email"; "Firstname"="firstname"; "Userid"="userid"
+			"TfaLockedUntil"="tfa-locked-until"; "RealmType"="realm-type"; "Lastname"="lastname"; "Firstname"="firstname"; "Tokens"="tokens"; "Enable"="enable"; "TotpLocked"="totp-locked"; "Groups"="groups"; "Keys"="keys"; "Expire"="expire"; "Email"="email"; "Userid"="userid"; "Comment"="comment"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -179,11 +163,17 @@ function ConvertFrom-PVEJsonToAccessUsersGETInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEAccessUsersGETInner
-        $AllProperties = ("realm-type", "lastname", "tfa-locked-until", "comment", "keys", "totp-locked", "expire", "tokens", "groups", "enable", "email", "firstname", "userid")
+        $AllProperties = ("tfa-locked-until", "realm-type", "lastname", "firstname", "tokens", "enable", "totp-locked", "groups", "keys", "expire", "email", "userid", "comment")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tfa-locked-until"))) { #optional property not found
+            $TfaLockedUntil = $null
+        } else {
+            $TfaLockedUntil = $JsonParameters.PSobject.Properties["tfa-locked-until"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm-type"))) { #optional property not found
@@ -198,34 +188,10 @@ function ConvertFrom-PVEJsonToAccessUsersGETInner {
             $Lastname = $JsonParameters.PSobject.Properties["lastname"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "tfa-locked-until"))) { #optional property not found
-            $TfaLockedUntil = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "firstname"))) { #optional property not found
+            $Firstname = $null
         } else {
-            $TfaLockedUntil = $JsonParameters.PSobject.Properties["tfa-locked-until"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keys"))) { #optional property not found
-            $Keys = $null
-        } else {
-            $Keys = $JsonParameters.PSobject.Properties["keys"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "totp-locked"))) { #optional property not found
-            $TotpLocked = $null
-        } else {
-            $TotpLocked = $JsonParameters.PSobject.Properties["totp-locked"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expire"))) { #optional property not found
-            $Expire = $null
-        } else {
-            $Expire = $JsonParameters.PSobject.Properties["expire"].value
+            $Firstname = $JsonParameters.PSobject.Properties["firstname"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "tokens"))) { #optional property not found
@@ -234,16 +200,34 @@ function ConvertFrom-PVEJsonToAccessUsersGETInner {
             $Tokens = $JsonParameters.PSobject.Properties["tokens"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
+            $Enable = $null
+        } else {
+            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "totp-locked"))) { #optional property not found
+            $TotpLocked = $null
+        } else {
+            $TotpLocked = $JsonParameters.PSobject.Properties["totp-locked"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "groups"))) { #optional property not found
             $Groups = $null
         } else {
             $Groups = $JsonParameters.PSobject.Properties["groups"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
-            $Enable = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "keys"))) { #optional property not found
+            $Keys = $null
         } else {
-            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+            $Keys = $JsonParameters.PSobject.Properties["keys"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "expire"))) { #optional property not found
+            $Expire = $null
+        } else {
+            $Expire = $JsonParameters.PSobject.Properties["expire"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "email"))) { #optional property not found
@@ -252,32 +236,32 @@ function ConvertFrom-PVEJsonToAccessUsersGETInner {
             $Email = $JsonParameters.PSobject.Properties["email"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "firstname"))) { #optional property not found
-            $Firstname = $null
-        } else {
-            $Firstname = $JsonParameters.PSobject.Properties["firstname"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "userid"))) { #optional property not found
             $Userid = $null
         } else {
             $Userid = $JsonParameters.PSobject.Properties["userid"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
         $PSO = [PSCustomObject]@{
+            "tfa-locked-until" = ${TfaLockedUntil}
             "realm-type" = ${RealmType}
             "lastname" = ${Lastname}
-            "tfa-locked-until" = ${TfaLockedUntil}
-            "comment" = ${Comment}
-            "keys" = ${Keys}
-            "totp-locked" = ${TotpLocked}
-            "expire" = ${Expire}
-            "tokens" = ${Tokens}
-            "groups" = ${Groups}
-            "enable" = ${Enable}
-            "email" = ${Email}
             "firstname" = ${Firstname}
+            "tokens" = ${Tokens}
+            "enable" = ${Enable}
+            "totp-locked" = ${TotpLocked}
+            "groups" = ${Groups}
+            "keys" = ${Keys}
+            "expire" = ${Expire}
+            "email" = ${Email}
             "userid" = ${Userid}
+            "comment" = ${Comment}
         }
 
         return $PSO

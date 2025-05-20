@@ -19,10 +19,6 @@ No description available.
 No description available.
 .PARAMETER Cf
 No description available.
-.PARAMETER Storage
-No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 GETNodesStorageRrddataRB<PSCustomObject>
@@ -38,13 +34,7 @@ function Initialize-PVEGETNodesStorageRrddataRB {
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("AVERAGE", "MAX")]
         [String]
-        ${Cf},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Storage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${Cf}
     )
 
     Process {
@@ -53,13 +43,13 @@ function Initialize-PVEGETNodesStorageRrddataRB {
 
 
 		 $DisplayNameMapping =@{
-			"Timeframe"="timeframe"; "Cf"="cf"; "Storage"="storage"; "Node"="node"
+			"Timeframe"="timeframe"; "Cf"="cf"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -99,7 +89,7 @@ function ConvertFrom-PVEJsonToGETNodesStorageRrddataRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETNodesStorageRrddataRB
-        $AllProperties = ("timeframe", "cf", "storage", "node")
+        $AllProperties = ("timeframe", "cf")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -118,23 +108,9 @@ function ConvertFrom-PVEJsonToGETNodesStorageRrddataRB {
             $Cf = $JsonParameters.PSobject.Properties["cf"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "storage"))) { #optional property not found
-            $Storage = $null
-        } else {
-            $Storage = $JsonParameters.PSobject.Properties["storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "timeframe" = ${Timeframe}
             "cf" = ${Cf}
-            "storage" = ${Storage}
-            "node" = ${Node}
         }
 
         return $PSO

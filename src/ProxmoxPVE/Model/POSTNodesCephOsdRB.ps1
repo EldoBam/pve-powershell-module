@@ -15,23 +15,21 @@ No summary available.
 
 No description available.
 
-.PARAMETER WalDevSize
-No description available.
-.PARAMETER WalDev
+.PARAMETER CrushDeviceClass
 No description available.
 .PARAMETER DbDevSize
 No description available.
-.PARAMETER Dev
-No description available.
-.PARAMETER OsdsPerDevice
-No description available.
 .PARAMETER DbDev
+No description available.
+.PARAMETER WalDevSize
 No description available.
 .PARAMETER Encrypted
 No description available.
-.PARAMETER Node
+.PARAMETER OsdsPerDevice
 No description available.
-.PARAMETER CrushDeviceClass
+.PARAMETER WalDev
+No description available.
+.PARAMETER Dev
 No description available.
 .OUTPUTS
 
@@ -42,63 +40,52 @@ function Initialize-PVEPOSTNodesCephOsdRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Decimal]]
-        ${WalDevSize},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${WalDev},
+        ${CrushDeviceClass},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Decimal]]
         ${DbDevSize},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Dev},
+        ${DbDev},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Decimal]]
+        ${WalDevSize},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Encrypted},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${OsdsPerDevice},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${DbDev},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Encrypted},
+        ${WalDev},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Node},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${CrushDeviceClass}
+        ${Dev}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesCephOsdRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($WalDevSize -and $WalDevSize -lt 0.5) {
-          throw "invalid value for 'WalDevSize', must be greater than or equal to 0.5."
-        }
-
         if ($DbDevSize -and $DbDevSize -lt 1) {
           throw "invalid value for 'DbDevSize', must be greater than or equal to 1."
         }
 
-        if ($Encrypted -and $Encrypted -gt 1) {
-          throw "invalid value for 'Encrypted', must be smaller than or equal to 1."
-        }
-
-        if ($Encrypted -and $Encrypted -lt 0) {
-          throw "invalid value for 'Encrypted', must be greater than or equal to 0."
+        if ($WalDevSize -and $WalDevSize -lt 0.5) {
+          throw "invalid value for 'WalDevSize', must be greater than or equal to 0.5."
         }
 
 
 		 $DisplayNameMapping =@{
-			"WalDevSize"="wal_dev_size"; "WalDev"="wal_dev"; "DbDevSize"="db_dev_size"; "Dev"="dev"; "OsdsPerDevice"="osds-per-device"; "DbDev"="db_dev"; "Encrypted"="encrypted"; "Node"="node"; "CrushDeviceClass"="crush-device-class"
+			"CrushDeviceClass"="crush-device-class"; "DbDevSize"="db_dev_size"; "DbDev"="db_dev"; "WalDevSize"="wal_dev_size"; "Encrypted"="encrypted"; "OsdsPerDevice"="osds-per-device"; "WalDev"="wal_dev"; "Dev"="dev"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -138,59 +125,11 @@ function ConvertFrom-PVEJsonToPOSTNodesCephOsdRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCephOsdRB
-        $AllProperties = ("wal_dev_size", "wal_dev", "db_dev_size", "dev", "osds-per-device", "db_dev", "encrypted", "node", "crush-device-class")
+        $AllProperties = ("crush-device-class", "db_dev_size", "db_dev", "wal_dev_size", "encrypted", "osds-per-device", "wal_dev", "dev")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wal_dev_size"))) { #optional property not found
-            $WalDevSize = $null
-        } else {
-            $WalDevSize = $JsonParameters.PSobject.Properties["wal_dev_size"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wal_dev"))) { #optional property not found
-            $WalDev = $null
-        } else {
-            $WalDev = $JsonParameters.PSobject.Properties["wal_dev"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "db_dev_size"))) { #optional property not found
-            $DbDevSize = $null
-        } else {
-            $DbDevSize = $JsonParameters.PSobject.Properties["db_dev_size"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dev"))) { #optional property not found
-            $Dev = $null
-        } else {
-            $Dev = $JsonParameters.PSobject.Properties["dev"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osds-per-device"))) { #optional property not found
-            $OsdsPerDevice = $null
-        } else {
-            $OsdsPerDevice = $JsonParameters.PSobject.Properties["osds-per-device"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "db_dev"))) { #optional property not found
-            $DbDev = $null
-        } else {
-            $DbDev = $JsonParameters.PSobject.Properties["db_dev"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "encrypted"))) { #optional property not found
-            $Encrypted = $null
-        } else {
-            $Encrypted = $JsonParameters.PSobject.Properties["encrypted"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "crush-device-class"))) { #optional property not found
@@ -199,16 +138,57 @@ function ConvertFrom-PVEJsonToPOSTNodesCephOsdRB {
             $CrushDeviceClass = $JsonParameters.PSobject.Properties["crush-device-class"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "db_dev_size"))) { #optional property not found
+            $DbDevSize = $null
+        } else {
+            $DbDevSize = $JsonParameters.PSobject.Properties["db_dev_size"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "db_dev"))) { #optional property not found
+            $DbDev = $null
+        } else {
+            $DbDev = $JsonParameters.PSobject.Properties["db_dev"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wal_dev_size"))) { #optional property not found
+            $WalDevSize = $null
+        } else {
+            $WalDevSize = $JsonParameters.PSobject.Properties["wal_dev_size"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "encrypted"))) { #optional property not found
+            $Encrypted = $null
+        } else {
+            $Encrypted = $JsonParameters.PSobject.Properties["encrypted"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "osds-per-device"))) { #optional property not found
+            $OsdsPerDevice = $null
+        } else {
+            $OsdsPerDevice = $JsonParameters.PSobject.Properties["osds-per-device"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "wal_dev"))) { #optional property not found
+            $WalDev = $null
+        } else {
+            $WalDev = $JsonParameters.PSobject.Properties["wal_dev"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "dev"))) { #optional property not found
+            $Dev = $null
+        } else {
+            $Dev = $JsonParameters.PSobject.Properties["dev"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "wal_dev_size" = ${WalDevSize}
-            "wal_dev" = ${WalDev}
-            "db_dev_size" = ${DbDevSize}
-            "dev" = ${Dev}
-            "osds-per-device" = ${OsdsPerDevice}
-            "db_dev" = ${DbDev}
-            "encrypted" = ${Encrypted}
-            "node" = ${Node}
             "crush-device-class" = ${CrushDeviceClass}
+            "db_dev_size" = ${DbDevSize}
+            "db_dev" = ${DbDev}
+            "wal_dev_size" = ${WalDevSize}
+            "encrypted" = ${Encrypted}
+            "osds-per-device" = ${OsdsPerDevice}
+            "wal_dev" = ${WalDev}
+            "dev" = ${Dev}
         }
 
         return $PSO

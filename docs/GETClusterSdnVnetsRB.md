@@ -3,17 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vnet** | **String** |  | [optional] 
-**Pending** | **Int32** |  | [optional] 
-**Running** | **Int32** |  | [optional] 
+**Running** | **Boolean** |  | [optional] 
+**Pending** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETClusterSdnVnetsRB = Initialize-PVEGETClusterSdnVnetsRB  -Vnet null `
- -Pending null `
- -Running null
+$GETClusterSdnVnetsRB = Initialize-PVEGETClusterSdnVnetsRB  -Running null `
+ -Pending null
 ```
 
 - Convert the resource to JSON

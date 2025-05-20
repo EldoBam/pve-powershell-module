@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEVersion' {
     Context 'PVEVersion' {
         It 'Initialize-PVEVersion' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEVersion -Release "TEST_VALUE" -Repoid "TEST_VALUE" -Console "TEST_VALUE" -Version "TEST_VALUE"
+            #$NewObject = Initialize-PVEVersion -Repoid "TEST_VALUE" -Console "TEST_VALUE" -Version "TEST_VALUE" -Release "TEST_VALUE"
             #$NewObject | Should -BeOfType Version
             #$NewObject.property | Should -Be 0
         }

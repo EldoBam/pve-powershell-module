@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPools' {
     Context 'PVEPools' {
         It 'Initialize-PVEPools' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPools -Members "TEST_VALUE" -Comment "TEST_VALUE"
+            #$NewObject = Initialize-PVEPools -Comment "TEST_VALUE" -Members "TEST_VALUE"
             #$NewObject | Should -BeOfType Pools
             #$NewObject.property | Should -Be 0
         }

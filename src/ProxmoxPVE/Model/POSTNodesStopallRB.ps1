@@ -15,13 +15,11 @@ No summary available.
 
 No description available.
 
-.PARAMETER ForceStop
+.PARAMETER Vms
 No description available.
 .PARAMETER Timeout
 No description available.
-.PARAMETER Vms
-No description available.
-.PARAMETER Node
+.PARAMETER ForceStop
 No description available.
 .OUTPUTS
 
@@ -32,30 +30,19 @@ function Initialize-PVEPOSTNodesStopallRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${ForceStop},
+        [String]
+        ${Vms},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Timeout},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Vms},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Boolean]]
+        ${ForceStop}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesStopallRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($ForceStop -and $ForceStop -gt 1) {
-          throw "invalid value for 'ForceStop', must be smaller than or equal to 1."
-        }
-
-        if ($ForceStop -and $ForceStop -lt 0) {
-          throw "invalid value for 'ForceStop', must be greater than or equal to 0."
-        }
 
         if ($Timeout -and $Timeout -gt 7200) {
           throw "invalid value for 'Timeout', must be smaller than or equal to 7200."
@@ -63,13 +50,13 @@ function Initialize-PVEPOSTNodesStopallRB {
 
 
 		 $DisplayNameMapping =@{
-			"ForceStop"="force-stop"; "Timeout"="timeout"; "Vms"="vms"; "Node"="node"
+			"Vms"="vms"; "Timeout"="timeout"; "ForceStop"="force-stop"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -109,23 +96,11 @@ function ConvertFrom-PVEJsonToPOSTNodesStopallRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesStopallRB
-        $AllProperties = ("force-stop", "timeout", "vms", "node")
+        $AllProperties = ("vms", "timeout", "force-stop")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force-stop"))) { #optional property not found
-            $ForceStop = $null
-        } else {
-            $ForceStop = $JsonParameters.PSobject.Properties["force-stop"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
-            $Timeout = $null
-        } else {
-            $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "vms"))) { #optional property not found
@@ -134,17 +109,22 @@ function ConvertFrom-PVEJsonToPOSTNodesStopallRB {
             $Vms = $JsonParameters.PSobject.Properties["vms"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "timeout"))) { #optional property not found
+            $Timeout = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $Timeout = $JsonParameters.PSobject.Properties["timeout"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "force-stop"))) { #optional property not found
+            $ForceStop = $null
+        } else {
+            $ForceStop = $JsonParameters.PSobject.Properties["force-stop"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "force-stop" = ${ForceStop}
-            "timeout" = ${Timeout}
             "vms" = ${Vms}
-            "node" = ${Node}
+            "timeout" = ${Timeout}
+            "force-stop" = ${ForceStop}
         }
 
         return $PSO

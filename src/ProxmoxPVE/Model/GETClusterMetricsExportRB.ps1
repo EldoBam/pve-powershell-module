@@ -15,11 +15,11 @@ No summary available.
 
 No description available.
 
+.PARAMETER History
+No description available.
 .PARAMETER LocalOnly
 No description available.
 .PARAMETER StartTime
-No description available.
-.PARAMETER History
 No description available.
 .OUTPUTS
 
@@ -30,45 +30,29 @@ function Initialize-PVEGETClusterMetricsExportRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
+        ${History},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
         ${LocalOnly},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${StartTime},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${History}
+        ${StartTime}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETClusterMetricsExportRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($LocalOnly -and $LocalOnly -gt 1) {
-          throw "invalid value for 'LocalOnly', must be smaller than or equal to 1."
-        }
-
-        if ($LocalOnly -and $LocalOnly -lt 0) {
-          throw "invalid value for 'LocalOnly', must be greater than or equal to 0."
-        }
-
-        if ($History -and $History -gt 1) {
-          throw "invalid value for 'History', must be smaller than or equal to 1."
-        }
-
-        if ($History -and $History -lt 0) {
-          throw "invalid value for 'History', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"LocalOnly"="local-only"; "StartTime"="start-time"; "History"="history"
+			"History"="history"; "LocalOnly"="local-only"; "StartTime"="start-time"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -108,11 +92,17 @@ function ConvertFrom-PVEJsonToGETClusterMetricsExportRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETClusterMetricsExportRB
-        $AllProperties = ("local-only", "start-time", "history")
+        $AllProperties = ("history", "local-only", "start-time")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "history"))) { #optional property not found
+            $History = $null
+        } else {
+            $History = $JsonParameters.PSobject.Properties["history"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "local-only"))) { #optional property not found
@@ -127,16 +117,10 @@ function ConvertFrom-PVEJsonToGETClusterMetricsExportRB {
             $StartTime = $JsonParameters.PSobject.Properties["start-time"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "history"))) { #optional property not found
-            $History = $null
-        } else {
-            $History = $JsonParameters.PSobject.Properties["history"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "history" = ${History}
             "local-only" = ${LocalOnly}
             "start-time" = ${StartTime}
-            "history" = ${History}
         }
 
         return $PSO

@@ -3,23 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Width** | **Int32** |  | [optional] 
 **Cmd** | **String** |  | [optional] 
-**Height** | **Int32** |  | [optional] 
 **CmdOpts** | **String** |  | [optional] 
-**Websocket** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Websocket** | **Boolean** |  | [optional] 
+**Width** | **Int32** |  | [optional] 
+**Height** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesVncshellRB = Initialize-PVEPOSTNodesVncshellRB  -Width null `
- -Cmd null `
- -Height null `
+$POSTNodesVncshellRB = Initialize-PVEPOSTNodesVncshellRB  -Cmd null `
  -CmdOpts null `
  -Websocket null `
- -Node null
+ -Width null `
+ -Height null
 ```
 
 - Convert the resource to JSON

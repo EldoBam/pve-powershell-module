@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTClusterOptionsRB' {
     Context 'PVEPUTClusterOptionsRB' {
         It 'Initialize-PVEPUTClusterOptionsRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTClusterOptionsRB -Crs "TEST_VALUE" -Language "TEST_VALUE" -ConsentText "TEST_VALUE" -Keyboard "TEST_VALUE" -TagStyle "TEST_VALUE" -MigrationUnsecure "TEST_VALUE" -MacPrefix "TEST_VALUE" -RegisteredTags "TEST_VALUE" -Migration "TEST_VALUE" -NextId "TEST_VALUE" -Description "TEST_VALUE" -Ha "TEST_VALUE" -UserTagAccess "TEST_VALUE" -Console "TEST_VALUE" -U2f "TEST_VALUE" -MaxWorkers "TEST_VALUE" -EmailFrom "TEST_VALUE" -Delete "TEST_VALUE" -Fencing "TEST_VALUE" -Bwlimit "TEST_VALUE" -Notify "TEST_VALUE" -HttpProxy "TEST_VALUE" -Webauthn "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTClusterOptionsRB -TagStyle "TEST_VALUE" -MaxWorkers "TEST_VALUE" -Migration "TEST_VALUE" -Webauthn "TEST_VALUE" -Language "TEST_VALUE" -HttpProxy "TEST_VALUE" -Notify "TEST_VALUE" -MigrationUnsecure "TEST_VALUE" -Keyboard "TEST_VALUE" -Bwlimit "TEST_VALUE" -Crs "TEST_VALUE" -MacPrefix "TEST_VALUE" -UserTagAccess "TEST_VALUE" -Ha "TEST_VALUE" -Description "TEST_VALUE" -ConsentText "TEST_VALUE" -NextId "TEST_VALUE" -Delete "TEST_VALUE" -Console "TEST_VALUE" -Fencing "TEST_VALUE" -U2f "TEST_VALUE" -RegisteredTags "TEST_VALUE" -EmailFrom "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTClusterOptionsRB
             #$NewObject.property | Should -Be 0
         }

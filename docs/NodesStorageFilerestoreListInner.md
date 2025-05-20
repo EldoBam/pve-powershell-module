@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Filepath** | **String** |  | [optional] 
-**Text** | **String** |  | [optional] 
-**Leaf** | **Int32** |  | [optional] 
-**Mtime** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Size** | **Int32** |  | [optional] 
+**Text** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Filepath** | **String** |  | [optional] 
+**Mtime** | **Int32** |  | [optional] 
+**Leaf** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStorageFilerestoreListInner = Initialize-PVENodesStorageFilerestoreListInner  -Filepath null `
+$NodesStorageFilerestoreListInner = Initialize-PVENodesStorageFilerestoreListInner  -Size null `
  -Text null `
- -Leaf null `
- -Mtime null `
  -Type null `
- -Size null
+ -Filepath null `
+ -Mtime null `
+ -Leaf null
 ```
 
 - Convert the resource to JSON

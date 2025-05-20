@@ -15,89 +15,89 @@ No summary available.
 
 No description available.
 
-.PARAMETER Server2
-No description available.
-.PARAMETER Cert
-No description available.
-.PARAMETER Server1
-No description available.
-.PARAMETER GroupNameAttr
-No description available.
-.PARAMETER Scopes
-No description available.
-.PARAMETER Mode
-No description available.
-.PARAMETER UsernameClaim
-No description available.
-.PARAMETER Certkey
-No description available.
-.PARAMETER AcrValues
-No description available.
-.PARAMETER IssuerUrl
-No description available.
-.PARAMETER Default
-No description available.
-.PARAMETER GroupsAutocreate
-No description available.
-.PARAMETER Prompt
-No description available.
-.PARAMETER SyncAttributes
-No description available.
 .PARAMETER QueryUserinfo
-No description available.
-.PARAMETER CaseSensitive
-No description available.
-.PARAMETER Type
-No description available.
-.PARAMETER Sslversion
 No description available.
 .PARAMETER ClientId
 No description available.
+.PARAMETER Mode
+No description available.
+.PARAMETER GroupsClaim
+No description available.
 .PARAMETER GroupFilter
 No description available.
-.PARAMETER ClientKey
+.PARAMETER GroupsAutocreate
+No description available.
+.PARAMETER UserAttr
+No description available.
+.PARAMETER GroupDn
+No description available.
+.PARAMETER Cert
+No description available.
+.PARAMETER Scopes
+No description available.
+.PARAMETER CheckConnection
+No description available.
+.PARAMETER SyncAttributes
+No description available.
+.PARAMETER Secure
+No description available.
+.PARAMETER Server1
+No description available.
+.PARAMETER Default
+No description available.
+.PARAMETER Capath
+No description available.
+.PARAMETER UserClasses
 No description available.
 .PARAMETER Domain
 No description available.
-.PARAMETER Realm
-No description available.
-.PARAMETER BaseDn
+.PARAMETER Certkey
 No description available.
 .PARAMETER Password
 No description available.
 .PARAMETER VarFilter
 No description available.
+.PARAMETER ClientKey
+No description available.
+.PARAMETER Server2
+No description available.
 .PARAMETER Autocreate
 No description available.
 .PARAMETER SyncDefaultsOptions
 No description available.
-.PARAMETER Verify
+.PARAMETER AcrValues
 No description available.
-.PARAMETER Secure
+.PARAMETER GroupNameAttr
 No description available.
-.PARAMETER CheckConnection
-No description available.
-.PARAMETER UserAttr
-No description available.
-.PARAMETER UserClasses
-No description available.
-.PARAMETER GroupsClaim
-No description available.
-.PARAMETER Port
-No description available.
-.PARAMETER GroupClasses
-No description available.
-.PARAMETER Capath
-No description available.
-.PARAMETER Comment
+.PARAMETER IssuerUrl
 No description available.
 .PARAMETER GroupsOverwrite
 No description available.
-.PARAMETER GroupDn
+.PARAMETER Realm
 No description available.
 .PARAMETER Tfa
 No description available.
 .PARAMETER BindDn
+No description available.
+.PARAMETER GroupClasses
+No description available.
+.PARAMETER Verify
+No description available.
+.PARAMETER BaseDn
+No description available.
+.PARAMETER Sslversion
+No description available.
+.PARAMETER UsernameClaim
+No description available.
+.PARAMETER Comment
+No description available.
+.PARAMETER Port
+No description available.
+.PARAMETER CaseSensitive
+No description available.
+.PARAMETER Prompt
+No description available.
+.PARAMETER Type
 No description available.
 .OUTPUTS
 
@@ -108,84 +108,67 @@ function Initialize-PVEPOSTAccessDomainsRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Server2},
+        [System.Nullable[Boolean]]
+        ${QueryUserinfo},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Cert},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Server1},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${GroupNameAttr},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Scopes},
+        ${ClientId},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("ldap", "ldaps", "ldap+starttls")]
         [String]
         ${Mode},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("(?^:[A-Za-z0-9\.\-_]+)")]
         [String]
-        ${UsernameClaim},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Certkey},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("^[^\x00-\x1F\x7F <>#""]*$")]
-        [String]
-        ${AcrValues},
+        ${GroupsClaim},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${IssuerUrl},
+        ${GroupFilter},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Default},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${GroupsAutocreate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(?:none|login|consent|select_account|\S+)")]
+        [ValidatePattern("\S{2,}")]
         [String]
-        ${Prompt},
+        ${UserAttr},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${GroupDn},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Cert},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Scopes},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${CheckConnection},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("\w+=[^,]+(,\s*\w+=[^,]+)*")]
         [String]
         ${SyncAttributes},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${QueryUserinfo},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${CaseSensitive},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("ad", "ldap", "openid", "pam", "pve")]
-        [String]
-        ${Type},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("tlsv1", "tlsv1_1", "tlsv1_2", "tlsv1_3")]
-        [String]
-        ${Sslversion},
+        [System.Nullable[Boolean]]
+        ${Secure},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ClientId},
+        ${Server1},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Default},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${GroupFilter},
+        ${Capath},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${ClientKey},
+        ${UserClasses},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidatePattern("\S+")]
         [String]
         ${Domain},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Realm},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${BaseDn},
+        ${Certkey},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Password},
@@ -193,67 +176,116 @@ function Initialize-PVEPOSTAccessDomainsRB {
         [String]
         ${VarFilter},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [String]
+        ${ClientKey},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Server2},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
         ${Autocreate},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${SyncDefaultsOptions},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Verify},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Secure},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${CheckConnection},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("\S{2,}")]
+        [ValidatePattern("^[^\x00-\x1F\x7F <>#""]*$")]
         [String]
-        ${UserAttr},
+        ${AcrValues},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${UserClasses},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(?^:[A-Za-z0-9\.\-_]+)")]
-        [String]
-        ${GroupsClaim},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Port},
+        ${GroupNameAttr},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${GroupClasses},
+        ${IssuerUrl},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Capath},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
+        [System.Nullable[Boolean]]
         ${GroupsOverwrite},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${GroupDn},
+        ${Realm},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Tfa},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${BindDn}
+        ${BindDn},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${GroupClasses},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Verify},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${BaseDn},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("tlsv1", "tlsv1_1", "tlsv1_2", "tlsv1_3")]
+        [String]
+        ${Sslversion},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${UsernameClaim},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Port},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${CaseSensitive},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidatePattern("(?:none|login|consent|select_account|\S+)")]
+        [String]
+        ${Prompt},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateSet("ad", "ldap", "openid", "pam", "pve")]
+        [String]
+        ${Type}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTAccessDomainsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if (!$Server2 -and $Server2.length -gt 256) {
-            throw "invalid value for 'Server2', the character length must be smaller than or equal to 256."
+        if (!$ClientId -and $ClientId.length -gt 256) {
+            throw "invalid value for 'ClientId', the character length must be smaller than or equal to 256."
+        }
+
+        if (!$GroupsClaim -and $GroupsClaim.length -gt 256) {
+            throw "invalid value for 'GroupsClaim', the character length must be smaller than or equal to 256."
+        }
+
+        if (!$GroupFilter -and $GroupFilter.length -gt 2048) {
+            throw "invalid value for 'GroupFilter', the character length must be smaller than or equal to 2048."
+        }
+
+        if (!$UserAttr -and $UserAttr.length -gt 256) {
+            throw "invalid value for 'UserAttr', the character length must be smaller than or equal to 256."
+        }
+
+        if (!$GroupDn -and $GroupDn.length -gt 256) {
+            throw "invalid value for 'GroupDn', the character length must be smaller than or equal to 256."
         }
 
         if (!$Server1 -and $Server1.length -gt 256) {
             throw "invalid value for 'Server1', the character length must be smaller than or equal to 256."
+        }
+
+        if (!$Domain -and $Domain.length -gt 256) {
+            throw "invalid value for 'Domain', the character length must be smaller than or equal to 256."
+        }
+
+        if (!$VarFilter -and $VarFilter.length -gt 2048) {
+            throw "invalid value for 'VarFilter', the character length must be smaller than or equal to 2048."
+        }
+
+        if (!$ClientKey -and $ClientKey.length -gt 256) {
+            throw "invalid value for 'ClientKey', the character length must be smaller than or equal to 256."
+        }
+
+        if (!$Server2 -and $Server2.length -gt 256) {
+            throw "invalid value for 'Server2', the character length must be smaller than or equal to 256."
         }
 
         if (!$GroupNameAttr -and $GroupNameAttr.length -gt 256) {
@@ -264,128 +296,8 @@ function Initialize-PVEPOSTAccessDomainsRB {
             throw "invalid value for 'IssuerUrl', the character length must be smaller than or equal to 256."
         }
 
-        if ($Default -and $Default -gt 1) {
-          throw "invalid value for 'Default', must be smaller than or equal to 1."
-        }
-
-        if ($Default -and $Default -lt 0) {
-          throw "invalid value for 'Default', must be greater than or equal to 0."
-        }
-
-        if ($GroupsAutocreate -and $GroupsAutocreate -gt 1) {
-          throw "invalid value for 'GroupsAutocreate', must be smaller than or equal to 1."
-        }
-
-        if ($GroupsAutocreate -and $GroupsAutocreate -lt 0) {
-          throw "invalid value for 'GroupsAutocreate', must be greater than or equal to 0."
-        }
-
-        if ($QueryUserinfo -and $QueryUserinfo -gt 1) {
-          throw "invalid value for 'QueryUserinfo', must be smaller than or equal to 1."
-        }
-
-        if ($QueryUserinfo -and $QueryUserinfo -lt 0) {
-          throw "invalid value for 'QueryUserinfo', must be greater than or equal to 0."
-        }
-
-        if ($CaseSensitive -and $CaseSensitive -gt 1) {
-          throw "invalid value for 'CaseSensitive', must be smaller than or equal to 1."
-        }
-
-        if ($CaseSensitive -and $CaseSensitive -lt 0) {
-          throw "invalid value for 'CaseSensitive', must be greater than or equal to 0."
-        }
-
-        if (!$ClientId -and $ClientId.length -gt 256) {
-            throw "invalid value for 'ClientId', the character length must be smaller than or equal to 256."
-        }
-
-        if (!$GroupFilter -and $GroupFilter.length -gt 2048) {
-            throw "invalid value for 'GroupFilter', the character length must be smaller than or equal to 2048."
-        }
-
-        if (!$ClientKey -and $ClientKey.length -gt 256) {
-            throw "invalid value for 'ClientKey', the character length must be smaller than or equal to 256."
-        }
-
-        if (!$Domain -and $Domain.length -gt 256) {
-            throw "invalid value for 'Domain', the character length must be smaller than or equal to 256."
-        }
-
         if (!$Realm -and $Realm.length -gt 32) {
             throw "invalid value for 'Realm', the character length must be smaller than or equal to 32."
-        }
-
-        if (!$BaseDn -and $BaseDn.length -gt 256) {
-            throw "invalid value for 'BaseDn', the character length must be smaller than or equal to 256."
-        }
-
-        if (!$VarFilter -and $VarFilter.length -gt 2048) {
-            throw "invalid value for 'VarFilter', the character length must be smaller than or equal to 2048."
-        }
-
-        if ($Autocreate -and $Autocreate -gt 1) {
-          throw "invalid value for 'Autocreate', must be smaller than or equal to 1."
-        }
-
-        if ($Autocreate -and $Autocreate -lt 0) {
-          throw "invalid value for 'Autocreate', must be greater than or equal to 0."
-        }
-
-        if ($Verify -and $Verify -gt 1) {
-          throw "invalid value for 'Verify', must be smaller than or equal to 1."
-        }
-
-        if ($Verify -and $Verify -lt 0) {
-          throw "invalid value for 'Verify', must be greater than or equal to 0."
-        }
-
-        if ($Secure -and $Secure -gt 1) {
-          throw "invalid value for 'Secure', must be smaller than or equal to 1."
-        }
-
-        if ($Secure -and $Secure -lt 0) {
-          throw "invalid value for 'Secure', must be greater than or equal to 0."
-        }
-
-        if ($CheckConnection -and $CheckConnection -gt 1) {
-          throw "invalid value for 'CheckConnection', must be smaller than or equal to 1."
-        }
-
-        if ($CheckConnection -and $CheckConnection -lt 0) {
-          throw "invalid value for 'CheckConnection', must be greater than or equal to 0."
-        }
-
-        if (!$UserAttr -and $UserAttr.length -gt 256) {
-            throw "invalid value for 'UserAttr', the character length must be smaller than or equal to 256."
-        }
-
-        if (!$GroupsClaim -and $GroupsClaim.length -gt 256) {
-            throw "invalid value for 'GroupsClaim', the character length must be smaller than or equal to 256."
-        }
-
-        if ($Port -and $Port -gt 65535) {
-          throw "invalid value for 'Port', must be smaller than or equal to 65535."
-        }
-
-        if ($Port -and $Port -lt 1) {
-          throw "invalid value for 'Port', must be greater than or equal to 1."
-        }
-
-        if (!$Comment -and $Comment.length -gt 4096) {
-            throw "invalid value for 'Comment', the character length must be smaller than or equal to 4096."
-        }
-
-        if ($GroupsOverwrite -and $GroupsOverwrite -gt 1) {
-          throw "invalid value for 'GroupsOverwrite', must be smaller than or equal to 1."
-        }
-
-        if ($GroupsOverwrite -and $GroupsOverwrite -lt 0) {
-          throw "invalid value for 'GroupsOverwrite', must be greater than or equal to 0."
-        }
-
-        if (!$GroupDn -and $GroupDn.length -gt 256) {
-            throw "invalid value for 'GroupDn', the character length must be smaller than or equal to 256."
         }
 
         if (!$Tfa -and $Tfa.length -gt 128) {
@@ -396,15 +308,31 @@ function Initialize-PVEPOSTAccessDomainsRB {
             throw "invalid value for 'BindDn', the character length must be smaller than or equal to 256."
         }
 
+        if (!$BaseDn -and $BaseDn.length -gt 256) {
+            throw "invalid value for 'BaseDn', the character length must be smaller than or equal to 256."
+        }
+
+        if (!$Comment -and $Comment.length -gt 4096) {
+            throw "invalid value for 'Comment', the character length must be smaller than or equal to 4096."
+        }
+
+        if ($Port -and $Port -gt 65535) {
+          throw "invalid value for 'Port', must be smaller than or equal to 65535."
+        }
+
+        if ($Port -and $Port -lt 1) {
+          throw "invalid value for 'Port', must be greater than or equal to 1."
+        }
+
 
 		 $DisplayNameMapping =@{
-			"Server2"="server2"; "Cert"="cert"; "Server1"="server1"; "GroupNameAttr"="group_name_attr"; "Scopes"="scopes"; "Mode"="mode"; "UsernameClaim"="username-claim"; "Certkey"="certkey"; "AcrValues"="acr-values"; "IssuerUrl"="issuer-url"; "Default"="default"; "GroupsAutocreate"="groups-autocreate"; "Prompt"="prompt"; "SyncAttributes"="sync_attributes"; "QueryUserinfo"="query-userinfo"; "CaseSensitive"="case-sensitive"; "Type"="type"; "Sslversion"="sslversion"; "ClientId"="client-id"; "GroupFilter"="group_filter"; "ClientKey"="client-key"; "Domain"="domain"; "Realm"="realm"; "BaseDn"="base_dn"; "Password"="password"; "VarFilter"="filter"; "Autocreate"="autocreate"; "SyncDefaultsOptions"="sync-defaults-options"; "Verify"="verify"; "Secure"="secure"; "CheckConnection"="check-connection"; "UserAttr"="user_attr"; "UserClasses"="user_classes"; "GroupsClaim"="groups-claim"; "Port"="port"; "GroupClasses"="group_classes"; "Capath"="capath"; "Comment"="comment"; "GroupsOverwrite"="groups-overwrite"; "GroupDn"="group_dn"; "Tfa"="tfa"; "BindDn"="bind_dn"
+			"QueryUserinfo"="query-userinfo"; "ClientId"="client-id"; "Mode"="mode"; "GroupsClaim"="groups-claim"; "GroupFilter"="group_filter"; "GroupsAutocreate"="groups-autocreate"; "UserAttr"="user_attr"; "GroupDn"="group_dn"; "Cert"="cert"; "Scopes"="scopes"; "CheckConnection"="check-connection"; "SyncAttributes"="sync_attributes"; "Secure"="secure"; "Server1"="server1"; "Default"="default"; "Capath"="capath"; "UserClasses"="user_classes"; "Domain"="domain"; "Certkey"="certkey"; "Password"="password"; "VarFilter"="filter"; "ClientKey"="client-key"; "Server2"="server2"; "Autocreate"="autocreate"; "SyncDefaultsOptions"="sync-defaults-options"; "AcrValues"="acr-values"; "GroupNameAttr"="group_name_attr"; "IssuerUrl"="issuer-url"; "GroupsOverwrite"="groups-overwrite"; "Realm"="realm"; "Tfa"="tfa"; "BindDn"="bind_dn"; "GroupClasses"="group_classes"; "Verify"="verify"; "BaseDn"="base_dn"; "Sslversion"="sslversion"; "UsernameClaim"="username-claim"; "Comment"="comment"; "Port"="port"; "CaseSensitive"="case-sensitive"; "Prompt"="prompt"; "Type"="type"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -444,95 +372,11 @@ function ConvertFrom-PVEJsonToPOSTAccessDomainsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTAccessDomainsRB
-        $AllProperties = ("server2", "cert", "server1", "group_name_attr", "scopes", "mode", "username-claim", "certkey", "acr-values", "issuer-url", "default", "groups-autocreate", "prompt", "sync_attributes", "query-userinfo", "case-sensitive", "type", "sslversion", "client-id", "group_filter", "client-key", "domain", "realm", "base_dn", "password", "filter", "autocreate", "sync-defaults-options", "verify", "secure", "check-connection", "user_attr", "user_classes", "groups-claim", "port", "group_classes", "capath", "comment", "groups-overwrite", "group_dn", "tfa", "bind_dn")
+        $AllProperties = ("query-userinfo", "client-id", "mode", "groups-claim", "group_filter", "groups-autocreate", "user_attr", "group_dn", "cert", "scopes", "check-connection", "sync_attributes", "secure", "server1", "default", "capath", "user_classes", "domain", "certkey", "password", "filter", "client-key", "server2", "autocreate", "sync-defaults-options", "acr-values", "group_name_attr", "issuer-url", "groups-overwrite", "realm", "tfa", "bind_dn", "group_classes", "verify", "base_dn", "sslversion", "username-claim", "comment", "port", "case-sensitive", "prompt", "type")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server2"))) { #optional property not found
-            $Server2 = $null
-        } else {
-            $Server2 = $JsonParameters.PSobject.Properties["server2"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cert"))) { #optional property not found
-            $Cert = $null
-        } else {
-            $Cert = $JsonParameters.PSobject.Properties["cert"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server1"))) { #optional property not found
-            $Server1 = $null
-        } else {
-            $Server1 = $JsonParameters.PSobject.Properties["server1"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "group_name_attr"))) { #optional property not found
-            $GroupNameAttr = $null
-        } else {
-            $GroupNameAttr = $JsonParameters.PSobject.Properties["group_name_attr"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scopes"))) { #optional property not found
-            $Scopes = $null
-        } else {
-            $Scopes = $JsonParameters.PSobject.Properties["scopes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mode"))) { #optional property not found
-            $Mode = $null
-        } else {
-            $Mode = $JsonParameters.PSobject.Properties["mode"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username-claim"))) { #optional property not found
-            $UsernameClaim = $null
-        } else {
-            $UsernameClaim = $JsonParameters.PSobject.Properties["username-claim"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "certkey"))) { #optional property not found
-            $Certkey = $null
-        } else {
-            $Certkey = $JsonParameters.PSobject.Properties["certkey"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "acr-values"))) { #optional property not found
-            $AcrValues = $null
-        } else {
-            $AcrValues = $JsonParameters.PSobject.Properties["acr-values"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "issuer-url"))) { #optional property not found
-            $IssuerUrl = $null
-        } else {
-            $IssuerUrl = $JsonParameters.PSobject.Properties["issuer-url"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "default"))) { #optional property not found
-            $Default = $null
-        } else {
-            $Default = $JsonParameters.PSobject.Properties["default"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "groups-autocreate"))) { #optional property not found
-            $GroupsAutocreate = $null
-        } else {
-            $GroupsAutocreate = $JsonParameters.PSobject.Properties["groups-autocreate"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prompt"))) { #optional property not found
-            $Prompt = $null
-        } else {
-            $Prompt = $JsonParameters.PSobject.Properties["prompt"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sync_attributes"))) { #optional property not found
-            $SyncAttributes = $null
-        } else {
-            $SyncAttributes = $JsonParameters.PSobject.Properties["sync_attributes"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "query-userinfo"))) { #optional property not found
@@ -541,28 +385,22 @@ function ConvertFrom-PVEJsonToPOSTAccessDomainsRB {
             $QueryUserinfo = $JsonParameters.PSobject.Properties["query-userinfo"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "case-sensitive"))) { #optional property not found
-            $CaseSensitive = $null
-        } else {
-            $CaseSensitive = $JsonParameters.PSobject.Properties["case-sensitive"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
-            $Type = $null
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sslversion"))) { #optional property not found
-            $Sslversion = $null
-        } else {
-            $Sslversion = $JsonParameters.PSobject.Properties["sslversion"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "client-id"))) { #optional property not found
             $ClientId = $null
         } else {
             $ClientId = $JsonParameters.PSobject.Properties["client-id"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "mode"))) { #optional property not found
+            $Mode = $null
+        } else {
+            $Mode = $JsonParameters.PSobject.Properties["mode"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "groups-claim"))) { #optional property not found
+            $GroupsClaim = $null
+        } else {
+            $GroupsClaim = $JsonParameters.PSobject.Properties["groups-claim"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "group_filter"))) { #optional property not found
@@ -571,10 +409,76 @@ function ConvertFrom-PVEJsonToPOSTAccessDomainsRB {
             $GroupFilter = $JsonParameters.PSobject.Properties["group_filter"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "client-key"))) { #optional property not found
-            $ClientKey = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "groups-autocreate"))) { #optional property not found
+            $GroupsAutocreate = $null
         } else {
-            $ClientKey = $JsonParameters.PSobject.Properties["client-key"].value
+            $GroupsAutocreate = $JsonParameters.PSobject.Properties["groups-autocreate"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user_attr"))) { #optional property not found
+            $UserAttr = $null
+        } else {
+            $UserAttr = $JsonParameters.PSobject.Properties["user_attr"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "group_dn"))) { #optional property not found
+            $GroupDn = $null
+        } else {
+            $GroupDn = $JsonParameters.PSobject.Properties["group_dn"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cert"))) { #optional property not found
+            $Cert = $null
+        } else {
+            $Cert = $JsonParameters.PSobject.Properties["cert"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "scopes"))) { #optional property not found
+            $Scopes = $null
+        } else {
+            $Scopes = $JsonParameters.PSobject.Properties["scopes"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "check-connection"))) { #optional property not found
+            $CheckConnection = $null
+        } else {
+            $CheckConnection = $JsonParameters.PSobject.Properties["check-connection"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sync_attributes"))) { #optional property not found
+            $SyncAttributes = $null
+        } else {
+            $SyncAttributes = $JsonParameters.PSobject.Properties["sync_attributes"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "secure"))) { #optional property not found
+            $Secure = $null
+        } else {
+            $Secure = $JsonParameters.PSobject.Properties["secure"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server1"))) { #optional property not found
+            $Server1 = $null
+        } else {
+            $Server1 = $JsonParameters.PSobject.Properties["server1"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "default"))) { #optional property not found
+            $Default = $null
+        } else {
+            $Default = $JsonParameters.PSobject.Properties["default"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "capath"))) { #optional property not found
+            $Capath = $null
+        } else {
+            $Capath = $JsonParameters.PSobject.Properties["capath"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user_classes"))) { #optional property not found
+            $UserClasses = $null
+        } else {
+            $UserClasses = $JsonParameters.PSobject.Properties["user_classes"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "domain"))) { #optional property not found
@@ -583,16 +487,10 @@ function ConvertFrom-PVEJsonToPOSTAccessDomainsRB {
             $Domain = $JsonParameters.PSobject.Properties["domain"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
-            $Realm = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "certkey"))) { #optional property not found
+            $Certkey = $null
         } else {
-            $Realm = $JsonParameters.PSobject.Properties["realm"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "base_dn"))) { #optional property not found
-            $BaseDn = $null
-        } else {
-            $BaseDn = $JsonParameters.PSobject.Properties["base_dn"].value
+            $Certkey = $JsonParameters.PSobject.Properties["certkey"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
@@ -607,6 +505,18 @@ function ConvertFrom-PVEJsonToPOSTAccessDomainsRB {
             $VarFilter = $JsonParameters.PSobject.Properties["filter"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "client-key"))) { #optional property not found
+            $ClientKey = $null
+        } else {
+            $ClientKey = $JsonParameters.PSobject.Properties["client-key"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "server2"))) { #optional property not found
+            $Server2 = $null
+        } else {
+            $Server2 = $JsonParameters.PSobject.Properties["server2"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "autocreate"))) { #optional property not found
             $Autocreate = $null
         } else {
@@ -619,64 +529,22 @@ function ConvertFrom-PVEJsonToPOSTAccessDomainsRB {
             $SyncDefaultsOptions = $JsonParameters.PSobject.Properties["sync-defaults-options"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "verify"))) { #optional property not found
-            $Verify = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "acr-values"))) { #optional property not found
+            $AcrValues = $null
         } else {
-            $Verify = $JsonParameters.PSobject.Properties["verify"].value
+            $AcrValues = $JsonParameters.PSobject.Properties["acr-values"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "secure"))) { #optional property not found
-            $Secure = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "group_name_attr"))) { #optional property not found
+            $GroupNameAttr = $null
         } else {
-            $Secure = $JsonParameters.PSobject.Properties["secure"].value
+            $GroupNameAttr = $JsonParameters.PSobject.Properties["group_name_attr"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "check-connection"))) { #optional property not found
-            $CheckConnection = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "issuer-url"))) { #optional property not found
+            $IssuerUrl = $null
         } else {
-            $CheckConnection = $JsonParameters.PSobject.Properties["check-connection"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user_attr"))) { #optional property not found
-            $UserAttr = $null
-        } else {
-            $UserAttr = $JsonParameters.PSobject.Properties["user_attr"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "user_classes"))) { #optional property not found
-            $UserClasses = $null
-        } else {
-            $UserClasses = $JsonParameters.PSobject.Properties["user_classes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "groups-claim"))) { #optional property not found
-            $GroupsClaim = $null
-        } else {
-            $GroupsClaim = $JsonParameters.PSobject.Properties["groups-claim"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
-            $Port = $null
-        } else {
-            $Port = $JsonParameters.PSobject.Properties["port"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "group_classes"))) { #optional property not found
-            $GroupClasses = $null
-        } else {
-            $GroupClasses = $JsonParameters.PSobject.Properties["group_classes"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "capath"))) { #optional property not found
-            $Capath = $null
-        } else {
-            $Capath = $JsonParameters.PSobject.Properties["capath"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+            $IssuerUrl = $JsonParameters.PSobject.Properties["issuer-url"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "groups-overwrite"))) { #optional property not found
@@ -685,10 +553,10 @@ function ConvertFrom-PVEJsonToPOSTAccessDomainsRB {
             $GroupsOverwrite = $JsonParameters.PSobject.Properties["groups-overwrite"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "group_dn"))) { #optional property not found
-            $GroupDn = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "realm"))) { #optional property not found
+            $Realm = $null
         } else {
-            $GroupDn = $JsonParameters.PSobject.Properties["group_dn"].value
+            $Realm = $JsonParameters.PSobject.Properties["realm"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "tfa"))) { #optional property not found
@@ -703,49 +571,109 @@ function ConvertFrom-PVEJsonToPOSTAccessDomainsRB {
             $BindDn = $JsonParameters.PSobject.Properties["bind_dn"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "group_classes"))) { #optional property not found
+            $GroupClasses = $null
+        } else {
+            $GroupClasses = $JsonParameters.PSobject.Properties["group_classes"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "verify"))) { #optional property not found
+            $Verify = $null
+        } else {
+            $Verify = $JsonParameters.PSobject.Properties["verify"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "base_dn"))) { #optional property not found
+            $BaseDn = $null
+        } else {
+            $BaseDn = $JsonParameters.PSobject.Properties["base_dn"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "sslversion"))) { #optional property not found
+            $Sslversion = $null
+        } else {
+            $Sslversion = $JsonParameters.PSobject.Properties["sslversion"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "username-claim"))) { #optional property not found
+            $UsernameClaim = $null
+        } else {
+            $UsernameClaim = $JsonParameters.PSobject.Properties["username-claim"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "port"))) { #optional property not found
+            $Port = $null
+        } else {
+            $Port = $JsonParameters.PSobject.Properties["port"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "case-sensitive"))) { #optional property not found
+            $CaseSensitive = $null
+        } else {
+            $CaseSensitive = $JsonParameters.PSobject.Properties["case-sensitive"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "prompt"))) { #optional property not found
+            $Prompt = $null
+        } else {
+            $Prompt = $JsonParameters.PSobject.Properties["prompt"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
+            $Type = $null
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
         $PSO = [PSCustomObject]@{
-            "server2" = ${Server2}
-            "cert" = ${Cert}
-            "server1" = ${Server1}
-            "group_name_attr" = ${GroupNameAttr}
-            "scopes" = ${Scopes}
-            "mode" = ${Mode}
-            "username-claim" = ${UsernameClaim}
-            "certkey" = ${Certkey}
-            "acr-values" = ${AcrValues}
-            "issuer-url" = ${IssuerUrl}
-            "default" = ${Default}
-            "groups-autocreate" = ${GroupsAutocreate}
-            "prompt" = ${Prompt}
-            "sync_attributes" = ${SyncAttributes}
             "query-userinfo" = ${QueryUserinfo}
-            "case-sensitive" = ${CaseSensitive}
-            "type" = ${Type}
-            "sslversion" = ${Sslversion}
             "client-id" = ${ClientId}
+            "mode" = ${Mode}
+            "groups-claim" = ${GroupsClaim}
             "group_filter" = ${GroupFilter}
-            "client-key" = ${ClientKey}
+            "groups-autocreate" = ${GroupsAutocreate}
+            "user_attr" = ${UserAttr}
+            "group_dn" = ${GroupDn}
+            "cert" = ${Cert}
+            "scopes" = ${Scopes}
+            "check-connection" = ${CheckConnection}
+            "sync_attributes" = ${SyncAttributes}
+            "secure" = ${Secure}
+            "server1" = ${Server1}
+            "default" = ${Default}
+            "capath" = ${Capath}
+            "user_classes" = ${UserClasses}
             "domain" = ${Domain}
-            "realm" = ${Realm}
-            "base_dn" = ${BaseDn}
+            "certkey" = ${Certkey}
             "password" = ${Password}
             "filter" = ${VarFilter}
+            "client-key" = ${ClientKey}
+            "server2" = ${Server2}
             "autocreate" = ${Autocreate}
             "sync-defaults-options" = ${SyncDefaultsOptions}
-            "verify" = ${Verify}
-            "secure" = ${Secure}
-            "check-connection" = ${CheckConnection}
-            "user_attr" = ${UserAttr}
-            "user_classes" = ${UserClasses}
-            "groups-claim" = ${GroupsClaim}
-            "port" = ${Port}
-            "group_classes" = ${GroupClasses}
-            "capath" = ${Capath}
-            "comment" = ${Comment}
+            "acr-values" = ${AcrValues}
+            "group_name_attr" = ${GroupNameAttr}
+            "issuer-url" = ${IssuerUrl}
             "groups-overwrite" = ${GroupsOverwrite}
-            "group_dn" = ${GroupDn}
+            "realm" = ${Realm}
             "tfa" = ${Tfa}
             "bind_dn" = ${BindDn}
+            "group_classes" = ${GroupClasses}
+            "verify" = ${Verify}
+            "base_dn" = ${BaseDn}
+            "sslversion" = ${Sslversion}
+            "username-claim" = ${UsernameClaim}
+            "comment" = ${Comment}
+            "port" = ${Port}
+            "case-sensitive" = ${CaseSensitive}
+            "prompt" = ${Prompt}
+            "type" = ${Type}
         }
 
         return $PSO

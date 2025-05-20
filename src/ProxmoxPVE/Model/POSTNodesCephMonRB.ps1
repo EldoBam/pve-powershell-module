@@ -17,10 +17,6 @@ No description available.
 
 .PARAMETER MonAddress
 No description available.
-.PARAMETER Monid
-No description available.
-.PARAMETER Node
-No description available.
 .OUTPUTS
 
 POSTNodesCephMonRB<PSCustomObject>
@@ -31,33 +27,22 @@ function Initialize-PVEPOSTNodesCephMonRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${MonAddress},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("[a-zA-Z0-9]([a-zA-Z0-9\-]*[a-zA-Z0-9])?")]
-        [String]
-        ${Monid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        ${MonAddress}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesCephMonRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if (!$Monid -and $Monid.length -gt 200) {
-            throw "invalid value for 'Monid', the character length must be smaller than or equal to 200."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"MonAddress"="mon-address"; "Monid"="monid"; "Node"="node"
+			"MonAddress"="mon-address"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -97,7 +82,7 @@ function ConvertFrom-PVEJsonToPOSTNodesCephMonRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCephMonRB
-        $AllProperties = ("mon-address", "monid", "node")
+        $AllProperties = ("mon-address")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -110,22 +95,8 @@ function ConvertFrom-PVEJsonToPOSTNodesCephMonRB {
             $MonAddress = $JsonParameters.PSobject.Properties["mon-address"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "monid"))) { #optional property not found
-            $Monid = $null
-        } else {
-            $Monid = $JsonParameters.PSobject.Properties["monid"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
-        } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "mon-address" = ${MonAddress}
-            "monid" = ${Monid}
-            "node" = ${Node}
         }
 
         return $PSO

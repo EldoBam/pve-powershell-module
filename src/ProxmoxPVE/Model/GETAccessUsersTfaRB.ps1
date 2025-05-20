@@ -17,8 +17,6 @@ No description available.
 
 .PARAMETER Multiple
 No description available.
-.PARAMETER Userid
-No description available.
 .OUTPUTS
 
 GETAccessUsersTfaRB<PSCustomObject>
@@ -28,38 +26,23 @@ function Initialize-PVEGETAccessUsersTfaRB {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Multiple},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Userid}
+        [System.Nullable[Boolean]]
+        ${Multiple}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEGETAccessUsersTfaRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Multiple -and $Multiple -gt 1) {
-          throw "invalid value for 'Multiple', must be smaller than or equal to 1."
-        }
-
-        if ($Multiple -and $Multiple -lt 0) {
-          throw "invalid value for 'Multiple', must be greater than or equal to 0."
-        }
-
-        if (!$Userid -and $Userid.length -gt 64) {
-            throw "invalid value for 'Userid', the character length must be smaller than or equal to 64."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Multiple"="multiple"; "Userid"="userid"
+			"Multiple"="multiple"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -99,7 +82,7 @@ function ConvertFrom-PVEJsonToGETAccessUsersTfaRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEGETAccessUsersTfaRB
-        $AllProperties = ("multiple", "userid")
+        $AllProperties = ("multiple")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -112,15 +95,8 @@ function ConvertFrom-PVEJsonToGETAccessUsersTfaRB {
             $Multiple = $JsonParameters.PSobject.Properties["multiple"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "userid"))) { #optional property not found
-            $Userid = $null
-        } else {
-            $Userid = $JsonParameters.PSobject.Properties["userid"].value
-        }
-
         $PSO = [PSCustomObject]@{
             "multiple" = ${Multiple}
-            "userid" = ${Userid}
         }
 
         return $PSO

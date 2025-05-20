@@ -17,13 +17,9 @@ No description available.
 
 .PARAMETER Description
 No description available.
-.PARAMETER Enable
-No description available.
-.PARAMETER Id
-No description available.
-.PARAMETER Userid
-No description available.
 .PARAMETER Password
+No description available.
+.PARAMETER Enable
 No description available.
 .OUTPUTS
 
@@ -37,17 +33,11 @@ function Initialize-PVEPUTAccessTfaRB {
         [String]
         ${Description},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Enable},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Id},
+        ${Password},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Userid},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Password}
+        [System.Nullable[Boolean]]
+        ${Enable}
     )
 
     Process {
@@ -56,18 +46,6 @@ function Initialize-PVEPUTAccessTfaRB {
 
         if (!$Description -and $Description.length -gt 255) {
             throw "invalid value for 'Description', the character length must be smaller than or equal to 255."
-        }
-
-        if ($Enable -and $Enable -gt 1) {
-          throw "invalid value for 'Enable', must be smaller than or equal to 1."
-        }
-
-        if ($Enable -and $Enable -lt 0) {
-          throw "invalid value for 'Enable', must be greater than or equal to 0."
-        }
-
-        if (!$Userid -and $Userid.length -gt 64) {
-            throw "invalid value for 'Userid', the character length must be smaller than or equal to 64."
         }
 
         if (!$Password -and $Password.length -gt 64) {
@@ -80,13 +58,13 @@ function Initialize-PVEPUTAccessTfaRB {
 
 
 		 $DisplayNameMapping =@{
-			"Description"="description"; "Enable"="enable"; "Id"="id"; "Userid"="userid"; "Password"="password"
+			"Description"="description"; "Password"="password"; "Enable"="enable"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -126,7 +104,7 @@ function ConvertFrom-PVEJsonToPUTAccessTfaRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPUTAccessTfaRB
-        $AllProperties = ("description", "enable", "id", "userid", "password")
+        $AllProperties = ("description", "password", "enable")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -139,36 +117,22 @@ function ConvertFrom-PVEJsonToPUTAccessTfaRB {
             $Description = $JsonParameters.PSobject.Properties["description"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
-            $Enable = $null
-        } else {
-            $Enable = $JsonParameters.PSobject.Properties["enable"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
-            $Id = $null
-        } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "userid"))) { #optional property not found
-            $Userid = $null
-        } else {
-            $Userid = $JsonParameters.PSobject.Properties["userid"].value
-        }
-
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "password"))) { #optional property not found
             $Password = $null
         } else {
             $Password = $JsonParameters.PSobject.Properties["password"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "enable"))) { #optional property not found
+            $Enable = $null
+        } else {
+            $Enable = $JsonParameters.PSobject.Properties["enable"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "description" = ${Description}
-            "enable" = ${Enable}
-            "id" = ${Id}
-            "userid" = ${Userid}
             "password" = ${Password}
+            "enable" = ${Enable}
         }
 
         return $PSO

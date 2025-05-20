@@ -3,63 +3,61 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExitnodesPrimary** | **String** |  | [optional] 
-**Zone** | **String** |  | [optional] 
-**ExitnodesLocalRouting** | **Int32** |  | [optional] 
+**Dnszone** | **String** |  | [optional] 
+**Dhcp** | **String** |  | [optional] 
 **Dns** | **String** |  | [optional] 
-**RtImport** | **String** |  | [optional] 
-**Ipam** | **String** |  | [optional] 
-**Mac** | **String** |  | [optional] 
-**Bridge** | **String** |  | [optional] 
-**Mtu** | **Int32** |  | [optional] 
-**Exitnodes** | **String** |  | [optional] 
-**Controller** | **String** |  | [optional] 
-**VrfVxlan** | **Int32** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
-**AdvertiseSubnets** | **Int32** |  | [optional] 
 **Reversedns** | **String** |  | [optional] 
+**DisableArpNdSuppression** | **Boolean** |  | [optional] 
+**Mtu** | **Int32** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
+**AdvertiseSubnets** | **Boolean** |  | [optional] 
+**Bridge** | **String** |  | [optional] 
+**VrfVxlan** | **Int32** |  | [optional] 
+**BridgeDisableMacLearning** | **Boolean** |  | [optional] 
+**Tag** | **Int32** |  | [optional] 
+**Exitnodes** | **String** |  | [optional] 
+**ExitnodesLocalRouting** | **Boolean** |  | [optional] 
+**Controller** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**VxlanPort** | **Int32** |  | [optional] 
 **VlanProtocol** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**DisableArpNdSuppression** | **Int32** |  | [optional] 
 **DpId** | **Int32** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Dhcp** | **String** |  | [optional] 
-**Tag** | **Int32** |  | [optional] 
-**BridgeDisableMacLearning** | **Int32** |  | [optional] 
-**VxlanPort** | **Int32** |  | [optional] 
+**Ipam** | **String** |  | [optional] 
+**RtImport** | **String** |  | [optional] 
 **Peers** | **String** |  | [optional] 
-**Dnszone** | **String** |  | [optional] 
+**Mac** | **String** |  | [optional] 
+**ExitnodesPrimary** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnZonesRB = Initialize-PVEPUTClusterSdnZonesRB  -ExitnodesPrimary null `
- -Zone null `
- -ExitnodesLocalRouting null `
+$PUTClusterSdnZonesRB = Initialize-PVEPUTClusterSdnZonesRB  -Dnszone null `
+ -Dhcp null `
  -Dns null `
- -RtImport null `
- -Ipam null `
- -Mac null `
- -Bridge null `
+ -Reversedns null `
+ -DisableArpNdSuppression null `
  -Mtu null `
- -Exitnodes null `
- -Controller null `
- -VrfVxlan null `
  -Nodes null `
  -AdvertiseSubnets null `
- -Reversedns null `
+ -Bridge null `
+ -VrfVxlan null `
+ -BridgeDisableMacLearning null `
+ -Tag null `
+ -Exitnodes null `
+ -ExitnodesLocalRouting null `
+ -Controller null `
+ -Delete null `
+ -VxlanPort null `
  -VlanProtocol null `
  -Digest null `
- -DisableArpNdSuppression null `
  -DpId null `
- -Delete null `
- -Dhcp null `
- -Tag null `
- -BridgeDisableMacLearning null `
- -VxlanPort null `
+ -Ipam null `
+ -RtImport null `
  -Peers null `
- -Dnszone null
+ -Mac null `
+ -ExitnodesPrimary null
 ```
 
 - Convert the resource to JSON

@@ -15,15 +15,15 @@ No summary available.
 
 No description available.
 
-.PARAMETER Type
-No description available.
-.PARAMETER Origin
-No description available.
 .PARAMETER Comment
+No description available.
+.PARAMETER Disable
 No description available.
 .PARAMETER Name
 No description available.
-.PARAMETER Disable
+.PARAMETER Type
+No description available.
+.PARAMETER Origin
 No description available.
 .OUTPUTS
 
@@ -34,45 +34,37 @@ function Initialize-PVEClusterNotificationsTargetsInner {
     [CmdletBinding()]
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Comment},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Boolean]]
+        ${Disable},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Name},
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("sendmail", "gotify", "smtp", "webhook")]
         [String]
         ${Type},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("user-created", "builtin", "modified-builtin")]
         [String]
-        ${Origin},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Comment},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
-        ${Disable}
+        ${Origin}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEClusterNotificationsTargetsInner' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Disable -and $Disable -gt 1) {
-          throw "invalid value for 'Disable', must be smaller than or equal to 1."
-        }
-
-        if ($Disable -and $Disable -lt 0) {
-          throw "invalid value for 'Disable', must be greater than or equal to 0."
-        }
-
 
 		 $DisplayNameMapping =@{
-			"Type"="type"; "Origin"="origin"; "Comment"="comment"; "Name"="name"; "Disable"="disable"
+			"Comment"="comment"; "Disable"="disable"; "Name"="name"; "Type"="type"; "Origin"="origin"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -112,11 +104,29 @@ function ConvertFrom-PVEJsonToClusterNotificationsTargetsInner {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEClusterNotificationsTargetsInner
-        $AllProperties = ("type", "origin", "comment", "name", "disable")
+        $AllProperties = ("comment", "disable", "name", "type", "origin")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
+            $Comment = $null
+        } else {
+            $Comment = $JsonParameters.PSobject.Properties["comment"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
+            $Disable = $null
+        } else {
+            $Disable = $JsonParameters.PSobject.Properties["disable"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
+            $Name = $null
+        } else {
+            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) { #optional property not found
@@ -131,30 +141,12 @@ function ConvertFrom-PVEJsonToClusterNotificationsTargetsInner {
             $Origin = $JsonParameters.PSobject.Properties["origin"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "comment"))) { #optional property not found
-            $Comment = $null
-        } else {
-            $Comment = $JsonParameters.PSobject.Properties["comment"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "disable"))) { #optional property not found
-            $Disable = $null
-        } else {
-            $Disable = $JsonParameters.PSobject.Properties["disable"].value
-        }
-
         $PSO = [PSCustomObject]@{
+            "comment" = ${Comment}
+            "disable" = ${Disable}
+            "name" = ${Name}
             "type" = ${Type}
             "origin" = ${Origin}
-            "comment" = ${Comment}
-            "name" = ${Name}
-            "disable" = ${Disable}
         }
 
         return $PSO

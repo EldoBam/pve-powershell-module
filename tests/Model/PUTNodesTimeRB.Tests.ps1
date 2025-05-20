@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEPUTNodesTimeRB' {
     Context 'PVEPUTNodesTimeRB' {
         It 'Initialize-PVEPUTNodesTimeRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEPUTNodesTimeRB -Timezone "TEST_VALUE" -Node "TEST_VALUE"
+            #$NewObject = Initialize-PVEPUTNodesTimeRB -Timezone "TEST_VALUE"
             #$NewObject | Should -BeOfType PUTNodesTimeRB
             #$NewObject.property | Should -Be 0
         }

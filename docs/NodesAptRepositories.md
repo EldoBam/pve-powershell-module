@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Infos** | [**NodesAptRepositoriesInfosInner[]**](NodesAptRepositoriesInfosInner.md) |  | [optional] 
-**Errors** | [**NodesAptRepositoriesErrorsInner[]**](NodesAptRepositoriesErrorsInner.md) |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Files** | [**NodesAptRepositoriesFilesInner[]**](NodesAptRepositoriesFilesInner.md) |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Infos** | [**NodesAptRepositoriesInfosInner[]**](NodesAptRepositoriesInfosInner.md) |  | [optional] 
 **StandardRepos** | [**NodesAptRepositoriesStandardReposInner[]**](NodesAptRepositoriesStandardReposInner.md) |  | [optional] 
+**Errors** | [**NodesAptRepositoriesErrorsInner[]**](NodesAptRepositoriesErrorsInner.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesAptRepositories = Initialize-PVENodesAptRepositories  -Infos null `
- -Errors null `
+$NodesAptRepositories = Initialize-PVENodesAptRepositories  -Files null `
  -Digest null `
- -Files null `
- -StandardRepos null
+ -Infos null `
+ -StandardRepos null `
+ -Errors null
 ```
 
 - Convert the resource to JSON

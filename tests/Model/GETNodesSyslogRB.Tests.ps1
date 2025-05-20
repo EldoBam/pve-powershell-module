@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVEGETNodesSyslogRB' {
     Context 'PVEGETNodesSyslogRB' {
         It 'Initialize-PVEGETNodesSyslogRB' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVEGETNodesSyslogRB -Start "TEST_VALUE" -VarUntil "TEST_VALUE" -Limit "TEST_VALUE" -Since "TEST_VALUE" -Node "TEST_VALUE" -Service "TEST_VALUE"
+            #$NewObject = Initialize-PVEGETNodesSyslogRB -Service "TEST_VALUE" -Start "TEST_VALUE" -Since "TEST_VALUE" -Limit "TEST_VALUE" -VarUntil "TEST_VALUE"
             #$NewObject | Should -BeOfType GETNodesSyslogRB
             #$NewObject.property | Should -Be 0
         }

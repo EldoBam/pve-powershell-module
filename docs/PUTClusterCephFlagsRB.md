@@ -3,15 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Flag** | **String** |  | [optional] 
-**Value** | **Int32** |  | [optional] 
+**Value** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterCephFlagsRB = Initialize-PVEPUTClusterCephFlagsRB  -Flag null `
- -Value null
+$PUTClusterCephFlagsRB = Initialize-PVEPUTClusterCephFlagsRB  -Value null
 ```
 
 - Convert the resource to JSON

@@ -15,13 +15,9 @@ No summary available.
 
 No description available.
 
-.PARAMETER AddStorage
-No description available.
-.PARAMETER Name
-No description available.
 .PARAMETER PgNum
 No description available.
-.PARAMETER Node
+.PARAMETER AddStorage
 No description available.
 .OUTPUTS
 
@@ -33,30 +29,15 @@ function Initialize-PVEPOSTNodesCephFsRB {
     Param (
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
-        ${AddStorage},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [ValidatePattern("(?^:^[^:/\s]+$)")]
-        [String]
-        ${Name},
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [System.Nullable[Int32]]
         ${PgNum},
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Node}
+        [System.Nullable[Boolean]]
+        ${AddStorage}
     )
 
     Process {
         'Creating PSCustomObject: ProxmoxPVE => PVEPOSTNodesCephFsRB' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($AddStorage -and $AddStorage -gt 1) {
-          throw "invalid value for 'AddStorage', must be smaller than or equal to 1."
-        }
-
-        if ($AddStorage -and $AddStorage -lt 0) {
-          throw "invalid value for 'AddStorage', must be greater than or equal to 0."
-        }
 
         if ($PgNum -and $PgNum -gt 32768) {
           throw "invalid value for 'PgNum', must be smaller than or equal to 32768."
@@ -68,13 +49,13 @@ function Initialize-PVEPOSTNodesCephFsRB {
 
 
 		 $DisplayNameMapping =@{
-			"AddStorage"="add-storage"; "Name"="name"; "PgNum"="pg_num"; "Node"="node"
+			"PgNum"="pg_num"; "AddStorage"="add-storage"
         }
 		
 		 $OBJ = @{}
 		foreach($parameter in   $PSBoundParameters.Keys){
 			#If Specifield map the Display name back
-			$OBJ.($DisplayNameMapping.($parameter)) = "$PSBoundParameters.$parameter"
+			$OBJ.($DisplayNameMapping.($parameter)) = $PSBoundParameters.$parameter
 		}
 
 		$PSO = [PSCustomObject]$OBJ
@@ -114,23 +95,11 @@ function ConvertFrom-PVEJsonToPOSTNodesCephFsRB {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in PVEPOSTNodesCephFsRB
-        $AllProperties = ("add-storage", "name", "pg_num", "node")
+        $AllProperties = ("pg_num", "add-storage")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "add-storage"))) { #optional property not found
-            $AddStorage = $null
-        } else {
-            $AddStorage = $JsonParameters.PSobject.Properties["add-storage"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "name"))) { #optional property not found
-            $Name = $null
-        } else {
-            $Name = $JsonParameters.PSobject.Properties["name"].value
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "pg_num"))) { #optional property not found
@@ -139,17 +108,15 @@ function ConvertFrom-PVEJsonToPOSTNodesCephFsRB {
             $PgNum = $JsonParameters.PSobject.Properties["pg_num"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "node"))) { #optional property not found
-            $Node = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "add-storage"))) { #optional property not found
+            $AddStorage = $null
         } else {
-            $Node = $JsonParameters.PSobject.Properties["node"].value
+            $AddStorage = $JsonParameters.PSobject.Properties["add-storage"].value
         }
 
         $PSO = [PSCustomObject]@{
-            "add-storage" = ${AddStorage}
-            "name" = ${Name}
             "pg_num" = ${PgNum}
-            "node" = ${Node}
+            "add-storage" = ${AddStorage}
         }
 
         return $PSO

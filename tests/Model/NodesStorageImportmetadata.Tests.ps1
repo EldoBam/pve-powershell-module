@@ -10,7 +10,7 @@ Describe -tag 'ProxmoxPVE' -name 'PVENodesStorageImportmetadata' {
     Context 'PVENodesStorageImportmetadata' {
         It 'Initialize-PVENodesStorageImportmetadata' {
             # a simple test to create an object
-            #$NewObject = Initialize-PVENodesStorageImportmetadata -Source "TEST_VALUE" -Net "TEST_VALUE" -CreateArgs "TEST_VALUE" -Disks "TEST_VALUE" -Type "TEST_VALUE" -Warnings "TEST_VALUE"
+            #$NewObject = Initialize-PVENodesStorageImportmetadata -Net "TEST_VALUE" -Type "TEST_VALUE" -Disks "TEST_VALUE" -Warnings "TEST_VALUE" -Source "TEST_VALUE" -CreateArgs "TEST_VALUE"
             #$NewObject | Should -BeOfType NodesStorageImportmetadata
             #$NewObject.property | Should -Be 0
         }

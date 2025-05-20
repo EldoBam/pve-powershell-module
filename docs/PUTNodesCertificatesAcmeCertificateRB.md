@@ -3,15 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Node** | **String** |  | [optional] 
-**Force** | **Int32** |  | [optional] 
+**Force** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesCertificatesAcmeCertificateRB = Initialize-PVEPUTNodesCertificatesAcmeCertificateRB  -Node null `
- -Force null
+$PUTNodesCertificatesAcmeCertificateRB = Initialize-PVEPUTNodesCertificatesAcmeCertificateRB  -Force null
 ```
 
 - Convert the resource to JSON
