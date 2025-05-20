@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Controller** | **String** |  | [optional] 
 **Pending** | **Boolean** |  | [optional] 
+**Controller** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 **State** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ClusterSdnControllersInner = Initialize-PVEClusterSdnControllersInner  -Controller null `
- -Pending null `
+$ClusterSdnControllersInner = Initialize-PVEClusterSdnControllersInner  -Pending null `
+ -Controller null `
  -Type null `
  -State null
 ```

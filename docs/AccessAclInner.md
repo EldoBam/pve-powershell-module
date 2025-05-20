@@ -4,20 +4,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ugid** | **String** |  | [optional] 
-**Roleid** | **String** |  | [optional] 
 **Propagate** | **Boolean** |  | [optional] 
-**Path** | **String** |  | [optional] 
+**Roleid** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Path** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $AccessAclInner = Initialize-PVEAccessAclInner  -Ugid null `
- -Roleid null `
  -Propagate null `
- -Path null `
- -Type null
+ -Roleid null `
+ -Type null `
+ -Path null
 ```
 
 - Convert the resource to JSON

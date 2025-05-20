@@ -5,11 +5,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **String** |  | [optional] 
 **Api** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
+**Id** | **String** |  | [optional] 
 **ValidationDelay** | **Int32** |  | [optional] 
 **VarData** | **String** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
 
 ## Examples
 
@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 ```powershell
 $POSTClusterAcmePluginsRB = Initialize-PVEPOSTClusterAcmePluginsRB  -Type null `
  -Api null `
- -Id null `
- -Nodes null `
  -Disable null `
+ -Id null `
  -ValidationDelay null `
- -VarData null
+ -VarData null `
+ -Nodes null
 ```
 
 - Convert the resource to JSON

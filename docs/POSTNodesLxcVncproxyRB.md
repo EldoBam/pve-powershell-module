@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Height** | **Int32** |  | [optional] 
 **Width** | **Int32** |  | [optional] 
 **Websocket** | **Boolean** |  | [optional] 
-**Height** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcVncproxyRB = Initialize-PVEPOSTNodesLxcVncproxyRB  -Width null `
- -Websocket null `
- -Height null
+$POSTNodesLxcVncproxyRB = Initialize-PVEPOSTNodesLxcVncproxyRB  -Height null `
+ -Width null `
+ -Websocket null
 ```
 
 - Convert the resource to JSON

@@ -4,22 +4,22 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Size** | **Int32** |  | [optional] 
-**Text** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Filepath** | **String** |  | [optional] 
-**Mtime** | **Int32** |  | [optional] 
 **Leaf** | **Boolean** |  | [optional] 
+**Mtime** | **Int32** |  | [optional] 
+**Filepath** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Text** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $NodesStorageFilerestoreListInner = Initialize-PVENodesStorageFilerestoreListInner  -Size null `
- -Text null `
- -Type null `
- -Filepath null `
+ -Leaf null `
  -Mtime null `
- -Leaf null
+ -Filepath null `
+ -Type null `
+ -Text null
 ```
 
 - Convert the resource to JSON

@@ -3,35 +3,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
-**Mailto** | **String[]** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**Username** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**MailtoUser** | **String[]** |  | [optional] 
-**FromAddress** | **String** |  | [optional] 
 **Author** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**Server** | **String** |  | [optional] 
-**Mode** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Mode** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**FromAddress** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Username** | **String** |  | [optional] 
+**MailtoUser** | **String[]** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**Mailto** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterNotificationsEndpointsSmtp = Initialize-PVEClusterNotificationsEndpointsSmtp  -Name null `
- -Mailto null `
- -Port null `
- -Username null `
- -Comment null `
- -MailtoUser null `
- -FromAddress null `
- -Author null `
- -Disable null `
- -Server null `
+$ClusterNotificationsEndpointsSmtp = Initialize-PVEClusterNotificationsEndpointsSmtp  -Author null `
+ -Digest null `
  -Mode null `
- -Digest null
+ -Server null `
+ -FromAddress null `
+ -Disable null `
+ -Name null `
+ -Username null `
+ -MailtoUser null `
+ -Comment null `
+ -Port null `
+ -Mailto null
 ```
 
 - Convert the resource to JSON

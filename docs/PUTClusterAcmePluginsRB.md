@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delete** | **String** |  | [optional] 
-**Api** | **String** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
-**VarData** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**ValidationDelay** | **Int32** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Api** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**ValidationDelay** | **Int32** |  | [optional] 
+**VarData** | **String** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterAcmePluginsRB = Initialize-PVEPUTClusterAcmePluginsRB  -Delete null `
+$PUTClusterAcmePluginsRB = Initialize-PVEPUTClusterAcmePluginsRB  -Digest null `
  -Api null `
- -Nodes null `
- -VarData null `
  -Disable null `
+ -Delete null `
  -ValidationDelay null `
- -Digest null
+ -VarData null `
+ -Nodes null
 ```
 
 - Convert the resource to JSON

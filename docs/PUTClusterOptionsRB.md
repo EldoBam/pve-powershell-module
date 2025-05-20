@@ -3,57 +3,57 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TagStyle** | **String** |  | [optional] 
-**MaxWorkers** | **Int32** |  | [optional] 
+**HttpProxy** | **String** |  | [optional] 
 **Migration** | **String** |  | [optional] 
 **Webauthn** | **String** |  | [optional] 
-**Language** | **String** |  | [optional] 
-**HttpProxy** | **String** |  | [optional] 
-**Notify** | **String** |  | [optional] 
-**MigrationUnsecure** | **Boolean** |  | [optional] 
-**Keyboard** | **String** |  | [optional] 
-**Bwlimit** | **String** |  | [optional] 
-**Crs** | **String** |  | [optional] 
 **MacPrefix** | **String** |  | [optional] 
-**UserTagAccess** | **String** |  | [optional] 
-**Ha** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**ConsentText** | **String** |  | [optional] 
-**NextId** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
 **Console** | **String** |  | [optional] 
-**Fencing** | **String** |  | [optional] 
+**Language** | **String** |  | [optional] 
+**Keyboard** | **String** |  | [optional] 
+**UserTagAccess** | **String** |  | [optional] 
+**Crs** | **String** |  | [optional] 
+**MaxWorkers** | **Int32** |  | [optional] 
+**Description** | **String** |  | [optional] 
 **U2f** | **String** |  | [optional] 
+**Ha** | **String** |  | [optional] 
 **RegisteredTags** | **String** |  | [optional] 
+**Bwlimit** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**TagStyle** | **String** |  | [optional] 
+**MigrationUnsecure** | **Boolean** |  | [optional] 
+**Fencing** | **String** |  | [optional] 
+**NextId** | **String** |  | [optional] 
+**ConsentText** | **String** |  | [optional] 
 **EmailFrom** | **String** |  | [optional] 
+**Notify** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterOptionsRB = Initialize-PVEPUTClusterOptionsRB  -TagStyle null `
- -MaxWorkers null `
+$PUTClusterOptionsRB = Initialize-PVEPUTClusterOptionsRB  -HttpProxy null `
  -Migration null `
  -Webauthn null `
- -Language null `
- -HttpProxy null `
- -Notify null `
- -MigrationUnsecure null `
- -Keyboard null `
- -Bwlimit null `
- -Crs null `
  -MacPrefix null `
- -UserTagAccess null `
- -Ha null `
- -Description null `
- -ConsentText null `
- -NextId null `
- -Delete null `
  -Console null `
- -Fencing null `
+ -Language null `
+ -Keyboard null `
+ -UserTagAccess null `
+ -Crs null `
+ -MaxWorkers null `
+ -Description null `
  -U2f null `
+ -Ha null `
  -RegisteredTags null `
- -EmailFrom null
+ -Bwlimit null `
+ -Delete null `
+ -TagStyle null `
+ -MigrationUnsecure null `
+ -Fencing null `
+ -NextId null `
+ -ConsentText null `
+ -EmailFrom null `
+ -Notify null
 ```
 
 - Convert the resource to JSON

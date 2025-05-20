@@ -4,18 +4,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Skiplock** | **Boolean** |  | [optional] 
-**ForceStop** | **Boolean** |  | [optional] 
 **KeepActive** | **Boolean** |  | [optional] 
 **Timeout** | **Int32** |  | [optional] 
+**ForceStop** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTNodesQemuStatusShutdownRB = Initialize-PVEPOSTNodesQemuStatusShutdownRB  -Skiplock null `
- -ForceStop null `
  -KeepActive null `
- -Timeout null
+ -Timeout null `
+ -ForceStop null
 ```
 
 - Convert the resource to JSON

@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Idlist** | **String** |  | [optional] 
 **Force** | **Boolean** |  | [optional] 
+**Idlist** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuUnlinkRB = Initialize-PVEPUTNodesQemuUnlinkRB  -Idlist null `
- -Force null
+$PUTNodesQemuUnlinkRB = Initialize-PVEPUTNodesQemuUnlinkRB  -Force null `
+ -Idlist null
 ```
 
 - Convert the resource to JSON

@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vmid** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $ClusterBackupinfoNotbackedupInner = Initialize-PVEClusterBackupinfoNotbackedupInner  -Vmid null `
- -Name null `
- -Type null
+ -Type null `
+ -Name null
 ```
 
 - Convert the resource to JSON

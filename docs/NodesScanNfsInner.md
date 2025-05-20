@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Options** | **String** |  | [optional] 
 **Path** | **String** |  | [optional] 
+**Options** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesScanNfsInner = Initialize-PVENodesScanNfsInner  -Options null `
- -Path null
+$NodesScanNfsInner = Initialize-PVENodesScanNfsInner  -Path null `
+ -Options null
 ```
 
 - Convert the resource to JSON

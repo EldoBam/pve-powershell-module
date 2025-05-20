@@ -1,22 +1,20 @@
-# NodesTasksLogInner
+# NodesReplicationInner
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**T** | **String** |  | [optional] 
-**N** | **Int32** |  | [optional] 
+**Id** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesTasksLogInner = Initialize-PVENodesTasksLogInner  -T null `
- -N null
+$NodesReplicationInner = Initialize-PVENodesReplicationInner  -Id null
 ```
 
 - Convert the resource to JSON
 ```powershell
-$NodesTasksLogInner | ConvertTo-JSON
+$NodesReplicationInner | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

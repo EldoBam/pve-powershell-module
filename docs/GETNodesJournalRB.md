@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**VarUntil** | **Int32** |  | [optional] 
 **Lastentries** | **Int32** |  | [optional] 
 **Endcursor** | **String** |  | [optional] 
-**Startcursor** | **String** |  | [optional] 
 **Since** | **Int32** |  | [optional] 
-**VarUntil** | **Int32** |  | [optional] 
+**Startcursor** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesJournalRB = Initialize-PVEGETNodesJournalRB  -Lastentries null `
+$GETNodesJournalRB = Initialize-PVEGETNodesJournalRB  -VarUntil null `
+ -Lastentries null `
  -Endcursor null `
- -Startcursor null `
  -Since null `
- -VarUntil null
+ -Startcursor null
 ```
 
 - Convert the resource to JSON

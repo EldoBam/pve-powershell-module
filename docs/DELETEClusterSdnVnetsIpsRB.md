@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Zone** | **String** |  | [optional] 
-**Mac** | **String** |  | [optional] 
 **Ip** | **String** |  | [optional] 
+**Mac** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $DELETEClusterSdnVnetsIpsRB = Initialize-PVEDELETEClusterSdnVnetsIpsRB  -Zone null `
- -Mac null `
- -Ip null
+ -Ip null `
+ -Mac null
 ```
 
 - Convert the resource to JSON

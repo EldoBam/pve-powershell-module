@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**PgNum** | **Int32** |  | [optional] 
 **Size** | **Int32** |  | [optional] 
 **TargetSizeRatio** | **Decimal** |  | [optional] 
-**Application** | **String** |  | [optional] 
 **CrushRule** | **String** |  | [optional] 
-**TargetSize** | **String** |  | [optional] 
-**MinSize** | **Int32** |  | [optional] 
-**PgNumMin** | **Int32** |  | [optional] 
-**PgNum** | **Int32** |  | [optional] 
 **PgAutoscaleMode** | **String** |  | [optional] 
+**TargetSize** | **String** |  | [optional] 
+**PgNumMin** | **Int32** |  | [optional] 
+**MinSize** | **Int32** |  | [optional] 
+**Application** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesCephPoolRB = Initialize-PVEPUTNodesCephPoolRB  -Size null `
+$PUTNodesCephPoolRB = Initialize-PVEPUTNodesCephPoolRB  -PgNum null `
+ -Size null `
  -TargetSizeRatio null `
- -Application null `
  -CrushRule null `
+ -PgAutoscaleMode null `
  -TargetSize null `
- -MinSize null `
  -PgNumMin null `
- -PgNum null `
- -PgAutoscaleMode null
+ -MinSize null `
+ -Application null
 ```
 
 - Convert the resource to JSON

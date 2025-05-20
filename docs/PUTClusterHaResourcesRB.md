@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delete** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 **Group** | **String** |  | [optional] 
 **State** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
 **MaxRelocate** | **Int32** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **MaxRestart** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterHaResourcesRB = Initialize-PVEPUTClusterHaResourcesRB  -Delete null `
+$PUTClusterHaResourcesRB = Initialize-PVEPUTClusterHaResourcesRB  -Digest null `
  -Group null `
  -State null `
+ -Delete null `
  -MaxRelocate null `
  -Comment null `
- -MaxRestart null `
- -Digest null
+ -MaxRestart null
 ```
 
 - Convert the resource to JSON

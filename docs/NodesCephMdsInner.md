@@ -3,22 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | [**AnyType**](.md) |  | [optional] 
-**Addr** | **String** |  | [optional] 
-**State** | **String** |  | [optional] 
 **Rank** | **Int32** |  | [optional] 
 **VarHost** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
+**Name** | [**AnyType**](.md) |  | [optional] 
+**Addr** | **String** |  | [optional] 
 **StandbyReplay** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephMdsInner = Initialize-PVENodesCephMdsInner  -Name null `
- -Addr null `
- -State null `
- -Rank null `
+$NodesCephMdsInner = Initialize-PVENodesCephMdsInner  -Rank null `
  -VarHost null `
+ -State null `
+ -Name null `
+ -Addr null `
  -StandbyReplay null
 ```
 

@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Comment** | **String** |  | [optional] 
-**Cidr** | **String** |  | [optional] 
 **Nomatch** | **Boolean** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTNodesLxcFirewallIpsetRB = Initialize-PVEPOSTNodesLxcFirewallIpsetRB  -Comment null `
- -Cidr null `
- -Nomatch null
+ -Nomatch null `
+ -Cidr null
 ```
 
 - Convert the resource to JSON

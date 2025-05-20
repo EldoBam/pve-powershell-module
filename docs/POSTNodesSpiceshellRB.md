@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cmd** | **String** |  | [optional] 
-**CmdOpts** | **String** |  | [optional] 
 **Proxy** | **String** |  | [optional] 
+**CmdOpts** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTNodesSpiceshellRB = Initialize-PVEPOSTNodesSpiceshellRB  -Cmd null `
- -CmdOpts null `
- -Proxy null
+ -Proxy null `
+ -CmdOpts null
 ```
 
 - Convert the resource to JSON

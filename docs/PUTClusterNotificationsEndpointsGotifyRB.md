@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delete** | **String[]** |  | [optional] 
-**Token** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**Server** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Delete** | **String[]** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Token** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterNotificationsEndpointsGotifyRB = Initialize-PVEPUTClusterNotificationsEndpointsGotifyRB  -Delete null `
- -Token null `
- -Comment null `
- -Disable null `
+$PUTClusterNotificationsEndpointsGotifyRB = Initialize-PVEPUTClusterNotificationsEndpointsGotifyRB  -Digest null `
  -Server null `
- -Digest null
+ -Disable null `
+ -Delete null `
+ -Comment null `
+ -Token null
 ```
 
 - Convert the resource to JSON

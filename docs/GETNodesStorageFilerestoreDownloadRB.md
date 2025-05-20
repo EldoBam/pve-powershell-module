@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Volume** | **String** |  | [optional] 
-**Tar** | **Boolean** |  | [optional] 
 **Filepath** | **String** |  | [optional] 
+**Tar** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesStorageFilerestoreDownloadRB = Initialize-PVEGETNodesStorageFilerestoreDownloadRB  -Volume null `
- -Tar null `
- -Filepath null
+ -Filepath null `
+ -Tar null
 ```
 
 - Convert the resource to JSON

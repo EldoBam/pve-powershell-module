@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Leaf** | **Boolean** |  | [optional] 
 **Children** | [**NodesDisksLvmChildrenInner[]**](NodesDisksLvmChildrenInner.md) |  | [optional] 
+**Leaf** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesDisksLvm = Initialize-PVENodesDisksLvm  -Leaf null `
- -Children null
+$NodesDisksLvm = Initialize-PVENodesDisksLvm  -Children null `
+ -Leaf null
 ```
 
 - Convert the resource to JSON

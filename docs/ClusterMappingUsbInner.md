@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VarError** | [**AnyType**](.md) |  | [optional] 
 **Map** | **String[]** |  | [optional] 
-**Description** | **String** |  | [optional] 
+**VarError** | [**AnyType**](.md) |  | [optional] 
 **Id** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterMappingUsbInner = Initialize-PVEClusterMappingUsbInner  -VarError null `
- -Map null `
- -Description null `
- -Id null
+$ClusterMappingUsbInner = Initialize-PVEClusterMappingUsbInner  -Map null `
+ -VarError null `
+ -Id null `
+ -Description null
 ```
 
 - Convert the resource to JSON

@@ -4,20 +4,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Comment** | **String** |  | [optional] 
-**Delete** | **Boolean** |  | [optional] 
-**Vms** | **String** |  | [optional] 
 **AllowMove** | **Boolean** |  | [optional] 
 **Storage** | **String** |  | [optional] 
+**Vms** | **String** |  | [optional] 
+**Delete** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $PUTPoolsRB = Initialize-PVEPUTPoolsRB  -Comment null `
- -Delete null `
- -Vms null `
  -AllowMove null `
- -Storage null
+ -Storage null `
+ -Vms null `
+ -Delete null
 ```
 
 - Convert the resource to JSON

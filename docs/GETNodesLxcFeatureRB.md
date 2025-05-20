@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Feature** | **String** |  | [optional] 
 **Snapname** | **String** |  | [optional] 
+**Feature** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesLxcFeatureRB = Initialize-PVEGETNodesLxcFeatureRB  -Feature null `
- -Snapname null
+$GETNodesLxcFeatureRB = Initialize-PVEGETNodesLxcFeatureRB  -Snapname null `
+ -Feature null
 ```
 
 - Convert the resource to JSON

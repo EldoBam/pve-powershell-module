@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | **String** |  | [optional] 
 **Service** | **String** |  | [optional] 
 **Id** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesCephCmdsafetyRB = Initialize-PVEGETNodesCephCmdsafetyRB  -Action null `
- -Service null `
- -Id null
+$GETNodesCephCmdsafetyRB = Initialize-PVEGETNodesCephCmdsafetyRB  -Service null `
+ -Id null `
+ -Action null
 ```
 
 - Convert the resource to JSON

@@ -3,41 +3,41 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Macro** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Log** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
 **IcmpType** | **String** |  | [optional] 
-**Dport** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Dest** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Sport** | **String** |  | [optional] 
 **Source** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
+**Log** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
+**Iface** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Sport** | **String** |  | [optional] 
+**Macro** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesFirewallRulesRB = Initialize-PVEPOSTNodesFirewallRulesRB  -Macro null `
- -Iface null `
+$POSTNodesFirewallRulesRB = Initialize-PVEPOSTNodesFirewallRulesRB  -IcmpType null `
  -Action null `
- -Pos null `
  -Type null `
- -Log null `
- -Enable null `
- -IcmpType null `
- -Dport null `
- -Proto null `
  -Dest null `
- -Digest null `
- -Sport null `
  -Source null `
- -Comment null
+ -Digest null `
+ -Dport null `
+ -Enable null `
+ -Log null `
+ -Pos null `
+ -Iface null `
+ -Comment null `
+ -Proto null `
+ -Sport null `
+ -Macro null
 ```
 
 - Convert the resource to JSON

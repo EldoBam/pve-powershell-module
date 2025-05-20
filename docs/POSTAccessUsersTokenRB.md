@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Comment** | **String** |  | [optional] 
-**Expire** | **Int32** |  | [optional] 
 **Privsep** | **Boolean** |  | [optional] 
+**Expire** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTAccessUsersTokenRB = Initialize-PVEPOSTAccessUsersTokenRB  -Comment null `
- -Expire null `
- -Privsep null
+ -Privsep null `
+ -Expire null
 ```
 
 - Convert the resource to JSON

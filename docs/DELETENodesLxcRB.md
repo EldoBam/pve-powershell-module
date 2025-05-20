@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Force** | **Boolean** |  | [optional] 
 **DestroyUnreferencedDisks** | **Boolean** |  | [optional] 
 **Purge** | **Boolean** |  | [optional] 
-**Force** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesLxcRB = Initialize-PVEDELETENodesLxcRB  -DestroyUnreferencedDisks null `
- -Purge null `
- -Force null
+$DELETENodesLxcRB = Initialize-PVEDELETENodesLxcRB  -Force null `
+ -DestroyUnreferencedDisks null `
+ -Purge null
 ```
 
 - Convert the resource to JSON

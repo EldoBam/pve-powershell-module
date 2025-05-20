@@ -4,20 +4,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Service** | **String** |  | [optional] 
-**Start** | **Int32** |  | [optional] 
-**Since** | **String** |  | [optional] 
-**Limit** | **Int32** |  | [optional] 
 **VarUntil** | **String** |  | [optional] 
+**Limit** | **Int32** |  | [optional] 
+**Since** | **String** |  | [optional] 
+**Start** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesSyslogRB = Initialize-PVEGETNodesSyslogRB  -Service null `
- -Start null `
- -Since null `
+ -VarUntil null `
  -Limit null `
- -VarUntil null
+ -Since null `
+ -Start null
 ```
 
 - Convert the resource to JSON

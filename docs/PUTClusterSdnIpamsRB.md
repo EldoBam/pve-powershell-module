@@ -3,22 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Digest** | **String** |  | [optional] 
+**Fingerprint** | **String** |  | [optional] 
+**Section** | **Int32** |  | [optional] 
 **Delete** | **String** |  | [optional] 
 **Token** | **String** |  | [optional] 
-**Section** | **Int32** |  | [optional] 
-**Fingerprint** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Url** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnIpamsRB = Initialize-PVEPUTClusterSdnIpamsRB  -Delete null `
- -Token null `
- -Section null `
+$PUTClusterSdnIpamsRB = Initialize-PVEPUTClusterSdnIpamsRB  -Digest null `
  -Fingerprint null `
- -Digest null `
+ -Section null `
+ -Delete null `
+ -Token null `
  -Url null
 ```
 

@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CorosyncAuthkey** | **String** |  | [optional] 
-**CorosyncConf** | **String** |  | [optional] 
 **Warnings** | **String[]** |  | [optional] 
+**CorosyncConf** | **String** |  | [optional] 
+**CorosyncAuthkey** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterConfigNodes = Initialize-PVEClusterConfigNodes  -CorosyncAuthkey null `
+$ClusterConfigNodes = Initialize-PVEClusterConfigNodes  -Warnings null `
  -CorosyncConf null `
- -Warnings null
+ -CorosyncAuthkey null
 ```
 
 - Convert the resource to JSON

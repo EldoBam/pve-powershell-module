@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Config** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Config** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 **Storage** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$Storage = Initialize-PVEStorage  -Config null `
- -Type null `
+$Storage = Initialize-PVEStorage  -Type null `
+ -Config null `
  -Storage null
 ```
 

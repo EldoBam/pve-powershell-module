@@ -81,10 +81,10 @@ docs/ClusterNotificationsTargetsInner.md
 docs/ClusterResourcesInner.md
 docs/ClusterSdnControllersInner.md
 docs/ClusterSdnDnsInner.md
-docs/ClusterSdnInner.md
 docs/ClusterSdnIpamsInner.md
 docs/ClusterSdnVnetsFirewallOptions.md
 docs/ClusterSdnVnetsFirewallRules.md
+docs/ClusterSdnVnetsFirewallRulesGETInner.md
 docs/ClusterSdnZonesInner.md
 docs/ClusterStatusInner.md
 docs/ClusterTasksInner.md
@@ -237,6 +237,7 @@ docs/NodesDisksZfs.md
 docs/NodesDisksZfsChildrenInner.md
 docs/NodesDisksZfsGETInner.md
 docs/NodesDns.md
+docs/NodesFirewallLogInner.md
 docs/NodesFirewallOptions.md
 docs/NodesFirewallRules.md
 docs/NodesHardwareInner.md
@@ -248,10 +249,8 @@ docs/NodesHosts.md
 docs/NodesInner.md
 docs/NodesLxcConfig.md
 docs/NodesLxcFeature.md
-docs/NodesLxcFirewallAliasesInner.md
 docs/NodesLxcFirewallOptions.md
 docs/NodesLxcFirewallRules.md
-docs/NodesLxcFirewallRulesGETInner.md
 docs/NodesLxcInner.md
 docs/NodesLxcInterfacesInner.md
 docs/NodesLxcInterfacesInnerIpAddressesInner.md
@@ -268,6 +267,7 @@ docs/NodesQemuAgentFileread.md
 docs/NodesQemuCloudinitInner.md
 docs/NodesQemuConfig.md
 docs/NodesQemuFeature.md
+docs/NodesQemuFirewallAliasesInner.md
 docs/NodesQemuFirewallIpsetInner.md
 docs/NodesQemuFirewallOptions.md
 docs/NodesQemuFirewallRules.md
@@ -282,6 +282,7 @@ docs/NodesQemuSnapshotInner.md
 docs/NodesQemuStatusCurrent.md
 docs/NodesQemuVncwebsocket.md
 docs/NodesQueryurlmetadata.md
+docs/NodesReplicationInner.md
 docs/NodesRrd.md
 docs/NodesScanCifsInner.md
 docs/NodesScanGlusterfsInner.md
@@ -310,7 +311,6 @@ docs/NodesStoragePrunebackupsInner.md
 docs/NodesStorageRrd.md
 docs/NodesSubscription.md
 docs/NodesTasksInner.md
-docs/NodesTasksLogInner.md
 docs/NodesTasksStatus.md
 docs/NodesTime.md
 docs/NodesVersion.md
@@ -612,10 +612,10 @@ src/ProxmoxPVE/Model/ClusterNotificationsTargetsInner.ps1
 src/ProxmoxPVE/Model/ClusterResourcesInner.ps1
 src/ProxmoxPVE/Model/ClusterSdnControllersInner.ps1
 src/ProxmoxPVE/Model/ClusterSdnDnsInner.ps1
-src/ProxmoxPVE/Model/ClusterSdnInner.ps1
 src/ProxmoxPVE/Model/ClusterSdnIpamsInner.ps1
 src/ProxmoxPVE/Model/ClusterSdnVnetsFirewallOptions.ps1
 src/ProxmoxPVE/Model/ClusterSdnVnetsFirewallRules.ps1
+src/ProxmoxPVE/Model/ClusterSdnVnetsFirewallRulesGETInner.ps1
 src/ProxmoxPVE/Model/ClusterSdnZonesInner.ps1
 src/ProxmoxPVE/Model/ClusterStatusInner.ps1
 src/ProxmoxPVE/Model/ClusterTasksInner.ps1
@@ -768,6 +768,7 @@ src/ProxmoxPVE/Model/NodesDisksZfs.ps1
 src/ProxmoxPVE/Model/NodesDisksZfsChildrenInner.ps1
 src/ProxmoxPVE/Model/NodesDisksZfsGETInner.ps1
 src/ProxmoxPVE/Model/NodesDns.ps1
+src/ProxmoxPVE/Model/NodesFirewallLogInner.ps1
 src/ProxmoxPVE/Model/NodesFirewallOptions.ps1
 src/ProxmoxPVE/Model/NodesFirewallRules.ps1
 src/ProxmoxPVE/Model/NodesHardwareInner.ps1
@@ -779,10 +780,8 @@ src/ProxmoxPVE/Model/NodesHosts.ps1
 src/ProxmoxPVE/Model/NodesInner.ps1
 src/ProxmoxPVE/Model/NodesLxcConfig.ps1
 src/ProxmoxPVE/Model/NodesLxcFeature.ps1
-src/ProxmoxPVE/Model/NodesLxcFirewallAliasesInner.ps1
 src/ProxmoxPVE/Model/NodesLxcFirewallOptions.ps1
 src/ProxmoxPVE/Model/NodesLxcFirewallRules.ps1
-src/ProxmoxPVE/Model/NodesLxcFirewallRulesGETInner.ps1
 src/ProxmoxPVE/Model/NodesLxcInner.ps1
 src/ProxmoxPVE/Model/NodesLxcInterfacesInner.ps1
 src/ProxmoxPVE/Model/NodesLxcInterfacesInnerIpAddressesInner.ps1
@@ -799,6 +798,7 @@ src/ProxmoxPVE/Model/NodesQemuAgentFileread.ps1
 src/ProxmoxPVE/Model/NodesQemuCloudinitInner.ps1
 src/ProxmoxPVE/Model/NodesQemuConfig.ps1
 src/ProxmoxPVE/Model/NodesQemuFeature.ps1
+src/ProxmoxPVE/Model/NodesQemuFirewallAliasesInner.ps1
 src/ProxmoxPVE/Model/NodesQemuFirewallIpsetInner.ps1
 src/ProxmoxPVE/Model/NodesQemuFirewallOptions.ps1
 src/ProxmoxPVE/Model/NodesQemuFirewallRules.ps1
@@ -813,6 +813,7 @@ src/ProxmoxPVE/Model/NodesQemuSnapshotInner.ps1
 src/ProxmoxPVE/Model/NodesQemuStatusCurrent.ps1
 src/ProxmoxPVE/Model/NodesQemuVncwebsocket.ps1
 src/ProxmoxPVE/Model/NodesQueryurlmetadata.ps1
+src/ProxmoxPVE/Model/NodesReplicationInner.ps1
 src/ProxmoxPVE/Model/NodesRrd.ps1
 src/ProxmoxPVE/Model/NodesScanCifsInner.ps1
 src/ProxmoxPVE/Model/NodesScanGlusterfsInner.ps1
@@ -841,7 +842,6 @@ src/ProxmoxPVE/Model/NodesStoragePrunebackupsInner.ps1
 src/ProxmoxPVE/Model/NodesStorageRrd.ps1
 src/ProxmoxPVE/Model/NodesSubscription.ps1
 src/ProxmoxPVE/Model/NodesTasksInner.ps1
-src/ProxmoxPVE/Model/NodesTasksLogInner.ps1
 src/ProxmoxPVE/Model/NodesTasksStatus.ps1
 src/ProxmoxPVE/Model/NodesTime.ps1
 src/ProxmoxPVE/Model/NodesVersion.ps1
@@ -1143,10 +1143,10 @@ tests/Model/ClusterNotificationsTargetsInner.Tests.ps1
 tests/Model/ClusterResourcesInner.Tests.ps1
 tests/Model/ClusterSdnControllersInner.Tests.ps1
 tests/Model/ClusterSdnDnsInner.Tests.ps1
-tests/Model/ClusterSdnInner.Tests.ps1
 tests/Model/ClusterSdnIpamsInner.Tests.ps1
 tests/Model/ClusterSdnVnetsFirewallOptions.Tests.ps1
 tests/Model/ClusterSdnVnetsFirewallRules.Tests.ps1
+tests/Model/ClusterSdnVnetsFirewallRulesGETInner.Tests.ps1
 tests/Model/ClusterSdnZonesInner.Tests.ps1
 tests/Model/ClusterStatusInner.Tests.ps1
 tests/Model/ClusterTasksInner.Tests.ps1
@@ -1299,6 +1299,7 @@ tests/Model/NodesDisksZfs.Tests.ps1
 tests/Model/NodesDisksZfsChildrenInner.Tests.ps1
 tests/Model/NodesDisksZfsGETInner.Tests.ps1
 tests/Model/NodesDns.Tests.ps1
+tests/Model/NodesFirewallLogInner.Tests.ps1
 tests/Model/NodesFirewallOptions.Tests.ps1
 tests/Model/NodesFirewallRules.Tests.ps1
 tests/Model/NodesHardwareInner.Tests.ps1
@@ -1310,10 +1311,8 @@ tests/Model/NodesHosts.Tests.ps1
 tests/Model/NodesInner.Tests.ps1
 tests/Model/NodesLxcConfig.Tests.ps1
 tests/Model/NodesLxcFeature.Tests.ps1
-tests/Model/NodesLxcFirewallAliasesInner.Tests.ps1
 tests/Model/NodesLxcFirewallOptions.Tests.ps1
 tests/Model/NodesLxcFirewallRules.Tests.ps1
-tests/Model/NodesLxcFirewallRulesGETInner.Tests.ps1
 tests/Model/NodesLxcInner.Tests.ps1
 tests/Model/NodesLxcInterfacesInner.Tests.ps1
 tests/Model/NodesLxcInterfacesInnerIpAddressesInner.Tests.ps1
@@ -1330,6 +1329,7 @@ tests/Model/NodesQemuAgentFileread.Tests.ps1
 tests/Model/NodesQemuCloudinitInner.Tests.ps1
 tests/Model/NodesQemuConfig.Tests.ps1
 tests/Model/NodesQemuFeature.Tests.ps1
+tests/Model/NodesQemuFirewallAliasesInner.Tests.ps1
 tests/Model/NodesQemuFirewallIpsetInner.Tests.ps1
 tests/Model/NodesQemuFirewallOptions.Tests.ps1
 tests/Model/NodesQemuFirewallRules.Tests.ps1
@@ -1344,6 +1344,7 @@ tests/Model/NodesQemuSnapshotInner.Tests.ps1
 tests/Model/NodesQemuStatusCurrent.Tests.ps1
 tests/Model/NodesQemuVncwebsocket.Tests.ps1
 tests/Model/NodesQueryurlmetadata.Tests.ps1
+tests/Model/NodesReplicationInner.Tests.ps1
 tests/Model/NodesRrd.Tests.ps1
 tests/Model/NodesScanCifsInner.Tests.ps1
 tests/Model/NodesScanGlusterfsInner.Tests.ps1
@@ -1372,7 +1373,6 @@ tests/Model/NodesStoragePrunebackupsInner.Tests.ps1
 tests/Model/NodesStorageRrd.Tests.ps1
 tests/Model/NodesSubscription.Tests.ps1
 tests/Model/NodesTasksInner.Tests.ps1
-tests/Model/NodesTasksLogInner.Tests.ps1
 tests/Model/NodesTasksStatus.Tests.ps1
 tests/Model/NodesTime.Tests.ps1
 tests/Model/NodesVersion.Tests.ps1

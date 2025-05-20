@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cmd** | **String** |  | [optional] 
 **CmdOpts** | **String** |  | [optional] 
+**Cmd** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesTermproxyRB = Initialize-PVEPOSTNodesTermproxyRB  -Cmd null `
- -CmdOpts null
+$POSTNodesTermproxyRB = Initialize-PVEPOSTNodesTermproxyRB  -CmdOpts null `
+ -Cmd null
 ```
 
 - Convert the resource to JSON

@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Target** | **String** |  | [optional] 
-**Content** | **String** |  | [optional] 
 **Enabled** | **Boolean** |  | [optional] 
 **Format** | **Boolean** |  | [optional] 
+**Content** | **String** |  | [optional] 
+**Target** | **String** |  | [optional] 
 **Storage** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesStorageRB = Initialize-PVEGETNodesStorageRB  -Target null `
- -Content null `
- -Enabled null `
+$GETNodesStorageRB = Initialize-PVEGETNodesStorageRB  -Enabled null `
  -Format null `
+ -Content null `
+ -Target null `
  -Storage null
 ```
 

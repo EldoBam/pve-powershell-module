@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Verbose** | **Boolean** |  | [optional] 
 **PciClassBlacklist** | **String** |  | [optional] 
+**Verbose** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesHardwarePciRB = Initialize-PVEGETNodesHardwarePciRB  -Verbose null `
- -PciClassBlacklist null
+$GETNodesHardwarePciRB = Initialize-PVEGETNodesHardwarePciRB  -PciClassBlacklist null `
+ -Verbose null
 ```
 
 - Convert the resource to JSON

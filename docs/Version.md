@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Repoid** | **String** |  | [optional] 
 **Console** | **String** |  | [optional] 
-**Version** | **String** |  | [optional] 
 **Release** | **String** |  | [optional] 
+**Version** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $Version = Initialize-PVEVersion  -Repoid null `
  -Console null `
- -Version null `
- -Release null
+ -Release null `
+ -Version null
 ```
 
 - Convert the resource to JSON

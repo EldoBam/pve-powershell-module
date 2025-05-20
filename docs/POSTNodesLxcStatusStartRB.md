@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Debug** | **Boolean** |  | [optional] 
 **Skiplock** | **Boolean** |  | [optional] 
+**Debug** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcStatusStartRB = Initialize-PVEPOSTNodesLxcStatusStartRB  -Debug null `
- -Skiplock null
+$POSTNodesLxcStatusStartRB = Initialize-PVEPOSTNodesLxcStatusStartRB  -Skiplock null `
+ -Debug null
 ```
 
 - Convert the resource to JSON

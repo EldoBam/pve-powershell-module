@@ -432,7 +432,7 @@ No authorization required
 
 <a name="Get-PVENodesAptByNode"></a>
 # **Get-PVENodesAptByNode**
-> ClusterSdnInner[] Get-PVENodesAptByNode<br>
+> NodesReplicationInner[] Get-PVENodesAptByNode<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 Directory index for apt (Advanced Package Tool).
@@ -460,7 +460,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClusterSdnInner[]**](ClusterSdnInner.md) (PSCustomObject)
+[**NodesReplicationInner[]**](NodesReplicationInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1094,7 +1094,7 @@ Heuristical check if it is safe to perform an action.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesCephCmdsafetyRB = Initialize-GETNodesCephCmdsafetyRB -Action "stop" -Service "osd" -Id "MyId" # GETNodesCephCmdsafetyRB | Heuristical check if it is safe to perform an action. (optional)
+$GETNodesCephCmdsafetyRB = Initialize-GETNodesCephCmdsafetyRB -Service "osd" -Id "MyId" -Action "stop" # GETNodesCephCmdsafetyRB | Heuristical check if it is safe to perform an action. (optional)
 
 # Heuristical check if it is safe to perform an action.
 try {
@@ -1215,7 +1215,7 @@ No authorization required
 
 <a name="Get-PVENodesCephLogByNode"></a>
 # **Get-PVENodesCephLogByNode**
-> NodesTasksLogInner[] Get-PVENodesCephLogByNode<br>
+> NodesFirewallLogInner[] Get-PVENodesCephLogByNode<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesCephLogRB] <PSCustomObject><br>
 
@@ -1226,7 +1226,7 @@ Read ceph log
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesCephLogRB = Initialize-GETNodesCephLogRB -Limit 0 -Start 0 # GETNodesCephLogRB | Read ceph log (optional)
+$GETNodesCephLogRB = Initialize-GETNodesCephLogRB -Start 0 -Limit 0 # GETNodesCephLogRB | Read ceph log (optional)
 
 # Read ceph log
 try {
@@ -1246,7 +1246,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesTasksLogInner[]**](NodesTasksLogInner.md) (PSCustomObject)
+[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2070,7 +2070,7 @@ List local disks.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesDisksListRB = Initialize-GETNodesDisksListRB -Skipsmart $false -IncludePartitions $false -Type "unused" # GETNodesDisksListRB | List local disks. (optional)
+$GETNodesDisksListRB = Initialize-GETNodesDisksListRB -Type "unused" -IncludePartitions $false -Skipsmart $false # GETNodesDisksListRB | List local disks. (optional)
 
 # List local disks.
 try {
@@ -2412,7 +2412,7 @@ No authorization required
 
 <a name="Get-PVENodesFirewallLogByNode"></a>
 # **Get-PVENodesFirewallLogByNode**
-> NodesTasksLogInner[] Get-PVENodesFirewallLogByNode<br>
+> NodesFirewallLogInner[] Get-PVENodesFirewallLogByNode<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesFirewallLogRB] <PSCustomObject><br>
 
@@ -2423,7 +2423,7 @@ Read firewall log
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesFirewallLogRB = Initialize-GETNodesFirewallLogRB -Limit 0 -Start 0 -Since 0 -VarUntil 0 # GETNodesFirewallLogRB | Read firewall log (optional)
+$GETNodesFirewallLogRB = Initialize-GETNodesFirewallLogRB -VarUntil 0 -Limit 0 -Since 0 -Start 0 # GETNodesFirewallLogRB | Read firewall log (optional)
 
 # Read firewall log
 try {
@@ -2443,7 +2443,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesTasksLogInner[]**](NodesTasksLogInner.md) (PSCustomObject)
+[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2501,7 +2501,7 @@ No authorization required
 
 <a name="Get-PVENodesFirewallRulesByNode"></a>
 # **Get-PVENodesFirewallRulesByNode**
-> NodesLxcFirewallRulesGETInner[] Get-PVENodesFirewallRulesByNode<br>
+> ClusterSdnVnetsFirewallRulesGETInner[] Get-PVENodesFirewallRulesByNode<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 
 List rules.
@@ -2529,7 +2529,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesLxcFirewallRulesGETInner[]**](NodesLxcFirewallRulesGETInner.md) (PSCustomObject)
+[**ClusterSdnVnetsFirewallRulesGETInner[]**](ClusterSdnVnetsFirewallRulesGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2644,7 +2644,7 @@ List local PCI devices.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesHardwarePciRB = Initialize-GETNodesHardwarePciRB -Verbose $false -PciClassBlacklist "MyPciClassBlacklist" # GETNodesHardwarePciRB | List local PCI devices. (optional)
+$GETNodesHardwarePciRB = Initialize-GETNodesHardwarePciRB -PciClassBlacklist "MyPciClassBlacklist" -Verbose $false # GETNodesHardwarePciRB | List local PCI devices. (optional)
 
 # List local PCI devices.
 try {
@@ -2868,7 +2868,7 @@ Read Journal
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesJournalRB = Initialize-GETNodesJournalRB -Lastentries 0 -Endcursor "MyEndcursor" -Startcursor "MyStartcursor" -Since 0 -VarUntil 0 # GETNodesJournalRB | Read Journal (optional)
+$GETNodesJournalRB = Initialize-GETNodesJournalRB -VarUntil 0 -Lastentries 0 -Endcursor "MyEndcursor" -Since 0 -Startcursor "MyStartcursor" # GETNodesJournalRB | Read Journal (optional)
 
 # Read Journal
 try {
@@ -3054,7 +3054,7 @@ Check if feature for virtual machine is available.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$GETNodesLxcFeatureRB = Initialize-GETNodesLxcFeatureRB -Feature "snapshot" -Snapname "MySnapname" # GETNodesLxcFeatureRB | Check if feature for virtual machine is available. (optional)
+$GETNodesLxcFeatureRB = Initialize-GETNodesLxcFeatureRB -Snapname "MySnapname" -Feature "snapshot" # GETNodesLxcFeatureRB | Check if feature for virtual machine is available. (optional)
 
 # Check if feature for virtual machine is available.
 try {
@@ -3090,7 +3090,7 @@ No authorization required
 
 <a name="Get-PVENodesLxcFirewallAliasesByNodeAndVmid"></a>
 # **Get-PVENodesLxcFirewallAliasesByNodeAndVmid**
-> NodesLxcFirewallAliasesInner[] Get-PVENodesLxcFirewallAliasesByNodeAndVmid<br>
+> NodesQemuFirewallAliasesInner[] Get-PVENodesLxcFirewallAliasesByNodeAndVmid<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
@@ -3121,7 +3121,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesLxcFirewallAliasesInner[]**](NodesLxcFirewallAliasesInner.md) (PSCustomObject)
+[**NodesQemuFirewallAliasesInner[]**](NodesQemuFirewallAliasesInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3378,7 +3378,7 @@ No authorization required
 
 <a name="Get-PVENodesLxcFirewallLogByNodeAndVmid"></a>
 # **Get-PVENodesLxcFirewallLogByNodeAndVmid**
-> NodesTasksLogInner[] Get-PVENodesLxcFirewallLogByNodeAndVmid<br>
+> NodesFirewallLogInner[] Get-PVENodesLxcFirewallLogByNodeAndVmid<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesLxcFirewallLogRB] <PSCustomObject><br>
@@ -3391,7 +3391,7 @@ Read firewall log
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$GETNodesLxcFirewallLogRB = Initialize-GETNodesLxcFirewallLogRB -Limit 0 -Start 0 -Since 0 -VarUntil 0 # GETNodesLxcFirewallLogRB | Read firewall log (optional)
+$GETNodesLxcFirewallLogRB = Initialize-GETNodesLxcFirewallLogRB -VarUntil 0 -Limit 0 -Since 0 -Start 0 # GETNodesLxcFirewallLogRB | Read firewall log (optional)
 
 # Read firewall log
 try {
@@ -3412,7 +3412,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesTasksLogInner[]**](NodesTasksLogInner.md) (PSCustomObject)
+[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3522,7 +3522,7 @@ No authorization required
 
 <a name="Get-PVENodesLxcFirewallRulesByNodeAndVmid"></a>
 # **Get-PVENodesLxcFirewallRulesByNodeAndVmid**
-> NodesLxcFirewallRulesGETInner[] Get-PVENodesLxcFirewallRulesByNodeAndVmid<br>
+> ClusterSdnVnetsFirewallRulesGETInner[] Get-PVENodesLxcFirewallRulesByNodeAndVmid<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
@@ -3553,7 +3553,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesLxcFirewallRulesGETInner[]**](NodesLxcFirewallRulesGETInner.md) (PSCustomObject)
+[**ClusterSdnVnetsFirewallRulesGETInner[]**](ClusterSdnVnetsFirewallRulesGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3676,7 +3676,7 @@ Migration tunnel endpoint for websocket upgrade - only for internal use by VM mi
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$GETNodesLxcMtunnelwebsocketRB = Initialize-GETNodesLxcMtunnelwebsocketRB -Socket "MySocket" -Ticket "MyTicket" # GETNodesLxcMtunnelwebsocketRB | Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration. (optional)
+$GETNodesLxcMtunnelwebsocketRB = Initialize-GETNodesLxcMtunnelwebsocketRB -Ticket "MyTicket" -Socket "MySocket" # GETNodesLxcMtunnelwebsocketRB | Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration. (optional)
 
 # Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration.
 try {
@@ -3771,7 +3771,7 @@ Read VM RRD statistics (returns PNG)
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$GETNodesLxcRrdRB = Initialize-GETNodesLxcRrdRB -Timeframe "hour" -Ds "MyDs" -Cf "AVERAGE" # GETNodesLxcRrdRB | Read VM RRD statistics (returns PNG) (optional)
+$GETNodesLxcRrdRB = Initialize-GETNodesLxcRrdRB -Cf "AVERAGE" -Timeframe "hour" -Ds "MyDs" # GETNodesLxcRrdRB | Read VM RRD statistics (returns PNG) (optional)
 
 # Read VM RRD statistics (returns PNG)
 try {
@@ -4105,7 +4105,7 @@ Opens a weksocket for VNC traffic.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$GETNodesLxcVncwebsocketRB = Initialize-GETNodesLxcVncwebsocketRB -Port 0 -Vncticket "MyVncticket" # GETNodesLxcVncwebsocketRB | Opens a weksocket for VNC traffic. (optional)
+$GETNodesLxcVncwebsocketRB = Initialize-GETNodesLxcVncwebsocketRB -Vncticket "MyVncticket" -Port 0 # GETNodesLxcVncwebsocketRB | Opens a weksocket for VNC traffic. (optional)
 
 # Opens a weksocket for VNC traffic.
 try {
@@ -5175,7 +5175,7 @@ Check if feature for virtual machine is available.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$GETNodesQemuFeatureRB = Initialize-GETNodesQemuFeatureRB -Feature "snapshot" -Snapname "MySnapname" # GETNodesQemuFeatureRB | Check if feature for virtual machine is available. (optional)
+$GETNodesQemuFeatureRB = Initialize-GETNodesQemuFeatureRB -Snapname "MySnapname" -Feature "snapshot" # GETNodesQemuFeatureRB | Check if feature for virtual machine is available. (optional)
 
 # Check if feature for virtual machine is available.
 try {
@@ -5211,7 +5211,7 @@ No authorization required
 
 <a name="Get-PVENodesQemuFirewallAliasesByNodeAndVmid"></a>
 # **Get-PVENodesQemuFirewallAliasesByNodeAndVmid**
-> NodesLxcFirewallAliasesInner[] Get-PVENodesQemuFirewallAliasesByNodeAndVmid<br>
+> NodesQemuFirewallAliasesInner[] Get-PVENodesQemuFirewallAliasesByNodeAndVmid<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
@@ -5242,7 +5242,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesLxcFirewallAliasesInner[]**](NodesLxcFirewallAliasesInner.md) (PSCustomObject)
+[**NodesQemuFirewallAliasesInner[]**](NodesQemuFirewallAliasesInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -5499,7 +5499,7 @@ No authorization required
 
 <a name="Get-PVENodesQemuFirewallLogByNodeAndVmid"></a>
 # **Get-PVENodesQemuFirewallLogByNodeAndVmid**
-> NodesTasksLogInner[] Get-PVENodesQemuFirewallLogByNodeAndVmid<br>
+> NodesFirewallLogInner[] Get-PVENodesQemuFirewallLogByNodeAndVmid<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesQemuFirewallLogRB] <PSCustomObject><br>
@@ -5512,7 +5512,7 @@ Read firewall log
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$GETNodesQemuFirewallLogRB = Initialize-GETNodesQemuFirewallLogRB -Limit 0 -Start 0 -Since 0 -VarUntil 0 # GETNodesQemuFirewallLogRB | Read firewall log (optional)
+$GETNodesQemuFirewallLogRB = Initialize-GETNodesQemuFirewallLogRB -VarUntil 0 -Limit 0 -Since 0 -Start 0 # GETNodesQemuFirewallLogRB | Read firewall log (optional)
 
 # Read firewall log
 try {
@@ -5533,7 +5533,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesTasksLogInner[]**](NodesTasksLogInner.md) (PSCustomObject)
+[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -5643,7 +5643,7 @@ No authorization required
 
 <a name="Get-PVENodesQemuFirewallRulesByNodeAndVmid"></a>
 # **Get-PVENodesQemuFirewallRulesByNodeAndVmid**
-> NodesLxcFirewallRulesGETInner[] Get-PVENodesQemuFirewallRulesByNodeAndVmid<br>
+> ClusterSdnVnetsFirewallRulesGETInner[] Get-PVENodesQemuFirewallRulesByNodeAndVmid<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Vmid] <Int32><br>
 
@@ -5674,7 +5674,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesLxcFirewallRulesGETInner[]**](NodesLxcFirewallRulesGETInner.md) (PSCustomObject)
+[**ClusterSdnVnetsFirewallRulesGETInner[]**](ClusterSdnVnetsFirewallRulesGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -5800,7 +5800,7 @@ Migration tunnel endpoint for websocket upgrade - only for internal use by VM mi
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$GETNodesQemuMtunnelwebsocketRB = Initialize-GETNodesQemuMtunnelwebsocketRB -Socket "MySocket" -Ticket "MyTicket" # GETNodesQemuMtunnelwebsocketRB | Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration. (optional)
+$GETNodesQemuMtunnelwebsocketRB = Initialize-GETNodesQemuMtunnelwebsocketRB -Ticket "MyTicket" -Socket "MySocket" # GETNodesQemuMtunnelwebsocketRB | Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration. (optional)
 
 # Migration tunnel endpoint for websocket upgrade - only for internal use by VM migration.
 try {
@@ -5895,7 +5895,7 @@ Read VM RRD statistics (returns PNG)
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$GETNodesQemuRrdRB = Initialize-GETNodesQemuRrdRB -Timeframe "hour" -Ds "MyDs" -Cf "AVERAGE" # GETNodesQemuRrdRB | Read VM RRD statistics (returns PNG) (optional)
+$GETNodesQemuRrdRB = Initialize-GETNodesQemuRrdRB -Cf "AVERAGE" -Timeframe "hour" -Ds "MyDs" # GETNodesQemuRrdRB | Read VM RRD statistics (returns PNG) (optional)
 
 # Read VM RRD statistics (returns PNG)
 try {
@@ -6229,7 +6229,7 @@ Opens a weksocket for VNC traffic.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$GETNodesQemuVncwebsocketRB = Initialize-GETNodesQemuVncwebsocketRB -Port 0 -Vncticket "MyVncticket" # GETNodesQemuVncwebsocketRB | Opens a weksocket for VNC traffic. (optional)
+$GETNodesQemuVncwebsocketRB = Initialize-GETNodesQemuVncwebsocketRB -Vncticket "MyVncticket" -Port 0 # GETNodesQemuVncwebsocketRB | Opens a weksocket for VNC traffic. (optional)
 
 # Opens a weksocket for VNC traffic.
 try {
@@ -6276,7 +6276,7 @@ Query metadata of an URL: file size, file name and mime type.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesQueryurlmetadataRB = Initialize-GETNodesQueryurlmetadataRB -Url "MyUrl" -VerifyCertificates $false # GETNodesQueryurlmetadataRB | Query metadata of an URL: file size, file name and mime type. (optional)
+$GETNodesQueryurlmetadataRB = Initialize-GETNodesQueryurlmetadataRB -VerifyCertificates $false -Url "MyUrl" # GETNodesQueryurlmetadataRB | Query metadata of an URL: file size, file name and mime type. (optional)
 
 # Query metadata of an URL: file size, file name and mime type.
 try {
@@ -6311,7 +6311,7 @@ No authorization required
 
 <a name="Get-PVENodesReplicationByNode"></a>
 # **Get-PVENodesReplicationByNode**
-> ClusterSdnInner[] Get-PVENodesReplicationByNode<br>
+> NodesReplicationInner[] Get-PVENodesReplicationByNode<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesReplicationRB] <PSCustomObject><br>
 
@@ -6342,7 +6342,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClusterSdnInner[]**](ClusterSdnInner.md) (PSCustomObject)
+[**NodesReplicationInner[]**](NodesReplicationInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -6403,7 +6403,7 @@ No authorization required
 
 <a name="Get-PVENodesReplicationLogByNodeAndId"></a>
 # **Get-PVENodesReplicationLogByNodeAndId**
-> NodesTasksLogInner[] Get-PVENodesReplicationLogByNodeAndId<br>
+> NodesFirewallLogInner[] Get-PVENodesReplicationLogByNodeAndId<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesReplicationLogRB] <PSCustomObject><br>
@@ -6416,7 +6416,7 @@ Read replication job log.
 ```powershell
 $Id = "MyId" # String | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesReplicationLogRB = Initialize-GETNodesReplicationLogRB -Limit 0 -Start 0 # GETNodesReplicationLogRB | Read replication job log. (optional)
+$GETNodesReplicationLogRB = Initialize-GETNodesReplicationLogRB -Start 0 -Limit 0 # GETNodesReplicationLogRB | Read replication job log. (optional)
 
 # Read replication job log.
 try {
@@ -6437,7 +6437,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesTasksLogInner[]**](NodesTasksLogInner.md) (PSCustomObject)
+[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -6552,7 +6552,7 @@ Read node RRD statistics (returns PNG)
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesRrdRB = Initialize-GETNodesRrdRB -Timeframe "hour" -Ds "MyDs" -Cf "AVERAGE" # GETNodesRrdRB | Read node RRD statistics (returns PNG) (optional)
+$GETNodesRrdRB = Initialize-GETNodesRrdRB -Cf "AVERAGE" -Timeframe "hour" -Ds "MyDs" # GETNodesRrdRB | Read node RRD statistics (returns PNG) (optional)
 
 # Read node RRD statistics (returns PNG)
 try {
@@ -6687,7 +6687,7 @@ Scan remote CIFS server.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesScanCifsRB = Initialize-GETNodesScanCifsRB -Server "MyServer" -Password "MyPassword" -Username "MyUsername" -Domain "MyDomain" # GETNodesScanCifsRB | Scan remote CIFS server. (optional)
+$GETNodesScanCifsRB = Initialize-GETNodesScanCifsRB -Username "MyUsername" -Server "MyServer" -Domain "MyDomain" -Password "MyPassword" # GETNodesScanCifsRB | Scan remote CIFS server. (optional)
 
 # Scan remote CIFS server.
 try {
@@ -6960,7 +6960,7 @@ Scan remote Proxmox Backup Server.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesScanPbsRB = Initialize-GETNodesScanPbsRB -Server "MyServer" -Fingerprint "MyFingerprint" -Password "MyPassword" -Port 0 -Username "MyUsername" # GETNodesScanPbsRB | Scan remote Proxmox Backup Server. (optional)
+$GETNodesScanPbsRB = Initialize-GETNodesScanPbsRB -Username "MyUsername" -Fingerprint "MyFingerprint" -Server "MyServer" -Port 0 -Password "MyPassword" # GETNodesScanPbsRB | Scan remote Proxmox Backup Server. (optional)
 
 # Scan remote Proxmox Backup Server.
 try {
@@ -7405,7 +7405,7 @@ Get status for all datastores.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesStorageRB = Initialize-GETNodesStorageRB -Target "MyTarget" -Content "MyContent" -Enabled $false -Format $false -Storage "MyStorage" # GETNodesStorageRB | Get status for all datastores. (optional)
+$GETNodesStorageRB = Initialize-GETNodesStorageRB -Enabled $false -Format $false -Content "MyContent" -Target "MyTarget" -Storage "MyStorage" # GETNodesStorageRB | Get status for all datastores. (optional)
 
 # Get status for all datastores.
 try {
@@ -7597,7 +7597,7 @@ Extract a file or directory (as zip archive) from a PBS backup.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Storage = "MyStorage" # String | The storage identifier.
-$GETNodesStorageFilerestoreDownloadRB = Initialize-GETNodesStorageFilerestoreDownloadRB -Volume "MyVolume" -Tar $false -Filepath "MyFilepath" # GETNodesStorageFilerestoreDownloadRB | Extract a file or directory (as zip archive) from a PBS backup. (optional)
+$GETNodesStorageFilerestoreDownloadRB = Initialize-GETNodesStorageFilerestoreDownloadRB -Volume "MyVolume" -Filepath "MyFilepath" -Tar $false # GETNodesStorageFilerestoreDownloadRB | Extract a file or directory (as zip archive) from a PBS backup. (optional)
 
 # Extract a file or directory (as zip archive) from a PBS backup.
 try {
@@ -7744,7 +7744,7 @@ Get prune information for backups. NOTE: this is only a preview and might not be
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Storage = "MyStorage" # String | The storage identifier.
-$GETNodesStoragePrunebackupsRB = Initialize-GETNodesStoragePrunebackupsRB -Vmid 0 -PruneBackups "MyPruneBackups" -Type "qemu" # GETNodesStoragePrunebackupsRB | Get prune information for backups. NOTE: this is only a preview and might not be what a subsequent prune call does if backups are removed/added in the meantime. (optional)
+$GETNodesStoragePrunebackupsRB = Initialize-GETNodesStoragePrunebackupsRB -PruneBackups "MyPruneBackups" -Vmid 0 -Type "qemu" # GETNodesStoragePrunebackupsRB | Get prune information for backups. NOTE: this is only a preview and might not be what a subsequent prune call does if backups are removed/added in the meantime. (optional)
 
 # Get prune information for backups. NOTE: this is only a preview and might not be what a subsequent prune call does if backups are removed/added in the meantime.
 try {
@@ -7793,7 +7793,7 @@ Read storage RRD statistics (returns PNG).
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Storage = "MyStorage" # String | The storage identifier.
-$GETNodesStorageRrdRB = Initialize-GETNodesStorageRrdRB -Timeframe "hour" -Ds "MyDs" -Cf "AVERAGE" # GETNodesStorageRrdRB | Read storage RRD statistics (returns PNG). (optional)
+$GETNodesStorageRrdRB = Initialize-GETNodesStorageRrdRB -Cf "AVERAGE" -Timeframe "hour" -Ds "MyDs" # GETNodesStorageRrdRB | Read storage RRD statistics (returns PNG). (optional)
 
 # Read storage RRD statistics (returns PNG).
 try {
@@ -7967,7 +7967,7 @@ No authorization required
 
 <a name="Get-PVENodesSyslogByNode"></a>
 # **Get-PVENodesSyslogByNode**
-> NodesTasksLogInner[] Get-PVENodesSyslogByNode<br>
+> NodesFirewallLogInner[] Get-PVENodesSyslogByNode<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesSyslogRB] <PSCustomObject><br>
 
@@ -7978,7 +7978,7 @@ Read system log
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesSyslogRB = Initialize-GETNodesSyslogRB -Service "MyService" -Start 0 -Since "MySince" -Limit 0 -VarUntil "MyVarUntil" # GETNodesSyslogRB | Read system log (optional)
+$GETNodesSyslogRB = Initialize-GETNodesSyslogRB -Service "MyService" -VarUntil "MyVarUntil" -Limit 0 -Since "MySince" -Start 0 # GETNodesSyslogRB | Read system log (optional)
 
 # Read system log
 try {
@@ -7998,7 +7998,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesTasksLogInner[]**](NodesTasksLogInner.md) (PSCustomObject)
+[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -8024,7 +8024,7 @@ Read task list for one node (finished tasks).
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesTasksRB = Initialize-GETNodesTasksRB -Start 0 -Userfilter "MyUserfilter" -Vmid 0 -Typefilter "MyTypefilter" -Errors $false -Source "archive" -VarUntil 0 -Statusfilter "MyStatusfilter" -Limit 0 -Since 0 # GETNodesTasksRB | Read task list for one node (finished tasks). (optional)
+$GETNodesTasksRB = Initialize-GETNodesTasksRB -Userfilter "MyUserfilter" -Limit 0 -Typefilter "MyTypefilter" -Since 0 -VarUntil 0 -Vmid 0 -Source "archive" -Start 0 -Statusfilter "MyStatusfilter" -Errors $false # GETNodesTasksRB | Read task list for one node (finished tasks). (optional)
 
 # Read task list for one node (finished tasks).
 try {
@@ -8105,7 +8105,7 @@ No authorization required
 
 <a name="Get-PVENodesTasksLogByNodeAndUpid"></a>
 # **Get-PVENodesTasksLogByNodeAndUpid**
-> NodesTasksLogInner[] Get-PVENodesTasksLogByNodeAndUpid<br>
+> NodesFirewallLogInner[] Get-PVENodesTasksLogByNodeAndUpid<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Node] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Upid] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETNodesTasksLogRB] <PSCustomObject><br>
@@ -8118,7 +8118,7 @@ Read task log.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Upid = "MyUpid" # String | The task's unique ID.
-$GETNodesTasksLogRB = Initialize-GETNodesTasksLogRB -Download $false -Start 0 -Limit 0 # GETNodesTasksLogRB | Read task log. (optional)
+$GETNodesTasksLogRB = Initialize-GETNodesTasksLogRB -Start 0 -Limit 0 -Download $false # GETNodesTasksLogRB | Read task log. (optional)
 
 # Read task log.
 try {
@@ -8139,7 +8139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesTasksLogInner[]**](NodesTasksLogInner.md) (PSCustomObject)
+[**NodesFirewallLogInner[]**](NodesFirewallLogInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -8297,7 +8297,7 @@ Opens a websocket for VNC traffic.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$GETNodesVncwebsocketRB = Initialize-GETNodesVncwebsocketRB -Port 0 -Vncticket "MyVncticket" # GETNodesVncwebsocketRB | Opens a websocket for VNC traffic. (optional)
+$GETNodesVncwebsocketRB = Initialize-GETNodesVncwebsocketRB -Vncticket "MyVncticket" -Port 0 # GETNodesVncwebsocketRB | Opens a websocket for VNC traffic. (optional)
 
 # Opens a websocket for VNC traffic.
 try {
@@ -8481,7 +8481,7 @@ Change the properties of a repository. Currently only allows enabling/disabling.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesAptRepositoriesRB = Initialize-POSTNodesAptRepositoriesRB -Path "MyPath" -Digest "MyDigest" -Enabled $false -Index 0 # POSTNodesAptRepositoriesRB | Change the properties of a repository. Currently only allows enabling/disabling. (optional)
+$POSTNodesAptRepositoriesRB = Initialize-POSTNodesAptRepositoriesRB -Index 0 -Digest "MyDigest" -Enabled $false -Path "MyPath" # POSTNodesAptRepositoriesRB | Change the properties of a repository. Currently only allows enabling/disabling. (optional)
 
 # Change the properties of a repository. Currently only allows enabling/disabling.
 try {
@@ -8527,7 +8527,7 @@ This is used to resynchronize the package index files from their sources (apt-ge
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesAptUpdateRB = Initialize-POSTNodesAptUpdateRB -Quiet $false -Notify $false # POSTNodesAptUpdateRB | This is used to resynchronize the package index files from their sources (apt-get update). (optional)
+$POSTNodesAptUpdateRB = Initialize-POSTNodesAptUpdateRB -Notify $false -Quiet $false # POSTNodesAptUpdateRB | This is used to resynchronize the package index files from their sources (apt-get update). (optional)
 
 # This is used to resynchronize the package index files from their sources (apt-get update).
 try {
@@ -8622,7 +8622,7 @@ Create initial ceph default configuration and setup symlinks.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesCephInitRB = Initialize-POSTNodesCephInitRB -Size 0 -PgBits 0 -MinSize 0 -Network "MyNetwork" -ClusterNetwork "MyClusterNetwork" -DisableCephx $false # POSTNodesCephInitRB | Create initial ceph default configuration and setup symlinks. (optional)
+$POSTNodesCephInitRB = Initialize-POSTNodesCephInitRB -Size 0 -DisableCephx $false -Network "MyNetwork" -MinSize 0 -PgBits 0 -ClusterNetwork "MyClusterNetwork" # POSTNodesCephInitRB | Create initial ceph default configuration and setup symlinks. (optional)
 
 # Create initial ceph default configuration and setup symlinks.
 try {
@@ -8812,7 +8812,7 @@ Create OSD
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesCephOsdRB = Initialize-POSTNodesCephOsdRB -CrushDeviceClass "MyCrushDeviceClass" -DbDevSize 0 -DbDev "MyDbDev" -WalDevSize 0 -Encrypted $false -OsdsPerDevice 0 -WalDev "MyWalDev" -Dev "MyDev" # POSTNodesCephOsdRB | Create OSD (optional)
+$POSTNodesCephOsdRB = Initialize-POSTNodesCephOsdRB -CrushDeviceClass "MyCrushDeviceClass" -Dev "MyDev" -DbDevSize 0 -OsdsPerDevice 0 -Encrypted $false -WalDevSize 0 -DbDev "MyDbDev" -WalDev "MyWalDev" # POSTNodesCephOsdRB | Create OSD (optional)
 
 # Create OSD
 try {
@@ -8999,7 +8999,7 @@ Create Ceph pool
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesCephPoolRB = Initialize-POSTNodesCephPoolRB -Name "MyName" -AddStorages $false -TargetSizeRatio 0 -Application "rbd" -CrushRule "MyCrushRule" -TargetSize "MyTargetSize" -MinSize 0 -PgAutoscaleMode "on" -PgNum 0 -Size 0 -ErasureCoding "MyErasureCoding" -PgNumMin 0 # POSTNodesCephPoolRB | Create Ceph pool (optional)
+$POSTNodesCephPoolRB = Initialize-POSTNodesCephPoolRB -PgNum 0 -PgAutoscaleMode "on" -TargetSizeRatio 0 -Size 0 -AddStorages $false -CrushRule "MyCrushRule" -Name "MyName" -TargetSize "MyTargetSize" -PgNumMin 0 -MinSize 0 -Application "rbd" -ErasureCoding "MyErasureCoding" # POSTNodesCephPoolRB | Create Ceph pool (optional)
 
 # Create Ceph pool
 try {
@@ -9229,7 +9229,7 @@ Upload or update custom certificate chain and key.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesCertificatesCustomRB = Initialize-POSTNodesCertificatesCustomRB -Restart $false -Force $false -Certificates "MyCertificates" -Key "MyKey" # POSTNodesCertificatesCustomRB | Upload or update custom certificate chain and key. (optional)
+$POSTNodesCertificatesCustomRB = Initialize-POSTNodesCertificatesCustomRB -Force $false -Restart $false -Certificates "MyCertificates" -Key "MyKey" # POSTNodesCertificatesCustomRB | Upload or update custom certificate chain and key. (optional)
 
 # Upload or update custom certificate chain and key.
 try {
@@ -9275,7 +9275,7 @@ Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesDisksDirectoryRB = Initialize-POSTNodesDisksDirectoryRB -Device "MyDevice" -Name "MyName" -AddStorage $false -Filesystem "ext4" # POSTNodesDisksDirectoryRB | Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'. (optional)
+$POSTNodesDisksDirectoryRB = Initialize-POSTNodesDisksDirectoryRB -Filesystem "ext4" -Device "MyDevice" -AddStorage $false -Name "MyName" # POSTNodesDisksDirectoryRB | Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'. (optional)
 
 # Create a Filesystem on an unused disk. Will be mounted under '/mnt/pve/NAME'.
 try {
@@ -9367,7 +9367,7 @@ Create an LVM Volume Group
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesDisksLvmRB = Initialize-POSTNodesDisksLvmRB -Device "MyDevice" -Name "MyName" -AddStorage $false # POSTNodesDisksLvmRB | Create an LVM Volume Group (optional)
+$POSTNodesDisksLvmRB = Initialize-POSTNodesDisksLvmRB -Device "MyDevice" -AddStorage $false -Name "MyName" # POSTNodesDisksLvmRB | Create an LVM Volume Group (optional)
 
 # Create an LVM Volume Group
 try {
@@ -9413,7 +9413,7 @@ Create an LVM thinpool
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesDisksLvmthinRB = Initialize-POSTNodesDisksLvmthinRB -Device "MyDevice" -Name "MyName" -AddStorage $false # POSTNodesDisksLvmthinRB | Create an LVM thinpool (optional)
+$POSTNodesDisksLvmthinRB = Initialize-POSTNodesDisksLvmthinRB -Device "MyDevice" -AddStorage $false -Name "MyName" # POSTNodesDisksLvmthinRB | Create an LVM thinpool (optional)
 
 # Create an LVM thinpool
 try {
@@ -9459,7 +9459,7 @@ Create a ZFS pool.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesDisksZfsRB = Initialize-POSTNodesDisksZfsRB -Name "MyName" -AddStorage $false -Compression "on" -DraidConfig "MyDraidConfig" -Devices "MyDevices" -Raidlevel "single" -Ashift 0 # POSTNodesDisksZfsRB | Create a ZFS pool. (optional)
+$POSTNodesDisksZfsRB = Initialize-POSTNodesDisksZfsRB -Raidlevel "single" -Devices "MyDevices" -AddStorage $false -Compression "on" -Name "MyName" -DraidConfig "MyDraidConfig" -Ashift 0 # POSTNodesDisksZfsRB | Create a ZFS pool. (optional)
 
 # Create a ZFS pool.
 try {
@@ -9551,7 +9551,7 @@ Create new rule.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesFirewallRulesRB = Initialize-POSTNodesFirewallRulesRB -Macro "MyMacro" -Iface "MyIface" -Action "MyAction" -Pos 0 -Type "in" -Log "emerg" -Enable 0 -IcmpType "MyIcmpType" -Dport "MyDport" -Proto "MyProto" -Dest "MyDest" -Digest "MyDigest" -Sport "MySport" -Source "MySource" -Comment "MyComment" # POSTNodesFirewallRulesRB | Create new rule. (optional)
+$POSTNodesFirewallRulesRB = Initialize-POSTNodesFirewallRulesRB -IcmpType "MyIcmpType" -Action "MyAction" -Type "in" -Dest "MyDest" -Source "MySource" -Digest "MyDigest" -Dport "MyDport" -Enable 0 -Log "emerg" -Pos 0 -Iface "MyIface" -Comment "MyComment" -Proto "MyProto" -Sport "MySport" -Macro "MyMacro" # POSTNodesFirewallRulesRB | Create new rule. (optional)
 
 # Create new rule.
 try {
@@ -9643,7 +9643,7 @@ Create or restore a container.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesLxcRB = Initialize-POSTNodesLxcRB -Cpulimit 0 -Timezone "MyTimezone" -Cpuunits 0 -Protection $false -MpN "MyMpN" -Swap 0 -Password "MyPassword" -Cores 0 -Arch "amd64" -Hostname "MyHostname" -SshPublicKeys "MySshPublicKeys" -Debug $false -Vmid 0 -Start $false -Tags "MyTags" -NetN "MyNetN" -Rootfs "MyRootfs" -Nameserver "MyNameserver" -Unique $false -Lock "backup" -Console $false -Storage "MyStorage" -Unprivileged $false -Ostype "debian" -Startup "MyStartup" -Cmode "shell" -Onboot $false -Bwlimit 0 -DevN "MyDevN" -Ostemplate "MyOstemplate" -Force $false -Pool "MyPool" -Description "MyDescription" -Memory 0 -Restore $false -Template $false -Tty 0 -Searchdomain "MySearchdomain" -Hookscript "MyHookscript" -Features "MyFeatures" -IgnoreUnpackErrors $false -UnusedN "MyUnusedN" # POSTNodesLxcRB | Create or restore a container. (optional)
+$POSTNodesLxcRB = Initialize-POSTNodesLxcRB -Cores 0 -Start $false -Template $false -Pool "MyPool" -SshPublicKeys "MySshPublicKeys" -Lock "backup" -Unique $false -Description "MyDescription" -IgnoreUnpackErrors $false -Memory 0 -Cmode "shell" -DevN "MyDevN" -Hookscript "MyHookscript" -Onboot $false -Ostemplate "MyOstemplate" -Tty 0 -NetN "MyNetN" -Cpulimit 0 -Hostname "MyHostname" -Bwlimit 0 -Console $false -Ostype "debian" -Startup "MyStartup" -Tags "MyTags" -Cpuunits 0 -Features "MyFeatures" -Force $false -Rootfs "MyRootfs" -Vmid 0 -Password "MyPassword" -Unprivileged $false -UnusedN "MyUnusedN" -Storage "MyStorage" -Protection $false -Timezone "MyTimezone" -Swap 0 -Searchdomain "MySearchdomain" -Debug $false -MpN "MyMpN" -Nameserver "MyNameserver" -Restore $false -Arch "amd64" # POSTNodesLxcRB | Create or restore a container. (optional)
 
 # Create or restore a container.
 try {
@@ -9691,7 +9691,7 @@ Create a container clone/copy
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesLxcCloneRB = Initialize-POSTNodesLxcCloneRB -Snapname "MySnapname" -Newid 0 -Description "MyDescription" -Bwlimit 0 -Storage "MyStorage" -Pool "MyPool" -Hostname "MyHostname" -Target "MyTarget" -Full $false # POSTNodesLxcCloneRB | Create a container clone/copy (optional)
+$POSTNodesLxcCloneRB = Initialize-POSTNodesLxcCloneRB -Snapname "MySnapname" -Storage "MyStorage" -Description "MyDescription" -Newid 0 -Target "MyTarget" -Full $false -Bwlimit 0 -Pool "MyPool" -Hostname "MyHostname" # POSTNodesLxcCloneRB | Create a container clone/copy (optional)
 
 # Create a container clone/copy
 try {
@@ -9789,7 +9789,7 @@ Create new IPSet
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesLxcFirewallIpsetRB = Initialize-POSTNodesLxcFirewallIpsetRB -Comment "MyComment" -Cidr "MyCidr" -Nomatch $false # POSTNodesLxcFirewallIpsetRB | Create new IPSet (optional)
+$POSTNodesLxcFirewallIpsetRB = Initialize-POSTNodesLxcFirewallIpsetRB -Comment "MyComment" -Nomatch $false -Cidr "MyCidr" # POSTNodesLxcFirewallIpsetRB | Create new IPSet (optional)
 
 # Create new IPSet
 try {
@@ -9840,7 +9840,7 @@ Add IP or Network to IPSet.
 $Name = "MyName" # String | IP set name.
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesLxcFirewallIpsetRB = Initialize-POSTNodesLxcFirewallIpsetRB -Comment "MyComment" -Cidr "MyCidr" -Nomatch $false # POSTNodesLxcFirewallIpsetRB | Add IP or Network to IPSet. (optional)
+$POSTNodesLxcFirewallIpsetRB = Initialize-POSTNodesLxcFirewallIpsetRB -Comment "MyComment" -Nomatch $false -Cidr "MyCidr" # POSTNodesLxcFirewallIpsetRB | Add IP or Network to IPSet. (optional)
 
 # Add IP or Network to IPSet.
 try {
@@ -9890,7 +9890,7 @@ Create new rule.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesLxcFirewallRulesRB = Initialize-POSTNodesLxcFirewallRulesRB -Macro "MyMacro" -Iface "MyIface" -Action "MyAction" -Pos 0 -Type "in" -Log "emerg" -Enable 0 -IcmpType "MyIcmpType" -Dport "MyDport" -Proto "MyProto" -Dest "MyDest" -Digest "MyDigest" -Sport "MySport" -Source "MySource" -Comment "MyComment" # POSTNodesLxcFirewallRulesRB | Create new rule. (optional)
+$POSTNodesLxcFirewallRulesRB = Initialize-POSTNodesLxcFirewallRulesRB -IcmpType "MyIcmpType" -Action "MyAction" -Type "in" -Dest "MyDest" -Source "MySource" -Digest "MyDigest" -Dport "MyDport" -Enable 0 -Log "emerg" -Pos 0 -Iface "MyIface" -Comment "MyComment" -Proto "MyProto" -Sport "MySport" -Macro "MyMacro" # POSTNodesLxcFirewallRulesRB | Create new rule. (optional)
 
 # Create new rule.
 try {
@@ -9939,7 +9939,7 @@ Migrate the container to another node. Creates a new migration task.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesLxcMigrateRB = Initialize-POSTNodesLxcMigrateRB -Timeout 0 -TargetStorage "MyTargetStorage" -Bwlimit 0 -Online $false -Restart $false -Target "MyTarget" # POSTNodesLxcMigrateRB | Migrate the container to another node. Creates a new migration task. (optional)
+$POSTNodesLxcMigrateRB = Initialize-POSTNodesLxcMigrateRB -TargetStorage "MyTargetStorage" -Online $false -Target "MyTarget" -Restart $false -Bwlimit 0 -Timeout 0 # POSTNodesLxcMigrateRB | Migrate the container to another node. Creates a new migration task. (optional)
 
 # Migrate the container to another node. Creates a new migration task.
 try {
@@ -9988,7 +9988,7 @@ Move a rootfs-/mp-volume to a different storage or to a different container.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesLxcMovevolumeRB = Initialize-POSTNodesLxcMovevolumeRB -Delete $false -TargetDigest "MyTargetDigest" -Bwlimit 0 -Storage "MyStorage" -Volume "rootfs" -TargetVolume "rootfs" -Digest "MyDigest" -TargetVmid 0 # POSTNodesLxcMovevolumeRB | Move a rootfs-/mp-volume to a different storage or to a different container. (optional)
+$POSTNodesLxcMovevolumeRB = Initialize-POSTNodesLxcMovevolumeRB -TargetDigest "MyTargetDigest" -Digest "MyDigest" -TargetVolume "rootfs" -Delete $false -TargetVmid 0 -Bwlimit 0 -Volume "rootfs" -Storage "MyStorage" # POSTNodesLxcMovevolumeRB | Move a rootfs-/mp-volume to a different storage or to a different container. (optional)
 
 # Move a rootfs-/mp-volume to a different storage or to a different container.
 try {
@@ -10086,7 +10086,7 @@ Migrate the container to another cluster. Creates a new migration task. EXPERIME
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesLxcRemotemigrateRB = Initialize-POSTNodesLxcRemotemigrateRB -Timeout 0 -Delete $false -TargetStorage "MyTargetStorage" -TargetEndpoint "MyTargetEndpoint" -Bwlimit 0 -Online $false -Restart $false -TargetBridge "MyTargetBridge" -TargetVmid 0 # POSTNodesLxcRemotemigrateRB | Migrate the container to another cluster. Creates a new migration task. EXPERIMENTAL feature! (optional)
+$POSTNodesLxcRemotemigrateRB = Initialize-POSTNodesLxcRemotemigrateRB -TargetBridge "MyTargetBridge" -Online $false -TargetStorage "MyTargetStorage" -Delete $false -Timeout 0 -Restart $false -TargetVmid 0 -Bwlimit 0 -TargetEndpoint "MyTargetEndpoint" # POSTNodesLxcRemotemigrateRB | Migrate the container to another cluster. Creates a new migration task. EXPERIMENTAL feature! (optional)
 
 # Migrate the container to another cluster. Creates a new migration task. EXPERIMENTAL feature!
 try {
@@ -10135,7 +10135,7 @@ Snapshot a container.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesLxcSnapshotRB = Initialize-POSTNodesLxcSnapshotRB -Description "MyDescription" -Snapname "MySnapname" # POSTNodesLxcSnapshotRB | Snapshot a container. (optional)
+$POSTNodesLxcSnapshotRB = Initialize-POSTNodesLxcSnapshotRB -Snapname "MySnapname" -Description "MyDescription" # POSTNodesLxcSnapshotRB | Snapshot a container. (optional)
 
 # Snapshot a container.
 try {
@@ -10380,7 +10380,7 @@ Shutdown the container. This will trigger a clean shutdown of the container, see
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesLxcStatusShutdownRB = Initialize-POSTNodesLxcStatusShutdownRB -ForceStop $false -Timeout 0 # POSTNodesLxcStatusShutdownRB | Shutdown the container. This will trigger a clean shutdown of the container, see lxc-stop(1) for details. (optional)
+$POSTNodesLxcStatusShutdownRB = Initialize-POSTNodesLxcStatusShutdownRB -Timeout 0 -ForceStop $false # POSTNodesLxcStatusShutdownRB | Shutdown the container. This will trigger a clean shutdown of the container, see lxc-stop(1) for details. (optional)
 
 # Shutdown the container. This will trigger a clean shutdown of the container, see lxc-stop(1) for details.
 try {
@@ -10429,7 +10429,7 @@ Start the container.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesLxcStatusStartRB = Initialize-POSTNodesLxcStatusStartRB -Debug $false -Skiplock $false # POSTNodesLxcStatusStartRB | Start the container. (optional)
+$POSTNodesLxcStatusStartRB = Initialize-POSTNodesLxcStatusStartRB -Skiplock $false -Debug $false # POSTNodesLxcStatusStartRB | Start the container. (optional)
 
 # Start the container.
 try {
@@ -10665,7 +10665,7 @@ Creates a TCP VNC proxy connections.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesLxcVncproxyRB = Initialize-POSTNodesLxcVncproxyRB -Width 0 -Websocket $false -Height 0 # POSTNodesLxcVncproxyRB | Creates a TCP VNC proxy connections. (optional)
+$POSTNodesLxcVncproxyRB = Initialize-POSTNodesLxcVncproxyRB -Height 0 -Width 0 -Websocket $false # POSTNodesLxcVncproxyRB | Creates a TCP VNC proxy connections. (optional)
 
 # Creates a TCP VNC proxy connections.
 try {
@@ -10712,7 +10712,7 @@ Migrate all VMs and Containers.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesMigrateallRB = Initialize-POSTNodesMigrateallRB -Target "MyTarget" -Vms "MyVms" -WithLocalDisks $false -Maxworkers 0 # POSTNodesMigrateallRB | Migrate all VMs and Containers. (optional)
+$POSTNodesMigrateallRB = Initialize-POSTNodesMigrateallRB -WithLocalDisks $false -Maxworkers 0 -Target "MyTarget" -Vms "MyVms" # POSTNodesMigrateallRB | Migrate all VMs and Containers. (optional)
 
 # Migrate all VMs and Containers.
 try {
@@ -10758,7 +10758,7 @@ Create network device configuration
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesNetworkRB = Initialize-POSTNodesNetworkRB -Gateway6 "MyGateway6" -Comments6 "MyComments6" -Iface "MyIface" -Cidr "MyCidr" -Cidr6 "MyCidr6" -Autostart $false -Mtu 0 -BondMode "balance-rr" -Slaves "MySlaves" -BridgeVids "MyBridgeVids" -BridgePorts "MyBridgePorts" -Netmask6 0 -OvsOptions "MyOvsOptions" -Type "bridge" -OvsTag 0 -Gateway "MyGateway" -Netmask "MyNetmask" -OvsPorts "MyOvsPorts" -Comments "MyComments" -BondXmitHashPolicy "layer2" -Address "MyAddress" -BridgeVlanAware $false -VlanRawDevice "MyVlanRawDevice" -BondPrimary "MyBondPrimary" -Address6 "MyAddress6" -VlanId 0 -OvsBonds "MyOvsBonds" -OvsBridge "MyOvsBridge" # POSTNodesNetworkRB | Create network device configuration (optional)
+$POSTNodesNetworkRB = Initialize-POSTNodesNetworkRB -Address6 "MyAddress6" -BondPrimary "MyBondPrimary" -Netmask "MyNetmask" -Gateway "MyGateway" -Type "bridge" -OvsTag 0 -Mtu 0 -OvsOptions "MyOvsOptions" -Cidr6 "MyCidr6" -BridgePorts "MyBridgePorts" -OvsBonds "MyOvsBonds" -Gateway6 "MyGateway6" -Comments "MyComments" -Autostart $false -OvsPorts "MyOvsPorts" -BondXmitHashPolicy "layer2" -OvsBridge "MyOvsBridge" -BridgeVlanAware $false -Comments6 "MyComments6" -VlanRawDevice "MyVlanRawDevice" -VlanId 0 -Netmask6 0 -Cidr "MyCidr" -Iface "MyIface" -Slaves "MySlaves" -BridgeVids "MyBridgeVids" -Address "MyAddress" -BondMode "balance-rr" # POSTNodesNetworkRB | Create network device configuration (optional)
 
 # Create network device configuration
 try {
@@ -10904,7 +10904,7 @@ Writes the given file via guest agent.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuAgentFilewriteRB = Initialize-POSTNodesQemuAgentFilewriteRB -Encode $false -File "MyFile" -Content "MyContent" # POSTNodesQemuAgentFilewriteRB | Writes the given file via guest agent. (optional)
+$POSTNodesQemuAgentFilewriteRB = Initialize-POSTNodesQemuAgentFilewriteRB -File "MyFile" -Content "MyContent" -Encode $false # POSTNodesQemuAgentFilewriteRB | Writes the given file via guest agent. (optional)
 
 # Writes the given file via guest agent.
 try {
@@ -11183,7 +11183,7 @@ Sets the password for the given user to the given password
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuAgentSetuserpasswordRB = Initialize-POSTNodesQemuAgentSetuserpasswordRB -Crypted $false -Password "MyPassword" -Username "MyUsername" # POSTNodesQemuAgentSetuserpasswordRB | Sets the password for the given user to the given password (optional)
+$POSTNodesQemuAgentSetuserpasswordRB = Initialize-POSTNodesQemuAgentSetuserpasswordRB -Username "MyUsername" -Password "MyPassword" -Crypted $false # POSTNodesQemuAgentSetuserpasswordRB | Sets the password for the given user to the given password (optional)
 
 # Sets the password for the given user to the given password
 try {
@@ -11414,7 +11414,7 @@ Create or restore a virtual machine.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesQemuRB = Initialize-POSTNodesQemuRB -SpiceEnhancements "MySpiceEnhancements" -Lock "backup" -Pool "MyPool" -Onboot $false -Vmid 0 -Cdrom "MyCdrom" -Template $false -Ciupgrade $false -Hookscript "MyHookscript" -Keephugepages $false -Cpu "MyCpu" -Rng0 "MyRng0" -Agent "MyAgent" -Cpulimit 0 -Scsihw "lsi" -Boot "MyBoot" -Vmgenid "MyVmgenid" -ParallelN "MyParallelN" -NetN "MyNetN" -Smbios1 "MySmbios1" -SerialN "MySerialN" -Tpmstate0 "MyTpmstate0" -Archive "MyArchive" -Name "MyName" -Bios "seabios" -Vga "MyVga" -Sshkeys "MySshkeys" -Nameserver "MyNameserver" -Memory "MyMemory" -IdeN "MyIdeN" -Kvm $false -Efidisk0 "MyEfidisk0" -Startdate "MyStartdate" -Arch "x86_64" -Cpuunits 0 -Autostart $false -Localtime $false -Startup "MyStartup" -Vcpus 0 -MigrateSpeed 0 -Hotplug "MyHotplug" -Cipassword "MyCipassword" -Bootdisk "MyBootdisk" -Description "MyDescription" -Vmstatestorage "MyVmstatestorage" -Cicustom "MyCicustom" -Machine "MyMachine" -Affinity "MyAffinity" -Sockets 0 -Smp 0 -Bwlimit 0 -Tablet $false -IpconfigN "MyIpconfigN" -Numa $false -Unique $false -AmdSev "MyAmdSev" -HostpciN "MyHostpciN" -Cores 0 -Ostype "other" -Tags "MyTags" -Shares 0 -Start $false -VirtioN "MyVirtioN" -Freeze $false -ScsiN "MyScsiN" -Force $false -SataN "MySataN" -Ivshmem "MyIvshmem" -Watchdog "MyWatchdog" -UnusedN "MyUnusedN" -Protection $false -MigrateDowntime 0 -Balloon 0 -Storage "MyStorage" -Hugepages "any" -VarArgs "MyVarArgs" -Keyboard "de" -Acpi $false -NumaN "MyNumaN" -Searchdomain "MySearchdomain" -Tdf $false -Ciuser "MyCiuser" -VirtiofsN "MyVirtiofsN" -ImportWorkingStorage "MyImportWorkingStorage" -UsbN "MyUsbN" -Reboot $false -Audio0 "MyAudio0" -LiveRestore $false -Citype "configdrive2" # POSTNodesQemuRB | Create or restore a virtual machine. (optional)
+$POSTNodesQemuRB = Initialize-POSTNodesQemuRB -UnusedN "MyUnusedN" -HostpciN "MyHostpciN" -Autostart $false -Unique $false -Protection $false -Bwlimit 0 -Vmstatestorage "MyVmstatestorage" -Balloon 0 -Ostype "other" -Kvm $false -Sockets 0 -Affinity "MyAffinity" -VirtiofsN "MyVirtiofsN" -IpconfigN "MyIpconfigN" -Description "MyDescription" -Tdf $false -Keyboard "de" -Cpulimit 0 -Memory "MyMemory" -Agent "MyAgent" -SataN "MySataN" -Vcpus 0 -Watchdog "MyWatchdog" -MigrateSpeed 0 -NumaN "MyNumaN" -Template $false -VarArgs "MyVarArgs" -MigrateDowntime 0 -Rng0 "MyRng0" -Onboot $false -Pool "MyPool" -Force $false -Audio0 "MyAudio0" -Hookscript "MyHookscript" -Tags "MyTags" -Boot "MyBoot" -Storage "MyStorage" -Name "MyName" -Bootdisk "MyBootdisk" -Numa $false -Localtime $false -Efidisk0 "MyEfidisk0" -Hotplug "MyHotplug" -Tablet $false -ScsiN "MyScsiN" -Machine "MyMachine" -Ciupgrade $false -Startup "MyStartup" -Acpi $false -Freeze $false -SerialN "MySerialN" -Cores 0 -ImportWorkingStorage "MyImportWorkingStorage" -ParallelN "MyParallelN" -Cpu "MyCpu" -Keephugepages $false -Ciuser "MyCiuser" -Bios "seabios" -Start $false -Cpuunits 0 -Ivshmem "MyIvshmem" -Cicustom "MyCicustom" -Smbios1 "MySmbios1" -AmdSev "MyAmdSev" -NetN "MyNetN" -Vmgenid "MyVmgenid" -Archive "MyArchive" -Sshkeys "MySshkeys" -Searchdomain "MySearchdomain" -Nameserver "MyNameserver" -SpiceEnhancements "MySpiceEnhancements" -Shares 0 -LiveRestore $false -Arch "x86_64" -Smp 0 -Citype "configdrive2" -Scsihw "lsi" -VirtioN "MyVirtioN" -IdeN "MyIdeN" -Startdate "MyStartdate" -Reboot $false -Vga "MyVga" -Tpmstate0 "MyTpmstate0" -UsbN "MyUsbN" -Hugepages "any" -Cipassword "MyCipassword" -Vmid 0 -Lock "backup" -Cdrom "MyCdrom" # POSTNodesQemuRB | Create or restore a virtual machine. (optional)
 
 # Create or restore a virtual machine.
 try {
@@ -11462,7 +11462,7 @@ Create a copy of virtual machine/template.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuCloneRB = Initialize-POSTNodesQemuCloneRB -Name "MyName" -Newid 0 -Description "MyDescription" -Bwlimit 0 -Snapname "MySnapname" -Pool "MyPool" -Format "raw" -Target "MyTarget" -Full $false -Storage "MyStorage" # POSTNodesQemuCloneRB | Create a copy of virtual machine/template. (optional)
+$POSTNodesQemuCloneRB = Initialize-POSTNodesQemuCloneRB -Newid 0 -Target "MyTarget" -Snapname "MySnapname" -Description "MyDescription" -Name "MyName" -Format "raw" -Full $false -Bwlimit 0 -Pool "MyPool" -Storage "MyStorage" # POSTNodesQemuCloneRB | Create a copy of virtual machine/template. (optional)
 
 # Create a copy of virtual machine/template.
 try {
@@ -11511,7 +11511,7 @@ Set virtual machine options (asynchronous API).
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuConfigRB = Initialize-POSTNodesQemuConfigRB -SpiceEnhancements "MySpiceEnhancements" -Lock "backup" -Onboot $false -Cdrom "MyCdrom" -MigrateDowntime 0 -Ciupgrade $false -Hookscript "MyHookscript" -Digest "MyDigest" -Cpu "MyCpu" -Rng0 "MyRng0" -Agent "MyAgent" -Cpulimit 0 -Scsihw "lsi" -Boot "MyBoot" -Vmgenid "MyVmgenid" -ParallelN "MyParallelN" -NetN "MyNetN" -Smbios1 "MySmbios1" -SerialN "MySerialN" -Tpmstate0 "MyTpmstate0" -Name "MyName" -Bios "seabios" -Vga "MyVga" -Sshkeys "MySshkeys" -Nameserver "MyNameserver" -Memory "MyMemory" -IdeN "MyIdeN" -Kvm $false -Efidisk0 "MyEfidisk0" -Startdate "MyStartdate" -Vmstatestorage "MyVmstatestorage" -Arch "x86_64" -Cpuunits 0 -Autostart $false -Localtime $false -Keyboard "de" -Keephugepages $false -MigrateSpeed 0 -Hotplug "MyHotplug" -Cipassword "MyCipassword" -Bootdisk "MyBootdisk" -Description "MyDescription" -Template $false -Cicustom "MyCicustom" -Machine "MyMachine" -Affinity "MyAffinity" -Sockets 0 -Smp 0 -Tablet $false -IpconfigN "MyIpconfigN" -Numa $false -Delete "MyDelete" -Startup "MyStartup" -AmdSev "MyAmdSev" -HostpciN "MyHostpciN" -Cores 0 -Ostype "other" -Tags "MyTags" -Shares 0 -Vcpus 0 -VirtioN "MyVirtioN" -Skiplock $false -Freeze $false -ScsiN "MyScsiN" -Force $false -SataN "MySataN" -Ivshmem "MyIvshmem" -Watchdog "MyWatchdog" -UnusedN "MyUnusedN" -Protection $false -BackgroundDelay 0 -Balloon 0 -Hugepages "any" -VarArgs "MyVarArgs" -Revert "MyRevert" -Acpi $false -NumaN "MyNumaN" -Searchdomain "MySearchdomain" -Tdf $false -Ciuser "MyCiuser" -VirtiofsN "MyVirtiofsN" -ImportWorkingStorage "MyImportWorkingStorage" -UsbN "MyUsbN" -Reboot $false -Audio0 "MyAudio0" -Citype "configdrive2" # POSTNodesQemuConfigRB | Set virtual machine options (asynchronous API). (optional)
+$POSTNodesQemuConfigRB = Initialize-POSTNodesQemuConfigRB -UnusedN "MyUnusedN" -HostpciN "MyHostpciN" -Autostart $false -Vga "MyVga" -Protection $false -Vmstatestorage "MyVmstatestorage" -Balloon 0 -Ostype "other" -Kvm $false -Sockets 0 -Affinity "MyAffinity" -VirtiofsN "MyVirtiofsN" -IpconfigN "MyIpconfigN" -Description "MyDescription" -Tdf $false -Keyboard "de" -Cpulimit 0 -Memory "MyMemory" -Agent "MyAgent" -SataN "MySataN" -Vcpus 0 -Watchdog "MyWatchdog" -MigrateSpeed 0 -NumaN "MyNumaN" -Revert "MyRevert" -Template $false -VarArgs "MyVarArgs" -MigrateDowntime 0 -Rng0 "MyRng0" -Onboot $false -Force $false -Audio0 "MyAudio0" -Hookscript "MyHookscript" -Tags "MyTags" -Boot "MyBoot" -Name "MyName" -Bootdisk "MyBootdisk" -Numa $false -Localtime $false -Efidisk0 "MyEfidisk0" -Hotplug "MyHotplug" -Tablet $false -ScsiN "MyScsiN" -Machine "MyMachine" -Ciupgrade $false -Startup "MyStartup" -Acpi $false -Freeze $false -SerialN "MySerialN" -Cores 0 -ImportWorkingStorage "MyImportWorkingStorage" -ParallelN "MyParallelN" -Cpu "MyCpu" -Keephugepages $false -Ciuser "MyCiuser" -Bios "seabios" -Cpuunits 0 -Ivshmem "MyIvshmem" -Cicustom "MyCicustom" -Smbios1 "MySmbios1" -AmdSev "MyAmdSev" -NetN "MyNetN" -Vmgenid "MyVmgenid" -Sshkeys "MySshkeys" -Searchdomain "MySearchdomain" -Nameserver "MyNameserver" -Digest "MyDigest" -SpiceEnhancements "MySpiceEnhancements" -Shares 0 -Delete "MyDelete" -Arch "x86_64" -Smp 0 -Citype "configdrive2" -Scsihw "lsi" -Skiplock $false -VirtioN "MyVirtioN" -IdeN "MyIdeN" -Startdate "MyStartdate" -Reboot $false -BackgroundDelay 0 -Tpmstate0 "MyTpmstate0" -UsbN "MyUsbN" -Hugepages "any" -Cipassword "MyCipassword" -Lock "backup" -Cdrom "MyCdrom" # POSTNodesQemuConfigRB | Set virtual machine options (asynchronous API). (optional)
 
 # Set virtual machine options (asynchronous API).
 try {
@@ -11609,7 +11609,7 @@ Create new IPSet
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuFirewallIpsetRB = Initialize-POSTNodesQemuFirewallIpsetRB -Comment "MyComment" -Cidr "MyCidr" -Nomatch $false # POSTNodesQemuFirewallIpsetRB | Create new IPSet (optional)
+$POSTNodesQemuFirewallIpsetRB = Initialize-POSTNodesQemuFirewallIpsetRB -Comment "MyComment" -Nomatch $false -Cidr "MyCidr" # POSTNodesQemuFirewallIpsetRB | Create new IPSet (optional)
 
 # Create new IPSet
 try {
@@ -11660,7 +11660,7 @@ Add IP or Network to IPSet.
 $Name = "MyName" # String | IP set name.
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuFirewallIpsetRB = Initialize-POSTNodesQemuFirewallIpsetRB -Comment "MyComment" -Cidr "MyCidr" -Nomatch $false # POSTNodesQemuFirewallIpsetRB | Add IP or Network to IPSet. (optional)
+$POSTNodesQemuFirewallIpsetRB = Initialize-POSTNodesQemuFirewallIpsetRB -Comment "MyComment" -Nomatch $false -Cidr "MyCidr" # POSTNodesQemuFirewallIpsetRB | Add IP or Network to IPSet. (optional)
 
 # Add IP or Network to IPSet.
 try {
@@ -11710,7 +11710,7 @@ Create new rule.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuFirewallRulesRB = Initialize-POSTNodesQemuFirewallRulesRB -Macro "MyMacro" -Iface "MyIface" -Action "MyAction" -Pos 0 -Type "in" -Log "emerg" -Enable 0 -IcmpType "MyIcmpType" -Dport "MyDport" -Proto "MyProto" -Dest "MyDest" -Digest "MyDigest" -Sport "MySport" -Source "MySource" -Comment "MyComment" # POSTNodesQemuFirewallRulesRB | Create new rule. (optional)
+$POSTNodesQemuFirewallRulesRB = Initialize-POSTNodesQemuFirewallRulesRB -IcmpType "MyIcmpType" -Action "MyAction" -Type "in" -Dest "MyDest" -Source "MySource" -Digest "MyDigest" -Dport "MyDport" -Enable 0 -Log "emerg" -Pos 0 -Iface "MyIface" -Comment "MyComment" -Proto "MyProto" -Sport "MySport" -Macro "MyMacro" # POSTNodesQemuFirewallRulesRB | Create new rule. (optional)
 
 # Create new rule.
 try {
@@ -11759,7 +11759,7 @@ Migrate virtual machine. Creates a new migration task.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuMigrateRB = Initialize-POSTNodesQemuMigrateRB -WithLocalDisks $false -Bwlimit 0 -Online $false -MigrationNetwork "MyMigrationNetwork" -MigrationType "secure" -Target "MyTarget" -Targetstorage "MyTargetstorage" -Force $false # POSTNodesQemuMigrateRB | Migrate virtual machine. Creates a new migration task. (optional)
+$POSTNodesQemuMigrateRB = Initialize-POSTNodesQemuMigrateRB -Online $false -WithLocalDisks $false -Force $false -Target "MyTarget" -Targetstorage "MyTargetstorage" -MigrationType "secure" -Bwlimit 0 -MigrationNetwork "MyMigrationNetwork" # POSTNodesQemuMigrateRB | Migrate virtual machine. Creates a new migration task. (optional)
 
 # Migrate virtual machine. Creates a new migration task.
 try {
@@ -11857,7 +11857,7 @@ Move volume to different storage or to a different VM.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuMovediskRB = Initialize-POSTNodesQemuMovediskRB -Delete $false -TargetDigest "MyTargetDigest" -TargetDisk "ide0" -Bwlimit 0 -Disk "ide0" -Storage "MyStorage" -Format "raw" -Digest "MyDigest" -TargetVmid 0 # POSTNodesQemuMovediskRB | Move volume to different storage or to a different VM. (optional)
+$POSTNodesQemuMovediskRB = Initialize-POSTNodesQemuMovediskRB -Digest "MyDigest" -Disk "ide0" -Delete $false -Format "raw" -TargetDigest "MyTargetDigest" -TargetVmid 0 -Bwlimit 0 -TargetDisk "ide0" -Storage "MyStorage" # POSTNodesQemuMovediskRB | Move volume to different storage or to a different VM. (optional)
 
 # Move volume to different storage or to a different VM.
 try {
@@ -11955,7 +11955,7 @@ Migrate virtual machine to a remote cluster. Creates a new migration task. EXPER
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuRemotemigrateRB = Initialize-POSTNodesQemuRemotemigrateRB -Delete $false -TargetStorage "MyTargetStorage" -TargetEndpoint "MyTargetEndpoint" -Bwlimit 0 -Online $false -TargetBridge "MyTargetBridge" -TargetVmid 0 # POSTNodesQemuRemotemigrateRB | Migrate virtual machine to a remote cluster. Creates a new migration task. EXPERIMENTAL feature! (optional)
+$POSTNodesQemuRemotemigrateRB = Initialize-POSTNodesQemuRemotemigrateRB -TargetBridge "MyTargetBridge" -Online $false -TargetStorage "MyTargetStorage" -Delete $false -TargetVmid 0 -Bwlimit 0 -TargetEndpoint "MyTargetEndpoint" # POSTNodesQemuRemotemigrateRB | Migrate virtual machine to a remote cluster. Creates a new migration task. EXPERIMENTAL feature! (optional)
 
 # Migrate virtual machine to a remote cluster. Creates a new migration task. EXPERIMENTAL feature!
 try {
@@ -12004,7 +12004,7 @@ Snapshot a VM.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuSnapshotRB = Initialize-POSTNodesQemuSnapshotRB -Vmstate $false -Description "MyDescription" -Snapname "MySnapname" # POSTNodesQemuSnapshotRB | Snapshot a VM. (optional)
+$POSTNodesQemuSnapshotRB = Initialize-POSTNodesQemuSnapshotRB -Vmstate $false -Snapname "MySnapname" -Description "MyDescription" # POSTNodesQemuSnapshotRB | Snapshot a VM. (optional)
 
 # Snapshot a VM.
 try {
@@ -12252,7 +12252,7 @@ Resume virtual machine.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuStatusResumeRB = Initialize-POSTNodesQemuStatusResumeRB -Nocheck $false -Skiplock $false # POSTNodesQemuStatusResumeRB | Resume virtual machine. (optional)
+$POSTNodesQemuStatusResumeRB = Initialize-POSTNodesQemuStatusResumeRB -Skiplock $false -Nocheck $false # POSTNodesQemuStatusResumeRB | Resume virtual machine. (optional)
 
 # Resume virtual machine.
 try {
@@ -12301,7 +12301,7 @@ Shutdown virtual machine. This is similar to pressing the power button on a phys
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuStatusShutdownRB = Initialize-POSTNodesQemuStatusShutdownRB -Skiplock $false -ForceStop $false -KeepActive $false -Timeout 0 # POSTNodesQemuStatusShutdownRB | Shutdown virtual machine. This is similar to pressing the power button on a physical machine. This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown. (optional)
+$POSTNodesQemuStatusShutdownRB = Initialize-POSTNodesQemuStatusShutdownRB -Skiplock $false -KeepActive $false -Timeout 0 -ForceStop $false # POSTNodesQemuStatusShutdownRB | Shutdown virtual machine. This is similar to pressing the power button on a physical machine. This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown. (optional)
 
 # Shutdown virtual machine. This is similar to pressing the power button on a physical machine. This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
 try {
@@ -12350,7 +12350,7 @@ Start virtual machine.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuStatusStartRB = Initialize-POSTNodesQemuStatusStartRB -Machine "MyMachine" -Stateuri "MyStateuri" -Skiplock $false -MigrationType "secure" -MigrationNetwork "MyMigrationNetwork" -ForceCpu "MyForceCpu" -Timeout 0 -Migratedfrom "MyMigratedfrom" -Targetstorage "MyTargetstorage" # POSTNodesQemuStatusStartRB | Start virtual machine. (optional)
+$POSTNodesQemuStatusStartRB = Initialize-POSTNodesQemuStatusStartRB -ForceCpu "MyForceCpu" -Skiplock $false -Migratedfrom "MyMigratedfrom" -Timeout 0 -Targetstorage "MyTargetstorage" -MigrationType "secure" -Machine "MyMachine" -MigrationNetwork "MyMigrationNetwork" -Stateuri "MyStateuri" # POSTNodesQemuStatusStartRB | Start virtual machine. (optional)
 
 # Start virtual machine.
 try {
@@ -12399,7 +12399,7 @@ Stop virtual machine. The qemu process will exit immediately. This is akin to pu
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuStatusStopRB = Initialize-POSTNodesQemuStatusStopRB -Skiplock $false -Migratedfrom "MyMigratedfrom" -Timeout 0 -KeepActive $false -OverruleShutdown $false # POSTNodesQemuStatusStopRB | Stop virtual machine. The qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data. (optional)
+$POSTNodesQemuStatusStopRB = Initialize-POSTNodesQemuStatusStopRB -Skiplock $false -KeepActive $false -OverruleShutdown $false -Timeout 0 -Migratedfrom "MyMigratedfrom" # POSTNodesQemuStatusStopRB | Stop virtual machine. The qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data. (optional)
 
 # Stop virtual machine. The qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data.
 try {
@@ -12448,7 +12448,7 @@ Suspend virtual machine.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$POSTNodesQemuStatusSuspendRB = Initialize-POSTNodesQemuStatusSuspendRB -Skiplock $false -Todisk $false -Statestorage "MyStatestorage" # POSTNodesQemuStatusSuspendRB | Suspend virtual machine. (optional)
+$POSTNodesQemuStatusSuspendRB = Initialize-POSTNodesQemuStatusSuspendRB -Statestorage "MyStatestorage" -Skiplock $false -Todisk $false # POSTNodesQemuStatusSuspendRB | Suspend virtual machine. (optional)
 
 # Suspend virtual machine.
 try {
@@ -12872,7 +12872,7 @@ Creates a SPICE shell.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesSpiceshellRB = Initialize-POSTNodesSpiceshellRB -Cmd "ceph_install" -CmdOpts "MyCmdOpts" -Proxy "MyProxy" # POSTNodesSpiceshellRB | Creates a SPICE shell. (optional)
+$POSTNodesSpiceshellRB = Initialize-POSTNodesSpiceshellRB -Cmd "ceph_install" -Proxy "MyProxy" -CmdOpts "MyCmdOpts" # POSTNodesSpiceshellRB | Creates a SPICE shell. (optional)
 
 # Creates a SPICE shell.
 try {
@@ -13010,7 +13010,7 @@ Stop all VMs and Containers.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesStopallRB = Initialize-POSTNodesStopallRB -Vms "MyVms" -Timeout 0 -ForceStop $false # POSTNodesStopallRB | Stop all VMs and Containers. (optional)
+$POSTNodesStopallRB = Initialize-POSTNodesStopallRB -Timeout 0 -Vms "MyVms" -ForceStop $false # POSTNodesStopallRB | Stop all VMs and Containers. (optional)
 
 # Stop all VMs and Containers.
 try {
@@ -13058,7 +13058,7 @@ Allocate disk images.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Storage = "MyStorage" # String | The storage identifier.
-$POSTNodesStorageContentRB = Initialize-POSTNodesStorageContentRB -Target "MyTarget" -TargetNode "MyTargetNode" # POSTNodesStorageContentRB | Allocate disk images. (optional)
+$POSTNodesStorageContentRB = Initialize-POSTNodesStorageContentRB -TargetNode "MyTargetNode" -Target "MyTarget" # POSTNodesStorageContentRB | Allocate disk images. (optional)
 
 # Allocate disk images.
 try {
@@ -13109,7 +13109,7 @@ Copy a volume. This is experimental code - do not use.
 $Node = "MyNode" # String | The cluster node name.
 $Storage = "MyStorage" # String | The storage identifier.
 $Volume = "MyVolume" # String | Source volume identifier
-$POSTNodesStorageContentRB = Initialize-POSTNodesStorageContentRB -Target "MyTarget" -TargetNode "MyTargetNode" # POSTNodesStorageContentRB | Copy a volume. This is experimental code - do not use. (optional)
+$POSTNodesStorageContentRB = Initialize-POSTNodesStorageContentRB -TargetNode "MyTargetNode" -Target "MyTarget" # POSTNodesStorageContentRB | Copy a volume. This is experimental code - do not use. (optional)
 
 # Copy a volume. This is experimental code - do not use.
 try {
@@ -13159,7 +13159,7 @@ Download templates, ISO images, OVAs and VM images by using an URL.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Storage = "MyStorage" # String | The storage identifier.
-$POSTNodesStorageDownloadurlRB = Initialize-POSTNodesStorageDownloadurlRB -Filename "MyFilename" -ChecksumAlgorithm "md5" -Compression "MyCompression" -Checksum "MyChecksum" -VerifyCertificates $false -Content "iso" -Url "MyUrl" # POSTNodesStorageDownloadurlRB | Download templates, ISO images, OVAs and VM images by using an URL. (optional)
+$POSTNodesStorageDownloadurlRB = Initialize-POSTNodesStorageDownloadurlRB -Compression "MyCompression" -Filename "MyFilename" -Checksum "MyChecksum" -Content "iso" -ChecksumAlgorithm "md5" -VerifyCertificates $false -Url "MyUrl" # POSTNodesStorageDownloadurlRB | Download templates, ISO images, OVAs and VM images by using an URL. (optional)
 
 # Download templates, ISO images, OVAs and VM images by using an URL.
 try {
@@ -13208,7 +13208,7 @@ Upload templates, ISO images, OVAs and VM images.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Storage = "MyStorage" # String | The storage identifier.
-$POSTNodesStorageUploadRB = Initialize-POSTNodesStorageUploadRB -Checksum "MyChecksum" -Tmpfilename "MyTmpfilename" -Content "iso" -Filename "MyFilename" -ChecksumAlgorithm "md5" # POSTNodesStorageUploadRB | Upload templates, ISO images, OVAs and VM images. (optional)
+$POSTNodesStorageUploadRB = Initialize-POSTNodesStorageUploadRB -Tmpfilename "MyTmpfilename" -Content "iso" -Filename "MyFilename" -Checksum "MyChecksum" -ChecksumAlgorithm "md5" # POSTNodesStorageUploadRB | Upload templates, ISO images, OVAs and VM images. (optional)
 
 # Upload templates, ISO images, OVAs and VM images.
 try {
@@ -13347,7 +13347,7 @@ Creates a VNC Shell proxy.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesTermproxyRB = Initialize-POSTNodesTermproxyRB -Cmd "ceph_install" -CmdOpts "MyCmdOpts" # POSTNodesTermproxyRB | Creates a VNC Shell proxy. (optional)
+$POSTNodesTermproxyRB = Initialize-POSTNodesTermproxyRB -CmdOpts "MyCmdOpts" -Cmd "ceph_install" # POSTNodesTermproxyRB | Creates a VNC Shell proxy. (optional)
 
 # Creates a VNC Shell proxy.
 try {
@@ -13393,7 +13393,7 @@ Creates a VNC Shell proxy.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTNodesVncshellRB = Initialize-POSTNodesVncshellRB -Cmd "ceph_install" -CmdOpts "MyCmdOpts" -Websocket $false -Width 0 -Height 0 # POSTNodesVncshellRB | Creates a VNC Shell proxy. (optional)
+$POSTNodesVncshellRB = Initialize-POSTNodesVncshellRB -Height 0 -Cmd "ceph_install" -Websocket $false -Width 0 -CmdOpts "MyCmdOpts" # POSTNodesVncshellRB | Creates a VNC Shell proxy. (optional)
 
 # Creates a VNC Shell proxy.
 try {
@@ -13439,7 +13439,7 @@ Create backup.
 ### Example
 ```powershell
 $Node = "MyNode" # String | Only run if executed on this node.
-$POSTNodesVzdumpRB = Initialize-POSTNodesVzdumpRB -Lockwait 0 -Mode "snapshot" -Quiet $false -Mailnotification "always" -ExcludePath "MyExcludePath" -JobId "MyJobId" -Tmpdir "MyTmpdir" -Stdexcludes $false -Maxfiles 0 -Vmid "MyVmid" -NotificationMode "auto" -Exclude "MyExclude" -Fleecing "MyFleecing" -Pigz 0 -Storage "MyStorage" -NotesTemplate "MyNotesTemplate" -Performance "MyPerformance" -NotificationTarget "MyNotificationTarget" -Remove $false -Bwlimit 0 -Compress "0" -Script "MyScript" -Dumpdir "MyDumpdir" -Mailto "MyMailto" -Pool "MyPool" -Stopwait 0 -Stdout $false -PruneBackups "MyPruneBackups" -Stop $false -Protected $false -Ionice 0 -All $false -PbsChangeDetectionMode "legacy" -NotificationPolicy "always" -Zstd 0 # POSTNodesVzdumpRB | Create backup. (optional)
+$POSTNodesVzdumpRB = Initialize-POSTNodesVzdumpRB -Stop $false -Mailnotification "always" -All $false -Protected $false -PruneBackups "MyPruneBackups" -Exclude "MyExclude" -Dumpdir "MyDumpdir" -Zstd 0 -NotificationTarget "MyNotificationTarget" -Quiet $false -Performance "MyPerformance" -Maxfiles 0 -Mailto "MyMailto" -NotesTemplate "MyNotesTemplate" -Bwlimit 0 -Fleecing "MyFleecing" -ExcludePath "MyExcludePath" -NotificationPolicy "always" -Stopwait 0 -Compress "0" -Stdout $false -Pigz 0 -NotificationMode "auto" -Mode "snapshot" -Vmid "MyVmid" -Remove $false -Stdexcludes $false -Ionice 0 -Lockwait 0 -Tmpdir "MyTmpdir" -JobId "MyJobId" -Pool "MyPool" -Script "MyScript" -Storage "MyStorage" -PbsChangeDetectionMode "legacy" # POSTNodesVzdumpRB | Create backup. (optional)
 
 # Create backup.
 try {
@@ -13717,7 +13717,7 @@ Destroy pool
 ```powershell
 $Name = "MyName" # String | The name of the pool. It must be unique.
 $Node = "MyNode" # String | The cluster node name.
-$DELETENodesCephPoolRB = Initialize-DELETENodesCephPoolRB -RemoveStorages $false -RemoveEcprofile $false -Force $false # DELETENodesCephPoolRB | Destroy pool (optional)
+$DELETENodesCephPoolRB = Initialize-DELETENodesCephPoolRB -Force $false -RemoveEcprofile $false -RemoveStorages $false # DELETENodesCephPoolRB | Destroy pool (optional)
 
 # Destroy pool
 try {
@@ -13953,7 +13953,7 @@ Remove an LVM thin pool.
 ```powershell
 $Name = "MyName" # String | The storage identifier.
 $Node = "MyNode" # String | The cluster node name.
-$DELETENodesDisksLvmthinRB = Initialize-DELETENodesDisksLvmthinRB -VolumeGroup "MyVolumeGroup" -CleanupDisks $false -CleanupConfig $false # DELETENodesDisksLvmthinRB | Remove an LVM thin pool. (optional)
+$DELETENodesDisksLvmthinRB = Initialize-DELETENodesDisksLvmthinRB -CleanupDisks $false -CleanupConfig $false -VolumeGroup "MyVolumeGroup" # DELETENodesDisksLvmthinRB | Remove an LVM thin pool. (optional)
 
 # Remove an LVM thin pool.
 try {
@@ -14100,7 +14100,7 @@ Destroy the container (also delete all uses files).
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$DELETENodesLxcRB = Initialize-DELETENodesLxcRB -DestroyUnreferencedDisks $false -Purge $false -Force $false # DELETENodesLxcRB | Destroy the container (also delete all uses files). (optional)
+$DELETENodesLxcRB = Initialize-DELETENodesLxcRB -Force $false -DestroyUnreferencedDisks $false -Purge $false # DELETENodesLxcRB | Destroy the container (also delete all uses files). (optional)
 
 # Destroy the container (also delete all uses files).
 try {
@@ -14501,7 +14501,7 @@ Destroy the VM and  all used/owned volumes. Removes any VM specific permissions 
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$DELETENodesQemuRB = Initialize-DELETENodesQemuRB -DestroyUnreferencedDisks $false -Skiplock $false -Purge $false # DELETENodesQemuRB | Destroy the VM and  all used/owned volumes. Removes any VM specific permissions and firewall rules (optional)
+$DELETENodesQemuRB = Initialize-DELETENodesQemuRB -Skiplock $false -Purge $false -DestroyUnreferencedDisks $false # DELETENodesQemuRB | Destroy the VM and  all used/owned volumes. Removes any VM specific permissions and firewall rules (optional)
 
 # Destroy the VM and  all used/owned volumes. Removes any VM specific permissions and firewall rules
 try {
@@ -14865,7 +14865,7 @@ Prune backups. Only those using the standard naming scheme are considered.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Storage = "MyStorage" # String | The storage identifier.
-$DELETENodesStoragePrunebackupsRB = Initialize-DELETENodesStoragePrunebackupsRB -Vmid 0 -PruneBackups "MyPruneBackups" -Type "qemu" # DELETENodesStoragePrunebackupsRB | Prune backups. Only those using the standard naming scheme are considered. (optional)
+$DELETENodesStoragePrunebackupsRB = Initialize-DELETENodesStoragePrunebackupsRB -PruneBackups "MyPruneBackups" -Vmid 0 -Type "qemu" # DELETENodesStoragePrunebackupsRB | Prune backups. Only those using the standard naming scheme are considered. (optional)
 
 # Prune backups. Only those using the standard naming scheme are considered.
 try {
@@ -15049,7 +15049,7 @@ Change POOL settings
 ```powershell
 $Name = "MyName" # String | The name of the pool. It must be unique.
 $Node = "MyNode" # String | The cluster node name.
-$PUTNodesCephPoolRB = Initialize-PUTNodesCephPoolRB -Size 0 -TargetSizeRatio 0 -Application "rbd" -CrushRule "MyCrushRule" -TargetSize "MyTargetSize" -MinSize 0 -PgNumMin 0 -PgNum 0 -PgAutoscaleMode "on" # PUTNodesCephPoolRB | Change POOL settings (optional)
+$PUTNodesCephPoolRB = Initialize-PUTNodesCephPoolRB -PgNum 0 -Size 0 -TargetSizeRatio 0 -CrushRule "MyCrushRule" -PgAutoscaleMode "on" -TargetSize "MyTargetSize" -PgNumMin 0 -MinSize 0 -Application "rbd" # PUTNodesCephPoolRB | Change POOL settings (optional)
 
 # Change POOL settings
 try {
@@ -15142,7 +15142,7 @@ Set node configuration options.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$PUTNodesConfigRB = Initialize-PUTNodesConfigRB -AcmedomainN "MyAcmedomainN" -Delete "MyDelete" -Description "MyDescription" -Wakeonlan "MyWakeonlan" -Acme "MyAcme" -StartallOnbootDelay 0 -Digest "MyDigest" -BallooningTarget 0 # PUTNodesConfigRB | Set node configuration options. (optional)
+$PUTNodesConfigRB = Initialize-PUTNodesConfigRB -Digest "MyDigest" -StartallOnbootDelay 0 -Wakeonlan "MyWakeonlan" -BallooningTarget 0 -Delete "MyDelete" -Acme "MyAcme" -AcmedomainN "MyAcmedomainN" -Description "MyDescription" # PUTNodesConfigRB | Set node configuration options. (optional)
 
 # Set node configuration options.
 try {
@@ -15234,7 +15234,7 @@ Write DNS settings.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$PUTNodesDnsRB = Initialize-PUTNodesDnsRB -Dns2 "MyDns2" -Dns3 "MyDns3" -Search "MySearch" -Dns1 "MyDns1" # PUTNodesDnsRB | Write DNS settings. (optional)
+$PUTNodesDnsRB = Initialize-PUTNodesDnsRB -Dns3 "MyDns3" -Dns2 "MyDns2" -Dns1 "MyDns1" -Search "MySearch" # PUTNodesDnsRB | Write DNS settings. (optional)
 
 # Write DNS settings.
 try {
@@ -15280,7 +15280,7 @@ Set Firewall options.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$PUTNodesFirewallOptionsRB = Initialize-PUTNodesFirewallOptionsRB -NfConntrackTcpTimeoutEstablished 0 -NfConntrackTcpTimeoutSynRecv 0 -Nosmurfs $false -Delete "MyDelete" -ProtectionSynfloodRate 0 -SmurfLogLevel "emerg" -NfConntrackMax 0 -LogLevelOut "emerg" -Tcpflags $false -Nftables $false -NfConntrackHelpers "MyNfConntrackHelpers" -ProtectionSynflood $false -Enable $false -TcpFlagsLogLevel "emerg" -Ndp $false -ProtectionSynfloodBurst 0 -Digest "MyDigest" -LogLevelForward "emerg" -LogLevelIn "emerg" -NfConntrackAllowInvalid $false -LogNfConntrack $false # PUTNodesFirewallOptionsRB | Set Firewall options. (optional)
+$PUTNodesFirewallOptionsRB = Initialize-PUTNodesFirewallOptionsRB -ProtectionSynfloodBurst 0 -NfConntrackMax 0 -Ndp $false -NfConntrackHelpers "MyNfConntrackHelpers" -NfConntrackAllowInvalid $false -SmurfLogLevel "emerg" -TcpFlagsLogLevel "emerg" -Digest "MyDigest" -Tcpflags $false -NfConntrackTcpTimeoutEstablished 0 -NfConntrackTcpTimeoutSynRecv 0 -ProtectionSynfloodRate 0 -Enable $false -Nosmurfs $false -Nftables $false -LogLevelOut "emerg" -LogNfConntrack $false -Delete "MyDelete" -LogLevelForward "emerg" -LogLevelIn "emerg" -ProtectionSynflood $false # PUTNodesFirewallOptionsRB | Set Firewall options. (optional)
 
 # Set Firewall options.
 try {
@@ -15328,7 +15328,7 @@ Modify rule data.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Pos = 56 # Int32 | Update rule at position <pos>.
-$PUTNodesFirewallRulesRB = Initialize-PUTNodesFirewallRulesRB -Macro "MyMacro" -Iface "MyIface" -Moveto 0 -Action "MyAction" -Proto "MyProto" -Type "in" -Log "emerg" -Enable 0 -Delete "MyDelete" -Dport "MyDport" -Dest "MyDest" -IcmpType "MyIcmpType" -Digest "MyDigest" -Sport "MySport" -Source "MySource" -Comment "MyComment" # PUTNodesFirewallRulesRB | Modify rule data. (optional)
+$PUTNodesFirewallRulesRB = Initialize-PUTNodesFirewallRulesRB -IcmpType "MyIcmpType" -Action "MyAction" -Type "in" -Dest "MyDest" -Source "MySource" -Digest "MyDigest" -Dport "MyDport" -Enable 0 -Log "emerg" -Iface "MyIface" -Delete "MyDelete" -Moveto 0 -Comment "MyComment" -Proto "MyProto" -Sport "MySport" -Macro "MyMacro" # PUTNodesFirewallRulesRB | Modify rule data. (optional)
 
 # Modify rule data.
 try {
@@ -15377,7 +15377,7 @@ Set container options.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$PUTNodesLxcConfigRB = Initialize-PUTNodesLxcConfigRB -Cpulimit 0 -Searchdomain "MySearchdomain" -Cpuunits 0 -Protection $false -MpN "MyMpN" -Swap 0 -Cores 0 -Arch "amd64" -Hostname "MyHostname" -Revert "MyRevert" -Debug $false -Tags "MyTags" -NetN "MyNetN" -Rootfs "MyRootfs" -Onboot $false -Lock "backup" -Unprivileged $false -Ostype "debian" -Startup "MyStartup" -Cmode "shell" -Console $false -Timezone "MyTimezone" -DevN "MyDevN" -Description "MyDescription" -Memory 0 -Delete "MyDelete" -Template $false -Tty 0 -Digest "MyDigest" -Hookscript "MyHookscript" -Features "MyFeatures" -UnusedN "MyUnusedN" -Nameserver "MyNameserver" # PUTNodesLxcConfigRB | Set container options. (optional)
+$PUTNodesLxcConfigRB = Initialize-PUTNodesLxcConfigRB -Cores 0 -Digest "MyDigest" -Lock "backup" -Description "MyDescription" -Memory 0 -Cmode "shell" -DevN "MyDevN" -Template $false -Hookscript "MyHookscript" -Onboot $false -Tags "MyTags" -Revert "MyRevert" -Tty 0 -NetN "MyNetN" -Cpulimit 0 -Hostname "MyHostname" -Console $false -Ostype "debian" -Cpuunits 0 -Features "MyFeatures" -Startup "MyStartup" -UnusedN "MyUnusedN" -Unprivileged $false -Protection $false -Timezone "MyTimezone" -Swap 0 -Searchdomain "MySearchdomain" -Debug $false -Delete "MyDelete" -Rootfs "MyRootfs" -Nameserver "MyNameserver" -MpN "MyMpN" -Arch "amd64" # PUTNodesLxcConfigRB | Set container options. (optional)
 
 # Set container options.
 try {
@@ -15533,7 +15533,7 @@ Set Firewall options.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$PUTNodesLxcFirewallOptionsRB = Initialize-PUTNodesLxcFirewallOptionsRB -LogLevelOut "emerg" -Delete "MyDelete" -PolicyOut "ACCEPT" -LogLevelIn "emerg" -Ndp $false -Ipfilter $false -Dhcp $false -Radv $false -Macfilter $false -PolicyIn "ACCEPT" -Digest "MyDigest" -Enable $false # PUTNodesLxcFirewallOptionsRB | Set Firewall options. (optional)
+$PUTNodesLxcFirewallOptionsRB = Initialize-PUTNodesLxcFirewallOptionsRB -PolicyIn "ACCEPT" -Digest "MyDigest" -PolicyOut "ACCEPT" -Dhcp $false -Ipfilter $false -Delete "MyDelete" -Enable $false -LogLevelOut "emerg" -Macfilter $false -Ndp $false -LogLevelIn "emerg" -Radv $false # PUTNodesLxcFirewallOptionsRB | Set Firewall options. (optional)
 
 # Set Firewall options.
 try {
@@ -15584,7 +15584,7 @@ Modify rule data.
 $Node = "MyNode" # String | The cluster node name.
 $Pos = 56 # Int32 | Update rule at position <pos>.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$PUTNodesLxcFirewallRulesRB = Initialize-PUTNodesLxcFirewallRulesRB -Macro "MyMacro" -Iface "MyIface" -Moveto 0 -Action "MyAction" -Proto "MyProto" -Type "in" -Log "emerg" -Enable 0 -Delete "MyDelete" -Dport "MyDport" -Dest "MyDest" -IcmpType "MyIcmpType" -Digest "MyDigest" -Sport "MySport" -Source "MySource" -Comment "MyComment" # PUTNodesLxcFirewallRulesRB | Modify rule data. (optional)
+$PUTNodesLxcFirewallRulesRB = Initialize-PUTNodesLxcFirewallRulesRB -IcmpType "MyIcmpType" -Action "MyAction" -Type "in" -Dest "MyDest" -Source "MySource" -Digest "MyDigest" -Dport "MyDport" -Enable 0 -Log "emerg" -Iface "MyIface" -Delete "MyDelete" -Moveto 0 -Comment "MyComment" -Proto "MyProto" -Sport "MySport" -Macro "MyMacro" # PUTNodesLxcFirewallRulesRB | Modify rule data. (optional)
 
 # Modify rule data.
 try {
@@ -15634,7 +15634,7 @@ Resize a container mount point.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$PUTNodesLxcResizeRB = Initialize-PUTNodesLxcResizeRB -Size "MySize" -Digest "MyDigest" -Disk "rootfs" # PUTNodesLxcResizeRB | Resize a container mount point. (optional)
+$PUTNodesLxcResizeRB = Initialize-PUTNodesLxcResizeRB -Digest "MyDigest" -Size "MySize" -Disk "rootfs" # PUTNodesLxcResizeRB | Resize a container mount point. (optional)
 
 # Resize a container mount point.
 try {
@@ -15778,7 +15778,7 @@ Update network device configuration
 ```powershell
 $Iface = "MyIface" # String | Network interface name.
 $Node = "MyNode" # String | The cluster node name.
-$PUTNodesNetworkRB = Initialize-PUTNodesNetworkRB -Gateway6 "MyGateway6" -Comments6 "MyComments6" -Cidr "MyCidr" -Cidr6 "MyCidr6" -BondPrimary "MyBondPrimary" -Autostart $false -Mtu 0 -BondMode "balance-rr" -Slaves "MySlaves" -BridgeVids "MyBridgeVids" -BridgePorts "MyBridgePorts" -Netmask6 0 -OvsOptions "MyOvsOptions" -Type "bridge" -OvsTag 0 -Gateway "MyGateway" -Netmask "MyNetmask" -OvsPorts "MyOvsPorts" -Comments "MyComments" -BondXmitHashPolicy "layer2" -Address "MyAddress" -BridgeVlanAware $false -VlanRawDevice "MyVlanRawDevice" -Delete "MyDelete" -Address6 "MyAddress6" -VlanId 0 -OvsBonds "MyOvsBonds" -OvsBridge "MyOvsBridge" # PUTNodesNetworkRB | Update network device configuration (optional)
+$PUTNodesNetworkRB = Initialize-PUTNodesNetworkRB -Address6 "MyAddress6" -BondPrimary "MyBondPrimary" -Netmask "MyNetmask" -Gateway "MyGateway" -Type "bridge" -OvsTag 0 -Mtu 0 -OvsOptions "MyOvsOptions" -Cidr6 "MyCidr6" -BridgePorts "MyBridgePorts" -OvsBonds "MyOvsBonds" -Gateway6 "MyGateway6" -Comments "MyComments" -Autostart $false -OvsPorts "MyOvsPorts" -BondXmitHashPolicy "layer2" -OvsBridge "MyOvsBridge" -BridgeVlanAware $false -Comments6 "MyComments6" -VlanRawDevice "MyVlanRawDevice" -VlanId 0 -Netmask6 0 -Cidr "MyCidr" -Delete "MyDelete" -Slaves "MySlaves" -BridgeVids "MyBridgeVids" -Address "MyAddress" -BondMode "balance-rr" # PUTNodesNetworkRB | Update network device configuration (optional)
 
 # Update network device configuration
 try {
@@ -15873,7 +15873,7 @@ Set virtual machine options (synchronous API) - You should consider using the PO
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$PUTNodesQemuConfigRB = Initialize-PUTNodesQemuConfigRB -SpiceEnhancements "MySpiceEnhancements" -Lock "backup" -Onboot $false -Cdrom "MyCdrom" -Template $false -Ciupgrade $false -Hookscript "MyHookscript" -Digest "MyDigest" -Cpu "MyCpu" -Rng0 "MyRng0" -Agent "MyAgent" -Cpulimit 0 -Scsihw "lsi" -Boot "MyBoot" -Vmgenid "MyVmgenid" -ParallelN "MyParallelN" -NetN "MyNetN" -Smbios1 "MySmbios1" -SerialN "MySerialN" -Tpmstate0 "MyTpmstate0" -Name "MyName" -Bios "seabios" -Vga "MyVga" -Sshkeys "MySshkeys" -Nameserver "MyNameserver" -Memory "MyMemory" -IdeN "MyIdeN" -Kvm $false -Efidisk0 "MyEfidisk0" -Startdate "MyStartdate" -Arch "x86_64" -Cpuunits 0 -Autostart $false -Localtime $false -Keyboard "de" -Keephugepages $false -MigrateSpeed 0 -Hotplug "MyHotplug" -Cipassword "MyCipassword" -Bootdisk "MyBootdisk" -Description "MyDescription" -Vmstatestorage "MyVmstatestorage" -Cicustom "MyCicustom" -Machine "MyMachine" -Affinity "MyAffinity" -Sockets 0 -Smp 0 -Tablet $false -IpconfigN "MyIpconfigN" -Numa $false -Delete "MyDelete" -Startup "MyStartup" -AmdSev "MyAmdSev" -HostpciN "MyHostpciN" -Cores 0 -Ostype "other" -Tags "MyTags" -Shares 0 -Vcpus 0 -VirtioN "MyVirtioN" -Skiplock $false -Freeze $false -ScsiN "MyScsiN" -Force $false -SataN "MySataN" -Ivshmem "MyIvshmem" -Watchdog "MyWatchdog" -UnusedN "MyUnusedN" -Protection $false -MigrateDowntime 0 -Balloon 0 -Hugepages "any" -VarArgs "MyVarArgs" -Revert "MyRevert" -Acpi $false -NumaN "MyNumaN" -Searchdomain "MySearchdomain" -Tdf $false -Ciuser "MyCiuser" -VirtiofsN "MyVirtiofsN" -UsbN "MyUsbN" -Reboot $false -Audio0 "MyAudio0" -Citype "configdrive2" # PUTNodesQemuConfigRB | Set virtual machine options (synchronous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation. (optional)
+$PUTNodesQemuConfigRB = Initialize-PUTNodesQemuConfigRB -UnusedN "MyUnusedN" -HostpciN "MyHostpciN" -Autostart $false -Protection $false -Vmstatestorage "MyVmstatestorage" -Balloon 0 -Ostype "other" -Kvm $false -Sockets 0 -Affinity "MyAffinity" -VirtiofsN "MyVirtiofsN" -IpconfigN "MyIpconfigN" -Description "MyDescription" -Tdf $false -Keyboard "de" -Cpulimit 0 -Memory "MyMemory" -Agent "MyAgent" -SataN "MySataN" -Vcpus 0 -Watchdog "MyWatchdog" -MigrateSpeed 0 -NumaN "MyNumaN" -Revert "MyRevert" -Template $false -VarArgs "MyVarArgs" -MigrateDowntime 0 -Rng0 "MyRng0" -Onboot $false -Force $false -Audio0 "MyAudio0" -Hookscript "MyHookscript" -Tags "MyTags" -Boot "MyBoot" -Name "MyName" -Bootdisk "MyBootdisk" -Numa $false -Localtime $false -Efidisk0 "MyEfidisk0" -Hotplug "MyHotplug" -Tablet $false -ScsiN "MyScsiN" -Machine "MyMachine" -Ciupgrade $false -Startup "MyStartup" -Acpi $false -Freeze $false -SerialN "MySerialN" -Cores 0 -ParallelN "MyParallelN" -Cpu "MyCpu" -Keephugepages $false -Ciuser "MyCiuser" -Bios "seabios" -Cpuunits 0 -Ivshmem "MyIvshmem" -Cicustom "MyCicustom" -Smbios1 "MySmbios1" -AmdSev "MyAmdSev" -NetN "MyNetN" -Vmgenid "MyVmgenid" -Sshkeys "MySshkeys" -Searchdomain "MySearchdomain" -Nameserver "MyNameserver" -Digest "MyDigest" -SpiceEnhancements "MySpiceEnhancements" -Shares 0 -Delete "MyDelete" -Arch "x86_64" -Smp 0 -Citype "configdrive2" -Scsihw "lsi" -Skiplock $false -VirtioN "MyVirtioN" -IdeN "MyIdeN" -Startdate "MyStartdate" -Reboot $false -Vga "MyVga" -Tpmstate0 "MyTpmstate0" -UsbN "MyUsbN" -Hugepages "any" -Cipassword "MyCipassword" -Lock "backup" -Cdrom "MyCdrom" # PUTNodesQemuConfigRB | Set virtual machine options (synchronous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation. (optional)
 
 # Set virtual machine options (synchronous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation.
 try {
@@ -16029,7 +16029,7 @@ Set Firewall options.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$PUTNodesQemuFirewallOptionsRB = Initialize-PUTNodesQemuFirewallOptionsRB -LogLevelOut "emerg" -Delete "MyDelete" -PolicyOut "ACCEPT" -LogLevelIn "emerg" -Ndp $false -Ipfilter $false -Dhcp $false -Radv $false -Macfilter $false -PolicyIn "ACCEPT" -Digest "MyDigest" -Enable $false # PUTNodesQemuFirewallOptionsRB | Set Firewall options. (optional)
+$PUTNodesQemuFirewallOptionsRB = Initialize-PUTNodesQemuFirewallOptionsRB -PolicyIn "ACCEPT" -Digest "MyDigest" -PolicyOut "ACCEPT" -Dhcp $false -Ipfilter $false -Delete "MyDelete" -Enable $false -LogLevelOut "emerg" -Macfilter $false -Ndp $false -LogLevelIn "emerg" -Radv $false # PUTNodesQemuFirewallOptionsRB | Set Firewall options. (optional)
 
 # Set Firewall options.
 try {
@@ -16080,7 +16080,7 @@ Modify rule data.
 $Node = "MyNode" # String | The cluster node name.
 $Pos = 56 # Int32 | Update rule at position <pos>.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$PUTNodesQemuFirewallRulesRB = Initialize-PUTNodesQemuFirewallRulesRB -Macro "MyMacro" -Iface "MyIface" -Moveto 0 -Action "MyAction" -Proto "MyProto" -Type "in" -Log "emerg" -Enable 0 -Delete "MyDelete" -Dport "MyDport" -Dest "MyDest" -IcmpType "MyIcmpType" -Digest "MyDigest" -Sport "MySport" -Source "MySource" -Comment "MyComment" # PUTNodesQemuFirewallRulesRB | Modify rule data. (optional)
+$PUTNodesQemuFirewallRulesRB = Initialize-PUTNodesQemuFirewallRulesRB -IcmpType "MyIcmpType" -Action "MyAction" -Type "in" -Dest "MyDest" -Source "MySource" -Digest "MyDigest" -Dport "MyDport" -Enable 0 -Log "emerg" -Iface "MyIface" -Delete "MyDelete" -Moveto 0 -Comment "MyComment" -Proto "MyProto" -Sport "MySport" -Macro "MyMacro" # PUTNodesQemuFirewallRulesRB | Modify rule data. (optional)
 
 # Modify rule data.
 try {
@@ -16130,7 +16130,7 @@ Extend volume size.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$PUTNodesQemuResizeRB = Initialize-PUTNodesQemuResizeRB -Skiplock $false -Size "MySize" -Digest "MyDigest" -Disk "ide0" # PUTNodesQemuResizeRB | Extend volume size. (optional)
+$PUTNodesQemuResizeRB = Initialize-PUTNodesQemuResizeRB -Skiplock $false -Digest "MyDigest" -Size "MySize" -Disk "ide0" # PUTNodesQemuResizeRB | Extend volume size. (optional)
 
 # Extend volume size.
 try {
@@ -16179,7 +16179,7 @@ Send key event to virtual machine.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$PUTNodesQemuSendkeyRB = Initialize-PUTNodesQemuSendkeyRB -Key "MyKey" -Skiplock $false # PUTNodesQemuSendkeyRB | Send key event to virtual machine. (optional)
+$PUTNodesQemuSendkeyRB = Initialize-PUTNodesQemuSendkeyRB -Skiplock $false -Key "MyKey" # PUTNodesQemuSendkeyRB | Send key event to virtual machine. (optional)
 
 # Send key event to virtual machine.
 try {
@@ -16280,7 +16280,7 @@ Unlink/delete disk images.
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
 $Vmid = 56 # Int32 | The (unique) ID of the VM.
-$PUTNodesQemuUnlinkRB = Initialize-PUTNodesQemuUnlinkRB -Idlist "MyIdlist" -Force $false # PUTNodesQemuUnlinkRB | Unlink/delete disk images. (optional)
+$PUTNodesQemuUnlinkRB = Initialize-PUTNodesQemuUnlinkRB -Force $false -Idlist "MyIdlist" # PUTNodesQemuUnlinkRB | Unlink/delete disk images. (optional)
 
 # Unlink/delete disk images.
 try {

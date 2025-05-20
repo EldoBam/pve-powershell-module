@@ -5,10 +5,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **VgName** | **String** |  | [optional] 
 **LvName** | **String** |  | [optional] 
-**LvUuid** | **String** |  | [optional] 
 **LvPath** | **String** |  | [optional] 
 **CreationTime** | **String** |  | [optional] 
 **LvSize** | **Int32** |  | [optional] 
+**LvUuid** | **String** |  | [optional] 
 
 ## Examples
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 ```powershell
 $NodesCephOsdLvinfo = Initialize-PVENodesCephOsdLvinfo  -VgName null `
  -LvName null `
- -LvUuid null `
  -LvPath null `
  -CreationTime null `
- -LvSize null
+ -LvSize null `
+ -LvUuid null
 ```
 
 - Convert the resource to JSON

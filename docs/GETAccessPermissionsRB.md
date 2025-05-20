@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Userid** | **String** |  | [optional] 
 **Path** | **String** |  | [optional] 
+**Userid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETAccessPermissionsRB = Initialize-PVEGETAccessPermissionsRB  -Userid null `
- -Path null
+$GETAccessPermissionsRB = Initialize-PVEGETAccessPermissionsRB  -Path null `
+ -Userid null
 ```
 
 - Convert the resource to JSON

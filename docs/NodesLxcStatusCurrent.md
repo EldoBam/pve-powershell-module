@@ -3,49 +3,49 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Maxswap** | **Int32** |  | [optional] 
-**Status** | **String** |  | [optional] 
-**Cpu** | **Decimal** |  | [optional] 
-**Template** | **Boolean** |  | [optional] 
-**Lock** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**Mem** | **Int32** |  | [optional] 
-**Uptime** | **Int32** |  | [optional] 
-**Maxmem** | **Int32** |  | [optional] 
-**Maxdisk** | **Int32** |  | [optional] 
 **Cpus** | **Decimal** |  | [optional] 
-**Tags** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Netout** | **Int32** |  | [optional] 
-**Diskwrite** | **Int32** |  | [optional] 
-**Diskread** | **Int32** |  | [optional] 
-**Ha** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 **Netin** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
+**Lock** | **String** |  | [optional] 
+**Maxdisk** | **Int32** |  | [optional] 
+**Cpu** | **Decimal** |  | [optional] 
 **Disk** | **Int32** |  | [optional] 
+**Diskread** | **Int32** |  | [optional] 
+**Maxswap** | **Int32** |  | [optional] 
+**Uptime** | **Int32** |  | [optional] 
+**Ha** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**Diskwrite** | **Int32** |  | [optional] 
+**Maxmem** | **Int32** |  | [optional] 
+**Template** | **Boolean** |  | [optional] 
+**Netout** | **Int32** |  | [optional] 
+**Mem** | **Int32** |  | [optional] 
+**Tags** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcStatusCurrent = Initialize-PVENodesLxcStatusCurrent  -Maxswap null `
- -Status null `
- -Cpu null `
- -Template null `
- -Lock null `
- -Name null `
- -Mem null `
- -Uptime null `
- -Maxmem null `
- -Maxdisk null `
+$NodesLxcStatusCurrent = Initialize-PVENodesLxcStatusCurrent  -Name null `
  -Cpus null `
- -Tags null `
- -Vmid null `
- -Netout null `
- -Diskwrite null `
- -Diskread null `
- -Ha null `
  -Netin null `
- -Disk null
+ -Vmid null `
+ -Status null `
+ -Lock null `
+ -Maxdisk null `
+ -Cpu null `
+ -Disk null `
+ -Diskread null `
+ -Maxswap null `
+ -Uptime null `
+ -Ha null `
+ -Diskwrite null `
+ -Maxmem null `
+ -Template null `
+ -Netout null `
+ -Mem null `
+ -Tags null
 ```
 
 - Convert the resource to JSON

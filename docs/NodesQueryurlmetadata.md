@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Size** | **Int32** |  | [optional] 
 **Mimetype** | **String** |  | [optional] 
+**Size** | **Int32** |  | [optional] 
 **Filename** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQueryurlmetadata = Initialize-PVENodesQueryurlmetadata  -Size null `
- -Mimetype null `
+$NodesQueryurlmetadata = Initialize-PVENodesQueryurlmetadata  -Mimetype null `
+ -Size null `
  -Filename null
 ```
 

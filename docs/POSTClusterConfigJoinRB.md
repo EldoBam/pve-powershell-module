@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Votes** | **Int32** |  | [optional] 
 **Password** | **String** |  | [optional] 
-**LinkN** | **String** |  | [optional] 
-**Nodeid** | **Int32** |  | [optional] 
-**Hostname** | **String** |  | [optional] 
 **Fingerprint** | **String** |  | [optional] 
 **Force** | **Boolean** |  | [optional] 
+**Votes** | **Int32** |  | [optional] 
+**Hostname** | **String** |  | [optional] 
+**LinkN** | **String** |  | [optional] 
+**Nodeid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterConfigJoinRB = Initialize-PVEPOSTClusterConfigJoinRB  -Votes null `
- -Password null `
- -LinkN null `
- -Nodeid null `
- -Hostname null `
+$POSTClusterConfigJoinRB = Initialize-PVEPOSTClusterConfigJoinRB  -Password null `
  -Fingerprint null `
- -Force null
+ -Force null `
+ -Votes null `
+ -Hostname null `
+ -LinkN null `
+ -Nodeid null
 ```
 
 - Convert the resource to JSON

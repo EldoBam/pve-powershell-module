@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Recovery** | **String[]** |  | [optional] 
 **Challenge** | **String** |  | [optional] 
+**Recovery** | **String[]** |  | [optional] 
 **Id** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessTfa = Initialize-PVEAccessTfa  -Recovery null `
- -Challenge null `
+$AccessTfa = Initialize-PVEAccessTfa  -Challenge null `
+ -Recovery null `
  -Id null
 ```
 

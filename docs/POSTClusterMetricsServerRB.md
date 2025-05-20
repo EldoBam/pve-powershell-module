@@ -3,41 +3,41 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Path** | **String** |  | [optional] 
+**ApiPathPrefix** | **String** |  | [optional] 
 **Timeout** | **Int32** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**Bucket** | **String** |  | [optional] 
-**Mtu** | **Int32** |  | [optional] 
 **Port** | **Int32** |  | [optional] 
-**Server** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
 **Organization** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Bucket** | **String** |  | [optional] 
 **Influxdbproto** | **String** |  | [optional] 
-**Token** | **String** |  | [optional] 
+**Path** | **String** |  | [optional] 
 **VerifyCertificate** | **Boolean** |  | [optional] 
 **MaxBodySize** | **Int32** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**ApiPathPrefix** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Mtu** | **Int32** |  | [optional] 
+**Token** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterMetricsServerRB = Initialize-PVEPOSTClusterMetricsServerRB  -Path null `
+$POSTClusterMetricsServerRB = Initialize-PVEPOSTClusterMetricsServerRB  -ApiPathPrefix null `
  -Timeout null `
- -Disable null `
- -Bucket null `
- -Mtu null `
  -Port null `
- -Server null `
+ -Proto null `
  -Organization null `
+ -Type null `
+ -Server null `
+ -Bucket null `
  -Influxdbproto null `
- -Token null `
+ -Path null `
  -VerifyCertificate null `
  -MaxBodySize null `
- -Proto null `
- -ApiPathPrefix null `
- -Type null
+ -Disable null `
+ -Mtu null `
+ -Token null
 ```
 
 - Convert the resource to JSON

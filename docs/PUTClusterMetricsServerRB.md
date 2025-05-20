@@ -3,43 +3,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Path** | **String** |  | [optional] 
-**Timeout** | **Int32** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**Bucket** | **String** |  | [optional] 
-**Mtu** | **Int32** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**Server** | **String** |  | [optional] 
-**Organization** | **String** |  | [optional] 
-**Influxdbproto** | **String** |  | [optional] 
-**VerifyCertificate** | **Boolean** |  | [optional] 
-**Token** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**MaxBodySize** | **Int32** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **ApiPathPrefix** | **String** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Organization** | **String** |  | [optional] 
+**VerifyCertificate** | **Boolean** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**MaxBodySize** | **Int32** |  | [optional] 
+**Bucket** | **String** |  | [optional] 
+**Influxdbproto** | **String** |  | [optional] 
+**Path** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Mtu** | **Int32** |  | [optional] 
+**Token** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterMetricsServerRB = Initialize-PVEPUTClusterMetricsServerRB  -Path null `
+$PUTClusterMetricsServerRB = Initialize-PVEPUTClusterMetricsServerRB  -ApiPathPrefix null `
  -Timeout null `
- -Disable null `
- -Bucket null `
- -Mtu null `
  -Port null `
- -Server null `
- -Organization null `
- -Influxdbproto null `
- -VerifyCertificate null `
- -Token null `
- -Delete null `
- -MaxBodySize null `
  -Proto null `
+ -Organization null `
+ -VerifyCertificate null `
  -Digest null `
- -ApiPathPrefix null
+ -MaxBodySize null `
+ -Bucket null `
+ -Influxdbproto null `
+ -Path null `
+ -Server null `
+ -Delete null `
+ -Disable null `
+ -Mtu null `
+ -Token null
 ```
 
 - Convert the resource to JSON

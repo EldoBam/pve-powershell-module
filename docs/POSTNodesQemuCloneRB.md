@@ -3,30 +3,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
 **Newid** | **Int32** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**Bwlimit** | **Int32** |  | [optional] 
-**Snapname** | **String** |  | [optional] 
-**Pool** | **String** |  | [optional] 
-**Format** | **String** |  | [optional] 
 **Target** | **String** |  | [optional] 
+**Snapname** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Format** | **String** |  | [optional] 
 **Full** | **Boolean** |  | [optional] 
+**Bwlimit** | **Int32** |  | [optional] 
+**Pool** | **String** |  | [optional] 
 **Storage** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuCloneRB = Initialize-PVEPOSTNodesQemuCloneRB  -Name null `
- -Newid null `
- -Description null `
- -Bwlimit null `
- -Snapname null `
- -Pool null `
- -Format null `
+$POSTNodesQemuCloneRB = Initialize-PVEPOSTNodesQemuCloneRB  -Newid null `
  -Target null `
+ -Snapname null `
+ -Description null `
+ -Name null `
+ -Format null `
  -Full null `
+ -Bwlimit null `
+ -Pool null `
  -Storage null
 ```
 

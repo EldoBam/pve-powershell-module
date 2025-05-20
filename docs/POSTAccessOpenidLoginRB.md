@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RedirectUrl** | **String** |  | [optional] 
 **Code** | **String** |  | [optional] 
 **State** | **String** |  | [optional] 
+**RedirectUrl** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTAccessOpenidLoginRB = Initialize-PVEPOSTAccessOpenidLoginRB  -RedirectUrl null `
- -Code null `
- -State null
+$POSTAccessOpenidLoginRB = Initialize-PVEPOSTAccessOpenidLoginRB  -Code null `
+ -State null `
+ -RedirectUrl null
 ```
 
 - Convert the resource to JSON

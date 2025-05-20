@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Types** | **String[]** |  | [optional] 
-**Realm** | **String** |  | [optional] 
 **User** | **String** |  | [optional] 
+**Realm** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $AccessUsersTfa = Initialize-PVEAccessUsersTfa  -Types null `
- -Realm null `
- -User null
+ -User null `
+ -Realm null
 ```
 
 - Convert the resource to JSON

@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | **String** |  | [optional] 
 **Password** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
 **Enable** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTAccessTfaRB = Initialize-PVEPUTAccessTfaRB  -Description null `
- -Password null `
+$PUTAccessTfaRB = Initialize-PVEPUTAccessTfaRB  -Password null `
+ -Description null `
  -Enable null
 ```
 

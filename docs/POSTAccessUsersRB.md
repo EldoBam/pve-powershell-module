@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Expire** | **Int32** |  | [optional] 
-**Email** | **String** |  | [optional] 
-**Keys** | **String** |  | [optional] 
 **Userid** | **String** |  | [optional] 
 **Password** | **String** |  | [optional] 
+**Expire** | **Int32** |  | [optional] 
+**Lastname** | **String** |  | [optional] 
+**Firstname** | **String** |  | [optional] 
+**Keys** | **String** |  | [optional] 
+**Enable** | **Boolean** |  | [optional] 
 **Groups** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Firstname** | **String** |  | [optional] 
-**Enable** | **Boolean** |  | [optional] 
-**Lastname** | **String** |  | [optional] 
+**Email** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTAccessUsersRB = Initialize-PVEPOSTAccessUsersRB  -Expire null `
- -Email null `
- -Keys null `
- -Userid null `
+$POSTAccessUsersRB = Initialize-PVEPOSTAccessUsersRB  -Userid null `
  -Password null `
+ -Expire null `
+ -Lastname null `
+ -Firstname null `
+ -Keys null `
+ -Enable null `
  -Groups null `
  -Comment null `
- -Firstname null `
- -Enable null `
- -Lastname null
+ -Email null
 ```
 
 - Convert the resource to JSON

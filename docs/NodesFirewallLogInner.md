@@ -1,20 +1,22 @@
-# NodesLxcFirewallRulesGETInner
+# NodesFirewallLogInner
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pos** | **Int32** |  | [optional] 
+**T** | **String** |  | [optional] 
+**N** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcFirewallRulesGETInner = Initialize-PVENodesLxcFirewallRulesGETInner  -Pos null
+$NodesFirewallLogInner = Initialize-PVENodesFirewallLogInner  -T null `
+ -N null
 ```
 
 - Convert the resource to JSON
 ```powershell
-$NodesLxcFirewallRulesGETInner | ConvertTo-JSON
+$NodesFirewallLogInner | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

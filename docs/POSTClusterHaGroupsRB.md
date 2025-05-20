@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 **Restricted** | **Boolean** |  | [optional] 
 **Type** | **String** |  | [optional] 
 **Group** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Nofailback** | **Boolean** |  | [optional] 
 **Nodes** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 
 ## Examples
 
@@ -17,9 +17,9 @@ Name | Type | Description | Notes
 $POSTClusterHaGroupsRB = Initialize-PVEPOSTClusterHaGroupsRB  -Restricted null `
  -Type null `
  -Group null `
+ -Comment null `
  -Nofailback null `
- -Nodes null `
- -Comment null
+ -Nodes null
 ```
 
 - Convert the resource to JSON

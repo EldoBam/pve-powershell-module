@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Feature** | **String** |  | [optional] 
 **Snapname** | **String** |  | [optional] 
+**Feature** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuFeatureRB = Initialize-PVEGETNodesQemuFeatureRB  -Feature null `
- -Snapname null
+$GETNodesQemuFeatureRB = Initialize-PVEGETNodesQemuFeatureRB  -Snapname null `
+ -Feature null
 ```
 
 - Convert the resource to JSON

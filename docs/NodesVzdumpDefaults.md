@@ -3,79 +3,79 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Lockwait** | **Int32** |  | [optional] 
-**Mode** | **String** |  | [optional] 
-**Quiet** | **Boolean** |  | [optional] 
-**Mailnotification** | **String** |  | [optional] 
-**ExcludePath** | **String[]** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Tmpdir** | **String** |  | [optional] 
-**Stdexcludes** | **Boolean** |  | [optional] 
-**Maxfiles** | **Int32** |  | [optional] 
-**Vmid** | **String** |  | [optional] 
-**NotificationMode** | **String** |  | [optional] 
-**Exclude** | **String** |  | [optional] 
-**Fleecing** | **String** |  | [optional] 
-**Pigz** | **Int32** |  | [optional] 
-**Storage** | **String** |  | [optional] 
-**NotesTemplate** | **String** |  | [optional] 
-**Performance** | **String** |  | [optional] 
-**NotificationTarget** | **String** |  | [optional] 
-**Remove** | **Boolean** |  | [optional] 
-**Bwlimit** | **Int32** |  | [optional] 
-**Compress** | **String** |  | [optional] 
-**Script** | **String** |  | [optional] 
-**Dumpdir** | **String** |  | [optional] 
-**Mailto** | **String** |  | [optional] 
-**Pool** | **String** |  | [optional] 
-**Stopwait** | **Int32** |  | [optional] 
-**PruneBackups** | **String** |  | [optional] 
 **Stop** | **Boolean** |  | [optional] 
-**Protected** | **Boolean** |  | [optional] 
-**Ionice** | **Int32** |  | [optional] 
+**Mailnotification** | **String** |  | [optional] 
 **All** | **Boolean** |  | [optional] 
-**PbsChangeDetectionMode** | **String** |  | [optional] 
-**NotificationPolicy** | **String** |  | [optional] 
+**Protected** | **Boolean** |  | [optional] 
+**PruneBackups** | **String** |  | [optional] 
+**Exclude** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Dumpdir** | **String** |  | [optional] 
 **Zstd** | **Int32** |  | [optional] 
+**NotificationTarget** | **String** |  | [optional] 
+**Quiet** | **Boolean** |  | [optional] 
+**Performance** | **String** |  | [optional] 
+**Maxfiles** | **Int32** |  | [optional] 
+**Mailto** | **String** |  | [optional] 
+**NotesTemplate** | **String** |  | [optional] 
+**Bwlimit** | **Int32** |  | [optional] 
+**Fleecing** | **String** |  | [optional] 
+**ExcludePath** | **String[]** |  | [optional] 
+**NotificationPolicy** | **String** |  | [optional] 
+**Stopwait** | **Int32** |  | [optional] 
+**Compress** | **String** |  | [optional] 
+**Pigz** | **Int32** |  | [optional] 
+**NotificationMode** | **String** |  | [optional] 
+**Mode** | **String** |  | [optional] 
+**Vmid** | **String** |  | [optional] 
+**Remove** | **Boolean** |  | [optional] 
+**Stdexcludes** | **Boolean** |  | [optional] 
+**Ionice** | **Int32** |  | [optional] 
+**Lockwait** | **Int32** |  | [optional] 
+**Tmpdir** | **String** |  | [optional] 
+**Pool** | **String** |  | [optional] 
+**Script** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**PbsChangeDetectionMode** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesVzdumpDefaults = Initialize-PVENodesVzdumpDefaults  -Lockwait null `
- -Mode null `
- -Quiet null `
+$NodesVzdumpDefaults = Initialize-PVENodesVzdumpDefaults  -Stop null `
  -Mailnotification null `
- -ExcludePath null `
- -Node null `
- -Tmpdir null `
- -Stdexcludes null `
- -Maxfiles null `
- -Vmid null `
- -NotificationMode null `
- -Exclude null `
- -Fleecing null `
- -Pigz null `
- -Storage null `
- -NotesTemplate null `
- -Performance null `
- -NotificationTarget null `
- -Remove null `
- -Bwlimit null `
- -Compress null `
- -Script null `
- -Dumpdir null `
- -Mailto null `
- -Pool null `
- -Stopwait null `
- -PruneBackups null `
- -Stop null `
- -Protected null `
- -Ionice null `
  -All null `
- -PbsChangeDetectionMode null `
+ -Protected null `
+ -PruneBackups null `
+ -Exclude null `
+ -Node null `
+ -Dumpdir null `
+ -Zstd null `
+ -NotificationTarget null `
+ -Quiet null `
+ -Performance null `
+ -Maxfiles null `
+ -Mailto null `
+ -NotesTemplate null `
+ -Bwlimit null `
+ -Fleecing null `
+ -ExcludePath null `
  -NotificationPolicy null `
- -Zstd null
+ -Stopwait null `
+ -Compress null `
+ -Pigz null `
+ -NotificationMode null `
+ -Mode null `
+ -Vmid null `
+ -Remove null `
+ -Stdexcludes null `
+ -Ionice null `
+ -Lockwait null `
+ -Tmpdir null `
+ -Pool null `
+ -Script null `
+ -Storage null `
+ -PbsChangeDetectionMode null
 ```
 
 - Convert the resource to JSON

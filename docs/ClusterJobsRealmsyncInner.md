@@ -3,12 +3,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LastRun** | **Int32** |  | [optional] 
-**Enabled** | **Boolean** |  | [optional] 
-**Scope** | **String** |  | [optional] 
 **RemoveVanished** | **String** |  | [optional] 
 **Schedule** | **String** |  | [optional] 
+**Enabled** | **Boolean** |  | [optional] 
+**LastRun** | **Int32** |  | [optional] 
 **Id** | **String** |  | [optional] 
+**Scope** | **String** |  | [optional] 
 **Realm** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **NextRun** | **Int32** |  | [optional] 
@@ -17,12 +17,12 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ClusterJobsRealmsyncInner = Initialize-PVEClusterJobsRealmsyncInner  -LastRun null `
- -Enabled null `
- -Scope null `
- -RemoveVanished null `
+$ClusterJobsRealmsyncInner = Initialize-PVEClusterJobsRealmsyncInner  -RemoveVanished null `
  -Schedule null `
+ -Enabled null `
+ -LastRun null `
  -Id null `
+ -Scope null `
  -Realm null `
  -Comment null `
  -NextRun null

@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cpu** | **Decimal** |  | [optional] 
-**Rootfs** | [**NodesStatusRootfs**](NodesStatusRootfs.md) |  | [optional] 
-**Memory** | [**NodesStatusMemory**](NodesStatusMemory.md) |  | [optional] 
-**CurrentKernel** | [**NodesStatusCurrentKernel**](NodesStatusCurrentKernel.md) |  | [optional] 
-**Loadavg** | **String[]** |  | [optional] 
-**Cpuinfo** | [**NodesStatusCpuinfo**](NodesStatusCpuinfo.md) |  | [optional] 
 **BootInfo** | [**NodesStatusBootInfo**](NodesStatusBootInfo.md) |  | [optional] 
+**CurrentKernel** | [**NodesStatusCurrentKernel**](NodesStatusCurrentKernel.md) |  | [optional] 
+**Rootfs** | [**NodesStatusRootfs**](NodesStatusRootfs.md) |  | [optional] 
+**Cpuinfo** | [**NodesStatusCpuinfo**](NodesStatusCpuinfo.md) |  | [optional] 
+**Loadavg** | **String[]** |  | [optional] 
+**Cpu** | **Decimal** |  | [optional] 
 **Pveversion** | **String** |  | [optional] 
+**Memory** | [**NodesStatusMemory**](NodesStatusMemory.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStatus = Initialize-PVENodesStatus  -Cpu null `
- -Rootfs null `
- -Memory null `
+$NodesStatus = Initialize-PVENodesStatus  -BootInfo null `
  -CurrentKernel null `
- -Loadavg null `
+ -Rootfs null `
  -Cpuinfo null `
- -BootInfo null `
- -Pveversion null
+ -Loadavg null `
+ -Cpu null `
+ -Pveversion null `
+ -Memory null
 ```
 
 - Convert the resource to JSON

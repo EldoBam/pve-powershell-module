@@ -4,18 +4,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Checks** | [**ClusterMappingDirInnerChecksInner[]**](ClusterMappingDirInnerChecksInner.md) |  | [optional] 
-**Map** | **String[]** |  | [optional] 
-**Description** | **String** |  | [optional] 
 **Id** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Map** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $ClusterMappingDirInner = Initialize-PVEClusterMappingDirInner  -Checks null `
- -Map null `
+ -Id null `
  -Description null `
- -Id null
+ -Map null
 ```
 
 - Convert the resource to JSON

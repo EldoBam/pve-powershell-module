@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Restart** | **Boolean** |  | [optional] 
 **Force** | **Boolean** |  | [optional] 
+**Restart** | **Boolean** |  | [optional] 
 **Certificates** | **String** |  | [optional] 
 **Key** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$POSTNodesCertificatesCustomRB = Initialize-PVEPOSTNodesCertificatesCustomRB  -Restart null `
- -Force null `
+$POSTNodesCertificatesCustomRB = Initialize-PVEPOSTNodesCertificatesCustomRB  -Force null `
+ -Restart null `
  -Certificates null `
  -Key null
 ```

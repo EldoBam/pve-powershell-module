@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | **Boolean** |  | [optional] 
-**Scope** | **String** |  | [optional] 
-**RemoveVanished** | **String** |  | [optional] 
-**EnableNew** | **Boolean** |  | [optional] 
-**Realm** | **String** |  | [optional] 
 **Schedule** | **String** |  | [optional] 
+**RemoveVanished** | **String** |  | [optional] 
+**Realm** | **String** |  | [optional] 
+**Scope** | **String** |  | [optional] 
+**Enabled** | **Boolean** |  | [optional] 
+**EnableNew** | **Boolean** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterJobsRealmsyncRB = Initialize-PVEPOSTClusterJobsRealmsyncRB  -Enabled null `
- -Scope null `
+$POSTClusterJobsRealmsyncRB = Initialize-PVEPOSTClusterJobsRealmsyncRB  -Schedule null `
  -RemoveVanished null `
- -EnableNew null `
  -Realm null `
- -Schedule null `
+ -Scope null `
+ -Enabled null `
+ -EnableNew null `
  -Comment null
 ```
 

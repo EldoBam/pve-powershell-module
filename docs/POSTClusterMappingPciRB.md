@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LiveMigrationCapable** | **Boolean** |  | [optional] 
 **Map** | **String[]** |  | [optional] 
-**Mdev** | **Boolean** |  | [optional] 
-**Description** | **String** |  | [optional] 
+**LiveMigrationCapable** | **Boolean** |  | [optional] 
 **Id** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Mdev** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterMappingPciRB = Initialize-PVEPOSTClusterMappingPciRB  -LiveMigrationCapable null `
- -Map null `
- -Mdev null `
+$POSTClusterMappingPciRB = Initialize-PVEPOSTClusterMappingPciRB  -Map null `
+ -LiveMigrationCapable null `
+ -Id null `
  -Description null `
- -Id null
+ -Mdev null
 ```
 
 - Convert the resource to JSON

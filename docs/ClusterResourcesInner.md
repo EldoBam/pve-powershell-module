@@ -3,65 +3,65 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Disk** | **Int32** |  | [optional] 
-**Maxcpu** | **Decimal** |  | [optional] 
-**Maxdisk** | **Int32** |  | [optional] 
-**Hastate** | **String** |  | [optional] 
-**Status** | **String** |  | [optional] 
 **Cpu** | **Decimal** |  | [optional] 
+**Pool** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Lock** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Content** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
 **Mem** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
+**Maxmem** | **Int32** |  | [optional] 
 **Tags** | **String** |  | [optional] 
+**Uptime** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
+**Maxdisk** | **Int32** |  | [optional] 
+**Disk** | **Int32** |  | [optional] 
+**Maxcpu** | **Decimal** |  | [optional] 
+**Diskread** | **Int32** |  | [optional] 
+**Hastate** | **String** |  | [optional] 
+**Level** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Netout** | **Int32** |  | [optional] 
+**Template** | **Boolean** |  | [optional] 
+**Netin** | **Int32** |  | [optional] 
 **Diskwrite** | **Int32** |  | [optional] 
 **CgroupMode** | **Int32** |  | [optional] 
-**Lock** | **String** |  | [optional] 
 **Storage** | **String** |  | [optional] 
-**Diskread** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Uptime** | **Int32** |  | [optional] 
-**Maxmem** | **Int32** |  | [optional] 
-**Netout** | **Int32** |  | [optional] 
-**Pool** | **String** |  | [optional] 
 **Plugintype** | **String** |  | [optional] 
-**Content** | **String** |  | [optional] 
-**Level** | **String** |  | [optional] 
-**Netin** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Template** | **Boolean** |  | [optional] 
-**Id** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterResourcesInner = Initialize-PVEClusterResourcesInner  -Disk null `
- -Maxcpu null `
- -Maxdisk null `
- -Hastate null `
- -Status null `
- -Cpu null `
+$ClusterResourcesInner = Initialize-PVEClusterResourcesInner  -Cpu null `
+ -Pool null `
+ -Id null `
+ -Lock null `
+ -Type null `
+ -Content null `
  -Node null `
  -Mem null `
- -Vmid null `
+ -Maxmem null `
  -Tags null `
+ -Uptime null `
+ -Status null `
+ -Maxdisk null `
+ -Disk null `
+ -Maxcpu null `
+ -Diskread null `
+ -Hastate null `
+ -Level null `
+ -Name null `
+ -Vmid null `
+ -Netout null `
+ -Template null `
+ -Netin null `
  -Diskwrite null `
  -CgroupMode null `
- -Lock null `
  -Storage null `
- -Diskread null `
- -Type null `
- -Uptime null `
- -Maxmem null `
- -Netout null `
- -Pool null `
- -Plugintype null `
- -Content null `
- -Level null `
- -Netin null `
- -Name null `
- -Template null `
- -Id null
+ -Plugintype null
 ```
 
 - Convert the resource to JSON

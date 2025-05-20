@@ -4,20 +4,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Comment** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Origin** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $ClusterNotificationsTargetsInner = Initialize-PVEClusterNotificationsTargetsInner  -Comment null `
- -Disable null `
- -Name null `
+ -Origin null `
  -Type null `
- -Origin null
+ -Name null `
+ -Disable null
 ```
 
 - Convert the resource to JSON

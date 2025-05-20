@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Skiplock** | **Boolean** |  | [optional] 
-**Size** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Size** | **String** |  | [optional] 
 **Disk** | **String** |  | [optional] 
 
 ## Examples
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $PUTNodesQemuResizeRB = Initialize-PVEPUTNodesQemuResizeRB  -Skiplock null `
- -Size null `
  -Digest null `
+ -Size null `
  -Disk null
 ```
 

@@ -1,4 +1,4 @@
-# NodesLxcFirewallAliasesInner
+# NodesQemuFirewallAliasesInner
 ## Properties
 
 Name | Type | Description | Notes
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$NodesLxcFirewallAliasesInner = Initialize-PVENodesLxcFirewallAliasesInner  -Comment null `
+$NodesQemuFirewallAliasesInner = Initialize-PVENodesQemuFirewallAliasesInner  -Comment null `
  -Digest null `
  -Name null `
  -Cidr null
@@ -20,7 +20,7 @@ $NodesLxcFirewallAliasesInner = Initialize-PVENodesLxcFirewallAliasesInner  -Com
 
 - Convert the resource to JSON
 ```powershell
-$NodesLxcFirewallAliasesInner | ConvertTo-JSON
+$NodesQemuFirewallAliasesInner | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

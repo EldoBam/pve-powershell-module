@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Filename** | **String** |  | [optional] 
-**ChecksumAlgorithm** | **String** |  | [optional] 
 **Compression** | **String** |  | [optional] 
+**Filename** | **String** |  | [optional] 
 **Checksum** | **String** |  | [optional] 
-**VerifyCertificates** | **Boolean** |  | [optional] 
 **Content** | **String** |  | [optional] 
+**ChecksumAlgorithm** | **String** |  | [optional] 
+**VerifyCertificates** | **Boolean** |  | [optional] 
 **Url** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesStorageDownloadurlRB = Initialize-PVEPOSTNodesStorageDownloadurlRB  -Filename null `
- -ChecksumAlgorithm null `
- -Compression null `
+$POSTNodesStorageDownloadurlRB = Initialize-PVEPOSTNodesStorageDownloadurlRB  -Compression null `
+ -Filename null `
  -Checksum null `
- -VerifyCertificates null `
  -Content null `
+ -ChecksumAlgorithm null `
+ -VerifyCertificates null `
  -Url null
 ```
 

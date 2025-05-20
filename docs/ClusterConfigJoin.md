@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Nodelist** | [**ClusterConfigJoinNodelistInner[]**](ClusterConfigJoinNodelistInner.md) |  | [optional] 
 **PreferredNode** | **String** |  | [optional] 
-**Totem** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 **ConfigDigest** | **String** |  | [optional] 
+**Totem** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $ClusterConfigJoin = Initialize-PVEClusterConfigJoin  -Nodelist null `
  -PreferredNode null `
- -Totem null `
- -ConfigDigest null
+ -ConfigDigest null `
+ -Totem null
 ```
 
 - Convert the resource to JSON

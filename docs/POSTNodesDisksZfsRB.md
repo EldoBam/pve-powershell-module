@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
+**Raidlevel** | **String** |  | [optional] 
+**Devices** | **String** |  | [optional] 
 **AddStorage** | **Boolean** |  | [optional] 
 **Compression** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **DraidConfig** | **String** |  | [optional] 
-**Devices** | **String** |  | [optional] 
-**Raidlevel** | **String** |  | [optional] 
 **Ashift** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesDisksZfsRB = Initialize-PVEPOSTNodesDisksZfsRB  -Name null `
+$POSTNodesDisksZfsRB = Initialize-PVEPOSTNodesDisksZfsRB  -Raidlevel null `
+ -Devices null `
  -AddStorage null `
  -Compression null `
+ -Name null `
  -DraidConfig null `
- -Devices null `
- -Raidlevel null `
  -Ashift null
 ```
 

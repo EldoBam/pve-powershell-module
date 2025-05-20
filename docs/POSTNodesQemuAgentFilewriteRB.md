@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Encode** | **Boolean** |  | [optional] 
 **File** | **String** |  | [optional] 
 **Content** | **String** |  | [optional] 
+**Encode** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuAgentFilewriteRB = Initialize-PVEPOSTNodesQemuAgentFilewriteRB  -Encode null `
- -File null `
- -Content null
+$POSTNodesQemuAgentFilewriteRB = Initialize-PVEPOSTNodesQemuAgentFilewriteRB  -File null `
+ -Content null `
+ -Encode null
 ```
 
 - Convert the resource to JSON

@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ref** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Scope** | **String** |  | [optional] 
+**Ref** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterFirewallRefsInner = Initialize-PVEClusterFirewallRefsInner  -Ref null `
- -Comment null `
- -Name null `
+$ClusterFirewallRefsInner = Initialize-PVEClusterFirewallRefsInner  -Comment null `
+ -Scope null `
+ -Ref null `
  -Type null `
- -Scope null
+ -Name null
 ```
 
 - Convert the resource to JSON

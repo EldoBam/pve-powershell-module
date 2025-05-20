@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Comment** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Cidr** | **String** |  | [optional] 
 **Nomatch** | **Boolean** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $ClusterFirewallIpsetGETInner = Initialize-PVEClusterFirewallIpsetGETInner  -Comment null `
  -Digest null `
- -Cidr null `
- -Nomatch null
+ -Nomatch null `
+ -Cidr null
 ```
 
 - Convert the resource to JSON

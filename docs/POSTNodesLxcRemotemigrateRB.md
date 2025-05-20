@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timeout** | **Int32** |  | [optional] 
-**Delete** | **Boolean** |  | [optional] 
-**TargetStorage** | **String** |  | [optional] 
-**TargetEndpoint** | **String** |  | [optional] 
-**Bwlimit** | **Decimal** |  | [optional] 
-**Online** | **Boolean** |  | [optional] 
-**Restart** | **Boolean** |  | [optional] 
 **TargetBridge** | **String** |  | [optional] 
+**Online** | **Boolean** |  | [optional] 
+**TargetStorage** | **String** |  | [optional] 
+**Delete** | **Boolean** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
+**Restart** | **Boolean** |  | [optional] 
 **TargetVmid** | **Int32** |  | [optional] 
+**Bwlimit** | **Decimal** |  | [optional] 
+**TargetEndpoint** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcRemotemigrateRB = Initialize-PVEPOSTNodesLxcRemotemigrateRB  -Timeout null `
- -Delete null `
- -TargetStorage null `
- -TargetEndpoint null `
- -Bwlimit null `
+$POSTNodesLxcRemotemigrateRB = Initialize-PVEPOSTNodesLxcRemotemigrateRB  -TargetBridge null `
  -Online null `
+ -TargetStorage null `
+ -Delete null `
+ -Timeout null `
  -Restart null `
- -TargetBridge null `
- -TargetVmid null
+ -TargetVmid null `
+ -Bwlimit null `
+ -TargetEndpoint null
 ```
 
 - Convert the resource to JSON

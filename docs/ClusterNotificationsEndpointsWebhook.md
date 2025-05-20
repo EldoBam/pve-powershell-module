@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Header** | **String[]** |  | [optional] 
-**Method** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Secret** | **String[]** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Url** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Method** | **String** |  | [optional] 
+**Url** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Header** | **String[]** |  | [optional] 
+**Secret** | **String[]** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Body** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterNotificationsEndpointsWebhook = Initialize-PVEClusterNotificationsEndpointsWebhook  -Header null `
+$ClusterNotificationsEndpointsWebhook = Initialize-PVEClusterNotificationsEndpointsWebhook  -Digest null `
  -Method null `
- -Comment null `
- -Secret null `
- -Disable null `
- -Name null `
  -Url null `
- -Digest null `
- -Body null
+ -Disable null `
+ -Header null `
+ -Secret null `
+ -Comment null `
+ -Body null `
+ -Name null
 ```
 
 - Convert the resource to JSON

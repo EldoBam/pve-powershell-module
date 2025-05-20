@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Poolid** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Poolid** | **String** |  | [optional] 
 **Members** | [**PoolsGETInnerMembersInner[]**](PoolsGETInnerMembersInner.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PoolsGETInner = Initialize-PVEPoolsGETInner  -Poolid null `
- -Comment null `
+$PoolsGETInner = Initialize-PVEPoolsGETInner  -Comment null `
+ -Poolid null `
  -Members null
 ```
 

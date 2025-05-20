@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
 **Value** | **Boolean** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterCephFlagsInner = Initialize-PVEClusterCephFlagsInner  -Name null `
- -Description null `
- -Value null
+$ClusterCephFlagsInner = Initialize-PVEClusterCephFlagsInner  -Description null `
+ -Value null `
+ -Name null
 ```
 
 - Convert the resource to JSON

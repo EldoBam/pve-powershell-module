@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tokenid** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Expire** | **Int32** |  | [optional] 
 **Privsep** | **Boolean** |  | [optional] 
+**Expire** | **Int32** |  | [optional] 
+**Tokenid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessUsersTokenGETInner = Initialize-PVEAccessUsersTokenGETInner  -Tokenid null `
- -Comment null `
+$AccessUsersTokenGETInner = Initialize-PVEAccessUsersTokenGETInner  -Comment null `
+ -Privsep null `
  -Expire null `
- -Privsep null
+ -Tokenid null
 ```
 
 - Convert the resource to JSON
