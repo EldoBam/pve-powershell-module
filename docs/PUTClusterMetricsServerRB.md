@@ -3,43 +3,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Delete** | **String** |  | [optional] 
+**VerifyCertificate** | **Boolean** |  | [optional] 
+**Bucket** | **String** |  | [optional] 
+**Organization** | **String** |  | [optional] 
 **ApiPathPrefix** | **String** |  | [optional] 
 **Timeout** | **Int32** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Organization** | **String** |  | [optional] 
-**VerifyCertificate** | **Boolean** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**MaxBodySize** | **Int32** |  | [optional] 
-**Bucket** | **String** |  | [optional] 
-**Influxdbproto** | **String** |  | [optional] 
-**Path** | **String** |  | [optional] 
-**Server** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**Mtu** | **Int32** |  | [optional] 
 **Token** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**Mtu** | **Int32** |  | [optional] 
+**Influxdbproto** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**MaxBodySize** | **Int32** |  | [optional] 
+**Path** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterMetricsServerRB = Initialize-PVEPUTClusterMetricsServerRB  -ApiPathPrefix null `
- -Timeout null `
- -Port null `
- -Proto null `
- -Organization null `
+$PUTClusterMetricsServerRB = Initialize-PVEPUTClusterMetricsServerRB  -Delete null `
  -VerifyCertificate null `
- -Digest null `
- -MaxBodySize null `
  -Bucket null `
- -Influxdbproto null `
- -Path null `
- -Server null `
- -Delete null `
- -Disable null `
+ -Organization null `
+ -ApiPathPrefix null `
+ -Timeout null `
+ -Digest null `
+ -Token null `
+ -Port null `
  -Mtu null `
- -Token null
+ -Influxdbproto null `
+ -Disable null `
+ -Server null `
+ -Proto null `
+ -MaxBodySize null `
+ -Path null
 ```
 
 - Convert the resource to JSON

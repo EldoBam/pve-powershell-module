@@ -3,26 +3,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LogRatelimit** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **PolicyOut** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
 **Enable** | **Int32** |  | [optional] 
 **Ebtables** | **Boolean** |  | [optional] 
 **PolicyIn** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**LogRatelimit** | **String** |  | [optional] 
 **PolicyForward** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterFirewallOptionsRB = Initialize-PVEPUTClusterFirewallOptionsRB  -LogRatelimit null `
- -Digest null `
- -PolicyOut null `
+$PUTClusterFirewallOptionsRB = Initialize-PVEPUTClusterFirewallOptionsRB  -PolicyOut null `
  -Delete null `
  -Enable null `
  -Ebtables null `
  -PolicyIn null `
+ -Digest null `
+ -LogRatelimit null `
  -PolicyForward null
 ```
 

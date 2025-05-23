@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
 **StartallOnbootDelay** | **Int32** |  | [optional] 
-**Wakeonlan** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
-**BallooningTarget** | **Int32** |  | [optional] 
+**Wakeonlan** | **String** |  | [optional] 
 **AcmedomainN** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**BallooningTarget** | **Int32** |  | [optional] 
 **Acme** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesConfig = Initialize-PVENodesConfig  -Digest null `
- -StartallOnbootDelay null `
- -Wakeonlan null `
+$NodesConfig = Initialize-PVENodesConfig  -StartallOnbootDelay null `
  -Description null `
- -BallooningTarget null `
+ -Wakeonlan null `
  -AcmedomainN null `
+ -Digest null `
+ -BallooningTarget null `
  -Acme null
 ```
 

@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Zone** | **String** |  | [optional] 
-**Ip** | **String** |  | [optional] 
 **Mac** | **String** |  | [optional] 
+**Ip** | **String** |  | [optional] 
+**Zone** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnVnetsIpsRB = Initialize-PVEPOSTClusterSdnVnetsIpsRB  -Zone null `
+$POSTClusterSdnVnetsIpsRB = Initialize-PVEPOSTClusterSdnVnetsIpsRB  -Mac null `
  -Ip null `
- -Mac null
+ -Zone null
 ```
 
 - Convert the resource to JSON

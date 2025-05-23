@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AllowedNodes** | **String[]** |  | [optional] 
 **Running** | **Boolean** |  | [optional] 
-**NotAllowedNodes** | [**NodesQemuMigrateNotAllowedNodes**](NodesQemuMigrateNotAllowedNodes.md) |  | [optional] 
 **MappedResourceInfo** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**LocalResources** | **String[]** |  | [optional] 
+**AllowedNodes** | **String[]** |  | [optional] 
+**NotAllowedNodes** | [**NodesQemuMigrateNotAllowedNodes**](NodesQemuMigrateNotAllowedNodes.md) |  | [optional] 
 **MappedResources** | **String[]** |  | [optional] 
 **LocalDisks** | [**NodesQemuMigrateLocalDisksInner[]**](NodesQemuMigrateLocalDisksInner.md) |  | [optional] 
+**LocalResources** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuMigrate = Initialize-PVENodesQemuMigrate  -AllowedNodes null `
- -Running null `
- -NotAllowedNodes null `
+$NodesQemuMigrate = Initialize-PVENodesQemuMigrate  -Running null `
  -MappedResourceInfo null `
- -LocalResources null `
+ -AllowedNodes null `
+ -NotAllowedNodes null `
  -MappedResources null `
- -LocalDisks null
+ -LocalDisks null `
+ -LocalResources null
 ```
 
 - Convert the resource to JSON

@@ -3,26 +3,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BootInfo** | [**NodesStatusBootInfo**](NodesStatusBootInfo.md) |  | [optional] 
-**CurrentKernel** | [**NodesStatusCurrentKernel**](NodesStatusCurrentKernel.md) |  | [optional] 
 **Rootfs** | [**NodesStatusRootfs**](NodesStatusRootfs.md) |  | [optional] 
-**Cpuinfo** | [**NodesStatusCpuinfo**](NodesStatusCpuinfo.md) |  | [optional] 
-**Loadavg** | **String[]** |  | [optional] 
-**Cpu** | **Decimal** |  | [optional] 
+**CurrentKernel** | [**NodesStatusCurrentKernel**](NodesStatusCurrentKernel.md) |  | [optional] 
 **Pveversion** | **String** |  | [optional] 
+**Cpuinfo** | [**NodesStatusCpuinfo**](NodesStatusCpuinfo.md) |  | [optional] 
+**BootInfo** | [**NodesStatusBootInfo**](NodesStatusBootInfo.md) |  | [optional] 
+**Cpu** | **Decimal** |  | [optional] 
+**Loadavg** | **String[]** |  | [optional] 
 **Memory** | [**NodesStatusMemory**](NodesStatusMemory.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStatus = Initialize-PVENodesStatus  -BootInfo null `
+$NodesStatus = Initialize-PVENodesStatus  -Rootfs null `
  -CurrentKernel null `
- -Rootfs null `
- -Cpuinfo null `
- -Loadavg null `
- -Cpu null `
  -Pveversion null `
+ -Cpuinfo null `
+ -BootInfo null `
+ -Cpu null `
+ -Loadavg null `
  -Memory null
 ```
 

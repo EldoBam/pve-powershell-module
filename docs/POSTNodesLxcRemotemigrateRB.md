@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TargetBridge** | **String** |  | [optional] 
-**Online** | **Boolean** |  | [optional] 
-**TargetStorage** | **String** |  | [optional] 
-**Delete** | **Boolean** |  | [optional] 
-**Timeout** | **Int32** |  | [optional] 
 **Restart** | **Boolean** |  | [optional] 
+**Delete** | **Boolean** |  | [optional] 
 **TargetVmid** | **Int32** |  | [optional] 
-**Bwlimit** | **Decimal** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
+**TargetBridge** | **String** |  | [optional] 
 **TargetEndpoint** | **String** |  | [optional] 
+**Bwlimit** | **Decimal** |  | [optional] 
+**TargetStorage** | **String** |  | [optional] 
+**Online** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcRemotemigrateRB = Initialize-PVEPOSTNodesLxcRemotemigrateRB  -TargetBridge null `
- -Online null `
- -TargetStorage null `
+$POSTNodesLxcRemotemigrateRB = Initialize-PVEPOSTNodesLxcRemotemigrateRB  -Restart null `
  -Delete null `
- -Timeout null `
- -Restart null `
  -TargetVmid null `
+ -Timeout null `
+ -TargetBridge null `
+ -TargetEndpoint null `
  -Bwlimit null `
- -TargetEndpoint null
+ -TargetStorage null `
+ -Online null
 ```
 
 - Convert the resource to JSON

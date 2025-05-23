@@ -3,43 +3,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IcmpType** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Dport** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**Log** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**Moveto** | **Int32** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Sport** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
 **Macro** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Moveto** | **Int32** |  | [optional] 
+**Sport** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
+**IcmpType** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesLxcFirewallRulesRB = Initialize-PVEPUTNodesLxcFirewallRulesRB  -IcmpType null `
- -Action null `
- -Type null `
- -Dest null `
- -Source null `
- -Digest null `
- -Dport null `
+$PUTNodesLxcFirewallRulesRB = Initialize-PVEPUTNodesLxcFirewallRulesRB  -Delete null `
  -Enable null `
- -Log null `
- -Iface null `
- -Delete null `
- -Moveto null `
+ -Macro null `
  -Comment null `
- -Proto null `
+ -Moveto null `
  -Sport null `
- -Macro null
+ -Digest null `
+ -Dest null `
+ -Log null `
+ -IcmpType null `
+ -Source null `
+ -Action null `
+ -Proto null `
+ -Iface null `
+ -Dport null `
+ -Type null
 ```
 
 - Convert the resource to JSON

@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**RemoveStorages** | **Boolean** |  | [optional] 
 **Force** | **Boolean** |  | [optional] 
 **RemoveEcprofile** | **Boolean** |  | [optional] 
-**RemoveStorages** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesCephPoolRB = Initialize-PVEDELETENodesCephPoolRB  -Force null `
- -RemoveEcprofile null `
- -RemoveStorages null
+$DELETENodesCephPoolRB = Initialize-PVEDELETENodesCephPoolRB  -RemoveStorages null `
+ -Force null `
+ -RemoveEcprofile null
 ```
 
 - Convert the resource to JSON

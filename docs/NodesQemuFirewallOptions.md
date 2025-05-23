@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PolicyIn** | **String** |  | [optional] 
 **PolicyOut** | **String** |  | [optional] 
-**Dhcp** | **Boolean** |  | [optional] 
-**Ipfilter** | **Boolean** |  | [optional] 
-**LogLevelOut** | **String** |  | [optional] 
-**Enable** | **Boolean** |  | [optional] 
-**Macfilter** | **Boolean** |  | [optional] 
-**Ndp** | **Boolean** |  | [optional] 
 **LogLevelIn** | **String** |  | [optional] 
+**PolicyIn** | **String** |  | [optional] 
+**Enable** | **Boolean** |  | [optional] 
 **Radv** | **Boolean** |  | [optional] 
+**Ndp** | **Boolean** |  | [optional] 
+**Ipfilter** | **Boolean** |  | [optional] 
+**Dhcp** | **Boolean** |  | [optional] 
+**Macfilter** | **Boolean** |  | [optional] 
+**LogLevelOut** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuFirewallOptions = Initialize-PVENodesQemuFirewallOptions  -PolicyIn null `
- -PolicyOut null `
- -Dhcp null `
- -Ipfilter null `
- -LogLevelOut null `
- -Enable null `
- -Macfilter null `
- -Ndp null `
+$NodesQemuFirewallOptions = Initialize-PVENodesQemuFirewallOptions  -PolicyOut null `
  -LogLevelIn null `
- -Radv null
+ -PolicyIn null `
+ -Enable null `
+ -Radv null `
+ -Ndp null `
+ -Ipfilter null `
+ -Dhcp null `
+ -Macfilter null `
+ -LogLevelOut null
 ```
 
 - Convert the resource to JSON

@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TfaChallenge** | **String** |  | [optional] 
-**Password** | **String** |  | [optional] 
-**Path** | **String** |  | [optional] 
 **Otp** | **String** |  | [optional] 
-**NewFormat** | **Boolean** |  | [optional] 
-**Realm** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
 **Username** | **String** |  | [optional] 
 **Privs** | **String** |  | [optional] 
+**TfaChallenge** | **String** |  | [optional] 
+**Realm** | **String** |  | [optional] 
+**NewFormat** | **Boolean** |  | [optional] 
+**Path** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTAccessTicketRB = Initialize-PVEPOSTAccessTicketRB  -TfaChallenge null `
+$POSTAccessTicketRB = Initialize-PVEPOSTAccessTicketRB  -Otp null `
  -Password null `
- -Path null `
- -Otp null `
- -NewFormat null `
- -Realm null `
  -Username null `
- -Privs null
+ -Privs null `
+ -TfaChallenge null `
+ -Realm null `
+ -NewFormat null `
+ -Path null
 ```
 
 - Convert the resource to JSON

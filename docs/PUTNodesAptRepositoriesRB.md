@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
 **Handle** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesAptRepositoriesRB = Initialize-PVEPUTNodesAptRepositoriesRB  -Digest null `
- -Handle null
+$PUTNodesAptRepositoriesRB = Initialize-PVEPUTNodesAptRepositoriesRB  -Handle null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

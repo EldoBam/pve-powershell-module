@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
-**Value** | **String** |  | [optional] 
 **Field** | **String** |  | [optional] 
+**Value** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterNotificationsMatcherfieldvaluesInner = Initialize-PVEClusterNotificationsMatcherfieldvaluesInner  -Comment null `
+$ClusterNotificationsMatcherfieldvaluesInner = Initialize-PVEClusterNotificationsMatcherfieldvaluesInner  -Field null `
  -Value null `
- -Field null
+ -Comment null
 ```
 
 - Convert the resource to JSON

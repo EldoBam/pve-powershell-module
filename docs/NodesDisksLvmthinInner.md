@@ -4,22 +4,22 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MetadataSize** | **Int32** |  | [optional] 
+**LvSize** | **Int32** |  | [optional] 
 **Lv** | **String** |  | [optional] 
 **MetadataUsed** | **Int32** |  | [optional] 
-**LvSize** | **Int32** |  | [optional] 
-**Used** | **Int32** |  | [optional] 
 **Vg** | **String** |  | [optional] 
+**Used** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $NodesDisksLvmthinInner = Initialize-PVENodesDisksLvmthinInner  -MetadataSize null `
+ -LvSize null `
  -Lv null `
  -MetadataUsed null `
- -LvSize null `
- -Used null `
- -Vg null
+ -Vg null `
+ -Used null
 ```
 
 - Convert the resource to JSON

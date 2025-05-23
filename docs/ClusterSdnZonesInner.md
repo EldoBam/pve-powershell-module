@@ -3,32 +3,32 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mtu** | **Int32** |  | [optional] 
-**Dnszone** | **String** |  | [optional] 
-**Ipam** | **String** |  | [optional] 
-**Dhcp** | **String** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
-**Reversedns** | **String** |  | [optional] 
 **State** | **String** |  | [optional] 
 **Zone** | **String** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Ipam** | **String** |  | [optional] 
+**Reversedns** | **String** |  | [optional] 
 **Pending** | **Boolean** |  | [optional] 
+**Dhcp** | **String** |  | [optional] 
+**Mtu** | **Int32** |  | [optional] 
+**Dnszone** | **String** |  | [optional] 
 **Dns** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnZonesInner = Initialize-PVEClusterSdnZonesInner  -Mtu null `
- -Dnszone null `
- -Ipam null `
- -Dhcp null `
- -Nodes null `
- -Reversedns null `
- -State null `
+$ClusterSdnZonesInner = Initialize-PVEClusterSdnZonesInner  -State null `
  -Zone null `
+ -Nodes null `
  -Type null `
+ -Ipam null `
+ -Reversedns null `
  -Pending null `
+ -Dhcp null `
+ -Mtu null `
+ -Dnszone null `
  -Dns null
 ```
 

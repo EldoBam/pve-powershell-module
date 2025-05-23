@@ -5,11 +5,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Exitcode** | **Int32** |  | [optional] 
 **Signal** | **Int32** |  | [optional] 
+**Exited** | **Boolean** |  | [optional] 
+**ErrData** | **String** |  | [optional] 
+**ErrTruncated** | **Boolean** |  | [optional] 
 **OutData** | **String** |  | [optional] 
 **OutTruncated** | **Boolean** |  | [optional] 
-**ErrTruncated** | **Boolean** |  | [optional] 
-**ErrData** | **String** |  | [optional] 
-**Exited** | **Boolean** |  | [optional] 
 
 ## Examples
 
@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 ```powershell
 $NodesQemuAgentExecstatus = Initialize-PVENodesQemuAgentExecstatus  -Exitcode null `
  -Signal null `
- -OutData null `
- -OutTruncated null `
- -ErrTruncated null `
+ -Exited null `
  -ErrData null `
- -Exited null
+ -ErrTruncated null `
+ -OutData null `
+ -OutTruncated null
 ```
 
 - Convert the resource to JSON

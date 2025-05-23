@@ -1,28 +1,26 @@
-# ClusterFirewallRefsInner
+# NodesLxcFirewallIpsetGETInner
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Cidr** | **String** |  | [optional] 
+**Nomatch** | **Boolean** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Scope** | **String** |  | [optional] 
-**Ref** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterFirewallRefsInner = Initialize-PVEClusterFirewallRefsInner  -Comment null `
- -Scope null `
- -Ref null `
- -Type null `
- -Name null
+$NodesLxcFirewallIpsetGETInner = Initialize-PVENodesLxcFirewallIpsetGETInner  -Cidr null `
+ -Nomatch null `
+ -Comment null `
+ -Digest null
 ```
 
 - Convert the resource to JSON
 ```powershell
-$ClusterFirewallRefsInner | ConvertTo-JSON
+$NodesLxcFirewallIpsetGETInner | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

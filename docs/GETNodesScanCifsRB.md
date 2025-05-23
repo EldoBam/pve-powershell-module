@@ -4,18 +4,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Username** | **String** |  | [optional] 
-**Server** | **String** |  | [optional] 
-**Domain** | **String** |  | [optional] 
 **Password** | **String** |  | [optional] 
+**Domain** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesScanCifsRB = Initialize-PVEGETNodesScanCifsRB  -Username null `
- -Server null `
+ -Password null `
  -Domain null `
- -Password null
+ -Server null
 ```
 
 - Convert the resource to JSON

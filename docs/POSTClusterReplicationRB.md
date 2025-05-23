@@ -3,28 +3,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
-**RemoveJob** | **String** |  | [optional] 
 **Schedule** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**Id** | **String** |  | [optional] 
 **Target** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
+**RemoveJob** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Rate** | **Decimal** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterReplicationRB = Initialize-PVEPOSTClusterReplicationRB  -Type null `
- -RemoveJob null `
- -Schedule null `
- -Disable null `
- -Id null `
+$POSTClusterReplicationRB = Initialize-PVEPOSTClusterReplicationRB  -Schedule null `
  -Target null `
- -Source null `
+ -RemoveJob null `
+ -Disable null `
+ -Type null `
  -Rate null `
+ -Id null `
+ -Source null `
  -Comment null
 ```
 

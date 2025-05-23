@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CaaIdentities** | **String[]** |  | [optional] 
-**TermsOfService** | **String** |  | [optional] 
-**Website** | **String** |  | [optional] 
 **ExternalAccountRequired** | **Boolean** |  | [optional] 
+**Website** | **String** |  | [optional] 
+**TermsOfService** | **String** |  | [optional] 
+**CaaIdentities** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterAcmeMeta = Initialize-PVEClusterAcmeMeta  -CaaIdentities null `
- -TermsOfService null `
+$ClusterAcmeMeta = Initialize-PVEClusterAcmeMeta  -ExternalAccountRequired null `
  -Website null `
- -ExternalAccountRequired null
+ -TermsOfService null `
+ -CaaIdentities null
 ```
 
 - Convert the resource to JSON

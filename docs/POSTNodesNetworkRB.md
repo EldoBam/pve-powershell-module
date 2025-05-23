@@ -3,67 +3,67 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address6** | **String** |  | [optional] 
-**BondPrimary** | **String** |  | [optional] 
-**Netmask** | **String** |  | [optional] 
-**Gateway** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**OvsTag** | **Int32** |  | [optional] 
-**Mtu** | **Int32** |  | [optional] 
-**OvsOptions** | **String** |  | [optional] 
-**Cidr6** | **String** |  | [optional] 
 **BridgePorts** | **String** |  | [optional] 
-**OvsBonds** | **String** |  | [optional] 
-**Gateway6** | **String** |  | [optional] 
-**Comments** | **String** |  | [optional] 
-**Autostart** | **Boolean** |  | [optional] 
+**Gateway** | **String** |  | [optional] 
+**Cidr6** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Address** | **String** |  | [optional] 
 **OvsPorts** | **String** |  | [optional] 
+**Autostart** | **Boolean** |  | [optional] 
+**VlanId** | **Int32** |  | [optional] 
 **BondXmitHashPolicy** | **String** |  | [optional] 
+**BondPrimary** | **String** |  | [optional] 
+**Comments** | **String** |  | [optional] 
+**Address6** | **String** |  | [optional] 
+**Comments6** | **String** |  | [optional] 
+**Netmask6** | **Int32** |  | [optional] 
+**Gateway6** | **String** |  | [optional] 
+**BondMode** | **String** |  | [optional] 
+**VlanRawDevice** | **String** |  | [optional] 
+**Netmask** | **String** |  | [optional] 
+**BridgeVids** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
 **OvsBridge** | **String** |  | [optional] 
 **BridgeVlanAware** | **Boolean** |  | [optional] 
-**Comments6** | **String** |  | [optional] 
-**VlanRawDevice** | **String** |  | [optional] 
-**VlanId** | **Int32** |  | [optional] 
-**Netmask6** | **Int32** |  | [optional] 
 **Cidr** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
+**OvsBonds** | **String** |  | [optional] 
+**OvsOptions** | **String** |  | [optional] 
 **Slaves** | **String** |  | [optional] 
-**BridgeVids** | **String** |  | [optional] 
-**Address** | **String** |  | [optional] 
-**BondMode** | **String** |  | [optional] 
+**OvsTag** | **Int32** |  | [optional] 
+**Mtu** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesNetworkRB = Initialize-PVEPOSTNodesNetworkRB  -Address6 null `
- -BondPrimary null `
- -Netmask null `
+$POSTNodesNetworkRB = Initialize-PVEPOSTNodesNetworkRB  -BridgePorts null `
  -Gateway null `
- -Type null `
- -OvsTag null `
- -Mtu null `
- -OvsOptions null `
  -Cidr6 null `
- -BridgePorts null `
- -OvsBonds null `
- -Gateway6 null `
- -Comments null `
- -Autostart null `
+ -Type null `
+ -Address null `
  -OvsPorts null `
+ -Autostart null `
+ -VlanId null `
  -BondXmitHashPolicy null `
+ -BondPrimary null `
+ -Comments null `
+ -Address6 null `
+ -Comments6 null `
+ -Netmask6 null `
+ -Gateway6 null `
+ -BondMode null `
+ -VlanRawDevice null `
+ -Netmask null `
+ -BridgeVids null `
+ -Iface null `
  -OvsBridge null `
  -BridgeVlanAware null `
- -Comments6 null `
- -VlanRawDevice null `
- -VlanId null `
- -Netmask6 null `
  -Cidr null `
- -Iface null `
+ -OvsBonds null `
+ -OvsOptions null `
  -Slaves null `
- -BridgeVids null `
- -Address null `
- -BondMode null
+ -OvsTag null `
+ -Mtu null
 ```
 
 - Convert the resource to JSON

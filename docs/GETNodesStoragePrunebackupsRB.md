@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PruneBackups** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETNodesStoragePrunebackupsRB = Initialize-PVEGETNodesStoragePrunebackupsRB  -PruneBackups null `
- -Vmid null `
- -Type null
+ -Type null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **String** |  | [optional] 
-**Config** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 **Storage** | **String** |  | [optional] 
+**Config** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $StoragePUT = Initialize-PVEStoragePUT  -Type null `
- -Config null `
- -Storage null
+ -Storage null `
+ -Config null
 ```
 
 - Convert the resource to JSON

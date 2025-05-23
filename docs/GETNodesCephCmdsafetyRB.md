@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Service** | **String** |  | [optional] 
 **Id** | **String** |  | [optional] 
+**Service** | **String** |  | [optional] 
 **Action** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesCephCmdsafetyRB = Initialize-PVEGETNodesCephCmdsafetyRB  -Service null `
- -Id null `
+$GETNodesCephCmdsafetyRB = Initialize-PVEGETNodesCephCmdsafetyRB  -Id null `
+ -Service null `
  -Action null
 ```
 

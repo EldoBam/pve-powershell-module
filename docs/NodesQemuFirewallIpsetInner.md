@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Name** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuFirewallIpsetInner = Initialize-PVENodesQemuFirewallIpsetInner  -Comment null `
- -Digest null `
- -Name null
+$NodesQemuFirewallIpsetInner = Initialize-PVENodesQemuFirewallIpsetInner  -Name null `
+ -Comment null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

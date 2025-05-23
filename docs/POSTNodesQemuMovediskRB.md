@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
-**Disk** | **String** |  | [optional] 
 **Delete** | **Boolean** |  | [optional] 
-**Format** | **String** |  | [optional] 
-**TargetDigest** | **String** |  | [optional] 
 **TargetVmid** | **Int32** |  | [optional] 
-**Bwlimit** | **Int32** |  | [optional] 
+**Disk** | **String** |  | [optional] 
 **TargetDisk** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**TargetDigest** | **String** |  | [optional] 
+**Bwlimit** | **Int32** |  | [optional] 
 **Storage** | **String** |  | [optional] 
+**Format** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuMovediskRB = Initialize-PVEPOSTNodesQemuMovediskRB  -Digest null `
- -Disk null `
- -Delete null `
- -Format null `
- -TargetDigest null `
+$POSTNodesQemuMovediskRB = Initialize-PVEPOSTNodesQemuMovediskRB  -Delete null `
  -TargetVmid null `
- -Bwlimit null `
+ -Disk null `
  -TargetDisk null `
- -Storage null
+ -Digest null `
+ -TargetDigest null `
+ -Bwlimit null `
+ -Storage null `
+ -Format null
 ```
 
 - Convert the resource to JSON

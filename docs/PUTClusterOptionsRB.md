@@ -3,57 +3,57 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HttpProxy** | **String** |  | [optional] 
-**Migration** | **String** |  | [optional] 
-**Webauthn** | **String** |  | [optional] 
-**MacPrefix** | **String** |  | [optional] 
-**Console** | **String** |  | [optional] 
-**Language** | **String** |  | [optional] 
-**Keyboard** | **String** |  | [optional] 
-**UserTagAccess** | **String** |  | [optional] 
-**Crs** | **String** |  | [optional] 
-**MaxWorkers** | **Int32** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**U2f** | **String** |  | [optional] 
-**Ha** | **String** |  | [optional] 
-**RegisteredTags** | **String** |  | [optional] 
-**Bwlimit** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**TagStyle** | **String** |  | [optional] 
+**U2f** | **String** |  | [optional] 
+**Console** | **String** |  | [optional] 
+**Webauthn** | **String** |  | [optional] 
+**Keyboard** | **String** |  | [optional] 
+**MacPrefix** | **String** |  | [optional] 
+**Ha** | **String** |  | [optional] 
 **MigrationUnsecure** | **Boolean** |  | [optional] 
 **Fencing** | **String** |  | [optional] 
-**NextId** | **String** |  | [optional] 
-**ConsentText** | **String** |  | [optional] 
 **EmailFrom** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**TagStyle** | **String** |  | [optional] 
+**HttpProxy** | **String** |  | [optional] 
 **Notify** | **String** |  | [optional] 
+**Crs** | **String** |  | [optional] 
+**Language** | **String** |  | [optional] 
+**Bwlimit** | **String** |  | [optional] 
+**ConsentText** | **String** |  | [optional] 
+**NextId** | **String** |  | [optional] 
+**Migration** | **String** |  | [optional] 
+**UserTagAccess** | **String** |  | [optional] 
+**MaxWorkers** | **Int32** |  | [optional] 
+**RegisteredTags** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterOptionsRB = Initialize-PVEPUTClusterOptionsRB  -HttpProxy null `
- -Migration null `
- -Webauthn null `
- -MacPrefix null `
- -Console null `
- -Language null `
- -Keyboard null `
- -UserTagAccess null `
- -Crs null `
- -MaxWorkers null `
- -Description null `
+$PUTClusterOptionsRB = Initialize-PVEPUTClusterOptionsRB  -Delete null `
  -U2f null `
+ -Console null `
+ -Webauthn null `
+ -Keyboard null `
+ -MacPrefix null `
  -Ha null `
- -RegisteredTags null `
- -Bwlimit null `
- -Delete null `
- -TagStyle null `
  -MigrationUnsecure null `
  -Fencing null `
- -NextId null `
- -ConsentText null `
  -EmailFrom null `
- -Notify null
+ -Description null `
+ -TagStyle null `
+ -HttpProxy null `
+ -Notify null `
+ -Crs null `
+ -Language null `
+ -Bwlimit null `
+ -ConsentText null `
+ -NextId null `
+ -Migration null `
+ -UserTagAccess null `
+ -MaxWorkers null `
+ -RegisteredTags null
 ```
 
 - Convert the resource to JSON

@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Storages** | **String** |  | [optional] 
 **Bridges** | **String** |  | [optional] 
+**Storages** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcMtunnelRB = Initialize-PVEPOSTNodesLxcMtunnelRB  -Storages null `
- -Bridges null
+$POSTNodesLxcMtunnelRB = Initialize-PVEPOSTNodesLxcMtunnelRB  -Bridges null `
+ -Storages null
 ```
 
 - Convert the resource to JSON

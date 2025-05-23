@@ -3,61 +3,61 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
-**Cpus** | **Decimal** |  | [optional] 
-**Netin** | **Int32** |  | [optional] 
-**Netout** | **Int32** |  | [optional] 
-**Lock** | **String** |  | [optional] 
-**Maxdisk** | **Int32** |  | [optional] 
-**Cpu** | **Decimal** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**VarPid** | **Int32** |  | [optional] 
-**Diskread** | **Int32** |  | [optional] 
-**Agent** | **Boolean** |  | [optional] 
-**Qmpstatus** | **String** |  | [optional] 
-**Uptime** | **Int32** |  | [optional] 
-**RunningQemu** | **String** |  | [optional] 
-**Ha** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**Diskwrite** | **Int32** |  | [optional] 
-**Spice** | **Boolean** |  | [optional] 
-**Maxmem** | **Int32** |  | [optional] 
 **Template** | **Boolean** |  | [optional] 
-**RunningMachine** | **String** |  | [optional] 
-**Clipboard** | **String** |  | [optional] 
-**Status** | **String** |  | [optional] 
-**Serial** | **Boolean** |  | [optional] 
-**Mem** | **Int32** |  | [optional] 
+**Cpu** | **Decimal** |  | [optional] 
+**Maxmem** | **Int32** |  | [optional] 
+**Maxdisk** | **Int32** |  | [optional] 
+**Diskwrite** | **Int32** |  | [optional] 
+**Uptime** | **Int32** |  | [optional] 
+**Qmpstatus** | **String** |  | [optional] 
 **Tags** | **String** |  | [optional] 
+**Diskread** | **Int32** |  | [optional] 
+**Ha** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**RunningMachine** | **String** |  | [optional] 
+**Serial** | **Boolean** |  | [optional] 
+**Status** | **String** |  | [optional] 
+**Agent** | **Boolean** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Spice** | **Boolean** |  | [optional] 
+**Lock** | **String** |  | [optional] 
+**Netout** | **Int32** |  | [optional] 
+**VarPid** | **Int32** |  | [optional] 
+**Cpus** | **Decimal** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Clipboard** | **String** |  | [optional] 
+**RunningQemu** | **String** |  | [optional] 
+**Mem** | **Int32** |  | [optional] 
+**Netin** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuStatusCurrent = Initialize-PVENodesQemuStatusCurrent  -Name null `
- -Cpus null `
- -Netin null `
- -Netout null `
- -Lock null `
- -Maxdisk null `
+$NodesQemuStatusCurrent = Initialize-PVENodesQemuStatusCurrent  -Template null `
  -Cpu null `
- -Vmid null `
- -VarPid null `
- -Diskread null `
- -Agent null `
- -Qmpstatus null `
- -Uptime null `
- -RunningQemu null `
- -Ha null `
- -Diskwrite null `
- -Spice null `
  -Maxmem null `
- -Template null `
+ -Maxdisk null `
+ -Diskwrite null `
+ -Uptime null `
+ -Qmpstatus null `
+ -Tags null `
+ -Diskread null `
+ -Ha null `
  -RunningMachine null `
- -Clipboard null `
- -Status null `
  -Serial null `
+ -Status null `
+ -Agent null `
+ -Vmid null `
+ -Spice null `
+ -Lock null `
+ -Netout null `
+ -VarPid null `
+ -Cpus null `
+ -Name null `
+ -Clipboard null `
+ -RunningQemu null `
  -Mem null `
- -Tags null
+ -Netin null
 ```
 
 - Convert the resource to JSON

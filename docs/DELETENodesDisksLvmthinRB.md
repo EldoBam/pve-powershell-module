@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CleanupDisks** | **Boolean** |  | [optional] 
 **CleanupConfig** | **Boolean** |  | [optional] 
+**CleanupDisks** | **Boolean** |  | [optional] 
 **VolumeGroup** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesDisksLvmthinRB = Initialize-PVEDELETENodesDisksLvmthinRB  -CleanupDisks null `
- -CleanupConfig null `
+$DELETENodesDisksLvmthinRB = Initialize-PVEDELETENodesDisksLvmthinRB  -CleanupConfig null `
+ -CleanupDisks null `
  -VolumeGroup null
 ```
 

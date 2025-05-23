@@ -3,22 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EabHmacKey** | **String** |  | [optional] 
-**Directory** | **String** |  | [optional] 
 **Contact** | **String** |  | [optional] 
-**TosUrl** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Directory** | **String** |  | [optional] 
+**TosUrl** | **String** |  | [optional] 
+**EabHmacKey** | **String** |  | [optional] 
 **EabKid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterAcmeAccountRB = Initialize-PVEPOSTClusterAcmeAccountRB  -EabHmacKey null `
- -Directory null `
- -Contact null `
- -TosUrl null `
+$POSTClusterAcmeAccountRB = Initialize-PVEPOSTClusterAcmeAccountRB  -Contact null `
  -Name null `
+ -Directory null `
+ -TosUrl null `
+ -EabHmacKey null `
  -EabKid null
 ```
 

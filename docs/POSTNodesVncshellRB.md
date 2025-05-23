@@ -5,9 +5,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Height** | **Int32** |  | [optional] 
 **Cmd** | **String** |  | [optional] 
-**Websocket** | **Boolean** |  | [optional] 
-**Width** | **Int32** |  | [optional] 
 **CmdOpts** | **String** |  | [optional] 
+**Width** | **Int32** |  | [optional] 
+**Websocket** | **Boolean** |  | [optional] 
 
 ## Examples
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 ```powershell
 $POSTNodesVncshellRB = Initialize-PVEPOSTNodesVncshellRB  -Height null `
  -Cmd null `
- -Websocket null `
+ -CmdOpts null `
  -Width null `
- -CmdOpts null
+ -Websocket null
 ```
 
 - Convert the resource to JSON

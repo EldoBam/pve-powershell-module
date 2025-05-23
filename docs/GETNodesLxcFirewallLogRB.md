@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VarUntil** | **Int32** |  | [optional] 
 **Limit** | **Int32** |  | [optional] 
-**Since** | **Int32** |  | [optional] 
 **Start** | **Int32** |  | [optional] 
+**Since** | **Int32** |  | [optional] 
+**VarUntil** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesLxcFirewallLogRB = Initialize-PVEGETNodesLxcFirewallLogRB  -VarUntil null `
- -Limit null `
+$GETNodesLxcFirewallLogRB = Initialize-PVEGETNodesLxcFirewallLogRB  -Limit null `
+ -Start null `
  -Since null `
- -Start null
+ -VarUntil null
 ```
 
 - Convert the resource to JSON

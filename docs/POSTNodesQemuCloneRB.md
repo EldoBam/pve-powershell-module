@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Newid** | **Int32** |  | [optional] 
+**Pool** | **String** |  | [optional] 
 **Target** | **String** |  | [optional] 
-**Snapname** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
+**Newid** | **Int32** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**Format** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
 **Full** | **Boolean** |  | [optional] 
 **Bwlimit** | **Int32** |  | [optional] 
-**Pool** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
+**Snapname** | **String** |  | [optional] 
+**Format** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuCloneRB = Initialize-PVEPOSTNodesQemuCloneRB  -Newid null `
+$POSTNodesQemuCloneRB = Initialize-PVEPOSTNodesQemuCloneRB  -Pool null `
  -Target null `
- -Snapname null `
- -Description null `
+ -Newid null `
  -Name null `
- -Format null `
+ -Storage null `
+ -Description null `
  -Full null `
  -Bwlimit null `
- -Pool null `
- -Storage null
+ -Snapname null `
+ -Format null
 ```
 
 - Convert the resource to JSON

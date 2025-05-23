@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Content** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Content** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesStorageContentRB = Initialize-PVEGETNodesStorageContentRB  -Content null `
- -Vmid null
+$GETNodesStorageContentRB = Initialize-PVEGETNodesStorageContentRB  -Vmid null `
+ -Content null
 ```
 
 - Convert the resource to JSON

@@ -4,10 +4,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Net** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Disks** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**Warnings** | [**NodesStorageImportmetadataWarningsInner[]**](NodesStorageImportmetadataWarningsInner.md) |  | [optional] 
 **Source** | **String** |  | [optional] 
+**Warnings** | [**NodesStorageImportmetadataWarningsInner[]**](NodesStorageImportmetadataWarningsInner.md) |  | [optional] 
+**Disks** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**Type** | **String** |  | [optional] 
 **CreateArgs** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 
 ## Examples
@@ -15,10 +15,10 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $NodesStorageImportmetadata = Initialize-PVENodesStorageImportmetadata  -Net null `
- -Type null `
- -Disks null `
- -Warnings null `
  -Source null `
+ -Warnings null `
+ -Disks null `
+ -Type null `
  -CreateArgs null
 ```
 

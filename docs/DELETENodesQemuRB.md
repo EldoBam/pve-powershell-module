@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Skiplock** | **Boolean** |  | [optional] 
 **Purge** | **Boolean** |  | [optional] 
 **DestroyUnreferencedDisks** | **Boolean** |  | [optional] 
+**Skiplock** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesQemuRB = Initialize-PVEDELETENodesQemuRB  -Skiplock null `
- -Purge null `
- -DestroyUnreferencedDisks null
+$DELETENodesQemuRB = Initialize-PVEDELETENodesQemuRB  -Purge null `
+ -DestroyUnreferencedDisks null `
+ -Skiplock null
 ```
 
 - Convert the resource to JSON

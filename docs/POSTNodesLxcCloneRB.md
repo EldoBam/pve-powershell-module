@@ -3,28 +3,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Snapname** | **String** |  | [optional] 
+**Pool** | **String** |  | [optional] 
 **Storage** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
 **Newid** | **Int32** |  | [optional] 
 **Target** | **String** |  | [optional] 
+**Snapname** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
 **Full** | **Boolean** |  | [optional] 
 **Bwlimit** | **Decimal** |  | [optional] 
-**Pool** | **String** |  | [optional] 
 **Hostname** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcCloneRB = Initialize-PVEPOSTNodesLxcCloneRB  -Snapname null `
+$POSTNodesLxcCloneRB = Initialize-PVEPOSTNodesLxcCloneRB  -Pool null `
  -Storage null `
- -Description null `
  -Newid null `
  -Target null `
+ -Snapname null `
+ -Description null `
  -Full null `
  -Bwlimit null `
- -Pool null `
  -Hostname null
 ```
 

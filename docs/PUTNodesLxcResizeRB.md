@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
 **Size** | **String** |  | [optional] 
 **Disk** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesLxcResizeRB = Initialize-PVEPUTNodesLxcResizeRB  -Digest null `
- -Size null `
- -Disk null
+$PUTNodesLxcResizeRB = Initialize-PVEPUTNodesLxcResizeRB  -Size null `
+ -Disk null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

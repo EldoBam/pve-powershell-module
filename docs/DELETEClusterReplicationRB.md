@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Force** | **Boolean** |  | [optional] 
 **Keep** | **Boolean** |  | [optional] 
+**Force** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEClusterReplicationRB = Initialize-PVEDELETEClusterReplicationRB  -Force null `
- -Keep null
+$DELETEClusterReplicationRB = Initialize-PVEDELETEClusterReplicationRB  -Keep null `
+ -Force null
 ```
 
 - Convert the resource to JSON

@@ -3,35 +3,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Sockets** | **Int32** |  | [optional] 
-**Key** | **String** |  | [optional] 
-**Checktime** | **Int32** |  | [optional] 
-**Serverid** | **String** |  | [optional] 
-**Signature** | **String** |  | [optional] 
-**Regdate** | **String** |  | [optional] 
-**Level** | **String** |  | [optional] 
-**Message** | **String** |  | [optional] 
-**Nextduedate** | **String** |  | [optional] 
-**Productname** | **String** |  | [optional] 
-**Status** | **String** |  | [optional] 
 **Url** | **String** |  | [optional] 
+**Status** | **String** |  | [optional] 
+**Key** | **String** |  | [optional] 
+**Sockets** | **Int32** |  | [optional] 
+**Nextduedate** | **String** |  | [optional] 
+**Signature** | **String** |  | [optional] 
+**Level** | **String** |  | [optional] 
+**Serverid** | **String** |  | [optional] 
+**Checktime** | **Int32** |  | [optional] 
+**Productname** | **String** |  | [optional] 
+**Message** | **String** |  | [optional] 
+**Regdate** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesSubscription = Initialize-PVENodesSubscription  -Sockets null `
- -Key null `
- -Checktime null `
- -Serverid null `
- -Signature null `
- -Regdate null `
- -Level null `
- -Message null `
- -Nextduedate null `
- -Productname null `
+$NodesSubscription = Initialize-PVENodesSubscription  -Url null `
  -Status null `
- -Url null
+ -Key null `
+ -Sockets null `
+ -Nextduedate null `
+ -Signature null `
+ -Level null `
+ -Serverid null `
+ -Checktime null `
+ -Productname null `
+ -Message null `
+ -Regdate null
 ```
 
 - Convert the resource to JSON

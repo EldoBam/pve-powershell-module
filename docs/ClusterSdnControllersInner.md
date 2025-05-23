@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Pending** | **Boolean** |  | [optional] 
-**Controller** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Controller** | **String** |  | [optional] 
 **State** | **String** |  | [optional] 
 
 ## Examples
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $ClusterSdnControllersInner = Initialize-PVEClusterSdnControllersInner  -Pending null `
- -Controller null `
  -Type null `
+ -Controller null `
  -State null
 ```
 

@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Nodeid** | **Int32** |  | [optional] 
 **Votes** | **Int32** |  | [optional] 
+**Nodeid** | **Int32** |  | [optional] 
 **Clustername** | **String** |  | [optional] 
 **LinkN** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$POSTClusterConfigRB = Initialize-PVEPOSTClusterConfigRB  -Nodeid null `
- -Votes null `
+$POSTClusterConfigRB = Initialize-PVEPOSTClusterConfigRB  -Votes null `
+ -Nodeid null `
  -Clustername null `
  -LinkN null
 ```

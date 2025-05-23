@@ -4,18 +4,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **String** |  | [optional] 
-**Changes** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
 **Version** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Changes** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $NodesCapabilitiesQemuMachinesInner = Initialize-PVENodesCapabilitiesQemuMachinesInner  -Type null `
- -Changes null `
+ -Version null `
  -Id null `
- -Version null
+ -Changes null
 ```
 
 - Convert the resource to JSON

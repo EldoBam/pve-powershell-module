@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
 **Origin** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterNotificationsTargetsInner = Initialize-PVEClusterNotificationsTargetsInner  -Comment null `
- -Origin null `
- -Type null `
+$ClusterNotificationsTargetsInner = Initialize-PVEClusterNotificationsTargetsInner  -Origin null `
  -Name null `
+ -Type null `
+ -Comment null `
  -Disable null
 ```
 

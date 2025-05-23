@@ -3,41 +3,41 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IcmpType** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Dport** | **String** |  | [optional] 
 **Enable** | **Int32** |  | [optional] 
-**Log** | **String** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
-**Iface** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
+**IcmpType** | **String** |  | [optional] 
 **Sport** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
 **Macro** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuFirewallRulesRB = Initialize-PVEPOSTNodesQemuFirewallRulesRB  -IcmpType null `
- -Action null `
- -Type null `
- -Dest null `
- -Source null `
- -Digest null `
+$POSTNodesQemuFirewallRulesRB = Initialize-PVEPOSTNodesQemuFirewallRulesRB  -Enable null `
  -Dport null `
- -Enable null `
- -Log null `
- -Pos null `
- -Iface null `
  -Comment null `
- -Proto null `
+ -IcmpType null `
  -Sport null `
- -Macro null
+ -Digest null `
+ -Pos null `
+ -Dest null `
+ -Log null `
+ -Macro null `
+ -Source null `
+ -Action null `
+ -Proto null `
+ -Iface null `
+ -Type null
 ```
 
 - Convert the resource to JSON

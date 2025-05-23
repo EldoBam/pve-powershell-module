@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dns3** | **String** |  | [optional] 
 **Dns2** | **String** |  | [optional] 
-**Dns1** | **String** |  | [optional] 
 **Search** | **String** |  | [optional] 
+**Dns1** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $NodesDns = Initialize-PVENodesDns  -Dns3 null `
  -Dns2 null `
- -Dns1 null `
- -Search null
+ -Search null `
+ -Dns1 null
 ```
 
 - Convert the resource to JSON

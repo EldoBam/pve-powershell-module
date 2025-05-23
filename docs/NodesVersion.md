@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Repoid** | **String** |  | [optional] 
 **Version** | **String** |  | [optional] 
+**Repoid** | **String** |  | [optional] 
 **Release** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesVersion = Initialize-PVENodesVersion  -Repoid null `
- -Version null `
+$NodesVersion = Initialize-PVENodesVersion  -Version null `
+ -Repoid null `
  -Release null
 ```
 

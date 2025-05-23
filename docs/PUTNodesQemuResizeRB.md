@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Skiplock** | **Boolean** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Size** | **String** |  | [optional] 
 **Disk** | **String** |  | [optional] 
+**Skiplock** | **Boolean** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuResizeRB = Initialize-PVEPUTNodesQemuResizeRB  -Skiplock null `
- -Digest null `
- -Size null `
- -Disk null
+$PUTNodesQemuResizeRB = Initialize-PVEPUTNodesQemuResizeRB  -Size null `
+ -Disk null `
+ -Skiplock null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

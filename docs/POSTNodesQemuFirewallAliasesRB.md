@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Cidr** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**Cidr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuFirewallAliasesRB = Initialize-PVEPOSTNodesQemuFirewallAliasesRB  -Comment null `
- -Name null `
- -Cidr null
+$POSTNodesQemuFirewallAliasesRB = Initialize-PVEPOSTNodesQemuFirewallAliasesRB  -Cidr null `
+ -Comment null `
+ -Name null
 ```
 
 - Convert the resource to JSON

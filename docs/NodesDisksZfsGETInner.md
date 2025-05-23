@@ -4,24 +4,24 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dedup** | **Decimal** |  | [optional] 
+**Alloc** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Size** | **Int32** |  | [optional] 
 **Frag** | **Int32** |  | [optional] 
-**Alloc** | **Int32** |  | [optional] 
-**Health** | **String** |  | [optional] 
 **Free** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
+**Health** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $NodesDisksZfsGETInner = Initialize-PVENodesDisksZfsGETInner  -Dedup null `
+ -Alloc null `
+ -Name null `
  -Size null `
  -Frag null `
- -Alloc null `
- -Health null `
  -Free null `
- -Name null
+ -Health null
 ```
 
 - Convert the resource to JSON

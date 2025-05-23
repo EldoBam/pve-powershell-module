@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Map** | **String[]** |  | [optional] 
 **VarError** | [**AnyType**](.md) |  | [optional] 
-**Id** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $ClusterMappingUsbInner = Initialize-PVEClusterMappingUsbInner  -Map null `
  -VarError null `
- -Id null `
- -Description null
+ -Description null `
+ -Id null
 ```
 
 - Convert the resource to JSON

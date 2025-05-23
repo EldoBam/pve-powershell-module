@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Start** | **Int32** |  | [optional] 
 **Limit** | **Int32** |  | [optional] 
+**Start** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesReplicationLogRB = Initialize-PVEGETNodesReplicationLogRB  -Start null `
- -Limit null
+$GETNodesReplicationLogRB = Initialize-PVEGETNodesReplicationLogRB  -Limit null `
+ -Start null
 ```
 
 - Convert the resource to JSON

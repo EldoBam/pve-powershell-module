@@ -3,59 +3,59 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
-**Statistics** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**AutoscaleStatus** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**Nodelete** | **Boolean** |  | [optional] 
-**UseGmtHitset** | **Boolean** |  | [optional] 
-**WriteFadviseDontneed** | **Boolean** |  | [optional] 
-**Nopgchange** | **Boolean** |  | [optional] 
-**Application** | **String** |  | [optional] 
-**Hashpspool** | **Boolean** |  | [optional] 
-**NodeepScrub** | **Boolean** |  | [optional] 
-**Nosizechange** | **Boolean** |  | [optional] 
 **CrushRule** | **String** |  | [optional] 
-**Id** | **Int32** |  | [optional] 
+**NodeepScrub** | **Boolean** |  | [optional] 
+**UseGmtHitset** | **Boolean** |  | [optional] 
+**TargetSizeRatio** | **Decimal** |  | [optional] 
+**Nopgchange** | **Boolean** |  | [optional] 
+**PgAutoscaleMode** | **String** |  | [optional] 
+**Statistics** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**Size** | **Int32** |  | [optional] 
+**Hashpspool** | **Boolean** |  | [optional] 
 **PgNum** | **Int32** |  | [optional] 
 **MinSize** | **Int32** |  | [optional] 
-**PgNumMin** | **Int32** |  | [optional] 
-**ApplicationList** | [**AnyType[]**](AnyType.md) |  | [optional] 
-**FastRead** | **Boolean** |  | [optional] 
-**PgAutoscaleMode** | **String** |  | [optional] 
-**TargetSizeRatio** | **Decimal** |  | [optional] 
-**Size** | **Int32** |  | [optional] 
-**TargetSize** | **String** |  | [optional] 
 **Noscrub** | **Boolean** |  | [optional] 
+**Nosizechange** | **Boolean** |  | [optional] 
+**TargetSize** | **String** |  | [optional] 
+**ApplicationList** | [**AnyType[]**](AnyType.md) |  | [optional] 
+**WriteFadviseDontneed** | **Boolean** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Nodelete** | **Boolean** |  | [optional] 
 **PgpNum** | **Int32** |  | [optional] 
+**FastRead** | **Boolean** |  | [optional] 
+**PgNumMin** | **Int32** |  | [optional] 
+**Id** | **Int32** |  | [optional] 
+**AutoscaleStatus** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**Application** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephPoolStatus = Initialize-PVENodesCephPoolStatus  -Name null `
- -Statistics null `
- -AutoscaleStatus null `
- -Nodelete null `
- -UseGmtHitset null `
- -WriteFadviseDontneed null `
- -Nopgchange null `
- -Application null `
- -Hashpspool null `
+$NodesCephPoolStatus = Initialize-PVENodesCephPoolStatus  -CrushRule null `
  -NodeepScrub null `
- -Nosizechange null `
- -CrushRule null `
- -Id null `
+ -UseGmtHitset null `
+ -TargetSizeRatio null `
+ -Nopgchange null `
+ -PgAutoscaleMode null `
+ -Statistics null `
+ -Size null `
+ -Hashpspool null `
  -PgNum null `
  -MinSize null `
- -PgNumMin null `
- -ApplicationList null `
- -FastRead null `
- -PgAutoscaleMode null `
- -TargetSizeRatio null `
- -Size null `
- -TargetSize null `
  -Noscrub null `
- -PgpNum null
+ -Nosizechange null `
+ -TargetSize null `
+ -ApplicationList null `
+ -WriteFadviseDontneed null `
+ -Name null `
+ -Nodelete null `
+ -PgpNum null `
+ -FastRead null `
+ -PgNumMin null `
+ -Id null `
+ -AutoscaleStatus null `
+ -Application null
 ```
 
 - Convert the resource to JSON

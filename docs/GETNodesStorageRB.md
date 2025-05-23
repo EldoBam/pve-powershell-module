@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | **Boolean** |  | [optional] 
-**Format** | **Boolean** |  | [optional] 
 **Content** | **String** |  | [optional] 
+**Format** | **Boolean** |  | [optional] 
 **Target** | **String** |  | [optional] 
 **Storage** | **String** |  | [optional] 
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $GETNodesStorageRB = Initialize-PVEGETNodesStorageRB  -Enabled null `
- -Format null `
  -Content null `
+ -Format null `
  -Target null `
  -Storage null
 ```

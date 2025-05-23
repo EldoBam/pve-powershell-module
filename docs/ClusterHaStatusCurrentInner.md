@@ -3,34 +3,34 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | **String** |  | [optional] 
-**Quorate** | **Boolean** |  | [optional] 
-**State** | **String** |  | [optional] 
-**Sid** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**RequestState** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
 **MaxRelocate** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
+**Sid** | **String** |  | [optional] 
+**RequestState** | **String** |  | [optional] 
+**Quorate** | **Boolean** |  | [optional] 
+**Node** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**Timestamp** | **Int32** |  | [optional] 
 **CrmState** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
+**Timestamp** | **Int32** |  | [optional] 
 **MaxRestart** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterHaStatusCurrentInner = Initialize-PVEClusterHaStatusCurrentInner  -Status null `
- -Quorate null `
- -State null `
+$ClusterHaStatusCurrentInner = Initialize-PVEClusterHaStatusCurrentInner  -MaxRelocate null `
+ -Status null `
  -Sid null `
- -Node null `
  -RequestState null `
- -Id null `
- -MaxRelocate null `
+ -Quorate null `
+ -Node null `
  -Type null `
- -Timestamp null `
  -CrmState null `
+ -Id null `
+ -State null `
+ -Timestamp null `
  -MaxRestart null
 ```
 

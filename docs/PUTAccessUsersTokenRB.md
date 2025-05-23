@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
 **Privsep** | **Boolean** |  | [optional] 
 **Expire** | **Int32** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTAccessUsersTokenRB = Initialize-PVEPUTAccessUsersTokenRB  -Comment null `
- -Privsep null `
- -Expire null
+$PUTAccessUsersTokenRB = Initialize-PVEPUTAccessUsersTokenRB  -Privsep null `
+ -Expire null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

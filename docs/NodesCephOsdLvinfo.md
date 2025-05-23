@@ -4,22 +4,22 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **VgName** | **String** |  | [optional] 
+**LvUuid** | **String** |  | [optional] 
 **LvName** | **String** |  | [optional] 
+**LvSize** | **Int32** |  | [optional] 
 **LvPath** | **String** |  | [optional] 
 **CreationTime** | **String** |  | [optional] 
-**LvSize** | **Int32** |  | [optional] 
-**LvUuid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $NodesCephOsdLvinfo = Initialize-PVENodesCephOsdLvinfo  -VgName null `
+ -LvUuid null `
  -LvName null `
- -LvPath null `
- -CreationTime null `
  -LvSize null `
- -LvUuid null
+ -LvPath null `
+ -CreationTime null
 ```
 
 - Convert the resource to JSON

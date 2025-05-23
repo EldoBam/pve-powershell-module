@@ -4,22 +4,22 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Restricted** | **Boolean** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Nofailback** | **Boolean** |  | [optional] 
 **Nodes** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Nofailback** | **Boolean** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $PUTClusterHaGroupsRB = Initialize-PVEPUTClusterHaGroupsRB  -Restricted null `
- -Digest null `
  -Delete null `
- -Comment null `
+ -Nodes null `
+ -Digest null `
  -Nofailback null `
- -Nodes null
+ -Comment null
 ```
 
 - Convert the resource to JSON

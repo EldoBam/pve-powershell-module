@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Enabled** | **Boolean** |  | [optional] 
+**Index** | **Int32** |  | [optional] 
 **Path** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesAptRepositoriesRB = Initialize-PVEPOSTNodesAptRepositoriesRB  -Index null `
- -Digest null `
- -Enabled null `
- -Path null
+$POSTNodesAptRepositoriesRB = Initialize-PVEPOSTNodesAptRepositoriesRB  -Enabled null `
+ -Index null `
+ -Path null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

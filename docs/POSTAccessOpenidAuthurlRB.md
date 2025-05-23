@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Realm** | **String** |  | [optional] 
 **RedirectUrl** | **String** |  | [optional] 
+**Realm** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTAccessOpenidAuthurlRB = Initialize-PVEPOSTAccessOpenidAuthurlRB  -Realm null `
- -RedirectUrl null
+$POSTAccessOpenidAuthurlRB = Initialize-PVEPOSTAccessOpenidAuthurlRB  -RedirectUrl null `
+ -Realm null
 ```
 
 - Convert the resource to JSON

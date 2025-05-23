@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | **String** |  | [optional] 
-**Parent** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **Snaptime** | **Int32** |  | [optional] 
+**Parent** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcSnapshotInner = Initialize-PVENodesLxcSnapshotInner  -Description null `
+$NodesLxcSnapshotInner = Initialize-PVENodesLxcSnapshotInner  -Snaptime null `
  -Parent null `
- -Name null `
- -Snaptime null
+ -Description null `
+ -Name null
 ```
 
 - Convert the resource to JSON

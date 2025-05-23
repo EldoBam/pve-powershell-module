@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Path** | **String** |  | [optional] 
-**Roles** | **String** |  | [optional] 
 **Delete** | **Boolean** |  | [optional] 
-**Users** | **String** |  | [optional] 
-**Propagate** | **Boolean** |  | [optional] 
 **Groups** | **String** |  | [optional] 
+**Roles** | **String** |  | [optional] 
+**Users** | **String** |  | [optional] 
 **Tokens** | **String** |  | [optional] 
+**Propagate** | **Boolean** |  | [optional] 
+**Path** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTAccessAclRB = Initialize-PVEPUTAccessAclRB  -Path null `
- -Roles null `
- -Delete null `
- -Users null `
- -Propagate null `
+$PUTAccessAclRB = Initialize-PVEPUTAccessAclRB  -Delete null `
  -Groups null `
- -Tokens null
+ -Roles null `
+ -Users null `
+ -Tokens null `
+ -Propagate null `
+ -Path null
 ```
 
 - Convert the resource to JSON

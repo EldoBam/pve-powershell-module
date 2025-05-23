@@ -3,26 +3,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
-**RemoveJob** | **String** |  | [optional] 
-**Schedule** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
+**Schedule** | **String** |  | [optional] 
 **Rate** | **Decimal** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**RemoveJob** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterReplicationRB = Initialize-PVEPUTClusterReplicationRB  -Digest null `
- -RemoveJob null `
+$PUTClusterReplicationRB = Initialize-PVEPUTClusterReplicationRB  -Delete null `
  -Schedule null `
- -Disable null `
- -Delete null `
- -Source null `
  -Rate null `
+ -Disable null `
+ -RemoveJob null `
+ -Digest null `
+ -Source null `
  -Comment null
 ```
 

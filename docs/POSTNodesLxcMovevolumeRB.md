@@ -4,12 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TargetDigest** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**TargetVolume** | **String** |  | [optional] 
-**Delete** | **Boolean** |  | [optional] 
-**TargetVmid** | **Int32** |  | [optional] 
-**Bwlimit** | **Decimal** |  | [optional] 
 **Volume** | **String** |  | [optional] 
+**TargetVmid** | **Int32** |  | [optional] 
+**Delete** | **Boolean** |  | [optional] 
+**TargetVolume** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Bwlimit** | **Decimal** |  | [optional] 
 **Storage** | **String** |  | [optional] 
 
 ## Examples
@@ -17,12 +17,12 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $POSTNodesLxcMovevolumeRB = Initialize-PVEPOSTNodesLxcMovevolumeRB  -TargetDigest null `
- -Digest null `
- -TargetVolume null `
- -Delete null `
- -TargetVmid null `
- -Bwlimit null `
  -Volume null `
+ -TargetVmid null `
+ -Delete null `
+ -TargetVolume null `
+ -Digest null `
+ -Bwlimit null `
  -Storage null
 ```
 

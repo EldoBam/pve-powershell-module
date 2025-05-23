@@ -3,37 +3,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RealmType** | **String** |  | [optional] 
-**Keys** | **String** |  | [optional] 
-**Lastname** | **String** |  | [optional] 
-**TfaLockedUntil** | **Int32** |  | [optional] 
-**Userid** | **String** |  | [optional] 
-**Groups** | **String** |  | [optional] 
 **Enable** | **Boolean** |  | [optional] 
+**RealmType** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Email** | **String** |  | [optional] 
-**Firstname** | **String** |  | [optional] 
+**Groups** | **String** |  | [optional] 
+**TfaLockedUntil** | **Int32** |  | [optional] 
+**TotpLocked** | **Boolean** |  | [optional] 
 **Expire** | **Int32** |  | [optional] 
 **Tokens** | [**AccessUsersGETInnerTokensInner[]**](AccessUsersGETInnerTokensInner.md) |  | [optional] 
-**TotpLocked** | **Boolean** |  | [optional] 
-**Comment** | **String** |  | [optional] 
+**Keys** | **String** |  | [optional] 
+**Userid** | **String** |  | [optional] 
+**Lastname** | **String** |  | [optional] 
+**Firstname** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessUsersGETInner = Initialize-PVEAccessUsersGETInner  -RealmType null `
- -Keys null `
- -Lastname null `
- -TfaLockedUntil null `
- -Userid null `
- -Groups null `
- -Enable null `
+$AccessUsersGETInner = Initialize-PVEAccessUsersGETInner  -Enable null `
+ -RealmType null `
+ -Comment null `
  -Email null `
- -Firstname null `
+ -Groups null `
+ -TfaLockedUntil null `
+ -TotpLocked null `
  -Expire null `
  -Tokens null `
- -TotpLocked null `
- -Comment null
+ -Keys null `
+ -Userid null `
+ -Lastname null `
+ -Firstname null
 ```
 
 - Convert the resource to JSON

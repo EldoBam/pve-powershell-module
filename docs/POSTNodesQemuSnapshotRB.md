@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Vmstate** | **Boolean** |  | [optional] 
-**Snapname** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
+**Snapname** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTNodesQemuSnapshotRB = Initialize-PVEPOSTNodesQemuSnapshotRB  -Vmstate null `
- -Snapname null `
- -Description null
+ -Description null `
+ -Snapname null
 ```
 
 - Convert the resource to JSON

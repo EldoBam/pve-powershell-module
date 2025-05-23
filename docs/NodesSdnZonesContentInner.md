@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | **String** |  | [optional] 
 **Vnet** | **String** |  | [optional] 
+**Status** | **String** |  | [optional] 
 **Statusmsg** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesSdnZonesContentInner = Initialize-PVENodesSdnZonesContentInner  -Status null `
- -Vnet null `
+$NodesSdnZonesContentInner = Initialize-PVENodesSdnZonesContentInner  -Vnet null `
+ -Status null `
  -Statusmsg null
 ```
 

@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Nomatch** | **Boolean** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Nomatch** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterFirewallIpsetRB = Initialize-PVEPUTClusterFirewallIpsetRB  -Comment null `
- -Digest null `
- -Nomatch null
+$PUTClusterFirewallIpsetRB = Initialize-PVEPUTClusterFirewallIpsetRB  -Nomatch null `
+ -Comment null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

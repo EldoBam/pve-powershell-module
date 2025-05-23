@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Notify** | **Boolean** |  | [optional] 
 **Quiet** | **Boolean** |  | [optional] 
+**Notify** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesAptUpdateRB = Initialize-PVEPOSTNodesAptUpdateRB  -Notify null `
- -Quiet null
+$POSTNodesAptUpdateRB = Initialize-PVEPOSTNodesAptUpdateRB  -Quiet null `
+ -Notify null
 ```
 
 - Convert the resource to JSON

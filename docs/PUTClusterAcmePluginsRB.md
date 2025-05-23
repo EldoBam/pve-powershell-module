@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
-**Api** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**Delete** | **String** |  | [optional] 
 **ValidationDelay** | **Int32** |  | [optional] 
+**Delete** | **String** |  | [optional] 
 **VarData** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Api** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 **Nodes** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterAcmePluginsRB = Initialize-PVEPUTClusterAcmePluginsRB  -Digest null `
- -Api null `
- -Disable null `
+$PUTClusterAcmePluginsRB = Initialize-PVEPUTClusterAcmePluginsRB  -ValidationDelay null `
  -Delete null `
- -ValidationDelay null `
  -VarData null `
+ -Disable null `
+ -Api null `
+ -Digest null `
  -Nodes null
 ```
 

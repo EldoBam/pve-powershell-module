@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Nomatch** | **Boolean** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Nomatch** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesLxcFirewallIpsetRB = Initialize-PVEPUTNodesLxcFirewallIpsetRB  -Comment null `
- -Digest null `
- -Nomatch null
+$PUTNodesLxcFirewallIpsetRB = Initialize-PVEPUTNodesLxcFirewallIpsetRB  -Nomatch null `
+ -Comment null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

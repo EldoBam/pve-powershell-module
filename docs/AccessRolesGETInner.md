@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Privs** | **String** |  | [optional] 
-**Roleid** | **String** |  | [optional] 
 **Special** | **Boolean** |  | [optional] 
+**Roleid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $AccessRolesGETInner = Initialize-PVEAccessRolesGETInner  -Privs null `
- -Roleid null `
- -Special null
+ -Special null `
+ -Roleid null
 ```
 
 - Convert the resource to JSON
