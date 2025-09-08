@@ -3,49 +3,49 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Nosmurfs** | **Boolean** |  | [optional] 
-**Enable** | **Boolean** |  | [optional] 
-**TcpFlagsLogLevel** | **String** |  | [optional] 
-**NfConntrackTcpTimeoutSynRecv** | **Int32** |  | [optional] 
-**ProtectionSynfloodBurst** | **Int32** |  | [optional] 
-**ProtectionSynflood** | **Boolean** |  | [optional] 
-**LogLevelOut** | **String** |  | [optional] 
-**NfConntrackHelpers** | **String** |  | [optional] 
-**NfConntrackTcpTimeoutEstablished** | **Int32** |  | [optional] 
-**Ndp** | **Boolean** |  | [optional] 
-**Tcpflags** | **Boolean** |  | [optional] 
-**LogLevelForward** | **String** |  | [optional] 
-**NfConntrackMax** | **Int32** |  | [optional] 
+**ProtectionSynfloodRate** | **Int32** |  | [optional] 
 **Nftables** | **Boolean** |  | [optional] 
 **LogLevelIn** | **String** |  | [optional] 
 **NfConntrackAllowInvalid** | **Boolean** |  | [optional] 
-**SmurfLogLevel** | **String** |  | [optional] 
 **LogNfConntrack** | **Boolean** |  | [optional] 
-**ProtectionSynfloodRate** | **Int32** |  | [optional] 
+**NfConntrackMax** | **Int32** |  | [optional] 
+**SmurfLogLevel** | **String** |  | [optional] 
+**NfConntrackTcpTimeoutSynRecv** | **Int32** |  | [optional] 
+**ProtectionSynflood** | **Boolean** |  | [optional] 
+**Tcpflags** | **Boolean** |  | [optional] 
+**LogLevelOut** | **String** |  | [optional] 
+**ProtectionSynfloodBurst** | **Int32** |  | [optional] 
+**LogLevelForward** | **String** |  | [optional] 
+**Enable** | **Boolean** |  | [optional] 
+**NfConntrackTcpTimeoutEstablished** | **Int32** |  | [optional] 
+**Ndp** | **Boolean** |  | [optional] 
+**TcpFlagsLogLevel** | **String** |  | [optional] 
+**Nosmurfs** | **Boolean** |  | [optional] 
+**NfConntrackHelpers** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesFirewallOptions = Initialize-PVENodesFirewallOptions  -Nosmurfs null `
- -Enable null `
- -TcpFlagsLogLevel null `
- -NfConntrackTcpTimeoutSynRecv null `
- -ProtectionSynfloodBurst null `
- -ProtectionSynflood null `
- -LogLevelOut null `
- -NfConntrackHelpers null `
- -NfConntrackTcpTimeoutEstablished null `
- -Ndp null `
- -Tcpflags null `
- -LogLevelForward null `
- -NfConntrackMax null `
+$NodesFirewallOptions = Initialize-PVENodesFirewallOptions  -ProtectionSynfloodRate null `
  -Nftables null `
  -LogLevelIn null `
  -NfConntrackAllowInvalid null `
- -SmurfLogLevel null `
  -LogNfConntrack null `
- -ProtectionSynfloodRate null
+ -NfConntrackMax null `
+ -SmurfLogLevel null `
+ -NfConntrackTcpTimeoutSynRecv null `
+ -ProtectionSynflood null `
+ -Tcpflags null `
+ -LogLevelOut null `
+ -ProtectionSynfloodBurst null `
+ -LogLevelForward null `
+ -Enable null `
+ -NfConntrackTcpTimeoutEstablished null `
+ -Ndp null `
+ -TcpFlagsLogLevel null `
+ -Nosmurfs null `
+ -NfConntrackHelpers null
 ```
 
 - Convert the resource to JSON

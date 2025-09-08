@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **VarHost** | **String** |  | [optional] 
 **Addr** | **String** |  | [optional] 
 **State** | **String** |  | [optional] 
-**Name** | [**AnyType**](.md) |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 

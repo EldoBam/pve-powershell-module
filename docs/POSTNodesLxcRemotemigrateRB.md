@@ -3,28 +3,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**TargetBridge** | **String** |  | [optional] 
 **Restart** | **Boolean** |  | [optional] 
 **Delete** | **Boolean** |  | [optional] 
-**TargetVmid** | **Int32** |  | [optional] 
-**Timeout** | **Int32** |  | [optional] 
-**TargetBridge** | **String** |  | [optional] 
 **TargetEndpoint** | **String** |  | [optional] 
 **Bwlimit** | **Decimal** |  | [optional] 
 **TargetStorage** | **String** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
+**TargetVmid** | **Int32** |  | [optional] 
 **Online** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcRemotemigrateRB = Initialize-PVEPOSTNodesLxcRemotemigrateRB  -Restart null `
+$POSTNodesLxcRemotemigrateRB = Initialize-PVEPOSTNodesLxcRemotemigrateRB  -TargetBridge null `
+ -Restart null `
  -Delete null `
- -TargetVmid null `
- -Timeout null `
- -TargetBridge null `
  -TargetEndpoint null `
  -Bwlimit null `
  -TargetStorage null `
+ -Timeout null `
+ -TargetVmid null `
  -Online null
 ```
 

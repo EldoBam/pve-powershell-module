@@ -4,18 +4,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Privsep** | **Boolean** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Expire** | **Int32** |  | [optional] 
 **Tokenid** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $AccessUsersTokenGETInner = Initialize-PVEAccessUsersTokenGETInner  -Privsep null `
+ -Comment null `
  -Expire null `
- -Tokenid null `
- -Comment null
+ -Tokenid null
 ```
 
 - Convert the resource to JSON

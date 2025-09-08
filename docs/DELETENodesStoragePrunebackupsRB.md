@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PruneBackups** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**PruneBackups** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesStoragePrunebackupsRB = Initialize-PVEDELETENodesStoragePrunebackupsRB  -PruneBackups null `
+$DELETENodesStoragePrunebackupsRB = Initialize-PVEDELETENodesStoragePrunebackupsRB  -Vmid null `
  -Type null `
- -Vmid null
+ -PruneBackups null
 ```
 
 - Convert the resource to JSON

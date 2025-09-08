@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Network** | **String** |  | [optional] 
-**PgBits** | **Int32** |  | [optional] 
 **DisableCephx** | **Boolean** |  | [optional] 
 **Size** | **Int32** |  | [optional] 
-**ClusterNetwork** | **String** |  | [optional] 
+**Network** | **String** |  | [optional] 
 **MinSize** | **Int32** |  | [optional] 
+**ClusterNetwork** | **String** |  | [optional] 
+**PgBits** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephInitRB = Initialize-PVEPOSTNodesCephInitRB  -Network null `
- -PgBits null `
- -DisableCephx null `
+$POSTNodesCephInitRB = Initialize-PVEPOSTNodesCephInitRB  -DisableCephx null `
  -Size null `
+ -Network null `
+ -MinSize null `
  -ClusterNetwork null `
- -MinSize null
+ -PgBits null
 ```
 
 - Convert the resource to JSON

@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Command** | **String[]** |  | [optional] 
 **InputData** | **String** |  | [optional] 
-**Command** | [**AnyType[]**](AnyType.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuAgentExecRB = Initialize-PVEPOSTNodesQemuAgentExecRB  -InputData null `
- -Command null
+$POSTNodesQemuAgentExecRB = Initialize-PVEPOSTNodesQemuAgentExecRB  -Command null `
+ -InputData null
 ```
 
 - Convert the resource to JSON

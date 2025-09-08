@@ -3,49 +3,59 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cpu** | **Decimal** |  | [optional] 
-**Maxmem** | **Int32** |  | [optional] 
-**Maxdisk** | **Int32** |  | [optional] 
-**Diskwrite** | **Int32** |  | [optional] 
-**Uptime** | **Int32** |  | [optional] 
-**Tags** | **String** |  | [optional] 
-**Diskread** | **Int32** |  | [optional] 
-**Ha** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Template** | **Boolean** |  | [optional] 
-**Lock** | **String** |  | [optional] 
 **Maxswap** | **Int32** |  | [optional] 
+**Maxmem** | **Int32** |  | [optional] 
 **Status** | **String** |  | [optional] 
-**Cpus** | **Decimal** |  | [optional] 
-**Netout** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Disk** | **Int32** |  | [optional] 
-**Mem** | **Int32** |  | [optional] 
+**Maxdisk** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
 **Netin** | **Int32** |  | [optional] 
+**Pressurememoryfull** | **Decimal** |  | [optional] 
+**Diskread** | **Int32** |  | [optional] 
+**Disk** | **Int32** |  | [optional] 
+**Netout** | **Int32** |  | [optional] 
+**Pressurememorysome** | **Decimal** |  | [optional] 
+**Cpu** | **Decimal** |  | [optional] 
+**Pressurecpusome** | **Decimal** |  | [optional] 
+**Tags** | **String** |  | [optional] 
+**Cpus** | **Decimal** |  | [optional] 
+**Diskwrite** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Pressureiosome** | **Decimal** |  | [optional] 
+**Template** | **Boolean** |  | [optional] 
+**Ha** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**Pressureiofull** | **Decimal** |  | [optional] 
+**Mem** | **Int32** |  | [optional] 
+**Lock** | **String** |  | [optional] 
+**Uptime** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcStatusCurrent = Initialize-PVENodesLxcStatusCurrent  -Cpu null `
+$NodesLxcStatusCurrent = Initialize-PVENodesLxcStatusCurrent  -Maxswap null `
  -Maxmem null `
- -Maxdisk null `
- -Diskwrite null `
- -Uptime null `
- -Tags null `
- -Diskread null `
- -Ha null `
- -Vmid null `
- -Template null `
- -Lock null `
- -Maxswap null `
  -Status null `
- -Cpus null `
- -Netout null `
- -Name null `
+ -Maxdisk null `
+ -Vmid null `
+ -Netin null `
+ -Pressurememoryfull null `
+ -Diskread null `
  -Disk null `
+ -Netout null `
+ -Pressurememorysome null `
+ -Cpu null `
+ -Pressurecpusome null `
+ -Tags null `
+ -Cpus null `
+ -Diskwrite null `
+ -Name null `
+ -Pressureiosome null `
+ -Template null `
+ -Ha null `
+ -Pressureiofull null `
  -Mem null `
- -Netin null
+ -Lock null `
+ -Uptime null
 ```
 
 - Convert the resource to JSON

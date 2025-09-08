@@ -3,37 +3,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delete** | **String[]** |  | [optional] 
-**Mailto** | **String[]** |  | [optional] 
-**Author** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Username** | **String** |  | [optional] 
-**FromAddress** | **String** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
-**Mode** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**MailtoUser** | **String[]** |  | [optional] 
-**Server** | **String** |  | [optional] 
 **Password** | **String** |  | [optional] 
+**Mode** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**FromAddress** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**MailtoUser** | **String[]** |  | [optional] 
+**Username** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Delete** | **String[]** |  | [optional] 
+**Author** | **String** |  | [optional] 
+**Mailto** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterNotificationsEndpointsSmtpRB = Initialize-PVEPUTClusterNotificationsEndpointsSmtpRB  -Delete null `
- -Mailto null `
- -Author null `
- -Comment null `
- -Username null `
- -FromAddress null `
- -Disable null `
+$PUTClusterNotificationsEndpointsSmtpRB = Initialize-PVEPUTClusterNotificationsEndpointsSmtpRB  -Disable null `
+ -Password null `
  -Mode null `
- -Digest null `
  -Port null `
+ -FromAddress null `
+ -Comment null `
  -MailtoUser null `
+ -Username null `
+ -Digest null `
  -Server null `
- -Password null
+ -Delete null `
+ -Author null `
+ -Mailto null
 ```
 
 - Convert the resource to JSON

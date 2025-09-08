@@ -4,10 +4,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Restart** | **Boolean** |  | [optional] 
-**Timeout** | **Int32** |  | [optional] 
-**Target** | **String** |  | [optional] 
 **Bwlimit** | **Decimal** |  | [optional] 
 **TargetStorage** | **String** |  | [optional] 
+**Target** | **String** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
 **Online** | **Boolean** |  | [optional] 
 
 ## Examples
@@ -15,10 +15,10 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $POSTNodesLxcMigrateRB = Initialize-PVEPOSTNodesLxcMigrateRB  -Restart null `
- -Timeout null `
- -Target null `
  -Bwlimit null `
  -TargetStorage null `
+ -Target null `
+ -Timeout null `
  -Online null
 ```
 

@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Limit** | **Int32** |  | [optional] 
 **Start** | **Int32** |  | [optional] 
+**Limit** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesCephLogRB = Initialize-PVEGETNodesCephLogRB  -Limit null `
- -Start null
+$GETNodesCephLogRB = Initialize-PVEGETNodesCephLogRB  -Start null `
+ -Limit null
 ```
 
 - Convert the resource to JSON

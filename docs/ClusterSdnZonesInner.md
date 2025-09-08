@@ -3,33 +3,65 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**State** | **String** |  | [optional] 
-**Zone** | **String** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Ipam** | **String** |  | [optional] 
-**Reversedns** | **String** |  | [optional] 
-**Pending** | **Boolean** |  | [optional] 
-**Dhcp** | **String** |  | [optional] 
 **Mtu** | **Int32** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
+**Tag** | **Int32** |  | [optional] 
+**VrfVxlan** | **Int32** |  | [optional] 
+**Controller** | **String** |  | [optional] 
+**VxlanPort** | **Int32** |  | [optional] 
+**RtImport** | **String** |  | [optional] 
+**Exitnodes** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Reversedns** | **String** |  | [optional] 
+**DisableArpNdSuppression** | **Boolean** |  | [optional] 
+**Dhcp** | **String** |  | [optional] 
+**Mac** | **String** |  | [optional] 
+**AdvertiseSubnets** | **Boolean** |  | [optional] 
+**BridgeDisableMacLearning** | **Boolean** |  | [optional] 
 **Dnszone** | **String** |  | [optional] 
+**Zone** | **String** |  | [optional] 
+**Ipam** | **String** |  | [optional] 
+**Bridge** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
+**Pending** | [**ClusterSdnZonesInnerPending**](ClusterSdnZonesInnerPending.md) |  | [optional] 
 **Dns** | **String** |  | [optional] 
+**ExitnodesLocalRouting** | **Boolean** |  | [optional] 
+**Peers** | **String** |  | [optional] 
+**ExitnodesPrimary** | **String** |  | [optional] 
+**VlanProtocol** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnZonesInner = Initialize-PVEClusterSdnZonesInner  -State null `
- -Zone null `
+$ClusterSdnZonesInner = Initialize-PVEClusterSdnZonesInner  -Mtu null `
  -Nodes null `
+ -Tag null `
+ -VrfVxlan null `
+ -Controller null `
+ -VxlanPort null `
+ -RtImport null `
+ -Exitnodes null `
  -Type null `
- -Ipam null `
  -Reversedns null `
- -Pending null `
+ -DisableArpNdSuppression null `
  -Dhcp null `
- -Mtu null `
+ -Mac null `
+ -AdvertiseSubnets null `
+ -BridgeDisableMacLearning null `
  -Dnszone null `
- -Dns null
+ -Zone null `
+ -Ipam null `
+ -Bridge null `
+ -State null `
+ -Pending null `
+ -Dns null `
+ -ExitnodesLocalRouting null `
+ -Peers null `
+ -ExitnodesPrimary null `
+ -VlanProtocol null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

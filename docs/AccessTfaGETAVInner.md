@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enable** | **Boolean** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
 **Created** | **Int32** |  | [optional] 
+**Enable** | **Boolean** |  | [optional] 
+**Id** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessTfaGETAVInner = Initialize-PVEAccessTfaGETAVInner  -Enable null `
- -Type null `
+$AccessTfaGETAVInner = Initialize-PVEAccessTfaGETAVInner  -Created null `
+ -Enable null `
  -Id null `
- -Created null `
- -Description null
+ -Description null `
+ -Type null
 ```
 
 - Convert the resource to JSON

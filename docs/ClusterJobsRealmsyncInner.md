@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NextRun** | **Int32** |  | [optional] 
-**Realm** | **String** |  | [optional] 
-**Enabled** | **Boolean** |  | [optional] 
-**LastRun** | **Int32** |  | [optional] 
-**Scope** | **String** |  | [optional] 
 **Schedule** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**RemoveVanished** | **String** |  | [optional] 
+**Scope** | **String** |  | [optional] 
+**LastRun** | **Int32** |  | [optional] 
+**Enabled** | **Boolean** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**NextRun** | **Int32** |  | [optional] 
+**RemoveVanished** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Realm** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterJobsRealmsyncInner = Initialize-PVEClusterJobsRealmsyncInner  -NextRun null `
- -Realm null `
- -Enabled null `
- -LastRun null `
+$ClusterJobsRealmsyncInner = Initialize-PVEClusterJobsRealmsyncInner  -Schedule null `
  -Scope null `
- -Schedule null `
- -Id null `
+ -LastRun null `
+ -Enabled null `
+ -Comment null `
+ -NextRun null `
  -RemoveVanished null `
- -Comment null
+ -Id null `
+ -Realm null
 ```
 
 - Convert the resource to JSON

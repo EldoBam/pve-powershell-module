@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Schedule** | **String** |  | [optional] 
 **Iterations** | **Int32** |  | [optional] 
+**Schedule** | **String** |  | [optional] 
 **Starttime** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETClusterJobsScheduleanalyzeRB = Initialize-PVEGETClusterJobsScheduleanalyzeRB  -Schedule null `
- -Iterations null `
+$GETClusterJobsScheduleanalyzeRB = Initialize-PVEGETClusterJobsScheduleanalyzeRB  -Iterations null `
+ -Schedule null `
  -Starttime null
 ```
 

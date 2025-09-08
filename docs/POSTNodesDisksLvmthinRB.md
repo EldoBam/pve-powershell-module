@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Device** | **String** |  | [optional] 
-**AddStorage** | **Boolean** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**AddStorage** | **Boolean** |  | [optional] 
+**Device** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesDisksLvmthinRB = Initialize-PVEPOSTNodesDisksLvmthinRB  -Device null `
+$POSTNodesDisksLvmthinRB = Initialize-PVEPOSTNodesDisksLvmthinRB  -Name null `
  -AddStorage null `
- -Name null
+ -Device null
 ```
 
 - Convert the resource to JSON

@@ -3,23 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Token** | **String** |  | [optional] 
 **Url** | **String** |  | [optional] 
-**Ipam** | **String** |  | [optional] 
+**LockToken** | **String** |  | [optional] 
+**Token** | **String** |  | [optional] 
+**Section** | **Int32** |  | [optional] 
 **Type** | **String** |  | [optional] 
 **Fingerprint** | **String** |  | [optional] 
-**Section** | **Int32** |  | [optional] 
+**Ipam** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnIpamsRB = Initialize-PVEPOSTClusterSdnIpamsRB  -Token null `
- -Url null `
- -Ipam null `
+$POSTClusterSdnIpamsRB = Initialize-PVEPOSTClusterSdnIpamsRB  -Url null `
+ -LockToken null `
+ -Token null `
+ -Section null `
  -Type null `
  -Fingerprint null `
- -Section null
+ -Ipam null
 ```
 
 - Convert the resource to JSON

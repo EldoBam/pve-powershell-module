@@ -3,135 +3,131 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pool** | **String** |  | [optional] 
-**Saferemove** | **Boolean** |  | [optional] 
-**Mountpoint** | **String** |  | [optional] 
-**Monhost** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**Blocksize** | **String** |  | [optional] 
-**ContentDirs** | **String** |  | [optional] 
-**Mkdir** | **Boolean** |  | [optional] 
-**Krbd** | **Boolean** |  | [optional] 
-**Preallocation** | **String** |  | [optional] 
-**Keyring** | **String** |  | [optional] 
-**Server2** | **String** |  | [optional] 
-**Server** | **String** |  | [optional] 
-**Authsupported** | **String** |  | [optional] 
-**Options** | **String** |  | [optional] 
-**Bwlimit** | **String** |  | [optional] 
-**Datastore** | **String** |  | [optional] 
-**Export** | **String** |  | [optional] 
-**EncryptionKey** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**Portal** | **String** |  | [optional] 
-**Iscsiprovider** | **String** |  | [optional] 
-**ComstarHg** | **String** |  | [optional] 
-**MasterPubkey** | **String** |  | [optional] 
-**TaggedOnly** | **Boolean** |  | [optional] 
-**ComstarTg** | **String** |  | [optional] 
-**SaferemoveThroughput** | **String** |  | [optional] 
-**CreateSubdirs** | **Boolean** |  | [optional] 
-**Share** | **String** |  | [optional] 
-**Maxfiles** | **Int32** |  | [optional] 
-**Fuse** | **Boolean** |  | [optional] 
-**Password** | **String** |  | [optional] 
-**Sparse** | **Boolean** |  | [optional] 
-**Content** | **String** |  | [optional] 
-**Base** | **String** |  | [optional] 
-**Thinpool** | **String** |  | [optional] 
-**MaxProtectedBackups** | **Int32** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
-**SkipCertVerification** | **Boolean** |  | [optional] 
-**Shared** | **Boolean** |  | [optional] 
-**FsName** | **String** |  | [optional] 
-**Volume** | **String** |  | [optional] 
-**Transport** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**PruneBackups** | **String** |  | [optional] 
-**Smbversion** | **String** |  | [optional] 
-**LioTpg** | **String** |  | [optional] 
-**Vgname** | **String** |  | [optional] 
-**Namespace** | **String** |  | [optional] 
-**Fingerprint** | **String** |  | [optional] 
-**Path** | **String** |  | [optional] 
-**Nowritecache** | **Boolean** |  | [optional] 
-**Storage** | **String** |  | [optional] 
-**DataPool** | **String** |  | [optional] 
-**CreateBasePath** | **Boolean** |  | [optional] 
-**Target** | **String** |  | [optional] 
 **Domain** | **String** |  | [optional] 
-**Nocow** | **Boolean** |  | [optional] 
+**Blocksize** | **String** |  | [optional] 
 **Subdir** | **String** |  | [optional] 
-**Username** | **String** |  | [optional] 
+**SkipCertVerification** | **Boolean** |  | [optional] 
+**CreateSubdirs** | **Boolean** |  | [optional] 
+**ComstarHg** | **String** |  | [optional] 
+**Mountpoint** | **String** |  | [optional] 
+**Content** | **String** |  | [optional] 
+**Sparse** | **Boolean** |  | [optional] 
+**MasterPubkey** | **String** |  | [optional] 
+**EncryptionKey** | **String** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
+**Export** | **String** |  | [optional] 
+**FsName** | **String** |  | [optional] 
+**Bwlimit** | **String** |  | [optional] 
+**Krbd** | **Boolean** |  | [optional] 
+**PruneBackups** | **String** |  | [optional] 
+**Nocow** | **Boolean** |  | [optional] 
+**Smbversion** | **String** |  | [optional] 
+**CreateBasePath** | **Boolean** |  | [optional] 
+**Nowritecache** | **Boolean** |  | [optional] 
+**TaggedOnly** | **Boolean** |  | [optional] 
+**Keyring** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**Options** | **String** |  | [optional] 
+**Base** | **String** |  | [optional] 
+**Monhost** | **String** |  | [optional] 
+**Target** | **String** |  | [optional] 
+**Thinpool** | **String** |  | [optional] 
+**Authsupported** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Namespace** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**SaferemoveThroughput** | **String** |  | [optional] 
+**SnapshotAsVolumeChain** | **Boolean** |  | [optional] 
+**MaxProtectedBackups** | **Int32** |  | [optional] 
+**ZfsBasePath** | **String** |  | [optional] 
+**Vgname** | **String** |  | [optional] 
+**DataPool** | **String** |  | [optional] 
+**Portal** | **String** |  | [optional] 
+**Saferemove** | **Boolean** |  | [optional] 
+**ContentDirs** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Path** | **String** |  | [optional] 
+**Share** | **String** |  | [optional] 
+**Datastore** | **String** |  | [optional] 
+**Mkdir** | **Boolean** |  | [optional] 
 **IsMountpoint** | **String** |  | [optional] 
+**LioTpg** | **String** |  | [optional] 
+**Iscsiprovider** | **String** |  | [optional] 
+**Fingerprint** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Fuse** | **Boolean** |  | [optional] 
+**ComstarTg** | **String** |  | [optional] 
+**Preallocation** | **String** |  | [optional] 
+**Username** | **String** |  | [optional] 
+**Pool** | **String** |  | [optional] 
 **Format** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
+**Shared** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTStorageRB = Initialize-PVEPOSTStorageRB  -Pool null `
- -Saferemove null `
- -Mountpoint null `
- -Monhost null `
- -Disable null `
+$POSTStorageRB = Initialize-PVEPOSTStorageRB  -Domain null `
  -Blocksize null `
- -ContentDirs null `
- -Mkdir null `
- -Krbd null `
- -Preallocation null `
- -Keyring null `
- -Server2 null `
- -Server null `
- -Authsupported null `
- -Options null `
- -Bwlimit null `
- -Datastore null `
- -Export null `
- -EncryptionKey null `
- -Port null `
- -Portal null `
- -Iscsiprovider null `
- -ComstarHg null `
- -MasterPubkey null `
- -TaggedOnly null `
- -ComstarTg null `
- -SaferemoveThroughput null `
- -CreateSubdirs null `
- -Share null `
- -Maxfiles null `
- -Fuse null `
- -Password null `
- -Sparse null `
- -Content null `
- -Base null `
- -Thinpool null `
- -MaxProtectedBackups null `
- -Nodes null `
- -SkipCertVerification null `
- -Shared null `
- -FsName null `
- -Volume null `
- -Transport null `
- -Type null `
- -PruneBackups null `
- -Smbversion null `
- -LioTpg null `
- -Vgname null `
- -Namespace null `
- -Fingerprint null `
- -Path null `
- -Nowritecache null `
- -Storage null `
- -DataPool null `
- -CreateBasePath null `
- -Target null `
- -Domain null `
- -Nocow null `
  -Subdir null `
- -Username null `
+ -SkipCertVerification null `
+ -CreateSubdirs null `
+ -ComstarHg null `
+ -Mountpoint null `
+ -Content null `
+ -Sparse null `
+ -MasterPubkey null `
+ -EncryptionKey null `
+ -Nodes null `
+ -Export null `
+ -FsName null `
+ -Bwlimit null `
+ -Krbd null `
+ -PruneBackups null `
+ -Nocow null `
+ -Smbversion null `
+ -CreateBasePath null `
+ -Nowritecache null `
+ -TaggedOnly null `
+ -Keyring null `
+ -Storage null `
+ -Options null `
+ -Base null `
+ -Monhost null `
+ -Target null `
+ -Thinpool null `
+ -Authsupported null `
+ -Server null `
+ -Namespace null `
+ -Port null `
+ -SaferemoveThroughput null `
+ -SnapshotAsVolumeChain null `
+ -MaxProtectedBackups null `
+ -ZfsBasePath null `
+ -Vgname null `
+ -DataPool null `
+ -Portal null `
+ -Saferemove null `
+ -ContentDirs null `
+ -Type null `
+ -Path null `
+ -Share null `
+ -Datastore null `
+ -Mkdir null `
  -IsMountpoint null `
- -Format null
+ -LioTpg null `
+ -Iscsiprovider null `
+ -Fingerprint null `
+ -Disable null `
+ -Fuse null `
+ -ComstarTg null `
+ -Preallocation null `
+ -Username null `
+ -Pool null `
+ -Format null `
+ -Password null `
+ -Shared null
 ```
 
 - Convert the resource to JSON

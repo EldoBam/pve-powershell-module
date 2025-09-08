@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Votes** | **Int32** |  | [optional] 
-**Nodeid** | **Int32** |  | [optional] 
 **Clustername** | **String** |  | [optional] 
+**Nodeid** | **Int32** |  | [optional] 
+**Votes** | **Int32** |  | [optional] 
 **LinkN** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterConfigRB = Initialize-PVEPOSTClusterConfigRB  -Votes null `
+$POSTClusterConfigRB = Initialize-PVEPOSTClusterConfigRB  -Clustername null `
  -Nodeid null `
- -Clustername null `
+ -Votes null `
  -LinkN null
 ```
 

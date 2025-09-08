@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Rename** | **String** |  | [optional] 
 **Cidr** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Rename** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesLxcFirewallAliasesRB = Initialize-PVEPUTNodesLxcFirewallAliasesRB  -Rename null `
- -Cidr null `
+$PUTNodesLxcFirewallAliasesRB = Initialize-PVEPUTNodesLxcFirewallAliasesRB  -Cidr null `
  -Comment null `
+ -Rename null `
  -Digest null
 ```
 

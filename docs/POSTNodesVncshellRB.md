@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 **Height** | **Int32** |  | [optional] 
 **Cmd** | **String** |  | [optional] 
 **CmdOpts** | **String** |  | [optional] 
-**Width** | **Int32** |  | [optional] 
 **Websocket** | **Boolean** |  | [optional] 
+**Width** | **Int32** |  | [optional] 
 
 ## Examples
 
@@ -16,8 +16,8 @@ Name | Type | Description | Notes
 $POSTNodesVncshellRB = Initialize-PVEPOSTNodesVncshellRB  -Height null `
  -Cmd null `
  -CmdOpts null `
- -Width null `
- -Websocket null
+ -Websocket null `
+ -Width null
 ```
 
 - Convert the resource to JSON

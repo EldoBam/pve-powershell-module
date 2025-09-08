@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**KeepActive** | **Boolean** |  | [optional] 
-**Migratedfrom** | **String** |  | [optional] 
 **Skiplock** | **Boolean** |  | [optional] 
+**Migratedfrom** | **String** |  | [optional] 
 **OverruleShutdown** | **Boolean** |  | [optional] 
 **Timeout** | **Int32** |  | [optional] 
+**KeepActive** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuStatusStopRB = Initialize-PVEPOSTNodesQemuStatusStopRB  -KeepActive null `
+$POSTNodesQemuStatusStopRB = Initialize-PVEPOSTNodesQemuStatusStopRB  -Skiplock null `
  -Migratedfrom null `
- -Skiplock null `
  -OverruleShutdown null `
- -Timeout null
+ -Timeout null `
+ -KeepActive null
 ```
 
 - Convert the resource to JSON

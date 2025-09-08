@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterBackupinfoNotbackedupInner = Initialize-PVEClusterBackupinfoNotbackedupInner  -Type null `
- -Vmid null `
+$ClusterBackupinfoNotbackedupInner = Initialize-PVEClusterBackupinfoNotbackedupInner  -Vmid null `
+ -Type null `
  -Name null
 ```
 

@@ -4,18 +4,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Mac** | **String** |  | [optional] 
-**Ip** | **String** |  | [optional] 
 **Zone** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Ip** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $PUTClusterSdnVnetsIpsRB = Initialize-PVEPUTClusterSdnVnetsIpsRB  -Mac null `
- -Ip null `
  -Zone null `
- -Vmid null
+ -Vmid null `
+ -Ip null
 ```
 
 - Convert the resource to JSON

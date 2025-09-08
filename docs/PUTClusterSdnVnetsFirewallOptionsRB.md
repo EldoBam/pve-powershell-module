@@ -4,9 +4,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Delete** | **String** |  | [optional] 
+**Enable** | **Boolean** |  | [optional] 
 **LogLevelForward** | **String** |  | [optional] 
 **PolicyForward** | **String** |  | [optional] 
-**Enable** | **Boolean** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 
 ## Examples
@@ -14,9 +14,9 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $PUTClusterSdnVnetsFirewallOptionsRB = Initialize-PVEPUTClusterSdnVnetsFirewallOptionsRB  -Delete null `
+ -Enable null `
  -LogLevelForward null `
  -PolicyForward null `
- -Enable null `
  -Digest null
 ```
 

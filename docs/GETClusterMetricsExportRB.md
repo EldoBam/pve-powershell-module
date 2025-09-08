@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StartTime** | **Int32** |  | [optional] 
 **History** | **Boolean** |  | [optional] 
+**StartTime** | **Int32** |  | [optional] 
 **LocalOnly** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETClusterMetricsExportRB = Initialize-PVEGETClusterMetricsExportRB  -StartTime null `
- -History null `
+$GETClusterMetricsExportRB = Initialize-PVEGETClusterMetricsExportRB  -History null `
+ -StartTime null `
  -LocalOnly null
 ```
 

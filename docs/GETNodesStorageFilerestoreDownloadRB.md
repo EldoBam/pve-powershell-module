@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tar** | **Boolean** |  | [optional] 
 **Volume** | **String** |  | [optional] 
+**Tar** | **Boolean** |  | [optional] 
 **Filepath** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesStorageFilerestoreDownloadRB = Initialize-PVEGETNodesStorageFilerestoreDownloadRB  -Tar null `
- -Volume null `
+$GETNodesStorageFilerestoreDownloadRB = Initialize-PVEGETNodesStorageFilerestoreDownloadRB  -Volume null `
+ -Tar null `
  -Filepath null
 ```
 

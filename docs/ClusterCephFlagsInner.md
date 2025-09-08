@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | **Boolean** |  | [optional] 
 **Description** | **String** |  | [optional] 
+**Value** | **Boolean** |  | [optional] 
 **Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterCephFlagsInner = Initialize-PVEClusterCephFlagsInner  -Value null `
- -Description null `
+$ClusterCephFlagsInner = Initialize-PVEClusterCephFlagsInner  -Description null `
+ -Value null `
  -Name null
 ```
 

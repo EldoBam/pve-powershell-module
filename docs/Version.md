@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Version** | **String** |  | [optional] 
-**Repoid** | **String** |  | [optional] 
 **Release** | **String** |  | [optional] 
+**Repoid** | **String** |  | [optional] 
 **Console** | **String** |  | [optional] 
 
 ## Examples
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $Version = Initialize-PVEVersion  -Version null `
- -Repoid null `
  -Release null `
+ -Repoid null `
  -Console null
 ```
 

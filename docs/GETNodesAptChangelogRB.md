@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Version** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesAptChangelogRB = Initialize-PVEGETNodesAptChangelogRB  -Version null `
- -Name null
+$GETNodesAptChangelogRB = Initialize-PVEGETNodesAptChangelogRB  -Name null `
+ -Version null
 ```
 
 - Convert the resource to JSON

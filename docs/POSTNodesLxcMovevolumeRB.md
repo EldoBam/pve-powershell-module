@@ -4,26 +4,26 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TargetDigest** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**Delete** | **Boolean** |  | [optional] 
+**Bwlimit** | **Decimal** |  | [optional] 
 **Volume** | **String** |  | [optional] 
 **TargetVmid** | **Int32** |  | [optional] 
-**Delete** | **Boolean** |  | [optional] 
 **TargetVolume** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**Bwlimit** | **Decimal** |  | [optional] 
-**Storage** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTNodesLxcMovevolumeRB = Initialize-PVEPOSTNodesLxcMovevolumeRB  -TargetDigest null `
+ -Storage null `
+ -Delete null `
+ -Bwlimit null `
  -Volume null `
  -TargetVmid null `
- -Delete null `
  -TargetVolume null `
- -Digest null `
- -Bwlimit null `
- -Storage null
+ -Digest null
 ```
 
 - Convert the resource to JSON

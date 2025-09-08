@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timestamp** | **Int32** |  | [optional] 
 **Utc** | **String** |  | [optional] 
+**Timestamp** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterJobsScheduleanalyzeInner = Initialize-PVEClusterJobsScheduleanalyzeInner  -Timestamp null `
- -Utc null
+$ClusterJobsScheduleanalyzeInner = Initialize-PVEClusterJobsScheduleanalyzeInner  -Utc null `
+ -Timestamp null
 ```
 
 - Convert the resource to JSON

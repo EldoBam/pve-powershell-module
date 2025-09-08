@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Content** | **String** |  | [optional] 
 **Truncated** | **Boolean** |  | [optional] 
+**Content** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuAgentFileread = Initialize-PVENodesQemuAgentFileread  -Content null `
- -Truncated null
+$NodesQemuAgentFileread = Initialize-PVENodesQemuAgentFileread  -Truncated null `
+ -Content null
 ```
 
 - Convert the resource to JSON

@@ -3,81 +3,77 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pool** | **String** |  | [optional] 
+**Maxfiles** | **Int32** |  | [optional] 
 **NotificationMode** | **String** |  | [optional] 
-**JobId** | **String** |  | [optional] 
-**Stdout** | **Boolean** |  | [optional] 
-**NotificationPolicy** | **String** |  | [optional] 
-**Zstd** | **Int32** |  | [optional] 
-**Mode** | **String** |  | [optional] 
-**Pigz** | **Int32** |  | [optional] 
-**Quiet** | **Boolean** |  | [optional] 
-**Storage** | **String** |  | [optional] 
-**Mailto** | **String** |  | [optional] 
-**Bwlimit** | **Int32** |  | [optional] 
+**Mailnotification** | **String** |  | [optional] 
+**Stdexcludes** | **Boolean** |  | [optional] 
 **Tmpdir** | **String** |  | [optional] 
-**Stopwait** | **Int32** |  | [optional] 
+**Vmid** | **String** |  | [optional] 
+**Script** | **String** |  | [optional] 
+**Performance** | **String** |  | [optional] 
 **Compress** | **String** |  | [optional] 
 **PbsChangeDetectionMode** | **String** |  | [optional] 
-**Lockwait** | **Int32** |  | [optional] 
-**Maxfiles** | **Int32** |  | [optional] 
-**Fleecing** | **String** |  | [optional] 
-**Stop** | **Boolean** |  | [optional] 
-**ExcludePath** | **String[]** |  | [optional] 
-**Performance** | **String** |  | [optional] 
 **Protected** | **Boolean** |  | [optional] 
-**Dumpdir** | **String** |  | [optional] 
 **NotesTemplate** | **String** |  | [optional] 
-**Stdexcludes** | **Boolean** |  | [optional] 
-**PruneBackups** | **String** |  | [optional] 
-**NotificationTarget** | **String** |  | [optional] 
-**Vmid** | **String** |  | [optional] 
+**JobId** | **String** |  | [optional] 
 **All** | **Boolean** |  | [optional] 
 **Exclude** | **String** |  | [optional] 
+**Bwlimit** | **Int32** |  | [optional] 
+**Quiet** | **Boolean** |  | [optional] 
+**Stdout** | **Boolean** |  | [optional] 
+**Fleecing** | **String** |  | [optional] 
+**Mode** | **String** |  | [optional] 
+**Pool** | **String** |  | [optional] 
+**Lockwait** | **Int32** |  | [optional] 
+**Stop** | **Boolean** |  | [optional] 
+**Zstd** | **Int32** |  | [optional] 
+**ExcludePath** | **String[]** |  | [optional] 
+**Dumpdir** | **String** |  | [optional] 
+**PruneBackups** | **String** |  | [optional] 
+**Stopwait** | **Int32** |  | [optional] 
+**Mailto** | **String** |  | [optional] 
+**Pigz** | **Int32** |  | [optional] 
 **Remove** | **Boolean** |  | [optional] 
-**Mailnotification** | **String** |  | [optional] 
-**Script** | **String** |  | [optional] 
 **Ionice** | **Int32** |  | [optional] 
+**Storage** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesVzdumpRB = Initialize-PVEPOSTNodesVzdumpRB  -Pool null `
+$POSTNodesVzdumpRB = Initialize-PVEPOSTNodesVzdumpRB  -Maxfiles null `
  -NotificationMode null `
- -JobId null `
- -Stdout null `
- -NotificationPolicy null `
- -Zstd null `
- -Mode null `
- -Pigz null `
- -Quiet null `
- -Storage null `
- -Mailto null `
- -Bwlimit null `
+ -Mailnotification null `
+ -Stdexcludes null `
  -Tmpdir null `
- -Stopwait null `
+ -Vmid null `
+ -Script null `
+ -Performance null `
  -Compress null `
  -PbsChangeDetectionMode null `
- -Lockwait null `
- -Maxfiles null `
- -Fleecing null `
- -Stop null `
- -ExcludePath null `
- -Performance null `
  -Protected null `
- -Dumpdir null `
  -NotesTemplate null `
- -Stdexcludes null `
- -PruneBackups null `
- -NotificationTarget null `
- -Vmid null `
+ -JobId null `
  -All null `
  -Exclude null `
+ -Bwlimit null `
+ -Quiet null `
+ -Stdout null `
+ -Fleecing null `
+ -Mode null `
+ -Pool null `
+ -Lockwait null `
+ -Stop null `
+ -Zstd null `
+ -ExcludePath null `
+ -Dumpdir null `
+ -PruneBackups null `
+ -Stopwait null `
+ -Mailto null `
+ -Pigz null `
  -Remove null `
- -Mailnotification null `
- -Script null `
- -Ionice null
+ -Ionice null `
+ -Storage null
 ```
 
 - Convert the resource to JSON

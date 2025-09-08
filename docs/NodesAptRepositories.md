@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StandardRepos** | [**NodesAptRepositoriesStandardReposInner[]**](NodesAptRepositoriesStandardReposInner.md) |  | [optional] 
-**Files** | [**NodesAptRepositoriesFilesInner[]**](NodesAptRepositoriesFilesInner.md) |  | [optional] 
 **Infos** | [**NodesAptRepositoriesInfosInner[]**](NodesAptRepositoriesInfosInner.md) |  | [optional] 
+**StandardRepos** | [**NodesAptRepositoriesStandardReposInner[]**](NodesAptRepositoriesStandardReposInner.md) |  | [optional] 
 **Errors** | [**NodesAptRepositoriesErrorsInner[]**](NodesAptRepositoriesErrorsInner.md) |  | [optional] 
+**Files** | [**NodesAptRepositoriesFilesInner[]**](NodesAptRepositoriesFilesInner.md) |  | [optional] 
 **Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesAptRepositories = Initialize-PVENodesAptRepositories  -StandardRepos null `
- -Files null `
- -Infos null `
+$NodesAptRepositories = Initialize-PVENodesAptRepositories  -Infos null `
+ -StandardRepos null `
  -Errors null `
+ -Files null `
  -Digest null
 ```
 

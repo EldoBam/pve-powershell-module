@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Token** | **String** |  | [optional] 
-**Server** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Token** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterNotificationsEndpointsGotifyRB = Initialize-PVEPOSTClusterNotificationsEndpointsGotifyRB  -Token null `
+$POSTClusterNotificationsEndpointsGotifyRB = Initialize-PVEPOSTClusterNotificationsEndpointsGotifyRB  -Disable null `
  -Server null `
- -Name null `
  -Comment null `
- -Disable null
+ -Name null `
+ -Token null
 ```
 
 - Convert the resource to JSON

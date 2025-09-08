@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OsdsPerDevice** | **Int32** |  | [optional] 
 **Encrypted** | **Boolean** |  | [optional] 
 **WalDev** | **String** |  | [optional] 
-**CrushDeviceClass** | **String** |  | [optional] 
 **WalDevSize** | **Decimal** |  | [optional] 
 **DbDev** | **String** |  | [optional] 
+**OsdsPerDevice** | **Int32** |  | [optional] 
 **DbDevSize** | **Decimal** |  | [optional] 
 **Dev** | **String** |  | [optional] 
+**CrushDeviceClass** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephOsdRB = Initialize-PVEPOSTNodesCephOsdRB  -OsdsPerDevice null `
- -Encrypted null `
+$POSTNodesCephOsdRB = Initialize-PVEPOSTNodesCephOsdRB  -Encrypted null `
  -WalDev null `
- -CrushDeviceClass null `
  -WalDevSize null `
  -DbDev null `
+ -OsdsPerDevice null `
  -DbDevSize null `
- -Dev null
+ -Dev null `
+ -CrushDeviceClass null
 ```
 
 - Convert the resource to JSON

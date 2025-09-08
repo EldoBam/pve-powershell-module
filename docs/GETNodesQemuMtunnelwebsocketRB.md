@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ticket** | **String** |  | [optional] 
 **Socket** | **String** |  | [optional] 
+**Ticket** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuMtunnelwebsocketRB = Initialize-PVEGETNodesQemuMtunnelwebsocketRB  -Ticket null `
- -Socket null
+$GETNodesQemuMtunnelwebsocketRB = Initialize-PVEGETNodesQemuMtunnelwebsocketRB  -Socket null `
+ -Ticket null
 ```
 
 - Convert the resource to JSON

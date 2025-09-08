@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Socket** | **String** |  | [optional] 
 **Port** | **String** |  | [optional] 
+**Socket** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuMtunnelwebsocket = Initialize-PVENodesQemuMtunnelwebsocket  -Socket null `
- -Port null
+$NodesQemuMtunnelwebsocket = Initialize-PVENodesQemuMtunnelwebsocket  -Port null `
+ -Socket null
 ```
 
 - Convert the resource to JSON

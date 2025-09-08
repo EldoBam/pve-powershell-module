@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delete** | **Boolean** |  | [optional] 
-**TargetVmid** | **Int32** |  | [optional] 
 **TargetBridge** | **String** |  | [optional] 
+**Delete** | **Boolean** |  | [optional] 
 **TargetEndpoint** | **String** |  | [optional] 
 **Bwlimit** | **Int32** |  | [optional] 
 **TargetStorage** | **String** |  | [optional] 
+**TargetVmid** | **Int32** |  | [optional] 
 **Online** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuRemotemigrateRB = Initialize-PVEPOSTNodesQemuRemotemigrateRB  -Delete null `
- -TargetVmid null `
- -TargetBridge null `
+$POSTNodesQemuRemotemigrateRB = Initialize-PVEPOSTNodesQemuRemotemigrateRB  -TargetBridge null `
+ -Delete null `
  -TargetEndpoint null `
  -Bwlimit null `
  -TargetStorage null `
+ -TargetVmid null `
  -Online null
 ```
 

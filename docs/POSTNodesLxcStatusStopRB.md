@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OverruleShutdown** | **Boolean** |  | [optional] 
 **Skiplock** | **Boolean** |  | [optional] 
+**OverruleShutdown** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcStatusStopRB = Initialize-PVEPOSTNodesLxcStatusStopRB  -OverruleShutdown null `
- -Skiplock null
+$POSTNodesLxcStatusStopRB = Initialize-PVEPOSTNodesLxcStatusStopRB  -Skiplock null `
+ -OverruleShutdown null
 ```
 
 - Convert the resource to JSON

@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Snapshot** | **String** |  | [optional] 
 **Current** | **Boolean** |  | [optional] 
+**Snapshot** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuConfigRB = Initialize-PVEGETNodesQemuConfigRB  -Snapshot null `
- -Current null
+$GETNodesQemuConfigRB = Initialize-PVEGETNodesQemuConfigRB  -Current null `
+ -Snapshot null
 ```
 
 - Convert the resource to JSON

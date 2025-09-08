@@ -3,43 +3,59 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delete** | **String** |  | [optional] 
-**VerifyCertificate** | **Boolean** |  | [optional] 
-**Bucket** | **String** |  | [optional] 
-**Organization** | **String** |  | [optional] 
-**ApiPathPrefix** | **String** |  | [optional] 
-**Timeout** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Token** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**Mtu** | **Int32** |  | [optional] 
+**OtelMaxBodySize** | **Int32** |  | [optional] 
 **Influxdbproto** | **String** |  | [optional] 
+**Path** | **String** |  | [optional] 
+**Token** | **String** |  | [optional] 
+**ApiPathPrefix** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Mtu** | **Int32** |  | [optional] 
+**Bucket** | **String** |  | [optional] 
+**OtelVerifySsl** | **Boolean** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
 **Server** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
 **MaxBodySize** | **Int32** |  | [optional] 
-**Path** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**OtelResourceAttributes** | **String** |  | [optional] 
+**OtelHeaders** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**OtelTimeout** | **Int32** |  | [optional] 
+**VerifyCertificate** | **Boolean** |  | [optional] 
+**OtelCompression** | **String** |  | [optional] 
+**Organization** | **String** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
+**OtelProtocol** | **String** |  | [optional] 
+**OtelPath** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterMetricsServerRB = Initialize-PVEPUTClusterMetricsServerRB  -Delete null `
- -VerifyCertificate null `
- -Bucket null `
- -Organization null `
- -ApiPathPrefix null `
- -Timeout null `
- -Digest null `
- -Token null `
- -Port null `
- -Mtu null `
+$PUTClusterMetricsServerRB = Initialize-PVEPUTClusterMetricsServerRB  -OtelMaxBodySize null `
  -Influxdbproto null `
+ -Path null `
+ -Token null `
+ -ApiPathPrefix null `
+ -Port null `
+ -Proto null `
+ -Mtu null `
+ -Bucket null `
+ -OtelVerifySsl null `
  -Disable null `
  -Server null `
- -Proto null `
  -MaxBodySize null `
- -Path null
+ -Delete null `
+ -OtelResourceAttributes null `
+ -OtelHeaders null `
+ -Digest null `
+ -OtelTimeout null `
+ -VerifyCertificate null `
+ -OtelCompression null `
+ -Organization null `
+ -Timeout null `
+ -OtelProtocol null `
+ -OtelPath null
 ```
 
 - Convert the resource to JSON

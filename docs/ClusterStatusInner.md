@@ -3,33 +3,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | **Int32** |  | [optional] 
+**Ip** | **String** |  | [optional] 
+**Level** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Quorate** | **Boolean** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Nodes** | **Int32** |  | [optional] 
+**VarLocal** | **Boolean** |  | [optional] 
 **Nodeid** | **Int32** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**Nodes** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Level** | **String** |  | [optional] 
-**VarLocal** | **Boolean** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Quorate** | **Boolean** |  | [optional] 
+**Version** | **Int32** |  | [optional] 
 **Online** | **Boolean** |  | [optional] 
-**Ip** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterStatusInner = Initialize-PVEClusterStatusInner  -Version null `
+$ClusterStatusInner = Initialize-PVEClusterStatusInner  -Ip null `
+ -Level null `
+ -Type null `
+ -Quorate null `
+ -Id null `
+ -Nodes null `
+ -VarLocal null `
  -Nodeid null `
  -Name null `
- -Nodes null `
- -Type null `
- -Level null `
- -VarLocal null `
- -Id null `
- -Quorate null `
- -Online null `
- -Ip null
+ -Version null `
+ -Online null
 ```
 
 - Convert the resource to JSON

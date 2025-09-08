@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Path** | **String** |  | [optional] 
 **Enabled** | **Boolean** |  | [optional] 
 **Index** | **Int32** |  | [optional] 
-**Path** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesAptRepositoriesRB = Initialize-PVEPOSTNodesAptRepositoriesRB  -Enabled null `
+$POSTNodesAptRepositoriesRB = Initialize-PVEPOSTNodesAptRepositoriesRB  -Path null `
+ -Enabled null `
  -Index null `
- -Path null `
  -Digest null
 ```
 

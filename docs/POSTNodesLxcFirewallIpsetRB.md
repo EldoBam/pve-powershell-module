@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cidr** | **String** |  | [optional] 
 **Nomatch** | **Boolean** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcFirewallIpsetRB = Initialize-PVEPOSTNodesLxcFirewallIpsetRB  -Cidr null `
- -Nomatch null `
+$POSTNodesLxcFirewallIpsetRB = Initialize-PVEPOSTNodesLxcFirewallIpsetRB  -Nomatch null `
+ -Cidr null `
  -Comment null
 ```
 

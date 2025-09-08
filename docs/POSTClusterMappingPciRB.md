@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | **String** |  | [optional] 
 **Mdev** | **Boolean** |  | [optional] 
 **LiveMigrationCapable** | **Boolean** |  | [optional] 
-**Id** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
 **Map** | **String[]** |  | [optional] 
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$POSTClusterMappingPciRB = Initialize-PVEPOSTClusterMappingPciRB  -Mdev null `
+$POSTClusterMappingPciRB = Initialize-PVEPOSTClusterMappingPciRB  -Id null `
+ -Mdev null `
  -LiveMigrationCapable null `
- -Id null `
  -Description null `
  -Map null
 ```

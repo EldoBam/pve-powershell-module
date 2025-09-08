@@ -3,41 +3,41 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enable** | **Int32** |  | [optional] 
-**Dport** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **IcmpType** | **String** |  | [optional] 
-**Sport** | **String** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
-**Ipversion** | **Int32** |  | [optional] 
 **Dest** | **String** |  | [optional] 
-**Log** | **String** |  | [optional] 
-**Macro** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
 **Proto** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**Ipversion** | **Int32** |  | [optional] 
+**Sport** | **String** |  | [optional] 
+**Macro** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
+**Source** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcFirewallRules = Initialize-PVENodesLxcFirewallRules  -Enable null `
- -Dport null `
- -Comment null `
- -IcmpType null `
- -Sport null `
- -Pos null `
- -Ipversion null `
+$NodesLxcFirewallRules = Initialize-PVENodesLxcFirewallRules  -IcmpType null `
  -Dest null `
- -Log null `
- -Macro null `
- -Source null `
- -Action null `
  -Proto null `
- -Iface null `
- -Type null
+ -Action null `
+ -Ipversion null `
+ -Sport null `
+ -Macro null `
+ -Comment null `
+ -Pos null `
+ -Type null `
+ -Log null `
+ -Dport null `
+ -Enable null `
+ -Source null `
+ -Iface null
 ```
 
 - Convert the resource to JSON

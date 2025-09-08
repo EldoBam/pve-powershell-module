@@ -5,9 +5,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Server** | **String** |  | [optional] 
 **Password** | **String** |  | [optional] 
-**Username** | **String** |  | [optional] 
 **Fingerprint** | **String** |  | [optional] 
 **Port** | **Int32** |  | [optional] 
+**Username** | **String** |  | [optional] 
 
 ## Examples
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 ```powershell
 $GETNodesScanPbsRB = Initialize-PVEGETNodesScanPbsRB  -Server null `
  -Password null `
- -Username null `
  -Fingerprint null `
- -Port null
+ -Port null `
+ -Username null
 ```
 
 - Convert the resource to JSON

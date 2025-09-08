@@ -3,45 +3,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pool** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Tmpdir** | **String** |  | [optional] 
-**Dow** | **String** |  | [optional] 
-**NotificationPolicy** | **String** |  | [optional] 
-**Schedule** | **String** |  | [optional] 
-**Mode** | **String** |  | [optional] 
-**Pigz** | **Int32** |  | [optional] 
-**Quiet** | **Boolean** |  | [optional] 
-**Storage** | **String** |  | [optional] 
-**Vmid** | **String** |  | [optional] 
-**Mailto** | **String** |  | [optional] 
-**Bwlimit** | **Int32** |  | [optional] 
-**Zstd** | **Int32** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**NotificationMode** | **String** |  | [optional] 
-**Fleecing** | **String** |  | [optional] 
-**RepeatMissed** | **Boolean** |  | [optional] 
-**PbsChangeDetectionMode** | **String** |  | [optional] 
-**Lockwait** | **Int32** |  | [optional] 
 **Maxfiles** | **Int32** |  | [optional] 
-**Enabled** | **Boolean** |  | [optional] 
-**Stop** | **Boolean** |  | [optional] 
-**ExcludePath** | **String[]** |  | [optional] 
+**NotificationMode** | **String** |  | [optional] 
+**Mailnotification** | **String** |  | [optional] 
+**Schedule** | **String** |  | [optional] 
+**Tmpdir** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**Mode** | **String** |  | [optional] 
 **Performance** | **String** |  | [optional] 
-**Protected** | **Boolean** |  | [optional] 
-**Dumpdir** | **String** |  | [optional] 
-**NotesTemplate** | **String** |  | [optional] 
-**Stdexcludes** | **Boolean** |  | [optional] 
-**PruneBackups** | **String** |  | [optional] 
-**NotificationTarget** | **String** |  | [optional] 
 **Compress** | **String** |  | [optional] 
+**PbsChangeDetectionMode** | **String** |  | [optional] 
+**Protected** | **Boolean** |  | [optional] 
+**Vmid** | **String** |  | [optional] 
+**NotesTemplate** | **String** |  | [optional] 
+**Dow** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**RepeatMissed** | **Boolean** |  | [optional] 
 **All** | **Boolean** |  | [optional] 
 **Exclude** | **String** |  | [optional] 
-**Remove** | **Boolean** |  | [optional] 
-**Mailnotification** | **String** |  | [optional] 
-**Stopwait** | **Int32** |  | [optional] 
+**Bwlimit** | **Int32** |  | [optional] 
+**Stdexcludes** | **Boolean** |  | [optional] 
+**Quiet** | **Boolean** |  | [optional] 
+**Fleecing** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Pool** | **String** |  | [optional] 
+**Enabled** | **Boolean** |  | [optional] 
+**Lockwait** | **Int32** |  | [optional] 
+**Stop** | **Boolean** |  | [optional] 
+**Zstd** | **Int32** |  | [optional] 
+**ExcludePath** | **String[]** |  | [optional] 
+**Dumpdir** | **String** |  | [optional] 
+**PruneBackups** | **String** |  | [optional] 
 **Script** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
+**Stopwait** | **Int32** |  | [optional] 
+**Mailto** | **String** |  | [optional] 
+**Pigz** | **Int32** |  | [optional] 
+**Remove** | **Boolean** |  | [optional] 
 **Ionice** | **Int32** |  | [optional] 
 **Starttime** | **String** |  | [optional] 
 
@@ -49,45 +47,43 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$PUTClusterBackupRB = Initialize-PVEPUTClusterBackupRB  -Pool null `
- -Comment null `
- -Tmpdir null `
- -Dow null `
- -NotificationPolicy null `
- -Schedule null `
- -Mode null `
- -Pigz null `
- -Quiet null `
- -Storage null `
- -Vmid null `
- -Mailto null `
- -Bwlimit null `
- -Zstd null `
- -Delete null `
- -NotificationMode null `
- -Fleecing null `
- -RepeatMissed null `
- -PbsChangeDetectionMode null `
- -Lockwait null `
+$PUTClusterBackupRB = Initialize-PVEPUTClusterBackupRB  -Delete null `
  -Maxfiles null `
- -Enabled null `
- -Stop null `
- -ExcludePath null `
+ -NotificationMode null `
+ -Mailnotification null `
+ -Schedule null `
+ -Tmpdir null `
+ -Storage null `
+ -Mode null `
  -Performance null `
- -Protected null `
- -Dumpdir null `
- -NotesTemplate null `
- -Stdexcludes null `
- -PruneBackups null `
- -NotificationTarget null `
  -Compress null `
+ -PbsChangeDetectionMode null `
+ -Protected null `
+ -Vmid null `
+ -NotesTemplate null `
+ -Dow null `
+ -Node null `
+ -RepeatMissed null `
  -All null `
  -Exclude null `
- -Remove null `
- -Mailnotification null `
- -Stopwait null `
+ -Bwlimit null `
+ -Stdexcludes null `
+ -Quiet null `
+ -Fleecing null `
+ -Comment null `
+ -Pool null `
+ -Enabled null `
+ -Lockwait null `
+ -Stop null `
+ -Zstd null `
+ -ExcludePath null `
+ -Dumpdir null `
+ -PruneBackups null `
  -Script null `
- -Node null `
+ -Stopwait null `
+ -Mailto null `
+ -Pigz null `
+ -Remove null `
  -Ionice null `
  -Starttime null
 ```

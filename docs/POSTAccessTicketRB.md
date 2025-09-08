@@ -4,9 +4,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Otp** | **String** |  | [optional] 
-**Password** | **String** |  | [optional] 
-**Username** | **String** |  | [optional] 
 **Privs** | **String** |  | [optional] 
+**Username** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
 **TfaChallenge** | **String** |  | [optional] 
 **Realm** | **String** |  | [optional] 
 **NewFormat** | **Boolean** |  | [optional] 
@@ -17,9 +17,9 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $POSTAccessTicketRB = Initialize-PVEPOSTAccessTicketRB  -Otp null `
- -Password null `
- -Username null `
  -Privs null `
+ -Username null `
+ -Password null `
  -TfaChallenge null `
  -Realm null `
  -NewFormat null `

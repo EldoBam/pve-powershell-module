@@ -3,6 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Available** | **Int32** | The available memory in bytes. | [optional] 
 **Free** | **Int32** | The free memory in bytes. | [optional] 
 **Total** | **Int32** | The total memory in bytes. | [optional] 
 **Used** | **Int32** | The used memory in bytes. | [optional] 
@@ -11,7 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$NodesStatusMemory = Initialize-PVENodesStatusMemory  -Free null `
+$NodesStatusMemory = Initialize-PVENodesStatusMemory  -Available null `
+ -Free null `
  -Total null `
  -Used null
 ```

@@ -3,22 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Restricted** | **Boolean** |  | [optional] 
-**Group** | **String** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Nofailback** | **Boolean** |  | [optional] 
+**Group** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Restricted** | **Boolean** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterHaGroupsRB = Initialize-PVEPOSTClusterHaGroupsRB  -Restricted null `
+$POSTClusterHaGroupsRB = Initialize-PVEPOSTClusterHaGroupsRB  -Nofailback null `
  -Group null `
- -Nodes null `
  -Type null `
- -Nofailback null `
+ -Restricted null `
+ -Nodes null `
  -Comment null
 ```
 

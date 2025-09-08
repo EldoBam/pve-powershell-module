@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ValidationDelay** | **Int32** |  | [optional] 
-**VarData** | **String** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
-**Api** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**ValidationDelay** | **Int32** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
+**VarData** | **String** |  | [optional] 
+**Api** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterAcmePluginsRB = Initialize-PVEPOSTClusterAcmePluginsRB  -ValidationDelay null `
- -VarData null `
- -Nodes null `
- -Api null `
+$POSTClusterAcmePluginsRB = Initialize-PVEPOSTClusterAcmePluginsRB  -Disable null `
  -Type null `
+ -ValidationDelay null `
  -Id null `
- -Disable null
+ -Nodes null `
+ -VarData null `
+ -Api null
 ```
 
 - Convert the resource to JSON

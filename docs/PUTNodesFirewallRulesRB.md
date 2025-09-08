@@ -3,43 +3,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delete** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**Macro** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Moveto** | **Int32** |  | [optional] 
-**Sport** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
-**Log** | **String** |  | [optional] 
 **IcmpType** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
 **Action** | **String** |  | [optional] 
+**Sport** | **String** |  | [optional] 
 **Proto** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
-**Dport** | **String** |  | [optional] 
+**Macro** | **String** |  | [optional] 
+**Moveto** | **Int32** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesFirewallRulesRB = Initialize-PVEPUTNodesFirewallRulesRB  -Delete null `
- -Enable null `
- -Macro null `
- -Comment null `
- -Moveto null `
- -Sport null `
- -Digest null `
+$PUTNodesFirewallRulesRB = Initialize-PVEPUTNodesFirewallRulesRB  -IcmpType null `
  -Dest null `
- -Log null `
- -IcmpType null `
- -Source null `
+ -Enable null `
  -Action null `
+ -Sport null `
  -Proto null `
- -Iface null `
+ -Macro null `
+ -Moveto null `
+ -Comment null `
+ -Delete null `
+ -Type null `
+ -Digest null `
  -Dport null `
- -Type null
+ -Source null `
+ -Log null `
+ -Iface null
 ```
 
 - Convert the resource to JSON

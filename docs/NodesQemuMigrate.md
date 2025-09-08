@@ -3,25 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**HasDbusVmstate** | **Boolean** |  | [optional] 
 **Running** | **Boolean** |  | [optional] 
+**MappedResources** | **String[]** |  | [optional] 
+**LocalResources** | **String[]** |  | [optional] 
+**LocalDisks** | [**NodesQemuMigrateLocalDisksInner[]**](NodesQemuMigrateLocalDisksInner.md) |  | [optional] 
 **MappedResourceInfo** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**DependentHaResources** | **String[]** |  | [optional] 
 **AllowedNodes** | **String[]** |  | [optional] 
 **NotAllowedNodes** | [**NodesQemuMigrateNotAllowedNodes**](NodesQemuMigrateNotAllowedNodes.md) |  | [optional] 
-**MappedResources** | **String[]** |  | [optional] 
-**LocalDisks** | [**NodesQemuMigrateLocalDisksInner[]**](NodesQemuMigrateLocalDisksInner.md) |  | [optional] 
-**LocalResources** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuMigrate = Initialize-PVENodesQemuMigrate  -Running null `
- -MappedResourceInfo null `
- -AllowedNodes null `
- -NotAllowedNodes null `
+$NodesQemuMigrate = Initialize-PVENodesQemuMigrate  -HasDbusVmstate null `
+ -Running null `
  -MappedResources null `
+ -LocalResources null `
  -LocalDisks null `
- -LocalResources null
+ -MappedResourceInfo null `
+ -DependentHaResources null `
+ -AllowedNodes null `
+ -NotAllowedNodes null
 ```
 
 - Convert the resource to JSON

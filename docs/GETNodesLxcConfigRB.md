@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Snapshot** | **String** |  | [optional] 
 **Current** | **Boolean** |  | [optional] 
+**Snapshot** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesLxcConfigRB = Initialize-PVEGETNodesLxcConfigRB  -Snapshot null `
- -Current null
+$GETNodesLxcConfigRB = Initialize-PVEGETNodesLxcConfigRB  -Current null `
+ -Snapshot null
 ```
 
 - Convert the resource to JSON

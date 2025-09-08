@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Enable** | **Int32** |  | [optional] 
+**PolicyForward** | **String** |  | [optional] 
 **PolicyOut** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**Ebtables** | **Boolean** |  | [optional] 
-**PolicyIn** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **LogRatelimit** | **String** |  | [optional] 
-**PolicyForward** | **String** |  | [optional] 
+**PolicyIn** | **String** |  | [optional] 
+**Ebtables** | **Boolean** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterFirewallOptionsRB = Initialize-PVEPUTClusterFirewallOptionsRB  -PolicyOut null `
+$PUTClusterFirewallOptionsRB = Initialize-PVEPUTClusterFirewallOptionsRB  -Enable null `
+ -PolicyForward null `
+ -PolicyOut null `
  -Delete null `
- -Enable null `
- -Ebtables null `
- -PolicyIn null `
- -Digest null `
  -LogRatelimit null `
- -PolicyForward null
+ -PolicyIn null `
+ -Ebtables null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Disable** | **Boolean** |  | [optional] 
 **Delete** | **String** |  | [optional] 
 **Schedule** | **String** |  | [optional] 
 **Rate** | **Decimal** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**RemoveJob** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Source** | **String** |  | [optional] 
+**RemoveJob** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterReplicationRB = Initialize-PVEPUTClusterReplicationRB  -Delete null `
+$PUTClusterReplicationRB = Initialize-PVEPUTClusterReplicationRB  -Disable null `
+ -Delete null `
  -Schedule null `
  -Rate null `
- -Disable null `
- -RemoveJob null `
- -Digest null `
  -Source null `
- -Comment null
+ -RemoveJob null `
+ -Comment null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

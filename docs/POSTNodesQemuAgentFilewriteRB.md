@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Encode** | **Boolean** |  | [optional] 
 **Content** | **String** |  | [optional] 
+**Encode** | **Boolean** |  | [optional] 
 **File** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuAgentFilewriteRB = Initialize-PVEPOSTNodesQemuAgentFilewriteRB  -Encode null `
- -Content null `
+$POSTNodesQemuAgentFilewriteRB = Initialize-PVEPOSTNodesQemuAgentFilewriteRB  -Content null `
+ -Encode null `
  -File null
 ```
 

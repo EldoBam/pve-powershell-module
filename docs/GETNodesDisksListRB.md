@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IncludePartitions** | **Boolean** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**IncludePartitions** | **Boolean** |  | [optional] 
 **Skipsmart** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesDisksListRB = Initialize-PVEGETNodesDisksListRB  -IncludePartitions null `
- -Type null `
+$GETNodesDisksListRB = Initialize-PVEGETNodesDisksListRB  -Type null `
+ -IncludePartitions null `
  -Skipsmart null
 ```
 

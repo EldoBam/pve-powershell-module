@@ -3,13 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BlockingHaResources** | [**ClusterHaResourcesMigrateBlockingResourcesInner[]**](ClusterHaResourcesMigrateBlockingResourcesInner.md) | HA resources, which are blocking the VM from being migrated to the node. | [optional] 
 **UnavailableStorages** | **String[]** | A list of not available storages. | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuMigrateNotAllowedNodes = Initialize-PVENodesQemuMigrateNotAllowedNodes  -UnavailableStorages null
+$NodesQemuMigrateNotAllowedNodes = Initialize-PVENodesQemuMigrateNotAllowedNodes  -BlockingHaResources null `
+ -UnavailableStorages null
 ```
 
 - Convert the resource to JSON

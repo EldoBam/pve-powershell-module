@@ -3,61 +3,65 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdvertiseSubnets** | **Boolean** |  | [optional] 
-**ExitnodesPrimary** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**VrfVxlan** | **Int32** |  | [optional] 
-**RtImport** | **String** |  | [optional] 
-**Bridge** | **String** |  | [optional] 
-**ExitnodesLocalRouting** | **Boolean** |  | [optional] 
-**VxlanPort** | **Int32** |  | [optional] 
-**DpId** | **Int32** |  | [optional] 
-**Tag** | **Int32** |  | [optional] 
 **Mtu** | **Int32** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
+**Tag** | **Int32** |  | [optional] 
+**VrfVxlan** | **Int32** |  | [optional] 
+**Controller** | **String** |  | [optional] 
+**VxlanPort** | **Int32** |  | [optional] 
+**RtImport** | **String** |  | [optional] 
+**Exitnodes** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Reversedns** | **String** |  | [optional] 
 **DisableArpNdSuppression** | **Boolean** |  | [optional] 
 **Dhcp** | **String** |  | [optional] 
-**Dns** | **String** |  | [optional] 
-**Ipam** | **String** |  | [optional] 
-**Dnszone** | **String** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
-**Exitnodes** | **String** |  | [optional] 
 **Mac** | **String** |  | [optional] 
-**Zone** | **String** |  | [optional] 
-**Controller** | **String** |  | [optional] 
+**LockToken** | **String** |  | [optional] 
+**AdvertiseSubnets** | **Boolean** |  | [optional] 
 **BridgeDisableMacLearning** | **Boolean** |  | [optional] 
+**Dnszone** | **String** |  | [optional] 
+**Zone** | **String** |  | [optional] 
+**Ipam** | **String** |  | [optional] 
+**Bridge** | **String** |  | [optional] 
+**Dns** | **String** |  | [optional] 
+**ExitnodesLocalRouting** | **Boolean** |  | [optional] 
 **Peers** | **String** |  | [optional] 
+**ExitnodesPrimary** | **String** |  | [optional] 
+**Fabric** | **String** |  | [optional] 
+**DpId** | **Int32** |  | [optional] 
 **VlanProtocol** | **String** |  | [optional] 
-**Reversedns** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnZonesRB = Initialize-PVEPOSTClusterSdnZonesRB  -AdvertiseSubnets null `
- -ExitnodesPrimary null `
- -Type null `
- -VrfVxlan null `
- -RtImport null `
- -Bridge null `
- -ExitnodesLocalRouting null `
- -VxlanPort null `
- -DpId null `
+$POSTClusterSdnZonesRB = Initialize-PVEPOSTClusterSdnZonesRB  -Mtu null `
+ -Nodes null `
  -Tag null `
- -Mtu null `
+ -VrfVxlan null `
+ -Controller null `
+ -VxlanPort null `
+ -RtImport null `
+ -Exitnodes null `
+ -Type null `
+ -Reversedns null `
  -DisableArpNdSuppression null `
  -Dhcp null `
- -Dns null `
- -Ipam null `
- -Dnszone null `
- -Nodes null `
- -Exitnodes null `
  -Mac null `
- -Zone null `
- -Controller null `
+ -LockToken null `
+ -AdvertiseSubnets null `
  -BridgeDisableMacLearning null `
+ -Dnszone null `
+ -Zone null `
+ -Ipam null `
+ -Bridge null `
+ -Dns null `
+ -ExitnodesLocalRouting null `
  -Peers null `
- -VlanProtocol null `
- -Reversedns null
+ -ExitnodesPrimary null `
+ -Fabric null `
+ -DpId null `
+ -VlanProtocol null
 ```
 
 - Convert the resource to JSON

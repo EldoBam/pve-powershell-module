@@ -3,22 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetadataSize** | **Int32** |  | [optional] 
-**LvSize** | **Int32** |  | [optional] 
-**Lv** | **String** |  | [optional] 
 **MetadataUsed** | **Int32** |  | [optional] 
 **Vg** | **String** |  | [optional] 
+**Lv** | **String** |  | [optional] 
+**MetadataSize** | **Int32** |  | [optional] 
+**LvSize** | **Int32** |  | [optional] 
 **Used** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesDisksLvmthinInner = Initialize-PVENodesDisksLvmthinInner  -MetadataSize null `
- -LvSize null `
- -Lv null `
- -MetadataUsed null `
+$NodesDisksLvmthinInner = Initialize-PVENodesDisksLvmthinInner  -MetadataUsed null `
  -Vg null `
+ -Lv null `
+ -MetadataSize null `
+ -LvSize null `
  -Used null
 ```
 

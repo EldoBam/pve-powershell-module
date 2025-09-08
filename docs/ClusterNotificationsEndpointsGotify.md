@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Disable** | **Boolean** |  | [optional] 
 **Server** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 
 ## Examples
@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 ```powershell
 $ClusterNotificationsEndpointsGotify = Initialize-PVEClusterNotificationsEndpointsGotify  -Disable null `
  -Server null `
- -Name null `
  -Comment null `
+ -Name null `
  -Digest null
 ```
 

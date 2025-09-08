@@ -4,18 +4,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Delete** | **Int32** |  | [optional] 
-**Key** | **String** |  | [optional] 
 **Value** | **String** |  | [optional] 
 **Pending** | **String** |  | [optional] 
+**Key** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $NodesLxcPendingInner = Initialize-PVENodesLxcPendingInner  -Delete null `
- -Key null `
  -Value null `
- -Pending null
+ -Pending null `
+ -Key null
 ```
 
 - Convert the resource to JSON

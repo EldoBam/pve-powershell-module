@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Username** | **String** |  | [optional] 
 **Password** | **String** |  | [optional] 
 **Crypted** | **Boolean** |  | [optional] 
+**Username** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuAgentSetuserpasswordRB = Initialize-PVEPOSTNodesQemuAgentSetuserpasswordRB  -Username null `
- -Password null `
- -Crypted null
+$POSTNodesQemuAgentSetuserpasswordRB = Initialize-PVEPOSTNodesQemuAgentSetuserpasswordRB  -Password null `
+ -Crypted null `
+ -Username null
 ```
 
 - Convert the resource to JSON

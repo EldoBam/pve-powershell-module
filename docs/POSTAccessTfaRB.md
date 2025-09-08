@@ -5,10 +5,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Challenge** | **String** |  | [optional] 
 **Password** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**Totp** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 **Value** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Totp** | **String** |  | [optional] 
 
 ## Examples
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 ```powershell
 $POSTAccessTfaRB = Initialize-PVEPOSTAccessTfaRB  -Challenge null `
  -Password null `
- -Description null `
- -Totp null `
  -Type null `
- -Value null
+ -Value null `
+ -Description null `
+ -Totp null
 ```
 
 - Convert the resource to JSON

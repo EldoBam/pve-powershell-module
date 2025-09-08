@@ -7,9 +7,10 @@ Name | Type | Description | Notes
 **Group** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 **MaxRestart** | **Int32** |  | [optional] 
-**Sid** | **String** |  | [optional] 
-**State** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Sid** | **String** |  | [optional] 
+**Failback** | **Boolean** |  | [optional] 
+**State** | **String** |  | [optional] 
 
 ## Examples
 
@@ -19,9 +20,10 @@ $POSTClusterHaResourcesRB = Initialize-PVEPOSTClusterHaResourcesRB  -MaxRelocate
  -Group null `
  -Type null `
  -MaxRestart null `
+ -Comment null `
  -Sid null `
- -State null `
- -Comment null
+ -Failback null `
+ -State null
 ```
 
 - Convert the resource to JSON

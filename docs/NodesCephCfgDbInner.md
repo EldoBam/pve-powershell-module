@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
-**Level** | **String** |  | [optional] 
-**Section** | **String** |  | [optional] 
-**Mask** | **String** |  | [optional] 
-**Value** | **String** |  | [optional] 
 **CanUpdateAtRuntime** | **Boolean** |  | [optional] 
+**Level** | **String** |  | [optional] 
+**Mask** | **String** |  | [optional] 
+**Section** | **String** |  | [optional] 
+**Value** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephCfgDbInner = Initialize-PVENodesCephCfgDbInner  -Name null `
+$NodesCephCfgDbInner = Initialize-PVENodesCephCfgDbInner  -CanUpdateAtRuntime null `
  -Level null `
- -Section null `
  -Mask null `
+ -Section null `
  -Value null `
- -CanUpdateAtRuntime null
+ -Name null
 ```
 
 - Convert the resource to JSON

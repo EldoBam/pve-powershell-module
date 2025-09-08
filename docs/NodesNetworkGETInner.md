@@ -3,107 +3,107 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BondPrimary** | **String** |  | [optional] 
+**VxlanSvcnodeip** | **String** |  | [optional] 
+**Mtu** | **Int32** |  | [optional] 
+**Comments6** | **String** |  | [optional] 
+**OvsBridge** | **String** |  | [optional] 
+**Method** | **String** |  | [optional] 
+**OvsPorts** | **String** |  | [optional] 
+**OvsOptions** | **String** |  | [optional] 
+**VlanId** | **Int32** |  | [optional] 
 **BridgeUnicastFlood** | **Boolean** |  | [optional] 
+**VxlanLocalTunnelip** | **String** |  | [optional] 
+**BridgeVids** | **String** |  | [optional] 
+**Gateway** | **String** |  | [optional] 
+**BondXmitHashPolicy** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**BridgeArpNdSuppress** | **Boolean** |  | [optional] 
+**Netmask** | **String** |  | [optional] 
+**Gateway6** | **String** |  | [optional] 
+**OvsBonds** | **String** |  | [optional] 
 **VxlanId** | **Int32** |  | [optional] 
 **Families** | **String[]** |  | [optional] 
-**LinkType** | **String** |  | [optional] 
-**Gateway** | **String** |  | [optional] 
-**UplinkId** | **String** |  | [optional] 
-**Cidr6** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**BridgePorts** | **String** |  | [optional] 
-**Address** | **String** |  | [optional] 
 **Options** | **String[]** |  | [optional] 
-**VlanId** | **Int32** |  | [optional] 
-**Active** | **Boolean** |  | [optional] 
-**BridgeLearning** | **Boolean** |  | [optional] 
-**BondXmitHashPolicy** | **String** |  | [optional] 
-**BondPrimary** | **String** |  | [optional] 
-**Priority** | **Int32** |  | [optional] 
-**Comments** | **String** |  | [optional] 
-**Options6** | **String[]** |  | [optional] 
-**Address6** | **String** |  | [optional] 
-**Comments6** | **String** |  | [optional] 
-**VxlanSvcnodeip** | **String** |  | [optional] 
-**Autostart** | **Boolean** |  | [optional] 
-**VxlanLocalTunnelip** | **String** |  | [optional] 
-**Gateway6** | **String** |  | [optional] 
-**VlanProtocol** | **String** |  | [optional] 
-**Method6** | **String** |  | [optional] 
-**BondMode** | **String** |  | [optional] 
-**BridgeArpNdSuppress** | **Boolean** |  | [optional] 
-**VlanRawDevice** | **String** |  | [optional] 
-**Netmask** | **String** |  | [optional] 
-**Netmask6** | **Int32** |  | [optional] 
-**BridgeMulticastFlood** | **Boolean** |  | [optional] 
-**BridgeVids** | **String** |  | [optional] 
-**Exists** | **Boolean** |  | [optional] 
-**Method** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
-**OvsBridge** | **String** |  | [optional] 
-**BridgeVlanAware** | **Boolean** |  | [optional] 
-**Cidr** | **String** |  | [optional] 
-**OvsBonds** | **String** |  | [optional] 
-**OvsOptions** | **String** |  | [optional] 
+**LinkType** | **String** |  | [optional] 
 **BridgeAccess** | **Int32** |  | [optional] 
 **Slaves** | **String** |  | [optional] 
-**OvsPorts** | **String** |  | [optional] 
-**OvsTag** | **Int32** |  | [optional] 
-**Mtu** | **Int32** |  | [optional] 
+**Options6** | **String[]** |  | [optional] 
+**BondMode** | **String** |  | [optional] 
+**BridgePorts** | **String** |  | [optional] 
+**Address6** | **String** |  | [optional] 
+**BridgeLearning** | **Boolean** |  | [optional] 
+**VlanRawDevice** | **String** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
 **VxlanPhysdev** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
+**BridgeMulticastFlood** | **Boolean** |  | [optional] 
+**Netmask6** | **Int32** |  | [optional] 
+**Method6** | **String** |  | [optional] 
+**OvsTag** | **Int32** |  | [optional] 
+**BridgeVlanAware** | **Boolean** |  | [optional] 
+**Active** | **Boolean** |  | [optional] 
+**Address** | **String** |  | [optional] 
+**Exists** | **Boolean** |  | [optional] 
+**Autostart** | **Boolean** |  | [optional] 
+**Comments** | **String** |  | [optional] 
+**Cidr6** | **String** |  | [optional] 
+**Priority** | **Int32** |  | [optional] 
+**UplinkId** | **String** |  | [optional] 
+**VlanProtocol** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesNetworkGETInner = Initialize-PVENodesNetworkGETInner  -BridgeUnicastFlood null `
+$NodesNetworkGETInner = Initialize-PVENodesNetworkGETInner  -BondPrimary null `
+ -VxlanSvcnodeip null `
+ -Mtu null `
+ -Comments6 null `
+ -OvsBridge null `
+ -Method null `
+ -OvsPorts null `
+ -OvsOptions null `
+ -VlanId null `
+ -BridgeUnicastFlood null `
+ -VxlanLocalTunnelip null `
+ -BridgeVids null `
+ -Gateway null `
+ -BondXmitHashPolicy null `
+ -Type null `
+ -BridgeArpNdSuppress null `
+ -Netmask null `
+ -Gateway6 null `
+ -OvsBonds null `
  -VxlanId null `
  -Families null `
- -LinkType null `
- -Gateway null `
- -UplinkId null `
- -Cidr6 null `
- -Type null `
- -BridgePorts null `
- -Address null `
  -Options null `
- -VlanId null `
- -Active null `
- -BridgeLearning null `
- -BondXmitHashPolicy null `
- -BondPrimary null `
- -Priority null `
- -Comments null `
- -Options6 null `
- -Address6 null `
- -Comments6 null `
- -VxlanSvcnodeip null `
- -Autostart null `
- -VxlanLocalTunnelip null `
- -Gateway6 null `
- -VlanProtocol null `
- -Method6 null `
- -BondMode null `
- -BridgeArpNdSuppress null `
- -VlanRawDevice null `
- -Netmask null `
- -Netmask6 null `
- -BridgeMulticastFlood null `
- -BridgeVids null `
- -Exists null `
- -Method null `
- -Iface null `
- -OvsBridge null `
- -BridgeVlanAware null `
- -Cidr null `
- -OvsBonds null `
- -OvsOptions null `
+ -LinkType null `
  -BridgeAccess null `
  -Slaves null `
- -OvsPorts null `
+ -Options6 null `
+ -BondMode null `
+ -BridgePorts null `
+ -Address6 null `
+ -BridgeLearning null `
+ -VlanRawDevice null `
+ -Cidr null `
+ -VxlanPhysdev null `
+ -Iface null `
+ -BridgeMulticastFlood null `
+ -Netmask6 null `
+ -Method6 null `
  -OvsTag null `
- -Mtu null `
- -VxlanPhysdev null
+ -BridgeVlanAware null `
+ -Active null `
+ -Address null `
+ -Exists null `
+ -Autostart null `
+ -Comments null `
+ -Cidr6 null `
+ -Priority null `
+ -UplinkId null `
+ -VlanProtocol null
 ```
 
 - Convert the resource to JSON

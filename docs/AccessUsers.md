@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Groups** | **String[]** |  | [optional] 
-**Enable** | **Boolean** |  | [optional] 
 **Firstname** | **String** |  | [optional] 
-**Expire** | **Int32** |  | [optional] 
-**Tokens** | [**AccessUsersTokens**](AccessUsersTokens.md) |  | [optional] 
+**Enable** | **Boolean** |  | [optional] 
 **Lastname** | **String** |  | [optional] 
+**Tokens** | [**AccessUsersTokenPOSTInfo**](AccessUsersTokenPOSTInfo.md) |  | [optional] 
 **Email** | **String** |  | [optional] 
-**Keys** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Groups** | **String[]** |  | [optional] 
+**Keys** | **String** |  | [optional] 
+**Expire** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessUsers = Initialize-PVEAccessUsers  -Groups null `
+$AccessUsers = Initialize-PVEAccessUsers  -Firstname null `
  -Enable null `
- -Firstname null `
- -Expire null `
- -Tokens null `
  -Lastname null `
+ -Tokens null `
  -Email null `
+ -Comment null `
+ -Groups null `
  -Keys null `
- -Comment null
+ -Expire null
 ```
 
 - Convert the resource to JSON

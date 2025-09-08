@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Rename** | **String** |  | [optional] 
 **Cidr** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Rename** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterFirewallAliasesRB = Initialize-PVEPUTClusterFirewallAliasesRB  -Rename null `
- -Cidr null `
+$PUTClusterFirewallAliasesRB = Initialize-PVEPUTClusterFirewallAliasesRB  -Cidr null `
  -Comment null `
+ -Rename null `
  -Digest null
 ```
 
