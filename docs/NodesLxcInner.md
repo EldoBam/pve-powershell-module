@@ -3,57 +3,57 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Maxswap** | **Int32** |  | [optional] 
-**Maxmem** | **Int32** |  | [optional] 
-**Status** | **String** |  | [optional] 
-**Maxdisk** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
+**Pressureiosome** | **Decimal** |  | [optional] 
+**Netout** | **Int32** |  | [optional] 
 **Netin** | **Int32** |  | [optional] 
 **Pressurememoryfull** | **Decimal** |  | [optional] 
-**Diskread** | **Int32** |  | [optional] 
-**Disk** | **Int32** |  | [optional] 
-**Netout** | **Int32** |  | [optional] 
-**Pressurememorysome** | **Decimal** |  | [optional] 
-**Cpu** | **Decimal** |  | [optional] 
-**Pressurecpusome** | **Decimal** |  | [optional] 
-**Tags** | **String** |  | [optional] 
-**Cpus** | **Decimal** |  | [optional] 
-**Diskwrite** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Pressureiosome** | **Decimal** |  | [optional] 
 **Template** | **Boolean** |  | [optional] 
-**Pressureiofull** | **Decimal** |  | [optional] 
-**Mem** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
+**Disk** | **Int32** |  | [optional] 
+**Cpus** | **Decimal** |  | [optional] 
+**Maxmem** | **Int32** |  | [optional] 
+**Maxswap** | **Int32** |  | [optional] 
+**Tags** | **String** |  | [optional] 
 **Lock** | **String** |  | [optional] 
+**Diskwrite** | **Int32** |  | [optional] 
 **Uptime** | **Int32** |  | [optional] 
+**Cpu** | **Decimal** |  | [optional] 
+**Diskread** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Maxdisk** | **Int32** |  | [optional] 
+**Pressurecpusome** | **Decimal** |  | [optional] 
+**Pressureiofull** | **Decimal** |  | [optional] 
+**Pressurememorysome** | **Decimal** |  | [optional] 
+**Mem** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcInner = Initialize-PVENodesLxcInner  -Maxswap null `
- -Maxmem null `
- -Status null `
- -Maxdisk null `
- -Vmid null `
+$NodesLxcInner = Initialize-PVENodesLxcInner  -Pressureiosome null `
+ -Netout null `
  -Netin null `
  -Pressurememoryfull null `
- -Diskread null `
- -Disk null `
- -Netout null `
- -Pressurememorysome null `
- -Cpu null `
- -Pressurecpusome null `
- -Tags null `
- -Cpus null `
- -Diskwrite null `
- -Name null `
- -Pressureiosome null `
  -Template null `
- -Pressureiofull null `
- -Mem null `
+ -Status null `
+ -Disk null `
+ -Cpus null `
+ -Maxmem null `
+ -Maxswap null `
+ -Tags null `
  -Lock null `
- -Uptime null
+ -Diskwrite null `
+ -Uptime null `
+ -Cpu null `
+ -Diskread null `
+ -Name null `
+ -Vmid null `
+ -Maxdisk null `
+ -Pressurecpusome null `
+ -Pressureiofull null `
+ -Pressurememorysome null `
+ -Mem null
 ```
 
 - Convert the resource to JSON

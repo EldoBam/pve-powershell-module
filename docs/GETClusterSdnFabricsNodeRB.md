@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pending** | **Boolean** |  | [optional] 
-**FabricId** | **String** |  | [optional] 
 **Running** | **Boolean** |  | [optional] 
+**FabricId** | **String** |  | [optional] 
+**Pending** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETClusterSdnFabricsNodeRB = Initialize-PVEGETClusterSdnFabricsNodeRB  -Pending null `
+$GETClusterSdnFabricsNodeRB = Initialize-PVEGETClusterSdnFabricsNodeRB  -Running null `
  -FabricId null `
- -Running null
+ -Pending null
 ```
 
 - Convert the resource to JSON

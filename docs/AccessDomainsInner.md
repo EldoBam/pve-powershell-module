@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Tfa** | **String** |  | [optional] 
 **Realm** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Tfa** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessDomainsInner = Initialize-PVEAccessDomainsInner  -Type null `
- -Comment null `
+$AccessDomainsInner = Initialize-PVEAccessDomainsInner  -Realm null `
+ -Type null `
  -Tfa null `
- -Realm null
+ -Comment null
 ```
 
 - Convert the resource to JSON

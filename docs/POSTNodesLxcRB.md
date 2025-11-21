@@ -3,95 +3,101 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SshPublicKeys** | **String** |  | [optional] 
-**Features** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
-**Ostemplate** | **String** |  | [optional] 
-**DevN** | **String** |  | [optional] 
-**Template** | **Boolean** |  | [optional] 
 **Cmode** | **String** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Timezone** | **String** |  | [optional] 
-**Arch** | **String** |  | [optional] 
-**Memory** | **Int32** |  | [optional] 
-**Debug** | **Boolean** |  | [optional] 
-**MpN** | **String** |  | [optional] 
-**Bwlimit** | **Decimal** |  | [optional] 
-**Protection** | **Boolean** |  | [optional] 
-**IgnoreUnpackErrors** | **Boolean** |  | [optional] 
-**Hookscript** | **String** |  | [optional] 
-**Onboot** | **Boolean** |  | [optional] 
-**Force** | **Boolean** |  | [optional] 
-**Cpuunits** | **Int32** |  | [optional] 
-**Cpulimit** | **Decimal** |  | [optional] 
-**Swap** | **Int32** |  | [optional] 
-**Unique** | **Boolean** |  | [optional] 
 **Lock** | **String** |  | [optional] 
-**Nameserver** | **String** |  | [optional] 
+**IgnoreUnpackErrors** | **Boolean** |  | [optional] 
 **Pool** | **String** |  | [optional] 
+**Ostype** | **String** |  | [optional] 
 **Start** | **Boolean** |  | [optional] 
+**DevN** | **String** |  | [optional] 
+**Swap** | **Int32** |  | [optional] 
+**Timezone** | **String** |  | [optional] 
+**Unique** | **Boolean** |  | [optional] 
+**Env** | **String** |  | [optional] 
+**NetN** | **String** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Hookscript** | **String** |  | [optional] 
+**MpN** | **String** |  | [optional] 
+**Onboot** | **Boolean** |  | [optional] 
+**Protection** | **Boolean** |  | [optional] 
+**Tty** | **Int32** |  | [optional] 
+**Memory** | **Int32** |  | [optional] 
+**SshPublicKeys** | **String** |  | [optional] 
+**Cpuunits** | **Int32** |  | [optional] 
+**Nameserver** | **String** |  | [optional] 
+**Template** | **Boolean** |  | [optional] 
 **Startup** | **String** |  | [optional] 
 **Restore** | **Boolean** |  | [optional] 
-**Tty** | **Int32** |  | [optional] 
-**Console** | **Boolean** |  | [optional] 
-**Searchdomain** | **String** |  | [optional] 
-**NetN** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
-**Tags** | **String** |  | [optional] 
-**Ostype** | **String** |  | [optional] 
-**Cores** | **Int32** |  | [optional] 
-**UnusedN** | **String** |  | [optional] 
-**Password** | **String** |  | [optional] 
+**Bwlimit** | **Decimal** |  | [optional] 
+**Features** | **String** |  | [optional] 
+**Searchdomain** | **String** |  | [optional] 
 **Rootfs** | **String** |  | [optional] 
-**Hostname** | **String** |  | [optional] 
 **Unprivileged** | **Boolean** |  | [optional] 
+**Arch** | **String** |  | [optional] 
+**Tags** | **String** |  | [optional] 
+**Cpulimit** | **Decimal** |  | [optional] 
+**Password** | **String** |  | [optional] 
+**Force** | **Boolean** |  | [optional] 
+**UnusedN** | **String** |  | [optional] 
+**Hostname** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**Console** | **Boolean** |  | [optional] 
+**Entrypoint** | **String** |  | [optional] 
+**Ostemplate** | **String** |  | [optional] 
+**Debug** | **Boolean** |  | [optional] 
+**Cores** | **Int32** |  | [optional] 
+**HaManaged** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcRB = Initialize-PVEPOSTNodesLxcRB  -SshPublicKeys null `
- -Features null `
- -Storage null `
- -Ostemplate null `
- -DevN null `
- -Template null `
- -Cmode null `
- -Vmid null `
- -Timezone null `
- -Arch null `
- -Memory null `
- -Debug null `
- -MpN null `
- -Bwlimit null `
- -Protection null `
- -IgnoreUnpackErrors null `
- -Hookscript null `
- -Onboot null `
- -Force null `
- -Cpuunits null `
- -Cpulimit null `
- -Swap null `
- -Unique null `
+$POSTNodesLxcRB = Initialize-PVEPOSTNodesLxcRB  -Cmode null `
  -Lock null `
- -Nameserver null `
+ -IgnoreUnpackErrors null `
  -Pool null `
+ -Ostype null `
  -Start null `
+ -DevN null `
+ -Swap null `
+ -Timezone null `
+ -Unique null `
+ -Env null `
+ -NetN null `
+ -Vmid null `
+ -Hookscript null `
+ -MpN null `
+ -Onboot null `
+ -Protection null `
+ -Tty null `
+ -Memory null `
+ -SshPublicKeys null `
+ -Cpuunits null `
+ -Nameserver null `
+ -Template null `
  -Startup null `
  -Restore null `
- -Tty null `
- -Console null `
- -Searchdomain null `
- -NetN null `
  -Description null `
- -Tags null `
- -Ostype null `
- -Cores null `
- -UnusedN null `
- -Password null `
+ -Bwlimit null `
+ -Features null `
+ -Searchdomain null `
  -Rootfs null `
+ -Unprivileged null `
+ -Arch null `
+ -Tags null `
+ -Cpulimit null `
+ -Password null `
+ -Force null `
+ -UnusedN null `
  -Hostname null `
- -Unprivileged null
+ -Storage null `
+ -Console null `
+ -Entrypoint null `
+ -Ostemplate null `
+ -Debug null `
+ -Cores null `
+ -HaManaged null
 ```
 
 - Convert the resource to JSON

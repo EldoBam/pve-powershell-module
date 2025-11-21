@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Clustername** | **String** |  | [optional] 
 **CSRFPreventionToken** | **String** |  | [optional] 
-**Ticket** | **String** |  | [optional] 
 **Username** | **String** |  | [optional] 
+**Ticket** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $AccessTicket = Initialize-PVEAccessTicket  -Clustername null `
  -CSRFPreventionToken null `
- -Ticket null `
- -Username null
+ -Username null `
+ -Ticket null
 ```
 
 - Convert the resource to JSON

@@ -3,43 +3,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Macro** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**Sport** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **IcmpType** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
 **Dest** | **String** |  | [optional] 
 **Enable** | **Int32** |  | [optional] 
-**Action** | **String** |  | [optional] 
-**Sport** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Macro** | **String** |  | [optional] 
-**Moveto** | **Int32** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Dport** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
 **Log** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
+**Dport** | **String** |  | [optional] 
+**Moveto** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnVnetsFirewallRulesRB = Initialize-PVEPUTClusterSdnVnetsFirewallRulesRB  -IcmpType null `
+$PUTClusterSdnVnetsFirewallRulesRB = Initialize-PVEPUTClusterSdnVnetsFirewallRulesRB  -Macro null `
+ -Action null `
+ -Iface null `
+ -Proto null `
+ -Sport null `
+ -Comment null `
+ -IcmpType null `
+ -Delete null `
+ -Digest null `
+ -Type null `
+ -Source null `
  -Dest null `
  -Enable null `
- -Action null `
- -Sport null `
- -Proto null `
- -Macro null `
- -Moveto null `
- -Comment null `
- -Delete null `
- -Type null `
- -Digest null `
- -Dport null `
- -Source null `
  -Log null `
- -Iface null
+ -Dport null `
+ -Moveto null
 ```
 
 - Convert the resource to JSON

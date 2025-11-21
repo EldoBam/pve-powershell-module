@@ -3,77 +3,81 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delete** | **String** |  | [optional] 
-**Features** | **String** |  | [optional] 
-**DevN** | **String** |  | [optional] 
-**Template** | **Boolean** |  | [optional] 
 **Cmode** | **String** |  | [optional] 
-**Timezone** | **String** |  | [optional] 
-**Arch** | **String** |  | [optional] 
-**Memory** | **Int32** |  | [optional] 
-**Debug** | **Boolean** |  | [optional] 
-**MpN** | **String** |  | [optional] 
-**Protection** | **Boolean** |  | [optional] 
-**Startup** | **String** |  | [optional] 
-**Hookscript** | **String** |  | [optional] 
-**Onboot** | **Boolean** |  | [optional] 
-**Revert** | **String** |  | [optional] 
-**Cpuunits** | **Int32** |  | [optional] 
-**Cpulimit** | **Decimal** |  | [optional] 
-**NetN** | **String** |  | [optional] 
-**Swap** | **Int32** |  | [optional] 
 **Lock** | **String** |  | [optional] 
-**Nameserver** | **String** |  | [optional] 
-**Tty** | **Int32** |  | [optional] 
-**Console** | **Boolean** |  | [optional] 
-**Ostype** | **String** |  | [optional] 
-**Hostname** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**Tags** | **String** |  | [optional] 
-**Searchdomain** | **String** |  | [optional] 
-**Cores** | **Int32** |  | [optional] 
-**UnusedN** | **String** |  | [optional] 
-**Rootfs** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**DevN** | **String** |  | [optional] 
+**Swap** | **Int32** |  | [optional] 
+**Timezone** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Env** | **String** |  | [optional] 
+**NetN** | **String** |  | [optional] 
+**Hookscript** | **String** |  | [optional] 
+**MpN** | **String** |  | [optional] 
+**Onboot** | **Boolean** |  | [optional] 
+**Protection** | **Boolean** |  | [optional] 
+**Memory** | **Int32** |  | [optional] 
+**Cpuunits** | **Int32** |  | [optional] 
+**Nameserver** | **String** |  | [optional] 
+**Template** | **Boolean** |  | [optional] 
+**Startup** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Ostype** | **String** |  | [optional] 
+**Searchdomain** | **String** |  | [optional] 
+**Rootfs** | **String** |  | [optional] 
 **Unprivileged** | **Boolean** |  | [optional] 
+**Arch** | **String** |  | [optional] 
+**Tty** | **Int32** |  | [optional] 
+**Cpulimit** | **Decimal** |  | [optional] 
+**Tags** | **String** |  | [optional] 
+**Hostname** | **String** |  | [optional] 
+**UnusedN** | **String** |  | [optional] 
+**Revert** | **String** |  | [optional] 
+**Console** | **Boolean** |  | [optional] 
+**Entrypoint** | **String** |  | [optional] 
+**Debug** | **Boolean** |  | [optional] 
+**Cores** | **Int32** |  | [optional] 
+**Features** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesLxcConfigRB = Initialize-PVEPUTNodesLxcConfigRB  -Delete null `
- -Features null `
- -DevN null `
- -Template null `
- -Cmode null `
- -Timezone null `
- -Arch null `
- -Memory null `
- -Debug null `
- -MpN null `
- -Protection null `
- -Startup null `
- -Hookscript null `
- -Onboot null `
- -Revert null `
- -Cpuunits null `
- -Cpulimit null `
- -NetN null `
- -Swap null `
+$PUTNodesLxcConfigRB = Initialize-PVEPUTNodesLxcConfigRB  -Cmode null `
  -Lock null `
- -Nameserver null `
- -Tty null `
- -Console null `
- -Ostype null `
- -Hostname null `
- -Description null `
- -Tags null `
- -Searchdomain null `
- -Cores null `
- -UnusedN null `
- -Rootfs null `
  -Digest null `
- -Unprivileged null
+ -DevN null `
+ -Swap null `
+ -Timezone null `
+ -Delete null `
+ -Env null `
+ -NetN null `
+ -Hookscript null `
+ -MpN null `
+ -Onboot null `
+ -Protection null `
+ -Memory null `
+ -Cpuunits null `
+ -Nameserver null `
+ -Template null `
+ -Startup null `
+ -Description null `
+ -Ostype null `
+ -Searchdomain null `
+ -Rootfs null `
+ -Unprivileged null `
+ -Arch null `
+ -Tty null `
+ -Cpulimit null `
+ -Tags null `
+ -Hostname null `
+ -UnusedN null `
+ -Revert null `
+ -Console null `
+ -Entrypoint null `
+ -Debug null `
+ -Cores null `
+ -Features null
 ```
 
 - Convert the resource to JSON

@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Users** | **String** |  | [optional] 
-**Groupid** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Groupid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $AccessGroupsGETInner = Initialize-PVEAccessGroupsGETInner  -Users null `
- -Groupid null `
- -Comment null
+ -Comment null `
+ -Groupid null
 ```
 
 - Convert the resource to JSON

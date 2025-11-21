@@ -4,20 +4,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Osd** | [**AnyType[]**](AnyType.md) |  | [optional] 
-**Mds** | [**ClusterCephMetadataMds**](ClusterCephMetadataMds.md) |  | [optional] 
-**Mgr** | [**ClusterCephMetadataMgr**](ClusterCephMetadataMgr.md) |  | [optional] 
 **Node** | [**ClusterCephMetadataNode**](ClusterCephMetadataNode.md) |  | [optional] 
+**Mgr** | [**ClusterCephMetadataMgr**](ClusterCephMetadataMgr.md) |  | [optional] 
 **Mon** | [**ClusterCephMetadataMon**](ClusterCephMetadataMon.md) |  | [optional] 
+**Mds** | [**ClusterCephMetadataMds**](ClusterCephMetadataMds.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $ClusterCephMetadata = Initialize-PVEClusterCephMetadata  -Osd null `
- -Mds null `
- -Mgr null `
  -Node null `
- -Mon null
+ -Mgr null `
+ -Mon null `
+ -Mds null
 ```
 
 - Convert the resource to JSON

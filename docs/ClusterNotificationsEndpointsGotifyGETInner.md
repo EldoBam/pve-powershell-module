@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Disable** | **Boolean** |  | [optional] 
 **Server** | **String** |  | [optional] 
 **Origin** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ClusterNotificationsEndpointsGotifyGETInner = Initialize-PVEClusterNotificationsEndpointsGotifyGETInner  -Disable null `
- -Server null `
+$ClusterNotificationsEndpointsGotifyGETInner = Initialize-PVEClusterNotificationsEndpointsGotifyGETInner  -Server null `
  -Origin null `
+ -Disable null `
  -Comment null `
  -Name null
 ```

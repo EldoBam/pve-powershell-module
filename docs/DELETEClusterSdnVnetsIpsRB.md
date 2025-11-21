@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mac** | **String** |  | [optional] 
-**Zone** | **String** |  | [optional] 
 **Ip** | **String** |  | [optional] 
+**Zone** | **String** |  | [optional] 
+**Mac** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEClusterSdnVnetsIpsRB = Initialize-PVEDELETEClusterSdnVnetsIpsRB  -Mac null `
+$DELETEClusterSdnVnetsIpsRB = Initialize-PVEDELETEClusterSdnVnetsIpsRB  -Ip null `
  -Zone null `
- -Ip null
+ -Mac null
 ```
 
 - Convert the resource to JSON

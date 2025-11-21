@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Resources** | **String** |  | [optional] 
-**Strict** | **Boolean** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
 **Affinity** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
+**Resources** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Strict** | **Boolean** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
 **Rule** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterHaRulesRB = Initialize-PVEPOSTClusterHaRulesRB  -Resources null `
- -Strict null `
- -Disable null `
- -Affinity null `
- -Type null `
- -Nodes null `
+$POSTClusterHaRulesRB = Initialize-PVEPOSTClusterHaRulesRB  -Affinity null `
+ -Resources null `
  -Comment null `
- -Rule null
+ -Type null `
+ -Strict null `
+ -Nodes null `
+ -Rule null `
+ -Disable null
 ```
 
 - Convert the resource to JSON

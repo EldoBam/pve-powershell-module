@@ -3,22 +3,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Format** | **String** |  | [optional] 
+**Path** | **String** |  | [optional] 
 **Notes** | **String** |  | [optional] 
 **Used** | **Int32** |  | [optional] 
 **Size** | **Int32** |  | [optional] 
-**Format** | **String** |  | [optional] 
-**Path** | **String** |  | [optional] 
 **Protected** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStorageContent = Initialize-PVENodesStorageContent  -Notes null `
+$NodesStorageContent = Initialize-PVENodesStorageContent  -Format null `
+ -Path null `
+ -Notes null `
  -Used null `
  -Size null `
- -Format null `
- -Path null `
  -Protected null
 ```
 

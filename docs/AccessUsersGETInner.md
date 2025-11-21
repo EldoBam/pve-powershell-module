@@ -3,37 +3,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TfaLockedUntil** | **Int32** |  | [optional] 
-**Tokens** | [**AccessUsersGETInnerTokensInner[]**](AccessUsersGETInnerTokensInner.md) |  | [optional] 
-**Lastname** | **String** |  | [optional] 
 **Firstname** | **String** |  | [optional] 
-**Expire** | **Int32** |  | [optional] 
-**Email** | **String** |  | [optional] 
-**Keys** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Enable** | **Boolean** |  | [optional] 
-**RealmType** | **String** |  | [optional] 
-**TotpLocked** | **Boolean** |  | [optional] 
 **Userid** | **String** |  | [optional] 
+**TotpLocked** | **Boolean** |  | [optional] 
+**RealmType** | **String** |  | [optional] 
+**TfaLockedUntil** | **Int32** |  | [optional] 
+**Lastname** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Tokens** | [**AccessUsersGETInnerTokensInner[]**](AccessUsersGETInnerTokensInner.md) |  | [optional] 
+**Email** | **String** |  | [optional] 
 **Groups** | **String** |  | [optional] 
+**Enable** | **Boolean** |  | [optional] 
+**Keys** | **String** |  | [optional] 
+**Expire** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessUsersGETInner = Initialize-PVEAccessUsersGETInner  -TfaLockedUntil null `
- -Tokens null `
- -Lastname null `
- -Firstname null `
- -Expire null `
- -Email null `
- -Keys null `
- -Comment null `
- -Enable null `
- -RealmType null `
- -TotpLocked null `
+$AccessUsersGETInner = Initialize-PVEAccessUsersGETInner  -Firstname null `
  -Userid null `
- -Groups null
+ -TotpLocked null `
+ -RealmType null `
+ -TfaLockedUntil null `
+ -Lastname null `
+ -Comment null `
+ -Tokens null `
+ -Email null `
+ -Groups null `
+ -Enable null `
+ -Keys null `
+ -Expire null
 ```
 
 - Convert the resource to JSON

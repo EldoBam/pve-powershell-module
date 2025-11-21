@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Disable** | **Boolean** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
 **Id** | **String** |  | [optional] 
 **Server** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterMetricsServerInner = Initialize-PVEClusterMetricsServerInner  -Disable null `
- -Type null `
- -Port null `
+$ClusterMetricsServerInner = Initialize-PVEClusterMetricsServerInner  -Type null `
  -Id null `
- -Server null
+ -Server null `
+ -Disable null `
+ -Port null
 ```
 
 - Convert the resource to JSON

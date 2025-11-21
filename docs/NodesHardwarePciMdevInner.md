@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 **Available** | **Int32** |  | [optional] 
-**Description** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesHardwarePciMdevInner = Initialize-PVENodesHardwarePciMdevInner  -Name null `
+$NodesHardwarePciMdevInner = Initialize-PVENodesHardwarePciMdevInner  -Description null `
  -Type null `
  -Available null `
- -Description null
+ -Name null
 ```
 
 - Convert the resource to JSON

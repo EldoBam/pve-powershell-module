@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Size** | **String** |  | [optional] 
 **Disk** | **String** |  | [optional] 
 **Skiplock** | **Boolean** |  | [optional] 
+**Size** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesQemuResizeRB = Initialize-PVEPUTNodesQemuResizeRB  -Size null `
- -Disk null `
+$PUTNodesQemuResizeRB = Initialize-PVEPUTNodesQemuResizeRB  -Disk null `
  -Skiplock null `
+ -Size null `
  -Digest null
 ```
 

@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Compression** | **String** |  | [optional] 
-**Raidlevel** | **String** |  | [optional] 
-**Devices** | **String** |  | [optional] 
-**DraidConfig** | **String** |  | [optional] 
 **AddStorage** | **Boolean** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **Ashift** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Raidlevel** | **String** |  | [optional] 
+**DraidConfig** | **String** |  | [optional] 
+**Compression** | **String** |  | [optional] 
+**Devices** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesDisksZfsRB = Initialize-PVEPOSTNodesDisksZfsRB  -Compression null `
- -Raidlevel null `
- -Devices null `
- -DraidConfig null `
- -AddStorage null `
+$POSTNodesDisksZfsRB = Initialize-PVEPOSTNodesDisksZfsRB  -AddStorage null `
+ -Ashift null `
  -Name null `
- -Ashift null
+ -Raidlevel null `
+ -DraidConfig null `
+ -Compression null `
+ -Devices null
 ```
 
 - Convert the resource to JSON

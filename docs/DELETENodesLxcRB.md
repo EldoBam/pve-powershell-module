@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Force** | **Boolean** |  | [optional] 
 **DestroyUnreferencedDisks** | **Boolean** |  | [optional] 
+**Force** | **Boolean** |  | [optional] 
 **Purge** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesLxcRB = Initialize-PVEDELETENodesLxcRB  -Force null `
- -DestroyUnreferencedDisks null `
+$DELETENodesLxcRB = Initialize-PVEDELETENodesLxcRB  -DestroyUnreferencedDisks null `
+ -Force null `
  -Purge null
 ```
 

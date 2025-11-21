@@ -3,26 +3,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Encrypted** | **Boolean** |  | [optional] 
-**WalDev** | **String** |  | [optional] 
-**WalDevSize** | **Decimal** |  | [optional] 
+**Dev** | **String** |  | [optional] 
 **DbDev** | **String** |  | [optional] 
 **OsdsPerDevice** | **Int32** |  | [optional] 
 **DbDevSize** | **Decimal** |  | [optional] 
-**Dev** | **String** |  | [optional] 
+**WalDev** | **String** |  | [optional] 
+**Encrypted** | **Boolean** |  | [optional] 
+**WalDevSize** | **Decimal** |  | [optional] 
 **CrushDeviceClass** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephOsdRB = Initialize-PVEPOSTNodesCephOsdRB  -Encrypted null `
- -WalDev null `
- -WalDevSize null `
+$POSTNodesCephOsdRB = Initialize-PVEPOSTNodesCephOsdRB  -Dev null `
  -DbDev null `
  -OsdsPerDevice null `
  -DbDevSize null `
- -Dev null `
+ -WalDev null `
+ -Encrypted null `
+ -WalDevSize null `
  -CrushDeviceClass null
 ```
 

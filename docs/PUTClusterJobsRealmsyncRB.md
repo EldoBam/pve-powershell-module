@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Schedule** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **EnableNew** | **Boolean** |  | [optional] 
 **Scope** | **String** |  | [optional] 
 **RemoveVanished** | **String** |  | [optional] 
 **Enabled** | **Boolean** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Schedule** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterJobsRealmsyncRB = Initialize-PVEPUTClusterJobsRealmsyncRB  -EnableNew null `
+$PUTClusterJobsRealmsyncRB = Initialize-PVEPUTClusterJobsRealmsyncRB  -Schedule null `
+ -Delete null `
+ -Comment null `
+ -EnableNew null `
  -Scope null `
  -RemoveVanished null `
- -Enabled null `
- -Comment null `
- -Schedule null `
- -Delete null
+ -Enabled null
 ```
 
 - Convert the resource to JSON

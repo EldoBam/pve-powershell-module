@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
 **Map** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterMappingDirRB = Initialize-PVEPOSTClusterMappingDirRB  -Id null `
- -Description null `
+$POSTClusterMappingDirRB = Initialize-PVEPOSTClusterMappingDirRB  -Description null `
+ -Id null `
  -Map null
 ```
 

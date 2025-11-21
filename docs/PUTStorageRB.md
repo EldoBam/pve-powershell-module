@@ -3,109 +3,111 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IsMountpoint** | **String** |  | [optional] 
-**Blocksize** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Subdir** | **String** |  | [optional] 
-**CreateSubdirs** | **Boolean** |  | [optional] 
-**ComstarHg** | **String** |  | [optional] 
-**Mountpoint** | **String** |  | [optional] 
-**Content** | **String** |  | [optional] 
-**Sparse** | **Boolean** |  | [optional] 
-**SaferemoveThroughput** | **String** |  | [optional] 
+**SaferemoveStepsize** | **Int32** |  | [optional] 
+**LioTpg** | **String** |  | [optional] 
 **EncryptionKey** | **String** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
-**Preallocation** | **String** |  | [optional] 
-**FsName** | **String** |  | [optional] 
-**Bwlimit** | **String** |  | [optional] 
-**Krbd** | **Boolean** |  | [optional] 
-**Nocow** | **Boolean** |  | [optional] 
-**CreateBasePath** | **Boolean** |  | [optional] 
-**Domain** | **String** |  | [optional] 
-**Nowritecache** | **Boolean** |  | [optional] 
-**TaggedOnly** | **Boolean** |  | [optional] 
-**Keyring** | **String** |  | [optional] 
+**Pool** | **String** |  | [optional] 
 **Options** | **String** |  | [optional] 
-**Monhost** | **String** |  | [optional] 
-**Server** | **String** |  | [optional] 
-**Namespace** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**SnapshotAsVolumeChain** | **Boolean** |  | [optional] 
-**MaxProtectedBackups** | **Int32** |  | [optional] 
-**DataPool** | **String** |  | [optional] 
-**Shared** | **Boolean** |  | [optional] 
-**Saferemove** | **Boolean** |  | [optional] 
+**MasterPubkey** | **String** |  | [optional] 
+**Sparse** | **Boolean** |  | [optional] 
 **ContentDirs** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Blocksize** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**SnapshotAsVolumeChain** | **Boolean** |  | [optional] 
 **ZfsBasePath** | **String** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
-**SkipCertVerification** | **Boolean** |  | [optional] 
-**MasterPubkey** | **String** |  | [optional] 
-**LioTpg** | **String** |  | [optional] 
-**PruneBackups** | **String** |  | [optional] 
-**Fingerprint** | **String** |  | [optional] 
-**Mkdir** | **Boolean** |  | [optional] 
-**Fuse** | **Boolean** |  | [optional] 
-**Smbversion** | **String** |  | [optional] 
-**ComstarTg** | **String** |  | [optional] 
+**Namespace** | **String** |  | [optional] 
+**Shared** | **Boolean** |  | [optional] 
+**ComstarHg** | **String** |  | [optional] 
+**Krbd** | **Boolean** |  | [optional] 
+**Content** | **String** |  | [optional] 
 **Username** | **String** |  | [optional] 
-**Pool** | **String** |  | [optional] 
-**Format** | **String** |  | [optional] 
-**Password** | **String** |  | [optional] 
+**Bwlimit** | **String** |  | [optional] 
+**DataPool** | **String** |  | [optional] 
+**Fingerprint** | **String** |  | [optional] 
+**TaggedOnly** | **Boolean** |  | [optional] 
+**Smbversion** | **String** |  | [optional] 
+**Saferemove** | **Boolean** |  | [optional] 
+**Fuse** | **Boolean** |  | [optional] 
+**Keyring** | **String** |  | [optional] 
+**Domain** | **String** |  | [optional] 
+**Nowritecache** | **Boolean** |  | [optional] 
+**SkipCertVerification** | **Boolean** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Mountpoint** | **String** |  | [optional] 
+**CreateSubdirs** | **Boolean** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**Mkdir** | **Boolean** |  | [optional] 
+**CreateBasePath** | **Boolean** |  | [optional] 
+**Password** | **String** |  | [optional] 
+**Nocow** | **Boolean** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
+**IsMountpoint** | **String** |  | [optional] 
+**Subdir** | **String** |  | [optional] 
+**Monhost** | **String** |  | [optional] 
+**MaxProtectedBackups** | **Int32** |  | [optional] 
+**Format** | **String** |  | [optional] 
+**SaferemoveThroughput** | **String** |  | [optional] 
+**FsName** | **String** |  | [optional] 
+**PruneBackups** | **String** |  | [optional] 
+**ComstarTg** | **String** |  | [optional] 
+**Preallocation** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTStorageRB = Initialize-PVEPUTStorageRB  -IsMountpoint null `
- -Blocksize null `
- -Delete null `
- -Subdir null `
- -CreateSubdirs null `
- -ComstarHg null `
- -Mountpoint null `
- -Content null `
- -Sparse null `
- -SaferemoveThroughput null `
+$PUTStorageRB = Initialize-PVEPUTStorageRB  -SaferemoveStepsize null `
+ -LioTpg null `
  -EncryptionKey null `
- -Nodes null `
- -Preallocation null `
- -FsName null `
- -Bwlimit null `
- -Krbd null `
- -Nocow null `
- -CreateBasePath null `
- -Domain null `
- -Nowritecache null `
- -TaggedOnly null `
- -Keyring null `
+ -Pool null `
  -Options null `
- -Monhost null `
- -Server null `
- -Namespace null `
- -Port null `
- -SnapshotAsVolumeChain null `
- -MaxProtectedBackups null `
- -DataPool null `
- -Shared null `
- -Saferemove null `
+ -MasterPubkey null `
+ -Sparse null `
  -ContentDirs null `
+ -Delete null `
+ -Blocksize null `
+ -Server null `
+ -SnapshotAsVolumeChain null `
  -ZfsBasePath null `
  -Disable null `
- -SkipCertVerification null `
- -MasterPubkey null `
- -LioTpg null `
- -PruneBackups null `
- -Fingerprint null `
- -Mkdir null `
- -Fuse null `
- -Smbversion null `
- -ComstarTg null `
+ -Namespace null `
+ -Shared null `
+ -ComstarHg null `
+ -Krbd null `
+ -Content null `
  -Username null `
- -Pool null `
- -Format null `
+ -Bwlimit null `
+ -DataPool null `
+ -Fingerprint null `
+ -TaggedOnly null `
+ -Smbversion null `
+ -Saferemove null `
+ -Fuse null `
+ -Keyring null `
+ -Domain null `
+ -Nowritecache null `
+ -SkipCertVerification null `
+ -Digest null `
+ -Mountpoint null `
+ -CreateSubdirs null `
+ -Port null `
+ -Mkdir null `
+ -CreateBasePath null `
  -Password null `
- -Digest null
+ -Nocow null `
+ -Nodes null `
+ -IsMountpoint null `
+ -Subdir null `
+ -Monhost null `
+ -MaxProtectedBackups null `
+ -Format null `
+ -SaferemoveThroughput null `
+ -FsName null `
+ -PruneBackups null `
+ -ComstarTg null `
+ -Preallocation null
 ```
 
 - Convert the resource to JSON

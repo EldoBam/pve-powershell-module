@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Exited** | **Boolean** |  | [optional] 
+**OutTruncated** | **Boolean** |  | [optional] 
 **ErrTruncated** | **Boolean** |  | [optional] 
+**Signal** | **Int32** |  | [optional] 
 **OutData** | **String** |  | [optional] 
 **ErrData** | **String** |  | [optional] 
-**Signal** | **Int32** |  | [optional] 
-**OutTruncated** | **Boolean** |  | [optional] 
+**Exited** | **Boolean** |  | [optional] 
 **Exitcode** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuAgentExecstatus = Initialize-PVENodesQemuAgentExecstatus  -Exited null `
+$NodesQemuAgentExecstatus = Initialize-PVENodesQemuAgentExecstatus  -OutTruncated null `
  -ErrTruncated null `
+ -Signal null `
  -OutData null `
  -ErrData null `
- -Signal null `
- -OutTruncated null `
+ -Exited null `
  -Exitcode null
 ```
 

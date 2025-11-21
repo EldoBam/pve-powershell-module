@@ -3,40 +3,40 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IsisIfaces** | **String** |  | [optional] 
-**EbgpMultihop** | **Int32** |  | [optional] 
-**IsisDomain** | **String** |  | [optional] 
-**IsisNet** | **String** |  | [optional] 
-**BgpMultipathAsRelax** | **Boolean** |  | [optional] 
-**Asn** | **Int32** |  | [optional] 
-**State** | **String** |  | [optional] 
-**Ebgp** | **Boolean** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Pending** | [**ClusterSdnControllersInnerPending**](ClusterSdnControllersInnerPending.md) |  | [optional] 
-**Node** | **String** |  | [optional] 
 **Controller** | **String** |  | [optional] 
+**Asn** | **Int32** |  | [optional] 
+**Pending** | [**ClusterSdnControllersInnerPending**](ClusterSdnControllersInnerPending.md) |  | [optional] 
 **Loopback** | **String** |  | [optional] 
+**IsisNet** | **String** |  | [optional] 
+**IsisIfaces** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**BgpMultipathAsRelax** | **Boolean** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**EbgpMultihop** | **Int32** |  | [optional] 
+**Ebgp** | **Boolean** |  | [optional] 
+**IsisDomain** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
 **Peers** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnControllersInner = Initialize-PVEClusterSdnControllersInner  -IsisIfaces null `
- -EbgpMultihop null `
- -IsisDomain null `
- -IsisNet null `
- -BgpMultipathAsRelax null `
- -Asn null `
- -State null `
- -Ebgp null `
- -Type null `
- -Digest null `
- -Pending null `
- -Node null `
+$ClusterSdnControllersInner = Initialize-PVEClusterSdnControllersInner  -Type null `
  -Controller null `
+ -Asn null `
+ -Pending null `
  -Loopback null `
+ -IsisNet null `
+ -IsisIfaces null `
+ -Node null `
+ -BgpMultipathAsRelax null `
+ -Digest null `
+ -EbgpMultihop null `
+ -Ebgp null `
+ -IsisDomain null `
+ -State null `
  -Peers null
 ```
 

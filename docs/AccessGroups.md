@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Members** | **String[]** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Members** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessGroups = Initialize-PVEAccessGroups  -Members null `
- -Comment null
+$AccessGroups = Initialize-PVEAccessGroups  -Comment null `
+ -Members null
 ```
 
 - Convert the resource to JSON

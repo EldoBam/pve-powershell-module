@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Zone** | **String** |  | [optional] 
+**Tag** | **Int32** |  | [optional] 
+**IsolatePorts** | **Boolean** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **Pending** | [**ClusterSdnVnetsInnerPending**](ClusterSdnVnetsInnerPending.md) |  | [optional] 
+**State** | **String** |  | [optional] 
+**Zone** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 **Vnet** | **String** |  | [optional] 
 **Alias** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**IsolatePorts** | **Boolean** |  | [optional] 
 **Vlanaware** | **Boolean** |  | [optional] 
-**Tag** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**State** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnVnetsInner = Initialize-PVEClusterSdnVnetsInner  -Zone null `
+$ClusterSdnVnetsInner = Initialize-PVEClusterSdnVnetsInner  -Tag null `
+ -IsolatePorts null `
+ -Type null `
  -Pending null `
+ -State null `
+ -Zone null `
+ -Digest null `
  -Vnet null `
  -Alias null `
- -Type null `
- -IsolatePorts null `
- -Vlanaware null `
- -Tag null `
- -Digest null `
- -State null
+ -Vlanaware null
 ```
 
 - Convert the resource to JSON

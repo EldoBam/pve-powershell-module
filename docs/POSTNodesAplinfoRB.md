@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Storage** | **String** |  | [optional] 
 **Template** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesAplinfoRB = Initialize-PVEPOSTNodesAplinfoRB  -Storage null `
- -Template null
+$POSTNodesAplinfoRB = Initialize-PVEPOSTNodesAplinfoRB  -Template null `
+ -Storage null
 ```
 
 - Convert the resource to JSON

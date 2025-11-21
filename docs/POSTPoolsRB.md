@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Poolid** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Poolid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTPoolsRB = Initialize-PVEPOSTPoolsRB  -Poolid null `
- -Comment null
+$POSTPoolsRB = Initialize-PVEPOSTPoolsRB  -Comment null `
+ -Poolid null
 ```
 
 - Convert the resource to JSON

@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DataPool** | **String** |  | [optional] 
 **MetadataPool** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**DataPool** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephFsInner = Initialize-PVENodesCephFsInner  -DataPool null `
- -MetadataPool null `
- -Name null
+$NodesCephFsInner = Initialize-PVENodesCephFsInner  -MetadataPool null `
+ -Name null `
+ -DataPool null
 ```
 
 - Convert the resource to JSON

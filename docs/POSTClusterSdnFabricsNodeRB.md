@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Protocol** | **String** |  | [optional] 
-**Ip6** | **String** |  | [optional] 
 **Ip** | **String** |  | [optional] 
-**LockToken** | **String** |  | [optional] 
 **NodeId** | **String** |  | [optional] 
 **FabricId** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **Interfaces** | [**AnyType[]**](AnyType.md) |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**LockToken** | **String** |  | [optional] 
+**Ip6** | **String** |  | [optional] 
+**Protocol** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnFabricsNodeRB = Initialize-PVEPOSTClusterSdnFabricsNodeRB  -Protocol null `
- -Ip6 null `
- -Ip null `
- -LockToken null `
+$POSTClusterSdnFabricsNodeRB = Initialize-PVEPOSTClusterSdnFabricsNodeRB  -Ip null `
  -NodeId null `
  -FabricId null `
+ -Interfaces null `
  -Digest null `
- -Interfaces null
+ -LockToken null `
+ -Ip6 null `
+ -Protocol null
 ```
 
 - Convert the resource to JSON

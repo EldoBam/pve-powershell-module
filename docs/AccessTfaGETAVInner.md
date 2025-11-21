@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Description** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
 **Created** | **Int32** |  | [optional] 
 **Enable** | **Boolean** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessTfaGETAVInner = Initialize-PVEAccessTfaGETAVInner  -Created null `
- -Enable null `
+$AccessTfaGETAVInner = Initialize-PVEAccessTfaGETAVInner  -Description null `
  -Id null `
- -Description null `
+ -Created null `
+ -Enable null `
  -Type null
 ```
 

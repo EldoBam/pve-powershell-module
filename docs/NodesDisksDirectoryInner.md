@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Device** | **String** |  | [optional] 
 **Unitfile** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Device** | **String** |  | [optional] 
 **Options** | **String** |  | [optional] 
 **Path** | **String** |  | [optional] 
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$NodesDisksDirectoryInner = Initialize-PVENodesDisksDirectoryInner  -Device null `
- -Unitfile null `
+$NodesDisksDirectoryInner = Initialize-PVENodesDisksDirectoryInner  -Unitfile null `
  -Type null `
+ -Device null `
  -Options null `
  -Path null
 ```

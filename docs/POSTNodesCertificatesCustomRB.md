@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Force** | **Boolean** |  | [optional] 
-**Restart** | **Boolean** |  | [optional] 
-**Key** | **String** |  | [optional] 
 **Certificates** | **String** |  | [optional] 
+**Key** | **String** |  | [optional] 
+**Restart** | **Boolean** |  | [optional] 
+**Force** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCertificatesCustomRB = Initialize-PVEPOSTNodesCertificatesCustomRB  -Force null `
- -Restart null `
+$POSTNodesCertificatesCustomRB = Initialize-PVEPOSTNodesCertificatesCustomRB  -Certificates null `
  -Key null `
- -Certificates null
+ -Restart null `
+ -Force null
 ```
 
 - Convert the resource to JSON

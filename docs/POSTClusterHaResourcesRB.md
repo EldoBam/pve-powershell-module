@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MaxRelocate** | **Int32** |  | [optional] 
-**Group** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **MaxRestart** | **Int32** |  | [optional] 
+**MaxRelocate** | **Int32** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Group** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
 **Sid** | **String** |  | [optional] 
 **Failback** | **Boolean** |  | [optional] 
-**State** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterHaResourcesRB = Initialize-PVEPOSTClusterHaResourcesRB  -MaxRelocate null `
- -Group null `
- -Type null `
- -MaxRestart null `
+$POSTClusterHaResourcesRB = Initialize-PVEPOSTClusterHaResourcesRB  -MaxRestart null `
+ -MaxRelocate null `
  -Comment null `
+ -Type null `
+ -Group null `
+ -State null `
  -Sid null `
- -Failback null `
- -State null
+ -Failback null
 ```
 
 - Convert the resource to JSON

@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mac** | **String** |  | [optional] 
+**Ip** | **String** |  | [optional] 
 **Zone** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
-**Ip** | **String** |  | [optional] 
+**Mac** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnVnetsIpsRB = Initialize-PVEPUTClusterSdnVnetsIpsRB  -Mac null `
+$PUTClusterSdnVnetsIpsRB = Initialize-PVEPUTClusterSdnVnetsIpsRB  -Ip null `
  -Zone null `
  -Vmid null `
- -Ip null
+ -Mac null
 ```
 
 - Convert the resource to JSON

@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | **String** |  | [optional] 
 **Release** | **String** |  | [optional] 
+**Version** | **String** |  | [optional] 
 **Repoid** | **String** |  | [optional] 
 **Console** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$Version = Initialize-PVEVersion  -Version null `
- -Release null `
+$Version = Initialize-PVEVersion  -Release null `
+ -Version null `
  -Repoid null `
  -Console null
 ```

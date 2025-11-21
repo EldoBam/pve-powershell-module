@@ -3,13 +3,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DbusVmstate** | **Boolean** |  | [optional] 
+**HasDbusVmstate** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCapabilitiesQemuMigration = Initialize-PVENodesCapabilitiesQemuMigration  -DbusVmstate null
+$NodesCapabilitiesQemuMigration = Initialize-PVENodesCapabilitiesQemuMigration  -HasDbusVmstate null
 ```
 
 - Convert the resource to JSON

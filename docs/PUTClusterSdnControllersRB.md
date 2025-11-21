@@ -3,39 +3,39 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IsisIfaces** | **String** |  | [optional] 
-**EbgpMultihop** | **Int32** |  | [optional] 
-**IsisDomain** | **String** |  | [optional] 
-**IsisNet** | **String** |  | [optional] 
-**Peers** | **String** |  | [optional] 
 **Asn** | **Int32** |  | [optional] 
+**Loopback** | **String** |  | [optional] 
+**LockToken** | **String** |  | [optional] 
+**IsisNet** | **String** |  | [optional] 
+**IsisIfaces** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**EbgpMultihop** | **Int32** |  | [optional] 
+**Ebgp** | **Boolean** |  | [optional] 
+**IsisDomain** | **String** |  | [optional] 
 **BgpMultipathAsPathRelax** | **Boolean** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**Ebgp** | **Boolean** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**LockToken** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Loopback** | **String** |  | [optional] 
 **Fabric** | **String** |  | [optional] 
+**Peers** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnControllersRB = Initialize-PVEPUTClusterSdnControllersRB  -IsisIfaces null `
- -EbgpMultihop null `
- -IsisDomain null `
+$PUTClusterSdnControllersRB = Initialize-PVEPUTClusterSdnControllersRB  -Asn null `
+ -Loopback null `
+ -LockToken null `
  -IsisNet null `
- -Peers null `
- -Asn null `
+ -IsisIfaces null `
+ -Node null `
+ -Digest null `
+ -EbgpMultihop null `
+ -Ebgp null `
+ -IsisDomain null `
  -BgpMultipathAsPathRelax null `
  -Delete null `
- -Ebgp null `
- -Digest null `
- -LockToken null `
- -Node null `
- -Loopback null `
- -Fabric null
+ -Fabric null `
+ -Peers null
 ```
 
 - Convert the resource to JSON

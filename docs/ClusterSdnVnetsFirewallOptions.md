@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enable** | **Boolean** |  | [optional] 
-**LogLevelForward** | **String** |  | [optional] 
 **PolicyForward** | **String** |  | [optional] 
+**LogLevelForward** | **String** |  | [optional] 
+**Enable** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnVnetsFirewallOptions = Initialize-PVEClusterSdnVnetsFirewallOptions  -Enable null `
+$ClusterSdnVnetsFirewallOptions = Initialize-PVEClusterSdnVnetsFirewallOptions  -PolicyForward null `
  -LogLevelForward null `
- -PolicyForward null
+ -Enable null
 ```
 
 - Convert the resource to JSON

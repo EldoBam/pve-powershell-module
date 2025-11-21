@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timeout** | **Int32** |  | [optional] 
 **Vms** | **String** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
 **ForceStop** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesStopallRB = Initialize-PVEPOSTNodesStopallRB  -Timeout null `
- -Vms null `
+$POSTNodesStopallRB = Initialize-PVEPOSTNodesStopallRB  -Vms null `
+ -Timeout null `
  -ForceStop null
 ```
 

@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Purge** | **Boolean** |  | [optional] 
+**Full** | **Boolean** |  | [optional] 
 **EnableNew** | **Boolean** |  | [optional] 
-**DryRun** | **Boolean** |  | [optional] 
 **Scope** | **String** |  | [optional] 
 **RemoveVanished** | **String** |  | [optional] 
-**Full** | **Boolean** |  | [optional] 
-**Purge** | **Boolean** |  | [optional] 
+**DryRun** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTAccessDomainsSyncRB = Initialize-PVEPOSTAccessDomainsSyncRB  -EnableNew null `
- -DryRun null `
+$POSTAccessDomainsSyncRB = Initialize-PVEPOSTAccessDomainsSyncRB  -Purge null `
+ -Full null `
+ -EnableNew null `
  -Scope null `
  -RemoveVanished null `
- -Full null `
- -Purge null
+ -DryRun null
 ```
 
 - Convert the resource to JSON

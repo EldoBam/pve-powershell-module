@@ -3,28 +3,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Uptime** | **Int32** |  | [optional] 
-**Mem** | **Int32** |  | [optional] 
-**Cpu** | **Decimal** |  | [optional] 
 **Maxmem** | **Int32** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**SslFingerprint** | **String** |  | [optional] 
 **Level** | **String** |  | [optional] 
+**Cpu** | **Decimal** |  | [optional] 
+**SslFingerprint** | **String** |  | [optional] 
 **Maxcpu** | **Int32** |  | [optional] 
+**Mem** | **Int32** |  | [optional] 
+**Uptime** | **Int32** |  | [optional] 
 **Status** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesInner = Initialize-PVENodesInner  -Uptime null `
- -Mem null `
- -Cpu null `
- -Maxmem null `
+$NodesInner = Initialize-PVENodesInner  -Maxmem null `
  -Node null `
- -SslFingerprint null `
  -Level null `
+ -Cpu null `
+ -SslFingerprint null `
  -Maxcpu null `
+ -Mem null `
+ -Uptime null `
  -Status null
 ```
 

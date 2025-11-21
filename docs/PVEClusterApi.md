@@ -19,6 +19,8 @@ Method | HTTP request | Description
 [**Get-PVEClusterBackupIncludedvolumesById**](PVEClusterApi.md#Get-PVEClusterBackupIncludedvolumesById) | **GET** /cluster/backup/{id}/included_volumes | Returns included guests and the backup status of their disks. Optimized to be used in ExtJS tree views.
 [**Get-PVEClusterBackupinfo**](PVEClusterApi.md#Get-PVEClusterBackupinfo) | **GET** /cluster/backup-info | Index for backup info related endpoints
 [**Get-PVEClusterBackupinfoNotbackedup**](PVEClusterApi.md#Get-PVEClusterBackupinfoNotbackedup) | **GET** /cluster/backup-info/not-backed-up | Shows all guests which are not covered by any backup job.
+[**Get-PVEClusterBulkaction**](PVEClusterApi.md#Get-PVEClusterBulkaction) | **GET** /cluster/bulk-action | List resource types.
+[**Get-PVEClusterBulkactionGuest**](PVEClusterApi.md#Get-PVEClusterBulkactionGuest) | **GET** /cluster/bulk-action/guest | Bulk action index.
 [**Get-PVEClusterCeph**](PVEClusterApi.md#Get-PVEClusterCeph) | **GET** /cluster/ceph | Cluster ceph index.
 [**Get-PVEClusterCephFlags**](PVEClusterApi.md#Get-PVEClusterCephFlags) | **GET** /cluster/ceph/flags | get the status of all ceph flags
 [**Get-PVEClusterCephFlagsByFlag**](PVEClusterApi.md#Get-PVEClusterCephFlagsByFlag) | **GET** /cluster/ceph/flags/{flag} | Get the status of a specific ceph flag.
@@ -120,6 +122,10 @@ Method | HTTP request | Description
 [**New-PVEClusterAcmeAccount**](PVEClusterApi.md#New-PVEClusterAcmeAccount) | **POST** /cluster/acme/account | Register a new ACME account with CA.
 [**New-PVEClusterAcmePlugins**](PVEClusterApi.md#New-PVEClusterAcmePlugins) | **POST** /cluster/acme/plugins | Add ACME plugin configuration.
 [**New-PVEClusterBackup**](PVEClusterApi.md#New-PVEClusterBackup) | **POST** /cluster/backup | Create new vzdump backup job.
+[**New-PVEClusterBulkactionGuestMigrate**](PVEClusterApi.md#New-PVEClusterBulkactionGuestMigrate) | **POST** /cluster/bulk-action/guest/migrate | Bulk migrate all guests on the cluster.
+[**New-PVEClusterBulkactionGuestShutdown**](PVEClusterApi.md#New-PVEClusterBulkactionGuestShutdown) | **POST** /cluster/bulk-action/guest/shutdown | Bulk shutdown all guests on the cluster.
+[**New-PVEClusterBulkactionGuestStart**](PVEClusterApi.md#New-PVEClusterBulkactionGuestStart) | **POST** /cluster/bulk-action/guest/start | Bulk start or resume all guests on the cluster.
+[**New-PVEClusterBulkactionGuestSuspend**](PVEClusterApi.md#New-PVEClusterBulkactionGuestSuspend) | **POST** /cluster/bulk-action/guest/suspend | Bulk suspend all guests on the cluster.
 [**New-PVEClusterConfig**](PVEClusterApi.md#New-PVEClusterConfig) | **POST** /cluster/config | Generate new cluster configuration. If no links given, default to local IP address as link0.
 [**New-PVEClusterConfigJoin**](PVEClusterApi.md#New-PVEClusterConfigJoin) | **POST** /cluster/config/join | Joins this node into an existing cluster. If no links are given, default to IP resolved by node&#39;s hostname on single link (fallback fails for clusters with multiple links).
 [**New-PVEClusterConfigNodesByNode**](PVEClusterApi.md#New-PVEClusterConfigNodesByNode) | **POST** /cluster/config/nodes/{node} | Adds a node to the cluster configuration. This call is for internal use.
@@ -510,7 +516,7 @@ No authorization required
 
 <a name="Get-PVEClusterAcmePlugins"></a>
 # **Get-PVEClusterAcmePlugins**
-> ClusterAcmePluginsInner[] Get-PVEClusterAcmePlugins<br>
+> ClusterAcmePluginsGETInner[] Get-PVEClusterAcmePlugins<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterAcmePluginsRB] <PSCustomObject><br>
 
 ACME plugin index.
@@ -538,7 +544,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClusterAcmePluginsInner[]**](ClusterAcmePluginsInner.md) (PSCustomObject)
+[**ClusterAcmePluginsGETInner[]**](ClusterAcmePluginsGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -553,7 +559,7 @@ No authorization required
 
 <a name="Get-PVEClusterAcmePluginsById"></a>
 # **Get-PVEClusterAcmePluginsById**
-> void Get-PVEClusterAcmePluginsById<br>
+> ClusterAcmePlugins Get-PVEClusterAcmePluginsById<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Get ACME plugin configuration.
@@ -581,7 +587,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ClusterAcmePlugins**](ClusterAcmePlugins.md) (PSCustomObject)
 
 ### Authorization
 
@@ -590,7 +596,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -825,6 +831,82 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ClusterBackupinfoNotbackedupInner[]**](ClusterBackupinfoNotbackedupInner.md) (PSCustomObject)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="Get-PVEClusterBulkaction"></a>
+# **Get-PVEClusterBulkaction**
+> void Get-PVEClusterBulkaction<br>
+
+List resource types.
+
+List resource types.
+
+### Example
+```powershell
+
+# List resource types.
+try {
+    $Result = Get-PVEClusterBulkaction
+} catch {
+    Write-Host ("Exception occurred when calling Get-PVEClusterBulkaction: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="Get-PVEClusterBulkactionGuest"></a>
+# **Get-PVEClusterBulkactionGuest**
+> SystemCollectionsHashtable[] Get-PVEClusterBulkactionGuest<br>
+
+Bulk action index.
+
+Bulk action index.
+
+### Example
+```powershell
+
+# Bulk action index.
+try {
+    $Result = Get-PVEClusterBulkactionGuest
+} catch {
+    Write-Host ("Exception occurred when calling Get-PVEClusterBulkactionGuest: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SystemCollectionsHashtable[]**](SystemCollectionsHashtable.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1310,7 +1392,7 @@ No authorization required
 
 <a name="Get-PVEClusterFirewallAliases"></a>
 # **Get-PVEClusterFirewallAliases**
-> ClusterFirewallAliasesInner[] Get-PVEClusterFirewallAliases<br>
+> NodesQemuFirewallAliasesInner[] Get-PVEClusterFirewallAliases<br>
 
 List aliases
 
@@ -1333,7 +1415,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterFirewallAliasesInner[]**](ClusterFirewallAliasesInner.md) (PSCustomObject)
+[**NodesQemuFirewallAliasesInner[]**](NodesQemuFirewallAliasesInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1518,7 +1600,7 @@ No authorization required
 
 <a name="Get-PVEClusterFirewallIpset"></a>
 # **Get-PVEClusterFirewallIpset**
-> ClusterFirewallIpsetInner[] Get-PVEClusterFirewallIpset<br>
+> NodesLxcFirewallIpsetInner[] Get-PVEClusterFirewallIpset<br>
 
 List IPSets
 
@@ -1541,7 +1623,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterFirewallIpsetInner[]**](ClusterFirewallIpsetInner.md) (PSCustomObject)
+[**NodesLxcFirewallIpsetInner[]**](NodesLxcFirewallIpsetInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1721,7 +1803,7 @@ No authorization required
 
 <a name="Get-PVEClusterFirewallRefs"></a>
 # **Get-PVEClusterFirewallRefs**
-> ClusterFirewallRefsInner[] Get-PVEClusterFirewallRefs<br>
+> NodesQemuFirewallRefsInner[] Get-PVEClusterFirewallRefs<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterFirewallRefsRB] <PSCustomObject><br>
 
 Lists possible IPSet/Alias reference which are allowed in source/dest properties.
@@ -1749,7 +1831,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClusterFirewallRefsInner[]**](ClusterFirewallRefsInner.md) (PSCustomObject)
+[**NodesQemuFirewallRefsInner[]**](NodesQemuFirewallRefsInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1845,7 +1927,7 @@ No authorization required
 
 <a name="Get-PVEClusterHa"></a>
 # **Get-PVEClusterHa**
-> ClusterHaInner[] Get-PVEClusterHa<br>
+> ClusterSdnInner[] Get-PVEClusterHa<br>
 
 Directory index.
 
@@ -1868,7 +1950,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterHaInner[]**](ClusterHaInner.md) (PSCustomObject)
+[**ClusterSdnInner[]**](ClusterSdnInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2378,7 +2460,7 @@ Returns a list of future schedule runtimes.
 
 ### Example
 ```powershell
-$GETClusterJobsScheduleanalyzeRB = Initialize-GETClusterJobsScheduleanalyzeRB -Iterations 0 -Schedule "MySchedule" -Starttime 0 # GETClusterJobsScheduleanalyzeRB | Returns a list of future schedule runtimes. (optional)
+$GETClusterJobsScheduleanalyzeRB = Initialize-GETClusterJobsScheduleanalyzeRB -Schedule "MySchedule" -Iterations 0 -Starttime 0 # GETClusterJobsScheduleanalyzeRB | Returns a list of future schedule runtimes. (optional)
 
 # Returns a list of future schedule runtimes.
 try {
@@ -2493,7 +2575,7 @@ No authorization required
 
 <a name="Get-PVEClusterMappingDir"></a>
 # **Get-PVEClusterMappingDir**
-> ClusterMappingPciInner[] Get-PVEClusterMappingDir<br>
+> ClusterMappingDirInner[] Get-PVEClusterMappingDir<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterMappingDirRB] <PSCustomObject><br>
 
 List directory mapping
@@ -2521,7 +2603,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClusterMappingPciInner[]**](ClusterMappingPciInner.md) (PSCustomObject)
+[**ClusterMappingDirInner[]**](ClusterMappingDirInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2579,7 +2661,7 @@ No authorization required
 
 <a name="Get-PVEClusterMappingPci"></a>
 # **Get-PVEClusterMappingPci**
-> ClusterMappingPciInner[] Get-PVEClusterMappingPci<br>
+> ClusterMappingDirInner[] Get-PVEClusterMappingPci<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterMappingPciRB] <PSCustomObject><br>
 
 List PCI Hardware Mapping
@@ -2607,7 +2689,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClusterMappingPciInner[]**](ClusterMappingPciInner.md) (PSCustomObject)
+[**ClusterMappingDirInner[]**](ClusterMappingDirInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -2798,7 +2880,7 @@ Retrieve metrics of the cluster.
 
 ### Example
 ```powershell
-$GETClusterMetricsExportRB = Initialize-GETClusterMetricsExportRB -History $false -StartTime 0 -LocalOnly $false # GETClusterMetricsExportRB | Retrieve metrics of the cluster. (optional)
+$GETClusterMetricsExportRB = Initialize-GETClusterMetricsExportRB -LocalOnly $false -StartTime 0 -History $false -NodeList "MyNodeList" # GETClusterMetricsExportRB | Retrieve metrics of the cluster. (optional)
 
 # Retrieve metrics of the cluster.
 try {
@@ -3356,7 +3438,7 @@ No authorization required
 
 <a name="Get-PVEClusterNotificationsMatcherfields"></a>
 # **Get-PVEClusterNotificationsMatcherfields**
-> ClusterNotificationsMatcherfieldsInner[] Get-PVEClusterNotificationsMatcherfields<br>
+> NodesCephRulesInner[] Get-PVEClusterNotificationsMatcherfields<br>
 
 Returns known notification metadata fields
 
@@ -3379,7 +3461,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterNotificationsMatcherfieldsInner[]**](ClusterNotificationsMatcherfieldsInner.md) (PSCustomObject)
+[**NodesCephRulesInner[]**](NodesCephRulesInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3589,7 +3671,7 @@ No authorization required
 
 <a name="Get-PVEClusterReplication"></a>
 # **Get-PVEClusterReplication**
-> SystemCollectionsHashtable[] Get-PVEClusterReplication<br>
+> ClusterReplicationGETInner[] Get-PVEClusterReplication<br>
 
 List replication jobs.
 
@@ -3612,7 +3694,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SystemCollectionsHashtable[]**](SystemCollectionsHashtable.md) (PSCustomObject)
+[**ClusterReplicationGETInner[]**](ClusterReplicationGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3627,7 +3709,7 @@ No authorization required
 
 <a name="Get-PVEClusterReplicationById"></a>
 # **Get-PVEClusterReplicationById**
-> void Get-PVEClusterReplicationById<br>
+> ClusterReplication Get-PVEClusterReplicationById<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <String><br>
 
 Read replication job configuration.
@@ -3655,7 +3737,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ClusterReplication**](ClusterReplication.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3664,7 +3746,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3713,7 +3795,7 @@ No authorization required
 
 <a name="Get-PVEClusterSdn"></a>
 # **Get-PVEClusterSdn**
-> ClusterHaInner[] Get-PVEClusterSdn<br>
+> ClusterSdnInner[] Get-PVEClusterSdn<br>
 
 Directory index.
 
@@ -3736,7 +3818,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ClusterHaInner[]**](ClusterHaInner.md) (PSCustomObject)
+[**ClusterSdnInner[]**](ClusterSdnInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -3760,7 +3842,7 @@ SDN controllers index.
 
 ### Example
 ```powershell
-$GETClusterSdnControllersRB = Initialize-GETClusterSdnControllersRB -Pending $false -Running $false # GETClusterSdnControllersRB | SDN controllers index. (optional)
+$GETClusterSdnControllersRB = Initialize-GETClusterSdnControllersRB -Running $false -Pending $false # GETClusterSdnControllersRB | SDN controllers index. (optional)
 
 # SDN controllers index.
 try {
@@ -3805,7 +3887,7 @@ Read sdn controller configuration.
 ### Example
 ```powershell
 $Controller = "MyController" # String | The SDN controller object identifier.
-$GETClusterSdnControllersRB = Initialize-GETClusterSdnControllersRB -Pending $false -Running $false # GETClusterSdnControllersRB | Read sdn controller configuration. (optional)
+$GETClusterSdnControllersRB = Initialize-GETClusterSdnControllersRB -Running $false -Pending $false # GETClusterSdnControllersRB | Read sdn controller configuration. (optional)
 
 # Read sdn controller configuration.
 try {
@@ -3973,7 +4055,7 @@ SDN Fabrics Index
 
 ### Example
 ```powershell
-$GETClusterSdnFabricsAllRB = Initialize-GETClusterSdnFabricsAllRB -Pending $false -Running $false # GETClusterSdnFabricsAllRB | SDN Fabrics Index (optional)
+$GETClusterSdnFabricsAllRB = Initialize-GETClusterSdnFabricsAllRB -Running $false -Pending $false # GETClusterSdnFabricsAllRB | SDN Fabrics Index (optional)
 
 # SDN Fabrics Index
 try {
@@ -4016,7 +4098,7 @@ SDN Fabrics Index
 
 ### Example
 ```powershell
-$GETClusterSdnFabricsFabricRB = Initialize-GETClusterSdnFabricsFabricRB -Pending $false -Running $false # GETClusterSdnFabricsFabricRB | SDN Fabrics Index (optional)
+$GETClusterSdnFabricsFabricRB = Initialize-GETClusterSdnFabricsFabricRB -Running $false -Pending $false # GETClusterSdnFabricsFabricRB | SDN Fabrics Index (optional)
 
 # SDN Fabrics Index
 try {
@@ -4093,7 +4175,7 @@ No authorization required
 
 <a name="Get-PVEClusterSdnFabricsNode"></a>
 # **Get-PVEClusterSdnFabricsNode**
-> ClusterSdnFabricsNodeInner[] Get-PVEClusterSdnFabricsNode<br>
+> ClusterSdnFabricsNodeGETInner[] Get-PVEClusterSdnFabricsNode<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterSdnFabricsNodeRB] <PSCustomObject><br>
 
 SDN Fabrics Index
@@ -4102,7 +4184,7 @@ SDN Fabrics Index
 
 ### Example
 ```powershell
-$GETClusterSdnFabricsNodeRB = Initialize-GETClusterSdnFabricsNodeRB -Pending $false -FabricId "MyFabricId" -Running $false # GETClusterSdnFabricsNodeRB | SDN Fabrics Index (optional)
+$GETClusterSdnFabricsNodeRB = Initialize-GETClusterSdnFabricsNodeRB -Running $false -FabricId "MyFabricId" -Pending $false # GETClusterSdnFabricsNodeRB | SDN Fabrics Index (optional)
 
 # SDN Fabrics Index
 try {
@@ -4121,7 +4203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClusterSdnFabricsNodeInner[]**](ClusterSdnFabricsNodeInner.md) (PSCustomObject)
+[**ClusterSdnFabricsNodeGETInner[]**](ClusterSdnFabricsNodeGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -4136,7 +4218,7 @@ No authorization required
 
 <a name="Get-PVEClusterSdnFabricsNodeByFabricid"></a>
 # **Get-PVEClusterSdnFabricsNodeByFabricid**
-> ClusterSdnFabricsNodeInner[] Get-PVEClusterSdnFabricsNodeByFabricid<br>
+> ClusterSdnFabricsNodeGETInner[] Get-PVEClusterSdnFabricsNodeByFabricid<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-FabricId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-GETClusterSdnFabricsNodeRB] <PSCustomObject><br>
 
@@ -4147,7 +4229,7 @@ SDN Fabrics Index
 ### Example
 ```powershell
 $FabricId = "MyFabricId" # String | Identifier for SDN fabrics
-$GETClusterSdnFabricsNodeRB = Initialize-GETClusterSdnFabricsNodeRB -Pending $false -FabricId "MyFabricId" -Running $false # GETClusterSdnFabricsNodeRB | SDN Fabrics Index (optional)
+$GETClusterSdnFabricsNodeRB = Initialize-GETClusterSdnFabricsNodeRB -Running $false -FabricId "MyFabricId" -Pending $false # GETClusterSdnFabricsNodeRB | SDN Fabrics Index (optional)
 
 # SDN Fabrics Index
 try {
@@ -4167,7 +4249,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClusterSdnFabricsNodeInner[]**](ClusterSdnFabricsNodeInner.md) (PSCustomObject)
+[**ClusterSdnFabricsNodeGETInner[]**](ClusterSdnFabricsNodeGETInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -4366,7 +4448,7 @@ SDN vnets index.
 
 ### Example
 ```powershell
-$GETClusterSdnVnetsRB = Initialize-GETClusterSdnVnetsRB -Pending $false -Running $false # GETClusterSdnVnetsRB | SDN vnets index. (optional)
+$GETClusterSdnVnetsRB = Initialize-GETClusterSdnVnetsRB -Running $false -Pending $false # GETClusterSdnVnetsRB | SDN vnets index. (optional)
 
 # SDN vnets index.
 try {
@@ -4411,7 +4493,7 @@ Read sdn vnet configuration.
 ### Example
 ```powershell
 $Vnet = "MyVnet" # String | The SDN vnet object identifier.
-$GETClusterSdnVnetsRB = Initialize-GETClusterSdnVnetsRB -Pending $false -Running $false # GETClusterSdnVnetsRB | Read sdn vnet configuration. (optional)
+$GETClusterSdnVnetsRB = Initialize-GETClusterSdnVnetsRB -Running $false -Pending $false # GETClusterSdnVnetsRB | Read sdn vnet configuration. (optional)
 
 # Read sdn vnet configuration.
 try {
@@ -4632,7 +4714,7 @@ SDN subnets index.
 ### Example
 ```powershell
 $Vnet = "MyVnet" # String | The SDN vnet object identifier.
-$GETClusterSdnVnetsSubnetsRB = Initialize-GETClusterSdnVnetsSubnetsRB -Pending $false -Running $false # GETClusterSdnVnetsSubnetsRB | SDN subnets index. (optional)
+$GETClusterSdnVnetsSubnetsRB = Initialize-GETClusterSdnVnetsSubnetsRB -Running $false -Pending $false # GETClusterSdnVnetsSubnetsRB | SDN subnets index. (optional)
 
 # SDN subnets index.
 try {
@@ -4680,7 +4762,7 @@ Read sdn subnet configuration.
 ```powershell
 $Subnet = "MySubnet" # String | The SDN subnet object identifier.
 $Vnet = "MyVnet" # String | The SDN vnet object identifier.
-$GETClusterSdnVnetsSubnetsRB = Initialize-GETClusterSdnVnetsSubnetsRB -Pending $false -Running $false # GETClusterSdnVnetsSubnetsRB | Read sdn subnet configuration. (optional)
+$GETClusterSdnVnetsSubnetsRB = Initialize-GETClusterSdnVnetsSubnetsRB -Running $false -Pending $false # GETClusterSdnVnetsSubnetsRB | Read sdn subnet configuration. (optional)
 
 # Read sdn subnet configuration.
 try {
@@ -4725,7 +4807,7 @@ SDN zones index.
 
 ### Example
 ```powershell
-$GETClusterSdnZonesRB = Initialize-GETClusterSdnZonesRB -Pending $false -Running $false # GETClusterSdnZonesRB | SDN zones index. (optional)
+$GETClusterSdnZonesRB = Initialize-GETClusterSdnZonesRB -Running $false -Pending $false # GETClusterSdnZonesRB | SDN zones index. (optional)
 
 # SDN zones index.
 try {
@@ -4770,7 +4852,7 @@ Read sdn zone configuration.
 ### Example
 ```powershell
 $Zone = "MyZone" # String | The SDN zone object identifier.
-$GETClusterSdnZonesRB = Initialize-GETClusterSdnZonesRB -Pending $false -Running $false # GETClusterSdnZonesRB | Read sdn zone configuration. (optional)
+$GETClusterSdnZonesRB = Initialize-GETClusterSdnZonesRB -Running $false -Pending $false # GETClusterSdnZonesRB | Read sdn zone configuration. (optional)
 
 # Read sdn zone configuration.
 try {
@@ -4890,7 +4972,7 @@ Register a new ACME account with CA.
 
 ### Example
 ```powershell
-$POSTClusterAcmeAccountRB = Initialize-POSTClusterAcmeAccountRB -TosUrl "MyTosUrl" -Contact "MyContact" -EabKid "MyEabKid" -EabHmacKey "MyEabHmacKey" -Name "MyName" -Directory "MyDirectory" # POSTClusterAcmeAccountRB | Register a new ACME account with CA. (optional)
+$POSTClusterAcmeAccountRB = Initialize-POSTClusterAcmeAccountRB -EabHmacKey "MyEabHmacKey" -Contact "MyContact" -Name "MyName" -EabKid "MyEabKid" -TosUrl "MyTosUrl" -Directory "MyDirectory" # POSTClusterAcmeAccountRB | Register a new ACME account with CA. (optional)
 
 # Register a new ACME account with CA.
 try {
@@ -4933,7 +5015,7 @@ Add ACME plugin configuration.
 
 ### Example
 ```powershell
-$POSTClusterAcmePluginsRB = Initialize-POSTClusterAcmePluginsRB -Disable $false -Type "dns" -ValidationDelay 0 -Id "MyId" -Nodes "MyNodes" -VarData "MyVarData" -Api "1984hosting" # POSTClusterAcmePluginsRB | Add ACME plugin configuration. (optional)
+$POSTClusterAcmePluginsRB = Initialize-POSTClusterAcmePluginsRB -VarData "MyVarData" -ValidationDelay 0 -Id "MyId" -Api "1984hosting" -Nodes "MyNodes" -Type "dns" -Disable $false # POSTClusterAcmePluginsRB | Add ACME plugin configuration. (optional)
 
 # Add ACME plugin configuration.
 try {
@@ -4976,7 +5058,7 @@ Create new vzdump backup job.
 
 ### Example
 ```powershell
-$POSTClusterBackupRB = Initialize-POSTClusterBackupRB -Maxfiles 0 -NotificationMode "auto" -Mailnotification "always" -Schedule "MySchedule" -Tmpdir "MyTmpdir" -Id "MyId" -Mode "snapshot" -Performance "MyPerformance" -Compress "0" -PbsChangeDetectionMode "legacy" -Protected $false -Vmid "MyVmid" -NotesTemplate "MyNotesTemplate" -Dow "MyDow" -Storage "MyStorage" -Node "MyNode" -RepeatMissed $false -All $false -Exclude "MyExclude" -Bwlimit 0 -Stdexcludes $false -Quiet $false -Fleecing "MyFleecing" -Comment "MyComment" -Pool "MyPool" -Enabled $false -Lockwait 0 -Stop $false -Zstd 0 -ExcludePath "MyExcludePath" -Dumpdir "MyDumpdir" -PruneBackups "MyPruneBackups" -Script "MyScript" -Stopwait 0 -Mailto "MyMailto" -Pigz 0 -Remove $false -Ionice 0 -Starttime "MyStarttime" # POSTClusterBackupRB | Create new vzdump backup job. (optional)
+$POSTClusterBackupRB = Initialize-POSTClusterBackupRB -Maxfiles 0 -NotificationMode "auto" -Pool "MyPool" -All $false -NotesTemplate "MyNotesTemplate" -Stdexcludes $false -Fleecing "MyFleecing" -Script "MyScript" -Stopwait 0 -Schedule "MySchedule" -PbsChangeDetectionMode "legacy" -Compress "0" -Mailto "MyMailto" -Stop $false -Ionice 0 -Performance "MyPerformance" -Protected $false -Comment "MyComment" -Zstd 0 -Lockwait 0 -Id "MyId" -Bwlimit 0 -RepeatMissed $false -Pigz 0 -Quiet $false -Starttime "MyStarttime" -Enabled $false -Mode "snapshot" -Tmpdir "MyTmpdir" -Node "MyNode" -Dumpdir "MyDumpdir" -Exclude "MyExclude" -Dow "MyDow" -Remove $false -Storage "MyStorage" -Mailnotification "always" -PruneBackups "MyPruneBackups" -Vmid "MyVmid" -ExcludePath "MyExcludePath" # POSTClusterBackupRB | Create new vzdump backup job. (optional)
 
 # Create new vzdump backup job.
 try {
@@ -5008,6 +5090,178 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="New-PVEClusterBulkactionGuestMigrate"></a>
+# **New-PVEClusterBulkactionGuestMigrate**
+> void New-PVEClusterBulkactionGuestMigrate<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterBulkactionGuestMigrateRB] <PSCustomObject><br>
+
+Bulk migrate all guests on the cluster.
+
+Bulk migrate all guests on the cluster.
+
+### Example
+```powershell
+$POSTClusterBulkactionGuestMigrateRB = Initialize-POSTClusterBulkactionGuestMigrateRB -Online $false -Vms 0 -Maxworkers 0 -Target "MyTarget" -WithLocalDisks $false # POSTClusterBulkactionGuestMigrateRB | Bulk migrate all guests on the cluster. (optional)
+
+# Bulk migrate all guests on the cluster.
+try {
+    $Result = New-PVEClusterBulkactionGuestMigrate -POSTClusterBulkactionGuestMigrateRB $POSTClusterBulkactionGuestMigrateRB
+} catch {
+    Write-Host ("Exception occurred when calling New-PVEClusterBulkactionGuestMigrate: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterBulkactionGuestMigrateRB** | [**POSTClusterBulkactionGuestMigrateRB**](POSTClusterBulkactionGuestMigrateRB.md)| Bulk migrate all guests on the cluster. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="New-PVEClusterBulkactionGuestShutdown"></a>
+# **New-PVEClusterBulkactionGuestShutdown**
+> void New-PVEClusterBulkactionGuestShutdown<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterBulkactionGuestShutdownRB] <PSCustomObject><br>
+
+Bulk shutdown all guests on the cluster.
+
+Bulk shutdown all guests on the cluster.
+
+### Example
+```powershell
+$POSTClusterBulkactionGuestShutdownRB = Initialize-POSTClusterBulkactionGuestShutdownRB -Vms 0 -Maxworkers 0 -Timeout 0 -ForceStop $false # POSTClusterBulkactionGuestShutdownRB | Bulk shutdown all guests on the cluster. (optional)
+
+# Bulk shutdown all guests on the cluster.
+try {
+    $Result = New-PVEClusterBulkactionGuestShutdown -POSTClusterBulkactionGuestShutdownRB $POSTClusterBulkactionGuestShutdownRB
+} catch {
+    Write-Host ("Exception occurred when calling New-PVEClusterBulkactionGuestShutdown: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterBulkactionGuestShutdownRB** | [**POSTClusterBulkactionGuestShutdownRB**](POSTClusterBulkactionGuestShutdownRB.md)| Bulk shutdown all guests on the cluster. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="New-PVEClusterBulkactionGuestStart"></a>
+# **New-PVEClusterBulkactionGuestStart**
+> void New-PVEClusterBulkactionGuestStart<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterBulkactionGuestStartRB] <PSCustomObject><br>
+
+Bulk start or resume all guests on the cluster.
+
+Bulk start or resume all guests on the cluster.
+
+### Example
+```powershell
+$POSTClusterBulkactionGuestStartRB = Initialize-POSTClusterBulkactionGuestStartRB -Vms 0 -Maxworkers 0 -Timeout 0 # POSTClusterBulkactionGuestStartRB | Bulk start or resume all guests on the cluster. (optional)
+
+# Bulk start or resume all guests on the cluster.
+try {
+    $Result = New-PVEClusterBulkactionGuestStart -POSTClusterBulkactionGuestStartRB $POSTClusterBulkactionGuestStartRB
+} catch {
+    Write-Host ("Exception occurred when calling New-PVEClusterBulkactionGuestStart: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterBulkactionGuestStartRB** | [**POSTClusterBulkactionGuestStartRB**](POSTClusterBulkactionGuestStartRB.md)| Bulk start or resume all guests on the cluster. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="New-PVEClusterBulkactionGuestSuspend"></a>
+# **New-PVEClusterBulkactionGuestSuspend**
+> void New-PVEClusterBulkactionGuestSuspend<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-POSTClusterBulkactionGuestSuspendRB] <PSCustomObject><br>
+
+Bulk suspend all guests on the cluster.
+
+Bulk suspend all guests on the cluster.
+
+### Example
+```powershell
+$POSTClusterBulkactionGuestSuspendRB = Initialize-POSTClusterBulkactionGuestSuspendRB -ToDisk $false -Vms 0 -Maxworkers 0 -Statestorage "MyStatestorage" # POSTClusterBulkactionGuestSuspendRB | Bulk suspend all guests on the cluster. (optional)
+
+# Bulk suspend all guests on the cluster.
+try {
+    $Result = New-PVEClusterBulkactionGuestSuspend -POSTClusterBulkactionGuestSuspendRB $POSTClusterBulkactionGuestSuspendRB
+} catch {
+    Write-Host ("Exception occurred when calling New-PVEClusterBulkactionGuestSuspend: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **POSTClusterBulkactionGuestSuspendRB** | [**POSTClusterBulkactionGuestSuspendRB**](POSTClusterBulkactionGuestSuspendRB.md)| Bulk suspend all guests on the cluster. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="New-PVEClusterConfig"></a>
 # **New-PVEClusterConfig**
 > void New-PVEClusterConfig<br>
@@ -5019,7 +5273,7 @@ Generate new cluster configuration. If no links given, default to local IP addre
 
 ### Example
 ```powershell
-$POSTClusterConfigRB = Initialize-POSTClusterConfigRB -Clustername "MyClustername" -Nodeid 0 -Votes 0 -LinkN "MyLinkN" # POSTClusterConfigRB | Generate new cluster configuration. If no links given, default to local IP address as link0. (optional)
+$POSTClusterConfigRB = Initialize-POSTClusterConfigRB -Clustername "MyClustername" -LinkN "MyLinkN" -Nodeid 0 -Votes 0 # POSTClusterConfigRB | Generate new cluster configuration. If no links given, default to local IP address as link0. (optional)
 
 # Generate new cluster configuration. If no links given, default to local IP address as link0.
 try {
@@ -5062,7 +5316,7 @@ Joins this node into an existing cluster. If no links are given, default to IP r
 
 ### Example
 ```powershell
-$POSTClusterConfigJoinRB = Initialize-POSTClusterConfigJoinRB -Fingerprint "MyFingerprint" -Password "MyPassword" -Force $false -Nodeid 0 -Votes 0 -Hostname "MyHostname" -LinkN "MyLinkN" # POSTClusterConfigJoinRB | Joins this node into an existing cluster. If no links are given, default to IP resolved by node's hostname on single link (fallback fails for clusters with multiple links). (optional)
+$POSTClusterConfigJoinRB = Initialize-POSTClusterConfigJoinRB -Votes 0 -Nodeid 0 -Hostname "MyHostname" -Fingerprint "MyFingerprint" -Force $false -Password "MyPassword" -LinkN "MyLinkN" # POSTClusterConfigJoinRB | Joins this node into an existing cluster. If no links are given, default to IP resolved by node's hostname on single link (fallback fails for clusters with multiple links). (optional)
 
 # Joins this node into an existing cluster. If no links are given, default to IP resolved by node's hostname on single link (fallback fails for clusters with multiple links).
 try {
@@ -5107,7 +5361,7 @@ Adds a node to the cluster configuration. This call is for internal use.
 ### Example
 ```powershell
 $Node = "MyNode" # String | The cluster node name.
-$POSTClusterConfigNodesRB = Initialize-POSTClusterConfigNodesRB -Apiversion 0 -Force $false -Nodeid 0 -NewNodeIp "MyNewNodeIp" -Votes 0 -LinkN "MyLinkN" # POSTClusterConfigNodesRB | Adds a node to the cluster configuration. This call is for internal use. (optional)
+$POSTClusterConfigNodesRB = Initialize-POSTClusterConfigNodesRB -Apiversion 0 -Nodeid 0 -LinkN "MyLinkN" -Force $false -Votes 0 -NewNodeIp "MyNewNodeIp" # POSTClusterConfigNodesRB | Adds a node to the cluster configuration. This call is for internal use. (optional)
 
 # Adds a node to the cluster configuration. This call is for internal use.
 try {
@@ -5194,7 +5448,7 @@ Create new security group.
 
 ### Example
 ```powershell
-$POSTClusterFirewallGroupsRB = Initialize-POSTClusterFirewallGroupsRB -IcmpType "MyIcmpType" -Dest "MyDest" -Proto "MyProto" -Action "MyAction" -Sport "MySport" -Macro "MyMacro" -Comment "MyComment" -Pos 0 -Type "in" -Digest "MyDigest" -Dport "MyDport" -Enable 0 -Source "MySource" -Log "emerg" -Iface "MyIface" # POSTClusterFirewallGroupsRB | Create new security group. (optional)
+$POSTClusterFirewallGroupsRB = Initialize-POSTClusterFirewallGroupsRB -Macro "MyMacro" -Action "MyAction" -Iface "MyIface" -Proto "MyProto" -Comment "MyComment" -IcmpType "MyIcmpType" -Digest "MyDigest" -Type "in" -Source "MySource" -Dest "MyDest" -Enable 0 -Log "emerg" -Dport "MyDport" -Pos 0 -Sport "MySport" # POSTClusterFirewallGroupsRB | Create new security group. (optional)
 
 # Create new security group.
 try {
@@ -5239,7 +5493,7 @@ Create new rule.
 ### Example
 ```powershell
 $Group = "MyGroup" # String | Security Group name.
-$POSTClusterFirewallGroupsRB = Initialize-POSTClusterFirewallGroupsRB -IcmpType "MyIcmpType" -Dest "MyDest" -Proto "MyProto" -Action "MyAction" -Sport "MySport" -Macro "MyMacro" -Comment "MyComment" -Pos 0 -Type "in" -Digest "MyDigest" -Dport "MyDport" -Enable 0 -Source "MySource" -Log "emerg" -Iface "MyIface" # POSTClusterFirewallGroupsRB | Create new rule. (optional)
+$POSTClusterFirewallGroupsRB = Initialize-POSTClusterFirewallGroupsRB -Macro "MyMacro" -Action "MyAction" -Iface "MyIface" -Proto "MyProto" -Comment "MyComment" -IcmpType "MyIcmpType" -Digest "MyDigest" -Type "in" -Source "MySource" -Dest "MyDest" -Enable 0 -Log "emerg" -Dport "MyDport" -Pos 0 -Sport "MySport" # POSTClusterFirewallGroupsRB | Create new rule. (optional)
 
 # Create new rule.
 try {
@@ -5372,7 +5626,7 @@ Create new rule.
 
 ### Example
 ```powershell
-$POSTClusterFirewallRulesRB = Initialize-POSTClusterFirewallRulesRB -IcmpType "MyIcmpType" -Dest "MyDest" -Proto "MyProto" -Action "MyAction" -Sport "MySport" -Macro "MyMacro" -Comment "MyComment" -Pos 0 -Type "in" -Digest "MyDigest" -Dport "MyDport" -Enable 0 -Source "MySource" -Log "emerg" -Iface "MyIface" # POSTClusterFirewallRulesRB | Create new rule. (optional)
+$POSTClusterFirewallRulesRB = Initialize-POSTClusterFirewallRulesRB -Macro "MyMacro" -Action "MyAction" -Iface "MyIface" -Proto "MyProto" -Comment "MyComment" -IcmpType "MyIcmpType" -Digest "MyDigest" -Type "in" -Source "MySource" -Dest "MyDest" -Enable 0 -Log "emerg" -Dport "MyDport" -Pos 0 -Sport "MySport" # POSTClusterFirewallRulesRB | Create new rule. (optional)
 
 # Create new rule.
 try {
@@ -5415,7 +5669,7 @@ Create a new HA group. (deprecated in favor of HA rules)
 
 ### Example
 ```powershell
-$POSTClusterHaGroupsRB = Initialize-POSTClusterHaGroupsRB -Nofailback $false -Group "MyGroup" -Type "group" -Restricted $false -Nodes "MyNodes" -Comment "MyComment" # POSTClusterHaGroupsRB | Create a new HA group. (deprecated in favor of HA rules) (optional)
+$POSTClusterHaGroupsRB = Initialize-POSTClusterHaGroupsRB -Group "MyGroup" -Comment "MyComment" -Nofailback $false -Type "group" -Nodes "MyNodes" -Restricted $false # POSTClusterHaGroupsRB | Create a new HA group. (deprecated in favor of HA rules) (optional)
 
 # Create a new HA group. (deprecated in favor of HA rules)
 try {
@@ -5458,7 +5712,7 @@ Create a new HA resource.
 
 ### Example
 ```powershell
-$POSTClusterHaResourcesRB = Initialize-POSTClusterHaResourcesRB -MaxRelocate 0 -Group "MyGroup" -Type "ct" -MaxRestart 0 -Comment "MyComment" -Sid "MySid" -Failback $false -State "started" # POSTClusterHaResourcesRB | Create a new HA resource. (optional)
+$POSTClusterHaResourcesRB = Initialize-POSTClusterHaResourcesRB -MaxRestart 0 -MaxRelocate 0 -Comment "MyComment" -Type "ct" -Group "MyGroup" -State "started" -Sid "MySid" -Failback $false # POSTClusterHaResourcesRB | Create a new HA resource. (optional)
 
 # Create a new HA resource.
 try {
@@ -5593,7 +5847,7 @@ Create HA rule.
 
 ### Example
 ```powershell
-$POSTClusterHaRulesRB = Initialize-POSTClusterHaRulesRB -Resources "MyResources" -Strict $false -Disable $false -Affinity "positive" -Type "node-affinity" -Nodes "MyNodes" -Comment "MyComment" -Rule "MyRule" # POSTClusterHaRulesRB | Create HA rule. (optional)
+$POSTClusterHaRulesRB = Initialize-POSTClusterHaRulesRB -Affinity "positive" -Resources "MyResources" -Comment "MyComment" -Type "node-affinity" -Strict $false -Nodes "MyNodes" -Rule "MyRule" -Disable $false # POSTClusterHaRulesRB | Create HA rule. (optional)
 
 # Create HA rule.
 try {
@@ -5638,7 +5892,7 @@ Create new realm-sync job.
 ### Example
 ```powershell
 $Id = "MyId" # String | The ID of the job.
-$POSTClusterJobsRealmsyncRB = Initialize-POSTClusterJobsRealmsyncRB -EnableNew $false -Scope "users" -Realm "MyRealm" -Enabled $false -Comment "MyComment" -RemoveVanished "MyRemoveVanished" -Schedule "MySchedule" # POSTClusterJobsRealmsyncRB | Create new realm-sync job. (optional)
+$POSTClusterJobsRealmsyncRB = Initialize-POSTClusterJobsRealmsyncRB -Schedule "MySchedule" -Comment "MyComment" -EnableNew $false -Realm "MyRealm" -Scope "users" -RemoveVanished "MyRemoveVanished" -Enabled $false # POSTClusterJobsRealmsyncRB | Create new realm-sync job. (optional)
 
 # Create new realm-sync job.
 try {
@@ -5682,7 +5936,7 @@ Create a new directory mapping.
 
 ### Example
 ```powershell
-$POSTClusterMappingDirRB = Initialize-POSTClusterMappingDirRB -Id "MyId" -Description "MyDescription" -Map "MyMap" # POSTClusterMappingDirRB | Create a new directory mapping. (optional)
+$POSTClusterMappingDirRB = Initialize-POSTClusterMappingDirRB -Description "MyDescription" -Id "MyId" -Map "MyMap" # POSTClusterMappingDirRB | Create a new directory mapping. (optional)
 
 # Create a new directory mapping.
 try {
@@ -5725,7 +5979,7 @@ Create a new hardware mapping.
 
 ### Example
 ```powershell
-$POSTClusterMappingPciRB = Initialize-POSTClusterMappingPciRB -Id "MyId" -Mdev $false -LiveMigrationCapable $false -Description "MyDescription" -Map "MyMap" # POSTClusterMappingPciRB | Create a new hardware mapping. (optional)
+$POSTClusterMappingPciRB = Initialize-POSTClusterMappingPciRB -Description "MyDescription" -Id "MyId" -Map "MyMap" -LiveMigrationCapable $false -Mdev $false # POSTClusterMappingPciRB | Create a new hardware mapping. (optional)
 
 # Create a new hardware mapping.
 try {
@@ -5768,7 +6022,7 @@ Create a new hardware mapping.
 
 ### Example
 ```powershell
-$POSTClusterMappingUsbRB = Initialize-POSTClusterMappingUsbRB -Id "MyId" -Description "MyDescription" -Map "MyMap" # POSTClusterMappingUsbRB | Create a new hardware mapping. (optional)
+$POSTClusterMappingUsbRB = Initialize-POSTClusterMappingUsbRB -Description "MyDescription" -Id "MyId" -Map "MyMap" # POSTClusterMappingUsbRB | Create a new hardware mapping. (optional)
 
 # Create a new hardware mapping.
 try {
@@ -5813,7 +6067,7 @@ Create a new external metric server config
 ### Example
 ```powershell
 $Id = "MyId" # String | The ID of the entry.
-$POSTClusterMetricsServerRB = Initialize-POSTClusterMetricsServerRB -OtelMaxBodySize 0 -Influxdbproto "udp" -Path "MyPath" -ApiPathPrefix "MyApiPathPrefix" -Port 0 -Proto "udp" -Type "graphite" -Mtu 0 -Bucket "MyBucket" -OtelVerifySsl $false -Disable $false -Server "MyServer" -MaxBodySize 0 -Token "MyToken" -OtelHeaders "MyOtelHeaders" -OtelResourceAttributes "MyOtelResourceAttributes" -OtelTimeout 0 -VerifyCertificate $false -OtelCompression "none" -Organization "MyOrganization" -Timeout 0 -OtelProtocol "http" -OtelPath "MyOtelPath" # POSTClusterMetricsServerRB | Create a new external metric server config (optional)
+$POSTClusterMetricsServerRB = Initialize-POSTClusterMetricsServerRB -Token "MyToken" -Server "MyServer" -Proto "udp" -Influxdbproto "udp" -Disable $false -MaxBodySize 0 -Organization "MyOrganization" -OtelTimeout 0 -OtelHeaders "MyOtelHeaders" -Port 0 -OtelMaxBodySize 0 -OtelVerifySsl $false -Type "graphite" -Mtu 0 -OtelResourceAttributes "MyOtelResourceAttributes" -OtelPath "MyOtelPath" -Timeout 0 -VerifyCertificate $false -ApiPathPrefix "MyApiPathPrefix" -OtelCompression "none" -OtelProtocol "http" -Bucket "MyBucket" -Path "MyPath" # POSTClusterMetricsServerRB | Create a new external metric server config (optional)
 
 # Create a new external metric server config
 try {
@@ -5857,7 +6111,7 @@ Create a new gotify endpoint
 
 ### Example
 ```powershell
-$POSTClusterNotificationsEndpointsGotifyRB = Initialize-POSTClusterNotificationsEndpointsGotifyRB -Disable $false -Server "MyServer" -Comment "MyComment" -Name "MyName" -Token "MyToken" # POSTClusterNotificationsEndpointsGotifyRB | Create a new gotify endpoint (optional)
+$POSTClusterNotificationsEndpointsGotifyRB = Initialize-POSTClusterNotificationsEndpointsGotifyRB -Server "MyServer" -Disable $false -Comment "MyComment" -Name "MyName" -Token "MyToken" # POSTClusterNotificationsEndpointsGotifyRB | Create a new gotify endpoint (optional)
 
 # Create a new gotify endpoint
 try {
@@ -5900,7 +6154,7 @@ Create a new sendmail endpoint
 
 ### Example
 ```powershell
-$POSTClusterNotificationsEndpointsSendmailRB = Initialize-POSTClusterNotificationsEndpointsSendmailRB -Disable $false -Author "MyAuthor" -Comment "MyComment" -Mailto "MyMailto" -MailtoUser "MyMailtoUser" -Name "MyName" -FromAddress "MyFromAddress" # POSTClusterNotificationsEndpointsSendmailRB | Create a new sendmail endpoint (optional)
+$POSTClusterNotificationsEndpointsSendmailRB = Initialize-POSTClusterNotificationsEndpointsSendmailRB -FromAddress "MyFromAddress" -Comment "MyComment" -Name "MyName" -MailtoUser "MyMailtoUser" -Author "MyAuthor" -Mailto "MyMailto" -Disable $false # POSTClusterNotificationsEndpointsSendmailRB | Create a new sendmail endpoint (optional)
 
 # Create a new sendmail endpoint
 try {
@@ -5943,7 +6197,7 @@ Create a new smtp endpoint
 
 ### Example
 ```powershell
-$POSTClusterNotificationsEndpointsSmtpRB = Initialize-POSTClusterNotificationsEndpointsSmtpRB -Disable $false -Author "MyAuthor" -Password "MyPassword" -Username "MyUsername" -Mode "insecure" -Server "MyServer" -Comment "MyComment" -Mailto "MyMailto" -Port 0 -MailtoUser "MyMailtoUser" -Name "MyName" -FromAddress "MyFromAddress" # POSTClusterNotificationsEndpointsSmtpRB | Create a new smtp endpoint (optional)
+$POSTClusterNotificationsEndpointsSmtpRB = Initialize-POSTClusterNotificationsEndpointsSmtpRB -FromAddress "MyFromAddress" -Mode "insecure" -Port 0 -Comment "MyComment" -Name "MyName" -Username "MyUsername" -Server "MyServer" -MailtoUser "MyMailtoUser" -Password "MyPassword" -Author "MyAuthor" -Mailto "MyMailto" -Disable $false # POSTClusterNotificationsEndpointsSmtpRB | Create a new smtp endpoint (optional)
 
 # Create a new smtp endpoint
 try {
@@ -5986,7 +6240,7 @@ Create a new webhook endpoint
 
 ### Example
 ```powershell
-$POSTClusterNotificationsEndpointsWebhookRB = Initialize-POSTClusterNotificationsEndpointsWebhookRB -Url "MyUrl" -Disable $false -Header "MyHeader" -Comment "MyComment" -Body "MyBody" -Secret "MySecret" -Name "MyName" -Method "post" # POSTClusterNotificationsEndpointsWebhookRB | Create a new webhook endpoint (optional)
+$POSTClusterNotificationsEndpointsWebhookRB = Initialize-POSTClusterNotificationsEndpointsWebhookRB -Body "MyBody" -Url "MyUrl" -Comment "MyComment" -Name "MyName" -Disable $false -Method "post" -Secret "MySecret" -Header "MyHeader" # POSTClusterNotificationsEndpointsWebhookRB | Create a new webhook endpoint (optional)
 
 # Create a new webhook endpoint
 try {
@@ -6029,7 +6283,7 @@ Create a new matcher
 
 ### Example
 ```powershell
-$POSTClusterNotificationsMatchersRB = Initialize-POSTClusterNotificationsMatchersRB -MatchField "MyMatchField" -Disable $false -MatchSeverity "MyMatchSeverity" -Mode "all" -Target "MyTarget" -Comment "MyComment" -MatchCalendar "MyMatchCalendar" -InvertMatch $false -Name "MyName" # POSTClusterNotificationsMatchersRB | Create a new matcher (optional)
+$POSTClusterNotificationsMatchersRB = Initialize-POSTClusterNotificationsMatchersRB -Target "MyTarget" -MatchField "MyMatchField" -Mode "all" -Comment "MyComment" -MatchCalendar "MyMatchCalendar" -Name "MyName" -MatchSeverity "MyMatchSeverity" -InvertMatch $false -Disable $false # POSTClusterNotificationsMatchersRB | Create a new matcher (optional)
 
 # Create a new matcher
 try {
@@ -6115,7 +6369,7 @@ Create a new replication job
 
 ### Example
 ```powershell
-$POSTClusterReplicationRB = Initialize-POSTClusterReplicationRB -Disable $false -Target "MyTarget" -Type "local" -Schedule "MySchedule" -Id "MyId" -Source "MySource" -RemoveJob "local" -Comment "MyComment" -Rate 0 # POSTClusterReplicationRB | Create a new replication job (optional)
+$POSTClusterReplicationRB = Initialize-POSTClusterReplicationRB -Schedule "MySchedule" -RemoveJob "local" -Id "MyId" -Comment "MyComment" -Type "local" -Source "MySource" -Target "MyTarget" -Rate 0 -Disable $false # POSTClusterReplicationRB | Create a new replication job (optional)
 
 # Create a new replication job
 try {
@@ -6158,7 +6412,7 @@ Create a new sdn controller object.
 
 ### Example
 ```powershell
-$POSTClusterSdnControllersRB = Initialize-POSTClusterSdnControllersRB -IsisIfaces "MyIsisIfaces" -EbgpMultihop 0 -IsisDomain "MyIsisDomain" -IsisNet "MyIsisNet" -Peers "MyPeers" -Asn 0 -BgpMultipathAsPathRelax $false -Ebgp $false -Type "bgp" -LockToken "MyLockToken" -Node "MyNode" -Controller "MyController" -Loopback "MyLoopback" -Fabric "MyFabric" # POSTClusterSdnControllersRB | Create a new sdn controller object. (optional)
+$POSTClusterSdnControllersRB = Initialize-POSTClusterSdnControllersRB -Type "bgp" -Controller "MyController" -Asn 0 -Loopback "MyLoopback" -LockToken "MyLockToken" -IsisNet "MyIsisNet" -IsisIfaces "MyIsisIfaces" -Node "MyNode" -EbgpMultihop 0 -Ebgp $false -IsisDomain "MyIsisDomain" -BgpMultipathAsPathRelax $false -Fabric "MyFabric" -Peers "MyPeers" # POSTClusterSdnControllersRB | Create a new sdn controller object. (optional)
 
 # Create a new sdn controller object.
 try {
@@ -6201,7 +6455,7 @@ Create a new sdn dns object.
 
 ### Example
 ```powershell
-$POSTClusterSdnDnsRB = Initialize-POSTClusterSdnDnsRB -Ttl 0 -LockToken "MyLockToken" -Reversemaskv6 0 -Type "powerdns" -Url "MyUrl" -Dns "MyDns" -Reversev6mask 0 -Fingerprint "MyFingerprint" -Key "MyKey" # POSTClusterSdnDnsRB | Create a new sdn dns object. (optional)
+$POSTClusterSdnDnsRB = Initialize-POSTClusterSdnDnsRB -Url "MyUrl" -Reversemaskv6 0 -Key "MyKey" -Dns "MyDns" -Type "powerdns" -Reversev6mask 0 -LockToken "MyLockToken" -Fingerprint "MyFingerprint" -Ttl 0 # POSTClusterSdnDnsRB | Create a new sdn dns object. (optional)
 
 # Create a new sdn dns object.
 try {
@@ -6244,7 +6498,7 @@ Add a fabric
 
 ### Example
 ```powershell
-$POSTClusterSdnFabricsFabricRB = Initialize-POSTClusterSdnFabricsFabricRB -Protocol "openfabric" -LockToken "MyLockToken" -Ip6Prefix "MyIp6Prefix" -Id "MyId" -Area "MyArea" -IpPrefix "MyIpPrefix" -CsnpInterval 0 -Digest "MyDigest" -HelloInterval 0 # POSTClusterSdnFabricsFabricRB | Add a fabric (optional)
+$POSTClusterSdnFabricsFabricRB = Initialize-POSTClusterSdnFabricsFabricRB -CsnpInterval 0 -Id "MyId" -IpPrefix "MyIpPrefix" -Ip6Prefix "MyIp6Prefix" -Area "MyArea" -HelloInterval 0 -Digest "MyDigest" -LockToken "MyLockToken" -Protocol "openfabric" # POSTClusterSdnFabricsFabricRB | Add a fabric (optional)
 
 # Add a fabric
 try {
@@ -6289,7 +6543,7 @@ Add a node
 ### Example
 ```powershell
 $FabricId = "MyFabricId" # String | Identifier for SDN fabrics
-$POSTClusterSdnFabricsNodeRB = Initialize-POSTClusterSdnFabricsNodeRB -Protocol "openfabric" -Ip6 "MyIp6" -Ip "MyIp" -LockToken "MyLockToken" -NodeId "MyNodeId" -FabricId "MyFabricId" -Digest "MyDigest" -Interfaces # POSTClusterSdnFabricsNodeRB | Add a node (optional)
+$POSTClusterSdnFabricsNodeRB = Initialize-POSTClusterSdnFabricsNodeRB -Ip "MyIp" -NodeId "MyNodeId" -FabricId "MyFabricId" -Interfaces  -Digest "MyDigest" -LockToken "MyLockToken" -Ip6 "MyIp6" -Protocol "openfabric" # POSTClusterSdnFabricsNodeRB | Add a node (optional)
 
 # Add a node
 try {
@@ -6333,7 +6587,7 @@ Create a new sdn ipam object.
 
 ### Example
 ```powershell
-$POSTClusterSdnIpamsRB = Initialize-POSTClusterSdnIpamsRB -Url "MyUrl" -LockToken "MyLockToken" -Token "MyToken" -Section 0 -Type "netbox" -Fingerprint "MyFingerprint" -Ipam "MyIpam" # POSTClusterSdnIpamsRB | Create a new sdn ipam object. (optional)
+$POSTClusterSdnIpamsRB = Initialize-POSTClusterSdnIpamsRB -Url "MyUrl" -Section 0 -Token "MyToken" -Type "netbox" -LockToken "MyLockToken" -Fingerprint "MyFingerprint" -Ipam "MyIpam" # POSTClusterSdnIpamsRB | Create a new sdn ipam object. (optional)
 
 # Create a new sdn ipam object.
 try {
@@ -6462,7 +6716,7 @@ Create a new sdn vnet object.
 
 ### Example
 ```powershell
-$POSTClusterSdnVnetsRB = Initialize-POSTClusterSdnVnetsRB -Zone "MyZone" -LockToken "MyLockToken" -Vnet "MyVnet" -Alias "MyAlias" -Type "vnet" -IsolatePorts $false -Vlanaware $false -Tag 0 # POSTClusterSdnVnetsRB | Create a new sdn vnet object. (optional)
+$POSTClusterSdnVnetsRB = Initialize-POSTClusterSdnVnetsRB -Tag 0 -IsolatePorts $false -Type "vnet" -Zone "MyZone" -LockToken "MyLockToken" -Vnet "MyVnet" -Alias "MyAlias" -Vlanaware $false # POSTClusterSdnVnetsRB | Create a new sdn vnet object. (optional)
 
 # Create a new sdn vnet object.
 try {
@@ -6507,7 +6761,7 @@ Create new rule.
 ### Example
 ```powershell
 $Vnet = "MyVnet" # String | The SDN vnet object identifier.
-$POSTClusterSdnVnetsFirewallRulesRB = Initialize-POSTClusterSdnVnetsFirewallRulesRB -IcmpType "MyIcmpType" -Dest "MyDest" -Proto "MyProto" -Action "MyAction" -Sport "MySport" -Macro "MyMacro" -Comment "MyComment" -Pos 0 -Type "in" -Digest "MyDigest" -Dport "MyDport" -Enable 0 -Source "MySource" -Log "emerg" -Iface "MyIface" # POSTClusterSdnVnetsFirewallRulesRB | Create new rule. (optional)
+$POSTClusterSdnVnetsFirewallRulesRB = Initialize-POSTClusterSdnVnetsFirewallRulesRB -Macro "MyMacro" -Action "MyAction" -Iface "MyIface" -Proto "MyProto" -Comment "MyComment" -IcmpType "MyIcmpType" -Digest "MyDigest" -Type "in" -Source "MySource" -Dest "MyDest" -Enable 0 -Log "emerg" -Dport "MyDport" -Pos 0 -Sport "MySport" # POSTClusterSdnVnetsFirewallRulesRB | Create new rule. (optional)
 
 # Create new rule.
 try {
@@ -6553,7 +6807,7 @@ Create IP Mapping in a VNet
 ### Example
 ```powershell
 $Vnet = "MyVnet" # String | The SDN vnet object identifier.
-$POSTClusterSdnVnetsIpsRB = Initialize-POSTClusterSdnVnetsIpsRB -Mac "MyMac" -Zone "MyZone" -Ip "MyIp" # POSTClusterSdnVnetsIpsRB | Create IP Mapping in a VNet (optional)
+$POSTClusterSdnVnetsIpsRB = Initialize-POSTClusterSdnVnetsIpsRB -Ip "MyIp" -Zone "MyZone" -Mac "MyMac" # POSTClusterSdnVnetsIpsRB | Create IP Mapping in a VNet (optional)
 
 # Create IP Mapping in a VNet
 try {
@@ -6599,7 +6853,7 @@ Create a new sdn subnet object.
 ### Example
 ```powershell
 $Vnet = "MyVnet" # String | associated vnet
-$POSTClusterSdnVnetsSubnetsRB = Initialize-POSTClusterSdnVnetsSubnetsRB -LockToken "MyLockToken" -Snat $false -Type "subnet" -DhcpRange "MyDhcpRange" -Subnet "MySubnet" -DhcpDnsServer "MyDhcpDnsServer" -Dnszoneprefix "MyDnszoneprefix" -Gateway "MyGateway" # POSTClusterSdnVnetsSubnetsRB | Create a new sdn subnet object. (optional)
+$POSTClusterSdnVnetsSubnetsRB = Initialize-POSTClusterSdnVnetsSubnetsRB -Subnet "MySubnet" -Dnszoneprefix "MyDnszoneprefix" -DhcpDnsServer "MyDhcpDnsServer" -Type "subnet" -Gateway "MyGateway" -LockToken "MyLockToken" -Snat $false -DhcpRange "MyDhcpRange" # POSTClusterSdnVnetsSubnetsRB | Create a new sdn subnet object. (optional)
 
 # Create a new sdn subnet object.
 try {
@@ -6643,7 +6897,7 @@ Create a new sdn zone object.
 
 ### Example
 ```powershell
-$POSTClusterSdnZonesRB = Initialize-POSTClusterSdnZonesRB -Mtu 0 -Nodes "MyNodes" -Tag 0 -VrfVxlan 0 -Controller "MyController" -VxlanPort 0 -RtImport "MyRtImport" -Exitnodes "MyExitnodes" -Type "evpn" -Reversedns "MyReversedns" -DisableArpNdSuppression $false -Dhcp "dnsmasq" -Mac "MyMac" -LockToken "MyLockToken" -AdvertiseSubnets $false -BridgeDisableMacLearning $false -Dnszone "MyDnszone" -Zone "MyZone" -Ipam "MyIpam" -Bridge "MyBridge" -Dns "MyDns" -ExitnodesLocalRouting $false -Peers "MyPeers" -ExitnodesPrimary "MyExitnodesPrimary" -Fabric "MyFabric" -DpId 0 -VlanProtocol "802.1q" # POSTClusterSdnZonesRB | Create a new sdn zone object. (optional)
+$POSTClusterSdnZonesRB = Initialize-POSTClusterSdnZonesRB -VlanProtocol "802.1q" -ExitnodesLocalRouting $false -VrfVxlan 0 -Peers "MyPeers" -Dnszone "MyDnszone" -Mtu 0 -AdvertiseSubnets $false -LockToken "MyLockToken" -DisableArpNdSuppression $false -Reversedns "MyReversedns" -Dhcp "dnsmasq" -Dns "MyDns" -Bridge "MyBridge" -RtImport "MyRtImport" -VxlanPort 0 -Controller "MyController" -Zone "MyZone" -DpId 0 -BridgeDisableMacLearning $false -Exitnodes "MyExitnodes" -Nodes "MyNodes" -Ipam "MyIpam" -Type "evpn" -Mac "MyMac" -ExitnodesPrimary "MyExitnodesPrimary" -Fabric "MyFabric" -Tag 0 # POSTClusterSdnZonesRB | Create a new sdn zone object. (optional)
 
 # Create a new sdn zone object.
 try {
@@ -7173,6 +7427,7 @@ No authorization required
 # **Remove-PVEClusterHaResourcesBySid**
 > void Remove-PVEClusterHaResourcesBySid<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Sid] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-DELETEClusterHaResourcesRB] <PSCustomObject><br>
 
 Delete resource configuration.
 
@@ -7181,10 +7436,11 @@ Delete resource configuration.
 ### Example
 ```powershell
 $Sid = "MySid" # String | HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100).
+$DELETEClusterHaResourcesRB = Initialize-DELETEClusterHaResourcesRB -Purge $false # DELETEClusterHaResourcesRB | Delete resource configuration. (optional)
 
 # Delete resource configuration.
 try {
-    $Result = Remove-PVEClusterHaResourcesBySid -Sid $Sid
+    $Result = Remove-PVEClusterHaResourcesBySid -Sid $Sid -DELETEClusterHaResourcesRB $DELETEClusterHaResourcesRB
 } catch {
     Write-Host ("Exception occurred when calling Remove-PVEClusterHaResourcesBySid: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -7196,6 +7452,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **Sid** | **String**| HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100). | 
+ **DELETEClusterHaResourcesRB** | [**DELETEClusterHaResourcesRB**](DELETEClusterHaResourcesRB.md)| Delete resource configuration. | [optional] 
 
 ### Return type
 
@@ -7207,7 +7464,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -8109,7 +8366,7 @@ Delete IP Mappings in a VNet
 ### Example
 ```powershell
 $Vnet = "MyVnet" # String | The SDN vnet object identifier.
-$DELETEClusterSdnVnetsIpsRB = Initialize-DELETEClusterSdnVnetsIpsRB -Mac "MyMac" -Zone "MyZone" -Ip "MyIp" # DELETEClusterSdnVnetsIpsRB | Delete IP Mappings in a VNet (optional)
+$DELETEClusterSdnVnetsIpsRB = Initialize-DELETEClusterSdnVnetsIpsRB -Ip "MyIp" -Zone "MyZone" -Mac "MyMac" # DELETEClusterSdnVnetsIpsRB | Delete IP Mappings in a VNet (optional)
 
 # Delete IP Mappings in a VNet
 try {
@@ -8296,7 +8553,7 @@ Update ACME plugin configuration.
 ### Example
 ```powershell
 $Id = "MyId" # String | ACME Plugin ID name
-$PUTClusterAcmePluginsRB = Initialize-PUTClusterAcmePluginsRB -Disable $false -Delete "MyDelete" -ValidationDelay 0 -Nodes "MyNodes" -VarData "MyVarData" -Api "1984hosting" -Digest "MyDigest" # PUTClusterAcmePluginsRB | Update ACME plugin configuration. (optional)
+$PUTClusterAcmePluginsRB = Initialize-PUTClusterAcmePluginsRB -VarData "MyVarData" -Delete "MyDelete" -Api "1984hosting" -Nodes "MyNodes" -ValidationDelay 0 -Digest "MyDigest" -Disable $false # PUTClusterAcmePluginsRB | Update ACME plugin configuration. (optional)
 
 # Update ACME plugin configuration.
 try {
@@ -8342,7 +8599,7 @@ Update vzdump backup job definition.
 ### Example
 ```powershell
 $Id = "MyId" # String | The job ID.
-$PUTClusterBackupRB = Initialize-PUTClusterBackupRB -Delete "MyDelete" -Maxfiles 0 -NotificationMode "auto" -Mailnotification "always" -Schedule "MySchedule" -Tmpdir "MyTmpdir" -Storage "MyStorage" -Mode "snapshot" -Performance "MyPerformance" -Compress "0" -PbsChangeDetectionMode "legacy" -Protected $false -Vmid "MyVmid" -NotesTemplate "MyNotesTemplate" -Dow "MyDow" -Node "MyNode" -RepeatMissed $false -All $false -Exclude "MyExclude" -Bwlimit 0 -Stdexcludes $false -Quiet $false -Fleecing "MyFleecing" -Comment "MyComment" -Pool "MyPool" -Enabled $false -Lockwait 0 -Stop $false -Zstd 0 -ExcludePath "MyExcludePath" -Dumpdir "MyDumpdir" -PruneBackups "MyPruneBackups" -Script "MyScript" -Stopwait 0 -Mailto "MyMailto" -Pigz 0 -Remove $false -Ionice 0 -Starttime "MyStarttime" # PUTClusterBackupRB | Update vzdump backup job definition. (optional)
+$PUTClusterBackupRB = Initialize-PUTClusterBackupRB -Maxfiles 0 -NotificationMode "auto" -Pool "MyPool" -All $false -NotesTemplate "MyNotesTemplate" -Stdexcludes $false -Fleecing "MyFleecing" -Script "MyScript" -Stopwait 0 -Delete "MyDelete" -PbsChangeDetectionMode "legacy" -Compress "0" -Mailto "MyMailto" -Stop $false -Ionice 0 -Mailnotification "always" -Protected $false -Comment "MyComment" -Zstd 0 -Lockwait 0 -Bwlimit 0 -RepeatMissed $false -Pigz 0 -Quiet $false -Starttime "MyStarttime" -Enabled $false -Mode "snapshot" -Tmpdir "MyTmpdir" -Node "MyNode" -Schedule "MySchedule" -Dumpdir "MyDumpdir" -Exclude "MyExclude" -Dow "MyDow" -PruneBackups "MyPruneBackups" -Remove $false -Storage "MyStorage" -Performance "MyPerformance" -Vmid "MyVmid" -ExcludePath "MyExcludePath" # PUTClusterBackupRB | Update vzdump backup job definition. (optional)
 
 # Update vzdump backup job definition.
 try {
@@ -8477,7 +8734,7 @@ Update IP or Network alias.
 ### Example
 ```powershell
 $Name = "MyName" # String | Alias name.
-$PUTClusterFirewallAliasesRB = Initialize-PUTClusterFirewallAliasesRB -Cidr "MyCidr" -Comment "MyComment" -Rename "MyRename" -Digest "MyDigest" # PUTClusterFirewallAliasesRB | Update IP or Network alias. (optional)
+$PUTClusterFirewallAliasesRB = Initialize-PUTClusterFirewallAliasesRB -Rename "MyRename" -Digest "MyDigest" -Cidr "MyCidr" -Comment "MyComment" # PUTClusterFirewallAliasesRB | Update IP or Network alias. (optional)
 
 # Update IP or Network alias.
 try {
@@ -8525,7 +8782,7 @@ Modify rule data.
 ```powershell
 $Group = "MyGroup" # String | Security Group name.
 $Pos = 56 # Int32 | Update rule at position <pos>.
-$PUTClusterFirewallGroupsRB = Initialize-PUTClusterFirewallGroupsRB -IcmpType "MyIcmpType" -Dest "MyDest" -Enable 0 -Action "MyAction" -Sport "MySport" -Proto "MyProto" -Macro "MyMacro" -Moveto 0 -Comment "MyComment" -Delete "MyDelete" -Type "in" -Digest "MyDigest" -Dport "MyDport" -Source "MySource" -Log "emerg" -Iface "MyIface" # PUTClusterFirewallGroupsRB | Modify rule data. (optional)
+$PUTClusterFirewallGroupsRB = Initialize-PUTClusterFirewallGroupsRB -Macro "MyMacro" -Action "MyAction" -Iface "MyIface" -Proto "MyProto" -Sport "MySport" -Comment "MyComment" -IcmpType "MyIcmpType" -Delete "MyDelete" -Digest "MyDigest" -Type "in" -Source "MySource" -Dest "MyDest" -Enable 0 -Log "emerg" -Dport "MyDport" -Moveto 0 # PUTClusterFirewallGroupsRB | Modify rule data. (optional)
 
 # Modify rule data.
 try {
@@ -8574,7 +8831,7 @@ Update IP or Network settings
 ```powershell
 $Cidr = "MyCidr" # String | Network/IP specification in CIDR format.
 $Name = "MyName" # String | IP set name.
-$PUTClusterFirewallIpsetRB = Initialize-PUTClusterFirewallIpsetRB -Nomatch $false -Comment "MyComment" -Digest "MyDigest" # PUTClusterFirewallIpsetRB | Update IP or Network settings (optional)
+$PUTClusterFirewallIpsetRB = Initialize-PUTClusterFirewallIpsetRB -Digest "MyDigest" -Comment "MyComment" -Nomatch $false # PUTClusterFirewallIpsetRB | Update IP or Network settings (optional)
 
 # Update IP or Network settings
 try {
@@ -8619,7 +8876,7 @@ Set Firewall options.
 
 ### Example
 ```powershell
-$PUTClusterFirewallOptionsRB = Initialize-PUTClusterFirewallOptionsRB -Enable 0 -PolicyForward "ACCEPT" -PolicyOut "ACCEPT" -Delete "MyDelete" -LogRatelimit "MyLogRatelimit" -PolicyIn "ACCEPT" -Ebtables $false -Digest "MyDigest" # PUTClusterFirewallOptionsRB | Set Firewall options. (optional)
+$PUTClusterFirewallOptionsRB = Initialize-PUTClusterFirewallOptionsRB -PolicyOut "ACCEPT" -Delete "MyDelete" -Enable 0 -Ebtables $false -LogRatelimit "MyLogRatelimit" -Digest "MyDigest" -PolicyForward "ACCEPT" -PolicyIn "ACCEPT" # PUTClusterFirewallOptionsRB | Set Firewall options. (optional)
 
 # Set Firewall options.
 try {
@@ -8664,7 +8921,7 @@ Modify rule data.
 ### Example
 ```powershell
 $Pos = 56 # Int32 | Update rule at position <pos>.
-$PUTClusterFirewallRulesRB = Initialize-PUTClusterFirewallRulesRB -IcmpType "MyIcmpType" -Dest "MyDest" -Enable 0 -Action "MyAction" -Sport "MySport" -Proto "MyProto" -Macro "MyMacro" -Moveto 0 -Comment "MyComment" -Delete "MyDelete" -Type "in" -Digest "MyDigest" -Dport "MyDport" -Source "MySource" -Log "emerg" -Iface "MyIface" # PUTClusterFirewallRulesRB | Modify rule data. (optional)
+$PUTClusterFirewallRulesRB = Initialize-PUTClusterFirewallRulesRB -Macro "MyMacro" -Action "MyAction" -Iface "MyIface" -Proto "MyProto" -Sport "MySport" -Comment "MyComment" -IcmpType "MyIcmpType" -Delete "MyDelete" -Digest "MyDigest" -Type "in" -Source "MySource" -Dest "MyDest" -Enable 0 -Log "emerg" -Dport "MyDport" -Moveto 0 # PUTClusterFirewallRulesRB | Modify rule data. (optional)
 
 # Modify rule data.
 try {
@@ -8710,7 +8967,7 @@ Update ha group configuration. (deprecated in favor of HA rules)
 ### Example
 ```powershell
 $Group = "MyGroup" # String | The HA group identifier.
-$PUTClusterHaGroupsRB = Initialize-PUTClusterHaGroupsRB -Nofailback $false -Delete "MyDelete" -Restricted $false -Nodes "MyNodes" -Comment "MyComment" -Digest "MyDigest" # PUTClusterHaGroupsRB | Update ha group configuration. (deprecated in favor of HA rules) (optional)
+$PUTClusterHaGroupsRB = Initialize-PUTClusterHaGroupsRB -Delete "MyDelete" -Comment "MyComment" -Nofailback $false -Nodes "MyNodes" -Digest "MyDigest" -Restricted $false # PUTClusterHaGroupsRB | Update ha group configuration. (deprecated in favor of HA rules) (optional)
 
 # Update ha group configuration. (deprecated in favor of HA rules)
 try {
@@ -8756,7 +9013,7 @@ Update resource configuration.
 ### Example
 ```powershell
 $Sid = "MySid" # String | HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100).
-$PUTClusterHaResourcesRB = Initialize-PUTClusterHaResourcesRB -MaxRelocate 0 -Group "MyGroup" -Delete "MyDelete" -MaxRestart 0 -Comment "MyComment" -Failback $false -Digest "MyDigest" -State "started" # PUTClusterHaResourcesRB | Update resource configuration. (optional)
+$PUTClusterHaResourcesRB = Initialize-PUTClusterHaResourcesRB -Delete "MyDelete" -Group "MyGroup" -Comment "MyComment" -MaxRelocate 0 -State "started" -MaxRestart 0 -Digest "MyDigest" -Failback $false # PUTClusterHaResourcesRB | Update resource configuration. (optional)
 
 # Update resource configuration.
 try {
@@ -8802,7 +9059,7 @@ Update HA rule.
 ### Example
 ```powershell
 $Rule = "MyRule" # String | HA rule identifier.
-$PUTClusterHaRulesRB = Initialize-PUTClusterHaRulesRB -Resources "MyResources" -Strict $false -Disable $false -Affinity "positive" -Delete "MyDelete" -Type "node-affinity" -Nodes "MyNodes" -Comment "MyComment" -Digest "MyDigest" # PUTClusterHaRulesRB | Update HA rule. (optional)
+$PUTClusterHaRulesRB = Initialize-PUTClusterHaRulesRB -Affinity "positive" -Delete "MyDelete" -Comment "MyComment" -Resources "MyResources" -Type "node-affinity" -Strict $false -Nodes "MyNodes" -Digest "MyDigest" -Disable $false # PUTClusterHaRulesRB | Update HA rule. (optional)
 
 # Update HA rule.
 try {
@@ -8848,7 +9105,7 @@ Update realm-sync job definition.
 ### Example
 ```powershell
 $Id = "MyId" # String | The ID of the job.
-$PUTClusterJobsRealmsyncRB = Initialize-PUTClusterJobsRealmsyncRB -EnableNew $false -Scope "users" -RemoveVanished "MyRemoveVanished" -Enabled $false -Comment "MyComment" -Schedule "MySchedule" -Delete "MyDelete" # PUTClusterJobsRealmsyncRB | Update realm-sync job definition. (optional)
+$PUTClusterJobsRealmsyncRB = Initialize-PUTClusterJobsRealmsyncRB -Schedule "MySchedule" -Delete "MyDelete" -Comment "MyComment" -EnableNew $false -Scope "users" -RemoveVanished "MyRemoveVanished" -Enabled $false # PUTClusterJobsRealmsyncRB | Update realm-sync job definition. (optional)
 
 # Update realm-sync job definition.
 try {
@@ -8894,7 +9151,7 @@ Update a directory mapping.
 ### Example
 ```powershell
 $Id = "MyId" # String | The ID of the directory mapping
-$PUTClusterMappingDirRB = Initialize-PUTClusterMappingDirRB -Delete "MyDelete" -Map "MyMap" -Description "MyDescription" -Digest "MyDigest" # PUTClusterMappingDirRB | Update a directory mapping. (optional)
+$PUTClusterMappingDirRB = Initialize-PUTClusterMappingDirRB -Description "MyDescription" -Delete "MyDelete" -Map "MyMap" -Digest "MyDigest" # PUTClusterMappingDirRB | Update a directory mapping. (optional)
 
 # Update a directory mapping.
 try {
@@ -8940,7 +9197,7 @@ Update a hardware mapping.
 ### Example
 ```powershell
 $Id = "MyId" # String | The ID of the logical PCI mapping.
-$PUTClusterMappingPciRB = Initialize-PUTClusterMappingPciRB -Mdev $false -Delete "MyDelete" -Map "MyMap" -LiveMigrationCapable $false -Description "MyDescription" -Digest "MyDigest" # PUTClusterMappingPciRB | Update a hardware mapping. (optional)
+$PUTClusterMappingPciRB = Initialize-PUTClusterMappingPciRB -Delete "MyDelete" -Mdev $false -LiveMigrationCapable $false -Digest "MyDigest" -Map "MyMap" -Description "MyDescription" # PUTClusterMappingPciRB | Update a hardware mapping. (optional)
 
 # Update a hardware mapping.
 try {
@@ -8986,7 +9243,7 @@ Update a hardware mapping.
 ### Example
 ```powershell
 $Id = "MyId" # String | The ID of the logical USB mapping.
-$PUTClusterMappingUsbRB = Initialize-PUTClusterMappingUsbRB -Delete "MyDelete" -Map "MyMap" -Description "MyDescription" -Digest "MyDigest" # PUTClusterMappingUsbRB | Update a hardware mapping. (optional)
+$PUTClusterMappingUsbRB = Initialize-PUTClusterMappingUsbRB -Description "MyDescription" -Delete "MyDelete" -Map "MyMap" -Digest "MyDigest" # PUTClusterMappingUsbRB | Update a hardware mapping. (optional)
 
 # Update a hardware mapping.
 try {
@@ -9032,7 +9289,7 @@ Update metric server configuration.
 ### Example
 ```powershell
 $Id = "MyId" # String | The ID of the entry.
-$PUTClusterMetricsServerRB = Initialize-PUTClusterMetricsServerRB -OtelMaxBodySize 0 -Influxdbproto "udp" -Path "MyPath" -Token "MyToken" -ApiPathPrefix "MyApiPathPrefix" -Port 0 -Proto "udp" -Mtu 0 -Bucket "MyBucket" -OtelVerifySsl $false -Disable $false -Server "MyServer" -MaxBodySize 0 -Delete "MyDelete" -OtelResourceAttributes "MyOtelResourceAttributes" -OtelHeaders "MyOtelHeaders" -Digest "MyDigest" -OtelTimeout 0 -VerifyCertificate $false -OtelCompression "none" -Organization "MyOrganization" -Timeout 0 -OtelProtocol "http" -OtelPath "MyOtelPath" # PUTClusterMetricsServerRB | Update metric server configuration. (optional)
+$PUTClusterMetricsServerRB = Initialize-PUTClusterMetricsServerRB -Token "MyToken" -Server "MyServer" -Proto "udp" -Influxdbproto "udp" -Disable $false -MaxBodySize 0 -Organization "MyOrganization" -OtelTimeout 0 -OtelHeaders "MyOtelHeaders" -OtelVerifySsl $false -OtelMaxBodySize 0 -Digest "MyDigest" -Port 0 -Mtu 0 -OtelResourceAttributes "MyOtelResourceAttributes" -OtelPath "MyOtelPath" -Timeout 0 -VerifyCertificate $false -Delete "MyDelete" -ApiPathPrefix "MyApiPathPrefix" -OtelCompression "none" -OtelProtocol "http" -Bucket "MyBucket" -Path "MyPath" # PUTClusterMetricsServerRB | Update metric server configuration. (optional)
 
 # Update metric server configuration.
 try {
@@ -9078,7 +9335,7 @@ Update existing gotify endpoint
 ### Example
 ```powershell
 $Name = "MyName" # String | The name of the endpoint.
-$PUTClusterNotificationsEndpointsGotifyRB = Initialize-PUTClusterNotificationsEndpointsGotifyRB -Disable $false -Delete "MyDelete" -Token "MyToken" -Server "MyServer" -Comment "MyComment" -Digest "MyDigest" # PUTClusterNotificationsEndpointsGotifyRB | Update existing gotify endpoint (optional)
+$PUTClusterNotificationsEndpointsGotifyRB = Initialize-PUTClusterNotificationsEndpointsGotifyRB -Delete "MyDelete" -Server "MyServer" -Comment "MyComment" -Token "MyToken" -Digest "MyDigest" -Disable $false # PUTClusterNotificationsEndpointsGotifyRB | Update existing gotify endpoint (optional)
 
 # Update existing gotify endpoint
 try {
@@ -9124,7 +9381,7 @@ Update existing sendmail endpoint
 ### Example
 ```powershell
 $Name = "MyName" # String | The name of the endpoint.
-$PUTClusterNotificationsEndpointsSendmailRB = Initialize-PUTClusterNotificationsEndpointsSendmailRB -Disable $false -Author "MyAuthor" -Delete "MyDelete" -Comment "MyComment" -Mailto "MyMailto" -MailtoUser "MyMailtoUser" -Digest "MyDigest" -FromAddress "MyFromAddress" # PUTClusterNotificationsEndpointsSendmailRB | Update existing sendmail endpoint (optional)
+$PUTClusterNotificationsEndpointsSendmailRB = Initialize-PUTClusterNotificationsEndpointsSendmailRB -FromAddress "MyFromAddress" -MailtoUser "MyMailtoUser" -Delete "MyDelete" -Comment "MyComment" -Mailto "MyMailto" -Digest "MyDigest" -Author "MyAuthor" -Disable $false # PUTClusterNotificationsEndpointsSendmailRB | Update existing sendmail endpoint (optional)
 
 # Update existing sendmail endpoint
 try {
@@ -9170,7 +9427,7 @@ Update existing smtp endpoint
 ### Example
 ```powershell
 $Name = "MyName" # String | The name of the endpoint.
-$PUTClusterNotificationsEndpointsSmtpRB = Initialize-PUTClusterNotificationsEndpointsSmtpRB -Disable $false -Password "MyPassword" -Mode "insecure" -Port 0 -FromAddress "MyFromAddress" -Comment "MyComment" -MailtoUser "MyMailtoUser" -Username "MyUsername" -Digest "MyDigest" -Server "MyServer" -Delete "MyDelete" -Author "MyAuthor" -Mailto "MyMailto" # PUTClusterNotificationsEndpointsSmtpRB | Update existing smtp endpoint (optional)
+$PUTClusterNotificationsEndpointsSmtpRB = Initialize-PUTClusterNotificationsEndpointsSmtpRB -Server "MyServer" -Comment "MyComment" -Disable $false -FromAddress "MyFromAddress" -Author "MyAuthor" -Port 0 -Mode "insecure" -Digest "MyDigest" -Mailto "MyMailto" -MailtoUser "MyMailtoUser" -Username "MyUsername" -Delete "MyDelete" -Password "MyPassword" # PUTClusterNotificationsEndpointsSmtpRB | Update existing smtp endpoint (optional)
 
 # Update existing smtp endpoint
 try {
@@ -9216,7 +9473,7 @@ Update existing webhook endpoint
 ### Example
 ```powershell
 $Name = "MyName" # String | The name of the endpoint.
-$PUTClusterNotificationsEndpointsWebhookRB = Initialize-PUTClusterNotificationsEndpointsWebhookRB -Url "MyUrl" -Disable $false -Delete "MyDelete" -Header "MyHeader" -Comment "MyComment" -Body "MyBody" -Secret "MySecret" -Method "post" -Digest "MyDigest" # PUTClusterNotificationsEndpointsWebhookRB | Update existing webhook endpoint (optional)
+$PUTClusterNotificationsEndpointsWebhookRB = Initialize-PUTClusterNotificationsEndpointsWebhookRB -Body "MyBody" -Header "MyHeader" -Delete "MyDelete" -Comment "MyComment" -Method "post" -Digest "MyDigest" -Secret "MySecret" -Url "MyUrl" -Disable $false # PUTClusterNotificationsEndpointsWebhookRB | Update existing webhook endpoint (optional)
 
 # Update existing webhook endpoint
 try {
@@ -9262,7 +9519,7 @@ Update existing matcher
 ### Example
 ```powershell
 $Name = "MyName" # String | Name of the matcher.
-$PUTClusterNotificationsMatchersRB = Initialize-PUTClusterNotificationsMatchersRB -MatchField "MyMatchField" -Disable $false -MatchSeverity "MyMatchSeverity" -Delete "MyDelete" -Mode "all" -Target "MyTarget" -Comment "MyComment" -MatchCalendar "MyMatchCalendar" -InvertMatch $false -Digest "MyDigest" # PUTClusterNotificationsMatchersRB | Update existing matcher (optional)
+$PUTClusterNotificationsMatchersRB = Initialize-PUTClusterNotificationsMatchersRB -Target "MyTarget" -MatchField "MyMatchField" -Mode "all" -Delete "MyDelete" -Comment "MyComment" -MatchCalendar "MyMatchCalendar" -Digest "MyDigest" -MatchSeverity "MyMatchSeverity" -InvertMatch $false -Disable $false # PUTClusterNotificationsMatchersRB | Update existing matcher (optional)
 
 # Update existing matcher
 try {
@@ -9306,7 +9563,7 @@ Set datacenter options.
 
 ### Example
 ```powershell
-$PUTClusterOptionsRB = Initialize-PUTClusterOptionsRB -Bwlimit "MyBwlimit" -Description "MyDescription" -RegisteredTags "MyRegisteredTags" -MacPrefix "MyMacPrefix" -MaxWorkers 0 -Replication "MyReplication" -U2f "MyU2f" -ConsentText "MyConsentText" -NextId "MyNextId" -EmailFrom "MyEmailFrom" -MigrationUnsecure $false -Notify "MyNotify" -HttpProxy "MyHttpProxy" -Language "ar" -Delete "MyDelete" -UserTagAccess "MyUserTagAccess" -TagStyle "MyTagStyle" -Fencing "watchdog" -Keyboard "de" -Ha "MyHa" -Webauthn "MyWebauthn" -Crs "MyCrs" -Migration "MyMigration" -Console "applet" # PUTClusterOptionsRB | Set datacenter options. (optional)
+$PUTClusterOptionsRB = Initialize-PUTClusterOptionsRB -Notify "MyNotify" -Bwlimit "MyBwlimit" -Keyboard "de" -Crs "MyCrs" -Ha "MyHa" -Migration "MyMigration" -NextId "MyNextId" -Fencing "watchdog" -RegisteredTags "MyRegisteredTags" -Webauthn "MyWebauthn" -Delete "MyDelete" -MacPrefix "MyMacPrefix" -UserTagAccess "MyUserTagAccess" -ConsentText "MyConsentText" -EmailFrom "MyEmailFrom" -U2f "MyU2f" -TagStyle "MyTagStyle" -HttpProxy "MyHttpProxy" -MigrationUnsecure $false -Language "ar" -Console "applet" -Replication "MyReplication" -Description "MyDescription" -MaxWorkers 0 # PUTClusterOptionsRB | Set datacenter options. (optional)
 
 # Set datacenter options.
 try {
@@ -9351,7 +9608,7 @@ Update replication job configuration.
 ### Example
 ```powershell
 $Id = "MyId" # String | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '<GUEST>-<JOBNUM>'.
-$PUTClusterReplicationRB = Initialize-PUTClusterReplicationRB -Disable $false -Delete "MyDelete" -Schedule "MySchedule" -Rate 0 -Source "MySource" -RemoveJob "local" -Comment "MyComment" -Digest "MyDigest" # PUTClusterReplicationRB | Update replication job configuration. (optional)
+$PUTClusterReplicationRB = Initialize-PUTClusterReplicationRB -Schedule "MySchedule" -RemoveJob "local" -Delete "MyDelete" -Comment "MyComment" -Source "MySource" -Rate 0 -Digest "MyDigest" -Disable $false # PUTClusterReplicationRB | Update replication job configuration. (optional)
 
 # Update replication job configuration.
 try {
@@ -9440,7 +9697,7 @@ Update sdn controller object configuration.
 ### Example
 ```powershell
 $Controller = "MyController" # String | The SDN controller object identifier.
-$PUTClusterSdnControllersRB = Initialize-PUTClusterSdnControllersRB -IsisIfaces "MyIsisIfaces" -EbgpMultihop 0 -IsisDomain "MyIsisDomain" -IsisNet "MyIsisNet" -Peers "MyPeers" -Asn 0 -BgpMultipathAsPathRelax $false -Delete "MyDelete" -Ebgp $false -Digest "MyDigest" -LockToken "MyLockToken" -Node "MyNode" -Loopback "MyLoopback" -Fabric "MyFabric" # PUTClusterSdnControllersRB | Update sdn controller object configuration. (optional)
+$PUTClusterSdnControllersRB = Initialize-PUTClusterSdnControllersRB -Asn 0 -Loopback "MyLoopback" -LockToken "MyLockToken" -IsisNet "MyIsisNet" -IsisIfaces "MyIsisIfaces" -Node "MyNode" -Digest "MyDigest" -EbgpMultihop 0 -Ebgp $false -IsisDomain "MyIsisDomain" -BgpMultipathAsPathRelax $false -Delete "MyDelete" -Fabric "MyFabric" -Peers "MyPeers" # PUTClusterSdnControllersRB | Update sdn controller object configuration. (optional)
 
 # Update sdn controller object configuration.
 try {
@@ -9486,7 +9743,7 @@ Update sdn dns object configuration.
 ### Example
 ```powershell
 $Dns = "MyDns" # String | The SDN dns object identifier.
-$PUTClusterSdnDnsRB = Initialize-PUTClusterSdnDnsRB -Url "MyUrl" -LockToken "MyLockToken" -Reversemaskv6 0 -Delete "MyDelete" -Fingerprint "MyFingerprint" -Ttl 0 -Digest "MyDigest" -Key "MyKey" # PUTClusterSdnDnsRB | Update sdn dns object configuration. (optional)
+$PUTClusterSdnDnsRB = Initialize-PUTClusterSdnDnsRB -Delete "MyDelete" -Fingerprint "MyFingerprint" -Key "MyKey" -Reversemaskv6 0 -Url "MyUrl" -Digest "MyDigest" -LockToken "MyLockToken" -Ttl 0 # PUTClusterSdnDnsRB | Update sdn dns object configuration. (optional)
 
 # Update sdn dns object configuration.
 try {
@@ -9532,7 +9789,7 @@ Update a fabric
 ### Example
 ```powershell
 $Id = "MyId" # String | Identifier for SDN fabrics
-$PUTClusterSdnFabricsFabricRB = Initialize-PUTClusterSdnFabricsFabricRB -Protocol "openfabric" -LockToken "MyLockToken" -Delete  -Ip6Prefix "MyIp6Prefix" -Area "MyArea" -IpPrefix "MyIpPrefix" -CsnpInterval 0 -Digest "MyDigest" -HelloInterval 0 # PUTClusterSdnFabricsFabricRB | Update a fabric (optional)
+$PUTClusterSdnFabricsFabricRB = Initialize-PUTClusterSdnFabricsFabricRB -CsnpInterval 0 -IpPrefix "MyIpPrefix" -Delete  -Ip6Prefix "MyIp6Prefix" -Area "MyArea" -HelloInterval 0 -Digest "MyDigest" -LockToken "MyLockToken" -Protocol "openfabric" # PUTClusterSdnFabricsFabricRB | Update a fabric (optional)
 
 # Update a fabric
 try {
@@ -9580,7 +9837,7 @@ Update a node
 ```powershell
 $FabricId = "MyFabricId" # String | Identifier for SDN fabrics
 $NodeId = "MyNodeId" # String | Identifier for nodes in an SDN fabric
-"interfaces"$PUTClusterSdnFabricsNodeRB = Initialize-PUTClusterSdnFabricsNodeRB -Protocol "openfabric" -Ip6 "MyIp6" -Ip "MyIp" -Delete "interfaces" -LockToken "MyLockToken" -NodeId "MyNodeId" -FabricId "MyFabricId" -Digest "MyDigest" -Interfaces # PUTClusterSdnFabricsNodeRB | Update a node (optional)
+"interfaces"$PUTClusterSdnFabricsNodeRB = Initialize-PUTClusterSdnFabricsNodeRB -Ip "MyIp" -Delete "interfaces" -NodeId "MyNodeId" -FabricId "MyFabricId" -Interfaces  -Digest "MyDigest" -LockToken "MyLockToken" -Ip6 "MyIp6" -Protocol "openfabric" # PUTClusterSdnFabricsNodeRB | Update a node (optional)
 
 # Update a node
 try {
@@ -9627,7 +9884,7 @@ Update sdn ipam object configuration.
 ### Example
 ```powershell
 $Ipam = "MyIpam" # String | The SDN ipam object identifier.
-$PUTClusterSdnIpamsRB = Initialize-PUTClusterSdnIpamsRB -Url "MyUrl" -Token "MyToken" -LockToken "MyLockToken" -Delete "MyDelete" -Section 0 -Fingerprint "MyFingerprint" -Digest "MyDigest" # PUTClusterSdnIpamsRB | Update sdn ipam object configuration. (optional)
+$PUTClusterSdnIpamsRB = Initialize-PUTClusterSdnIpamsRB -Delete "MyDelete" -Section 0 -Token "MyToken" -Digest "MyDigest" -LockToken "MyLockToken" -Fingerprint "MyFingerprint" -Url "MyUrl" # PUTClusterSdnIpamsRB | Update sdn ipam object configuration. (optional)
 
 # Update sdn ipam object configuration.
 try {
@@ -9673,7 +9930,7 @@ Update sdn vnet object configuration.
 ### Example
 ```powershell
 $Vnet = "MyVnet" # String | The SDN vnet object identifier.
-$PUTClusterSdnVnetsRB = Initialize-PUTClusterSdnVnetsRB -Zone "MyZone" -Vlanaware $false -LockToken "MyLockToken" -Alias "MyAlias" -IsolatePorts $false -Delete "MyDelete" -Tag 0 -Digest "MyDigest" # PUTClusterSdnVnetsRB | Update sdn vnet object configuration. (optional)
+$PUTClusterSdnVnetsRB = Initialize-PUTClusterSdnVnetsRB -Tag 0 -Delete "MyDelete" -IsolatePorts $false -Vlanaware $false -Zone "MyZone" -Digest "MyDigest" -LockToken "MyLockToken" -Alias "MyAlias" # PUTClusterSdnVnetsRB | Update sdn vnet object configuration. (optional)
 
 # Update sdn vnet object configuration.
 try {
@@ -9719,7 +9976,7 @@ Set Firewall options.
 ### Example
 ```powershell
 $Vnet = "MyVnet" # String | The SDN vnet object identifier.
-$PUTClusterSdnVnetsFirewallOptionsRB = Initialize-PUTClusterSdnVnetsFirewallOptionsRB -Delete "MyDelete" -Enable $false -LogLevelForward "emerg" -PolicyForward "ACCEPT" -Digest "MyDigest" # PUTClusterSdnVnetsFirewallOptionsRB | Set Firewall options. (optional)
+$PUTClusterSdnVnetsFirewallOptionsRB = Initialize-PUTClusterSdnVnetsFirewallOptionsRB -Delete "MyDelete" -Digest "MyDigest" -LogLevelForward "emerg" -Enable $false -PolicyForward "ACCEPT" # PUTClusterSdnVnetsFirewallOptionsRB | Set Firewall options. (optional)
 
 # Set Firewall options.
 try {
@@ -9767,7 +10024,7 @@ Modify rule data.
 ```powershell
 $Pos = 56 # Int32 | Update rule at position <pos>.
 $Vnet = "MyVnet" # String | The SDN vnet object identifier.
-$PUTClusterSdnVnetsFirewallRulesRB = Initialize-PUTClusterSdnVnetsFirewallRulesRB -IcmpType "MyIcmpType" -Dest "MyDest" -Enable 0 -Action "MyAction" -Sport "MySport" -Proto "MyProto" -Macro "MyMacro" -Moveto 0 -Comment "MyComment" -Delete "MyDelete" -Type "in" -Digest "MyDigest" -Dport "MyDport" -Source "MySource" -Log "emerg" -Iface "MyIface" # PUTClusterSdnVnetsFirewallRulesRB | Modify rule data. (optional)
+$PUTClusterSdnVnetsFirewallRulesRB = Initialize-PUTClusterSdnVnetsFirewallRulesRB -Macro "MyMacro" -Action "MyAction" -Iface "MyIface" -Proto "MyProto" -Sport "MySport" -Comment "MyComment" -IcmpType "MyIcmpType" -Delete "MyDelete" -Digest "MyDigest" -Type "in" -Source "MySource" -Dest "MyDest" -Enable 0 -Log "emerg" -Dport "MyDport" -Moveto 0 # PUTClusterSdnVnetsFirewallRulesRB | Modify rule data. (optional)
 
 # Modify rule data.
 try {
@@ -9814,7 +10071,7 @@ Update IP Mapping in a VNet
 ### Example
 ```powershell
 $Vnet = "MyVnet" # String | The SDN vnet object identifier.
-$PUTClusterSdnVnetsIpsRB = Initialize-PUTClusterSdnVnetsIpsRB -Mac "MyMac" -Zone "MyZone" -Vmid 0 -Ip "MyIp" # PUTClusterSdnVnetsIpsRB | Update IP Mapping in a VNet (optional)
+$PUTClusterSdnVnetsIpsRB = Initialize-PUTClusterSdnVnetsIpsRB -Ip "MyIp" -Zone "MyZone" -Vmid 0 -Mac "MyMac" # PUTClusterSdnVnetsIpsRB | Update IP Mapping in a VNet (optional)
 
 # Update IP Mapping in a VNet
 try {
@@ -9862,7 +10119,7 @@ Update sdn subnet object configuration.
 ```powershell
 $Subnet = "MySubnet" # String | The SDN subnet object identifier.
 $Vnet = "MyVnet" # String | associated vnet
-$PUTClusterSdnVnetsSubnetsRB = Initialize-PUTClusterSdnVnetsSubnetsRB -Dnszoneprefix "MyDnszoneprefix" -LockToken "MyLockToken" -Delete "MyDelete" -DhcpRange "MyDhcpRange" -Snat $false -DhcpDnsServer "MyDhcpDnsServer" -Digest "MyDigest" -Gateway "MyGateway" # PUTClusterSdnVnetsSubnetsRB | Update sdn subnet object configuration. (optional)
+$PUTClusterSdnVnetsSubnetsRB = Initialize-PUTClusterSdnVnetsSubnetsRB -Delete "MyDelete" -Dnszoneprefix "MyDnszoneprefix" -DhcpDnsServer "MyDhcpDnsServer" -Digest "MyDigest" -LockToken "MyLockToken" -Snat $false -DhcpRange "MyDhcpRange" -Gateway "MyGateway" # PUTClusterSdnVnetsSubnetsRB | Update sdn subnet object configuration. (optional)
 
 # Update sdn subnet object configuration.
 try {
@@ -9909,7 +10166,7 @@ Update sdn zone object configuration.
 ### Example
 ```powershell
 $Zone = "MyZone" # String | The SDN zone object identifier.
-$PUTClusterSdnZonesRB = Initialize-PUTClusterSdnZonesRB -Delete "MyDelete" -Mtu 0 -Nodes "MyNodes" -Tag 0 -VrfVxlan 0 -Controller "MyController" -VxlanPort 0 -RtImport "MyRtImport" -Exitnodes "MyExitnodes" -Reversedns "MyReversedns" -DisableArpNdSuppression $false -Dhcp "dnsmasq" -Mac "MyMac" -LockToken "MyLockToken" -AdvertiseSubnets $false -ExitnodesLocalRouting $false -Dnszone "MyDnszone" -Ipam "MyIpam" -Bridge "MyBridge" -BridgeDisableMacLearning $false -Dns "MyDns" -Peers "MyPeers" -ExitnodesPrimary "MyExitnodesPrimary" -Fabric "MyFabric" -DpId 0 -VlanProtocol "802.1q" -Digest "MyDigest" # PUTClusterSdnZonesRB | Update sdn zone object configuration. (optional)
+$PUTClusterSdnZonesRB = Initialize-PUTClusterSdnZonesRB -VlanProtocol "802.1q" -ExitnodesLocalRouting $false -Digest "MyDigest" -Delete "MyDelete" -VrfVxlan 0 -Peers "MyPeers" -Dnszone "MyDnszone" -Mtu 0 -AdvertiseSubnets $false -LockToken "MyLockToken" -DisableArpNdSuppression $false -Reversedns "MyReversedns" -Dhcp "dnsmasq" -Dns "MyDns" -Bridge "MyBridge" -RtImport "MyRtImport" -VxlanPort 0 -Controller "MyController" -DpId 0 -BridgeDisableMacLearning $false -Exitnodes "MyExitnodes" -Nodes "MyNodes" -Ipam "MyIpam" -Mac "MyMac" -ExitnodesPrimary "MyExitnodesPrimary" -Fabric "MyFabric" -Tag 0 # PUTClusterSdnZonesRB | Update sdn zone object configuration. (optional)
 
 # Update sdn zone object configuration.
 try {

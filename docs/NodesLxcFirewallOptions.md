@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**LogLevelIn** | **String** |  | [optional] 
 **Enable** | **Boolean** |  | [optional] 
+**Ipfilter** | **Boolean** |  | [optional] 
+**Macfilter** | **Boolean** |  | [optional] 
 **Dhcp** | **Boolean** |  | [optional] 
 **PolicyOut** | **String** |  | [optional] 
 **Ndp** | **Boolean** |  | [optional] 
-**PolicyIn** | **String** |  | [optional] 
-**LogLevelIn** | **String** |  | [optional] 
 **LogLevelOut** | **String** |  | [optional] 
-**Macfilter** | **Boolean** |  | [optional] 
+**PolicyIn** | **String** |  | [optional] 
 **Radv** | **Boolean** |  | [optional] 
-**Ipfilter** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcFirewallOptions = Initialize-PVENodesLxcFirewallOptions  -Enable null `
+$NodesLxcFirewallOptions = Initialize-PVENodesLxcFirewallOptions  -LogLevelIn null `
+ -Enable null `
+ -Ipfilter null `
+ -Macfilter null `
  -Dhcp null `
  -PolicyOut null `
  -Ndp null `
- -PolicyIn null `
- -LogLevelIn null `
  -LogLevelOut null `
- -Macfilter null `
- -Radv null `
- -Ipfilter null
+ -PolicyIn null `
+ -Radv null
 ```
 
 - Convert the resource to JSON

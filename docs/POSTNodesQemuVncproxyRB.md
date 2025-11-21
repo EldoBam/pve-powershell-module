@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GeneratePassword** | **Boolean** |  | [optional] 
 **Websocket** | **Boolean** |  | [optional] 
+**GeneratePassword** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuVncproxyRB = Initialize-PVEPOSTNodesQemuVncproxyRB  -GeneratePassword null `
- -Websocket null
+$POSTNodesQemuVncproxyRB = Initialize-PVEPOSTNodesQemuVncproxyRB  -Websocket null `
+ -GeneratePassword null
 ```
 
 - Convert the resource to JSON

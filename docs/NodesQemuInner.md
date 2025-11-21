@@ -3,67 +3,67 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cpu** | **Decimal** |  | [optional] 
-**Pressurememorysome** | **Decimal** |  | [optional] 
-**Template** | **Boolean** |  | [optional] 
-**VarPid** | **Int32** |  | [optional] 
 **Maxdisk** | **Int32** |  | [optional] 
-**Pressurememoryfull** | **Decimal** |  | [optional] 
-**Maxmem** | **Int32** |  | [optional] 
-**RunningMachine** | **String** |  | [optional] 
-**Pressurecpufull** | **Decimal** |  | [optional] 
-**Pressurecpusome** | **Decimal** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
+**Pressureiofull** | **Decimal** |  | [optional] 
 **Qmpstatus** | **String** |  | [optional] 
-**Status** | **String** |  | [optional] 
+**Pressurememoryfull** | **Decimal** |  | [optional] 
+**Uptime** | **Int32** |  | [optional] 
+**Pressureiosome** | **Decimal** |  | [optional] 
+**Netout** | **Int32** |  | [optional] 
+**Serial** | **Boolean** |  | [optional] 
 **Diskread** | **Int32** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Diskwrite** | **Int32** |  | [optional] 
+**Lock** | **String** |  | [optional] 
 **Cpus** | **Decimal** |  | [optional] 
 **Mem** | **Int32** |  | [optional] 
-**Lock** | **String** |  | [optional] 
-**Uptime** | **Int32** |  | [optional] 
-**Pressureiofull** | **Decimal** |  | [optional] 
-**Name** | **String** |  | [optional] 
+**Maxmem** | **Int32** |  | [optional] 
 **RunningQemu** | **String** |  | [optional] 
+**Template** | **Boolean** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Pressurememorysome** | **Decimal** |  | [optional] 
+**Netin** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
+**VarPid** | **Int32** |  | [optional] 
+**Pressurecpusome** | **Decimal** |  | [optional] 
+**Pressurecpufull** | **Decimal** |  | [optional] 
+**RunningMachine** | **String** |  | [optional] 
 **Memhost** | **Int32** |  | [optional] 
 **Tags** | **String** |  | [optional] 
-**Netout** | **Int32** |  | [optional] 
-**Pressureiosome** | **Decimal** |  | [optional] 
-**Netin** | **Int32** |  | [optional] 
-**Serial** | **Boolean** |  | [optional] 
-**Diskwrite** | **Int32** |  | [optional] 
+**Cpu** | **Decimal** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuInner = Initialize-PVENodesQemuInner  -Cpu null `
- -Pressurememorysome null `
- -Template null `
- -VarPid null `
- -Maxdisk null `
- -Pressurememoryfull null `
- -Maxmem null `
- -RunningMachine null `
- -Pressurecpufull null `
- -Pressurecpusome null `
- -Vmid null `
+$NodesQemuInner = Initialize-PVENodesQemuInner  -Maxdisk null `
+ -Pressureiofull null `
  -Qmpstatus null `
- -Status null `
+ -Pressurememoryfull null `
+ -Uptime null `
+ -Pressureiosome null `
+ -Netout null `
+ -Serial null `
  -Diskread null `
+ -Vmid null `
+ -Diskwrite null `
+ -Lock null `
  -Cpus null `
  -Mem null `
- -Lock null `
- -Uptime null `
- -Pressureiofull null `
- -Name null `
+ -Maxmem null `
  -RunningQemu null `
+ -Template null `
+ -Name null `
+ -Pressurememorysome null `
+ -Netin null `
+ -Status null `
+ -VarPid null `
+ -Pressurecpusome null `
+ -Pressurecpufull null `
+ -RunningMachine null `
  -Memhost null `
  -Tags null `
- -Netout null `
- -Pressureiosome null `
- -Netin null `
- -Serial null `
- -Diskwrite null
+ -Cpu null
 ```
 
 - Convert the resource to JSON

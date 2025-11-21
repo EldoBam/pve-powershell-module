@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Skiplock** | **Boolean** |  | [optional] 
-**ForceStop** | **Boolean** |  | [optional] 
 **Timeout** | **Int32** |  | [optional] 
+**ForceStop** | **Boolean** |  | [optional] 
+**Skiplock** | **Boolean** |  | [optional] 
 **KeepActive** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuStatusShutdownRB = Initialize-PVEPOSTNodesQemuStatusShutdownRB  -Skiplock null `
+$POSTNodesQemuStatusShutdownRB = Initialize-PVEPOSTNodesQemuStatusShutdownRB  -Timeout null `
  -ForceStop null `
- -Timeout null `
+ -Skiplock null `
  -KeepActive null
 ```
 

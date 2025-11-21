@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Config** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 **Type** | **String** |  | [optional] 
 **Storage** | **String** |  | [optional] 
-**Config** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$StoragePUT = Initialize-PVEStoragePUT  -Type null `
- -Storage null `
- -Config null
+$StoragePUT = Initialize-PVEStoragePUT  -Config null `
+ -Type null `
+ -Storage null
 ```
 
 - Convert the resource to JSON

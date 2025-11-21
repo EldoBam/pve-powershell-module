@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hwaddr** | **String** |  | [optional] 
-**IpAddresses** | [**NodesLxcInterfacesInnerIpAddressesInner[]**](NodesLxcInterfacesInnerIpAddressesInner.md) |  | [optional] 
-**Inet6** | **String** |  | [optional] 
 **HardwareAddress** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
+**IpAddresses** | [**NodesLxcInterfacesInnerIpAddressesInner[]**](NodesLxcInterfacesInnerIpAddressesInner.md) |  | [optional] 
 **Inet** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Inet6** | **String** |  | [optional] 
+**Hwaddr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcInterfacesInner = Initialize-PVENodesLxcInterfacesInner  -Hwaddr null `
+$NodesLxcInterfacesInner = Initialize-PVENodesLxcInterfacesInner  -HardwareAddress null `
  -IpAddresses null `
- -Inet6 null `
- -HardwareAddress null `
+ -Inet null `
  -Name null `
- -Inet null
+ -Inet6 null `
+ -Hwaddr null
 ```
 
 - Convert the resource to JSON

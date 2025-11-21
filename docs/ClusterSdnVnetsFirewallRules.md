@@ -3,41 +3,41 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IcmpType** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
-**Ipversion** | **Int32** |  | [optional] 
-**Sport** | **String** |  | [optional] 
 **Macro** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**Iface** | **String** |  | [optional] 
+**Proto** | **String** |  | [optional] 
+**IcmpType** | **String** |  | [optional] 
+**Ipversion** | **Int32** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
 **Log** | **String** |  | [optional] 
 **Dport** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
+**Sport** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnVnetsFirewallRules = Initialize-PVEClusterSdnVnetsFirewallRules  -IcmpType null `
- -Dest null `
- -Proto null `
+$ClusterSdnVnetsFirewallRules = Initialize-PVEClusterSdnVnetsFirewallRules  -Macro null `
  -Action null `
+ -Iface null `
+ -Proto null `
+ -IcmpType null `
  -Ipversion null `
- -Sport null `
- -Macro null `
  -Comment null `
- -Pos null `
  -Type null `
+ -Source null `
+ -Dest null `
+ -Enable null `
  -Log null `
  -Dport null `
- -Enable null `
- -Source null `
- -Iface null
+ -Pos null `
+ -Sport null
 ```
 
 - Convert the resource to JSON

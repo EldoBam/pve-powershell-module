@@ -3,7 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BlockingHaResources** | [**ClusterHaResourcesMigrateBlockingResourcesInner[]**](ClusterHaResourcesMigrateBlockingResourcesInner.md) | HA resources, which are blocking the container from being migrated to the node. | [optional] 
+**BlockingHaResources** | [**NodesQemuMigrateNotAllowedNodesBlockingHaResourcesInner[]**](NodesQemuMigrateNotAllowedNodesBlockingHaResourcesInner.md) | HA resources, which are blocking the container from being migrated to the node. | [optional] 
 
 ## Examples
 

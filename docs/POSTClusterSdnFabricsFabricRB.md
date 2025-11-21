@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Protocol** | **String** |  | [optional] 
-**LockToken** | **String** |  | [optional] 
-**Ip6Prefix** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Area** | **String** |  | [optional] 
-**IpPrefix** | **String** |  | [optional] 
 **CsnpInterval** | **Decimal** |  | [optional] 
-**Digest** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**IpPrefix** | **String** |  | [optional] 
+**Ip6Prefix** | **String** |  | [optional] 
+**Area** | **String** |  | [optional] 
 **HelloInterval** | **Decimal** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**LockToken** | **String** |  | [optional] 
+**Protocol** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnFabricsFabricRB = Initialize-PVEPOSTClusterSdnFabricsFabricRB  -Protocol null `
- -LockToken null `
- -Ip6Prefix null `
+$POSTClusterSdnFabricsFabricRB = Initialize-PVEPOSTClusterSdnFabricsFabricRB  -CsnpInterval null `
  -Id null `
- -Area null `
  -IpPrefix null `
- -CsnpInterval null `
+ -Ip6Prefix null `
+ -Area null `
+ -HelloInterval null `
  -Digest null `
- -HelloInterval null
+ -LockToken null `
+ -Protocol null
 ```
 
 - Convert the resource to JSON

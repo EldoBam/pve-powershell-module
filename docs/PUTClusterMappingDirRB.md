@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Description** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
 **Map** | **String[]** |  | [optional] 
-**Description** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterMappingDirRB = Initialize-PVEPUTClusterMappingDirRB  -Delete null `
+$PUTClusterMappingDirRB = Initialize-PVEPUTClusterMappingDirRB  -Description null `
+ -Delete null `
  -Map null `
- -Description null `
  -Digest null
 ```
 

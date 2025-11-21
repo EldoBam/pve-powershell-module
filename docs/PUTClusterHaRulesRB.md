@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Resources** | **String** |  | [optional] 
-**Strict** | **Boolean** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
 **Affinity** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Resources** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Strict** | **Boolean** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterHaRulesRB = Initialize-PVEPUTClusterHaRulesRB  -Resources null `
- -Strict null `
- -Disable null `
- -Affinity null `
+$PUTClusterHaRulesRB = Initialize-PVEPUTClusterHaRulesRB  -Affinity null `
  -Delete null `
- -Type null `
- -Nodes null `
  -Comment null `
- -Digest null
+ -Resources null `
+ -Type null `
+ -Strict null `
+ -Nodes null `
+ -Digest null `
+ -Disable null
 ```
 
 - Convert the resource to JSON

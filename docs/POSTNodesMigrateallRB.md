@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Target** | **String** |  | [optional] 
-**WithLocalDisks** | **Boolean** |  | [optional] 
 **Vms** | **String** |  | [optional] 
 **Maxworkers** | **Int32** |  | [optional] 
+**Target** | **String** |  | [optional] 
+**WithLocalDisks** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesMigrateallRB = Initialize-PVEPOSTNodesMigrateallRB  -Target null `
- -WithLocalDisks null `
- -Vms null `
- -Maxworkers null
+$POSTNodesMigrateallRB = Initialize-PVEPOSTNodesMigrateallRB  -Vms null `
+ -Maxworkers null `
+ -Target null `
+ -WithLocalDisks null
 ```
 
 - Convert the resource to JSON

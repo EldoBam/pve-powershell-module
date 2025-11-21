@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Server** | **String** |  | [optional] 
-**Password** | **String** |  | [optional] 
 **Fingerprint** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
 **Port** | **Int32** |  | [optional] 
 **Username** | **String** |  | [optional] 
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$GETNodesScanPbsRB = Initialize-PVEGETNodesScanPbsRB  -Server null `
+$GETNodesScanPbsRB = Initialize-PVEGETNodesScanPbsRB  -Fingerprint null `
  -Password null `
- -Fingerprint null `
+ -Server null `
  -Port null `
  -Username null
 ```

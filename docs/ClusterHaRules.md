@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
 **Rule** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterHaRules = Initialize-PVEClusterHaRules  -Type null `
- -Rule null
+$ClusterHaRules = Initialize-PVEClusterHaRules  -Rule null `
+ -Type null
 ```
 
 - Convert the resource to JSON

@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Filesystem** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Filesystem** | **String** |  | [optional] 
 **AddStorage** | **Boolean** |  | [optional] 
 **Device** | **String** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$POSTNodesDisksDirectoryRB = Initialize-PVEPOSTNodesDisksDirectoryRB  -Filesystem null `
- -Name null `
+$POSTNodesDisksDirectoryRB = Initialize-PVEPOSTNodesDisksDirectoryRB  -Name null `
+ -Filesystem null `
  -AddStorage null `
  -Device null
 ```

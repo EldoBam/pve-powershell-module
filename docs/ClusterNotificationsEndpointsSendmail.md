@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**Author** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Mailto** | **String[]** |  | [optional] 
-**MailtoUser** | **String[]** |  | [optional] 
-**Digest** | **String** |  | [optional] 
 **FromAddress** | **String** |  | [optional] 
+**MailtoUser** | **String[]** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Mailto** | **String[]** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Author** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterNotificationsEndpointsSendmail = Initialize-PVEClusterNotificationsEndpointsSendmail  -Name null `
- -Disable null `
- -Author null `
- -Comment null `
- -Mailto null `
+$ClusterNotificationsEndpointsSendmail = Initialize-PVEClusterNotificationsEndpointsSendmail  -FromAddress null `
  -MailtoUser null `
+ -Comment null `
+ -Name null `
+ -Mailto null `
  -Digest null `
- -FromAddress null
+ -Author null `
+ -Disable null
 ```
 
 - Convert the resource to JSON

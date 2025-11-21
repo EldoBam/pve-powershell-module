@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Checksum** | **String** |  | [optional] 
+**Tmpfilename** | **String** |  | [optional] 
 **ChecksumAlgorithm** | **String** |  | [optional] 
 **Filename** | **String** |  | [optional] 
 **Content** | **String** |  | [optional] 
-**Tmpfilename** | **String** |  | [optional] 
+**Checksum** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesStorageUploadRB = Initialize-PVEPOSTNodesStorageUploadRB  -Checksum null `
+$POSTNodesStorageUploadRB = Initialize-PVEPOSTNodesStorageUploadRB  -Tmpfilename null `
  -ChecksumAlgorithm null `
  -Filename null `
  -Content null `
- -Tmpfilename null
+ -Checksum null
 ```
 
 - Convert the resource to JSON

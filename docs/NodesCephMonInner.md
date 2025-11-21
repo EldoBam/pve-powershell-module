@@ -4,13 +4,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Rank** | **Int32** |  | [optional] 
-**State** | **String** |  | [optional] 
-**Service** | **Int32** |  | [optional] 
-**Quorum** | **Boolean** |  | [optional] 
-**VarHost** | **Boolean** |  | [optional] 
+**Name** | **String** |  | [optional] 
 **CephVersionShort** | **String** |  | [optional] 
 **Direxists** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
+**Service** | **Int32** |  | [optional] 
+**State** | **String** |  | [optional] 
+**VarHost** | **Boolean** |  | [optional] 
+**Quorum** | **Boolean** |  | [optional] 
 **Addr** | **String** |  | [optional] 
 **CephVersion** | **String** |  | [optional] 
 
@@ -19,13 +19,13 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $NodesCephMonInner = Initialize-PVENodesCephMonInner  -Rank null `
- -State null `
- -Service null `
- -Quorum null `
- -VarHost null `
+ -Name null `
  -CephVersionShort null `
  -Direxists null `
- -Name null `
+ -Service null `
+ -State null `
+ -VarHost null `
+ -Quorum null `
  -Addr null `
  -CephVersion null
 ```

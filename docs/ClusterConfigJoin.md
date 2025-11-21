@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Nodelist** | [**ClusterConfigJoinNodelistInner[]**](ClusterConfigJoinNodelistInner.md) |  | [optional] 
 **PreferredNode** | **String** |  | [optional] 
 **ConfigDigest** | **String** |  | [optional] 
-**Nodelist** | [**ClusterConfigJoinNodelistInner[]**](ClusterConfigJoinNodelistInner.md) |  | [optional] 
 **Totem** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterConfigJoin = Initialize-PVEClusterConfigJoin  -PreferredNode null `
+$ClusterConfigJoin = Initialize-PVEClusterConfigJoin  -Nodelist null `
+ -PreferredNode null `
  -ConfigDigest null `
- -Nodelist null `
  -Totem null
 ```
 

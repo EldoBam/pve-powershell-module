@@ -3,59 +3,59 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bwlimit** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**RegisteredTags** | **String** |  | [optional] 
-**MacPrefix** | **String** |  | [optional] 
-**MaxWorkers** | **Int32** |  | [optional] 
-**Replication** | **String** |  | [optional] 
-**U2f** | **String** |  | [optional] 
-**ConsentText** | **String** |  | [optional] 
-**NextId** | **String** |  | [optional] 
-**EmailFrom** | **String** |  | [optional] 
-**MigrationUnsecure** | **Boolean** |  | [optional] 
 **Notify** | **String** |  | [optional] 
-**HttpProxy** | **String** |  | [optional] 
-**Language** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**UserTagAccess** | **String** |  | [optional] 
-**TagStyle** | **String** |  | [optional] 
-**Fencing** | **String** |  | [optional] 
+**Bwlimit** | **String** |  | [optional] 
 **Keyboard** | **String** |  | [optional] 
-**Ha** | **String** |  | [optional] 
-**Webauthn** | **String** |  | [optional] 
 **Crs** | **String** |  | [optional] 
+**Ha** | **String** |  | [optional] 
 **Migration** | **String** |  | [optional] 
+**NextId** | **String** |  | [optional] 
+**Fencing** | **String** |  | [optional] 
+**RegisteredTags** | **String** |  | [optional] 
+**Webauthn** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**MacPrefix** | **String** |  | [optional] 
+**UserTagAccess** | **String** |  | [optional] 
+**ConsentText** | **String** |  | [optional] 
+**EmailFrom** | **String** |  | [optional] 
+**U2f** | **String** |  | [optional] 
+**TagStyle** | **String** |  | [optional] 
+**HttpProxy** | **String** |  | [optional] 
+**MigrationUnsecure** | **Boolean** |  | [optional] 
+**Language** | **String** |  | [optional] 
 **Console** | **String** |  | [optional] 
+**Replication** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**MaxWorkers** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterOptionsRB = Initialize-PVEPUTClusterOptionsRB  -Bwlimit null `
- -Description null `
- -RegisteredTags null `
- -MacPrefix null `
- -MaxWorkers null `
- -Replication null `
- -U2f null `
- -ConsentText null `
- -NextId null `
- -EmailFrom null `
- -MigrationUnsecure null `
- -Notify null `
- -HttpProxy null `
- -Language null `
- -Delete null `
- -UserTagAccess null `
- -TagStyle null `
- -Fencing null `
+$PUTClusterOptionsRB = Initialize-PVEPUTClusterOptionsRB  -Notify null `
+ -Bwlimit null `
  -Keyboard null `
- -Ha null `
- -Webauthn null `
  -Crs null `
+ -Ha null `
  -Migration null `
- -Console null
+ -NextId null `
+ -Fencing null `
+ -RegisteredTags null `
+ -Webauthn null `
+ -Delete null `
+ -MacPrefix null `
+ -UserTagAccess null `
+ -ConsentText null `
+ -EmailFrom null `
+ -U2f null `
+ -TagStyle null `
+ -HttpProxy null `
+ -MigrationUnsecure null `
+ -Language null `
+ -Console null `
+ -Replication null `
+ -Description null `
+ -MaxWorkers null
 ```
 
 - Convert the resource to JSON

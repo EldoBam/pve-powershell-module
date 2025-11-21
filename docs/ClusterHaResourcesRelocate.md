@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BlockingResources** | [**ClusterHaResourcesRelocateBlockingResourcesInner[]**](ClusterHaResourcesRelocateBlockingResourcesInner.md) |  | [optional] 
-**RequestedNode** | **String** |  | [optional] 
 **ComigratedResources** | **String[]** |  | [optional] 
 **Sid** | **String** |  | [optional] 
+**BlockingResources** | [**ClusterHaResourcesRelocateBlockingResourcesInner[]**](ClusterHaResourcesRelocateBlockingResourcesInner.md) |  | [optional] 
+**RequestedNode** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterHaResourcesRelocate = Initialize-PVEClusterHaResourcesRelocate  -BlockingResources null `
- -RequestedNode null `
- -ComigratedResources null `
- -Sid null
+$ClusterHaResourcesRelocate = Initialize-PVEClusterHaResourcesRelocate  -ComigratedResources null `
+ -Sid null `
+ -BlockingResources null `
+ -RequestedNode null
 ```
 
 - Convert the resource to JSON

@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Server** | **String** |  | [optional] 
 **Domain** | **String** |  | [optional] 
 **Password** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
 **Username** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesScanCifsRB = Initialize-PVEGETNodesScanCifsRB  -Server null `
- -Domain null `
+$GETNodesScanCifsRB = Initialize-PVEGETNodesScanCifsRB  -Domain null `
  -Password null `
+ -Server null `
  -Username null
 ```
 

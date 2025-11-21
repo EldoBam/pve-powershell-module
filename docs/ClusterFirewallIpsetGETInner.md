@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Nomatch** | **Boolean** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 **Cidr** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
+**Nomatch** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterFirewallIpsetGETInner = Initialize-PVEClusterFirewallIpsetGETInner  -Nomatch null `
+$ClusterFirewallIpsetGETInner = Initialize-PVEClusterFirewallIpsetGETInner  -Digest null `
  -Cidr null `
  -Comment null `
- -Digest null
+ -Nomatch null
 ```
 
 - Convert the resource to JSON

@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cidr** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **Rename** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterFirewallAliasesRB = Initialize-PVEPUTClusterFirewallAliasesRB  -Cidr null `
- -Comment null `
- -Rename null `
- -Digest null
+$PUTClusterFirewallAliasesRB = Initialize-PVEPUTClusterFirewallAliasesRB  -Rename null `
+ -Digest null `
+ -Cidr null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

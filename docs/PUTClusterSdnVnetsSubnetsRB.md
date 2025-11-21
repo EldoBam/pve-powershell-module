@@ -3,26 +3,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Dnszoneprefix** | **String** |  | [optional] 
-**LockToken** | **String** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**DhcpRange** | **String[]** |  | [optional] 
-**Snat** | **Boolean** |  | [optional] 
+**Dnszoneprefix** | **String** |  | [optional] 
 **DhcpDnsServer** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**LockToken** | **String** |  | [optional] 
+**Snat** | **Boolean** |  | [optional] 
+**DhcpRange** | **String[]** |  | [optional] 
 **Gateway** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnVnetsSubnetsRB = Initialize-PVEPUTClusterSdnVnetsSubnetsRB  -Dnszoneprefix null `
- -LockToken null `
- -Delete null `
- -DhcpRange null `
- -Snat null `
+$PUTClusterSdnVnetsSubnetsRB = Initialize-PVEPUTClusterSdnVnetsSubnetsRB  -Delete null `
+ -Dnszoneprefix null `
  -DhcpDnsServer null `
  -Digest null `
+ -LockToken null `
+ -Snat null `
+ -DhcpRange null `
  -Gateway null
 ```
 

@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Nofailback** | **Boolean** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**Restricted** | **Boolean** |  | [optional] 
-**Nodes** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Nofailback** | **Boolean** |  | [optional] 
+**Nodes** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Restricted** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterHaGroupsRB = Initialize-PVEPUTClusterHaGroupsRB  -Nofailback null `
- -Delete null `
- -Restricted null `
- -Nodes null `
+$PUTClusterHaGroupsRB = Initialize-PVEPUTClusterHaGroupsRB  -Delete null `
  -Comment null `
- -Digest null
+ -Nofailback null `
+ -Nodes null `
+ -Digest null `
+ -Restricted null
 ```
 
 - Convert the resource to JSON

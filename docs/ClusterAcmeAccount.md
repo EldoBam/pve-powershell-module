@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tos** | **String** |  | [optional] 
+**Directory** | **String** |  | [optional] 
 **Location** | **String** |  | [optional] 
 **Account** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**Directory** | **String** |  | [optional] 
+**Tos** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterAcmeAccount = Initialize-PVEClusterAcmeAccount  -Tos null `
+$ClusterAcmeAccount = Initialize-PVEClusterAcmeAccount  -Directory null `
  -Location null `
  -Account null `
- -Directory null
+ -Tos null
 ```
 
 - Convert the resource to JSON

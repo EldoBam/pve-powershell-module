@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Descr** | **String** |  | [optional] 
 **Macro** | **String** |  | [optional] 
+**Descr** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterFirewallMacrosInner = Initialize-PVEClusterFirewallMacrosInner  -Descr null `
- -Macro null
+$ClusterFirewallMacrosInner = Initialize-PVEClusterFirewallMacrosInner  -Macro null `
+ -Descr null
 ```
 
 - Convert the resource to JSON

@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
 **Schema** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $ClusterAcmeChallengeschemaInner = Initialize-PVEClusterAcmeChallengeschemaInner  -Id null `
  -Type null `
- -Name null `
- -Schema null
+ -Schema null `
+ -Name null
 ```
 
 - Convert the resource to JSON

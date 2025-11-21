@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Disable** | **Boolean** |  | [optional] 
 **Server** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 **Token** | **String** |  | [optional] 
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$POSTClusterNotificationsEndpointsGotifyRB = Initialize-PVEPOSTClusterNotificationsEndpointsGotifyRB  -Disable null `
- -Server null `
+$POSTClusterNotificationsEndpointsGotifyRB = Initialize-PVEPOSTClusterNotificationsEndpointsGotifyRB  -Server null `
+ -Disable null `
  -Comment null `
  -Name null `
  -Token null

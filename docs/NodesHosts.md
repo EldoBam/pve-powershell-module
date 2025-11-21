@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | **String** |  | [optional] 
 **VarData** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesHosts = Initialize-PVENodesHosts  -Digest null `
- -VarData null
+$NodesHosts = Initialize-PVENodesHosts  -VarData null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

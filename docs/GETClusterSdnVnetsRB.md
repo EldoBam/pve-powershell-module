@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pending** | **Boolean** |  | [optional] 
 **Running** | **Boolean** |  | [optional] 
+**Pending** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETClusterSdnVnetsRB = Initialize-PVEGETClusterSdnVnetsRB  -Pending null `
- -Running null
+$GETClusterSdnVnetsRB = Initialize-PVEGETClusterSdnVnetsRB  -Running null `
+ -Pending null
 ```
 
 - Convert the resource to JSON
