@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Localtime** | **Int32** |  | [optional] 
 **Time** | **Int32** |  | [optional] 
 **Timezone** | **String** |  | [optional] 
+**Localtime** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesTime = Initialize-PVENodesTime  -Localtime null `
- -Time null `
- -Timezone null
+$NodesTime = Initialize-PVENodesTime  -Time null `
+ -Timezone null `
+ -Localtime null
 ```
 
 - Convert the resource to JSON

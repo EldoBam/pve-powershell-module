@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Digest** | **String** |  | [optional] 
-**Group** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Group** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $ClusterFirewallGroupsGETInner = Initialize-PVEClusterFirewallGroupsGETInner  -Digest null `
- -Group null `
- -Comment null
+ -Comment null `
+ -Group null
 ```
 
 - Convert the resource to JSON

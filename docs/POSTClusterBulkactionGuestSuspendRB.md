@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ToDisk** | **Boolean** |  | [optional] 
-**Vms** | **Int32[]** |  | [optional] 
 **Maxworkers** | **Int32** |  | [optional] 
 **Statestorage** | **String** |  | [optional] 
+**ToDisk** | **Boolean** |  | [optional] 
+**Vms** | **Int32[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterBulkactionGuestSuspendRB = Initialize-PVEPOSTClusterBulkactionGuestSuspendRB  -ToDisk null `
- -Vms null `
- -Maxworkers null `
- -Statestorage null
+$POSTClusterBulkactionGuestSuspendRB = Initialize-PVEPOSTClusterBulkactionGuestSuspendRB  -Maxworkers null `
+ -Statestorage null `
+ -ToDisk null `
+ -Vms null
 ```
 
 - Convert the resource to JSON

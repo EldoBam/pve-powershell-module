@@ -3,37 +3,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Sid** | **String** |  | [optional] 
-**Status** | **String** |  | [optional] 
-**MaxRelocate** | **Int32** |  | [optional] 
-**Timestamp** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**RequestState** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **MaxRestart** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
 **Failback** | **Boolean** |  | [optional] 
+**Sid** | **String** |  | [optional] 
 **State** | **String** |  | [optional] 
-**CrmState** | **String** |  | [optional] 
 **Quorate** | **Boolean** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**MaxRelocate** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Timestamp** | **Int32** |  | [optional] 
+**RequestState** | **String** |  | [optional] 
+**CrmState** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterHaStatusCurrentInner = Initialize-PVEClusterHaStatusCurrentInner  -Sid null `
+$ClusterHaStatusCurrentInner = Initialize-PVEClusterHaStatusCurrentInner  -MaxRestart null `
  -Status null `
- -MaxRelocate null `
- -Timestamp null `
- -Node null `
- -Id null `
- -RequestState null `
- -Type null `
- -MaxRestart null `
  -Failback null `
+ -Sid null `
  -State null `
- -CrmState null `
- -Quorate null
+ -Quorate null `
+ -Id null `
+ -Type null `
+ -MaxRelocate null `
+ -Node null `
+ -Timestamp null `
+ -RequestState null `
+ -CrmState null
 ```
 
 - Convert the resource to JSON

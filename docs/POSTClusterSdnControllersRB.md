@@ -3,39 +3,39 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
-**Controller** | **String** |  | [optional] 
-**Asn** | **Int32** |  | [optional] 
-**Loopback** | **String** |  | [optional] 
-**LockToken** | **String** |  | [optional] 
-**IsisNet** | **String** |  | [optional] 
+**Fabric** | **String** |  | [optional] 
 **IsisIfaces** | **String** |  | [optional] 
+**LockToken** | **String** |  | [optional] 
+**Controller** | **String** |  | [optional] 
+**IsisNet** | **String** |  | [optional] 
+**Peers** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Loopback** | **String** |  | [optional] 
+**BgpMultipathAsPathRelax** | **Boolean** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**EbgpMultihop** | **Int32** |  | [optional] 
 **Ebgp** | **Boolean** |  | [optional] 
 **IsisDomain** | **String** |  | [optional] 
-**BgpMultipathAsPathRelax** | **Boolean** |  | [optional] 
-**Fabric** | **String** |  | [optional] 
-**Peers** | **String** |  | [optional] 
+**Asn** | **Int32** |  | [optional] 
+**EbgpMultihop** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnControllersRB = Initialize-PVEPOSTClusterSdnControllersRB  -Type null `
- -Controller null `
- -Asn null `
- -Loopback null `
- -LockToken null `
- -IsisNet null `
+$POSTClusterSdnControllersRB = Initialize-PVEPOSTClusterSdnControllersRB  -Fabric null `
  -IsisIfaces null `
+ -LockToken null `
+ -Controller null `
+ -IsisNet null `
+ -Peers null `
+ -Type null `
+ -Loopback null `
+ -BgpMultipathAsPathRelax null `
  -Node null `
- -EbgpMultihop null `
  -Ebgp null `
  -IsisDomain null `
- -BgpMultipathAsPathRelax null `
- -Fabric null `
- -Peers null
+ -Asn null `
+ -EbgpMultihop null
 ```
 
 - Convert the resource to JSON

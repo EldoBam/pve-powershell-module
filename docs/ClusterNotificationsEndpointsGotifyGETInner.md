@@ -4,9 +4,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Server** | **String** |  | [optional] 
-**Origin** | **String** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Origin** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 
 ## Examples
@@ -14,9 +14,9 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $ClusterNotificationsEndpointsGotifyGETInner = Initialize-PVEClusterNotificationsEndpointsGotifyGETInner  -Server null `
- -Origin null `
  -Disable null `
  -Comment null `
+ -Origin null `
  -Name null
 ```
 

@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
 **Created** | **Int32** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
 **Enable** | **Boolean** |  | [optional] 
 **Type** | **String** |  | [optional] 
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$AccessTfaGET = Initialize-PVEAccessTfaGET  -Description null `
+$AccessTfaGET = Initialize-PVEAccessTfaGET  -Created null `
  -Id null `
- -Created null `
+ -Description null `
  -Enable null `
  -Type null
 ```

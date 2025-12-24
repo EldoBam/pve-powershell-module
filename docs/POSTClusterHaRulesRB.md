@@ -4,26 +4,26 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Affinity** | **String** |  | [optional] 
-**Resources** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Strict** | **Boolean** |  | [optional] 
 **Nodes** | **String** |  | [optional] 
-**Rule** | **String** |  | [optional] 
+**Strict** | **Boolean** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
+**Rule** | **String** |  | [optional] 
+**Resources** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $POSTClusterHaRulesRB = Initialize-PVEPOSTClusterHaRulesRB  -Affinity null `
- -Resources null `
  -Comment null `
- -Type null `
- -Strict null `
  -Nodes null `
+ -Strict null `
+ -Disable null `
  -Rule null `
- -Disable null
+ -Resources null `
+ -Type null
 ```
 
 - Convert the resource to JSON

@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Comment** | **String** |  | [optional] 
-**Members** | [**PoolsGETInnerMembersInner[]**](PoolsGETInnerMembersInner.md) |  | [optional] 
+**Members** | [**PoolsMembersInner[]**](PoolsMembersInner.md) |  | [optional] 
 
 ## Examples
 

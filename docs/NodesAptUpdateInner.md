@@ -4,30 +4,30 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Version** | **String** |  | [optional] 
-**Origin** | **String** |  | [optional] 
-**Section** | **String** |  | [optional] 
 **OldVersion** | **String** |  | [optional] 
 **Title** | **String** |  | [optional] 
-**Arch** | **String** |  | [optional] 
-**Package** | **String** |  | [optional] 
-**Priority** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
+**Package** | **String** |  | [optional] 
+**Origin** | **String** |  | [optional] 
+**Arch** | **String** |  | [optional] 
 **NotifyStatus** | **String** |  | [optional] 
+**Section** | **String** |  | [optional] 
+**Priority** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $NodesAptUpdateInner = Initialize-PVENodesAptUpdateInner  -Version null `
- -Origin null `
- -Section null `
  -OldVersion null `
  -Title null `
- -Arch null `
- -Package null `
- -Priority null `
  -Description null `
- -NotifyStatus null
+ -Package null `
+ -Origin null `
+ -Arch null `
+ -NotifyStatus null `
+ -Section null `
+ -Priority null
 ```
 
 - Convert the resource to JSON

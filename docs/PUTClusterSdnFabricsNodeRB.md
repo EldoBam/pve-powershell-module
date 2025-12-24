@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ip** | **String** |  | [optional] 
 **Delete** | **String[]** |  | [optional] 
-**NodeId** | **String** |  | [optional] 
-**FabricId** | **String** |  | [optional] 
-**Interfaces** | [**AnyType[]**](AnyType.md) |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**LockToken** | **String** |  | [optional] 
-**Ip6** | **String** |  | [optional] 
 **Protocol** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Ip6** | **String** |  | [optional] 
+**Ip** | **String** |  | [optional] 
+**LockToken** | **String** |  | [optional] 
+**Interfaces** | [**AnyType[]**](AnyType.md) |  | [optional] 
+**FabricId** | **String** |  | [optional] 
+**NodeId** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnFabricsNodeRB = Initialize-PVEPUTClusterSdnFabricsNodeRB  -Ip null `
- -Delete null `
- -NodeId null `
- -FabricId null `
- -Interfaces null `
+$PUTClusterSdnFabricsNodeRB = Initialize-PVEPUTClusterSdnFabricsNodeRB  -Delete null `
+ -Protocol null `
  -Digest null `
- -LockToken null `
  -Ip6 null `
- -Protocol null
+ -Ip null `
+ -LockToken null `
+ -Interfaces null `
+ -FabricId null `
+ -NodeId null
 ```
 
 - Convert the resource to JSON

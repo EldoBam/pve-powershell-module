@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
 **Map** | **String[]** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
 **VarError** | [**AnyType**](.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterMappingUsbInner = Initialize-PVEClusterMappingUsbInner  -Description null `
+$ClusterMappingUsbInner = Initialize-PVEClusterMappingUsbInner  -Map null `
  -Id null `
- -Map null `
+ -Description null `
  -VarError null
 ```
 

@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Total** | **Int32** |  | [optional] 
-**Avail** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
+**Shared** | **Boolean** |  | [optional] 
+**Used** | **Int32** |  | [optional] 
 **Active** | **Boolean** |  | [optional] 
 **Content** | **String** |  | [optional] 
-**Used** | **Int32** |  | [optional] 
+**Avail** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Total** | **Int32** |  | [optional] 
 **Enabled** | **Boolean** |  | [optional] 
-**Shared** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStorageStatus = Initialize-PVENodesStorageStatus  -Total null `
- -Avail null `
- -Type null `
+$NodesStorageStatus = Initialize-PVENodesStorageStatus  -Shared null `
+ -Used null `
  -Active null `
  -Content null `
- -Used null `
- -Enabled null `
- -Shared null
+ -Avail null `
+ -Type null `
+ -Total null `
+ -Enabled null
 ```
 
 - Convert the resource to JSON

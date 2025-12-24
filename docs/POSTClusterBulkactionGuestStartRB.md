@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Timeout** | **Int32** |  | [optional] 
 **Vms** | **Int32[]** |  | [optional] 
 **Maxworkers** | **Int32** |  | [optional] 
-**Timeout** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterBulkactionGuestStartRB = Initialize-PVEPOSTClusterBulkactionGuestStartRB  -Vms null `
- -Maxworkers null `
- -Timeout null
+$POSTClusterBulkactionGuestStartRB = Initialize-PVEPOSTClusterBulkactionGuestStartRB  -Timeout null `
+ -Vms null `
+ -Maxworkers null
 ```
 
 - Convert the resource to JSON

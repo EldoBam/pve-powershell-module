@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Resource** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Resource** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETClusterHaRulesRB = Initialize-PVEGETClusterHaRulesRB  -Resource null `
- -Type null
+$GETClusterHaRulesRB = Initialize-PVEGETClusterHaRulesRB  -Type null `
+ -Resource null
 ```
 
 - Convert the resource to JSON

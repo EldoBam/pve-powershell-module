@@ -4,10 +4,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **OutTruncated** | **Boolean** |  | [optional] 
-**ErrTruncated** | **Boolean** |  | [optional] 
-**Signal** | **Int32** |  | [optional] 
-**OutData** | **String** |  | [optional] 
 **ErrData** | **String** |  | [optional] 
+**ErrTruncated** | **Boolean** |  | [optional] 
+**OutData** | **String** |  | [optional] 
+**Signal** | **Int32** |  | [optional] 
 **Exited** | **Boolean** |  | [optional] 
 **Exitcode** | **Int32** |  | [optional] 
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $NodesQemuAgentExecstatus = Initialize-PVENodesQemuAgentExecstatus  -OutTruncated null `
- -ErrTruncated null `
- -Signal null `
- -OutData null `
  -ErrData null `
+ -ErrTruncated null `
+ -OutData null `
+ -Signal null `
  -Exited null `
  -Exitcode null
 ```

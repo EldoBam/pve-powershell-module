@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ref** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
+**Ref** | **String** |  | [optional] 
 **Scope** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuFirewallRefsInner = Initialize-PVENodesQemuFirewallRefsInner  -Ref null `
- -Type null `
- -Comment null `
+$NodesQemuFirewallRefsInner = Initialize-PVENodesQemuFirewallRefsInner  -Comment null `
+ -Ref null `
+ -Scope null `
  -Name null `
- -Scope null
+ -Type null
 ```
 
 - Convert the resource to JSON

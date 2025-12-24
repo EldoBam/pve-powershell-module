@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ip** | **String** |  | [optional] 
 **Zone** | **String** |  | [optional] 
+**Ip** | **String** |  | [optional] 
 **Mac** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEClusterSdnVnetsIpsRB = Initialize-PVEDELETEClusterSdnVnetsIpsRB  -Ip null `
- -Zone null `
+$DELETEClusterSdnVnetsIpsRB = Initialize-PVEDELETEClusterSdnVnetsIpsRB  -Zone null `
+ -Ip null `
  -Mac null
 ```
 

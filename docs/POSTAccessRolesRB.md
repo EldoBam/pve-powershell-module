@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Privs** | **String** |  | [optional] 
 **Roleid** | **String** |  | [optional] 
+**Privs** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTAccessRolesRB = Initialize-PVEPOSTAccessRolesRB  -Privs null `
- -Roleid null
+$POSTAccessRolesRB = Initialize-PVEPOSTAccessRolesRB  -Roleid null `
+ -Privs null
 ```
 
 - Convert the resource to JSON

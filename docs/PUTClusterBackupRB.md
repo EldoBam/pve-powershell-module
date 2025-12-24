@@ -3,89 +3,89 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Maxfiles** | **Int32** |  | [optional] 
-**NotificationMode** | **String** |  | [optional] 
-**Pool** | **String** |  | [optional] 
-**All** | **Boolean** |  | [optional] 
-**NotesTemplate** | **String** |  | [optional] 
-**Stdexcludes** | **Boolean** |  | [optional] 
-**Fleecing** | **String** |  | [optional] 
-**Script** | **String** |  | [optional] 
-**Stopwait** | **Int32** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**PbsChangeDetectionMode** | **String** |  | [optional] 
-**Compress** | **String** |  | [optional] 
-**Mailto** | **String** |  | [optional] 
-**Stop** | **Boolean** |  | [optional] 
-**Ionice** | **Int32** |  | [optional] 
-**Mailnotification** | **String** |  | [optional] 
-**Protected** | **Boolean** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Zstd** | **Int32** |  | [optional] 
-**Lockwait** | **Int32** |  | [optional] 
-**Bwlimit** | **Int32** |  | [optional] 
-**RepeatMissed** | **Boolean** |  | [optional] 
-**Pigz** | **Int32** |  | [optional] 
-**Quiet** | **Boolean** |  | [optional] 
-**Starttime** | **String** |  | [optional] 
-**Enabled** | **Boolean** |  | [optional] 
-**Mode** | **String** |  | [optional] 
-**Tmpdir** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**Schedule** | **String** |  | [optional] 
-**Dumpdir** | **String** |  | [optional] 
-**Exclude** | **String** |  | [optional] 
-**Dow** | **String** |  | [optional] 
-**PruneBackups** | **String** |  | [optional] 
+**Quiet** | **Boolean** |  | [optional] 
+**NotesTemplate** | **String** |  | [optional] 
+**Lockwait** | **Int32** |  | [optional] 
+**Enabled** | **Boolean** |  | [optional] 
+**Tmpdir** | **String** |  | [optional] 
+**NotificationMode** | **String** |  | [optional] 
+**Mailnotification** | **String** |  | [optional] 
+**Starttime** | **String** |  | [optional] 
+**Pigz** | **Int32** |  | [optional] 
+**Compress** | **String** |  | [optional] 
+**Fleecing** | **String** |  | [optional] 
+**Maxfiles** | **Int32** |  | [optional] 
+**Delete** | **String** |  | [optional] 
 **Remove** | **Boolean** |  | [optional] 
 **Storage** | **String** |  | [optional] 
-**Performance** | **String** |  | [optional] 
-**Vmid** | **String** |  | [optional] 
+**Pool** | **String** |  | [optional] 
+**Dow** | **String** |  | [optional] 
+**PbsChangeDetectionMode** | **String** |  | [optional] 
+**Stopwait** | **Int32** |  | [optional] 
 **ExcludePath** | **String[]** |  | [optional] 
+**Exclude** | **String** |  | [optional] 
+**Ionice** | **Int32** |  | [optional] 
+**Script** | **String** |  | [optional] 
+**Bwlimit** | **Int32** |  | [optional] 
+**Performance** | **String** |  | [optional] 
+**PruneBackups** | **String** |  | [optional] 
+**Dumpdir** | **String** |  | [optional] 
+**Protected** | **Boolean** |  | [optional] 
+**Mode** | **String** |  | [optional] 
+**Zstd** | **Int32** |  | [optional] 
+**Mailto** | **String** |  | [optional] 
+**Stop** | **Boolean** |  | [optional] 
+**Stdexcludes** | **Boolean** |  | [optional] 
+**All** | **Boolean** |  | [optional] 
+**Vmid** | **String** |  | [optional] 
+**RepeatMissed** | **Boolean** |  | [optional] 
+**Schedule** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterBackupRB = Initialize-PVEPUTClusterBackupRB  -Maxfiles null `
- -NotificationMode null `
- -Pool null `
- -All null `
- -NotesTemplate null `
- -Stdexcludes null `
- -Fleecing null `
- -Script null `
- -Stopwait null `
- -Delete null `
- -PbsChangeDetectionMode null `
- -Compress null `
- -Mailto null `
- -Stop null `
- -Ionice null `
- -Mailnotification null `
- -Protected null `
- -Comment null `
- -Zstd null `
- -Lockwait null `
- -Bwlimit null `
- -RepeatMissed null `
- -Pigz null `
+$PUTClusterBackupRB = Initialize-PVEPUTClusterBackupRB  -Node null `
  -Quiet null `
- -Starttime null `
+ -NotesTemplate null `
+ -Lockwait null `
  -Enabled null `
- -Mode null `
  -Tmpdir null `
- -Node null `
- -Schedule null `
- -Dumpdir null `
- -Exclude null `
- -Dow null `
- -PruneBackups null `
+ -NotificationMode null `
+ -Mailnotification null `
+ -Starttime null `
+ -Pigz null `
+ -Compress null `
+ -Fleecing null `
+ -Maxfiles null `
+ -Delete null `
  -Remove null `
  -Storage null `
+ -Pool null `
+ -Dow null `
+ -PbsChangeDetectionMode null `
+ -Stopwait null `
+ -ExcludePath null `
+ -Exclude null `
+ -Ionice null `
+ -Script null `
+ -Bwlimit null `
  -Performance null `
+ -PruneBackups null `
+ -Dumpdir null `
+ -Protected null `
+ -Mode null `
+ -Zstd null `
+ -Mailto null `
+ -Stop null `
+ -Stdexcludes null `
+ -All null `
  -Vmid null `
- -ExcludePath null
+ -RepeatMissed null `
+ -Schedule null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

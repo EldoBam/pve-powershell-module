@@ -19,8 +19,8 @@ docs/AccessUsersTfa.md
 docs/AccessUsersToken.md
 docs/AccessUsersTokenGETInner.md
 docs/AccessUsersTokenPOST.md
-docs/AccessUsersTokenPOSTInfo.md
 docs/AccessUsersTokenPUT.md
+docs/AccessUsersTokens.md
 docs/ClusterAcmeAccount.md
 docs/ClusterAcmeChallengeschemaInner.md
 docs/ClusterAcmeDirectoriesInner.md
@@ -47,9 +47,10 @@ docs/ClusterConfigJoin.md
 docs/ClusterConfigJoinNodelistInner.md
 docs/ClusterConfigNodes.md
 docs/ClusterConfigNodesGETInner.md
+docs/ClusterFirewallAliasesInner.md
 docs/ClusterFirewallGroups.md
 docs/ClusterFirewallGroupsGETInner.md
-docs/ClusterFirewallIpsetGETInner.md
+docs/ClusterFirewallIpsetInner.md
 docs/ClusterFirewallMacrosInner.md
 docs/ClusterFirewallOptions.md
 docs/ClusterFirewallRules.md
@@ -93,12 +94,10 @@ docs/ClusterSdnFabricsAllFabricsInner.md
 docs/ClusterSdnFabricsAllNodesInner.md
 docs/ClusterSdnFabricsFabric.md
 docs/ClusterSdnFabricsFabricGETInner.md
-docs/ClusterSdnFabricsNodeGETInner.md
-docs/ClusterSdnInner.md
+docs/ClusterSdnFabricsNodeInner.md
 docs/ClusterSdnIpamsInner.md
 docs/ClusterSdnVnetsFirewallOptions.md
 docs/ClusterSdnVnetsFirewallRules.md
-docs/ClusterSdnVnetsFirewallRulesGETInner.md
 docs/ClusterSdnVnetsInner.md
 docs/ClusterSdnVnetsInnerPending.md
 docs/ClusterSdnZonesInner.md
@@ -232,6 +231,7 @@ docs/GETNodesVzdumpDefaultsRB.md
 docs/GETNodesVzdumpExtractconfigRB.md
 docs/GETPoolsRB.md
 docs/GETStorageRB.md
+docs/NodesAptInner.md
 docs/NodesAptRepositories.md
 docs/NodesAptRepositoriesErrorsInner.md
 docs/NodesAptRepositoriesFilesInner.md
@@ -274,6 +274,7 @@ docs/NodesDisksZfsGETInner.md
 docs/NodesDns.md
 docs/NodesFirewallOptions.md
 docs/NodesFirewallRules.md
+docs/NodesFirewallRulesGETInner.md
 docs/NodesHardwareInner.md
 docs/NodesHardwarePciGETInner.md
 docs/NodesHardwarePciInner.md
@@ -283,7 +284,7 @@ docs/NodesHosts.md
 docs/NodesInner.md
 docs/NodesLxcConfig.md
 docs/NodesLxcFeature.md
-docs/NodesLxcFirewallIpsetInner.md
+docs/NodesLxcFirewallIpsetGETInner.md
 docs/NodesLxcFirewallOptions.md
 docs/NodesLxcFirewallRules.md
 docs/NodesLxcInner.md
@@ -305,8 +306,6 @@ docs/NodesQemuAgentFileread.md
 docs/NodesQemuCloudinitInner.md
 docs/NodesQemuConfig.md
 docs/NodesQemuFeature.md
-docs/NodesQemuFirewallAliasesInner.md
-docs/NodesQemuFirewallLogInner.md
 docs/NodesQemuFirewallOptions.md
 docs/NodesQemuFirewallRefsInner.md
 docs/NodesQemuFirewallRules.md
@@ -359,6 +358,7 @@ docs/NodesStorageRrd.md
 docs/NodesStorageStatus.md
 docs/NodesSubscription.md
 docs/NodesTasksInner.md
+docs/NodesTasksLogInner.md
 docs/NodesTasksStatus.md
 docs/NodesTime.md
 docs/NodesVersion.md
@@ -585,7 +585,7 @@ docs/PVEStorageApi.md
 docs/PVEVersionApi.md
 docs/Pools.md
 docs/PoolsGETInner.md
-docs/PoolsGETInnerMembersInner.md
+docs/PoolsMembersInner.md
 docs/Storage.md
 docs/StorageGETInner.md
 docs/StoragePUT.md
@@ -614,8 +614,8 @@ src/ProxmoxPVE/Model/AccessUsersTfa.ps1
 src/ProxmoxPVE/Model/AccessUsersToken.ps1
 src/ProxmoxPVE/Model/AccessUsersTokenGETInner.ps1
 src/ProxmoxPVE/Model/AccessUsersTokenPOST.ps1
-src/ProxmoxPVE/Model/AccessUsersTokenPOSTInfo.ps1
 src/ProxmoxPVE/Model/AccessUsersTokenPUT.ps1
+src/ProxmoxPVE/Model/AccessUsersTokens.ps1
 src/ProxmoxPVE/Model/ClusterAcmeAccount.ps1
 src/ProxmoxPVE/Model/ClusterAcmeChallengeschemaInner.ps1
 src/ProxmoxPVE/Model/ClusterAcmeDirectoriesInner.ps1
@@ -642,9 +642,10 @@ src/ProxmoxPVE/Model/ClusterConfigJoin.ps1
 src/ProxmoxPVE/Model/ClusterConfigJoinNodelistInner.ps1
 src/ProxmoxPVE/Model/ClusterConfigNodes.ps1
 src/ProxmoxPVE/Model/ClusterConfigNodesGETInner.ps1
+src/ProxmoxPVE/Model/ClusterFirewallAliasesInner.ps1
 src/ProxmoxPVE/Model/ClusterFirewallGroups.ps1
 src/ProxmoxPVE/Model/ClusterFirewallGroupsGETInner.ps1
-src/ProxmoxPVE/Model/ClusterFirewallIpsetGETInner.ps1
+src/ProxmoxPVE/Model/ClusterFirewallIpsetInner.ps1
 src/ProxmoxPVE/Model/ClusterFirewallMacrosInner.ps1
 src/ProxmoxPVE/Model/ClusterFirewallOptions.ps1
 src/ProxmoxPVE/Model/ClusterFirewallRules.ps1
@@ -688,12 +689,10 @@ src/ProxmoxPVE/Model/ClusterSdnFabricsAllFabricsInner.ps1
 src/ProxmoxPVE/Model/ClusterSdnFabricsAllNodesInner.ps1
 src/ProxmoxPVE/Model/ClusterSdnFabricsFabric.ps1
 src/ProxmoxPVE/Model/ClusterSdnFabricsFabricGETInner.ps1
-src/ProxmoxPVE/Model/ClusterSdnFabricsNodeGETInner.ps1
-src/ProxmoxPVE/Model/ClusterSdnInner.ps1
+src/ProxmoxPVE/Model/ClusterSdnFabricsNodeInner.ps1
 src/ProxmoxPVE/Model/ClusterSdnIpamsInner.ps1
 src/ProxmoxPVE/Model/ClusterSdnVnetsFirewallOptions.ps1
 src/ProxmoxPVE/Model/ClusterSdnVnetsFirewallRules.ps1
-src/ProxmoxPVE/Model/ClusterSdnVnetsFirewallRulesGETInner.ps1
 src/ProxmoxPVE/Model/ClusterSdnVnetsInner.ps1
 src/ProxmoxPVE/Model/ClusterSdnVnetsInnerPending.ps1
 src/ProxmoxPVE/Model/ClusterSdnZonesInner.ps1
@@ -827,6 +826,7 @@ src/ProxmoxPVE/Model/GETNodesVzdumpDefaultsRB.ps1
 src/ProxmoxPVE/Model/GETNodesVzdumpExtractconfigRB.ps1
 src/ProxmoxPVE/Model/GETPoolsRB.ps1
 src/ProxmoxPVE/Model/GETStorageRB.ps1
+src/ProxmoxPVE/Model/NodesAptInner.ps1
 src/ProxmoxPVE/Model/NodesAptRepositories.ps1
 src/ProxmoxPVE/Model/NodesAptRepositoriesErrorsInner.ps1
 src/ProxmoxPVE/Model/NodesAptRepositoriesFilesInner.ps1
@@ -869,6 +869,7 @@ src/ProxmoxPVE/Model/NodesDisksZfsGETInner.ps1
 src/ProxmoxPVE/Model/NodesDns.ps1
 src/ProxmoxPVE/Model/NodesFirewallOptions.ps1
 src/ProxmoxPVE/Model/NodesFirewallRules.ps1
+src/ProxmoxPVE/Model/NodesFirewallRulesGETInner.ps1
 src/ProxmoxPVE/Model/NodesHardwareInner.ps1
 src/ProxmoxPVE/Model/NodesHardwarePciGETInner.ps1
 src/ProxmoxPVE/Model/NodesHardwarePciInner.ps1
@@ -878,7 +879,7 @@ src/ProxmoxPVE/Model/NodesHosts.ps1
 src/ProxmoxPVE/Model/NodesInner.ps1
 src/ProxmoxPVE/Model/NodesLxcConfig.ps1
 src/ProxmoxPVE/Model/NodesLxcFeature.ps1
-src/ProxmoxPVE/Model/NodesLxcFirewallIpsetInner.ps1
+src/ProxmoxPVE/Model/NodesLxcFirewallIpsetGETInner.ps1
 src/ProxmoxPVE/Model/NodesLxcFirewallOptions.ps1
 src/ProxmoxPVE/Model/NodesLxcFirewallRules.ps1
 src/ProxmoxPVE/Model/NodesLxcInner.ps1
@@ -900,8 +901,6 @@ src/ProxmoxPVE/Model/NodesQemuAgentFileread.ps1
 src/ProxmoxPVE/Model/NodesQemuCloudinitInner.ps1
 src/ProxmoxPVE/Model/NodesQemuConfig.ps1
 src/ProxmoxPVE/Model/NodesQemuFeature.ps1
-src/ProxmoxPVE/Model/NodesQemuFirewallAliasesInner.ps1
-src/ProxmoxPVE/Model/NodesQemuFirewallLogInner.ps1
 src/ProxmoxPVE/Model/NodesQemuFirewallOptions.ps1
 src/ProxmoxPVE/Model/NodesQemuFirewallRefsInner.ps1
 src/ProxmoxPVE/Model/NodesQemuFirewallRules.ps1
@@ -954,6 +953,7 @@ src/ProxmoxPVE/Model/NodesStorageRrd.ps1
 src/ProxmoxPVE/Model/NodesStorageStatus.ps1
 src/ProxmoxPVE/Model/NodesSubscription.ps1
 src/ProxmoxPVE/Model/NodesTasksInner.ps1
+src/ProxmoxPVE/Model/NodesTasksLogInner.ps1
 src/ProxmoxPVE/Model/NodesTasksStatus.ps1
 src/ProxmoxPVE/Model/NodesTime.ps1
 src/ProxmoxPVE/Model/NodesVersion.ps1
@@ -1174,7 +1174,7 @@ src/ProxmoxPVE/Model/PUTPoolsRB.ps1
 src/ProxmoxPVE/Model/PUTStorageRB.ps1
 src/ProxmoxPVE/Model/Pools.ps1
 src/ProxmoxPVE/Model/PoolsGETInner.ps1
-src/ProxmoxPVE/Model/PoolsGETInnerMembersInner.ps1
+src/ProxmoxPVE/Model/PoolsMembersInner.ps1
 src/ProxmoxPVE/Model/Storage.ps1
 src/ProxmoxPVE/Model/StorageGETInner.ps1
 src/ProxmoxPVE/Model/StoragePUT.ps1
@@ -1209,8 +1209,8 @@ tests/Model/AccessUsersTfa.Tests.ps1
 tests/Model/AccessUsersToken.Tests.ps1
 tests/Model/AccessUsersTokenGETInner.Tests.ps1
 tests/Model/AccessUsersTokenPOST.Tests.ps1
-tests/Model/AccessUsersTokenPOSTInfo.Tests.ps1
 tests/Model/AccessUsersTokenPUT.Tests.ps1
+tests/Model/AccessUsersTokens.Tests.ps1
 tests/Model/ClusterAcmeAccount.Tests.ps1
 tests/Model/ClusterAcmeChallengeschemaInner.Tests.ps1
 tests/Model/ClusterAcmeDirectoriesInner.Tests.ps1
@@ -1237,9 +1237,10 @@ tests/Model/ClusterConfigJoin.Tests.ps1
 tests/Model/ClusterConfigJoinNodelistInner.Tests.ps1
 tests/Model/ClusterConfigNodes.Tests.ps1
 tests/Model/ClusterConfigNodesGETInner.Tests.ps1
+tests/Model/ClusterFirewallAliasesInner.Tests.ps1
 tests/Model/ClusterFirewallGroups.Tests.ps1
 tests/Model/ClusterFirewallGroupsGETInner.Tests.ps1
-tests/Model/ClusterFirewallIpsetGETInner.Tests.ps1
+tests/Model/ClusterFirewallIpsetInner.Tests.ps1
 tests/Model/ClusterFirewallMacrosInner.Tests.ps1
 tests/Model/ClusterFirewallOptions.Tests.ps1
 tests/Model/ClusterFirewallRules.Tests.ps1
@@ -1283,12 +1284,10 @@ tests/Model/ClusterSdnFabricsAllFabricsInner.Tests.ps1
 tests/Model/ClusterSdnFabricsAllNodesInner.Tests.ps1
 tests/Model/ClusterSdnFabricsFabric.Tests.ps1
 tests/Model/ClusterSdnFabricsFabricGETInner.Tests.ps1
-tests/Model/ClusterSdnFabricsNodeGETInner.Tests.ps1
-tests/Model/ClusterSdnInner.Tests.ps1
+tests/Model/ClusterSdnFabricsNodeInner.Tests.ps1
 tests/Model/ClusterSdnIpamsInner.Tests.ps1
 tests/Model/ClusterSdnVnetsFirewallOptions.Tests.ps1
 tests/Model/ClusterSdnVnetsFirewallRules.Tests.ps1
-tests/Model/ClusterSdnVnetsFirewallRulesGETInner.Tests.ps1
 tests/Model/ClusterSdnVnetsInner.Tests.ps1
 tests/Model/ClusterSdnVnetsInnerPending.Tests.ps1
 tests/Model/ClusterSdnZonesInner.Tests.ps1
@@ -1422,6 +1421,7 @@ tests/Model/GETNodesVzdumpDefaultsRB.Tests.ps1
 tests/Model/GETNodesVzdumpExtractconfigRB.Tests.ps1
 tests/Model/GETPoolsRB.Tests.ps1
 tests/Model/GETStorageRB.Tests.ps1
+tests/Model/NodesAptInner.Tests.ps1
 tests/Model/NodesAptRepositories.Tests.ps1
 tests/Model/NodesAptRepositoriesErrorsInner.Tests.ps1
 tests/Model/NodesAptRepositoriesFilesInner.Tests.ps1
@@ -1464,6 +1464,7 @@ tests/Model/NodesDisksZfsGETInner.Tests.ps1
 tests/Model/NodesDns.Tests.ps1
 tests/Model/NodesFirewallOptions.Tests.ps1
 tests/Model/NodesFirewallRules.Tests.ps1
+tests/Model/NodesFirewallRulesGETInner.Tests.ps1
 tests/Model/NodesHardwareInner.Tests.ps1
 tests/Model/NodesHardwarePciGETInner.Tests.ps1
 tests/Model/NodesHardwarePciInner.Tests.ps1
@@ -1473,7 +1474,7 @@ tests/Model/NodesHosts.Tests.ps1
 tests/Model/NodesInner.Tests.ps1
 tests/Model/NodesLxcConfig.Tests.ps1
 tests/Model/NodesLxcFeature.Tests.ps1
-tests/Model/NodesLxcFirewallIpsetInner.Tests.ps1
+tests/Model/NodesLxcFirewallIpsetGETInner.Tests.ps1
 tests/Model/NodesLxcFirewallOptions.Tests.ps1
 tests/Model/NodesLxcFirewallRules.Tests.ps1
 tests/Model/NodesLxcInner.Tests.ps1
@@ -1495,8 +1496,6 @@ tests/Model/NodesQemuAgentFileread.Tests.ps1
 tests/Model/NodesQemuCloudinitInner.Tests.ps1
 tests/Model/NodesQemuConfig.Tests.ps1
 tests/Model/NodesQemuFeature.Tests.ps1
-tests/Model/NodesQemuFirewallAliasesInner.Tests.ps1
-tests/Model/NodesQemuFirewallLogInner.Tests.ps1
 tests/Model/NodesQemuFirewallOptions.Tests.ps1
 tests/Model/NodesQemuFirewallRefsInner.Tests.ps1
 tests/Model/NodesQemuFirewallRules.Tests.ps1
@@ -1549,6 +1548,7 @@ tests/Model/NodesStorageRrd.Tests.ps1
 tests/Model/NodesStorageStatus.Tests.ps1
 tests/Model/NodesSubscription.Tests.ps1
 tests/Model/NodesTasksInner.Tests.ps1
+tests/Model/NodesTasksLogInner.Tests.ps1
 tests/Model/NodesTasksStatus.Tests.ps1
 tests/Model/NodesTime.Tests.ps1
 tests/Model/NodesVersion.Tests.ps1
@@ -1769,7 +1769,7 @@ tests/Model/PUTPoolsRB.Tests.ps1
 tests/Model/PUTStorageRB.Tests.ps1
 tests/Model/Pools.Tests.ps1
 tests/Model/PoolsGETInner.Tests.ps1
-tests/Model/PoolsGETInnerMembersInner.Tests.ps1
+tests/Model/PoolsMembersInner.Tests.ps1
 tests/Model/Storage.Tests.ps1
 tests/Model/StorageGETInner.Tests.ps1
 tests/Model/StoragePUT.Tests.ps1

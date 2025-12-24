@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ReleaseLock** | **Boolean** |  | [optional] 
 **LockToken** | **String** |  | [optional] 
+**ReleaseLock** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnRollbackRB = Initialize-PVEPOSTClusterSdnRollbackRB  -ReleaseLock null `
- -LockToken null
+$POSTClusterSdnRollbackRB = Initialize-PVEPOSTClusterSdnRollbackRB  -LockToken null `
+ -ReleaseLock null
 ```
 
 - Convert the resource to JSON

@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Target** | **String[]** |  | [optional] 
-**MatchField** | **String[]** |  | [optional] 
-**Mode** | **String** |  | [optional] 
 **Delete** | **String[]** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**MatchCalendar** | **String[]** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**MatchSeverity** | **String[]** |  | [optional] 
 **InvertMatch** | **Boolean** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
+**MatchSeverity** | **String[]** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**MatchField** | **String[]** |  | [optional] 
+**MatchCalendar** | **String[]** |  | [optional] 
+**Mode** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Target** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterNotificationsMatchersRB = Initialize-PVEPUTClusterNotificationsMatchersRB  -Target null `
- -MatchField null `
- -Mode null `
- -Delete null `
- -Comment null `
- -MatchCalendar null `
- -Digest null `
- -MatchSeverity null `
+$PUTClusterNotificationsMatchersRB = Initialize-PVEPUTClusterNotificationsMatchersRB  -Delete null `
  -InvertMatch null `
- -Disable null
+ -Disable null `
+ -MatchSeverity null `
+ -Comment null `
+ -MatchField null `
+ -MatchCalendar null `
+ -Mode null `
+ -Digest null `
+ -Target null
 ```
 
 - Convert the resource to JSON

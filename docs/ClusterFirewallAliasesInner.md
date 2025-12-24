@@ -1,26 +1,26 @@
-# NodesQemuFirewallAliasesInner
+# ClusterFirewallAliasesInner
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Digest** | **String** |  | [optional] 
-**Cidr** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Cidr** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuFirewallAliasesInner = Initialize-PVENodesQemuFirewallAliasesInner  -Digest null `
- -Cidr null `
+$ClusterFirewallAliasesInner = Initialize-PVEClusterFirewallAliasesInner  -Digest null `
  -Comment null `
+ -Cidr null `
  -Name null
 ```
 
 - Convert the resource to JSON
 ```powershell
-$NodesQemuFirewallAliasesInner | ConvertTo-JSON
+$ClusterFirewallAliasesInner | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

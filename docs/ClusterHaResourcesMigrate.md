@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**RequestedNode** | **String** |  | [optional] 
+**BlockingResources** | [**NodesQemuMigrateNotAllowedNodesBlockingHaResourcesInner[]**](NodesQemuMigrateNotAllowedNodesBlockingHaResourcesInner.md) |  | [optional] 
 **ComigratedResources** | [**AnyType[]**](AnyType.md) |  | [optional] 
 **Sid** | **String** |  | [optional] 
-**BlockingResources** | [**NodesQemuMigrateNotAllowedNodesBlockingHaResourcesInner[]**](NodesQemuMigrateNotAllowedNodesBlockingHaResourcesInner.md) |  | [optional] 
-**RequestedNode** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterHaResourcesMigrate = Initialize-PVEClusterHaResourcesMigrate  -ComigratedResources null `
- -Sid null `
+$ClusterHaResourcesMigrate = Initialize-PVEClusterHaResourcesMigrate  -RequestedNode null `
  -BlockingResources null `
- -RequestedNode null
+ -ComigratedResources null `
+ -Sid null
 ```
 
 - Convert the resource to JSON

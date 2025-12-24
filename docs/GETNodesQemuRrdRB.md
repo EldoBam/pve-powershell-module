@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cf** | **String** |  | [optional] 
 **Ds** | **String** |  | [optional] 
+**Cf** | **String** |  | [optional] 
 **Timeframe** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETNodesQemuRrdRB = Initialize-PVEGETNodesQemuRrdRB  -Cf null `
- -Ds null `
+$GETNodesQemuRrdRB = Initialize-PVEGETNodesQemuRrdRB  -Ds null `
+ -Cf null `
  -Timeframe null
 ```
 

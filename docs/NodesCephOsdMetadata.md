@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Devices** | [**NodesCephOsdMetadataDevicesInner[]**](NodesCephOsdMetadataDevicesInner.md) |  | [optional] 
 **Osd** | [**NodesCephOsdMetadataOsd**](NodesCephOsdMetadataOsd.md) |  | [optional] 
+**Devices** | [**NodesCephOsdMetadataDevicesInner[]**](NodesCephOsdMetadataDevicesInner.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephOsdMetadata = Initialize-PVENodesCephOsdMetadata  -Devices null `
- -Osd null
+$NodesCephOsdMetadata = Initialize-PVENodesCephOsdMetadata  -Osd null `
+ -Devices null
 ```
 
 - Convert the resource to JSON

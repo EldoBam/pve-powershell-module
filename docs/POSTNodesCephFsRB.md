@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddStorage** | **Boolean** |  | [optional] 
 **PgNum** | **Int32** |  | [optional] 
+**AddStorage** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesCephFsRB = Initialize-PVEPOSTNodesCephFsRB  -AddStorage null `
- -PgNum null
+$POSTNodesCephFsRB = Initialize-PVEPOSTNodesCephFsRB  -PgNum null `
+ -AddStorage null
 ```
 
 - Convert the resource to JSON

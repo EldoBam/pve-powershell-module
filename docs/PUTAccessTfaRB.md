@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | **String** |  | [optional] 
-**Password** | **String** |  | [optional] 
 **Enable** | **Boolean** |  | [optional] 
+**Password** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $PUTAccessTfaRB = Initialize-PVEPUTAccessTfaRB  -Description null `
- -Password null `
- -Enable null
+ -Enable null `
+ -Password null
 ```
 
 - Convert the resource to JSON

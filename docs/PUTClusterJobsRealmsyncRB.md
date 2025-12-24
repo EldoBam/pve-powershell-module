@@ -3,24 +3,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Schedule** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**EnableNew** | **Boolean** |  | [optional] 
 **Scope** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
 **RemoveVanished** | **String** |  | [optional] 
+**Schedule** | **String** |  | [optional] 
+**EnableNew** | **Boolean** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Enabled** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterJobsRealmsyncRB = Initialize-PVEPUTClusterJobsRealmsyncRB  -Schedule null `
+$PUTClusterJobsRealmsyncRB = Initialize-PVEPUTClusterJobsRealmsyncRB  -Scope null `
  -Delete null `
- -Comment null `
- -EnableNew null `
- -Scope null `
  -RemoveVanished null `
+ -Schedule null `
+ -EnableNew null `
+ -Comment null `
  -Enabled null
 ```
 

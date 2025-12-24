@@ -3,31 +3,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Rank** | **Int32** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**CephVersionShort** | **String** |  | [optional] 
-**Direxists** | **String** |  | [optional] 
-**Service** | **Int32** |  | [optional] 
-**State** | **String** |  | [optional] 
-**VarHost** | **Boolean** |  | [optional] 
 **Quorum** | **Boolean** |  | [optional] 
-**Addr** | **String** |  | [optional] 
+**Service** | **Int32** |  | [optional] 
 **CephVersion** | **String** |  | [optional] 
+**VarHost** | **Boolean** |  | [optional] 
+**Rank** | **Int32** |  | [optional] 
+**Direxists** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
+**Addr** | **String** |  | [optional] 
+**CephVersionShort** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephMonInner = Initialize-PVENodesCephMonInner  -Rank null `
- -Name null `
- -CephVersionShort null `
- -Direxists null `
+$NodesCephMonInner = Initialize-PVENodesCephMonInner  -Quorum null `
  -Service null `
- -State null `
+ -CephVersion null `
  -VarHost null `
- -Quorum null `
+ -Rank null `
+ -Direxists null `
+ -State null `
  -Addr null `
- -CephVersion null
+ -CephVersionShort null `
+ -Name null
 ```
 
 - Convert the resource to JSON

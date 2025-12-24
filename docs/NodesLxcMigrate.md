@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NotAllowedNodes** | [**NodesLxcMigrateNotAllowedNodes**](NodesLxcMigrateNotAllowedNodes.md) |  | [optional] 
-**DependentHaResources** | **String[]** |  | [optional] 
 **AllowedNodes** | **String[]** |  | [optional] 
+**DependentHaResources** | **String[]** |  | [optional] 
 **Running** | **Boolean** |  | [optional] 
+**NotAllowedNodes** | [**NodesLxcMigrateNotAllowedNodes**](NodesLxcMigrateNotAllowedNodes.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesLxcMigrate = Initialize-PVENodesLxcMigrate  -NotAllowedNodes null `
+$NodesLxcMigrate = Initialize-PVENodesLxcMigrate  -AllowedNodes null `
  -DependentHaResources null `
- -AllowedNodes null `
- -Running null
+ -Running null `
+ -NotAllowedNodes null
 ```
 
 - Convert the resource to JSON

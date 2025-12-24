@@ -1,48 +1,48 @@
-# ClusterSdnVnetsFirewallRulesGETInner
+# NodesFirewallRulesGETInner
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Macro** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
 **Proto** | **String** |  | [optional] 
-**IcmpType** | **String** |  | [optional] 
 **Ipversion** | **Int32** |  | [optional] 
+**Source** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**Log** | **String** |  | [optional] 
+**Macro** | **String** |  | [optional] 
+**IcmpType** | **String** |  | [optional] 
 **Dport** | **String** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
 **Sport** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
+**Iface** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnVnetsFirewallRulesGETInner = Initialize-PVEClusterSdnVnetsFirewallRulesGETInner  -Macro null `
- -Action null `
- -Iface null `
+$NodesFirewallRulesGETInner = Initialize-PVENodesFirewallRulesGETInner  -Pos null `
  -Proto null `
- -IcmpType null `
  -Ipversion null `
+ -Source null `
  -Comment null `
  -Type null `
- -Source null `
- -Dest null `
- -Enable null `
- -Log null `
+ -Macro null `
+ -IcmpType null `
  -Dport null `
- -Pos null `
- -Sport null
+ -Dest null `
+ -Action null `
+ -Log null `
+ -Sport null `
+ -Enable null `
+ -Iface null
 ```
 
 - Convert the resource to JSON
 ```powershell
-$ClusterSdnVnetsFirewallRulesGETInner | ConvertTo-JSON
+$NodesFirewallRulesGETInner | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

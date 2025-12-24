@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vncticket** | **String** |  | [optional] 
 **Authid** | **String** |  | [optional] 
 **Path** | **String** |  | [optional] 
 **Privs** | **String** |  | [optional] 
+**Vncticket** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTAccessVncticketRB = Initialize-PVEPOSTAccessVncticketRB  -Vncticket null `
- -Authid null `
+$POSTAccessVncticketRB = Initialize-PVEPOSTAccessVncticketRB  -Authid null `
  -Path null `
- -Privs null
+ -Privs null `
+ -Vncticket null
 ```
 
 - Convert the resource to JSON

@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delete** | **Boolean** |  | [optional] 
-**AllowMove** | **Boolean** |  | [optional] 
 **Storage** | **String** |  | [optional] 
+**AllowMove** | **Boolean** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Delete** | **Boolean** |  | [optional] 
 **Vms** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTPoolsRB = Initialize-PVEPUTPoolsRB  -Delete null `
+$PUTPoolsRB = Initialize-PVEPUTPoolsRB  -Storage null `
  -AllowMove null `
- -Storage null `
  -Comment null `
+ -Delete null `
  -Vms null
 ```
 

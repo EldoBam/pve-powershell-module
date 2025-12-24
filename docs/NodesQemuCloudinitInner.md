@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delete** | **Int32** |  | [optional] 
-**Key** | **String** |  | [optional] 
 **Value** | **String** |  | [optional] 
+**Key** | **String** |  | [optional] 
 **Pending** | **String** |  | [optional] 
+**Delete** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQemuCloudinitInner = Initialize-PVENodesQemuCloudinitInner  -Delete null `
+$NodesQemuCloudinitInner = Initialize-PVENodesQemuCloudinitInner  -Value null `
  -Key null `
- -Value null `
- -Pending null
+ -Pending null `
+ -Delete null
 ```
 
 - Convert the resource to JSON

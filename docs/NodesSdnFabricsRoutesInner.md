@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Route** | **String** |  | [optional] 
 **Via** | **String[]** |  | [optional] 
+**Route** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesSdnFabricsRoutesInner = Initialize-PVENodesSdnFabricsRoutesInner  -Route null `
- -Via null
+$NodesSdnFabricsRoutesInner = Initialize-PVENodesSdnFabricsRoutesInner  -Via null `
+ -Route null
 ```
 
 - Convert the resource to JSON

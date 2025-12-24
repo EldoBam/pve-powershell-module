@@ -3,35 +3,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Level** | **Int32** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
 **Speed** | **String** |  | [optional] 
-**Manufacturer** | **String** |  | [optional] 
-**Devnum** | **Int32** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**Level** | **Int32** |  | [optional] 
 **Usbpath** | **String** |  | [optional] 
-**Vendid** | **String** |  | [optional] 
-**Product** | **String** |  | [optional] 
-**Class** | **Int32** |  | [optional] 
-**Prodid** | **String** |  | [optional] 
 **Busnum** | **Int32** |  | [optional] 
+**Devnum** | **Int32** |  | [optional] 
+**Vendid** | **String** |  | [optional] 
+**Class** | **Int32** |  | [optional] 
+**Product** | **String** |  | [optional] 
+**Prodid** | **String** |  | [optional] 
 **Serial** | **String** |  | [optional] 
+**Manufacturer** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesHardwareUsbInner = Initialize-PVENodesHardwareUsbInner  -Level null `
+$NodesHardwareUsbInner = Initialize-PVENodesHardwareUsbInner  -Speed null `
  -Port null `
- -Speed null `
- -Manufacturer null `
- -Devnum null `
+ -Level null `
  -Usbpath null `
- -Vendid null `
- -Product null `
- -Class null `
- -Prodid null `
  -Busnum null `
- -Serial null
+ -Devnum null `
+ -Vendid null `
+ -Class null `
+ -Product null `
+ -Prodid null `
+ -Serial null `
+ -Manufacturer null
 ```
 
 - Convert the resource to JSON

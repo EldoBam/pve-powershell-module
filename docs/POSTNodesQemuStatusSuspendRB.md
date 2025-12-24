@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Skiplock** | **Boolean** |  | [optional] 
 **Statestorage** | **String** |  | [optional] 
+**Skiplock** | **Boolean** |  | [optional] 
 **Todisk** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuStatusSuspendRB = Initialize-PVEPOSTNodesQemuStatusSuspendRB  -Skiplock null `
- -Statestorage null `
+$POSTNodesQemuStatusSuspendRB = Initialize-PVEPOSTNodesQemuStatusSuspendRB  -Statestorage null `
+ -Skiplock null `
  -Todisk null
 ```
 

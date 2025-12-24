@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PgNum** | **Int32** |  | [optional] 
-**TargetSize** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**Application** | **String** |  | [optional] 
 **TargetSizeRatio** | **Decimal** |  | [optional] 
+**TargetSize** | **String** |  | [optional] 
+**CrushRule** | **String** |  | [optional] 
 **PgNumMin** | **Int32** |  | [optional] 
 **PgAutoscaleMode** | **String** |  | [optional] 
 **AddStorages** | **Boolean** |  | [optional] 
 **ErasureCoding** | **String** |  | [optional] 
-**CrushRule** | **String** |  | [optional] 
 **Size** | **Int32** |  | [optional] 
+**Application** | **String** |  | [optional] 
 **MinSize** | **Int32** |  | [optional] 
 
 ## Examples
@@ -21,16 +21,16 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $POSTNodesCephPoolRB = Initialize-PVEPOSTNodesCephPoolRB  -PgNum null `
- -TargetSize null `
  -Name null `
- -Application null `
  -TargetSizeRatio null `
+ -TargetSize null `
+ -CrushRule null `
  -PgNumMin null `
  -PgAutoscaleMode null `
  -AddStorages null `
  -ErasureCoding null `
- -CrushRule null `
  -Size null `
+ -Application null `
  -MinSize null
 ```
 

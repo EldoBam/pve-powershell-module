@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ReleaseLock** | **Boolean** |  | [optional] 
 **LockToken** | **String** |  | [optional] 
+**ReleaseLock** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnRB = Initialize-PVEPUTClusterSdnRB  -ReleaseLock null `
- -LockToken null
+$PUTClusterSdnRB = Initialize-PVEPUTClusterSdnRB  -LockToken null `
+ -ReleaseLock null
 ```
 
 - Convert the resource to JSON

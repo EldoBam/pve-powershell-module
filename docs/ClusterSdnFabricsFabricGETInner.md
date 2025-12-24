@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CsnpInterval** | **Decimal** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**IpPrefix** | **String** |  | [optional] 
 **Ip6Prefix** | **String** |  | [optional] 
 **Area** | **String** |  | [optional] 
-**HelloInterval** | **Decimal** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**IpPrefix** | **String** |  | [optional] 
 **LockToken** | **String** |  | [optional] 
 **Protocol** | **String** |  | [optional] 
+**CsnpInterval** | **Decimal** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**HelloInterval** | **Decimal** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnFabricsFabricGETInner = Initialize-PVEClusterSdnFabricsFabricGETInner  -CsnpInterval null `
- -Id null `
- -IpPrefix null `
- -Ip6Prefix null `
+$ClusterSdnFabricsFabricGETInner = Initialize-PVEClusterSdnFabricsFabricGETInner  -Ip6Prefix null `
  -Area null `
- -HelloInterval null `
  -Digest null `
+ -IpPrefix null `
  -LockToken null `
- -Protocol null
+ -Protocol null `
+ -CsnpInterval null `
+ -Id null `
+ -HelloInterval null
 ```
 
 - Convert the resource to JSON

@@ -3,77 +3,77 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Remove** | **Boolean** |  | [optional] 
-**NotificationMode** | **String** |  | [optional] 
-**Pool** | **String** |  | [optional] 
-**All** | **Boolean** |  | [optional] 
 **NotesTemplate** | **String** |  | [optional] 
-**Stdexcludes** | **Boolean** |  | [optional] 
-**Fleecing** | **String** |  | [optional] 
-**Zstd** | **Int32** |  | [optional] 
-**Stopwait** | **Int32** |  | [optional] 
-**PbsChangeDetectionMode** | **String** |  | [optional] 
-**Script** | **String** |  | [optional] 
-**JobId** | **String** |  | [optional] 
-**Mailto** | **String** |  | [optional] 
-**Stop** | **Boolean** |  | [optional] 
-**Mailnotification** | **String** |  | [optional] 
-**Compress** | **String** |  | [optional] 
-**Pigz** | **Int32** |  | [optional] 
 **Lockwait** | **Int32** |  | [optional] 
+**Tmpdir** | **String** |  | [optional] 
+**Quiet** | **Boolean** |  | [optional] 
+**JobId** | **String** |  | [optional] 
+**Mailnotification** | **String** |  | [optional] 
+**Pigz** | **Int32** |  | [optional] 
+**Compress** | **String** |  | [optional] 
+**Fleecing** | **String** |  | [optional] 
+**Maxfiles** | **Int32** |  | [optional] 
+**Remove** | **Boolean** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**Pool** | **String** |  | [optional] 
+**Exclude** | **String** |  | [optional] 
+**Stopwait** | **Int32** |  | [optional] 
+**ExcludePath** | **String[]** |  | [optional] 
+**Stdout** | **Boolean** |  | [optional] 
+**Ionice** | **Int32** |  | [optional] 
+**Script** | **String** |  | [optional] 
+**NotificationMode** | **String** |  | [optional] 
 **Bwlimit** | **Int32** |  | [optional] 
 **Performance** | **String** |  | [optional] 
-**Quiet** | **Boolean** |  | [optional] 
-**Storage** | **String** |  | [optional] 
-**Mode** | **String** |  | [optional] 
-**Tmpdir** | **String** |  | [optional] 
-**Ionice** | **Int32** |  | [optional] 
-**Dumpdir** | **String** |  | [optional] 
-**Exclude** | **String** |  | [optional] 
-**Protected** | **Boolean** |  | [optional] 
-**Stdout** | **Boolean** |  | [optional] 
 **PruneBackups** | **String** |  | [optional] 
-**Maxfiles** | **Int32** |  | [optional] 
+**Dumpdir** | **String** |  | [optional] 
+**Protected** | **Boolean** |  | [optional] 
+**Mode** | **String** |  | [optional] 
+**PbsChangeDetectionMode** | **String** |  | [optional] 
+**Zstd** | **Int32** |  | [optional] 
+**Mailto** | **String** |  | [optional] 
+**Stop** | **Boolean** |  | [optional] 
+**Stdexcludes** | **Boolean** |  | [optional] 
+**All** | **Boolean** |  | [optional] 
 **Vmid** | **String** |  | [optional] 
-**ExcludePath** | **String[]** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesVzdumpRB = Initialize-PVEPOSTNodesVzdumpRB  -Remove null `
- -NotificationMode null `
- -Pool null `
- -All null `
- -NotesTemplate null `
- -Stdexcludes null `
- -Fleecing null `
- -Zstd null `
- -Stopwait null `
- -PbsChangeDetectionMode null `
- -Script null `
- -JobId null `
- -Mailto null `
- -Stop null `
- -Mailnotification null `
- -Compress null `
- -Pigz null `
+$POSTNodesVzdumpRB = Initialize-PVEPOSTNodesVzdumpRB  -NotesTemplate null `
  -Lockwait null `
+ -Tmpdir null `
+ -Quiet null `
+ -JobId null `
+ -Mailnotification null `
+ -Pigz null `
+ -Compress null `
+ -Fleecing null `
+ -Maxfiles null `
+ -Remove null `
+ -Storage null `
+ -Pool null `
+ -Exclude null `
+ -Stopwait null `
+ -ExcludePath null `
+ -Stdout null `
+ -Ionice null `
+ -Script null `
+ -NotificationMode null `
  -Bwlimit null `
  -Performance null `
- -Quiet null `
- -Storage null `
- -Mode null `
- -Tmpdir null `
- -Ionice null `
- -Dumpdir null `
- -Exclude null `
- -Protected null `
- -Stdout null `
  -PruneBackups null `
- -Maxfiles null `
- -Vmid null `
- -ExcludePath null
+ -Dumpdir null `
+ -Protected null `
+ -Mode null `
+ -PbsChangeDetectionMode null `
+ -Zstd null `
+ -Mailto null `
+ -Stop null `
+ -Stdexcludes null `
+ -All null `
+ -Vmid null
 ```
 
 - Convert the resource to JSON

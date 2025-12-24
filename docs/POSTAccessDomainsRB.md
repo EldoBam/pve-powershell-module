@@ -3,95 +3,95 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Secure** | **Boolean** |  | [optional] 
-**CheckConnection** | **Boolean** |  | [optional] 
-**UsernameClaim** | **String** |  | [optional] 
-**BindDn** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Scopes** | **String** |  | [optional] 
 **Prompt** | **String** |  | [optional] 
+**Password** | **String** |  | [optional] 
+**GroupDn** | **String** |  | [optional] 
+**GroupClasses** | **String** |  | [optional] 
+**UserAttr** | **String** |  | [optional] 
+**AcrValues** | **String** |  | [optional] 
+**SyncDefaultsOptions** | **String** |  | [optional] 
+**Server2** | **String** |  | [optional] 
+**CaseSensitive** | **Boolean** |  | [optional] 
+**Capath** | **String** |  | [optional] 
+**BaseDn** | **String** |  | [optional] 
 **Sslversion** | **String** |  | [optional] 
 **GroupsClaim** | **String** |  | [optional] 
-**UserAttr** | **String** |  | [optional] 
-**QueryUserinfo** | **Boolean** |  | [optional] 
-**GroupDn** | **String** |  | [optional] 
-**CaseSensitive** | **Boolean** |  | [optional] 
-**GroupNameAttr** | **String** |  | [optional] 
-**ClientId** | **String** |  | [optional] 
-**Verify** | **Boolean** |  | [optional] 
-**Cert** | **String** |  | [optional] 
-**Certkey** | **String** |  | [optional] 
-**SyncAttributes** | **String** |  | [optional] 
-**BaseDn** | **String** |  | [optional] 
-**Domain** | **String** |  | [optional] 
-**GroupClasses** | **String** |  | [optional] 
+**UserClasses** | **String** |  | [optional] 
+**VarFilter** | **String** |  | [optional] 
+**Secure** | **Boolean** |  | [optional] 
+**Server1** | **String** |  | [optional] 
+**GroupsAutocreate** | **Boolean** |  | [optional] 
+**UsernameClaim** | **String** |  | [optional] 
+**CheckConnection** | **Boolean** |  | [optional] 
 **GroupsOverwrite** | **Boolean** |  | [optional] 
-**SyncDefaultsOptions** | **String** |  | [optional] 
-**Mode** | **String** |  | [optional] 
+**Tfa** | **String** |  | [optional] 
+**Autocreate** | **Boolean** |  | [optional] 
+**Verify** | **Boolean** |  | [optional] 
+**QueryUserinfo** | **Boolean** |  | [optional] 
+**Cert** | **String** |  | [optional] 
+**Scopes** | **String** |  | [optional] 
+**Default** | **Boolean** |  | [optional] 
 **ClientKey** | **String** |  | [optional] 
 **Port** | **Int32** |  | [optional] 
-**Realm** | **String** |  | [optional] 
-**Password** | **String** |  | [optional] 
-**IssuerUrl** | **String** |  | [optional] 
+**ClientId** | **String** |  | [optional] 
 **GroupFilter** | **String** |  | [optional] 
-**UserClasses** | **String** |  | [optional] 
-**Autocreate** | **Boolean** |  | [optional] 
-**Capath** | **String** |  | [optional] 
+**Mode** | **String** |  | [optional] 
+**GroupNameAttr** | **String** |  | [optional] 
+**BindDn** | **String** |  | [optional] 
+**Realm** | **String** |  | [optional] 
+**SyncAttributes** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**VarFilter** | **String** |  | [optional] 
-**Tfa** | **String** |  | [optional] 
-**Server2** | **String** |  | [optional] 
-**AcrValues** | **String** |  | [optional] 
-**Server1** | **String** |  | [optional] 
-**Default** | **Boolean** |  | [optional] 
-**GroupsAutocreate** | **Boolean** |  | [optional] 
+**IssuerUrl** | **String** |  | [optional] 
+**Certkey** | **String** |  | [optional] 
+**Domain** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTAccessDomainsRB = Initialize-PVEPOSTAccessDomainsRB  -Secure null `
- -CheckConnection null `
- -UsernameClaim null `
- -BindDn null `
- -Comment null `
- -Scopes null `
- -Prompt null `
+$POSTAccessDomainsRB = Initialize-PVEPOSTAccessDomainsRB  -Prompt null `
+ -Password null `
+ -GroupDn null `
+ -GroupClasses null `
+ -UserAttr null `
+ -AcrValues null `
+ -SyncDefaultsOptions null `
+ -Server2 null `
+ -CaseSensitive null `
+ -Capath null `
+ -BaseDn null `
  -Sslversion null `
  -GroupsClaim null `
- -UserAttr null `
- -QueryUserinfo null `
- -GroupDn null `
- -CaseSensitive null `
- -GroupNameAttr null `
- -ClientId null `
- -Verify null `
- -Cert null `
- -Certkey null `
- -SyncAttributes null `
- -BaseDn null `
- -Domain null `
- -GroupClasses null `
+ -UserClasses null `
+ -VarFilter null `
+ -Secure null `
+ -Server1 null `
+ -GroupsAutocreate null `
+ -UsernameClaim null `
+ -CheckConnection null `
  -GroupsOverwrite null `
- -SyncDefaultsOptions null `
- -Mode null `
+ -Tfa null `
+ -Autocreate null `
+ -Verify null `
+ -QueryUserinfo null `
+ -Cert null `
+ -Scopes null `
+ -Default null `
  -ClientKey null `
  -Port null `
- -Realm null `
- -Password null `
- -IssuerUrl null `
+ -ClientId null `
  -GroupFilter null `
- -UserClasses null `
- -Autocreate null `
- -Capath null `
+ -Mode null `
+ -GroupNameAttr null `
+ -BindDn null `
+ -Realm null `
+ -SyncAttributes null `
  -Type null `
- -VarFilter null `
- -Tfa null `
- -Server2 null `
- -AcrValues null `
- -Server1 null `
- -Default null `
- -GroupsAutocreate null
+ -IssuerUrl null `
+ -Certkey null `
+ -Domain null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

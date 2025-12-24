@@ -3,59 +3,59 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Token** | **String** |  | [optional] 
-**Server** | **String** |  | [optional] 
-**Proto** | **String** |  | [optional] 
-**Influxdbproto** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
-**MaxBodySize** | **Int32** |  | [optional] 
-**Organization** | **String** |  | [optional] 
-**OtelTimeout** | **Int32** |  | [optional] 
-**OtelHeaders** | **String** |  | [optional] 
-**OtelVerifySsl** | **Boolean** |  | [optional] 
-**OtelMaxBodySize** | **Int32** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**Mtu** | **Int32** |  | [optional] 
 **OtelResourceAttributes** | **String** |  | [optional] 
-**OtelPath** | **String** |  | [optional] 
 **Timeout** | **Int32** |  | [optional] 
+**Proto** | **String** |  | [optional] 
 **VerifyCertificate** | **Boolean** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**ApiPathPrefix** | **String** |  | [optional] 
-**OtelCompression** | **String** |  | [optional] 
-**OtelProtocol** | **String** |  | [optional] 
+**Token** | **String** |  | [optional] 
+**Influxdbproto** | **String** |  | [optional] 
 **Bucket** | **String** |  | [optional] 
+**OtelVerifySsl** | **Boolean** |  | [optional] 
 **Path** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Mtu** | **Int32** |  | [optional] 
+**Organization** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**OtelProtocol** | **String** |  | [optional] 
+**OtelTimeout** | **Int32** |  | [optional] 
+**OtelMaxBodySize** | **Int32** |  | [optional] 
+**ApiPathPrefix** | **String** |  | [optional] 
+**OtelHeaders** | **String** |  | [optional] 
+**MaxBodySize** | **Int32** |  | [optional] 
+**OtelPath** | **String** |  | [optional] 
+**OtelCompression** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterMetricsServerRB = Initialize-PVEPUTClusterMetricsServerRB  -Token null `
- -Server null `
- -Proto null `
- -Influxdbproto null `
- -Disable null `
- -MaxBodySize null `
- -Organization null `
- -OtelTimeout null `
- -OtelHeaders null `
- -OtelVerifySsl null `
- -OtelMaxBodySize null `
- -Digest null `
- -Port null `
- -Mtu null `
- -OtelResourceAttributes null `
- -OtelPath null `
+$PUTClusterMetricsServerRB = Initialize-PVEPUTClusterMetricsServerRB  -OtelResourceAttributes null `
  -Timeout null `
+ -Proto null `
  -VerifyCertificate null `
- -Delete null `
- -ApiPathPrefix null `
- -OtelCompression null `
- -OtelProtocol null `
+ -Token null `
+ -Influxdbproto null `
  -Bucket null `
- -Path null
+ -OtelVerifySsl null `
+ -Path null `
+ -Port null `
+ -Delete null `
+ -Mtu null `
+ -Organization null `
+ -Server null `
+ -Disable null `
+ -OtelProtocol null `
+ -OtelTimeout null `
+ -OtelMaxBodySize null `
+ -ApiPathPrefix null `
+ -OtelHeaders null `
+ -MaxBodySize null `
+ -OtelPath null `
+ -OtelCompression null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

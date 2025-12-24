@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Target** | **String** |  | [optional] 
 **Hostname** | **String** |  | [optional] 
+**Target** | **String** |  | [optional] 
+**Storage** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
 **Full** | **Boolean** |  | [optional] 
 **Newid** | **Int32** |  | [optional] 
 **Snapname** | **String** |  | [optional] 
 **Bwlimit** | **Decimal** |  | [optional] 
 **Pool** | **String** |  | [optional] 
-**Storage** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcCloneRB = Initialize-PVEPOSTNodesLxcCloneRB  -Target null `
- -Hostname null `
+$POSTNodesLxcCloneRB = Initialize-PVEPOSTNodesLxcCloneRB  -Hostname null `
+ -Target null `
+ -Storage null `
+ -Description null `
  -Full null `
  -Newid null `
  -Snapname null `
  -Bwlimit null `
- -Pool null `
- -Storage null `
- -Description null
+ -Pool null
 ```
 
 - Convert the resource to JSON

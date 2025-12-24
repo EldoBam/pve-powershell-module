@@ -3,35 +3,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Vendor** | **String** |  | [optional] 
+**DeviceName** | **String** |  | [optional] 
+**SubsystemDevice** | **String** |  | [optional] 
+**SubsystemDeviceName** | **String** |  | [optional] 
+**Mdev** | **Boolean** |  | [optional] 
+**SubsystemVendorName** | **String** |  | [optional] 
+**VendorName** | **String** |  | [optional] 
+**Class** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**SubsystemVendor** | **String** |  | [optional] 
 **Iommugroup** | **Int32** |  | [optional] 
 **Device** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**SubsystemVendorName** | **String** |  | [optional] 
-**SubsystemVendor** | **String** |  | [optional] 
-**VendorName** | **String** |  | [optional] 
-**Mdev** | **Boolean** |  | [optional] 
-**Class** | **String** |  | [optional] 
-**Vendor** | **String** |  | [optional] 
-**SubsystemDevice** | **String** |  | [optional] 
-**DeviceName** | **String** |  | [optional] 
-**SubsystemDeviceName** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesHardwarePciInner = Initialize-PVENodesHardwarePciInner  -Iommugroup null `
- -Device null `
- -Id null `
- -SubsystemVendorName null `
- -SubsystemVendor null `
- -VendorName null `
- -Mdev null `
- -Class null `
- -Vendor null `
- -SubsystemDevice null `
+$NodesHardwarePciInner = Initialize-PVENodesHardwarePciInner  -Vendor null `
  -DeviceName null `
- -SubsystemDeviceName null
+ -SubsystemDevice null `
+ -SubsystemDeviceName null `
+ -Mdev null `
+ -SubsystemVendorName null `
+ -VendorName null `
+ -Class null `
+ -Id null `
+ -SubsystemVendor null `
+ -Iommugroup null `
+ -Device null
 ```
 
 - Convert the resource to JSON

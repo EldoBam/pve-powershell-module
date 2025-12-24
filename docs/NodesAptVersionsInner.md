@@ -3,37 +3,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ManagerVersion** | **String** |  | [optional] 
-**Version** | **String** |  | [optional] 
-**Title** | **String** |  | [optional] 
-**OldVersion** | **String** |  | [optional] 
 **Origin** | **String** |  | [optional] 
-**CurrentState** | **String** |  | [optional] 
-**Section** | **String** |  | [optional] 
 **Arch** | **String** |  | [optional] 
-**Package** | **String** |  | [optional] 
-**RunningKernel** | **String** |  | [optional] 
-**Priority** | **String** |  | [optional] 
+**ManagerVersion** | **String** |  | [optional] 
 **NotifyStatus** | **String** |  | [optional] 
+**Package** | **String** |  | [optional] 
+**Title** | **String** |  | [optional] 
+**CurrentState** | **String** |  | [optional] 
+**Priority** | **String** |  | [optional] 
+**RunningKernel** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
+**Version** | **String** |  | [optional] 
+**OldVersion** | **String** |  | [optional] 
+**Section** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesAptVersionsInner = Initialize-PVENodesAptVersionsInner  -ManagerVersion null `
- -Version null `
- -Title null `
- -OldVersion null `
- -Origin null `
- -CurrentState null `
- -Section null `
+$NodesAptVersionsInner = Initialize-PVENodesAptVersionsInner  -Origin null `
  -Arch null `
- -Package null `
- -RunningKernel null `
- -Priority null `
+ -ManagerVersion null `
  -NotifyStatus null `
- -Description null
+ -Package null `
+ -Title null `
+ -CurrentState null `
+ -Priority null `
+ -RunningKernel null `
+ -Description null `
+ -Version null `
+ -OldVersion null `
+ -Section null
 ```
 
 - Convert the resource to JSON

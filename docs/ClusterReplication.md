@@ -3,35 +3,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Schedule** | **String** |  | [optional] 
-**Jobnum** | **Int32** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Rate** | **Decimal** |  | [optional] 
-**Target** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**Guest** | **Int32** |  | [optional] 
 **RemoveJob** | **String** |  | [optional] 
+**Guest** | **Int32** |  | [optional] 
+**Jobnum** | **Int32** |  | [optional] 
+**Rate** | **Decimal** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
+**Schedule** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Source** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Target** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterReplication = Initialize-PVEClusterReplication  -Schedule null `
- -Jobnum null `
- -Id null `
- -Comment null `
- -Type null `
- -Source null `
- -Rate null `
- -Target null `
- -Digest null `
+$ClusterReplication = Initialize-PVEClusterReplication  -RemoveJob null `
  -Guest null `
- -RemoveJob null `
- -Disable null
+ -Jobnum null `
+ -Rate null `
+ -Disable null `
+ -Schedule null `
+ -Comment null `
+ -Source null `
+ -Type null `
+ -Id null `
+ -Digest null `
+ -Target null
 ```
 
 - Convert the resource to JSON

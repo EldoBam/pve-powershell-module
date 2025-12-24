@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Parent** | **String** |  | [optional] 
 **Description** | **String** |  | [optional] 
 **Snaptime** | **Int32** |  | [optional] 
-**Parent** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 **Vmstate** | **Boolean** |  | [optional] 
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$NodesQemuSnapshotInner = Initialize-PVENodesQemuSnapshotInner  -Description null `
+$NodesQemuSnapshotInner = Initialize-PVENodesQemuSnapshotInner  -Parent null `
+ -Description null `
  -Snaptime null `
- -Parent null `
  -Name null `
  -Vmstate null
 ```

@@ -3,77 +3,77 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Lock** | **String** |  | [optional] 
-**CgroupMode** | **Int32** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Disk** | **Int32** |  | [optional] 
+**Cpu** | **Decimal** |  | [optional] 
 **Pool** | **String** |  | [optional] 
-**Uptime** | **Int32** |  | [optional] 
-**Netout** | **Int32** |  | [optional] 
 **Diskread** | **Int32** |  | [optional] 
-**Vmid** | **Int32** |  | [optional] 
-**Diskwrite** | **Int32** |  | [optional] 
-**Mem** | **Int32** |  | [optional] 
-**Maxcpu** | **Decimal** |  | [optional] 
+**Network** | **String** |  | [optional] 
+**Tags** | **String** |  | [optional] 
+**Plugintype** | **String** |  | [optional] 
 **NetworkType** | **String** |  | [optional] 
 **Maxmem** | **Int32** |  | [optional] 
-**Template** | **Boolean** |  | [optional] 
-**Network** | **String** |  | [optional] 
-**Content** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Protocol** | **String** |  | [optional] 
-**Plugintype** | **String** |  | [optional] 
-**Maxdisk** | **Int32** |  | [optional] 
-**Netin** | **Int32** |  | [optional] 
-**Status** | **String** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Sdn** | **String** |  | [optional] 
-**Hastate** | **String** |  | [optional] 
-**Tags** | **String** |  | [optional] 
-**Memhost** | **Int32** |  | [optional] 
 **Storage** | **String** |  | [optional] 
-**ZoneType** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Cpu** | **Decimal** |  | [optional] 
-**Disk** | **Int32** |  | [optional] 
+**Memhost** | **Int32** |  | [optional] 
+**Hastate** | **String** |  | [optional] 
+**Content** | **String** |  | [optional] 
+**Sdn** | **String** |  | [optional] 
+**Mem** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
 **Level** | **String** |  | [optional] 
+**CgroupMode** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Maxdisk** | **Int32** |  | [optional] 
+**Netout** | **Int32** |  | [optional] 
+**Lock** | **String** |  | [optional] 
+**Diskwrite** | **Int32** |  | [optional] 
+**Netin** | **Int32** |  | [optional] 
+**Name** | **String** |  | [optional] 
+**Protocol** | **String** |  | [optional] 
+**ZoneType** | **String** |  | [optional] 
+**Maxcpu** | **Decimal** |  | [optional] 
+**Template** | **Boolean** |  | [optional] 
+**Vmid** | **Int32** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Uptime** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterResourcesInner = Initialize-PVEClusterResourcesInner  -Lock null `
- -CgroupMode null `
+$ClusterResourcesInner = Initialize-PVEClusterResourcesInner  -Node null `
+ -Disk null `
+ -Cpu null `
  -Pool null `
- -Uptime null `
- -Netout null `
  -Diskread null `
- -Vmid null `
- -Diskwrite null `
- -Mem null `
- -Maxcpu null `
+ -Network null `
+ -Tags null `
+ -Plugintype null `
  -NetworkType null `
  -Maxmem null `
- -Template null `
- -Network null `
- -Content null `
- -Id null `
- -Protocol null `
- -Plugintype null `
- -Maxdisk null `
- -Netin null `
- -Status null `
- -Node null `
- -Sdn null `
- -Hastate null `
- -Tags null `
- -Memhost null `
  -Storage null `
- -ZoneType null `
+ -Memhost null `
+ -Hastate null `
+ -Content null `
+ -Sdn null `
+ -Mem null `
+ -Status null `
+ -Level null `
+ -CgroupMode null `
  -Type null `
+ -Maxdisk null `
+ -Netout null `
+ -Lock null `
+ -Diskwrite null `
+ -Netin null `
  -Name null `
- -Cpu null `
- -Disk null `
- -Level null
+ -Protocol null `
+ -ZoneType null `
+ -Maxcpu null `
+ -Template null `
+ -Vmid null `
+ -Id null `
+ -Uptime null
 ```
 
 - Convert the resource to JSON

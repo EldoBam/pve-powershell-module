@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delete** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Expire** | **Int32** |  | [optional] 
 **Privsep** | **Boolean** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**Delete** | **String** |  | [optional] 
+**Expire** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTAccessUsersTokenRB = Initialize-PVEPUTAccessUsersTokenRB  -Delete null `
+$PUTAccessUsersTokenRB = Initialize-PVEPUTAccessUsersTokenRB  -Privsep null `
  -Comment null `
- -Expire null `
- -Privsep null
+ -Delete null `
+ -Expire null
 ```
 
 - Convert the resource to JSON

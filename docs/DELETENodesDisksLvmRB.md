@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CleanupDisks** | **Boolean** |  | [optional] 
 **CleanupConfig** | **Boolean** |  | [optional] 
+**CleanupDisks** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesDisksLvmRB = Initialize-PVEDELETENodesDisksLvmRB  -CleanupDisks null `
- -CleanupConfig null
+$DELETENodesDisksLvmRB = Initialize-PVEDELETENodesDisksLvmRB  -CleanupConfig null `
+ -CleanupDisks null
 ```
 
 - Convert the resource to JSON

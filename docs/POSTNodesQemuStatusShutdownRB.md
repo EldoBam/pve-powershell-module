@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Timeout** | **Int32** |  | [optional] 
-**ForceStop** | **Boolean** |  | [optional] 
 **Skiplock** | **Boolean** |  | [optional] 
+**ForceStop** | **Boolean** |  | [optional] 
 **KeepActive** | **Boolean** |  | [optional] 
 
 ## Examples
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $POSTNodesQemuStatusShutdownRB = Initialize-PVEPOSTNodesQemuStatusShutdownRB  -Timeout null `
- -ForceStop null `
  -Skiplock null `
+ -ForceStop null `
  -KeepActive null
 ```
 

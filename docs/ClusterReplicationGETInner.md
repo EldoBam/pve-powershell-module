@@ -3,33 +3,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Schedule** | **String** |  | [optional] 
+**RemoveJob** | **String** |  | [optional] 
+**Guest** | **Int32** |  | [optional] 
 **Jobnum** | **Int32** |  | [optional] 
-**Id** | **String** |  | [optional] 
+**Rate** | **Decimal** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
+**Schedule** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
+**Id** | **String** |  | [optional] 
 **Source** | **String** |  | [optional] 
 **Target** | **String** |  | [optional] 
-**Rate** | **Decimal** |  | [optional] 
-**Guest** | **Int32** |  | [optional] 
-**RemoveJob** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterReplicationGETInner = Initialize-PVEClusterReplicationGETInner  -Schedule null `
+$ClusterReplicationGETInner = Initialize-PVEClusterReplicationGETInner  -RemoveJob null `
+ -Guest null `
  -Jobnum null `
- -Id null `
+ -Rate null `
+ -Disable null `
+ -Schedule null `
  -Comment null `
  -Type null `
+ -Id null `
  -Source null `
- -Target null `
- -Rate null `
- -Guest null `
- -RemoveJob null `
- -Disable null
+ -Target null
 ```
 
 - Convert the resource to JSON

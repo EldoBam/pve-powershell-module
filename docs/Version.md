@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Release** | **String** |  | [optional] 
-**Version** | **String** |  | [optional] 
-**Repoid** | **String** |  | [optional] 
 **Console** | **String** |  | [optional] 
+**Version** | **String** |  | [optional] 
+**Release** | **String** |  | [optional] 
+**Repoid** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$Version = Initialize-PVEVersion  -Release null `
+$Version = Initialize-PVEVersion  -Console null `
  -Version null `
- -Repoid null `
- -Console null
+ -Release null `
+ -Repoid null
 ```
 
 - Convert the resource to JSON

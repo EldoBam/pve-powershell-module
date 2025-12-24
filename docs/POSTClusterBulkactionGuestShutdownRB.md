@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vms** | **Int32[]** |  | [optional] 
 **Maxworkers** | **Int32** |  | [optional] 
+**Vms** | **Int32[]** |  | [optional] 
 **Timeout** | **Int32** |  | [optional] 
 **ForceStop** | **Boolean** |  | [optional] 
 
@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$POSTClusterBulkactionGuestShutdownRB = Initialize-PVEPOSTClusterBulkactionGuestShutdownRB  -Vms null `
- -Maxworkers null `
+$POSTClusterBulkactionGuestShutdownRB = Initialize-PVEPOSTClusterBulkactionGuestShutdownRB  -Maxworkers null `
+ -Vms null `
  -Timeout null `
  -ForceStop null
 ```

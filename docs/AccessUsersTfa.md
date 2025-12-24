@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Types** | **String[]** |  | [optional] 
 **Realm** | **String** |  | [optional] 
+**Types** | **String[]** |  | [optional] 
 **User** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessUsersTfa = Initialize-PVEAccessUsersTfa  -Types null `
- -Realm null `
+$AccessUsersTfa = Initialize-PVEAccessUsersTfa  -Realm null `
+ -Types null `
  -User null
 ```
 

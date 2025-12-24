@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Target** | **String** |  | [optional] 
 **Timeout** | **Int32** |  | [optional] 
-**Restart** | **Boolean** |  | [optional] 
 **Online** | **Boolean** |  | [optional] 
-**Bwlimit** | **Decimal** |  | [optional] 
 **TargetStorage** | **String** |  | [optional] 
+**Restart** | **Boolean** |  | [optional] 
+**Bwlimit** | **Decimal** |  | [optional] 
+**Target** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesLxcMigrateRB = Initialize-PVEPOSTNodesLxcMigrateRB  -Target null `
- -Timeout null `
- -Restart null `
+$POSTNodesLxcMigrateRB = Initialize-PVEPOSTNodesLxcMigrateRB  -Timeout null `
  -Online null `
+ -TargetStorage null `
+ -Restart null `
  -Bwlimit null `
- -TargetStorage null
+ -Target null
 ```
 
 - Convert the resource to JSON

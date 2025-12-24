@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LockToken** | **String** |  | [optional] 
 **Force** | **Boolean** |  | [optional] 
+**LockToken** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETEClusterSdnLockRB = Initialize-PVEDELETEClusterSdnLockRB  -LockToken null `
- -Force null
+$DELETEClusterSdnLockRB = Initialize-PVEDELETEClusterSdnLockRB  -Force null `
+ -LockToken null
 ```
 
 - Convert the resource to JSON

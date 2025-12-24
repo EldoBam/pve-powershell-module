@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Nexthop** | **String** |  | [optional] 
 **Ip** | **String** |  | [optional] 
 **Mac** | **String** |  | [optional] 
-**Nexthop** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesSdnVnetsMacvrfInner = Initialize-PVENodesSdnVnetsMacvrfInner  -Ip null `
- -Mac null `
- -Nexthop null
+$NodesSdnVnetsMacvrfInner = Initialize-PVENodesSdnVnetsMacvrfInner  -Nexthop null `
+ -Ip null `
+ -Mac null
 ```
 
 - Convert the resource to JSON

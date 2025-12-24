@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
 **Dns** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnDnsInner = Initialize-PVEClusterSdnDnsInner  -Type null `
- -Dns null
+$ClusterSdnDnsInner = Initialize-PVEClusterSdnDnsInner  -Dns null `
+ -Type null
 ```
 
 - Convert the resource to JSON

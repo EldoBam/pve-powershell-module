@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Online** | **Boolean** |  | [optional] 
-**Vms** | **Int32[]** |  | [optional] 
 **Maxworkers** | **Int32** |  | [optional] 
-**Target** | **String** |  | [optional] 
 **WithLocalDisks** | **Boolean** |  | [optional] 
+**Vms** | **Int32[]** |  | [optional] 
+**Online** | **Boolean** |  | [optional] 
+**Target** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterBulkactionGuestMigrateRB = Initialize-PVEPOSTClusterBulkactionGuestMigrateRB  -Online null `
+$POSTClusterBulkactionGuestMigrateRB = Initialize-PVEPOSTClusterBulkactionGuestMigrateRB  -Maxworkers null `
+ -WithLocalDisks null `
  -Vms null `
- -Maxworkers null `
- -Target null `
- -WithLocalDisks null
+ -Online null `
+ -Target null
 ```
 
 - Convert the resource to JSON

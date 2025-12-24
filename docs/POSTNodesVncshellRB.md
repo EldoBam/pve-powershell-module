@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Websocket** | **Boolean** |  | [optional] 
 **Cmd** | **String** |  | [optional] 
-**Width** | **Int32** |  | [optional] 
 **CmdOpts** | **String** |  | [optional] 
+**Websocket** | **Boolean** |  | [optional] 
+**Width** | **Int32** |  | [optional] 
 **Height** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesVncshellRB = Initialize-PVEPOSTNodesVncshellRB  -Websocket null `
- -Cmd null `
- -Width null `
+$POSTNodesVncshellRB = Initialize-PVEPOSTNodesVncshellRB  -Cmd null `
  -CmdOpts null `
+ -Websocket null `
+ -Width null `
  -Height null
 ```
 

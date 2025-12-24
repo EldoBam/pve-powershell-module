@@ -5,12 +5,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Delete** | **String** |  | [optional] 
 **Dnszoneprefix** | **String** |  | [optional] 
-**DhcpDnsServer** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**LockToken** | **String** |  | [optional] 
-**Snat** | **Boolean** |  | [optional] 
 **DhcpRange** | **String[]** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Snat** | **Boolean** |  | [optional] 
 **Gateway** | **String** |  | [optional] 
+**LockToken** | **String** |  | [optional] 
+**DhcpDnsServer** | **String** |  | [optional] 
 
 ## Examples
 
@@ -18,12 +18,12 @@ Name | Type | Description | Notes
 ```powershell
 $PUTClusterSdnVnetsSubnetsRB = Initialize-PVEPUTClusterSdnVnetsSubnetsRB  -Delete null `
  -Dnszoneprefix null `
- -DhcpDnsServer null `
- -Digest null `
- -LockToken null `
- -Snat null `
  -DhcpRange null `
- -Gateway null
+ -Digest null `
+ -Snat null `
+ -Gateway null `
+ -LockToken null `
+ -DhcpDnsServer null
 ```
 
 - Convert the resource to JSON

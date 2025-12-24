@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActiveState** | **String** |  | [optional] 
-**Name** | **String** |  | [optional] 
-**Service** | **String** |  | [optional] 
-**State** | **String** |  | [optional] 
-**UnitState** | **String** |  | [optional] 
 **Desc** | **String** |  | [optional] 
+**Service** | **String** |  | [optional] 
+**UnitState** | **String** |  | [optional] 
+**ActiveState** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
+**Name** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesServicesState = Initialize-PVENodesServicesState  -ActiveState null `
- -Name null `
+$NodesServicesState = Initialize-PVENodesServicesState  -Desc null `
  -Service null `
- -State null `
  -UnitState null `
- -Desc null
+ -ActiveState null `
+ -State null `
+ -Name null
 ```
 
 - Convert the resource to JSON

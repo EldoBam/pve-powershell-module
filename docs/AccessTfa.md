@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | **String** |  | [optional] 
 **Challenge** | **String** |  | [optional] 
 **Recovery** | **String[]** |  | [optional] 
-**Id** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessTfa = Initialize-PVEAccessTfa  -Challenge null `
- -Recovery null `
- -Id null
+$AccessTfa = Initialize-PVEAccessTfa  -Id null `
+ -Challenge null `
+ -Recovery null
 ```
 
 - Convert the resource to JSON

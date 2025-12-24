@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ctime** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Volid** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Volid** | **String** |  | [optional] 
+**Ctime** | **Int32** |  | [optional] 
 **Mark** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStoragePrunebackupsInner = Initialize-PVENodesStoragePrunebackupsInner  -Ctime null `
- -Type null `
+$NodesStoragePrunebackupsInner = Initialize-PVENodesStoragePrunebackupsInner  -Vmid null `
  -Volid null `
- -Vmid null `
- -Mark null
+ -Ctime null `
+ -Mark null `
+ -Type null
 ```
 
 - Convert the resource to JSON

@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
 **Map** | **String[]** |  | [optional] 
+**Id** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterMappingDirRB = Initialize-PVEPOSTClusterMappingDirRB  -Description null `
+$POSTClusterMappingDirRB = Initialize-PVEPOSTClusterMappingDirRB  -Map null `
  -Id null `
- -Map null
+ -Description null
 ```
 
 - Convert the resource to JSON

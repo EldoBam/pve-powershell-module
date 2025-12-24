@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
 **State** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesSdnFabricsInterfacesInner = Initialize-PVENodesSdnFabricsInterfacesInner  -Type null `
- -State null `
- -Name null
+$NodesSdnFabricsInterfacesInner = Initialize-PVENodesSdnFabricsInterfacesInner  -State null `
+ -Name null `
+ -Type null
 ```
 
 - Convert the resource to JSON

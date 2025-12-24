@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Body** | **String** |  | [optional] 
-**Url** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
-**Method** | **String** |  | [optional] 
+**Body** | **String** |  | [optional] 
+**Url** | **String** |  | [optional] 
 **Secret** | **String[]** |  | [optional] 
 **Header** | **String[]** |  | [optional] 
+**Method** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterNotificationsEndpointsWebhookRB = Initialize-PVEPOSTClusterNotificationsEndpointsWebhookRB  -Body null `
- -Url null `
- -Comment null `
+$POSTClusterNotificationsEndpointsWebhookRB = Initialize-PVEPOSTClusterNotificationsEndpointsWebhookRB  -Comment null `
  -Name null `
  -Disable null `
- -Method null `
+ -Body null `
+ -Url null `
  -Secret null `
- -Header null
+ -Header null `
+ -Method null
 ```
 
 - Convert the resource to JSON

@@ -3,27 +3,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tag** | **Int32** |  | [optional] 
 **Delete** | **String** |  | [optional] 
-**IsolatePorts** | **Boolean** |  | [optional] 
-**Vlanaware** | **Boolean** |  | [optional] 
-**Zone** | **String** |  | [optional] 
+**Tag** | **Int32** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**LockToken** | **String** |  | [optional] 
+**Vlanaware** | **Boolean** |  | [optional] 
 **Alias** | **String** |  | [optional] 
+**LockToken** | **String** |  | [optional] 
+**Zone** | **String** |  | [optional] 
+**IsolatePorts** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnVnetsRB = Initialize-PVEPUTClusterSdnVnetsRB  -Tag null `
- -Delete null `
- -IsolatePorts null `
- -Vlanaware null `
- -Zone null `
+$PUTClusterSdnVnetsRB = Initialize-PVEPUTClusterSdnVnetsRB  -Delete null `
+ -Tag null `
  -Digest null `
+ -Vlanaware null `
+ -Alias null `
  -LockToken null `
- -Alias null
+ -Zone null `
+ -IsolatePorts null
 ```
 
 - Convert the resource to JSON

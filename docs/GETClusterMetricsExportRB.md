@@ -4,18 +4,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LocalOnly** | **Boolean** |  | [optional] 
+**NodeList** | **String** |  | [optional] 
 **StartTime** | **Int32** |  | [optional] 
 **History** | **Boolean** |  | [optional] 
-**NodeList** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GETClusterMetricsExportRB = Initialize-PVEGETClusterMetricsExportRB  -LocalOnly null `
+ -NodeList null `
  -StartTime null `
- -History null `
- -NodeList null
+ -History null
 ```
 
 - Convert the resource to JSON

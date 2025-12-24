@@ -3,105 +3,105 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PoolAllocate** | **Boolean** |  | [optional] 
-**DatastoreAllocateTemplate** | **Boolean** |  | [optional] 
-**SysSyslog** | **Boolean** |  | [optional] 
-**VMReplicate** | **Boolean** |  | [optional] 
-**VMBackup** | **Boolean** |  | [optional] 
-**DatastoreAllocate** | **Boolean** |  | [optional] 
-**VMConfigCDROM** | **Boolean** |  | [optional] 
-**VMClone** | **Boolean** |  | [optional] 
-**VMConsole** | **Boolean** |  | [optional] 
-**VMSnapshot** | **Boolean** |  | [optional] 
-**SDNAllocate** | **Boolean** |  | [optional] 
-**GroupAllocate** | **Boolean** |  | [optional] 
-**PermissionsModify** | **Boolean** |  | [optional] 
-**SysPowerMgmt** | **Boolean** |  | [optional] 
-**SysIncoming** | **Boolean** |  | [optional] 
 **DatastoreAllocateSpace** | **Boolean** |  | [optional] 
-**RealmAllocateUser** | **Boolean** |  | [optional] 
-**SysModify** | **Boolean** |  | [optional] 
-**VMGuestAgentAudit** | **Boolean** |  | [optional] 
-**VMConfigMemory** | **Boolean** |  | [optional] 
-**VMConfigNetwork** | **Boolean** |  | [optional] 
-**VMConfigDisk** | **Boolean** |  | [optional] 
-**VMGuestAgentUnrestricted** | **Boolean** |  | [optional] 
-**VMConfigHWType** | **Boolean** |  | [optional] 
-**SysAccessNetwork** | **Boolean** |  | [optional] 
-**MappingAudit** | **Boolean** |  | [optional] 
-**VMSnapshotRollback** | **Boolean** |  | [optional] 
-**SDNAudit** | **Boolean** |  | [optional] 
-**VMAudit** | **Boolean** |  | [optional] 
-**RealmAllocate** | **Boolean** |  | [optional] 
-**VMPowerMgmt** | **Boolean** |  | [optional] 
-**VMAllocate** | **Boolean** |  | [optional] 
-**UserModify** | **Boolean** |  | [optional] 
-**VMGuestAgentFileWrite** | **Boolean** |  | [optional] 
 **SysAudit** | **Boolean** |  | [optional] 
-**VMGuestAgentFileSystemMgmt** | **Boolean** |  | [optional] 
-**VMMigrate** | **Boolean** |  | [optional] 
-**SysConsole** | **Boolean** |  | [optional] 
-**VMGuestAgentFileRead** | **Boolean** |  | [optional] 
-**VMConfigCPU** | **Boolean** |  | [optional] 
-**PoolAudit** | **Boolean** |  | [optional] 
-**MappingUse** | **Boolean** |  | [optional] 
-**VMConfigOptions** | **Boolean** |  | [optional] 
-**DatastoreAudit** | **Boolean** |  | [optional] 
-**VMConfigCloudinit** | **Boolean** |  | [optional] 
+**UserModify** | **Boolean** |  | [optional] 
+**SysSyslog** | **Boolean** |  | [optional] 
+**VMBackup** | **Boolean** |  | [optional] 
+**SDNAudit** | **Boolean** |  | [optional] 
 **SDNUse** | **Boolean** |  | [optional] 
+**SysModify** | **Boolean** |  | [optional] 
+**VMGuestAgentFileWrite** | **Boolean** |  | [optional] 
+**VMConfigHWType** | **Boolean** |  | [optional] 
+**RealmAllocate** | **Boolean** |  | [optional] 
+**SysAccessNetwork** | **Boolean** |  | [optional] 
+**SysIncoming** | **Boolean** |  | [optional] 
+**VMGuestAgentUnrestricted** | **Boolean** |  | [optional] 
+**VMPowerMgmt** | **Boolean** |  | [optional] 
+**VMGuestAgentAudit** | **Boolean** |  | [optional] 
+**PermissionsModify** | **Boolean** |  | [optional] 
+**MappingUse** | **Boolean** |  | [optional] 
+**PoolAllocate** | **Boolean** |  | [optional] 
+**VMConfigMemory** | **Boolean** |  | [optional] 
+**RealmAllocateUser** | **Boolean** |  | [optional] 
+**DatastoreAllocate** | **Boolean** |  | [optional] 
+**VMGuestAgentFileRead** | **Boolean** |  | [optional] 
+**VMAllocate** | **Boolean** |  | [optional] 
+**VMClone** | **Boolean** |  | [optional] 
+**DatastoreAudit** | **Boolean** |  | [optional] 
+**VMConfigNetwork** | **Boolean** |  | [optional] 
+**VMSnapshot** | **Boolean** |  | [optional] 
+**VMConsole** | **Boolean** |  | [optional] 
+**SDNAllocate** | **Boolean** |  | [optional] 
+**SysPowerMgmt** | **Boolean** |  | [optional] 
+**VMConfigOptions** | **Boolean** |  | [optional] 
+**PoolAudit** | **Boolean** |  | [optional] 
+**DatastoreAllocateTemplate** | **Boolean** |  | [optional] 
 **MappingModify** | **Boolean** |  | [optional] 
+**GroupAllocate** | **Boolean** |  | [optional] 
+**VMConfigCDROM** | **Boolean** |  | [optional] 
+**VMConfigCloudinit** | **Boolean** |  | [optional] 
+**VMSnapshotRollback** | **Boolean** |  | [optional] 
+**SysConsole** | **Boolean** |  | [optional] 
+**VMReplicate** | **Boolean** |  | [optional] 
+**VMConfigDisk** | **Boolean** |  | [optional] 
+**VMMigrate** | **Boolean** |  | [optional] 
+**VMGuestAgentFileSystemMgmt** | **Boolean** |  | [optional] 
+**MappingAudit** | **Boolean** |  | [optional] 
+**VMConfigCPU** | **Boolean** |  | [optional] 
+**VMAudit** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessRoles = Initialize-PVEAccessRoles  -PoolAllocate null `
- -DatastoreAllocateTemplate null `
- -SysSyslog null `
- -VMReplicate null `
- -VMBackup null `
- -DatastoreAllocate null `
- -VMConfigCDROM null `
- -VMClone null `
- -VMConsole null `
- -VMSnapshot null `
- -SDNAllocate null `
- -GroupAllocate null `
- -PermissionsModify null `
- -SysPowerMgmt null `
- -SysIncoming null `
- -DatastoreAllocateSpace null `
- -RealmAllocateUser null `
- -SysModify null `
- -VMGuestAgentAudit null `
- -VMConfigMemory null `
- -VMConfigNetwork null `
- -VMConfigDisk null `
- -VMGuestAgentUnrestricted null `
- -VMConfigHWType null `
- -SysAccessNetwork null `
- -MappingAudit null `
- -VMSnapshotRollback null `
- -SDNAudit null `
- -VMAudit null `
- -RealmAllocate null `
- -VMPowerMgmt null `
- -VMAllocate null `
- -UserModify null `
- -VMGuestAgentFileWrite null `
+$AccessRoles = Initialize-PVEAccessRoles  -DatastoreAllocateSpace null `
  -SysAudit null `
- -VMGuestAgentFileSystemMgmt null `
- -VMMigrate null `
- -SysConsole null `
- -VMGuestAgentFileRead null `
- -VMConfigCPU null `
- -PoolAudit null `
- -MappingUse null `
- -VMConfigOptions null `
- -DatastoreAudit null `
- -VMConfigCloudinit null `
+ -UserModify null `
+ -SysSyslog null `
+ -VMBackup null `
+ -SDNAudit null `
  -SDNUse null `
- -MappingModify null
+ -SysModify null `
+ -VMGuestAgentFileWrite null `
+ -VMConfigHWType null `
+ -RealmAllocate null `
+ -SysAccessNetwork null `
+ -SysIncoming null `
+ -VMGuestAgentUnrestricted null `
+ -VMPowerMgmt null `
+ -VMGuestAgentAudit null `
+ -PermissionsModify null `
+ -MappingUse null `
+ -PoolAllocate null `
+ -VMConfigMemory null `
+ -RealmAllocateUser null `
+ -DatastoreAllocate null `
+ -VMGuestAgentFileRead null `
+ -VMAllocate null `
+ -VMClone null `
+ -DatastoreAudit null `
+ -VMConfigNetwork null `
+ -VMSnapshot null `
+ -VMConsole null `
+ -SDNAllocate null `
+ -SysPowerMgmt null `
+ -VMConfigOptions null `
+ -PoolAudit null `
+ -DatastoreAllocateTemplate null `
+ -MappingModify null `
+ -GroupAllocate null `
+ -VMConfigCDROM null `
+ -VMConfigCloudinit null `
+ -VMSnapshotRollback null `
+ -SysConsole null `
+ -VMReplicate null `
+ -VMConfigDisk null `
+ -VMMigrate null `
+ -VMGuestAgentFileSystemMgmt null `
+ -MappingAudit null `
+ -VMConfigCPU null `
+ -VMAudit null
 ```
 
 - Convert the resource to JSON

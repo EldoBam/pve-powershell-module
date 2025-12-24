@@ -3,23 +3,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Warnings** | [**NodesStorageImportmetadataWarningsInner[]**](NodesStorageImportmetadataWarningsInner.md) |  | [optional] 
-**CreateArgs** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**Type** | **String** |  | [optional] 
 **Source** | **String** |  | [optional] 
-**Net** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 **Disks** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**Warnings** | [**NodesStorageImportmetadataWarningsInner[]**](NodesStorageImportmetadataWarningsInner.md) |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Net** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
+**CreateArgs** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesStorageImportmetadata = Initialize-PVENodesStorageImportmetadata  -Warnings null `
- -CreateArgs null `
+$NodesStorageImportmetadata = Initialize-PVENodesStorageImportmetadata  -Source null `
+ -Disks null `
+ -Warnings null `
  -Type null `
- -Source null `
  -Net null `
- -Disks null
+ -CreateArgs null
 ```
 
 - Convert the resource to JSON

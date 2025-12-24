@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Disk** | **String** |  | [optional] 
 **Skiplock** | **Boolean** |  | [optional] 
-**Size** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Size** | **String** |  | [optional] 
 
 ## Examples
 
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $PUTNodesQemuResizeRB = Initialize-PVEPUTNodesQemuResizeRB  -Disk null `
  -Skiplock null `
- -Size null `
- -Digest null
+ -Digest null `
+ -Size null
 ```
 
 - Convert the resource to JSON

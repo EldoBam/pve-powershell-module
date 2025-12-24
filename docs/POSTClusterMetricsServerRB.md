@@ -3,57 +3,57 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Token** | **String** |  | [optional] 
-**Server** | **String** |  | [optional] 
+**Mtu** | **Int32** |  | [optional] 
+**VerifyCertificate** | **Boolean** |  | [optional] 
+**OtelResourceAttributes** | **String** |  | [optional] 
 **Proto** | **String** |  | [optional] 
+**Token** | **String** |  | [optional] 
 **Influxdbproto** | **String** |  | [optional] 
-**Disable** | **Boolean** |  | [optional] 
+**Bucket** | **String** |  | [optional] 
+**OtelVerifySsl** | **Boolean** |  | [optional] 
+**Path** | **String** |  | [optional] 
+**Port** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
 **MaxBodySize** | **Int32** |  | [optional] 
 **Organization** | **String** |  | [optional] 
-**OtelTimeout** | **Int32** |  | [optional] 
-**OtelHeaders** | **String** |  | [optional] 
-**Port** | **Int32** |  | [optional] 
-**OtelMaxBodySize** | **Int32** |  | [optional] 
-**OtelVerifySsl** | **Boolean** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Mtu** | **Int32** |  | [optional] 
-**OtelResourceAttributes** | **String** |  | [optional] 
-**OtelPath** | **String** |  | [optional] 
-**Timeout** | **Int32** |  | [optional] 
-**VerifyCertificate** | **Boolean** |  | [optional] 
-**ApiPathPrefix** | **String** |  | [optional] 
-**OtelCompression** | **String** |  | [optional] 
+**Server** | **String** |  | [optional] 
+**Disable** | **Boolean** |  | [optional] 
 **OtelProtocol** | **String** |  | [optional] 
-**Bucket** | **String** |  | [optional] 
-**Path** | **String** |  | [optional] 
+**OtelTimeout** | **Int32** |  | [optional] 
+**OtelMaxBodySize** | **Int32** |  | [optional] 
+**ApiPathPrefix** | **String** |  | [optional] 
+**OtelHeaders** | **String** |  | [optional] 
+**Timeout** | **Int32** |  | [optional] 
+**OtelPath** | **String** |  | [optional] 
+**OtelCompression** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterMetricsServerRB = Initialize-PVEPOSTClusterMetricsServerRB  -Token null `
- -Server null `
+$POSTClusterMetricsServerRB = Initialize-PVEPOSTClusterMetricsServerRB  -Mtu null `
+ -VerifyCertificate null `
+ -OtelResourceAttributes null `
  -Proto null `
+ -Token null `
  -Influxdbproto null `
- -Disable null `
+ -Bucket null `
+ -OtelVerifySsl null `
+ -Path null `
+ -Port null `
+ -Type null `
  -MaxBodySize null `
  -Organization null `
- -OtelTimeout null `
- -OtelHeaders null `
- -Port null `
- -OtelMaxBodySize null `
- -OtelVerifySsl null `
- -Type null `
- -Mtu null `
- -OtelResourceAttributes null `
- -OtelPath null `
- -Timeout null `
- -VerifyCertificate null `
- -ApiPathPrefix null `
- -OtelCompression null `
+ -Server null `
+ -Disable null `
  -OtelProtocol null `
- -Bucket null `
- -Path null
+ -OtelTimeout null `
+ -OtelMaxBodySize null `
+ -ApiPathPrefix null `
+ -OtelHeaders null `
+ -Timeout null `
+ -OtelPath null `
+ -OtelCompression null
 ```
 
 - Convert the resource to JSON

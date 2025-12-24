@@ -5,10 +5,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Level** | **String** |  | [optional] 
 **Value** | **String** |  | [optional] 
+**Mask** | **String** |  | [optional] 
+**CanUpdateAtRuntime** | **Boolean** |  | [optional] 
 **Section** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
-**CanUpdateAtRuntime** | **Boolean** |  | [optional] 
-**Mask** | **String** |  | [optional] 
 
 ## Examples
 
@@ -16,10 +16,10 @@ Name | Type | Description | Notes
 ```powershell
 $NodesCephCfgDbInner = Initialize-PVENodesCephCfgDbInner  -Level null `
  -Value null `
- -Section null `
- -Name null `
+ -Mask null `
  -CanUpdateAtRuntime null `
- -Mask null
+ -Section null `
+ -Name null
 ```
 
 - Convert the resource to JSON

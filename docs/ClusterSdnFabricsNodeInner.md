@@ -1,34 +1,34 @@
-# ClusterSdnFabricsNodeGETInner
+# ClusterSdnFabricsNodeInner
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**LockToken** | **String** |  | [optional] 
+**Protocol** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Ip6** | **String** |  | [optional] 
 **Ip** | **String** |  | [optional] 
 **NodeId** | **String** |  | [optional] 
-**FabricId** | **String** |  | [optional] 
 **Interfaces** | [**AnyType[]**](AnyType.md) |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**LockToken** | **String** |  | [optional] 
-**Ip6** | **String** |  | [optional] 
-**Protocol** | **String** |  | [optional] 
+**FabricId** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnFabricsNodeGETInner = Initialize-PVEClusterSdnFabricsNodeGETInner  -Ip null `
- -NodeId null `
- -FabricId null `
- -Interfaces null `
+$ClusterSdnFabricsNodeInner = Initialize-PVEClusterSdnFabricsNodeInner  -LockToken null `
+ -Protocol null `
  -Digest null `
- -LockToken null `
  -Ip6 null `
- -Protocol null
+ -Ip null `
+ -NodeId null `
+ -Interfaces null `
+ -FabricId null
 ```
 
 - Convert the resource to JSON
 ```powershell
-$ClusterSdnFabricsNodeGETInner | ConvertTo-JSON
+$ClusterSdnFabricsNodeInner | ConvertTo-JSON
 ```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

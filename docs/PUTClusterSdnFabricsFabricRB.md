@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CsnpInterval** | **Decimal** |  | [optional] 
-**IpPrefix** | **String** |  | [optional] 
-**Delete** | [**AnyType[]**](AnyType.md) |  | [optional] 
 **Ip6Prefix** | **String** |  | [optional] 
+**Delete** | [**AnyType[]**](AnyType.md) |  | [optional] 
 **Area** | **String** |  | [optional] 
-**HelloInterval** | **Decimal** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**IpPrefix** | **String** |  | [optional] 
 **LockToken** | **String** |  | [optional] 
 **Protocol** | **String** |  | [optional] 
+**CsnpInterval** | **Decimal** |  | [optional] 
+**HelloInterval** | **Decimal** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnFabricsFabricRB = Initialize-PVEPUTClusterSdnFabricsFabricRB  -CsnpInterval null `
- -IpPrefix null `
+$PUTClusterSdnFabricsFabricRB = Initialize-PVEPUTClusterSdnFabricsFabricRB  -Ip6Prefix null `
  -Delete null `
- -Ip6Prefix null `
  -Area null `
- -HelloInterval null `
  -Digest null `
+ -IpPrefix null `
  -LockToken null `
- -Protocol null
+ -Protocol null `
+ -CsnpInterval null `
+ -HelloInterval null
 ```
 
 - Convert the resource to JSON

@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Schedule** | **String** |  | [optional] 
 **Iterations** | **Int32** |  | [optional] 
 **Starttime** | **Int32** |  | [optional] 
+**Schedule** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$GETClusterJobsScheduleanalyzeRB = Initialize-PVEGETClusterJobsScheduleanalyzeRB  -Schedule null `
- -Iterations null `
- -Starttime null
+$GETClusterJobsScheduleanalyzeRB = Initialize-PVEGETClusterJobsScheduleanalyzeRB  -Iterations null `
+ -Starttime null `
+ -Schedule null
 ```
 
 - Convert the resource to JSON

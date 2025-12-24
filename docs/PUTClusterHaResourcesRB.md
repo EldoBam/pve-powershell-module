@@ -4,26 +4,26 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Delete** | **String** |  | [optional] 
-**Group** | **String** |  | [optional] 
-**Comment** | **String** |  | [optional] 
 **MaxRelocate** | **Int32** |  | [optional] 
-**State** | **String** |  | [optional] 
-**MaxRestart** | **Int32** |  | [optional] 
 **Digest** | **String** |  | [optional] 
 **Failback** | **Boolean** |  | [optional] 
+**Comment** | **String** |  | [optional] 
+**MaxRestart** | **Int32** |  | [optional] 
+**Group** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $PUTClusterHaResourcesRB = Initialize-PVEPUTClusterHaResourcesRB  -Delete null `
- -Group null `
- -Comment null `
  -MaxRelocate null `
- -State null `
- -MaxRestart null `
  -Digest null `
- -Failback null
+ -Failback null `
+ -Comment null `
+ -MaxRestart null `
+ -Group null `
+ -State null
 ```
 
 - Convert the resource to JSON

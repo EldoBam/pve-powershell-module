@@ -3,21 +3,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
-**Origin** | **String** |  | [optional] 
 **Disable** | **Boolean** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Origin** | **String** |  | [optional] 
 **Name** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterNotificationsTargetsInner = Initialize-PVEClusterNotificationsTargetsInner  -Type null `
- -Origin null `
- -Disable null `
+$ClusterNotificationsTargetsInner = Initialize-PVEClusterNotificationsTargetsInner  -Disable null `
  -Comment null `
- -Name null
+ -Origin null `
+ -Name null `
+ -Type null
 ```
 
 - Convert the resource to JSON

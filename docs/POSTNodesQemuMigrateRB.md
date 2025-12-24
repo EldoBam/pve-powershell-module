@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Online** | **Boolean** |  | [optional] 
-**MigrationNetwork** | **String** |  | [optional] 
-**Target** | **String** |  | [optional] 
-**WithConntrackState** | **Boolean** |  | [optional] 
-**Force** | **Boolean** |  | [optional] 
 **WithLocalDisks** | **Boolean** |  | [optional] 
-**Bwlimit** | **Int32** |  | [optional] 
+**Force** | **Boolean** |  | [optional] 
+**Online** | **Boolean** |  | [optional] 
+**WithConntrackState** | **Boolean** |  | [optional] 
 **MigrationType** | **String** |  | [optional] 
 **Targetstorage** | **String** |  | [optional] 
+**Target** | **String** |  | [optional] 
+**Bwlimit** | **Int32** |  | [optional] 
+**MigrationNetwork** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTNodesQemuMigrateRB = Initialize-PVEPOSTNodesQemuMigrateRB  -Online null `
- -MigrationNetwork null `
- -Target null `
- -WithConntrackState null `
+$POSTNodesQemuMigrateRB = Initialize-PVEPOSTNodesQemuMigrateRB  -WithLocalDisks null `
  -Force null `
- -WithLocalDisks null `
- -Bwlimit null `
+ -Online null `
+ -WithConntrackState null `
  -MigrationType null `
- -Targetstorage null
+ -Targetstorage null `
+ -Target null `
+ -Bwlimit null `
+ -MigrationNetwork null
 ```
 
 - Convert the resource to JSON

@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Keys** | **String** |  | [optional] 
-**Groups** | **String[]** |  | [optional] 
-**Expire** | **Int32** |  | [optional] 
-**Comment** | **String** |  | [optional] 
-**Lastname** | **String** |  | [optional] 
 **Firstname** | **String** |  | [optional] 
-**Email** | **String** |  | [optional] 
-**Tokens** | [**AccessUsersTokenPOSTInfo**](AccessUsersTokenPOSTInfo.md) |  | [optional] 
+**Comment** | **String** |  | [optional] 
 **Enable** | **Boolean** |  | [optional] 
+**Tokens** | [**AccessUsersTokens**](AccessUsersTokens.md) |  | [optional] 
+**Expire** | **Int32** |  | [optional] 
+**Email** | **String** |  | [optional] 
+**Groups** | **String[]** |  | [optional] 
+**Lastname** | **String** |  | [optional] 
+**Keys** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessUsers = Initialize-PVEAccessUsers  -Keys null `
- -Groups null `
- -Expire null `
+$AccessUsers = Initialize-PVEAccessUsers  -Firstname null `
  -Comment null `
- -Lastname null `
- -Firstname null `
- -Email null `
+ -Enable null `
  -Tokens null `
- -Enable null
+ -Expire null `
+ -Email null `
+ -Groups null `
+ -Lastname null `
+ -Keys null
 ```
 
 - Convert the resource to JSON

@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Nodes** | [**ClusterSdnFabricsAllNodesInner[]**](ClusterSdnFabricsAllNodesInner.md) |  | [optional] 
 **Fabrics** | [**ClusterSdnFabricsAllFabricsInner[]**](ClusterSdnFabricsAllFabricsInner.md) |  | [optional] 
+**Nodes** | [**ClusterSdnFabricsAllNodesInner[]**](ClusterSdnFabricsAllNodesInner.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnFabricsAll = Initialize-PVEClusterSdnFabricsAll  -Nodes null `
- -Fabrics null
+$ClusterSdnFabricsAll = Initialize-PVEClusterSdnFabricsAll  -Fabrics null `
+ -Nodes null
 ```
 
 - Convert the resource to JSON

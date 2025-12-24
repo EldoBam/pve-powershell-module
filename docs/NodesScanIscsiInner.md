@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Portal** | **String** |  | [optional] 
 **Target** | **String** |  | [optional] 
+**Portal** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesScanIscsiInner = Initialize-PVENodesScanIscsiInner  -Portal null `
- -Target null
+$NodesScanIscsiInner = Initialize-PVENodesScanIscsiInner  -Target null `
+ -Portal null
 ```
 
 - Convert the resource to JSON

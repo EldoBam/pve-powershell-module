@@ -3,25 +3,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AcmedomainN** | **String** |  | [optional] 
 **Wakeonlan** | **String** |  | [optional] 
+**AcmedomainN** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**BallooningTarget** | **Int32** |  | [optional] 
+**Acme** | **String** |  | [optional] 
 **StartallOnbootDelay** | **Int32** |  | [optional] 
 **Digest** | **String** |  | [optional] 
-**BallooningTarget** | **Int32** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**Acme** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesConfig = Initialize-PVENodesConfig  -AcmedomainN null `
- -Wakeonlan null `
- -StartallOnbootDelay null `
- -Digest null `
- -BallooningTarget null `
+$NodesConfig = Initialize-PVENodesConfig  -Wakeonlan null `
+ -AcmedomainN null `
  -Description null `
- -Acme null
+ -BallooningTarget null `
+ -Acme null `
+ -StartallOnbootDelay null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

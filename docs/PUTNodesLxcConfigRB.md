@@ -3,81 +3,81 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cmode** | **String** |  | [optional] 
-**Lock** | **String** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**DevN** | **String** |  | [optional] 
-**Swap** | **Int32** |  | [optional] 
-**Timezone** | **String** |  | [optional] 
-**Delete** | **String** |  | [optional] 
-**Env** | **String** |  | [optional] 
-**NetN** | **String** |  | [optional] 
-**Hookscript** | **String** |  | [optional] 
-**MpN** | **String** |  | [optional] 
-**Onboot** | **Boolean** |  | [optional] 
-**Protection** | **Boolean** |  | [optional] 
-**Memory** | **Int32** |  | [optional] 
-**Cpuunits** | **Int32** |  | [optional] 
-**Nameserver** | **String** |  | [optional] 
-**Template** | **Boolean** |  | [optional] 
-**Startup** | **String** |  | [optional] 
-**Description** | **String** |  | [optional] 
-**Ostype** | **String** |  | [optional] 
-**Searchdomain** | **String** |  | [optional] 
-**Rootfs** | **String** |  | [optional] 
 **Unprivileged** | **Boolean** |  | [optional] 
-**Arch** | **String** |  | [optional] 
-**Tty** | **Int32** |  | [optional] 
-**Cpulimit** | **Decimal** |  | [optional] 
-**Tags** | **String** |  | [optional] 
-**Hostname** | **String** |  | [optional] 
-**UnusedN** | **String** |  | [optional] 
+**Memory** | **Int32** |  | [optional] 
+**Hookscript** | **String** |  | [optional] 
+**Rootfs** | **String** |  | [optional] 
 **Revert** | **String** |  | [optional] 
+**MpN** | **String** |  | [optional] 
+**Cpulimit** | **Decimal** |  | [optional] 
+**Env** | **String** |  | [optional] 
+**Tags** | **String** |  | [optional] 
 **Console** | **Boolean** |  | [optional] 
+**Delete** | **String** |  | [optional] 
 **Entrypoint** | **String** |  | [optional] 
+**Description** | **String** |  | [optional] 
+**Digest** | **String** |  | [optional] 
+**Template** | **Boolean** |  | [optional] 
+**Onboot** | **Boolean** |  | [optional] 
+**Lock** | **String** |  | [optional] 
+**UnusedN** | **String** |  | [optional] 
+**Cpuunits** | **Int32** |  | [optional] 
+**Timezone** | **String** |  | [optional] 
 **Debug** | **Boolean** |  | [optional] 
-**Cores** | **Int32** |  | [optional] 
 **Features** | **String** |  | [optional] 
+**Hostname** | **String** |  | [optional] 
+**Cmode** | **String** |  | [optional] 
+**Cores** | **Int32** |  | [optional] 
+**DevN** | **String** |  | [optional] 
+**Arch** | **String** |  | [optional] 
+**NetN** | **String** |  | [optional] 
+**Swap** | **Int32** |  | [optional] 
+**Ostype** | **String** |  | [optional] 
+**Tty** | **Int32** |  | [optional] 
+**Searchdomain** | **String** |  | [optional] 
+**Protection** | **Boolean** |  | [optional] 
+**Startup** | **String** |  | [optional] 
+**Nameserver** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTNodesLxcConfigRB = Initialize-PVEPUTNodesLxcConfigRB  -Cmode null `
- -Lock null `
- -Digest null `
- -DevN null `
- -Swap null `
- -Timezone null `
- -Delete null `
- -Env null `
- -NetN null `
- -Hookscript null `
- -MpN null `
- -Onboot null `
- -Protection null `
+$PUTNodesLxcConfigRB = Initialize-PVEPUTNodesLxcConfigRB  -Unprivileged null `
  -Memory null `
- -Cpuunits null `
- -Nameserver null `
- -Template null `
- -Startup null `
- -Description null `
- -Ostype null `
- -Searchdomain null `
+ -Hookscript null `
  -Rootfs null `
- -Unprivileged null `
- -Arch null `
- -Tty null `
- -Cpulimit null `
- -Tags null `
- -Hostname null `
- -UnusedN null `
  -Revert null `
+ -MpN null `
+ -Cpulimit null `
+ -Env null `
+ -Tags null `
  -Console null `
+ -Delete null `
  -Entrypoint null `
+ -Description null `
+ -Digest null `
+ -Template null `
+ -Onboot null `
+ -Lock null `
+ -UnusedN null `
+ -Cpuunits null `
+ -Timezone null `
  -Debug null `
+ -Features null `
+ -Hostname null `
+ -Cmode null `
  -Cores null `
- -Features null
+ -DevN null `
+ -Arch null `
+ -NetN null `
+ -Swap null `
+ -Ostype null `
+ -Tty null `
+ -Searchdomain null `
+ -Protection null `
+ -Startup null `
+ -Nameserver null
 ```
 
 - Convert the resource to JSON

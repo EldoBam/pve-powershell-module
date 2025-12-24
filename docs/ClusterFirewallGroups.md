@@ -3,41 +3,41 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Macro** | **String** |  | [optional] 
-**Action** | **String** |  | [optional] 
-**Iface** | **String** |  | [optional] 
+**Pos** | **Int32** |  | [optional] 
 **Proto** | **String** |  | [optional] 
-**IcmpType** | **String** |  | [optional] 
 **Ipversion** | **Int32** |  | [optional] 
+**Source** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**Source** | **String** |  | [optional] 
-**Dest** | **String** |  | [optional] 
-**Enable** | **Int32** |  | [optional] 
-**Log** | **String** |  | [optional] 
+**Macro** | **String** |  | [optional] 
+**IcmpType** | **String** |  | [optional] 
 **Dport** | **String** |  | [optional] 
-**Pos** | **Int32** |  | [optional] 
+**Dest** | **String** |  | [optional] 
+**Action** | **String** |  | [optional] 
+**Log** | **String** |  | [optional] 
 **Sport** | **String** |  | [optional] 
+**Enable** | **Int32** |  | [optional] 
+**Iface** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterFirewallGroups = Initialize-PVEClusterFirewallGroups  -Macro null `
- -Action null `
- -Iface null `
+$ClusterFirewallGroups = Initialize-PVEClusterFirewallGroups  -Pos null `
  -Proto null `
- -IcmpType null `
  -Ipversion null `
+ -Source null `
  -Comment null `
  -Type null `
- -Source null `
- -Dest null `
- -Enable null `
- -Log null `
+ -Macro null `
+ -IcmpType null `
  -Dport null `
- -Pos null `
- -Sport null
+ -Dest null `
+ -Action null `
+ -Log null `
+ -Sport null `
+ -Enable null `
+ -Iface null
 ```
 
 - Convert the resource to JSON

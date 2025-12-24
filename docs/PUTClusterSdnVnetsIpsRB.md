@@ -3,18 +3,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ip** | **String** |  | [optional] 
-**Zone** | **String** |  | [optional] 
 **Vmid** | **Int32** |  | [optional] 
+**Zone** | **String** |  | [optional] 
+**Ip** | **String** |  | [optional] 
 **Mac** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PUTClusterSdnVnetsIpsRB = Initialize-PVEPUTClusterSdnVnetsIpsRB  -Ip null `
+$PUTClusterSdnVnetsIpsRB = Initialize-PVEPUTClusterSdnVnetsIpsRB  -Vmid null `
  -Zone null `
- -Vmid null `
+ -Ip null `
  -Mac null
 ```
 

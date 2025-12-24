@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **String** |  | [optional] 
 **Store** | **String** |  | [optional] 
+**Comment** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesScanPbsInner = Initialize-PVENodesScanPbsInner  -Comment null `
- -Store null
+$NodesScanPbsInner = Initialize-PVENodesScanPbsInner  -Store null `
+ -Comment null
 ```
 
 - Convert the resource to JSON

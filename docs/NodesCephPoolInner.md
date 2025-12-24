@@ -3,45 +3,45 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MinSize** | **Int32** |  | [optional] 
-**PgAutoscaleMode** | **String** |  | [optional] 
+**CrushRuleName** | **String** |  | [optional] 
 **PgNumMin** | **Int32** |  | [optional] 
+**TargetSize** | **Int32** |  | [optional] 
+**TargetSizeRatio** | **Decimal** |  | [optional] 
+**Pool** | **Int32** |  | [optional] 
+**MinSize** | **Int32** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**PercentUsed** | **Decimal** |  | [optional] 
+**PgAutoscaleMode** | **String** |  | [optional] 
+**PoolName** | **String** |  | [optional] 
 **CrushRule** | **Int32** |  | [optional] 
 **AutoscaleStatus** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**BytesUsed** | **Int32** |  | [optional] 
-**Type** | **String** |  | [optional] 
 **ApplicationMetadata** | [**SystemCollectionsHashtable**](.md) |  | [optional] 
-**TargetSizeRatio** | **Decimal** |  | [optional] 
-**CrushRuleName** | **String** |  | [optional] 
-**PoolName** | **String** |  | [optional] 
-**Size** | **Int32** |  | [optional] 
-**PercentUsed** | **Decimal** |  | [optional] 
 **PgNum** | **Int32** |  | [optional] 
-**Pool** | **Int32** |  | [optional] 
 **PgNumFinal** | **Int32** |  | [optional] 
-**TargetSize** | **Int32** |  | [optional] 
+**Size** | **Int32** |  | [optional] 
+**BytesUsed** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesCephPoolInner = Initialize-PVENodesCephPoolInner  -MinSize null `
- -PgAutoscaleMode null `
+$NodesCephPoolInner = Initialize-PVENodesCephPoolInner  -CrushRuleName null `
  -PgNumMin null `
+ -TargetSize null `
+ -TargetSizeRatio null `
+ -Pool null `
+ -MinSize null `
+ -Type null `
+ -PercentUsed null `
+ -PgAutoscaleMode null `
+ -PoolName null `
  -CrushRule null `
  -AutoscaleStatus null `
- -BytesUsed null `
- -Type null `
  -ApplicationMetadata null `
- -TargetSizeRatio null `
- -CrushRuleName null `
- -PoolName null `
- -Size null `
- -PercentUsed null `
  -PgNum null `
- -Pool null `
  -PgNumFinal null `
- -TargetSize null
+ -Size null `
+ -BytesUsed null
 ```
 
 - Convert the resource to JSON

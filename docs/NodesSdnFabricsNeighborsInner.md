@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Neighbor** | **String** |  | [optional] 
 **Status** | **String** |  | [optional] 
+**Neighbor** | **String** |  | [optional] 
 **Uptime** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesSdnFabricsNeighborsInner = Initialize-PVENodesSdnFabricsNeighborsInner  -Neighbor null `
- -Status null `
+$NodesSdnFabricsNeighborsInner = Initialize-PVENodesSdnFabricsNeighborsInner  -Status null `
+ -Neighbor null `
  -Uptime null
 ```
 

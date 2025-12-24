@@ -4,24 +4,24 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Delete** | **String** |  | [optional] 
-**Section** | **Int32** |  | [optional] 
-**Token** | **String** |  | [optional] 
 **Digest** | **String** |  | [optional] 
+**Url** | **String** |  | [optional] 
 **LockToken** | **String** |  | [optional] 
 **Fingerprint** | **String** |  | [optional] 
-**Url** | **String** |  | [optional] 
+**Token** | **String** |  | [optional] 
+**Section** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $PUTClusterSdnIpamsRB = Initialize-PVEPUTClusterSdnIpamsRB  -Delete null `
- -Section null `
- -Token null `
  -Digest null `
+ -Url null `
  -LockToken null `
  -Fingerprint null `
- -Url null
+ -Token null `
+ -Section null
 ```
 
 - Convert the resource to JSON

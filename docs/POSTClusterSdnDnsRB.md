@@ -3,29 +3,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **String** |  | [optional] 
-**Reversemaskv6** | **Int32** |  | [optional] 
-**Key** | **String** |  | [optional] 
-**Dns** | **String** |  | [optional] 
 **Type** | **String** |  | [optional] 
-**Reversev6mask** | **Int32** |  | [optional] 
-**LockToken** | **String** |  | [optional] 
-**Fingerprint** | **String** |  | [optional] 
 **Ttl** | **Int32** |  | [optional] 
+**Url** | **String** |  | [optional] 
+**Fingerprint** | **String** |  | [optional] 
+**LockToken** | **String** |  | [optional] 
+**Reversemaskv6** | **Int32** |  | [optional] 
+**Dns** | **String** |  | [optional] 
+**Reversev6mask** | **Int32** |  | [optional] 
+**Key** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$POSTClusterSdnDnsRB = Initialize-PVEPOSTClusterSdnDnsRB  -Url null `
- -Reversemaskv6 null `
- -Key null `
- -Dns null `
- -Type null `
- -Reversev6mask null `
- -LockToken null `
+$POSTClusterSdnDnsRB = Initialize-PVEPOSTClusterSdnDnsRB  -Type null `
+ -Ttl null `
+ -Url null `
  -Fingerprint null `
- -Ttl null
+ -LockToken null `
+ -Reversemaskv6 null `
+ -Dns null `
+ -Reversev6mask null `
+ -Key null
 ```
 
 - Convert the resource to JSON

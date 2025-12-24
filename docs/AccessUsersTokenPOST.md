@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FullTokenid** | **String** |  | [optional] 
-**Info** | [**AccessUsersTokenPOSTInfo**](AccessUsersTokenPOSTInfo.md) |  | [optional] 
 **Value** | **String** |  | [optional] 
+**FullTokenid** | **String** |  | [optional] 
+**Info** | [**AccessUsersTokens**](AccessUsersTokens.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AccessUsersTokenPOST = Initialize-PVEAccessUsersTokenPOST  -FullTokenid null `
- -Info null `
- -Value null
+$AccessUsersTokenPOST = Initialize-PVEAccessUsersTokenPOST  -Value null `
+ -FullTokenid null `
+ -Info null
 ```
 
 - Convert the resource to JSON

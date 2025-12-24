@@ -3,17 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Size** | **Int32** |  | [optional] 
 **Filename** | **String** |  | [optional] 
 **Mimetype** | **String** |  | [optional] 
+**Size** | **Int32** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesQueryurlmetadata = Initialize-PVENodesQueryurlmetadata  -Size null `
- -Filename null `
- -Mimetype null
+$NodesQueryurlmetadata = Initialize-PVENodesQueryurlmetadata  -Filename null `
+ -Mimetype null `
+ -Size null
 ```
 
 - Convert the resource to JSON

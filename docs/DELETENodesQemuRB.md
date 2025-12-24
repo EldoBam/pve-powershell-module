@@ -3,16 +3,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DestroyUnreferencedDisks** | **Boolean** |  | [optional] 
 **Skiplock** | **Boolean** |  | [optional] 
+**DestroyUnreferencedDisks** | **Boolean** |  | [optional] 
 **Purge** | **Boolean** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$DELETENodesQemuRB = Initialize-PVEDELETENodesQemuRB  -DestroyUnreferencedDisks null `
- -Skiplock null `
+$DELETENodesQemuRB = Initialize-PVEDELETENodesQemuRB  -Skiplock null `
+ -DestroyUnreferencedDisks null `
  -Purge null
 ```
 

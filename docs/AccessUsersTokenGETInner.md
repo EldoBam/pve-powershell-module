@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Privsep** | **Boolean** |  | [optional] 
-**Tokenid** | **String** |  | [optional] 
 **Comment** | **String** |  | [optional] 
+**Tokenid** | **String** |  | [optional] 
 **Expire** | **Int32** |  | [optional] 
 
 ## Examples
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $AccessUsersTokenGETInner = Initialize-PVEAccessUsersTokenGETInner  -Privsep null `
- -Tokenid null `
  -Comment null `
+ -Tokenid null `
  -Expire null
 ```
 

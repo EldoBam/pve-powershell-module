@@ -3,41 +3,41 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** |  | [optional] 
-**Controller** | **String** |  | [optional] 
-**Asn** | **Int32** |  | [optional] 
-**Pending** | [**ClusterSdnControllersInnerPending**](ClusterSdnControllersInnerPending.md) |  | [optional] 
-**Loopback** | **String** |  | [optional] 
-**IsisNet** | **String** |  | [optional] 
 **IsisIfaces** | **String** |  | [optional] 
+**State** | **String** |  | [optional] 
+**IsisNet** | **String** |  | [optional] 
+**Peers** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Loopback** | **String** |  | [optional] 
+**Controller** | **String** |  | [optional] 
 **Node** | **String** |  | [optional] 
-**BgpMultipathAsRelax** | **Boolean** |  | [optional] 
-**Digest** | **String** |  | [optional] 
-**EbgpMultihop** | **Int32** |  | [optional] 
 **Ebgp** | **Boolean** |  | [optional] 
 **IsisDomain** | **String** |  | [optional] 
-**State** | **String** |  | [optional] 
-**Peers** | **String** |  | [optional] 
+**Pending** | [**ClusterSdnControllersInnerPending**](ClusterSdnControllersInnerPending.md) |  | [optional] 
+**Asn** | **Int32** |  | [optional] 
+**EbgpMultihop** | **Int32** |  | [optional] 
+**BgpMultipathAsRelax** | **Boolean** |  | [optional] 
+**Digest** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$ClusterSdnControllersInner = Initialize-PVEClusterSdnControllersInner  -Type null `
- -Controller null `
- -Asn null `
- -Pending null `
- -Loopback null `
+$ClusterSdnControllersInner = Initialize-PVEClusterSdnControllersInner  -IsisIfaces null `
+ -State null `
  -IsisNet null `
- -IsisIfaces null `
+ -Peers null `
+ -Type null `
+ -Loopback null `
+ -Controller null `
  -Node null `
- -BgpMultipathAsRelax null `
- -Digest null `
- -EbgpMultihop null `
  -Ebgp null `
  -IsisDomain null `
- -State null `
- -Peers null
+ -Pending null `
+ -Asn null `
+ -EbgpMultihop null `
+ -BgpMultipathAsRelax null `
+ -Digest null
 ```
 
 - Convert the resource to JSON

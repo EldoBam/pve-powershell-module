@@ -4,14 +4,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **VarPid** | **Int32** |  | [optional] 
-**Node** | **String** |  | [optional] 
-**Id** | **String** |  | [optional] 
-**Upid** | **String** |  | [optional] 
-**Type** | **String** |  | [optional] 
-**Status** | **String** |  | [optional] 
-**Starttime** | **Int32** |  | [optional] 
-**Exitstatus** | **String** |  | [optional] 
 **Pstart** | **Int32** |  | [optional] 
+**Status** | **String** |  | [optional] 
+**Type** | **String** |  | [optional] 
+**Node** | **String** |  | [optional] 
+**Exitstatus** | **String** |  | [optional] 
+**Upid** | **String** |  | [optional] 
+**Starttime** | **Int32** |  | [optional] 
+**Id** | **String** |  | [optional] 
 **User** | **String** |  | [optional] 
 
 ## Examples
@@ -19,14 +19,14 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $NodesTasksStatus = Initialize-PVENodesTasksStatus  -VarPid null `
- -Node null `
- -Id null `
- -Upid null `
- -Type null `
- -Status null `
- -Starttime null `
- -Exitstatus null `
  -Pstart null `
+ -Status null `
+ -Type null `
+ -Node null `
+ -Exitstatus null `
+ -Upid null `
+ -Starttime null `
+ -Id null `
  -User null
 ```
 

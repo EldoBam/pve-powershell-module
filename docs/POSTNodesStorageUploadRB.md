@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Filename** | **String** |  | [optional] 
 **Tmpfilename** | **String** |  | [optional] 
 **ChecksumAlgorithm** | **String** |  | [optional] 
-**Filename** | **String** |  | [optional] 
 **Content** | **String** |  | [optional] 
 **Checksum** | **String** |  | [optional] 
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$POSTNodesStorageUploadRB = Initialize-PVEPOSTNodesStorageUploadRB  -Tmpfilename null `
+$POSTNodesStorageUploadRB = Initialize-PVEPOSTNodesStorageUploadRB  -Filename null `
+ -Tmpfilename null `
  -ChecksumAlgorithm null `
- -Filename null `
  -Content null `
  -Checksum null
 ```

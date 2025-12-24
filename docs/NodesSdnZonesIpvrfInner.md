@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Protocol** | **String** |  | [optional] 
 **Nexthops** | **String[]** |  | [optional] 
 **Metric** | **Int32** |  | [optional] 
 **Ip** | **String** |  | [optional] 
+**Protocol** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$NodesSdnZonesIpvrfInner = Initialize-PVENodesSdnZonesIpvrfInner  -Protocol null `
- -Nexthops null `
+$NodesSdnZonesIpvrfInner = Initialize-PVENodesSdnZonesIpvrfInner  -Nexthops null `
  -Metric null `
- -Ip null
+ -Ip null `
+ -Protocol null
 ```
 
 - Convert the resource to JSON
